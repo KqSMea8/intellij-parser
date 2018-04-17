@@ -83,9 +83,15 @@ class SymbolToken extends Token {
 
 class MissingToken extends Token {
   readonly kind = TokenKind.Missing;
+  missingKind: TokenKind;
+
+  constructor(pos: number, missingKind: TokenKind) {
+    super(pos, "", "");
+    this.missingKind = missingKind;
+  }
 }
 
-const tokens = function tokenizer(code: string): Token[] {
+function tokenizer(code: string): Token[] {
   let pos = 0;
   const tokens = [] as Token[];
 
@@ -101,7 +107,7 @@ const tokens = function tokenizer(code: string): Token[] {
   }
 
   return tokens;
-};
+}
 
 enum ResultColumnType {
   any,
@@ -112,10 +118,64 @@ class SqlNode {
   pos: number;
   kind: Kind;
   childNodes = [] as (Token | SqlNode)[];
+
+  get firstToken() {
+    if (!this.childNodes.length) {
+      return null;
+    }
+
+    const firstNode = this.childNodes[0];
+    if (firstNode instanceof Token) {
+      return firstNode;
+    } else {
+      return firstNode.firstToken;
+    }
+  }
 }
 
 enum Kind {
+  ResultColumnsNode,
   ResultColumnNode
+}
+
+type LexerGrammer = (Node | Token)[];
+
+class Parser {
+  private tokens = [] as Token[];
+
+  private text = "";
+
+  private cursor = 0;
+
+  get currToken() {
+    if (this.cursor > 0 && this.cursor < this.tokens.length) {
+      return this.tokens[this.cursor];
+    }
+
+    throw Error("cursor超出范围");
+  }
+
+  constructor(text: string) {
+    this.text = text;
+    this.tokens = tokenizer(text);
+  }
+
+  parse() {
+    return this.tokens;
+  }
+
+  private eat(token: Token) {
+    const currToken = this.currToken;
+
+    if (token.kind === currToken.kind) {
+      this.cursor++;
+      return currToken;
+    } else {
+      return new MissingToken(currToken.start, token.kind);
+    }
+  }
+
+  private or(...grammers: LexerGrammer[]) {}
 }
 
 class ResultColumnNode extends SqlNode {

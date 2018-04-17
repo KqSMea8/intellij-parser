@@ -34,11 +34,24 @@ select ['', 'distinct', 'all'][result-column, ] [from ]
 lexcial grammer（antlr）
 https://github.com/antlr/grammars-v4
 
-#
+# 原则
+
+1、静态类型
+
+# 语言
 
 hive 2.3 & odps
 
 # 流程
+
+## 总体
+
+1、text -> parser
+2、parser 动态构建
+3、language server(worker)
+4、智能编辑器
+
+## 具体
 
 0、找到一个 lexcer grammer，包含 tokenizer，Node,Statment
 1、生成一堆 tokenizer，每个包含 tokenKind 正则。
@@ -54,3 +67,5 @@ hive 2.3 & odps
 ## 参考文献
 
 https://github.com/Microsoft/tolerant-php-parser/blob/master/docs/HowItWorks.md
+
+https://github.com/SAP/chevrotain

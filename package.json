@@ -1,14 +1,33 @@
 {
-  "name": "tolerant-sql-parser",
-  "version": "1.0.0",
+  "name": "intellij-sql-editor",
+  "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "typings": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "dev": "tsc -w"
   },
-  "author": "JasonHzq",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:nefe/intellij-sql-editor.git"
+  },
+  "bin": {
+  },
+  "files": ["lib", "bin", "src", "*.md"],
+  "author": "NEFE",
   "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^5.0.0",
+    "@types/lodash": "^4.14.80",
+    "@types/node": "^8.0.47",
+    "@types/prettier": "^1.10.0"
+  },
   "dependencies": {
-    "typescript": "^2.8.1"
+    "chalk": "^2.3.0",
+    "fs-extra": "^5.0.0",
+    "lodash": "^4.17.4",
+    "typescript": "^2.6.1",
+    "prettier": "1.9"
   }
 }
