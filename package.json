@@ -12,9 +12,13 @@
     "type": "git",
     "url": "git@github.com:nefe/intellij-sql-editor.git"
   },
-  "bin": {
-  },
-  "files": ["lib", "bin", "src", "*.md"],
+  "bin": {},
+  "files": [
+    "lib",
+    "bin",
+    "src",
+    "*.md"
+  ],
   "author": "NEFE",
   "license": "MIT",
   "devDependencies": {
@@ -25,9 +29,10 @@
   },
   "dependencies": {
     "chalk": "^2.3.0",
+    "chevrotain": "^3.1.0",
     "fs-extra": "^5.0.0",
     "lodash": "^4.17.4",
-    "typescript": "^2.6.1",
-    "prettier": "1.9"
+    "prettier": "1.9",
+    "typescript": "^2.6.1"
   }
 }

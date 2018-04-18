@@ -69,3 +69,11 @@ hive 2.3 & odps
 https://github.com/Microsoft/tolerant-php-parser/blob/master/docs/HowItWorks.md
 
 https://github.com/SAP/chevrotain
+
+odps 官网: https://help.aliyun.com/document_detail/27808.html?spm=a2c4g.11186623.4.11.TVftxQ
+
+https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL
+
+https://github.com/antlr/antlr4/blob/master/doc/grammars.md
+
+https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/parse/HiveLexer.g
