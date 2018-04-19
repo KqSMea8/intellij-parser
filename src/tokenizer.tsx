@@ -22,6 +22,8 @@ class Token {
   /** 类型 */
   readonly kind: TokenKind;
 
+  firstToken = this;
+
   /** 正则 */
   static readonly regexp: RegExp;
 
@@ -138,7 +140,7 @@ enum Kind {
   ResultColumnNode
 }
 
-type LexerGrammer = (Node | Token)[];
+type LexerGrammer = (SqlNode | Token)[];
 
 class Parser {
   private tokens = [] as Token[];
@@ -160,8 +162,15 @@ class Parser {
     this.tokens = tokenizer(text);
   }
 
-  parse() {
-    return this.tokens;
+  parseGrammer(grammer: LexerGrammer) {
+    // grammer.forEach(node => {
+    //   if (node instanceof Token) {
+    //     this.eat(node);
+    //   } else {
+    //     this.parseGrammer(node);
+    //   }
+    // });
+    // return this.tokens;
   }
 
   private eat(token: Token) {
@@ -175,12 +184,25 @@ class Parser {
     }
   }
 
-  private or(...grammers: LexerGrammer[]) {}
+  private or(...grammers: LexerGrammer[]) {
+    const firstTokens = grammers.map(grammer => grammer[0].firstToken);
+    const currToken = this.currToken;
+
+    const matchedIndex = firstTokens.findIndex(
+      token => token.kind === currToken
+    );
+
+    if (matchedIndex !== -1) {
+      this.parseGrammer(grammers[matchedIndex]);
+    }
+  }
 }
 
 class ResultColumnNode extends SqlNode {
   kind = Kind.ResultColumnNode;
   type: ResultColumnType;
+
+  grammer = [];
 
   static parse(tokens: Token[], tokenIndex: number): ResultColumnNode {
     const [firstToken, ...restTokens] = tokens;
@@ -198,39 +220,39 @@ class ResultColumnNode extends SqlNode {
   }
 }
 
-class ResultColumnsNode extends SqlNode {
-  childNodes: ResultColumnNode[];
+// class ResultColumnsNode extends SqlNode {
+//   childNodes: ResultColumnNode[];
 
-  static parse(tokens: Token[], tokenIndex: number): ResultColumnNode {
-    const node = new ResultColumnsNode();
-    let tokenOffsetIndex = 0;
+//   static parse(tokens: Token[], tokenIndex: number): ResultColumnNode {
+//     const node = new ResultColumnsNode();
+//     let tokenOffsetIndex = 0;
 
-    if (tokens[0].text === "*" || tokens[0].kind === TokenKind.StringLiteral) {
-      node.childNodes.push(ResultColumnNode.parse(tokens, tokenIndex));
-      tokenOffsetIndex++;
-    } else {
-      tokens.push(new MissingToken());
-    }
+//     if (tokens[0].text === "*" || tokens[0].kind === TokenKind.StringLiteral) {
+//       node.childNodes.push(ResultColumnNode.parse(tokens, tokenIndex));
+//       tokenOffsetIndex++;
+//     } else {
+//       tokens.push(new MissingToken());
+//     }
 
-    while (remainTokens[0].text === ",") {
-      node.childNodes.push(remainTokens[0]);
+//     while (remainTokens[0].text === ",") {
+//       node.childNodes.push(remainTokens[0]);
 
-      if (remainTokens[1] && remainTokens[1].kind === TokenKind.StringLiteral) {
-        node.childNodes.push(remainTokens[1]);
-        remainTokens = remainTokens.slice(2);
-      } else {
-        node.childNodes.push(
-          new MissingToken(
-            remainTokens[0].start + remainTokens[0].fullLength,
-            "",
-            ""
-          )
-        );
-        remainTokens = remainTokens.slice(1);
-      }
-    }
-    return node;
-  }
-}
+//       if (remainTokens[1] && remainTokens[1].kind === TokenKind.StringLiteral) {
+//         node.childNodes.push(remainTokens[1]);
+//         remainTokens = remainTokens.slice(2);
+//       } else {
+//         node.childNodes.push(
+//           new MissingToken(
+//             remainTokens[0].start + remainTokens[0].fullLength,
+//             "",
+//             ""
+//           )
+//         );
+//         remainTokens = remainTokens.slice(1);
+//       }
+//     }
+//     return node;
+//   }
+// }
 
-function parser(tokens: Token[]) {}
+// function parser(tokens: Token[]) {}
