@@ -201,7 +201,7 @@ createTable:
 	)? partitionDefinitions? keyViolate = (IGNORE | REPLACE)? AS? selectStatement # queryCreateTable
 	| CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
 		tableOption (','? tableOption)*
-	)? partitionDefinitions?;
+	)? partitionDefinitions? # columnCreateTable;
 
 createTablespaceInnodb:
 	CREATE TABLESPACE uid ADD DATAFILE datafile = STRING_LITERAL (

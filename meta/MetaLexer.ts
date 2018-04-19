@@ -49,6 +49,11 @@ const Comment = chevrotain.createToken({
   group: chevrotain.Lexer.SKIPPED,
   pattern: /#[^;]*/
 });
+const SlashComment = chevrotain.createToken({
+  name: "SlashComment",
+  group: chevrotain.Lexer.SKIPPED,
+  pattern: /\/\/.*/
+});
 
 const WhiteSpace = chevrotain.createToken({
   name: "WhiteSpace",
@@ -70,6 +75,7 @@ export const Tokens = {
   UpperName,
   LowerName,
   WhiteSpace,
+  SlashComment,
   Comment
 };
 
@@ -86,6 +92,7 @@ export const tokens = [
   UpperName,
   LowerName,
   WhiteSpace,
+  SlashComment,
   Comment
 ];
 
