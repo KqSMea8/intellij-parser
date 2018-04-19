@@ -47,7 +47,7 @@ const Equal = chevrotain.createToken({
 const Comment = chevrotain.createToken({
   name: "Comment",
   group: chevrotain.Lexer.SKIPPED,
-  pattern: /#.*/
+  pattern: /#[^;]*/
 });
 
 const WhiteSpace = chevrotain.createToken({

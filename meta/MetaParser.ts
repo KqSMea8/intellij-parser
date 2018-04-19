@@ -10,6 +10,8 @@ class MetaParser extends chevrotain.Parser {
   items;
   item;
   itemCase;
+  sufs;
+  alias;
 
   constructor(input) {
     super(input, tokens, {
@@ -42,7 +44,7 @@ class MetaParser extends chevrotain.Parser {
       this.SUBRULE(this.atom);
       this.MANY(() => {
         this.CONSUME(Tokens.Bar);
-        this.SUBRULE(this.atom);
+        this.SUBRULE2(this.atom);
       });
     });
 
@@ -60,21 +62,21 @@ class MetaParser extends chevrotain.Parser {
 
     this.RULE("item", () => {
       // item: itemCase | itemCase '?' | itemCase '*';
+      this.SUBRULE(this.itemCase);
+      this.OPTION(() => {
+        this.SUBRULE(this.sufs);
+      });
+    });
+
+    this.RULE("sufs", () => {
       this.OR([
         {
           ALT: () => {
-            this.SUBRULE(this.itemCase);
-          }
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.itemCase);
             this.CONSUME(Tokens.Optional);
           }
         },
         {
           ALT: () => {
-            this.SUBRULE(this.itemCase);
             this.CONSUME(Tokens.Asterisk);
           }
         }
@@ -87,7 +89,7 @@ class MetaParser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.LeftBracket);
-            this.SUBRULE(this.atoms);
+            this.SUBRULE2(this.atoms);
             this.CONSUME(Tokens.RightBracket);
           }
         },
@@ -104,27 +106,27 @@ class MetaParser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.LowerName);
-          }
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LowerName);
-            this.CONSUME(Tokens.Equal);
-            this.SUBRULE(this.itemCase);
+            this.OPTION(() => {
+              this.SUBRULE(this.alias);
+            });
           }
         }
       ]);
+    });
+
+    this.RULE("alias", () => {
+      this.CONSUME(Tokens.Equal);
+      this.SUBRULE(this.itemCase);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);
   }
 }
 
-const metaParser = new MetaParser([]);
-
 export function parseGCode(gCode: string) {
   const lexResult = Lexer.tokenize(gCode);
 
+  const metaParser = new MetaParser([]);
   metaParser.input = lexResult.tokens;
 
   const value = metaParser.rules();
