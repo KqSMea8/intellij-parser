@@ -14,7 +14,7 @@ const Colon = chevrotain.createToken({
 });
 const Asterisk = chevrotain.createToken({
   name: "Asterisk",
-  pattern: /\:/
+  pattern: /\*/
 });
 const Optional = chevrotain.createToken({
   name: "Optional",
@@ -34,11 +34,11 @@ const Stringliteral = chevrotain.createToken({
 });
 const UpperName = chevrotain.createToken({
   name: "UpperName",
-  pattern: /[A-Z][a-z0-9A-Z]*/
+  pattern: /[A-Z][a-z0-9A-Z_]*/
 });
 const LowerName = chevrotain.createToken({
   name: "LowerName",
-  pattern: /[a-z][a-z0-9A-Z]*/
+  pattern: /[a-z][a-z0-9A-Z_]*/
 });
 const Equal = chevrotain.createToken({
   name: "Equal",
@@ -53,6 +53,10 @@ const SlashComment = chevrotain.createToken({
   name: "SlashComment",
   group: chevrotain.Lexer.SKIPPED,
   pattern: /\/\/.*/
+});
+const Plus = chevrotain.createToken({
+  name: "Plus",
+  pattern: /\+/
 });
 
 const WhiteSpace = chevrotain.createToken({
@@ -76,7 +80,8 @@ export const Tokens = {
   LowerName,
   WhiteSpace,
   SlashComment,
-  Comment
+  Comment,
+  Plus
 };
 
 export const tokens = [
@@ -93,6 +98,7 @@ export const tokens = [
   LowerName,
   WhiteSpace,
   SlashComment,
+  Plus,
   Comment
 ];
 

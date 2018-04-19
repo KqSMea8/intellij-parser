@@ -49,22 +49,13 @@ class MetaParser extends chevrotain.Parser {
     });
 
     this.RULE("atom", () => {
-      // atom : items;
-      this.SUBRULE(this.items);
-    });
-
-    this.RULE("items", () => {
       // items: item item*;
-      this.AT_LEAST_ONE(() => {
-        this.SUBRULE(this.item);
-      });
-    });
-
-    this.RULE("item", () => {
       // item: itemCase | itemCase '?' | itemCase '*';
-      this.SUBRULE(this.itemCase);
-      this.OPTION(() => {
-        this.SUBRULE(this.sufs);
+      this.AT_LEAST_ONE(() => {
+        this.SUBRULE(this.itemCase);
+        this.OPTION(() => {
+          this.SUBRULE(this.sufs);
+        });
       });
     });
 
@@ -107,20 +98,44 @@ class MetaParser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.LowerName);
             this.OPTION(() => {
-              this.SUBRULE(this.alias);
+              this.CONSUME(Tokens.Equal);
+              this.SUBRULE2(this.itemCase);
             });
           }
         }
       ]);
     });
 
-    this.RULE("alias", () => {
-      this.CONSUME(Tokens.Equal);
-      this.SUBRULE(this.itemCase);
-    });
-
     chevrotain.Parser.performSelfAnalysis(this);
   }
+}
+
+enum SyntaxKind {
+  /** = xx */
+  alias,
+  rules,
+  /** 规则 */
+  rule,
+  /** 规则名 */
+  ruleName,
+  /** 产生式可选项 */
+  atoms,
+  /** 产生式的某个可选项 */
+  atom,
+  /** 产生式节点列表,包含suff（Many，Option） */
+  items,
+  /** 产生式节点,包含suff（Many，Option） */
+  item,
+  /** 产生式节点 */
+  itemCase,
+  /** 产生式节点名 */
+  itemCaseName,
+  suffs
+}
+
+interface MetaNode {
+  kind: SyntaxKind;
+  children: { [key in keyof SyntaxKind]: MetaNode[] };
 }
 
 export function parseGCode(gCode: string) {
@@ -129,10 +144,10 @@ export function parseGCode(gCode: string) {
   const metaParser = new MetaParser([]);
   metaParser.input = lexResult.tokens;
 
-  const value = metaParser.rules();
+  const ast = metaParser.rules();
 
   return {
-    value,
+    ast,
     lexErrors: lexResult.errors,
     parseErrors: metaParser.errors
   };
