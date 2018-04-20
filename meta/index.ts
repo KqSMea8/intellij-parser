@@ -15,7 +15,7 @@ function metaGenerator(config = new MetaParserConfig()) {
   const gCode = fs
     .readFileSync(path.join(__dirname, config.gCodePath))
     .toString("utf8");
-  const { value, lexErrors, parseErrors } = parseGCode(gCode);
+  const { ast, lexErrors, parseErrors } = parseGCode(gCode);
 
   if (lexErrors) {
     console.log(...lexErrors);
@@ -24,7 +24,7 @@ function metaGenerator(config = new MetaParserConfig()) {
     console.log(...parseErrors);
   }
 
-  console.log(value);
+  console.log(ast);
 }
 
 metaGenerator();

@@ -70,6 +70,11 @@ class MetaParser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.Asterisk);
           }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.Plus);
+          }
         }
       ]);
     });
@@ -98,11 +103,27 @@ class MetaParser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.LowerName);
             this.OPTION(() => {
-              this.CONSUME(Tokens.Equal);
-              this.SUBRULE2(this.itemCase);
+              this.SUBRULE(this.alias);
             });
           }
         }
+      ]);
+    });
+
+    this.RULE("alias", () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.Equal);
+            this.SUBRULE3(this.itemCase);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PlusEquals);
+            this.SUBRULE2(this.itemCase);
+          }
+        },
       ]);
     });
 

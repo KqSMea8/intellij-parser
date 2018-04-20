@@ -54,6 +54,10 @@ const SlashComment = chevrotain.createToken({
   group: chevrotain.Lexer.SKIPPED,
   pattern: /\/\/.*/
 });
+const PlusEquals = chevrotain.createToken({
+  name: "PlusEquals",
+  pattern: /\+=/
+});
 const Plus = chevrotain.createToken({
   name: "Plus",
   pattern: /\+/
@@ -70,6 +74,7 @@ export const Tokens = {
   Bar,
   Semi,
   Colon,
+  PlusEquals,
   Equal,
   Asterisk,
   Optional,
@@ -88,6 +93,7 @@ export const tokens = [
   Bar,
   Semi,
   Colon,
+  PlusEquals,
   Asterisk,
   Optional,
   LeftBracket,
