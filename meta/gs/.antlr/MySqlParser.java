@@ -1,4 +1,4 @@
-// Generated from /Users/huangzongquan/workspace/open/parsers/intellij-sql-editor/meta/gs/MySqlParser.g4 by ANTLR 4.7.1
+// Generated from /Users/linfeng/aliyun/one/intellij-sql-editor/meta/gs/MySqlParser.g4 by ANTLR 4.7.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
