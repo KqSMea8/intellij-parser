@@ -1,29 +1,48 @@
-import {Actions} from './defination';
-import * as service from '../service';
-import * as utils from './utils';
+import {Actions} from './Const.ts';
+import * as service from '../service/index.ts';
+import {absorbing} from '../src/utils.ts';
 
-let hoverIdx = 0;
-let completeIdx = 0;
-let validationIdx = 0;
+let hoverCount = 0;
+let validationCount = 0;
+let completeCount = 0;
 
-onmessage = (actionType, doc, pos) => {
-
+onmessage = (e) => {
+	const {data: {actionType, doc, pos}} = e;
 	switch(actionType) {
 		case Actions.hover: {
-			// service.doHover
-			// utils.safePost()
+			const result = absorbing(++hoverCount, () => service.doHover(doc, pos));
+
+			if(result.count === hoverCount) {
+				postMessage({
+					actionType: Actions.hover, 
+					result: result.data
+				})
+			}
+			return;
 		}
 
 		case Actions.validation: {
-			const result = utils.safePost(service.doValidation(doc), ++validationIdx);
-			if(result.idx === validationIdx) {
-				postMessage(Actions.validation, result.data)
+			const result = absorbing(++validationCount, () => service.doValidation(doc));
+			
+			if(result.count === validationCount) {
+				postMessage({
+					actionType: Actions.validation, 
+					result: result.data
+				})
 			}
+			return;
 		}
 
 		case Actions.complete: {
+			const result = absorbing(++completeCount, () => service.doComplete(doc, pos));
 			
+			if(result.count === completeCount) {
+				postMessage({
+					actionType: Actions.complete, 
+					result: result.data
+				})
+			}
+			return;
 		}
 	}
-
 };
