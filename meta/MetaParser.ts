@@ -1,7 +1,7 @@
 import * as chevrotain from "chevrotain";
 import { tokens, Lexer, Tokens } from "./MetaLexer";
 
-class MetaParser extends chevrotain.Parser {
+export class MetaParser extends chevrotain.Parser {
   rules;
   rule;
   ruleName;
@@ -9,8 +9,7 @@ class MetaParser extends chevrotain.Parser {
   atom;
   items;
   item;
-  itemCase;
-  sufs;
+  suff;
   alias;
 
   constructor(input) {
@@ -49,17 +48,16 @@ class MetaParser extends chevrotain.Parser {
     });
 
     this.RULE("atom", () => {
-      // items: item item*;
-      // item: itemCase | itemCase '?' | itemCase '*';
+      // item: item | item '?' | item '*';
       this.AT_LEAST_ONE(() => {
-        this.SUBRULE(this.itemCase);
+        this.SUBRULE(this.item);
         this.OPTION(() => {
-          this.SUBRULE(this.sufs);
+          this.SUBRULE(this.suff);
         });
       });
     });
 
-    this.RULE("sufs", () => {
+    this.RULE("suff", () => {
       this.OR([
         {
           ALT: () => {
@@ -79,8 +77,8 @@ class MetaParser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE("itemCase", () => {
-      // itemCase: '(' atoms ')' | UpperName | Stringliteral | itemCaseName | itemCaseName = itemCase
+    this.RULE("item", () => {
+      // item: '(' atoms ')' | UpperName | Stringliteral | LowerName | LowerName = itemCase
       this.OR([
         {
           ALT: () => {
@@ -115,61 +113,18 @@ class MetaParser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME2(Tokens.Equal);
-            this.SUBRULE3(this.itemCase);
+            this.SUBRULE(this.item);
           }
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.PlusEquals);
-            this.SUBRULE2(this.itemCase);
+            this.SUBRULE2(this.item);
           }
-        },
+        }
       ]);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);
   }
-}
-
-enum SyntaxKind {
-  /** = xx */
-  alias,
-  rules,
-  /** 规则 */
-  rule,
-  /** 规则名 */
-  ruleName,
-  /** 产生式可选项 */
-  atoms,
-  /** 产生式的某个可选项 */
-  atom,
-  /** 产生式节点列表,包含suff（Many，Option） */
-  items,
-  /** 产生式节点,包含suff（Many，Option） */
-  item,
-  /** 产生式节点 */
-  itemCase,
-  /** 产生式节点名 */
-  itemCaseName,
-  suffs
-}
-
-interface MetaNode {
-  kind: SyntaxKind;
-  children: { [key in keyof SyntaxKind]: MetaNode[] };
-}
-
-export function parseGCode(gCode: string) {
-  const lexResult = Lexer.tokenize(gCode);
-
-  const metaParser = new MetaParser([]);
-  metaParser.input = lexResult.tokens;
-
-  const ast = metaParser.rules();
-
-  return {
-    ast,
-    lexErrors: lexResult.errors,
-    parseErrors: metaParser.errors
-  };
 }
