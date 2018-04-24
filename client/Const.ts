@@ -7,6 +7,6 @@ export enum Actions {
 type Tseverity = 'error' | 'waring' | 'ignore';
 
 export interface Diagnostic {
-  severity: 'error' | 'waring' | 'ignore';
+  severity: Tseverity;
 }
 

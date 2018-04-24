@@ -17,59 +17,55 @@ export interface Diagnostic {
 }
 
 export default class SQLWorker {
-  private _config: Diagnostic;
-  private _worker: Worker;
-  private _validationResolver;
-  private _hoverResolver;
-  private _completeResolver;
+  private config: Diagnostic;
+  private worker: Worker;
+  private validationResolver;
+  private hoverResolver;
+  private completeResolver;
 
   constructor(config: Diagnostic) {
-    this._config = config;
-    this._worker = new Worker;
+    this.config = config;
+    this.worker = new Worker;
 
-    this._validationResolver = null;
-    this._hoverResolver = null;
-    this._completeResolver = null;
-
-    this._worker.onmessage = e => {
+    this.worker.onmessage = (e: MessageEvent) => {
       const {data: {actionType, result}} = e;
-      this[`_${actionType}Resolver`](result);
+      this[`${actionType}Resolver`](result);
     }
   }
 
   depose() {
-    this._worker.terminate();
+    this.worker.terminate();
   }
 
   doHover(doc: string, pos: number): Promise<any> {
-    this._worker.postMessage({
+    this.worker.postMessage({
       actionType: Actions.hover, 
       doc, 
       pos
     });
     return new Promise((resolve) => {
-      this._hoverResolver = resolve;
+      this.hoverResolver = resolve;
     })
   }
 
   doValidation = (doc: string): Promise<any> => {
-    this._worker.postMessage({
+    this.worker.postMessage({
       actionType: Actions.validation, 
       doc, 
     });
     return new Promise(resolve => {
-      this._validationResolver = resolve;
+      this.validationResolver = resolve;
     })
   }
 
   doComplete = (doc: string, pos: number): Promise<any> => {
-    this._worker.postMessage({
+    this.worker.postMessage({
       actionType: Actions.complete, 
       doc, 
       pos
     });
     return new Promise((resolve) => {
-      this._completeResolver = resolve;
+      this.completeResolver = resolve;
     })
   }
 }
