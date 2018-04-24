@@ -33,7 +33,7 @@
     "chevrotain": "^3.1.0",
     "cross-env": "^5.1.4",
     "fs-extra": "^5.0.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "prettier": "1.9",
     "ts-loader": "^4.2.0",
     "typescript": "^2.6.1",

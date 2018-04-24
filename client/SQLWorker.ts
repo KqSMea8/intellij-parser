@@ -1,5 +1,6 @@
 // import {Diagnostic, Actions} from './Const';
 import * as utils from './utils';
+import * as _ from 'lodash';
 import * as service from '../service';
 import Worker = require("worker-loader?name=common.worker.js!./common.worker.ts");
 let initialized = false;
@@ -19,9 +20,14 @@ export interface Diagnostic {
 export default class SQLWorker {
   private config: Diagnostic;
   private worker: Worker;
+  /** 不同操作的Promise resolve */
   private validationResolver;
   private hoverResolver;
   private completeResolver;
+  /** 不同操作的Promise reject队列 */
+  private validationRejects;
+  private hoverRejects;
+  private completeRejects;
 
   constructor(config: Diagnostic) {
     this.config = config;
@@ -30,6 +36,9 @@ export default class SQLWorker {
     this.worker.onmessage = (e: MessageEvent) => {
       const {data: {actionType, result}} = e;
       this[`${actionType}Resolver`](result);
+      /** 防止内存泄漏 */
+      this[`${actionType}Rejects`].forEach(reject => reject());
+      this[`${actionType}Rejects`] = [];
     }
   }
 
@@ -43,8 +52,9 @@ export default class SQLWorker {
       doc, 
       pos
     });
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.hoverResolver = resolve;
+      this.hoverRejects.push(reject);
     })
   }
 
@@ -53,8 +63,9 @@ export default class SQLWorker {
       actionType: Actions.validation, 
       doc, 
     });
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       this.validationResolver = resolve;
+      this.validationRejects.push(reject);
     })
   }
 
@@ -64,8 +75,9 @@ export default class SQLWorker {
       doc, 
       pos
     });
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       this.completeResolver = resolve;
+      this.completeRejects.push(reject);
     })
   }
 }
