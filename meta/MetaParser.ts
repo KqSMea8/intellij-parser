@@ -4,7 +4,6 @@ import { tokens, Lexer, Tokens } from "./MetaLexer";
 export class MetaParser extends chevrotain.Parser {
   rules;
   rule;
-  ruleName;
   atoms;
   atom;
   items;
@@ -27,15 +26,10 @@ export class MetaParser extends chevrotain.Parser {
 
     this.RULE("rule", () => {
       // rule: ruleName ':' atoms ';';
-      this.SUBRULE(this.ruleName);
+      this.CONSUME(Tokens.LowerName);
       this.CONSUME(Tokens.Colon);
       this.SUBRULE(this.atoms);
       this.CONSUME(Tokens.Semi);
-    });
-
-    this.RULE("ruleName", () => {
-      // ruleName: LowerName;
-      this.CONSUME(Tokens.LowerName);
     });
 
     this.RULE("atoms", () => {

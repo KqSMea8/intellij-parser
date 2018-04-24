@@ -1,25 +1,23 @@
-import { tokens, Lexer, Tokens } from "./MetaLexer";
+import { tokens, Lexer, Tokens, TokenEnum } from "./MetaLexer";
 import { MetaParser } from "./MetaParser";
 
 /** 产生式节点类型 */
 export enum SyntaxKind {
   /** = xx */
-  alias,
-  rules,
+  alias = "alias",
+  rules = "rules",
   /** 规则 */
-  rule,
-  /** 规则名 */
-  ruleName,
+  rule = "rule",
   /** 产生式可选项 */
-  atoms,
+  atoms = "atoms",
   /** 产生式的某个可选项 包含suff（Many，Option） */
-  atom,
+  atom = "atom",
   /** 产生式节点, 可能是字符串、括号包住的表达式、大小写的变量名 */
-  item,
+  item = "item",
   /** 产生式节点 */
-  itemCase,
+  itemCase = "itemCase",
   /** 后缀，‘+’，‘*’，‘？’ */
-  suff
+  suff = "suff"
 }
 
 enum SuffEnum {
@@ -29,41 +27,30 @@ enum SuffEnum {
 }
 
 interface CstNode {
-  name: string;
-  children: {
-    [x: string]: CstNode[];
-  }
+  name: SyntaxKind | TokenEnum;
+  /** 内容 */
+  image: string;
+  children: { [x in SyntaxKind | TokenEnum]: CstNode[] };
 }
 
-export function cstToAst(cst: BaseNode) {
+export function cstToAst(cst: CstNode): BaseNode {
   const children = cst.children;
 
-  switch (cst.) {
-    case "selectStatement": {
-      let columnsListCst = children.columnsList[0];
-      let fromClauseCst = children.fromClause[0];
+  switch (cst.name) {
+    case SyntaxKind.rules: {
+      const rulesNode = new RulesNode();
+      rulesNode.rules = cst.children.rules.map(rule => {
+        return cstToAst(rule) as RuleNode;
+      });
 
-      let columnsListAst = toAst(columnsListCst);
-      let fromClauseAst = toAst(fromClauseCst);
+      return rulesNode;
+    }
+    // case SyntaxKind.rule: {
+    //   const rule = new RuleNode();
+    //   const { atoms, LowerName } = cst.children;
 
-      return {
-        type: "SelectStatementAst",
-        columns: columnsListAst,
-        from: fromClauseAst
-      };
-    }
-    case "columnsList": {
-      let columnName = children.identifier[0].image;
-      /*...*/
-    }
-    case "fromClause": {
-      /*...*/
-    }
-    default: {
-      throw new Error(
-        `CST case handler not implemented for CST node <${cst.name}>`
-      );
-    }
+    //   rule.atoms =
+    // }
   }
 }
 
@@ -94,6 +81,14 @@ export function traverse(
   ast.forEach(child => {
     traverse(child, kind, callback);
   });
+}
+
+export class RulesNode extends BaseNode {
+  rules = [] as RuleNode[];
+
+  toCode() {
+    return this.rules.map(rule => rule.toCode()).join("\n\n");
+  }
 }
 
 export class RuleNode extends BaseNode {
@@ -129,7 +124,7 @@ export class RuleNode extends BaseNode {
 
 export class AtomNode extends BaseNode {
   suff: SuffEnum;
-  item: BracketExpNode;
+  item: BracketExpNode | StringliteralNode | UpperNameNode;
 
   toCode() {
     if (this.suff === SuffEnum.AT_LEAST_ONE) {
@@ -139,9 +134,17 @@ export class AtomNode extends BaseNode {
         });
       `;
     } else if (this.suff === SuffEnum.MANY) {
-      // todo
+      return `
+        this.MANY(() => {
+          ${this.item.toCode()}
+        });
+      `;
     } else if (this.suff === SuffEnum.OPTION) {
-      // todo
+      return `
+        this.OPTION(() => {
+          ${this.item.toCode()}
+        });
+      `;
     }
   }
 }
@@ -155,11 +158,13 @@ export class BracketExpNode extends BaseNode {
 export class StringliteralNode {
   text: string;
   index: number;
+  /** 终结符的名称 */
+  name: string;
 
   toCode() {
-    return `this.CONSUME${
-      this.index === 0 ? "" : this.index + 1
-    }(Tokens.${name});`;
+    return `this.CONSUME${this.index === 0 ? "" : this.index + 1}(Tokens.${
+      this.name
+    });`;
   }
 }
 
@@ -176,11 +181,11 @@ export class LowerNameNode {
 
 export class UpperNameNode {
   name: string;
-  tokenIndex: number;
+  index: number;
 
   toCode() {
     return `this.CONSUME(Tokens${
-      this.tokenIndex === 0 ? "" : this.tokenIndex + 1
+      this.index === 0 ? "" : this.index + 1
     }.${name});`;
   }
 }
