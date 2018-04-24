@@ -54,6 +54,10 @@ color-name@^1.1.1:
   version "1.1.3"
   resolved "http://registry.npm.alibaba-inc.com/color-name/download/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
 
+commander@~2.15.0:
+  version "2.15.1"
+  resolved "http://registry.npm.alibaba-inc.com/commander/download/commander-2.15.1.tgz#df46e867d0fc2aec66a34662b406a9ccafff5b0f"
+
 escape-string-regexp@^1.0.5:
   version "1.0.5"
   resolved "http://registry.npm.alibaba-inc.com/escape-string-regexp/download/escape-string-regexp-1.0.5.tgz#1b61c0562190a8dff6ae3bb2cf0200ca130b86d4"
@@ -84,6 +88,20 @@ lodash@^4.17.4:
   version "4.17.5"
   resolved "http://registry.npm.alibaba-inc.com/lodash/download/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
+monaco-editor-core@0.12.0:
+  version "0.12.0"
+  resolved "http://registry.npm.alibaba-inc.com/monaco-editor-core/download/monaco-editor-core-0.12.0.tgz#185c4233907582b78472fe30bad13af7ad6e8d8e"
+
+monaco-languages@1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.alibaba-inc.com/monaco-languages/download/monaco-languages-1.0.0.tgz#e9f1db9fa72d6132c8a4adbca5acbc6ad1bc2ca8"
+
+monaco-plugin-helpers@^1.0.2:
+  version "1.0.2"
+  resolved "http://registry.npm.alibaba-inc.com/monaco-plugin-helpers/download/monaco-plugin-helpers-1.0.2.tgz#ee1af42503fe4669f3a8731112b661032e41c8a9"
+  dependencies:
+    typescript "^2.7.2"
+
 prettier@1.9:
   version "1.9.2"
   resolved "http://registry.npm.alibaba-inc.com/prettier/download/prettier-1.9.2.tgz#96bc2132f7a32338e6078aeb29727178c6335827"
@@ -91,6 +109,14 @@ prettier@1.9:
 regexp-to-ast@0.2.2:
   version "0.2.2"
   resolved "http://registry.npm.alibaba-inc.com/regexp-to-ast/download/regexp-to-ast-0.2.2.tgz#58edee54a1157b9c20b205b9c05cc0d81be698d8"
+
+requirejs@^2.3.5:
+  version "2.3.5"
+  resolved "http://registry.npm.alibaba-inc.com/requirejs/download/requirejs-2.3.5.tgz#617b9acbbcb336540ef4914d790323a8d4b861b0"
+
+source-map@~0.6.1:
+  version "0.6.1"
+  resolved "http://registry.npm.alibaba-inc.com/source-map/download/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
 supports-color@^5.3.0:
   version "5.4.0"
@@ -102,6 +128,21 @@ typescript@^2.6.1:
   version "2.8.1"
   resolved "http://registry.npm.alibaba-inc.com/typescript/download/typescript-2.8.1.tgz#6160e4f8f195d5ba81d4876f9c0cc1fbc0820624"
 
+typescript@^2.7.2:
+  version "2.8.3"
+  resolved "http://registry.npm.alibaba-inc.com/typescript/download/typescript-2.8.3.tgz#5d817f9b6f31bb871835f4edf0089f21abe6c170"
+
+uglify-js@^3.3.14:
+  version "3.3.22"
+  resolved "http://registry.npm.alibaba-inc.com/uglify-js/download/uglify-js-3.3.22.tgz#e5f0e50ddd386b7e35b728b51600bf7a7ad0b0dc"
+  dependencies:
+    commander "~2.15.0"
+    source-map "~0.6.1"
+
 universalify@^0.1.0:
   version "0.1.1"
   resolved "http://registry.npm.alibaba-inc.com/universalify/download/universalify-0.1.1.tgz#fa71badd4437af4c148841e3b3b165f9e9e590b7"
+
+vscode-languageserver-types@3.6.1:
+  version "3.6.1"
+  resolved "http://registry.npm.alibaba-inc.com/vscode-languageserver-types/download/vscode-languageserver-types-3.6.1.tgz#4bc06a48dff653495f12f94b8b1e228988a1748d"
