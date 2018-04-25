@@ -42,7 +42,7 @@ const LowerName = chevrotain.createToken({
 });
 const Equal = chevrotain.createToken({
   name: "Equal",
-  pattern: /=/
+  pattern: "="
 });
 const Comment = chevrotain.createToken({
   name: "Comment",
@@ -60,7 +60,7 @@ const PlusEquals = chevrotain.createToken({
 });
 const Plus = chevrotain.createToken({
   name: "Plus",
-  pattern: /\+/
+  pattern: "+"
 });
 
 const WhiteSpace = chevrotain.createToken({
@@ -69,6 +69,25 @@ const WhiteSpace = chevrotain.createToken({
   group: chevrotain.Lexer.SKIPPED,
   line_breaks: true
 });
+
+export enum TokenEnum {
+  Bar = "Bar",
+  Semi = "Semi",
+  Colon = "Colon",
+  PlusEquals = "PlusEquals",
+  Equal = "Equal",
+  Asterisk = "Asterisk",
+  Optional = "Optional",
+  LeftBracket = "LeftBracket",
+  RightBracket = "RightBracket",
+  Stringliteral = "Stringliteral",
+  UpperName = "UpperName",
+  LowerName = "LowerName",
+  WhiteSpace = "WhiteSpace",
+  SlashComment = "SlashComment",
+  Comment = "Comment",
+  Plus = "Plus"
+}
 
 export const Tokens = {
   Bar,
