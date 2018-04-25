@@ -2,7 +2,7 @@ import * as prettier from 'prettier';
 import * as chevrotain from 'chevrotain';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { parseGCode } from './MetaParser';
+import { parseGCode } from './MetaGenerator';
 
 class MetaParserConfig {
   prettierConfig: prettier.Options = {};
@@ -21,6 +21,8 @@ function metaGenerator(config = new MetaParserConfig()) {
   if (parseErrors) {
     console.log(...parseErrors);
   }
+
+  fs.writeFileSync(path.join(__dirname, '../meta/mysql_g_ast.json'), JSON.stringify(ast, null, 2));
 
   console.log(ast);
 }
