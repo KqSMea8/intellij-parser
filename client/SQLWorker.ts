@@ -1,14 +1,13 @@
 // import {Diagnostic, Actions} from './Const';
-import * as utils from './utils';
 import * as _ from 'lodash';
 import * as service from '../service';
-import Worker = require("worker-loader?name=common.worker.js!./common.worker.ts");
+import Worker = require('worker-loader?name=common.worker.js!./common.worker');
 let initialized = false;
 
 export enum Actions {
-  hover='hover',
-  validation='validation',
-  complete='complete'
+  hover = 'hover',
+  validation = 'validation',
+  complete = 'complete'
 }
 
 type Tseverity = 'error' | 'waring' | 'ignore';
@@ -31,15 +30,15 @@ export default class SQLWorker {
 
   constructor(config: Diagnostic) {
     this.config = config;
-    this.worker = new Worker;
+    this.worker = new Worker();
 
     this.worker.onmessage = (e: MessageEvent) => {
-      const {data: {actionType, result}} = e;
+      const { data: { actionType, result } } = e;
       this[`${actionType}Resolver`](result);
       /** 防止内存泄漏 */
       this[`${actionType}Rejects`].forEach(reject => reject());
       this[`${actionType}Rejects`] = [];
-    }
+    };
   }
 
   depose() {
@@ -48,36 +47,36 @@ export default class SQLWorker {
 
   doHover(doc: string, pos: number): Promise<any> {
     this.worker.postMessage({
-      actionType: Actions.hover, 
-      doc, 
+      actionType: Actions.hover,
+      doc,
       pos
     });
     return new Promise((resolve, reject) => {
       this.hoverResolver = resolve;
       this.hoverRejects.push(reject);
-    })
+    });
   }
 
   doValidation = (doc: string): Promise<any> => {
     this.worker.postMessage({
-      actionType: Actions.validation, 
-      doc, 
+      actionType: Actions.validation,
+      doc
     });
     return new Promise((resolve, reject) => {
       this.validationResolver = resolve;
       this.validationRejects.push(reject);
-    })
-  }
+    });
+  };
 
   doComplete = (doc: string, pos: number): Promise<any> => {
     this.worker.postMessage({
-      actionType: Actions.complete, 
-      doc, 
+      actionType: Actions.complete,
+      doc,
       pos
     });
     return new Promise((resolve, reject) => {
       this.completeResolver = resolve;
       this.completeRejects.push(reject);
-    })
-  }
+    });
+  };
 }

@@ -1,5 +1,5 @@
-import * as chevrotain from "chevrotain";
-import { tokens, Lexer, Tokens } from "./MetaLexer";
+import * as chevrotain from 'chevrotain';
+import { tokens, Lexer, Tokens } from './MetaLexer';
 
 export class MetaParser extends chevrotain.Parser {
   rules;
@@ -7,6 +7,7 @@ export class MetaParser extends chevrotain.Parser {
   atoms;
   atom;
   items;
+  itemSuff;
   item;
   suff;
   alias;
@@ -17,14 +18,14 @@ export class MetaParser extends chevrotain.Parser {
       outputCst: true
     });
 
-    this.RULE("rules", () => {
+    this.RULE('rules', () => {
       // rules: rule*;
       this.MANY(() => {
         this.SUBRULE(this.rule);
       });
     });
 
-    this.RULE("rule", () => {
+    this.RULE('rule', () => {
       // rule: ruleName ':' atoms ';';
       this.CONSUME(Tokens.LowerName);
       this.CONSUME(Tokens.Colon);
@@ -32,7 +33,7 @@ export class MetaParser extends chevrotain.Parser {
       this.CONSUME(Tokens.Semi);
     });
 
-    this.RULE("atoms", () => {
+    this.RULE('atoms', () => {
       // atoms: atom ('|' atom)*;
       this.SUBRULE(this.atom);
       this.MANY(() => {
@@ -41,17 +42,22 @@ export class MetaParser extends chevrotain.Parser {
       });
     });
 
-    this.RULE("atom", () => {
-      // item: item | item '?' | item '*';
+    this.RULE('atom', () => {
+      // atom: itemSuffs
       this.AT_LEAST_ONE(() => {
-        this.SUBRULE(this.item);
-        this.OPTION(() => {
-          this.SUBRULE(this.suff);
-        });
+        this.SUBRULE(this.itemSuff);
       });
     });
 
-    this.RULE("suff", () => {
+    this.RULE('itemSuff', () => {
+      // itemSuff: item | item '?' | item '*';
+      this.SUBRULE(this.item);
+      this.OPTION(() => {
+        this.SUBRULE(this.suff);
+      });
+    });
+
+    this.RULE('suff', () => {
       this.OR([
         {
           ALT: () => {
@@ -71,7 +77,7 @@ export class MetaParser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE("item", () => {
+    this.RULE('item', () => {
       // item: '(' atoms ')' | UpperName | Stringliteral | LowerName | LowerName = itemCase
       this.OR([
         {
@@ -102,7 +108,7 @@ export class MetaParser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE("alias", () => {
+    this.RULE('alias', () => {
       this.OR([
         {
           ALT: () => {
