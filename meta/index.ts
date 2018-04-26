@@ -2,7 +2,7 @@ import * as prettier from 'prettier';
 import * as chevrotain from 'chevrotain';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { parseGCode } from './MetaGenerator';
+import { parseGCode, cstToAst } from './MetaGenerator';
 
 class MetaParserConfig {
   prettierConfig: prettier.Options = {};
@@ -13,7 +13,7 @@ class MetaParserConfig {
 
 function metaGenerator(config = new MetaParserConfig()) {
   const gCode = fs.readFileSync(path.join(__dirname, config.gCodePath)).toString('utf8');
-  const { ast, lexErrors, parseErrors } = parseGCode(gCode);
+  const { cst, lexErrors, parseErrors } = parseGCode(gCode);
 
   if (lexErrors) {
     console.log(...lexErrors);
@@ -22,9 +22,10 @@ function metaGenerator(config = new MetaParserConfig()) {
     console.log(...parseErrors);
   }
 
-  fs.writeFileSync(path.join(__dirname, '../meta/mysql_g_ast.json'), JSON.stringify(ast, null, 2));
+  const ast = cstToAst(cst);
 
-  console.log(ast);
+  fs.writeFileSync(path.join(__dirname, '../meta/mysql_g_cst.json'), JSON.stringify(cst, null, 2));
+  fs.writeFileSync(path.join(__dirname, '../meta/mysql_g_ast.json'), JSON.stringify(ast, null, 2));
 }
 
 metaGenerator();
