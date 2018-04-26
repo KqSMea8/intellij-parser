@@ -6,7 +6,8 @@
   "typings": "src/index.ts",
   "scripts": {
     "build": "tsc",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "start": "cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=development webpack-dev-server --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -32,9 +33,14 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "chevrotain": "^3.1.0",
+    "cross-env": "^5.1.4",
     "fs-extra": "^5.0.0",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.5",
     "prettier": "1.9",
-    "typescript": "^2.6.1"
+    "ts-loader": "^4.2.0",
+    "typescript": "^2.6.1",
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.15",
+    "worker-loader": "^1.1.1"
   }
 }
