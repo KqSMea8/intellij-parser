@@ -62,10 +62,10 @@ const Plus = chevrotain.createToken({
   name: "Plus",
   pattern: "+"
 });
-const Fragment = chevrotain.createToken({
-  name: "Fragment",
-  pattern: "fragment"
-});
+// const Fragment = chevrotain.createToken({
+//   name: "Fragment",
+//   pattern: "fragment"
+// });
 
 const WhiteSpace = chevrotain.createToken({
   name: "WhiteSpace",
@@ -90,7 +90,7 @@ export enum TokenEnum {
   WhiteSpace = "WhiteSpace",
   SlashComment = "SlashComment",
   Comment = "Comment",
-  Fragment = "Fragment",
+  // Fragment = "Fragment",
   Plus = "Plus"
 }
 
@@ -110,7 +110,7 @@ export const Tokens = {
   WhiteSpace,
   SlashComment,
   Comment,
-  Fragment,
+  // Fragment,
   Plus
 };
 
@@ -130,7 +130,7 @@ export const tokens = [
   WhiteSpace,
   SlashComment,
   Plus,
-  Fragment,
+  // Fragment,
   Comment
 ];
 
