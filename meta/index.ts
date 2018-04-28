@@ -25,10 +25,7 @@ function metaGenerator(config = new MetaParserConfig()) {
     console.log(...parseErrors);
   }
 
-  fs.writeFileSync(
-    path.join(__dirname, "../../meta/rules_g.g.ts"),
-    ast.toCode()
-  );
+  fs.writeFileSync(path.join(__dirname, "../../meta/rules.g.ts"), ast.toCode());
 
   fs.writeFileSync(
     path.join(__dirname, "../../meta/mysql_g_cst.g.json"),
