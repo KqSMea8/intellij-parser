@@ -38,8 +38,8 @@ function metaGenerator(config = new MetaParserConfig()) {
     }}
   `;
 
-  fs.writeFileSync(path.join(__dirname, '../../meta/mysql_g_cst.json'), JSON.stringify(cst, null, 2));
-  fs.writeFileSync(path.join(__dirname, '../../meta/mysql_g_ast.json'), JSON.stringify(ast, null, 2));
+  fs.writeFileSync(path.join(__dirname, '../../meta/mysql_g_cst.g.json'), JSON.stringify(cst, null, 2));
+  fs.writeFileSync(path.join(__dirname, '../../meta/mysql_g_ast.g.json'), JSON.stringify(ast, null, 2));
   fs.writeFileSync(path.join(__dirname, '../../meta/rules.g.ts'), ast.toCode());
 }
 
