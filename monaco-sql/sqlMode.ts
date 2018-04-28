@@ -2,13 +2,12 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-"use strict";
+'use strict';
 
-import { WorkerManager } from "./workerManager";
-import { SQLWorker } from "./sqlWorker";
-import { LanguageServiceDefaultsImpl } from "./monaco.contribution";
-import * as languageFeatures from "./languageFeatures";
-import { createTokenizationSupport } from "./tokenization";
+import { WorkerManager } from './workerManager';
+import { SQLWorker } from './sqlWorker';
+import { LanguageServiceDefaultsImpl } from './monaco.contribution';
+import * as languageFeatures from './languageFeatures';
 
 import Promise = monaco.Promise;
 import Uri = monaco.Uri;
@@ -20,37 +19,21 @@ export function setupMode(defaults: LanguageServiceDefaultsImpl): void {
   const client = new WorkerManager(defaults);
   disposables.push(client);
 
-  const worker: languageFeatures.WorkerAccessor = (
-    ...uris: Uri[]
-  ): Promise<SQLWorker> => {
+  const worker: languageFeatures.WorkerAccessor = (...uris: Uri[]): Promise<SQLWorker> => {
     return client.getLanguageServiceWorker(...uris);
   };
 
   let languageId = defaults.languageId;
 
-  let diagnostcsAdapter = new languageFeatures.DiagnostcsAdapter(
-    languageId,
-    worker
-  );
+  let diagnostcsAdapter = new languageFeatures.DiagnostcsAdapter(languageId, worker);
   defaults.onDidChange(c => diagnostcsAdapter.clearMarkers());
 
   disposables.push(
-    monaco.languages.registerCompletionItemProvider(
-      languageId,
-      new languageFeatures.CompletionAdapter(worker)
-    )
+    monaco.languages.registerCompletionItemProvider(languageId, new languageFeatures.CompletionAdapter(worker))
   );
+  disposables.push(monaco.languages.registerHoverProvider(languageId, new languageFeatures.HoverAdapter(worker)));
   disposables.push(
-    monaco.languages.registerHoverProvider(
-      languageId,
-      new languageFeatures.HoverAdapter(worker)
-    )
-  );
-  disposables.push(
-    monaco.languages.registerDocumentSymbolProvider(
-      languageId,
-      new languageFeatures.DocumentSymbolAdapter(worker)
-    )
+    monaco.languages.registerDocumentSymbolProvider(languageId, new languageFeatures.DocumentSymbolAdapter(worker))
   );
   disposables.push(
     monaco.languages.registerDocumentFormattingEditProvider(
@@ -65,30 +48,22 @@ export function setupMode(defaults: LanguageServiceDefaultsImpl): void {
     )
   );
   disposables.push(diagnostcsAdapter);
-  disposables.push(
-    monaco.languages.setTokensProvider(
-      languageId,
-      createTokenizationSupport(true)
-    )
-  );
-  disposables.push(
-    monaco.languages.setLanguageConfiguration(languageId, richEditConfiguration)
-  );
+  disposables.push(monaco.languages.setLanguageConfiguration(languageId, richEditConfiguration));
 }
 
 const richEditConfiguration: monaco.languages.LanguageConfiguration = {
   wordPattern: /(-?\d*\.\d\w*)|([^\[\{\]\}\:\"\,\s]+)/g,
 
   comments: {
-    lineComment: "//",
-    blockComment: ["/*", "*/"]
+    lineComment: '//',
+    blockComment: ['/*', '*/']
   },
 
-  brackets: [["{", "}"], ["[", "]"]],
+  brackets: [['{', '}'], ['[', ']']],
 
   autoClosingPairs: [
-    { open: "{", close: "}", notIn: ["string"] },
-    { open: "[", close: "]", notIn: ["string"] },
-    { open: '"', close: '"', notIn: ["string"] }
+    { open: '{', close: '}', notIn: ['string'] },
+    { open: '[', close: ']', notIn: ['string'] },
+    { open: '"', close: '"', notIn: ['string'] }
   ]
 };

@@ -4225,6 +4225,10 @@ vscode-languageserver-types@3.6.1:
   version "3.6.1"
   resolved "http://registry.npm.alibaba-inc.com/vscode-languageserver-types/download/vscode-languageserver-types-3.6.1.tgz#4bc06a48dff653495f12f94b8b1e228988a1748d"
 
+vscode-nls@^3.2.2:
+  version "3.2.2"
+  resolved "http://registry.npm.alibaba-inc.com/vscode-nls/download/vscode-nls-3.2.2.tgz#3817eca5b985c2393de325197cf4e15eb2aa5350"
+
 watchpack@^1.5.0:
   version "1.5.0"
   resolved "http://registry.npm.alibaba-inc.com/watchpack/download/watchpack-1.5.0.tgz#231e783af830a22f8966f65c4c4bacc814072eed"

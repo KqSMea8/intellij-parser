@@ -4,72 +4,67 @@
  *--------------------------------------------------------------------------------------------*/
 'use strict';
 
-import * as mode from './jsonMode';
+import * as mode from './sqlMode';
 
 import Emitter = monaco.Emitter;
 import IEvent = monaco.IEvent;
 import IDisposable = monaco.IDisposable;
 
-// --- JSON configuration and defaults ---------
+export class LanguageServiceDefaultsImpl implements monaco.languages.sql.LanguageServiceDefaults {
+  private _onDidChange = new Emitter<monaco.languages.sql.LanguageServiceDefaults>();
+  private _diagnosticsOptions: monaco.languages.sql.DiagnosticsOptions;
+  private _languageId: string;
 
-export class LanguageServiceDefaultsImpl implements monaco.languages.json.LanguageServiceDefaults {
+  constructor(languageId: string, diagnosticsOptions: monaco.languages.sql.DiagnosticsOptions) {
+    this._languageId = languageId;
+    this.setDiagnosticsOptions(diagnosticsOptions);
+  }
 
-	private _onDidChange = new Emitter<monaco.languages.json.LanguageServiceDefaults>();
-	private _diagnosticsOptions: monaco.languages.json.DiagnosticsOptions;
-	private _languageId: string;
+  get onDidChange(): IEvent<monaco.languages.sql.LanguageServiceDefaults> {
+    return this._onDidChange.event;
+  }
 
-	constructor(languageId: string, diagnosticsOptions: monaco.languages.json.DiagnosticsOptions) {
-		this._languageId = languageId;
-		this.setDiagnosticsOptions(diagnosticsOptions);
-	}
+  get languageId(): string {
+    return this._languageId;
+  }
 
-	get onDidChange(): IEvent<monaco.languages.json.LanguageServiceDefaults> {
-		return this._onDidChange.event;
-	}
+  get diagnosticsOptions(): monaco.languages.sql.DiagnosticsOptions {
+    return this._diagnosticsOptions;
+  }
 
-	get languageId(): string {
-		return this._languageId;
-	}
-
-	get diagnosticsOptions(): monaco.languages.json.DiagnosticsOptions {
-		return this._diagnosticsOptions;
-	}
-
-	setDiagnosticsOptions(options: monaco.languages.json.DiagnosticsOptions): void {
-		this._diagnosticsOptions = options || Object.create(null);
-		this._onDidChange.fire(this);
-	}
+  setDiagnosticsOptions(options: monaco.languages.sql.DiagnosticsOptions): void {
+    this._diagnosticsOptions = options || Object.create(null);
+    this._onDidChange.fire(this);
+  }
 }
 
-const diagnosticDefault: monaco.languages.json.DiagnosticsOptions = {
-	validate: true,
-	allowComments: true,
-	schemas: []
-}
+const diagnosticDefault: monaco.languages.sql.DiagnosticsOptions = {
+  validate: true,
+  allowComments: true,
+  schemas: []
+};
 
-const jsonDefaults = new LanguageServiceDefaultsImpl('json', diagnosticDefault);
-
+const sqlDefaults = new LanguageServiceDefaultsImpl('sql', diagnosticDefault);
 
 // Export API
-function createAPI(): typeof monaco.languages.json {
-	return {
-		jsonDefaults: jsonDefaults,
-	}
+function createAPI(): typeof monaco.languages.sql {
+  return {
+    sqlDefaults: sqlDefaults
+  };
 }
-monaco.languages.json = createAPI();
+monaco.languages.sql = createAPI();
 
 // --- Registration to monaco editor ---
 
 function getMode(): monaco.Promise<typeof mode> {
-	return monaco.Promise.wrap(import('./jsonMode'))
+  return monaco.Promise.wrap(import('./sqlMode'));
 }
 
 monaco.languages.register({
-	id: 'json',
-	extensions: ['.json', '.bowerrc', '.jshintrc', '.jscsrc', '.eslintrc', '.babelrc'],
-	aliases: ['JSON', 'json'],
-	mimetypes: ['application/json'],
+  id: 'sql',
+  extensions: ['.sql'],
+  aliases: ['SQL', 'sql']
 });
-monaco.languages.onLanguage('json', () => {
-	getMode().then(mode => mode.setupMode(jsonDefaults));
+monaco.languages.onLanguage('sql', () => {
+  getMode().then(mode => mode.setupMode(sqlDefaults));
 });

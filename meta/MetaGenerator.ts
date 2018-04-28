@@ -89,11 +89,7 @@ export function cstToAst(cst: CstNode): BaseNode {
         }
       }
 
-      itemSuffNode.item = cstToAst(cst.children.item[0]) as
-        | BracketExpNode
-        | StringliteralNode
-        | UpperNameNode
-        | LowerNameNode;
+      itemSuffNode.item = cstToAst(cst.children.item[0]) as any;
 
       if (!itemSuffNode.item) {
         debugger;
@@ -102,7 +98,7 @@ export function cstToAst(cst: CstNode): BaseNode {
       return itemSuffNode;
     }
     case SyntaxKind.item: {
-      const { LowerName, UpperName, LeftBracket, atoms, RightBracket, Stringliteral } = cst.children;
+      const { LowerName, UpperName, LeftBracket, atoms, RightBracket, Stringliteral, ReExp, All } = cst.children;
 
       if (LowerName) {
         const itemNode = new LowerNameNode();
@@ -130,12 +126,22 @@ export function cstToAst(cst: CstNode): BaseNode {
         });
 
         return itemNode;
+      } else if (ReExp) {
+        const itemNode = new RegExpNode();
+
+        itemNode.content = ReExp[0].image;
+
+        return itemNode;
+      } else if (All) {
+        return new AllNode();
       } else {
         debugger;
       }
     }
   }
 }
+
+function getPatternByUpName(ast: RulesNode, upName: string) {}
 
 /** 基类 */
 class BaseNode {
@@ -184,6 +190,13 @@ export class RulesNode extends BaseNode {
     return this.rules;
   }
 
+  toLexerCode() {
+    return this.rules
+      .filter(rule => !rule.fragName)
+      .map(rule => rule.toLexerCode())
+      .join('\n');
+  }
+
   toCode() {
     return this.rules.map(rule => rule.toCode()).join('\n');
   }
@@ -203,16 +216,16 @@ export class RuleNode extends BaseNode {
   toLexerCode() {
     if (this.atoms.length) {
       return `
-        const ${this.fragName} = chevrotain.createToken({
-          name: ${this.fragName},
+        const ${this.tokenName} = chevrotain.createToken({
+          name: ${this.tokenName},
           pattern: /${this.atoms.map(atom => atom.toLexerCode()).join('|')}/,
         });
       `;
     }
 
     return `
-      const ${this.fragName} = chevrotain.createToken({
-        name: ${this.fragName},
+      const ${this.tokenName} = chevrotain.createToken({
+        name: ${this.tokenName},
         pattern: /${this.atoms[0].toLexerCode()}/,
       });
     `;
@@ -268,7 +281,7 @@ export class ItemSuffNode extends BaseNode {
   index = 0;
   kind = SyntaxKind.itemSuff;
   suff?: SuffEnum;
-  item: BracketExpNode | StringliteralNode | UpperNameNode | LowerNameNode;
+  item: BracketExpNode | StringliteralNode | UpperNameNode | LowerNameNode | RegExpNode | AllNode;
 
   get children() {
     return [this.item];
@@ -354,6 +367,15 @@ export class StringliteralNode extends BaseNode {
   }
 }
 
+export class RegExpNode extends BaseNode {
+  content: string;
+  kind = TokenEnum.ReExp;
+
+  toLexerCode() {
+    return this.content;
+  }
+}
+
 export class LowerNameNode extends BaseNode {
   name: string;
   index = 0;
@@ -365,6 +387,7 @@ export class LowerNameNode extends BaseNode {
 }
 
 export class UpperNameNode extends BaseNode {
+  ast: RulesNode;
   name: string;
   index = 0;
   kind = TokenEnum.UpperName;
@@ -374,7 +397,15 @@ export class UpperNameNode extends BaseNode {
   }
 }
 
-export function parseGCode(gCode: string) {
+export class AllNode extends BaseNode {
+  kind = TokenEnum.All;
+
+  toCode() {
+    return '.';
+  }
+}
+
+export function parseGCode(gCode: string, isParser = true) {
   const lexResult = Lexer.tokenize(gCode);
 
   const metaParser = new MetaParser([]);
@@ -383,50 +414,56 @@ export function parseGCode(gCode: string) {
   const cst = metaParser.rules() as CstNode;
   const ast = cstToAst(cst) as RulesNode;
 
-  /** 遍历所有的规则 */
-  traverse(ast, SyntaxKind.rule, (node: RuleNode) => {
-    // itemSuff 的 index
-    {
-      let optionIndex = 0;
-      let manyIndex = 0;
-      let atLeastOneIndex = 0;
+  if (isParser) {
+    /** 遍历所有的规则 */
+    traverse(ast, SyntaxKind.rule, (node: RuleNode) => {
+      // itemSuff 的 index
+      {
+        let optionIndex = 0;
+        let manyIndex = 0;
+        let atLeastOneIndex = 0;
 
-      traverse(ast, SyntaxKind.itemSuff, (node: ItemSuffNode) => {
-        if (node.suff === SuffEnum.AT_LEAST_ONE) {
-          node.index = atLeastOneIndex++;
-        } else if (node.suff === SuffEnum.MANY) {
-          node.index = manyIndex++;
-        } else if (node.suff === SuffEnum.OPTION) {
-          node.index = optionIndex++;
-        }
-      });
-    }
+        traverse(ast, SyntaxKind.itemSuff, (node: ItemSuffNode) => {
+          if (node.suff === SuffEnum.AT_LEAST_ONE) {
+            node.index = atLeastOneIndex++;
+          } else if (node.suff === SuffEnum.MANY) {
+            node.index = manyIndex++;
+          } else if (node.suff === SuffEnum.OPTION) {
+            node.index = optionIndex++;
+          }
+        });
+      }
 
-    // subRule 的 index
-    {
-      let preRuleNames = [];
+      // subRule 的 index
+      {
+        let preRuleNames = [];
 
-      traverse(ast, TokenEnum.LowerName, (node: LowerNameNode) => {
-        node.index = preRuleNames.filter(name => name === node.name).length;
-        preRuleNames.push(node.name);
-      });
-    }
+        traverse(ast, TokenEnum.LowerName, (node: LowerNameNode) => {
+          node.index = preRuleNames.filter(name => name === node.name).length;
+          preRuleNames.push(node.name);
+        });
+      }
 
-    // consume 的 index
-    {
-      let uppers = [] as string[];
-      let strs = [];
+      // consume 的 index
+      {
+        let uppers = [] as string[];
+        let strs = [];
 
-      traverse(ast, TokenEnum.UpperName, (node: UpperNameNode) => {
-        node.index = uppers.filter(upName => upName === node.name).length;
-        uppers.push(node.name);
-      });
-      traverse(ast, TokenEnum.Stringliteral, (node: StringliteralNode) => {
-        node.index = strs.filter(str => str === node.content).length;
-        strs.push(node.content);
-      });
-    }
-  });
+        traverse(ast, TokenEnum.UpperName, (node: UpperNameNode) => {
+          node.index = uppers.filter(upName => upName === node.name).length;
+          uppers.push(node.name);
+        });
+        traverse(ast, TokenEnum.Stringliteral, (node: StringliteralNode) => {
+          node.index = strs.filter(str => str === node.content).length;
+          strs.push(node.content);
+        });
+      }
+    });
+  } else {
+    traverse(ast, TokenEnum.UpperName, (node: UpperNameNode) => {
+      node.ast = ast;
+    });
+  }
 
   return {
     cst,

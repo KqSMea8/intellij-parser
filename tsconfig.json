@@ -18,7 +18,6 @@
     "allowSyntheticDefaultImports": true,
     "lib": ["dom", "es5", "es6", "es2017", "dom.iterable", "scripthost"]
   },
-  "include": ["./meta/**/*", "./client/*", "./service/*"],
+  "include": ["./typings/ref.d.ts", "./meta/**/*", "./monaco-sql/*", "./service/*"],
   "exclude": ["node_modules", "build"]
 }
-

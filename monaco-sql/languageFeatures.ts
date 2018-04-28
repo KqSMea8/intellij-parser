@@ -2,12 +2,13 @@
  *  Copyright (c) Microsoft Corporation. All rights reserved.
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-"use strict";
+/// <reference path='../node_modules/monaco-editor-core/monaco.d.ts'/>
+'use strict';
 
-import { LanguageServiceDefaultsImpl } from "./monaco.contribution";
-import { SQLWorker } from "./sqlWorker";
+import { LanguageServiceDefaultsImpl } from './monaco.contribution';
+import { SQLWorker } from './sqlWorker';
 
-import * as ls from "vscode-languageserver-types";
+import * as ls from 'vscode-languageserver-types';
 
 import Uri = monaco.Uri;
 import Position = monaco.Position;
@@ -34,7 +35,7 @@ export class DiagnostcsAdapter {
         return;
       }
 
-      let handle: number;
+      let handle;
       this._listener[model.uri.toString()] = model.onDidChangeContent(() => {
         clearTimeout(handle);
         handle = setTimeout(() => this._doValidate(model.uri, modeId), 500);
@@ -131,12 +132,8 @@ function toSeverity(lsSeverity: number): monaco.MarkerSeverity {
   }
 }
 
-function toDiagnostics(
-  resource: Uri,
-  diag: ls.Diagnostic
-): monaco.editor.IMarkerData {
-  let code =
-    typeof diag.code === "number" ? String(diag.code) : <string>diag.code;
+function toDiagnostics(resource: Uri, diag: ls.Diagnostic): monaco.editor.IMarkerData {
+  let code = typeof diag.code === 'number' ? String(diag.code) : <string>diag.code;
 
   return {
     severity: toSeverity(diag.severity),
@@ -173,17 +170,10 @@ function toRange(range: ls.Range): Range {
   if (!range) {
     return void 0;
   }
-  return new Range(
-    range.start.line + 1,
-    range.start.character + 1,
-    range.end.line + 1,
-    range.end.character + 1
-  );
+  return new Range(range.start.line + 1, range.start.character + 1, range.end.line + 1, range.end.character + 1);
 }
 
-function toCompletionItemKind(
-  kind: number
-): monaco.languages.CompletionItemKind {
+function toCompletionItemKind(kind: number): monaco.languages.CompletionItemKind {
   let mItemKind = monaco.languages.CompletionItemKind;
 
   switch (kind) {
@@ -227,9 +217,7 @@ function toCompletionItemKind(
   return mItemKind.Property;
 }
 
-function fromCompletionItemKind(
-  kind: monaco.languages.CompletionItemKind
-): ls.CompletionItemKind {
+function fromCompletionItemKind(kind: monaco.languages.CompletionItemKind): ls.CompletionItemKind {
   let mItemKind = monaco.languages.CompletionItemKind;
 
   switch (kind) {
@@ -301,15 +289,10 @@ function toCompletionItem(entry: ls.CompletionItem): DataCompletionItem {
   };
 }
 
-function fromMarkdownString(
-  entry: string | monaco.IMarkdownString
-): ls.MarkupContent {
+function fromMarkdownString(entry: string | monaco.IMarkdownString): ls.MarkupContent {
   return {
-    kind:
-      typeof entry === "string"
-        ? ls.MarkupKind.PlainText
-        : ls.MarkupKind.Markdown,
-    value: typeof entry === "string" ? entry : entry.value
+    kind: typeof entry === 'string' ? ls.MarkupKind.PlainText : ls.MarkupKind.Markdown,
+    value: typeof entry === 'string' ? entry : entry.value
   };
 }
 
@@ -323,30 +306,23 @@ function fromCompletionItem(entry: DataCompletionItem): ls.CompletionItem {
     kind: fromCompletionItemKind(entry.kind),
     data: entry.data
   };
-  if (
-    typeof entry.insertText === "object" &&
-    typeof entry.insertText.value === "string"
-  ) {
+  if (typeof entry.insertText === 'object' && typeof entry.insertText.value === 'string') {
     item.insertText = entry.insertText.value;
     item.insertTextFormat = ls.InsertTextFormat.Snippet;
   } else {
     item.insertText = <string>entry.insertText;
   }
   if (entry.range) {
-    item.textEdit = ls.TextEdit.replace(
-      fromRange(entry.range),
-      item.insertText
-    );
+    item.textEdit = ls.TextEdit.replace(fromRange(entry.range), item.insertText);
   }
   return item;
 }
 
-export class CompletionAdapter
-  implements monaco.languages.CompletionItemProvider {
+export class CompletionAdapter implements monaco.languages.CompletionItemProvider {
   constructor(private _worker: WorkerAccessor) {}
 
   public get triggerCharacters(): string[] {
-    return [" ", ":"];
+    return [' ', ':'];
   }
 
   provideCompletionItems(
@@ -367,27 +343,25 @@ export class CompletionAdapter
           if (!info) {
             return;
           }
-          let items: monaco.languages.CompletionItem[] = info.items.map(
-            entry => {
-              let item: monaco.languages.CompletionItem = {
-                label: entry.label,
-                insertText: entry.insertText,
-                sortText: entry.sortText,
-                filterText: entry.filterText,
-                documentation: entry.documentation,
-                detail: entry.detail,
-                kind: toCompletionItemKind(entry.kind)
-              };
-              if (entry.textEdit) {
-                item.range = toRange(entry.textEdit.range);
-                item.insertText = entry.textEdit.newText;
-              }
-              if (entry.insertTextFormat === ls.InsertTextFormat.Snippet) {
-                item.insertText = { value: <string>item.insertText };
-              }
-              return item;
+          let items: monaco.languages.CompletionItem[] = info.items.map(entry => {
+            let item: monaco.languages.CompletionItem = {
+              label: entry.label,
+              insertText: entry.insertText,
+              sortText: entry.sortText,
+              filterText: entry.filterText,
+              documentation: entry.documentation,
+              detail: entry.detail,
+              kind: toCompletionItemKind(entry.kind)
+            };
+            if (entry.textEdit) {
+              item.range = toRange(entry.textEdit.range);
+              item.insertText = entry.textEdit.newText;
             }
-          );
+            if (entry.insertTextFormat === ls.InsertTextFormat.Snippet) {
+              item.insertText = { value: <string>item.insertText };
+            }
+            return item;
+          });
 
           return {
             isIncomplete: info.isIncomplete,
@@ -399,25 +373,19 @@ export class CompletionAdapter
 }
 
 function isMarkupContent(thing: any): thing is ls.MarkupContent {
-  return (
-    thing &&
-    typeof thing === "object" &&
-    typeof (<ls.MarkupContent>thing).kind === "string"
-  );
+  return thing && typeof thing === 'object' && typeof (<ls.MarkupContent>thing).kind === 'string';
 }
 
-function toMarkdownString(
-  entry: ls.MarkupContent | ls.MarkedString
-): monaco.IMarkdownString {
-  if (typeof entry === "string") {
+function toMarkdownString(entry: ls.MarkupContent | ls.MarkedString): monaco.IMarkdownString {
+  if (typeof entry === 'string') {
     return {
       value: entry
     };
   }
   if (isMarkupContent(entry)) {
-    if (entry.kind === "plaintext") {
+    if (entry.kind === 'plaintext') {
       return {
-        value: entry.value.replace(/[\\`*_{}[\]()#+\-.!]/g, "\\$&")
+        value: entry.value.replace(/[\\`*_{}[\]()#+\-.!]/g, '\\$&')
       };
     }
     return {
@@ -425,7 +393,7 @@ function toMarkdownString(
     };
   }
 
-  return { value: "```" + entry.language + "\n" + entry.value + "\n```\n" };
+  return { value: '```' + entry.language + '\n' + entry.value + '\n```\n' };
 }
 
 function toMarkedStringArray(
@@ -526,8 +494,7 @@ function toSymbolKind(kind: ls.SymbolKind): monaco.languages.SymbolKind {
   return mKind.Function;
 }
 
-export class DocumentSymbolAdapter
-  implements monaco.languages.DocumentSymbolProvider {
+export class DocumentSymbolAdapter implements monaco.languages.DocumentSymbolProvider {
   constructor(private _worker: WorkerAccessor) {}
 
   public provideDocumentSymbols(
@@ -555,17 +522,14 @@ export class DocumentSymbolAdapter
   }
 }
 
-function fromFormattingOptions(
-  options: monaco.languages.FormattingOptions
-): ls.FormattingOptions {
+function fromFormattingOptions(options: monaco.languages.FormattingOptions): ls.FormattingOptions {
   return {
     tabSize: options.tabSize,
     insertSpaces: options.insertSpaces
   };
 }
 
-export class DocumentFormattingEditProvider
-  implements monaco.languages.DocumentFormattingEditProvider {
+export class DocumentFormattingEditProvider implements monaco.languages.DocumentFormattingEditProvider {
   constructor(private _worker: WorkerAccessor) {}
 
   public provideDocumentFormattingEdits(
@@ -578,21 +542,18 @@ export class DocumentFormattingEditProvider
     return wireCancellationToken(
       token,
       this._worker(resource).then(worker => {
-        return worker
-          .format(resource.toString(), null, fromFormattingOptions(options))
-          .then(edits => {
-            if (!edits || edits.length === 0) {
-              return;
-            }
-            return edits.map(toTextEdit);
-          });
+        return worker.format(resource.toString(), null, fromFormattingOptions(options)).then(edits => {
+          if (!edits || edits.length === 0) {
+            return;
+          }
+          return edits.map(toTextEdit);
+        });
       })
     );
   }
 }
 
-export class DocumentRangeFormattingEditProvider
-  implements monaco.languages.DocumentRangeFormattingEditProvider {
+export class DocumentRangeFormattingEditProvider implements monaco.languages.DocumentRangeFormattingEditProvider {
   constructor(private _worker: WorkerAccessor) {}
 
   public provideDocumentRangeFormattingEdits(
@@ -606,18 +567,12 @@ export class DocumentRangeFormattingEditProvider
     return wireCancellationToken(
       token,
       this._worker(resource).then(worker => {
-        return worker
-          .format(
-            resource.toString(),
-            fromRange(range),
-            fromFormattingOptions(options)
-          )
-          .then(edits => {
-            if (!edits || edits.length === 0) {
-              return;
-            }
-            return edits.map(toTextEdit);
-          });
+        return worker.format(resource.toString(), fromRange(range), fromFormattingOptions(options)).then(edits => {
+          if (!edits || edits.length === 0) {
+            return;
+          }
+          return edits.map(toTextEdit);
+        });
       })
     );
   }
@@ -626,10 +581,7 @@ export class DocumentRangeFormattingEditProvider
 /**
  * Hook a cancellation token to a WinJS Promise
  */
-function wireCancellationToken<T>(
-  token: CancellationToken,
-  promise: Thenable<T>
-): Thenable<T> {
+function wireCancellationToken<T>(token: CancellationToken, promise: Thenable<T>): Thenable<T> {
   if ((<Promise<T>>promise).cancel) {
     token.onCancellationRequested(() => (<Promise<T>>promise).cancel());
   }

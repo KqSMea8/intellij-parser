@@ -10,15 +10,14 @@ class MetaParserConfig {
     trailingComma: 'all',
     singleQuote: true
   };
-  gCodePath = '../../meta/MySqlParser.g4';
-  lexerCodePath = '../../meta/generatedLexer.g';
+  parserCodePath = '../../meta/MySqlParser.g4';
+  lexerCodePath = '../../meta/MysqlLexer.g4';
   templatePath = '../parser/parserTemplate';
   outDir = '../parser/test.json';
 }
 
-function metaGenerator(config = new MetaParserConfig()) {
-  const gCode = fs.readFileSync(path.join(__dirname, config.gCodePath)).toString('utf8');
-  const { ast, cst, lexErrors, parseErrors } = parseGCode(gCode);
+function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
+  const { ast, cst, lexErrors, parseErrors } = parseGCode(lexerGCode, false);
 
   if (lexErrors) {
     console.log(...lexErrors);
@@ -28,33 +27,69 @@ function metaGenerator(config = new MetaParserConfig()) {
   }
 
   const parserCode = `
-  import * as chevrotain from 'chevrotain';
-  import { tokens, Lexer } from './lexer.g';
-  
-  const Tokens = {} as any;
+    import * as chevrotain from 'chevrotain';
 
-  export class MetaParser extends chevrotain.Parser {
-    [x: string]: any;
-    constructor(input) {
-      super(input, tokens, {
-        recoveryEnabled: true,
-        outputCst: true
-      });
-      ${ast.toCode()}
-      chevrotain.Parser.performSelfAnalysis(this);
-    }}
+    ${ast.toLexerCode()}
   `;
 
   try {
     const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
 
-    fs.writeFileSync(path.join(__dirname, '../../meta/mysql_g_cst.g.json'), JSON.stringify(cst, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../meta/mysql_g_ast.g.json'), JSON.stringify(ast, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../meta/parser.g.ts'), beautifiedCode);
+    fs.writeFileSync(path.join(__dirname, '../../sql-parser/mysql_lexer_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../sql-parser/mysql_lexer_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../sql-parser/lexer.g.ts'), parserCode);
   } catch (e) {
     console.error(e);
     debugger;
   }
+}
+
+function metaParserGenerator(parserGCode: string, config: MetaParserConfig) {
+  const { ast, cst, lexErrors, parseErrors } = parseGCode(parserGCode);
+
+  if (lexErrors) {
+    console.log(...lexErrors);
+  }
+  if (parseErrors) {
+    console.log(...parseErrors);
+  }
+
+  const parserCode = `
+    import * as chevrotain from 'chevrotain';
+    import { tokens, Lexer } from './lexer.g';
+    
+    const Tokens = {} as any;
+
+    export class MetaParser extends chevrotain.Parser {
+      [x: string]: any;
+      constructor(input) {
+        super(input, tokens, {
+          recoveryEnabled: true,
+          outputCst: true
+        });
+        ${ast.toCode()}
+        chevrotain.Parser.performSelfAnalysis(this);
+      }}
+  `;
+
+  try {
+    const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
+
+    fs.writeFileSync(path.join(__dirname, '../../sql-parser/mysql_parser_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../sql-parser/mysql_parser_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../sql-parser/parser.g.ts'), ast.toLexerCode());
+  } catch (e) {
+    console.error(e);
+    debugger;
+  }
+}
+
+function metaGenerator(config = new MetaParserConfig()) {
+  const lexerCode = fs.readFileSync(path.join(__dirname, config.lexerCodePath)).toString('utf8');
+  const parserCode = fs.readFileSync(path.join(__dirname, config.parserCodePath)).toString('utf8');
+
+  metaLexerGenerator(lexerCode, config);
+  metaParserGenerator(lexerCode, config);
 }
 
 metaGenerator();
