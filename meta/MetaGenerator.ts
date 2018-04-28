@@ -133,8 +133,13 @@ export function cstToAst(cst: CstNode): BaseNode {
 /** 基类 */
 class BaseNode {
   kind: SyntaxKind | TokenEnum;
+  index? = 0;
   get children(): BaseNode[] {
     return [];
+  }
+
+  get indexStr() {
+    return this.index === 0 ? '' : this.index + 1;
   }
 
   forEach(callback: ((child: BaseNode) => any)) {
@@ -147,7 +152,7 @@ class BaseNode {
 }
 
 /** 遍历ast */
-export function traverse(ast: BaseNode, kind: SyntaxKind, callback: (node: BaseNode) => any) {
+export function traverse(ast: BaseNode, kind: SyntaxKind | TokenEnum, callback: (node: BaseNode) => any) {
   if (ast.kind === kind) {
     callback(ast);
   }
@@ -222,6 +227,7 @@ export class AtomNode extends BaseNode {
 }
 
 export class ItemSuffNode extends BaseNode {
+  index = 0;
   kind = SyntaxKind.itemSuff;
   suff?: SuffEnum;
   item: BracketExpNode | StringliteralNode | UpperNameNode | LowerNameNode;
@@ -233,19 +239,19 @@ export class ItemSuffNode extends BaseNode {
   toCode() {
     if (this.suff === SuffEnum.AT_LEAST_ONE) {
       return `
-        this.AT_LEAST_ONE(() => {
+        this.AT_LEAST_ONE${this.indexStr}(() => {
           ${this.item.toCode()}
         });
       `;
     } else if (this.suff === SuffEnum.MANY) {
       return `
-        this.MANY(() => {
+        this.MANY${this.indexStr}(() => {
           ${this.item.toCode()}
         });
       `;
     } else if (this.suff === SuffEnum.OPTION) {
       return `
-        this.OPTION(() => {
+        this.OPTION${this.indexStr}(() => {
           ${this.item.toCode()}
         });
       `;
@@ -293,7 +299,7 @@ export class StringliteralNode extends BaseNode {
       name = 'OP';
     }
     // FIXME: content is not a name;
-    return `this.CONSUME${this.index === 0 ? '' : this.index + 1}(Tokens.${name});`;
+    return `this.CONSUME${this.indexStr}(Tokens.${name});`;
   }
 }
 
@@ -303,7 +309,7 @@ export class LowerNameNode extends BaseNode {
   kind = TokenEnum.LowerName;
 
   toCode() {
-    return `this.SUBRULE${this.index === 0 ? '' : this.index + 1}(this.${this.name});`;
+    return `this.SUBRUL${this.indexStr}(this.${this.name});`;
   }
 }
 
@@ -313,7 +319,7 @@ export class UpperNameNode extends BaseNode {
   kind = TokenEnum.UpperName;
 
   toCode() {
-    return `this.CONSUME${this.index === 0 ? '' : this.index + 1}(Tokens.${this.name});`;
+    return `this.CONSUME${this.indexStr}(Tokens.${this.name});`;
   }
 }
 
@@ -324,6 +330,52 @@ export function parseGCode(gCode: string) {
   metaParser.input = lexResult.tokens;
 
   const cst = metaParser.rules() as CstNode;
+  const ast = cstToAst(cst) as RulesNode;
+
+  /** 遍历所有的规则 */
+  traverse(ast, SyntaxKind.rule, (node: RuleNode) => {
+    // itemSuff 的 index
+    {
+      let optionIndex = 0;
+      let manyIndex = 0;
+      let atLeastOneIndex = 0;
+
+      traverse(ast, SyntaxKind.itemSuff, (node: ItemSuffNode) => {
+        if (node.suff === SuffEnum.AT_LEAST_ONE) {
+          node.index = atLeastOneIndex++;
+        } else if (node.suff === SuffEnum.MANY) {
+          node.index = manyIndex++;
+        } else if (node.suff === SuffEnum.OPTION) {
+          node.index = optionIndex++;
+        }
+      });
+    }
+
+    // subRule 的 index
+    {
+      let preRuleNames = [];
+
+      traverse(ast, TokenEnum.LowerName, (node: LowerNameNode) => {
+        node.index = preRuleNames.filter(name => name === node.name).length;
+        preRuleNames.push(node.name);
+      });
+    }
+
+    // consume 的 index
+    {
+      let uppers = [] as string[];
+      let strs = [];
+
+      traverse(ast, TokenEnum.UpperName, (node: UpperNameNode) => {
+        node.index = uppers.filter(upName => upName === node.name).length;
+        uppers.push(node.name);
+      });
+      traverse(ast, TokenEnum.Stringliteral, (node: StringliteralNode) => {
+        node.index = strs.filter(str => str === node.content).length;
+        strs.push(node.content);
+      });
+    }
+  });
 
   return {
     cst,

@@ -30,7 +30,7 @@ const RightBracket = chevrotain.createToken({
 });
 const Stringliteral = chevrotain.createToken({
   name: 'Stringliteral',
-  pattern: /\'(.)*?\'/
+  pattern: /\'(\\.|[^'\\])*\'/
 });
 const UpperName = chevrotain.createToken({
   name: 'UpperName',
@@ -62,10 +62,22 @@ const Plus = chevrotain.createToken({
   name: 'Plus',
   pattern: '+'
 });
-// const Fragment = chevrotain.createToken({
-//   name: "Fragment",
-//   pattern: "fragment"
-// });
+const Fragment = chevrotain.createToken({
+  name: 'Fragment',
+  pattern: 'fragment'
+});
+const ReExp = chevrotain.createToken({
+  name: 'ReExp',
+  pattern: /\[.+\]/
+});
+const Not = chevrotain.createToken({
+  name: 'Not',
+  pattern: '~'
+});
+const All = chevrotain.createToken({
+  name: 'All',
+  pattern: '.'
+});
 
 const WhiteSpace = chevrotain.createToken({
   name: 'WhiteSpace',
@@ -75,8 +87,10 @@ const WhiteSpace = chevrotain.createToken({
 });
 
 export enum TokenEnum {
+  Fragment = 'Fragment',
   Bar = 'Bar',
   Semi = 'Semi',
+  All = 'All',
   Colon = 'Colon',
   PlusEquals = 'PlusEquals',
   Equal = 'Equal',
@@ -85,16 +99,18 @@ export enum TokenEnum {
   LeftBracket = 'LeftBracket',
   RightBracket = 'RightBracket',
   Stringliteral = 'Stringliteral',
+  Not = 'Not',
   UpperName = 'UpperName',
   LowerName = 'LowerName',
   WhiteSpace = 'WhiteSpace',
   SlashComment = 'SlashComment',
   Comment = 'Comment',
-  // Fragment = "Fragment",
-  Plus = 'Plus'
+  Plus = 'Plus',
+  ReExp = 'ReExp'
 }
 
 export const Tokens = {
+  Fragment,
   Bar,
   Semi,
   Colon,
@@ -102,6 +118,7 @@ export const Tokens = {
   Equal,
   Asterisk,
   Optional,
+  Not,
   LeftBracket,
   RightBracket,
   Stringliteral,
@@ -109,19 +126,23 @@ export const Tokens = {
   LowerName,
   WhiteSpace,
   SlashComment,
+  All,
   Comment,
-  // Fragment,
+  ReExp,
   Plus
 };
 
 export const tokens = [
+  Fragment,
   Bar,
+  Not,
   Semi,
   Colon,
   PlusEquals,
   Asterisk,
   Optional,
   LeftBracket,
+  All,
   RightBracket,
   Stringliteral,
   Equal,
@@ -130,7 +151,7 @@ export const tokens = [
   WhiteSpace,
   SlashComment,
   Plus,
-  // Fragment,
+  ReExp,
   Comment
 ];
 
