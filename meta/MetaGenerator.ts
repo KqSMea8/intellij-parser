@@ -51,9 +51,16 @@ export function cstToAst(cst: CstNode): BaseNode {
     }
     case SyntaxKind.rule: {
       const ruleNode = new RuleNode();
+      const { LowerName, UpperName, Fragment } = cst.children;
       const atomsCst = cst.children.atoms[0];
 
-      ruleNode.ruleName = cst.children.LowerName[0].image;
+      if (LowerName) {
+        ruleNode.ruleName = LowerName[0].image;
+      } else if (UpperName && Fragment) {
+        ruleNode.fragName = UpperName[0].image;
+      } else if (UpperName) {
+        ruleNode.tokenName = UpperName[0].image;
+      }
       ruleNode.atoms = atomsCst.children.atom.map(atom => {
         return cstToAst(atom) as AtomNode;
       });
@@ -138,6 +145,13 @@ class BaseNode {
     return [];
   }
 
+  toCode() {
+    return '';
+  }
+  toLexerCode() {
+    return '';
+  }
+
   get indexStr() {
     return this.index === 0 ? '' : this.index + 1;
   }
@@ -177,11 +191,31 @@ export class RulesNode extends BaseNode {
 
 export class RuleNode extends BaseNode {
   kind = SyntaxKind.rule;
-  ruleName: string;
+  ruleName?: string;
+  fragName?: string;
+  tokenName?: string;
   atoms: AtomNode[];
 
   get children() {
     return this.atoms;
+  }
+
+  toLexerCode() {
+    if (this.atoms.length) {
+      return `
+        const ${this.fragName} = chevrotain.createToken({
+          name: ${this.fragName},
+          pattern: /${this.atoms.map(atom => atom.toLexerCode()).join('|')}/,
+        });
+      `;
+    }
+
+    return `
+      const ${this.fragName} = chevrotain.createToken({
+        name: ${this.fragName},
+        pattern: /${this.atoms[0].toLexerCode()}/,
+      });
+    `;
   }
 
   toCode() {
@@ -221,6 +255,10 @@ export class AtomNode extends BaseNode {
     return this.itemSuffs;
   }
 
+  toLexerCode() {
+    return this.itemSuffs.map(itemSuff => itemSuff.toLexerCode()).join('');
+  }
+
   toCode() {
     return this.itemSuffs.map(itemSuff => itemSuff.toCode()).join('\n');
   }
@@ -234,6 +272,11 @@ export class ItemSuffNode extends BaseNode {
 
   get children() {
     return [this.item];
+  }
+
+  toLexerCode() {
+    const itemLexer = this.item.toLexerCode();
+    return `${itemLexer}${this.suff || ''}`;
   }
 
   toCode() {
@@ -267,6 +310,14 @@ export class BracketExpNode extends BaseNode {
 
   get children() {
     return this.atoms;
+  }
+
+  toLexerCode() {
+    if (this.atoms.length) {
+      return `(${this.atoms.map(atom => atom.toLexerCode()).join('|')}`;
+    }
+
+    return this.atoms[0].toLexerCode();
   }
 
   toCode() {
@@ -309,7 +360,7 @@ export class LowerNameNode extends BaseNode {
   kind = TokenEnum.LowerName;
 
   toCode() {
-    return `this.SUBRUL${this.indexStr}(this.${this.name});`;
+    return `this.SUBRULE${this.indexStr}(this.${this.name});`;
   }
 }
 
@@ -379,7 +430,7 @@ export function parseGCode(gCode: string) {
 
   return {
     cst,
-    ast: cstToAst(cst) as RulesNode,
+    ast,
     lexErrors: lexResult.errors,
     parseErrors: metaParser.errors
   };
