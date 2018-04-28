@@ -25,14 +25,17 @@ function metaGenerator(config = new MetaParserConfig()) {
     console.log(...parseErrors);
   }
 
-  fs.writeFileSync(path.join(__dirname, "../../meta/rules_g.ts"), ast.toCode());
+  fs.writeFileSync(
+    path.join(__dirname, "../../meta/rules_g.g.ts"),
+    ast.toCode()
+  );
 
   fs.writeFileSync(
-    path.join(__dirname, "../../meta/mysql_g_cst.json"),
+    path.join(__dirname, "../../meta/mysql_g_cst.g.json"),
     JSON.stringify(cst, null, 2)
   );
   fs.writeFileSync(
-    path.join(__dirname, "../../meta/mysql_g_ast.json"),
+    path.join(__dirname, "../../meta/mysql_g_ast.g.json"),
     JSON.stringify(ast, null, 2)
   );
 }
