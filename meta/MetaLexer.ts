@@ -1,66 +1,66 @@
-import * as chevrotain from "chevrotain";
+import * as chevrotain from 'chevrotain';
 
 const Bar = chevrotain.createToken({
-  name: "Bar",
+  name: 'Bar',
   pattern: /\|/
 });
 const Semi = chevrotain.createToken({
-  name: "Semi",
+  name: 'Semi',
   pattern: /;/
 });
 const Colon = chevrotain.createToken({
-  name: "Colon",
+  name: 'Colon',
   pattern: /:/
 });
 const Asterisk = chevrotain.createToken({
-  name: "Asterisk",
+  name: 'Asterisk',
   pattern: /\*/
 });
 const Optional = chevrotain.createToken({
-  name: "Optional",
+  name: 'Optional',
   pattern: /\?/
 });
 const LeftBracket = chevrotain.createToken({
-  name: "LeftBracket",
+  name: 'LeftBracket',
   pattern: /\(/
 });
 const RightBracket = chevrotain.createToken({
-  name: "RightBracket",
+  name: 'RightBracket',
   pattern: /\)/
 });
 const Stringliteral = chevrotain.createToken({
-  name: "Stringliteral",
+  name: 'Stringliteral',
   pattern: /\'(.)*?\'/
 });
 const UpperName = chevrotain.createToken({
-  name: "UpperName",
+  name: 'UpperName',
   pattern: /[A-Z][a-z0-9A-Z_]*/
 });
 const LowerName = chevrotain.createToken({
-  name: "LowerName",
+  name: 'LowerName',
   pattern: /[a-z][a-z0-9A-Z_]*/
 });
 const Equal = chevrotain.createToken({
-  name: "Equal",
-  pattern: "="
+  name: 'Equal',
+  pattern: '='
 });
 const Comment = chevrotain.createToken({
-  name: "Comment",
+  name: 'Comment',
   group: chevrotain.Lexer.SKIPPED,
-  pattern: /#[^;]*/
+  pattern: /#[^;\n]*/
 });
 const SlashComment = chevrotain.createToken({
-  name: "SlashComment",
+  name: 'SlashComment',
   group: chevrotain.Lexer.SKIPPED,
   pattern: /\/\/.*/
 });
 const PlusEquals = chevrotain.createToken({
-  name: "PlusEquals",
+  name: 'PlusEquals',
   pattern: /\+=/
 });
 const Plus = chevrotain.createToken({
-  name: "Plus",
-  pattern: "+"
+  name: 'Plus',
+  pattern: '+'
 });
 // const Fragment = chevrotain.createToken({
 //   name: "Fragment",
@@ -68,30 +68,30 @@ const Plus = chevrotain.createToken({
 // });
 
 const WhiteSpace = chevrotain.createToken({
-  name: "WhiteSpace",
+  name: 'WhiteSpace',
   pattern: /\s+/,
   group: chevrotain.Lexer.SKIPPED,
   line_breaks: true
 });
 
 export enum TokenEnum {
-  Bar = "Bar",
-  Semi = "Semi",
-  Colon = "Colon",
-  PlusEquals = "PlusEquals",
-  Equal = "Equal",
-  Asterisk = "Asterisk",
-  Optional = "Optional",
-  LeftBracket = "LeftBracket",
-  RightBracket = "RightBracket",
-  Stringliteral = "Stringliteral",
-  UpperName = "UpperName",
-  LowerName = "LowerName",
-  WhiteSpace = "WhiteSpace",
-  SlashComment = "SlashComment",
-  Comment = "Comment",
+  Bar = 'Bar',
+  Semi = 'Semi',
+  Colon = 'Colon',
+  PlusEquals = 'PlusEquals',
+  Equal = 'Equal',
+  Asterisk = 'Asterisk',
+  Optional = 'Optional',
+  LeftBracket = 'LeftBracket',
+  RightBracket = 'RightBracket',
+  Stringliteral = 'Stringliteral',
+  UpperName = 'UpperName',
+  LowerName = 'LowerName',
+  WhiteSpace = 'WhiteSpace',
+  SlashComment = 'SlashComment',
+  Comment = 'Comment',
   // Fragment = "Fragment",
-  Plus = "Plus"
+  Plus = 'Plus'
 }
 
 export const Tokens = {
@@ -134,15 +134,15 @@ export const tokens = [
   Comment
 ];
 
-Equal.LABEL = "=";
-Bar.LABEL = "|";
-Semi.LABEL = ";";
-Colon.LABEL = ":";
-Asterisk.LABEL = "*";
-Optional.LABEL = "?";
-LeftBracket.LABEL = "(";
-RightBracket.LABEL = ")";
+Equal.LABEL = '=';
+Bar.LABEL = '|';
+Semi.LABEL = ';';
+Colon.LABEL = ':';
+Asterisk.LABEL = '*';
+Optional.LABEL = '?';
+LeftBracket.LABEL = '(';
+RightBracket.LABEL = ')';
 
 export const Lexer = new chevrotain.Lexer(tokens, {
-  positionTracking: "onlyStart"
+  positionTracking: 'onlyStart'
 });

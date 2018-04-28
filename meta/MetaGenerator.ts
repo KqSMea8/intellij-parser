@@ -1,33 +1,33 @@
-import { tokens, Lexer, Tokens, TokenEnum } from "./MetaLexer";
-import * as _ from "lodash";
-import { MetaParser } from "./MetaParser";
+import { tokens, Lexer, Tokens, TokenEnum } from './MetaLexer';
+import * as _ from 'lodash';
+import { MetaParser } from './MetaParser';
 
 /** 产生式节点类型 */
 export enum SyntaxKind {
   /** = xx */
-  alias = "alias",
-  rules = "rules",
+  alias = 'alias',
+  rules = 'rules',
   /** 规则 */
-  rule = "rule",
+  rule = 'rule',
   /** 产生式可选项 */
-  atoms = "atoms",
+  atoms = 'atoms',
   /** 产生式的某个可选项 包含suff（Many，Option） */
-  atom = "atom",
-  itemSuff = "itemSuff",
+  atom = 'atom',
+  itemSuff = 'itemSuff',
   /** 产生式节点, 可能是字符串、括号包住的表达式、大小写的变量名 */
-  item = "item",
+  item = 'item',
   /** 产生式节点 */
-  itemCase = "itemCase",
+  itemCase = 'itemCase',
   /** 后缀，‘+’，‘*’，‘？’ */
-  suff = "suff",
+  suff = 'suff',
   /** 括号表达式 */
-  bracketExp = "bracketExp"
+  bracketExp = 'bracketExp'
 }
 
 enum SuffEnum {
-  MANY = "*",
-  AT_LEAST_ONE = "+",
-  OPTION = "?"
+  MANY = '*',
+  AT_LEAST_ONE = '+',
+  OPTION = '?'
 }
 
 interface CstNode {
@@ -70,11 +70,8 @@ export function cstToAst(cst: CstNode): BaseNode {
     case SyntaxKind.itemSuff: {
       const itemSuffNode = new ItemSuffNode();
 
-      if (_.get(cst, "children.suff[0].children")) {
-        const { Asterisk, Plus, Optional } = _.get(
-          cst,
-          "children.suff[0].children"
-        );
+      if (_.get(cst, 'children.suff[0].children')) {
+        const { Asterisk, Plus, Optional } = _.get(cst, 'children.suff[0].children');
 
         if (Asterisk) {
           itemSuffNode.suff = SuffEnum.MANY;
@@ -98,14 +95,7 @@ export function cstToAst(cst: CstNode): BaseNode {
       return itemSuffNode;
     }
     case SyntaxKind.item: {
-      const {
-        LowerName,
-        UpperName,
-        LeftBracket,
-        atoms,
-        RightBracket,
-        Stringliteral
-      } = cst.children;
+      const { LowerName, UpperName, LeftBracket, atoms, RightBracket, Stringliteral } = cst.children;
 
       if (LowerName) {
         const itemNode = new LowerNameNode();
@@ -157,11 +147,7 @@ class BaseNode {
 }
 
 /** 遍历ast */
-export function traverse(
-  ast: BaseNode,
-  kind: SyntaxKind,
-  callback: (node: BaseNode) => any
-) {
+export function traverse(ast: BaseNode, kind: SyntaxKind, callback: (node: BaseNode) => any) {
   if (ast.kind === kind) {
     callback(ast);
   }
@@ -180,7 +166,7 @@ export class RulesNode extends BaseNode {
   }
 
   toCode() {
-    return this.rules.map(rule => rule.toCode()).join("\n\n");
+    return this.rules.map(rule => rule.toCode()).join('\n');
   }
 }
 
@@ -204,10 +190,12 @@ export class RuleNode extends BaseNode {
       `;
     });
 
-    let rule = "";
+    let rule = '';
 
     if (this.atoms.length > 1) {
-      rule = `this.OR([${orStrs.join(",")}]`;
+      rule = `() => {
+        this.OR([${orStrs.join(',')}]);
+      }`;
     } else {
       rule = `() => {
         ${this.atoms[0].toCode()}
@@ -229,7 +217,7 @@ export class AtomNode extends BaseNode {
   }
 
   toCode() {
-    return this.itemSuffs.map(itemSuff => itemSuff.toCode()).join("\n");
+    return this.itemSuffs.map(itemSuff => itemSuff.toCode()).join('\n');
   }
 }
 
@@ -276,7 +264,20 @@ export class BracketExpNode extends BaseNode {
   }
 
   toCode() {
-    return this.atoms.map(atom => atom.toCode()).join("\n\n");
+    const orStrs = this.atoms.map(atom => {
+      return `
+        {
+          ALT: () => {
+            ${atom.toCode()}
+          }
+        }
+      `;
+    });
+    if (this.atoms.length > 1) {
+      return `this.OR([${orStrs.join(',')}])`;
+    } else {
+      return `${this.atoms[0].toCode()}`;
+    }
   }
 }
 
@@ -289,12 +290,10 @@ export class StringliteralNode extends BaseNode {
   toCode() {
     let name = this.content;
     if (!this.content.match(/[a-zA-Z]/)) {
-      name = "OP";
+      name = 'OP';
     }
     // FIXME: content is not a name;
-    return `this.CONSUME${
-      this.index === 0 ? "" : this.index + 1
-    }(Tokens.${name});`;
+    return `this.CONSUME${this.index === 0 ? '' : this.index + 1}(Tokens.${name});`;
   }
 }
 
@@ -304,9 +303,7 @@ export class LowerNameNode extends BaseNode {
   kind = TokenEnum.LowerName;
 
   toCode() {
-    return `this.SUBRULE${this.index === 0 ? "" : this.index + 1}(this.${
-      this.name
-    });`;
+    return `this.SUBRULE${this.index === 0 ? '' : this.index + 1}(this.${this.name});`;
   }
 }
 
@@ -316,9 +313,7 @@ export class UpperNameNode extends BaseNode {
   kind = TokenEnum.UpperName;
 
   toCode() {
-    return `this.CONSUME${this.index === 0 ? "" : this.index + 1}(Tokens.${
-      this.name
-    });`;
+    return `this.CONSUME${this.index === 0 ? '' : this.index + 1}(Tokens.${this.name});`;
   }
 }
 
