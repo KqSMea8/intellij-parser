@@ -1,2 +1,5 @@
 node_modules
 lib
+meta/mysql_g_ast.json
+meta/mysql_g_cst.json
+meta/rules_g.ts
