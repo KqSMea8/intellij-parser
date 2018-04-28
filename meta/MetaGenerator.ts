@@ -143,8 +143,13 @@ export function cstToAst(cst: CstNode): BaseNode {
 /** 基类 */
 class BaseNode {
   kind: SyntaxKind | TokenEnum;
+  index? = 0;
   get children(): BaseNode[] {
     return [];
+  }
+
+  get indexStr() {
+    return this.index === 0 ? "" : this.index + 1;
   }
 
   forEach(callback: ((child: BaseNode) => any)) {
@@ -246,19 +251,19 @@ export class ItemSuffNode extends BaseNode {
   toCode() {
     if (this.suff === SuffEnum.AT_LEAST_ONE) {
       return `
-        this.AT_LEAST_ONE(() => {
+        this.AT_LEAST_ONE${this.indexStr}(() => {
           ${this.item.toCode()}
         });
       `;
     } else if (this.suff === SuffEnum.MANY) {
       return `
-        this.MANY(() => {
+        this.MANY${this.indexStr}(() => {
           ${this.item.toCode()}
         });
       `;
     } else if (this.suff === SuffEnum.OPTION) {
       return `
-        this.OPTION(() => {
+        this.OPTION${this.indexStr}(() => {
           ${this.item.toCode()}
         });
       `;
@@ -293,9 +298,7 @@ export class StringliteralNode extends BaseNode {
       name = "OP";
     }
     // FIXME: content is not a name;
-    return `this.CONSUME${
-      this.index === 0 ? "" : this.index + 1
-    }(Tokens.${name});`;
+    return `this.CONSUME${this.indexStr}(Tokens.${name});`;
   }
 }
 
@@ -305,9 +308,7 @@ export class LowerNameNode extends BaseNode {
   kind = TokenEnum.LowerName;
 
   toCode() {
-    return `this.SUBRULE${this.index === 0 ? "" : this.index + 1}(this.${
-      this.name
-    });`;
+    return `this.SUBRUL${this.indexStr}(this.${this.name});`;
   }
 }
 
@@ -317,9 +318,7 @@ export class UpperNameNode extends BaseNode {
   kind = TokenEnum.UpperName;
 
   toCode() {
-    return `this.CONSUME${this.index === 0 ? "" : this.index + 1}(Tokens.${
-      this.name
-    });`;
+    return `this.CONSUME${this.indexStr}(Tokens.${this.name});`;
   }
 }
 
