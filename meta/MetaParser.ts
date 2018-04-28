@@ -1,5 +1,5 @@
-import * as chevrotain from 'chevrotain';
-import { tokens, Lexer, Tokens } from './MetaLexer';
+import * as chevrotain from "chevrotain";
+import { tokens, Lexer, Tokens } from "./MetaLexer";
 
 export class MetaParser extends chevrotain.Parser {
   rules;
@@ -18,22 +18,45 @@ export class MetaParser extends chevrotain.Parser {
       outputCst: true
     });
 
-    this.RULE('rules', () => {
+    this.RULE("rules", () => {
       // rules: rule*;
       this.MANY(() => {
         this.SUBRULE(this.rule);
       });
     });
 
-    this.RULE('rule', () => {
+    this.RULE("rule", () => {
       // rule: ruleName ':' atoms ';';
-      this.CONSUME(Tokens.LowerName);
-      this.CONSUME(Tokens.Colon);
-      this.SUBRULE(this.atoms);
-      this.CONSUME(Tokens.Semi);
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.Fragment);
+            this.CONSUME(Tokens.UpperName);
+            this.CONSUME(Tokens.Colon);
+            this.SUBRULE(this.atoms);
+            this.CONSUME(Tokens.Semi);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.UpperName);
+            this.CONSUME2(Tokens.Colon);
+            this.SUBRULE2(this.atoms);
+            this.CONSUME2(Tokens.Semi);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LowerName);
+            this.CONSUME3(Tokens.Colon);
+            this.SUBRULE3(this.atoms);
+            this.CONSUME3(Tokens.Semi);
+          }
+        }
+      ]);
     });
 
-    this.RULE('atoms', () => {
+    this.RULE("atoms", () => {
       // atoms: atom ('|' atom)*;
       this.SUBRULE(this.atom);
       this.MANY(() => {
@@ -42,22 +65,25 @@ export class MetaParser extends chevrotain.Parser {
       });
     });
 
-    this.RULE('atom', () => {
+    this.RULE("atom", () => {
       // atom: itemSuffs
       this.AT_LEAST_ONE(() => {
         this.SUBRULE(this.itemSuff);
       });
     });
 
-    this.RULE('itemSuff', () => {
+    this.RULE("itemSuff", () => {
       // itemSuff: item | item '?' | item '*';
-      this.SUBRULE(this.item);
       this.OPTION(() => {
+        this.CONSUME(Tokens.Not);
+      });
+      this.SUBRULE(this.item);
+      this.OPTION2(() => {
         this.SUBRULE(this.suff);
       });
     });
 
-    this.RULE('suff', () => {
+    this.RULE("suff", () => {
       this.OR([
         {
           ALT: () => {
@@ -77,7 +103,7 @@ export class MetaParser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE('item', () => {
+    this.RULE("item", () => {
       // item: '(' atoms ')' | UpperName | Stringliteral | LowerName | LowerName = itemCase
       this.OR([
         {
@@ -90,6 +116,16 @@ export class MetaParser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.UpperName);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.All);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ReExp);
           }
         },
         {
@@ -108,11 +144,11 @@ export class MetaParser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE('alias', () => {
+    this.RULE("alias", () => {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME2(Tokens.Equal);
+            this.CONSUME(Tokens.Equal);
             this.SUBRULE(this.item);
           }
         },

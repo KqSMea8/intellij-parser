@@ -159,7 +159,7 @@ class BaseNode {
 /** 遍历ast */
 export function traverse(
   ast: BaseNode,
-  kind: SyntaxKind,
+  kind: SyntaxKind | TokenEnum,
   callback: (node: BaseNode) => any
 ) {
   if (ast.kind === kind) {
@@ -234,6 +234,7 @@ export class AtomNode extends BaseNode {
 }
 
 export class ItemSuffNode extends BaseNode {
+  index = 0;
   kind = SyntaxKind.itemSuff;
   suff?: SuffEnum;
   item: BracketExpNode | StringliteralNode | UpperNameNode | LowerNameNode;
@@ -329,6 +330,52 @@ export function parseGCode(gCode: string) {
   metaParser.input = lexResult.tokens;
 
   const cst = metaParser.rules() as CstNode;
+  const ast = cstToAst(cst) as RulesNode;
+
+  /** 遍历所有的规则 */
+  traverse(ast, SyntaxKind.rule, (node: RuleNode) => {
+    // itemSuff 的 index
+    {
+      let optionIndex = 0;
+      let manyIndex = 0;
+      let atLeastOneIndex = 0;
+
+      traverse(ast, SyntaxKind.itemSuff, (node: ItemSuffNode) => {
+        if (node.suff === SuffEnum.AT_LEAST_ONE) {
+          node.index = atLeastOneIndex++;
+        } else if (node.suff === SuffEnum.MANY) {
+          node.index = manyIndex++;
+        } else if (node.suff === SuffEnum.OPTION) {
+          node.index = optionIndex++;
+        }
+      });
+    }
+
+    // subRule 的 index
+    {
+      let preRuleNames = [];
+
+      traverse(ast, TokenEnum.LowerName, (node: LowerNameNode) => {
+        node.index = preRuleNames.filter(name => name === node.name).length;
+        preRuleNames.push(node.name);
+      });
+    }
+
+    // consume 的 index
+    {
+      let uppers = [] as string[];
+      let strs = [];
+
+      traverse(ast, TokenEnum.UpperName, (node: UpperNameNode) => {
+        node.index = uppers.filter(upName => upName === node.name).length;
+        uppers.push(node.name);
+      });
+      traverse(ast, TokenEnum.Stringliteral, (node: StringliteralNode) => {
+        node.index = strs.filter(str => str === node.content).length;
+        strs.push(node.content);
+      });
+    }
+  });
 
   return {
     cst,

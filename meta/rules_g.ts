@@ -1,17 +1,16 @@
-class A {
-  constructor() {
+
       this.RULE('root', () => {
         
         this.OPTION(() => {
-          this.SUBRULENaN(this.sqlStatements);
+          this.SUBRULE(this.sqlStatements);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.MINUSMINUS);
+          this.CONSUME(Tokens.MINUSMINUS);
         });
       
-this.CONSUMENaN(Tokens.EOF);
+this.CONSUME(Tokens.EOF);
       });
     
 
@@ -19,30 +18,30 @@ this.CONSUMENaN(Tokens.EOF);
       this.RULE('sqlStatements', () => {
         
         this.MANY(() => {
-          this.SUBRULENaN(this.sqlStatement);
+          this.SUBRULE(this.sqlStatement);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.MINUSMINUS);
+          this.CONSUME(Tokens.MINUSMINUS);
         });
       
-this.CONSUMENaN(Tokens.SEMI);
+this.CONSUME(Tokens.SEMI);
 
-this.SUBRULENaN(this.emptyStatement);
+this.SUBRULE(this.emptyStatement);
         });
       
-this.SUBRULENaN(this.sqlStatement);
+this.SUBRULE(this.sqlStatement);
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.MINUSMINUS);
+          this.CONSUME(Tokens.MINUSMINUS);
         });
       
-this.CONSUMENaN(Tokens.SEMI);
+this.CONSUME(Tokens.SEMI);
         });
       
 
-this.SUBRULENaN(this.emptyStatement);
+this.SUBRULE(this.emptyStatement);
       });
     
 
@@ -50,43 +49,43 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('sqlStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.ddlStatement);
+            this.SUBRULE(this.ddlStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dmlStatement);
+            this.SUBRULE(this.dmlStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.transactionStatement);
+            this.SUBRULE(this.transactionStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.replicationStatement);
+            this.SUBRULE(this.replicationStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.preparedStatement);
+            this.SUBRULE(this.preparedStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.administrationStatement);
+            this.SUBRULE(this.administrationStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.utilityStatement);
+            this.SUBRULE(this.utilityStatement);
           }
         }
       ]);
@@ -94,7 +93,7 @@ this.SUBRULENaN(this.emptyStatement);
 
 
       this.RULE('emptyStatement', () => {
-        this.CONSUMENaN(Tokens.SEMI);
+        this.CONSUME(Tokens.SEMI);
       });
     
 
@@ -102,211 +101,211 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('ddlStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.createDatabase);
+            this.SUBRULE(this.createDatabase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createEvent);
+            this.SUBRULE(this.createEvent);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createIndex);
+            this.SUBRULE(this.createIndex);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createLogfileGroup);
+            this.SUBRULE(this.createLogfileGroup);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createProcedure);
+            this.SUBRULE(this.createProcedure);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createFunction);
+            this.SUBRULE(this.createFunction);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createServer);
+            this.SUBRULE(this.createServer);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createTable);
+            this.SUBRULE(this.createTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createTablespaceInnodb);
+            this.SUBRULE(this.createTablespaceInnodb);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createTablespaceNdb);
+            this.SUBRULE(this.createTablespaceNdb);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createTrigger);
+            this.SUBRULE(this.createTrigger);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createView);
+            this.SUBRULE(this.createView);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterDatabase);
+            this.SUBRULE(this.alterDatabase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterEvent);
+            this.SUBRULE(this.alterEvent);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterFunction);
+            this.SUBRULE(this.alterFunction);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterInstance);
+            this.SUBRULE(this.alterInstance);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterLogfileGroup);
+            this.SUBRULE(this.alterLogfileGroup);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterProcedure);
+            this.SUBRULE(this.alterProcedure);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterServer);
+            this.SUBRULE(this.alterServer);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterTable);
+            this.SUBRULE(this.alterTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterTablespace);
+            this.SUBRULE(this.alterTablespace);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterView);
+            this.SUBRULE(this.alterView);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropDatabase);
+            this.SUBRULE(this.dropDatabase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropEvent);
+            this.SUBRULE(this.dropEvent);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropIndex);
+            this.SUBRULE(this.dropIndex);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropLogfileGroup);
+            this.SUBRULE(this.dropLogfileGroup);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropProcedure);
+            this.SUBRULE(this.dropProcedure);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropFunction);
+            this.SUBRULE(this.dropFunction);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropServer);
+            this.SUBRULE(this.dropServer);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropTable);
+            this.SUBRULE(this.dropTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropTablespace);
+            this.SUBRULE(this.dropTablespace);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropTrigger);
+            this.SUBRULE(this.dropTrigger);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropView);
+            this.SUBRULE(this.dropView);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.renameTable);
+            this.SUBRULE(this.renameTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.truncateTable);
+            this.SUBRULE(this.truncateTable);
           }
         }
       ]);
@@ -316,61 +315,61 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('dmlStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.selectStatement);
+            this.SUBRULE(this.selectStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.insertStatement);
+            this.SUBRULE(this.insertStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.updateStatement);
+            this.SUBRULE(this.updateStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.deleteStatement);
+            this.SUBRULE(this.deleteStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.replaceStatement);
+            this.SUBRULE(this.replaceStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.callStatement);
+            this.SUBRULE(this.callStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.loadDataStatement);
+            this.SUBRULE(this.loadDataStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.loadXmlStatement);
+            this.SUBRULE(this.loadXmlStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.doStatement);
+            this.SUBRULE(this.doStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.handlerStatement);
+            this.SUBRULE(this.handlerStatement);
           }
         }
       ]);
@@ -380,55 +379,55 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('transactionStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.startTransaction);
+            this.SUBRULE(this.startTransaction);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.beginWork);
+            this.SUBRULE(this.beginWork);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.commitWork);
+            this.SUBRULE(this.commitWork);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.rollbackWork);
+            this.SUBRULE(this.rollbackWork);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.savepointStatement);
+            this.SUBRULE(this.savepointStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.rollbackStatement);
+            this.SUBRULE(this.rollbackStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.releaseStatement);
+            this.SUBRULE(this.releaseStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.lockTables);
+            this.SUBRULE(this.lockTables);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.unlockTables);
+            this.SUBRULE(this.unlockTables);
           }
         }
       ]);
@@ -438,91 +437,91 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('replicationStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.changeMaster);
+            this.SUBRULE(this.changeMaster);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.changeReplicationFilter);
+            this.SUBRULE(this.changeReplicationFilter);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.purgeBinaryLogs);
+            this.SUBRULE(this.purgeBinaryLogs);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.resetMaster);
+            this.SUBRULE(this.resetMaster);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.resetSlave);
+            this.SUBRULE(this.resetSlave);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.startSlave);
+            this.SUBRULE(this.startSlave);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.stopSlave);
+            this.SUBRULE(this.stopSlave);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.startGroupReplication);
+            this.SUBRULE(this.startGroupReplication);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.stopGroupReplication);
+            this.SUBRULE(this.stopGroupReplication);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.xaStartTransaction);
+            this.SUBRULE(this.xaStartTransaction);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.xaEndTransaction);
+            this.SUBRULE(this.xaEndTransaction);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.xaPrepareStatement);
+            this.SUBRULE(this.xaPrepareStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.xaCommitWork);
+            this.SUBRULE(this.xaCommitWork);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.xaRollbackWork);
+            this.SUBRULE(this.xaRollbackWork);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.xaRecoverWork);
+            this.SUBRULE(this.xaRecoverWork);
           }
         }
       ]);
@@ -532,19 +531,19 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('preparedStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.prepareStatement);
+            this.SUBRULE(this.prepareStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.executeStatement);
+            this.SUBRULE(this.executeStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.deallocatePrepare);
+            this.SUBRULE(this.deallocatePrepare);
           }
         }
       ]);
@@ -554,61 +553,61 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('compoundStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.blockStatement);
+            this.SUBRULE(this.blockStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.caseStatement);
+            this.SUBRULE(this.caseStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.ifStatement);
+            this.SUBRULE(this.ifStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.leaveStatement);
+            this.SUBRULE(this.leaveStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.loopStatement);
+            this.SUBRULE(this.loopStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.repeatStatement);
+            this.SUBRULE(this.repeatStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.whileStatement);
+            this.SUBRULE(this.whileStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.iterateStatement);
+            this.SUBRULE(this.iterateStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.returnStatement);
+            this.SUBRULE(this.returnStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.cursorStatement);
+            this.SUBRULE(this.cursorStatement);
           }
         }
       ]);
@@ -618,151 +617,151 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('administrationStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.alterUser);
+            this.SUBRULE(this.alterUser);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createUser);
+            this.SUBRULE(this.createUser);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dropUser);
+            this.SUBRULE(this.dropUser);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.grantStatement);
+            this.SUBRULE(this.grantStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.grantProxy);
+            this.SUBRULE(this.grantProxy);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.renameUser);
+            this.SUBRULE(this.renameUser);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.revokeStatement);
+            this.SUBRULE(this.revokeStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.revokeProxy);
+            this.SUBRULE(this.revokeProxy);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.analyzeTable);
+            this.SUBRULE(this.analyzeTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.checkTable);
+            this.SUBRULE(this.checkTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.checksumTable);
+            this.SUBRULE(this.checksumTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.optimizeTable);
+            this.SUBRULE(this.optimizeTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.repairTable);
+            this.SUBRULE(this.repairTable);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.createUdfunction);
+            this.SUBRULE(this.createUdfunction);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.installPlugin);
+            this.SUBRULE(this.installPlugin);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.uninstallPlugin);
+            this.SUBRULE(this.uninstallPlugin);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.setStatement);
+            this.SUBRULE(this.setStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.showStatement);
+            this.SUBRULE(this.showStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.binlogStatement);
+            this.SUBRULE(this.binlogStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.cacheIndexStatement);
+            this.SUBRULE(this.cacheIndexStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.flushStatement);
+            this.SUBRULE(this.flushStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.killStatement);
+            this.SUBRULE(this.killStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.loadIndexIntoCache);
+            this.SUBRULE(this.loadIndexIntoCache);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.resetStatement);
+            this.SUBRULE(this.resetStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.shutdownStatement);
+            this.SUBRULE(this.shutdownStatement);
           }
         }
       ]);
@@ -772,25 +771,25 @@ this.SUBRULENaN(this.emptyStatement);
       this.RULE('utilityStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.simpleDescribeStatement);
+            this.SUBRULE(this.simpleDescribeStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.fullDescribeStatement);
+            this.SUBRULE(this.fullDescribeStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.helpStatement);
+            this.SUBRULE(this.helpStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.useStatement);
+            this.SUBRULE(this.useStatement);
           }
         }
       ]);
@@ -798,17 +797,17 @@ this.SUBRULENaN(this.emptyStatement);
 
 
       this.RULE('createDatabase', () => {
-        this.CONSUMENaN(Tokens.CREATE);
-this.SUBRULENaN(this.dbFormat);
+        this.CONSUME(Tokens.CREATE);
+this.SUBRULE(this.dbFormat);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifNotExists);
+          this.SUBRULE(this.ifNotExists);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.createDatabaseOption);
+          this.SUBRULE(this.createDatabaseOption);
         });
       
       });
@@ -816,95 +815,95 @@ this.SUBRULENaN(this.uid);
 
 
       this.RULE('createEvent', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ownerStatement);
+          this.SUBRULE(this.ownerStatement);
         });
       
-this.CONSUMENaN(Tokens.EVENT);
+this.CONSUME(Tokens.EVENT);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifNotExists);
+          this.SUBRULE(this.ifNotExists);
         });
       
-this.SUBRULENaN(this.fullId);
-this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.SCHEDULE);
-this.SUBRULENaN(this.scheduleExpression);
+this.SUBRULE(this.fullId);
+this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.SCHEDULE);
+this.SUBRULE(this.scheduleExpression);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.COMPLETION);
+          this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.COMPLETION);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.NOT);
+          this.CONSUME(Tokens.NOT);
         });
       
-this.CONSUMENaN(Tokens.PRESERVE);
-        });
-      
-
-        this.OPTION(() => {
-          this.SUBRULENaN(this.enableType);
+this.CONSUME(Tokens.PRESERVE);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.COMMENT);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+          this.SUBRULE(this.enableType);
         });
       
-this.CONSUMENaN(Tokens.DO);
-this.SUBRULENaN(this.routineBody);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.COMMENT);
+this.CONSUME(Tokens.STRING_LITERAL);
+        });
+      
+this.CONSUME(Tokens.DO);
+this.SUBRULE(this.routineBody);
       });
     
 
 
       this.RULE('createIndex', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.intimeAction);
+          this.SUBRULE(this.intimeAction);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.indexCategory);
+          this.SUBRULE(this.indexCategory);
         });
       
-this.CONSUMENaN(Tokens.INDEX);
-this.SUBRULENaN(this.uid);
+this.CONSUME(Tokens.INDEX);
+this.SUBRULE(this.uid);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.indexType);
+          this.SUBRULE(this.indexType);
         });
       
-this.CONSUMENaN(Tokens.ON);
-this.SUBRULENaN(this.tableName);
-this.SUBRULENaN(this.indexColumnNames);
+this.CONSUME(Tokens.ON);
+this.SUBRULE(this.tableName);
+this.SUBRULE(this.indexColumnNames);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.indexOption);
+          this.SUBRULE(this.indexOption);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ALGORITHM);
+          this.CONSUME(Tokens.ALGORITHM);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.algType);
+this.SUBRULE(this.algType);
 
-this.CONSUMENaN(Tokens.LOCK);
+this.CONSUME(Tokens.LOCK);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.lockType);
+this.SUBRULE(this.lockType);
         });
       
       });
@@ -912,220 +911,220 @@ this.SUBRULENaN(this.lockType);
 
 
       this.RULE('createLogfileGroup', () => {
-        this.CONSUMENaN(Tokens.CREATE);
-this.CONSUMENaN(Tokens.LOGFILE);
-this.CONSUMENaN(Tokens.GROUP);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.ADD);
-this.CONSUMENaN(Tokens.UNDOFILE);
-this.SUBRULENaN(this.undoFile);
+        this.CONSUME(Tokens.CREATE);
+this.CONSUME(Tokens.LOGFILE);
+this.CONSUME(Tokens.GROUP);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.ADD);
+this.CONSUME(Tokens.UNDOFILE);
+this.SUBRULE(this.undoFile);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INITIAL_SIZE);
+          this.CONSUME(Tokens.INITIAL_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.initSize);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.UNDO_BUFFER_SIZE);
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-        });
-      
-this.SUBRULENaN(this.undoSize);
+this.SUBRULE(this.initSize);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.REDO_BUFFER_SIZE);
+          this.CONSUME(Tokens.UNDO_BUFFER_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.redoSize);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.NODEGROUP);
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-        });
-      
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.undoSize);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WAIT);
+          this.CONSUME(Tokens.REDO_BUFFER_SIZE);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.OP);
+        });
+      
+this.SUBRULE(this.redoSize);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.COMMENT);
+          this.CONSUME(Tokens.NODEGROUP);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.comment);
+this.SUBRULE(this.uid);
         });
       
-this.CONSUMENaN(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.WAIT);
         });
       
-this.SUBRULENaN(this.engineName);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.COMMENT);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.OP);
+        });
+      
+this.SUBRULE(this.comment);
+        });
+      
+this.CONSUME(Tokens.ENGINE);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.OP);
+        });
+      
+this.SUBRULE(this.engineName);
       });
     
 
 
       this.RULE('createProcedure', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ownerStatement);
+          this.SUBRULE(this.ownerStatement);
         });
       
-this.CONSUMENaN(Tokens.PROCEDURE);
-this.SUBRULENaN(this.fullId);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.PROCEDURE);
+this.SUBRULE(this.fullId);
+this.CONSUME(Tokens.OP);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.procedureParameter);
+          this.SUBRULE(this.procedureParameter);
         });
       
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.procedureParameter);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.procedureParameter);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.routineOption);
+          this.SUBRULE(this.routineOption);
         });
       
-this.SUBRULENaN(this.routineBody);
+this.SUBRULE(this.routineBody);
       });
     
 
 
       this.RULE('createFunction', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ownerStatement);
+          this.SUBRULE(this.ownerStatement);
         });
       
-this.CONSUMENaN(Tokens.FUNCTION);
-this.SUBRULENaN(this.fullId);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.FUNCTION);
+this.SUBRULE(this.fullId);
+this.CONSUME(Tokens.OP);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.functionParameter);
+          this.SUBRULE(this.functionParameter);
         });
       
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.functionParameter);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.functionParameter);
         });
       
-this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.RETURNS);
-this.SUBRULENaN(this.dataType);
+this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.RETURNS);
+this.SUBRULE(this.dataType);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.routineOption);
+          this.SUBRULE(this.routineOption);
         });
       
-this.SUBRULENaN(this.routineBody);
+this.SUBRULE(this.routineBody);
       });
     
 
 
       this.RULE('createServer', () => {
-        this.CONSUMENaN(Tokens.CREATE);
-this.CONSUMENaN(Tokens.SERVER);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.FOREIGN);
-this.CONSUMENaN(Tokens.DATA);
-this.CONSUMENaN(Tokens.WRAPPER);
-this.SUBRULENaN(this.wrapperName);
-this.CONSUMENaN(Tokens.OPTIONS);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.serverOption);
+        this.CONSUME(Tokens.CREATE);
+this.CONSUME(Tokens.SERVER);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.FOREIGN);
+this.CONSUME(Tokens.DATA);
+this.CONSUME(Tokens.WRAPPER);
+this.SUBRULE(this.wrapperName);
+this.CONSUME(Tokens.OPTIONS);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.serverOption);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.serverOption);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.serverOption);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('createTable', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.TEMPORARY);
+          this.CONSUME(Tokens.TEMPORARY);
         });
       
-this.CONSUMENaN(Tokens.TABLE);
+this.CONSUME(Tokens.TABLE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifNotExists);
+          this.SUBRULE(this.ifNotExists);
         });
       
-this.SUBRULENaN(this.tableName);
-this.CONSUMENaN(Tokens.LIKE);
-this.SUBRULENaN(this.tableName);
+this.SUBRULE(this.tableName);
+this.CONSUME(Tokens.LIKE);
+this.SUBRULE(this.tableName);
 
-this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.LIKE);
-this.SUBRULENaN(this.parenthesisTable);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.LIKE);
+this.SUBRULE(this.parenthesisTable);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('createTablespaceInnodb', () => {
-        this.CONSUMENaN(Tokens.CREATE);
-this.CONSUMENaN(Tokens.TABLESPACE);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.ADD);
-this.CONSUMENaN(Tokens.DATAFILE);
-this.SUBRULENaN(this.datafile);
+        this.CONSUME(Tokens.CREATE);
+this.CONSUME(Tokens.TABLESPACE);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.ADD);
+this.CONSUME(Tokens.DATAFILE);
+this.SUBRULE(this.datafile);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.FILE_BLOCK_SIZE);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.fileBlockSize);
+          this.CONSUME(Tokens.FILE_BLOCK_SIZE);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.fileBlockSize);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ENGINE);
+          this.CONSUME(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.engineName);
+this.SUBRULE(this.engineName);
         });
       
       });
@@ -1133,173 +1132,173 @@ this.SUBRULENaN(this.engineName);
 
 
       this.RULE('createTablespaceNdb', () => {
-        this.CONSUMENaN(Tokens.CREATE);
-this.CONSUMENaN(Tokens.TABLESPACE);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.ADD);
-this.CONSUMENaN(Tokens.DATAFILE);
-this.SUBRULENaN(this.datafile);
-this.CONSUMENaN(Tokens.USE);
-this.CONSUMENaN(Tokens.LOGFILE);
-this.CONSUMENaN(Tokens.GROUP);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.CREATE);
+this.CONSUME(Tokens.TABLESPACE);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.ADD);
+this.CONSUME(Tokens.DATAFILE);
+this.SUBRULE(this.datafile);
+this.CONSUME(Tokens.USE);
+this.CONSUME(Tokens.LOGFILE);
+this.CONSUME(Tokens.GROUP);
+this.SUBRULE(this.uid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.EXTENT_SIZE);
+          this.CONSUME(Tokens.EXTENT_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.extentSize);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INITIAL_SIZE);
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-        });
-      
-this.SUBRULENaN(this.initialSize);
+this.SUBRULE(this.extentSize);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AUTOEXTEND_SIZE);
+          this.CONSUME(Tokens.INITIAL_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.autoextendSize);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.MAX_SIZE);
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-        });
-      
-this.SUBRULENaN(this.maxSize);
+this.SUBRULE(this.initialSize);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.NODEGROUP);
+          this.CONSUME(Tokens.AUTOEXTEND_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.uid);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WAIT);
+this.SUBRULE(this.autoextendSize);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.COMMENT);
+          this.CONSUME(Tokens.MAX_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.comment);
+this.SUBRULE(this.maxSize);
         });
       
-this.CONSUMENaN(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.NODEGROUP);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.engineName);
+this.SUBRULE(this.uid);
+        });
+      
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.WAIT);
+        });
+      
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.COMMENT);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.OP);
+        });
+      
+this.SUBRULE(this.comment);
+        });
+      
+this.CONSUME(Tokens.ENGINE);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.OP);
+        });
+      
+this.SUBRULE(this.engineName);
       });
     
 
 
       this.RULE('createTrigger', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ownerStatement);
+          this.SUBRULE(this.ownerStatement);
         });
       
-this.CONSUMENaN(Tokens.TRIGGER);
-this.SUBRULENaN(this.thisTrigger);
-this.SUBRULENaN(this.triggerTime);
-this.SUBRULENaN(this.triggerEvent);
-this.CONSUMENaN(Tokens.ON);
-this.SUBRULENaN(this.tableName);
-this.CONSUMENaN(Tokens.FOR);
-this.CONSUMENaN(Tokens.EACH);
-this.CONSUMENaN(Tokens.ROW);
+this.CONSUME(Tokens.TRIGGER);
+this.SUBRULE(this.thisTrigger);
+this.SUBRULE(this.triggerTime);
+this.SUBRULE(this.triggerEvent);
+this.CONSUME(Tokens.ON);
+this.SUBRULE(this.tableName);
+this.CONSUME(Tokens.FOR);
+this.CONSUME(Tokens.EACH);
+this.CONSUME(Tokens.ROW);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.triggerPlace);
-this.SUBRULENaN(this.otherTrigger);
+          this.SUBRULE(this.triggerPlace);
+this.SUBRULE(this.otherTrigger);
         });
       
-this.SUBRULENaN(this.routineBody);
+this.SUBRULE(this.routineBody);
       });
     
 
 
       this.RULE('createView', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OR);
-this.CONSUMENaN(Tokens.REPLACE);
+          this.CONSUME(Tokens.OR);
+this.CONSUME(Tokens.REPLACE);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ALGORITHM);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.algType);
+          this.CONSUME(Tokens.ALGORITHM);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.algType);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ownerStatement);
+          this.SUBRULE(this.ownerStatement);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SQL);
-this.CONSUMENaN(Tokens.SECURITY);
-this.SUBRULENaN(this.secContext);
+          this.CONSUME(Tokens.SQL);
+this.CONSUME(Tokens.SECURITY);
+this.SUBRULE(this.secContext);
         });
       
-this.CONSUMENaN(Tokens.VIEW);
-this.SUBRULENaN(this.fullId);
+this.CONSUME(Tokens.VIEW);
+this.SUBRULE(this.fullId);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.AS);
-this.SUBRULENaN(this.selectStatement);
+this.CONSUME(Tokens.AS);
+this.SUBRULE(this.selectStatement);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WITH);
+          this.CONSUME(Tokens.WITH);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.checkOption);
+          this.SUBRULE(this.checkOption);
         });
       
-this.CONSUMENaN(Tokens.CHECK);
-this.CONSUMENaN(Tokens.OPTION);
+this.CONSUME(Tokens.CHECK);
+this.CONSUME(Tokens.OPTION);
         });
       
       });
@@ -1311,17 +1310,17 @@ this.CONSUMENaN(Tokens.OPTION);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.DEFAULT);
+          this.CONSUME(Tokens.DEFAULT);
         });
       
-this.CONSUMENaN(Tokens.CHARACTER);
-this.CONSUMENaN(Tokens.SET);
+this.CONSUME(Tokens.CHARACTER);
+this.CONSUME(Tokens.SET);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.charsetName);
+this.SUBRULE(this.charsetName);
           }
         }
       ,
@@ -1329,16 +1328,16 @@ this.SUBRULENaN(this.charsetName);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.DEFAULT);
+          this.CONSUME(Tokens.DEFAULT);
         });
       
-this.CONSUMENaN(Tokens.COLLATE);
+this.CONSUME(Tokens.COLLATE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.collationName);
+this.SUBRULE(this.collationName);
           }
         }
       ]);
@@ -1346,15 +1345,15 @@ this.SUBRULENaN(this.collationName);
 
 
       this.RULE('ownerStatement', () => {
-        this.CONSUMENaN(Tokens.DEFINER);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.userName);
+        this.CONSUME(Tokens.DEFINER);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.userName);
 
-this.CONSUMENaN(Tokens.CURRENT_USER);
+this.CONSUME(Tokens.CURRENT_USER);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
       });
@@ -1362,11 +1361,11 @@ this.CONSUMENaN(Tokens.OP);
 
 
       this.RULE('scheduleExpression', () => {
-        this.CONSUMENaN(Tokens.AT);
-this.SUBRULENaN(this.timestampValue);
+        this.CONSUME(Tokens.AT);
+this.SUBRULE(this.timestampValue);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.intervalExpr);
+          this.SUBRULE(this.intervalExpr);
         });
       
       });
@@ -1376,25 +1375,25 @@ this.SUBRULENaN(this.timestampValue);
       this.RULE('timestampValue', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CURRENT_TIMESTAMP);
+            this.CONSUME(Tokens.CURRENT_TIMESTAMP);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.stringLiteral);
+            this.SUBRULE(this.stringLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.decimalLiteral);
+            this.SUBRULE(this.decimalLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.expression);
+            this.SUBRULE(this.expression);
           }
         }
       ]);
@@ -1402,12 +1401,12 @@ this.SUBRULENaN(this.timestampValue);
 
 
       this.RULE('intervalExpr', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.INTERVAL);
-this.SUBRULENaN(this.decimalLiteral);
+        this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.INTERVAL);
+this.SUBRULE(this.decimalLiteral);
 
-this.SUBRULENaN(this.expression);
-this.SUBRULENaN(this.intervalType);
+this.SUBRULE(this.expression);
+this.SUBRULE(this.intervalType);
       });
     
 
@@ -1415,79 +1414,79 @@ this.SUBRULENaN(this.intervalType);
       this.RULE('intervalType', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.intervalTypeBase);
+            this.SUBRULE(this.intervalTypeBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.YEAR);
+            this.CONSUME(Tokens.YEAR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.YEAR_MONTH);
+            this.CONSUME(Tokens.YEAR_MONTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAY_HOUR);
+            this.CONSUME(Tokens.DAY_HOUR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAY_MINUTE);
+            this.CONSUME(Tokens.DAY_MINUTE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAY_SECOND);
+            this.CONSUME(Tokens.DAY_SECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HOUR_MINUTE);
+            this.CONSUME(Tokens.HOUR_MINUTE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HOUR_SECOND);
+            this.CONSUME(Tokens.HOUR_SECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MINUTE_SECOND);
+            this.CONSUME(Tokens.MINUTE_SECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SECOND_MICROSECOND);
+            this.CONSUME(Tokens.SECOND_MICROSECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MINUTE_MICROSECOND);
+            this.CONSUME(Tokens.MINUTE_MICROSECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HOUR_MICROSECOND);
+            this.CONSUME(Tokens.HOUR_MICROSECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAY_MICROSECOND);
+            this.CONSUME(Tokens.DAY_MICROSECOND);
           }
         }
       ]);
@@ -1497,21 +1496,21 @@ this.SUBRULENaN(this.intervalType);
       this.RULE('enableType', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENABLE);
+            this.CONSUME(Tokens.ENABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DISABLE);
+            this.CONSUME(Tokens.DISABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DISABLE);
-this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.SLAVE);
+            this.CONSUME(Tokens.DISABLE);
+this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.SLAVE);
           }
         }
       ]);
@@ -1519,10 +1518,10 @@ this.CONSUMENaN(Tokens.SLAVE);
 
 
       this.RULE('indexType', () => {
-        this.CONSUMENaN(Tokens.USING);
-this.CONSUMENaN(Tokens.BTREE);
+        this.CONSUME(Tokens.USING);
+this.CONSUME(Tokens.BTREE);
 
-this.CONSUMENaN(Tokens.HASH);
+this.CONSUME(Tokens.HASH);
       });
     
 
@@ -1530,34 +1529,34 @@ this.CONSUMENaN(Tokens.HASH);
       this.RULE('indexOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.KEY_BLOCK_SIZE);
+            this.CONSUME(Tokens.KEY_BLOCK_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.fileSizeLiteral);
+this.SUBRULE(this.fileSizeLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.indexType);
+            this.SUBRULE(this.indexType);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WITH);
-this.CONSUMENaN(Tokens.PARSER);
-this.SUBRULENaN(this.uid);
+            this.CONSUME(Tokens.WITH);
+this.CONSUME(Tokens.PARSER);
+this.SUBRULE(this.uid);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMMENT);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.COMMENT);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ]);
@@ -1565,23 +1564,23 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
 
 
       this.RULE('procedureParameter', () => {
-        this.SUBRULENaN(this.direction);
-this.SUBRULENaN(this.uid);
-this.SUBRULENaN(this.dataType);
+        this.SUBRULE(this.direction);
+this.SUBRULE(this.uid);
+this.SUBRULE(this.dataType);
       });
     
 
 
       this.RULE('functionParameter', () => {
-        this.SUBRULENaN(this.uid);
-this.SUBRULENaN(this.dataType);
+        this.SUBRULE(this.uid);
+this.SUBRULE(this.dataType);
       });
     
 
 
       this.RULE('routineOption', () => {
-        this.CONSUMENaN(Tokens.COMMENT);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.COMMENT);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
@@ -1589,50 +1588,50 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
       this.RULE('serverOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HOST);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.HOST);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATABASE);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.DATABASE);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.USER);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.USER);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PASSWORD);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.PASSWORD);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SOCKET);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.SOCKET);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OWNER);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.OWNER);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PORT);
-this.SUBRULENaN(this.decimalLiteral);
+            this.CONSUME(Tokens.PORT);
+this.SUBRULE(this.decimalLiteral);
           }
         }
       ]);
@@ -1640,31 +1639,31 @@ this.SUBRULENaN(this.decimalLiteral);
 
 
       this.RULE('createDefinitions', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.createDefinition);
+        this.CONSUME(Tokens.OP);
+this.SUBRULE(this.createDefinition);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.createDefinition);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.createDefinition);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('createDefinition', () => {
-        this.SUBRULENaN(this.uid);
-this.SUBRULENaN(this.columnDefinition);
+        this.SUBRULE(this.uid);
+this.SUBRULE(this.columnDefinition);
       });
     
 
 
       this.RULE('columnDefinition', () => {
-        this.SUBRULENaN(this.dataType);
+        this.SUBRULE(this.dataType);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.columnConstraint);
+          this.SUBRULE(this.columnConstraint);
         });
       
       });
@@ -1672,7 +1671,7 @@ this.SUBRULENaN(this.columnDefinition);
 
 
       this.RULE('columnConstraint', () => {
-        this.SUBRULENaN(this.nullNotnull);
+        this.SUBRULE(this.nullNotnull);
       });
     
 
@@ -1680,25 +1679,25 @@ this.SUBRULENaN(this.columnDefinition);
       this.RULE('tableConstraint', () => {
         
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.CONSTRAINT);
+          this.CONSUME(Tokens.CONSTRAINT);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.name);
+          this.SUBRULE(this.name);
         });
       
         });
       
-this.CONSUMENaN(Tokens.PRIMARY);
-this.CONSUMENaN(Tokens.KEY);
+this.CONSUME(Tokens.PRIMARY);
+this.CONSUME(Tokens.KEY);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.indexType);
+          this.SUBRULE(this.indexType);
         });
       
-this.SUBRULENaN(this.indexColumnNames);
+this.SUBRULE(this.indexColumnNames);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.indexOption);
+          this.SUBRULE(this.indexOption);
         });
       
       });
@@ -1706,18 +1705,18 @@ this.SUBRULENaN(this.indexColumnNames);
 
 
       this.RULE('referenceDefinition', () => {
-        this.CONSUMENaN(Tokens.REFERENCES);
-this.SUBRULENaN(this.tableName);
-this.SUBRULENaN(this.indexColumnNames);
+        this.CONSUME(Tokens.REFERENCES);
+this.SUBRULE(this.tableName);
+this.SUBRULE(this.indexColumnNames);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.MATCH);
-this.SUBRULENaN(this.matchType);
+          this.CONSUME(Tokens.MATCH);
+this.SUBRULE(this.matchType);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.referenceAction);
+          this.SUBRULE(this.referenceAction);
         });
       
       });
@@ -1727,14 +1726,14 @@ this.SUBRULENaN(this.matchType);
       this.RULE('referenceAction', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.DELETE);
-this.SUBRULENaN(this.onDelete);
+            this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.DELETE);
+this.SUBRULE(this.onDelete);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.UPDATE);
-this.SUBRULENaN(this.onUpdate);
+          this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.UPDATE);
+this.SUBRULE(this.onUpdate);
         });
       
           }
@@ -1742,14 +1741,14 @@ this.SUBRULENaN(this.onUpdate);
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.UPDATE);
-this.SUBRULENaN(this.onUpdate);
+            this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.UPDATE);
+this.SUBRULE(this.onUpdate);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.DELETE);
-this.SUBRULENaN(this.onDelete);
+          this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.DELETE);
+this.SUBRULE(this.onDelete);
         });
       
           }
@@ -1761,27 +1760,27 @@ this.SUBRULENaN(this.onDelete);
       this.RULE('referenceControlType', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RESTRICT);
+            this.CONSUME(Tokens.RESTRICT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CASCADE);
+            this.CONSUME(Tokens.CASCADE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SET);
-this.CONSUMENaN(Tokens.NULL_LITERAL);
+            this.CONSUME(Tokens.SET);
+this.CONSUME(Tokens.NULL_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NO);
-this.CONSUMENaN(Tokens.ACTION);
+            this.CONSUME(Tokens.NO);
+this.CONSUME(Tokens.ACTION);
           }
         }
       ]);
@@ -1789,21 +1788,21 @@ this.CONSUMENaN(Tokens.ACTION);
 
 
       this.RULE('indexColumnDefinition', () => {
-        this.SUBRULENaN(this.indexFormat);
+        this.SUBRULE(this.indexFormat);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
+          this.SUBRULE(this.uid);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.indexType);
+          this.SUBRULE(this.indexType);
         });
       
-this.SUBRULENaN(this.indexColumnNames);
+this.SUBRULE(this.indexColumnNames);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.indexOption);
+          this.SUBRULE(this.indexOption);
         });
       
       });
@@ -1811,62 +1810,62 @@ this.SUBRULENaN(this.indexColumnNames);
 
 
       this.RULE('tableOption', () => {
-        this.CONSUMENaN(Tokens.ENGINE);
+        this.CONSUME(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.engineName);
+this.SUBRULE(this.engineName);
       });
     
 
 
       this.RULE('tablespaceStorage', () => {
-        this.CONSUMENaN(Tokens.STORAGE);
-this.CONSUMENaN(Tokens.DISK);
+        this.CONSUME(Tokens.STORAGE);
+this.CONSUME(Tokens.DISK);
 
-this.CONSUMENaN(Tokens.MEMORY);
+this.CONSUME(Tokens.MEMORY);
 
-this.CONSUMENaN(Tokens.DEFAULT);
+this.CONSUME(Tokens.DEFAULT);
       });
     
 
 
       this.RULE('partitionDefinitions', () => {
-        this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.partitionFunctionDefinition);
+        this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.partitionFunctionDefinition);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITIONS);
-this.SUBRULENaN(this.count);
+          this.CONSUME(Tokens.PARTITIONS);
+this.SUBRULE(this.count);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SUBPARTITION);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.subpartitionFunctionDefinition);
+          this.CONSUME(Tokens.SUBPARTITION);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.subpartitionFunctionDefinition);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SUBPARTITIONS);
-this.SUBRULENaN(this.subCount);
+          this.CONSUME(Tokens.SUBPARTITIONS);
+this.SUBRULE(this.subCount);
         });
       
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitionDefinition);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitionDefinition);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitionDefinition);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitionDefinition);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
       });
@@ -1876,13 +1875,13 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('partitionFunctionDefinition', () => {
         
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LINEAR);
+          this.CONSUME(Tokens.LINEAR);
         });
       
-this.CONSUMENaN(Tokens.HASH);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expression);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.HASH);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expression);
+this.CONSUME(Tokens.OP);
       });
     
 
@@ -1890,44 +1889,44 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('subpartitionFunctionDefinition', () => {
         
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LINEAR);
+          this.CONSUME(Tokens.LINEAR);
         });
       
-this.CONSUMENaN(Tokens.HASH);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expression);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.HASH);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expression);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('partitionDefinition', () => {
-        this.CONSUMENaN(Tokens.PARTITION);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.VALUES);
-this.CONSUMENaN(Tokens.LESS);
-this.CONSUMENaN(Tokens.THAN);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitionDefinerAtom);
+        this.CONSUME(Tokens.PARTITION);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.VALUES);
+this.CONSUME(Tokens.LESS);
+this.CONSUME(Tokens.THAN);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitionDefinerAtom);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitionDefinerAtom);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitionDefinerAtom);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.partitionOption);
+          this.SUBRULE(this.partitionOption);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.subpartitionDefinition);
+          this.SUBRULE(this.subpartitionDefinition);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.subpartitionDefinition);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.subpartitionDefinition);
         });
       
         });
@@ -1939,19 +1938,19 @@ this.SUBRULENaN(this.subpartitionDefinition);
       this.RULE('partitionDefinerAtom', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.constant);
+            this.SUBRULE(this.constant);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAXVALUE);
+            this.CONSUME(Tokens.MAXVALUE);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.expression);
+            this.SUBRULE(this.expression);
           }
         }
       ]);
@@ -1959,25 +1958,25 @@ this.SUBRULENaN(this.subpartitionDefinition);
 
 
       this.RULE('partitionDefinerVector', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitionDefinerAtom);
+        this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitionDefinerAtom);
 
         this.AT_LEAST_ONE(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitionDefinerAtom);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitionDefinerAtom);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('subpartitionDefinition', () => {
-        this.CONSUMENaN(Tokens.SUBPARTITION);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.SUBPARTITION);
+this.SUBRULE(this.uid);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.partitionOption);
+          this.SUBRULE(this.partitionOption);
         });
       
       });
@@ -1987,31 +1986,31 @@ this.SUBRULENaN(this.uid);
       this.RULE('partitionOption', () => {
         
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.STORAGE);
+          this.CONSUME(Tokens.STORAGE);
         });
       
-this.CONSUMENaN(Tokens.ENGINE);
+this.CONSUME(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.engineName);
+this.SUBRULE(this.engineName);
       });
     
 
 
       this.RULE('alterDatabase', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.SUBRULENaN(this.dbFormat);
+        this.CONSUME(Tokens.ALTER);
+this.SUBRULE(this.dbFormat);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
+          this.SUBRULE(this.uid);
         });
       
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.createDatabaseOption);
+          this.SUBRULE(this.createDatabaseOption);
         });
       
       });
@@ -2019,55 +2018,55 @@ this.SUBRULENaN(this.dbFormat);
 
 
       this.RULE('alterEvent', () => {
-        this.CONSUMENaN(Tokens.ALTER);
+        this.CONSUME(Tokens.ALTER);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ownerStatement);
+          this.SUBRULE(this.ownerStatement);
         });
       
-this.CONSUMENaN(Tokens.EVENT);
-this.SUBRULENaN(this.fullId);
+this.CONSUME(Tokens.EVENT);
+this.SUBRULE(this.fullId);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.SCHEDULE);
-this.SUBRULENaN(this.scheduleExpression);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.COMPLETION);
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.NOT);
-        });
-      
-this.CONSUMENaN(Tokens.PRESERVE);
+          this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.SCHEDULE);
+this.SUBRULE(this.scheduleExpression);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.RENAME);
-this.CONSUMENaN(Tokens.TO);
-this.SUBRULENaN(this.fullId);
+          this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.COMPLETION);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.NOT);
+        });
+      
+this.CONSUME(Tokens.PRESERVE);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.enableType);
+          this.CONSUME(Tokens.RENAME);
+this.CONSUME(Tokens.TO);
+this.SUBRULE(this.fullId);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.COMMENT);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+          this.SUBRULE(this.enableType);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.DO);
-this.SUBRULENaN(this.routineBody);
+          this.CONSUME(Tokens.COMMENT);
+this.CONSUME(Tokens.STRING_LITERAL);
+        });
+      
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.DO);
+this.SUBRULE(this.routineBody);
         });
       
       });
@@ -2075,12 +2074,12 @@ this.SUBRULENaN(this.routineBody);
 
 
       this.RULE('alterFunction', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.CONSUMENaN(Tokens.FUNCTION);
-this.SUBRULENaN(this.fullId);
+        this.CONSUME(Tokens.ALTER);
+this.CONSUME(Tokens.FUNCTION);
+this.SUBRULE(this.fullId);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.routineOption);
+          this.SUBRULE(this.routineOption);
         });
       
       });
@@ -2088,58 +2087,58 @@ this.SUBRULENaN(this.fullId);
 
 
       this.RULE('alterInstance', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.CONSUMENaN(Tokens.INSTANCE);
-this.CONSUMENaN(Tokens.ROTATE);
-this.CONSUMENaN(Tokens.INNODB);
-this.CONSUMENaN(Tokens.MASTER);
-this.CONSUMENaN(Tokens.KEY);
+        this.CONSUME(Tokens.ALTER);
+this.CONSUME(Tokens.INSTANCE);
+this.CONSUME(Tokens.ROTATE);
+this.CONSUME(Tokens.INNODB);
+this.CONSUME(Tokens.MASTER);
+this.CONSUME(Tokens.KEY);
       });
     
 
 
       this.RULE('alterLogfileGroup', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.CONSUMENaN(Tokens.LOGFILE);
-this.CONSUMENaN(Tokens.GROUP);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.ADD);
-this.CONSUMENaN(Tokens.UNDOFILE);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.ALTER);
+this.CONSUME(Tokens.LOGFILE);
+this.CONSUME(Tokens.GROUP);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.ADD);
+this.CONSUME(Tokens.UNDOFILE);
+this.CONSUME(Tokens.STRING_LITERAL);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INITIAL_SIZE);
+          this.CONSUME(Tokens.INITIAL_SIZE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.fileSizeLiteral);
+this.SUBRULE(this.fileSizeLiteral);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WAIT);
+          this.CONSUME(Tokens.WAIT);
         });
       
-this.CONSUMENaN(Tokens.ENGINE);
+this.CONSUME(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.engineName);
+this.SUBRULE(this.engineName);
       });
     
 
 
       this.RULE('alterProcedure', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.CONSUMENaN(Tokens.PROCEDURE);
-this.SUBRULENaN(this.fullId);
+        this.CONSUME(Tokens.ALTER);
+this.CONSUME(Tokens.PROCEDURE);
+this.SUBRULE(this.fullId);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.routineOption);
+          this.SUBRULE(this.routineOption);
         });
       
       });
@@ -2147,47 +2146,47 @@ this.SUBRULENaN(this.fullId);
 
 
       this.RULE('alterServer', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.CONSUMENaN(Tokens.SERVER);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.OPTIONS);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.serverOption);
+        this.CONSUME(Tokens.ALTER);
+this.CONSUME(Tokens.SERVER);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.OPTIONS);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.serverOption);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.serverOption);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.serverOption);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('alterTable', () => {
-        this.CONSUMENaN(Tokens.ALTER);
+        this.CONSUME(Tokens.ALTER);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.intimeAction);
+          this.SUBRULE(this.intimeAction);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
+          this.CONSUME(Tokens.IGNORE);
         });
       
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tableName);
-this.SUBRULENaN(this.alterSpecification);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tableName);
+this.SUBRULE(this.alterSpecification);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.alterSpecification);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.alterSpecification);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.partitionDefinitions);
+          this.SUBRULE(this.partitionDefinitions);
         });
       
       });
@@ -2195,77 +2194,77 @@ this.SUBRULENaN(this.alterSpecification);
 
 
       this.RULE('alterTablespace', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.CONSUMENaN(Tokens.TABLESPACE);
-this.SUBRULENaN(this.uid);
-this.SUBRULENaN(this.objectAction);
-this.CONSUMENaN(Tokens.DATAFILE);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.ALTER);
+this.CONSUME(Tokens.TABLESPACE);
+this.SUBRULE(this.uid);
+this.SUBRULE(this.objectAction);
+this.CONSUME(Tokens.DATAFILE);
+this.CONSUME(Tokens.STRING_LITERAL);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INITIAL_SIZE);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.fileSizeLiteral);
+          this.CONSUME(Tokens.INITIAL_SIZE);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.fileSizeLiteral);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WAIT);
+          this.CONSUME(Tokens.WAIT);
         });
       
-this.CONSUMENaN(Tokens.ENGINE);
+this.CONSUME(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.engineName);
+this.SUBRULE(this.engineName);
       });
     
 
 
       this.RULE('alterView', () => {
-        this.CONSUMENaN(Tokens.ALTER);
+        this.CONSUME(Tokens.ALTER);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ALGORITHM);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.algType);
+          this.CONSUME(Tokens.ALGORITHM);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.algType);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ownerStatement);
+          this.SUBRULE(this.ownerStatement);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SQL);
-this.CONSUMENaN(Tokens.SECURITY);
-this.SUBRULENaN(this.secContext);
+          this.CONSUME(Tokens.SQL);
+this.CONSUME(Tokens.SECURITY);
+this.SUBRULE(this.secContext);
         });
       
-this.CONSUMENaN(Tokens.VIEW);
-this.SUBRULENaN(this.fullId);
+this.CONSUME(Tokens.VIEW);
+this.SUBRULE(this.fullId);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.AS);
-this.SUBRULENaN(this.selectStatement);
+this.CONSUME(Tokens.AS);
+this.SUBRULE(this.selectStatement);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WITH);
+          this.CONSUME(Tokens.WITH);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.checkOpt);
+          this.SUBRULE(this.checkOpt);
         });
       
-this.CONSUMENaN(Tokens.CHECK);
-this.CONSUMENaN(Tokens.OPTION);
+this.CONSUME(Tokens.CHECK);
+this.CONSUME(Tokens.OPTION);
         });
       
       });
@@ -2273,68 +2272,68 @@ this.CONSUMENaN(Tokens.OPTION);
 
 
       this.RULE('alterSpecification', () => {
-        this.SUBRULENaN(this.tableOption);
+        this.SUBRULE(this.tableOption);
       });
     
 
 
       this.RULE('dropDatabase', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.SUBRULENaN(this.dbFormat);
+        this.CONSUME(Tokens.DROP);
+this.SUBRULE(this.dbFormat);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('dropEvent', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.EVENT);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.EVENT);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.fullId);
+this.SUBRULE(this.fullId);
       });
     
 
 
       this.RULE('dropIndex', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.INDEX);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.INDEX);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.intimeAction);
+          this.SUBRULE(this.intimeAction);
         });
       
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.ON);
-this.SUBRULENaN(this.tableName);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.ON);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ALGORITHM);
+          this.CONSUME(Tokens.ALGORITHM);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.algType);
+this.SUBRULE(this.algType);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LOCK);
+          this.CONSUME(Tokens.LOCK);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.lockType);
+this.SUBRULE(this.lockType);
         });
       
       });
@@ -2342,73 +2341,73 @@ this.SUBRULENaN(this.lockType);
 
 
       this.RULE('dropLogfileGroup', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.LOGFILE);
-this.CONSUMENaN(Tokens.GROUP);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.ENGINE);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.engineName);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.LOGFILE);
+this.CONSUME(Tokens.GROUP);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.ENGINE);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.engineName);
       });
     
 
 
       this.RULE('dropProcedure', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.PROCEDURE);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.PROCEDURE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.fullId);
+this.SUBRULE(this.fullId);
       });
     
 
 
       this.RULE('dropFunction', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.FUNCTION);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.FUNCTION);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.fullId);
+this.SUBRULE(this.fullId);
       });
     
 
 
       this.RULE('dropServer', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.SERVER);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.SERVER);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('dropTable', () => {
-        this.CONSUMENaN(Tokens.DROP);
+        this.CONSUME(Tokens.DROP);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.TEMPORARY);
+          this.CONSUME(Tokens.TEMPORARY);
         });
       
-this.CONSUMENaN(Tokens.TABLE);
+this.CONSUME(Tokens.TABLE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.tables);
+this.SUBRULE(this.tables);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.dropType);
+          this.SUBRULE(this.dropType);
         });
       
       });
@@ -2416,18 +2415,18 @@ this.SUBRULENaN(this.tables);
 
 
       this.RULE('dropTablespace', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.TABLESPACE);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.TABLESPACE);
+this.SUBRULE(this.uid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ENGINE);
+          this.CONSUME(Tokens.ENGINE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.engineName);
+this.SUBRULE(this.engineName);
         });
       
       });
@@ -2435,36 +2434,36 @@ this.SUBRULENaN(this.engineName);
 
 
       this.RULE('dropTrigger', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.TRIGGER);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.TRIGGER);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.fullId);
+this.SUBRULE(this.fullId);
       });
     
 
 
       this.RULE('dropView', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.VIEW);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.VIEW);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.fullId);
+this.SUBRULE(this.fullId);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.fullId);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.fullId);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.dropType);
+          this.SUBRULE(this.dropType);
         });
       
       });
@@ -2472,13 +2471,13 @@ this.SUBRULENaN(this.fullId);
 
 
       this.RULE('renameTable', () => {
-        this.CONSUMENaN(Tokens.RENAME);
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.renameTableClause);
+        this.CONSUME(Tokens.RENAME);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.renameTableClause);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.renameTableClause);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.renameTableClause);
         });
       
       });
@@ -2486,39 +2485,39 @@ this.SUBRULENaN(this.renameTableClause);
 
 
       this.RULE('renameTableClause', () => {
-        this.SUBRULENaN(this.tableName);
-this.CONSUMENaN(Tokens.TO);
-this.SUBRULENaN(this.tableName);
+        this.SUBRULE(this.tableName);
+this.CONSUME(Tokens.TO);
+this.SUBRULE(this.tableName);
       });
     
 
 
       this.RULE('truncateTable', () => {
-        this.CONSUMENaN(Tokens.TRUNCATE);
+        this.CONSUME(Tokens.TRUNCATE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.TABLE);
+          this.CONSUME(Tokens.TABLE);
         });
       
-this.SUBRULENaN(this.tableName);
+this.SUBRULE(this.tableName);
       });
     
 
 
       this.RULE('callStatement', () => {
-        this.CONSUMENaN(Tokens.CALL);
-this.SUBRULENaN(this.fullId);
+        this.CONSUME(Tokens.CALL);
+this.SUBRULE(this.fullId);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.constants);
+          this.SUBRULE(this.constants);
 
-this.SUBRULENaN(this.expressions);
+this.SUBRULE(this.expressions);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
       });
@@ -2528,13 +2527,13 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('deleteStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.singleDeleteStatement);
+            this.SUBRULE(this.singleDeleteStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.multipleDeleteStatement);
+            this.SUBRULE(this.multipleDeleteStatement);
           }
         }
       ]);
@@ -2542,8 +2541,8 @@ this.CONSUMENaN(Tokens.OP);
 
 
       this.RULE('doStatement', () => {
-        this.CONSUMENaN(Tokens.DO);
-this.SUBRULENaN(this.expressions);
+        this.CONSUME(Tokens.DO);
+this.SUBRULE(this.expressions);
       });
     
 
@@ -2551,25 +2550,25 @@ this.SUBRULENaN(this.expressions);
       this.RULE('handlerStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.handlerOpenStatement);
+            this.SUBRULE(this.handlerOpenStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.handlerReadIndexStatement);
+            this.SUBRULE(this.handlerReadIndexStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.handlerReadStatement);
+            this.SUBRULE(this.handlerReadStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.handlerCloseStatement);
+            this.SUBRULE(this.handlerCloseStatement);
           }
         }
       ]);
@@ -2577,59 +2576,59 @@ this.SUBRULENaN(this.expressions);
 
 
       this.RULE('insertStatement', () => {
-        this.CONSUMENaN(Tokens.INSERT);
+        this.CONSUME(Tokens.INSERT);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
+          this.CONSUME(Tokens.IGNORE);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INTO);
+          this.CONSUME(Tokens.INTO);
         });
       
-this.SUBRULENaN(this.tableName);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitions);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitions);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.columns);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.columns);
+this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.insertStatementValue);
+this.SUBRULE(this.insertStatementValue);
 
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.setFirst);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.setFirst);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.setElements);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.setElements);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.DUPLICATE);
-this.CONSUMENaN(Tokens.KEY);
-this.CONSUMENaN(Tokens.UPDATE);
-this.SUBRULENaN(this.duplicatedFirst);
+          this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.DUPLICATE);
+this.CONSUME(Tokens.KEY);
+this.CONSUME(Tokens.UPDATE);
+this.SUBRULE(this.duplicatedFirst);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.duplicatedElements);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.duplicatedElements);
         });
       
         });
@@ -2639,91 +2638,91 @@ this.SUBRULENaN(this.duplicatedElements);
 
 
       this.RULE('loadDataStatement', () => {
-        this.CONSUMENaN(Tokens.LOAD);
-this.CONSUMENaN(Tokens.DATA);
+        this.CONSUME(Tokens.LOAD);
+this.CONSUME(Tokens.DATA);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LOCAL);
+          this.CONSUME(Tokens.LOCAL);
         });
       
-this.CONSUMENaN(Tokens.INFILE);
-this.SUBRULENaN(this.filename);
+this.CONSUME(Tokens.INFILE);
+this.SUBRULE(this.filename);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.violation);
+          this.SUBRULE(this.violation);
         });
       
-this.CONSUMENaN(Tokens.INTO);
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tableName);
+this.CONSUME(Tokens.INTO);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.CHARACTER);
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.charset);
+          this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.fieldsFormat);
+          this.CONSUME(Tokens.CHARACTER);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.charset);
+        });
+      
+
+        this.OPTION(() => {
+          this.SUBRULE(this.fieldsFormat);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.selectFieldsInto);
+          this.SUBRULE(this.selectFieldsInto);
         });
       
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LINES);
+          this.CONSUME(Tokens.LINES);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.selectLinesInto);
+          this.SUBRULE(this.selectLinesInto);
         });
       
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
-this.SUBRULENaN(this.decimalLiteral);
-this.SUBRULENaN(this.linesFormat);
+          this.CONSUME(Tokens.IGNORE);
+this.SUBRULE(this.decimalLiteral);
+this.SUBRULE(this.linesFormat);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.assignmentField);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.assignmentField);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.assignmentField);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.assignmentField);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.updatedElement);
+          this.CONSUME(Tokens.SET);
+this.SUBRULE(this.updatedElement);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.updatedElement);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.updatedElement);
         });
       
         });
@@ -2733,73 +2732,73 @@ this.SUBRULENaN(this.updatedElement);
 
 
       this.RULE('loadXmlStatement', () => {
-        this.CONSUMENaN(Tokens.LOAD);
-this.CONSUMENaN(Tokens.XML);
+        this.CONSUME(Tokens.LOAD);
+this.CONSUME(Tokens.XML);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LOCAL);
+          this.CONSUME(Tokens.LOCAL);
         });
       
-this.CONSUMENaN(Tokens.INFILE);
-this.SUBRULENaN(this.filename);
+this.CONSUME(Tokens.INFILE);
+this.SUBRULE(this.filename);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.violation);
+          this.SUBRULE(this.violation);
         });
       
-this.CONSUMENaN(Tokens.INTO);
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tableName);
+this.CONSUME(Tokens.INTO);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.CHARACTER);
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.charset);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ROWS);
-this.CONSUMENaN(Tokens.IDENTIFIED);
-this.CONSUMENaN(Tokens.BY);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.tag);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.CHARACTER);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.charset);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
-this.SUBRULENaN(this.decimalLiteral);
-this.SUBRULENaN(this.linesFormat);
+          this.CONSUME(Tokens.ROWS);
+this.CONSUME(Tokens.IDENTIFIED);
+this.CONSUME(Tokens.BY);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.tag);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.assignmentField);
+          this.CONSUME(Tokens.IGNORE);
+this.SUBRULE(this.decimalLiteral);
+this.SUBRULE(this.linesFormat);
+        });
+      
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.assignmentField);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.assignmentField);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.assignmentField);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.updatedElement);
+          this.CONSUME(Tokens.SET);
+this.SUBRULE(this.updatedElement);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.updatedElement);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.updatedElement);
         });
       
         });
@@ -2809,41 +2808,41 @@ this.SUBRULENaN(this.updatedElement);
 
 
       this.RULE('replaceStatement', () => {
-        this.CONSUMENaN(Tokens.REPLACE);
+        this.CONSUME(Tokens.REPLACE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INTO);
+          this.CONSUME(Tokens.INTO);
         });
       
-this.SUBRULENaN(this.tableName);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitions);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitions);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.columns);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.columns);
+this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.insertStatementValue);
+this.SUBRULE(this.insertStatementValue);
 
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.setFirst);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.setFirst);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.setElements);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.setElements);
         });
       
       });
@@ -2851,10 +2850,10 @@ this.SUBRULENaN(this.setElements);
 
 
       this.RULE('selectStatement', () => {
-        this.SUBRULENaN(this.querySpecification);
+        this.SUBRULE(this.querySpecification);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.lockClause);
+          this.SUBRULE(this.lockClause);
         });
       
       });
@@ -2864,13 +2863,13 @@ this.SUBRULENaN(this.setElements);
       this.RULE('updateStatement', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.singleUpdateStatement);
+            this.SUBRULE(this.singleUpdateStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.multipleUpdateStatement);
+            this.SUBRULE(this.multipleUpdateStatement);
           }
         }
       ]);
@@ -2880,22 +2879,22 @@ this.SUBRULENaN(this.setElements);
       this.RULE('insertStatementValue', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.selectStatement);
+            this.SUBRULE(this.selectStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.insertFormat);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expressionsWithDefaults);
-this.CONSUMENaN(Tokens.OP);
+            this.SUBRULE(this.insertFormat);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expressionsWithDefaults);
+this.CONSUME(Tokens.OP);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expressionsWithDefaults);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expressionsWithDefaults);
+this.CONSUME(Tokens.OP);
         });
       
           }
@@ -2905,11 +2904,11 @@ this.CONSUMENaN(Tokens.OP);
 
 
       this.RULE('updatedElement', () => {
-        this.SUBRULENaN(this.fullColumnName);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expression);
+        this.SUBRULE(this.fullColumnName);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expression);
 
-this.CONSUMENaN(Tokens.DEFAULT);
+this.CONSUME(Tokens.DEFAULT);
       });
     
 
@@ -2917,13 +2916,13 @@ this.CONSUMENaN(Tokens.DEFAULT);
       this.RULE('assignmentField', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.uid);
+            this.SUBRULE(this.uid);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCAL_ID);
+            this.CONSUME(Tokens.LOCAL_ID);
           }
         }
       ]);
@@ -2933,17 +2932,17 @@ this.CONSUMENaN(Tokens.DEFAULT);
       this.RULE('lockClause', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FOR);
-this.CONSUMENaN(Tokens.UPDATE);
+            this.CONSUME(Tokens.FOR);
+this.CONSUME(Tokens.UPDATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCK);
-this.CONSUMENaN(Tokens.IN);
-this.CONSUMENaN(Tokens.SHARE);
-this.CONSUMENaN(Tokens.MODE);
+            this.CONSUME(Tokens.LOCK);
+this.CONSUME(Tokens.IN);
+this.CONSUME(Tokens.SHARE);
+this.CONSUME(Tokens.MODE);
           }
         }
       ]);
@@ -2951,47 +2950,47 @@ this.CONSUMENaN(Tokens.MODE);
 
 
       this.RULE('singleDeleteStatement', () => {
-        this.CONSUMENaN(Tokens.DELETE);
+        this.CONSUME(Tokens.DELETE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.QUICK);
+          this.CONSUME(Tokens.QUICK);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
+          this.CONSUME(Tokens.IGNORE);
         });
       
-this.CONSUMENaN(Tokens.FROM);
-this.SUBRULENaN(this.tableName);
+this.CONSUME(Tokens.FROM);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.orderByClause);
+          this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.expression);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LIMIT);
-this.SUBRULENaN(this.decimalLiteral);
+          this.SUBRULE(this.orderByClause);
+        });
+      
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.LIMIT);
+this.SUBRULE(this.decimalLiteral);
         });
       
       });
@@ -2999,70 +2998,70 @@ this.SUBRULENaN(this.decimalLiteral);
 
 
       this.RULE('multipleDeleteStatement', () => {
-        this.CONSUMENaN(Tokens.DELETE);
+        this.CONSUME(Tokens.DELETE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.QUICK);
+          this.CONSUME(Tokens.QUICK);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
+          this.CONSUME(Tokens.IGNORE);
         });
       
-this.SUBRULENaN(this.tableName);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.tableName);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
         });
       
-this.CONSUMENaN(Tokens.FROM);
-this.SUBRULENaN(this.tableSources);
+this.CONSUME(Tokens.FROM);
+this.SUBRULE(this.tableSources);
 
-this.CONSUMENaN(Tokens.FROM);
-this.SUBRULENaN(this.tableName);
+this.CONSUME(Tokens.FROM);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.tableName);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
         });
       
-this.CONSUMENaN(Tokens.USING);
-this.SUBRULENaN(this.tableSources);
+this.CONSUME(Tokens.USING);
+this.SUBRULE(this.tableSources);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.expression);
         });
       
       });
@@ -3070,17 +3069,17 @@ this.SUBRULENaN(this.expression);
 
 
       this.RULE('handlerOpenStatement', () => {
-        this.CONSUMENaN(Tokens.HANDLER);
-this.SUBRULENaN(this.tableName);
-this.CONSUMENaN(Tokens.OPEN);
+        this.CONSUME(Tokens.HANDLER);
+this.SUBRULE(this.tableName);
+this.CONSUME(Tokens.OPEN);
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AS);
+          this.CONSUME(Tokens.AS);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
         });
       
       });
@@ -3088,26 +3087,26 @@ this.SUBRULENaN(this.uid);
 
 
       this.RULE('handlerReadIndexStatement', () => {
-        this.CONSUMENaN(Tokens.HANDLER);
-this.SUBRULENaN(this.tableName);
-this.CONSUMENaN(Tokens.READ);
-this.SUBRULENaN(this.index);
-this.SUBRULENaN(this.comparisonOperator);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.constants);
-this.CONSUMENaN(Tokens.OP);
+        this.CONSUME(Tokens.HANDLER);
+this.SUBRULE(this.tableName);
+this.CONSUME(Tokens.READ);
+this.SUBRULE(this.index);
+this.SUBRULE(this.comparisonOperator);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.constants);
+this.CONSUME(Tokens.OP);
 
-this.SUBRULENaN(this.moveOrder);
+this.SUBRULE(this.moveOrder);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.expression);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LIMIT);
-this.SUBRULENaN(this.decimalLiteral);
+          this.CONSUME(Tokens.LIMIT);
+this.SUBRULE(this.decimalLiteral);
         });
       
       });
@@ -3115,20 +3114,20 @@ this.SUBRULENaN(this.decimalLiteral);
 
 
       this.RULE('handlerReadStatement', () => {
-        this.CONSUMENaN(Tokens.HANDLER);
-this.SUBRULENaN(this.tableName);
-this.CONSUMENaN(Tokens.READ);
-this.SUBRULENaN(this.moveOrder);
+        this.CONSUME(Tokens.HANDLER);
+this.SUBRULE(this.tableName);
+this.CONSUME(Tokens.READ);
+this.SUBRULE(this.moveOrder);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.expression);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LIMIT);
-this.SUBRULENaN(this.decimalLiteral);
+          this.CONSUME(Tokens.LIMIT);
+this.SUBRULE(this.decimalLiteral);
         });
       
       });
@@ -3136,58 +3135,58 @@ this.SUBRULENaN(this.decimalLiteral);
 
 
       this.RULE('handlerCloseStatement', () => {
-        this.CONSUMENaN(Tokens.HANDLER);
-this.SUBRULENaN(this.tableName);
-this.CONSUMENaN(Tokens.CLOSE);
+        this.CONSUME(Tokens.HANDLER);
+this.SUBRULE(this.tableName);
+this.CONSUME(Tokens.CLOSE);
       });
     
 
 
       this.RULE('singleUpdateStatement', () => {
-        this.CONSUMENaN(Tokens.UPDATE);
+        this.CONSUME(Tokens.UPDATE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
+          this.CONSUME(Tokens.IGNORE);
         });
       
-this.SUBRULENaN(this.tableName);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AS);
+          this.CONSUME(Tokens.AS);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
         });
       
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.updatedElement);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.updatedElement);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.updatedElement);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.updatedElement);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.expression);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.orderByClause);
+          this.SUBRULE(this.orderByClause);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.limitClause);
+          this.SUBRULE(this.limitClause);
         });
       
       });
@@ -3195,30 +3194,30 @@ this.SUBRULENaN(this.expression);
 
 
       this.RULE('multipleUpdateStatement', () => {
-        this.CONSUMENaN(Tokens.UPDATE);
+        this.CONSUME(Tokens.UPDATE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.priority);
+          this.SUBRULE(this.priority);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
+          this.CONSUME(Tokens.IGNORE);
         });
       
-this.SUBRULENaN(this.tableSources);
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.updatedElement);
+this.SUBRULE(this.tableSources);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.updatedElement);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.updatedElement);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.updatedElement);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.expression);
         });
       
       });
@@ -3226,13 +3225,13 @@ this.SUBRULENaN(this.expression);
 
 
       this.RULE('orderByClause', () => {
-        this.CONSUMENaN(Tokens.ORDER);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.orderByExpression);
+        this.CONSUME(Tokens.ORDER);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.orderByExpression);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.orderByExpression);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.orderByExpression);
         });
       
       });
@@ -3240,10 +3239,10 @@ this.SUBRULENaN(this.orderByExpression);
 
 
       this.RULE('orderByExpression', () => {
-        this.SUBRULENaN(this.expression);
+        this.SUBRULE(this.expression);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.order);
+          this.SUBRULE(this.order);
         });
       
       });
@@ -3251,11 +3250,11 @@ this.SUBRULENaN(this.orderByExpression);
 
 
       this.RULE('tableSources', () => {
-        this.SUBRULENaN(this.tableSource);
+        this.SUBRULE(this.tableSource);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.tableSource);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.tableSource);
         });
       
       });
@@ -3263,10 +3262,10 @@ this.SUBRULENaN(this.tableSource);
 
 
       this.RULE('tableSource', () => {
-        this.SUBRULENaN(this.tableSourceItem);
+        this.SUBRULE(this.tableSourceItem);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.joinPart);
+          this.SUBRULE(this.joinPart);
         });
       
       });
@@ -3274,32 +3273,32 @@ this.SUBRULENaN(this.tableSource);
 
 
       this.RULE('tableSourceItem', () => {
-        this.SUBRULENaN(this.tableName);
+        this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AS);
+          this.CONSUME(Tokens.AS);
         });
       
-this.SUBRULENaN(this.alias);
+this.SUBRULE(this.alias);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.indexHint);
+          this.SUBRULE(this.indexHint);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.indexHint);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.indexHint);
         });
       
         });
@@ -3309,17 +3308,17 @@ this.SUBRULENaN(this.indexHint);
 
 
       this.RULE('indexHint', () => {
-        this.SUBRULENaN(this.indexHintAction);
-this.SUBRULENaN(this.keyFormat);
+        this.SUBRULE(this.indexHintAction);
+this.SUBRULE(this.keyFormat);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.FOR);
-this.SUBRULENaN(this.indexHintType);
+          this.CONSUME(Tokens.FOR);
+this.SUBRULE(this.indexHintType);
         });
       
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
       });
     
 
@@ -3327,21 +3326,21 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('indexHintType', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.JOIN);
+            this.CONSUME(Tokens.JOIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ORDER);
-this.CONSUMENaN(Tokens.BY);
+            this.CONSUME(Tokens.ORDER);
+this.CONSUME(Tokens.BY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GROUP);
-this.CONSUMENaN(Tokens.BY);
+            this.CONSUME(Tokens.GROUP);
+this.CONSUME(Tokens.BY);
           }
         }
       ]);
@@ -3351,22 +3350,22 @@ this.CONSUMENaN(Tokens.BY);
       this.RULE('joinPart', () => {
         
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INNER);
+          this.CONSUME(Tokens.INNER);
 
-this.CONSUMENaN(Tokens.CROSS);
+this.CONSUME(Tokens.CROSS);
         });
       
-this.CONSUMENaN(Tokens.JOIN);
-this.SUBRULENaN(this.tableSourceItem);
+this.CONSUME(Tokens.JOIN);
+this.SUBRULE(this.tableSourceItem);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.ON);
+this.SUBRULE(this.expression);
 
-this.CONSUMENaN(Tokens.USING);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.USING);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
       });
@@ -3376,17 +3375,17 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('queryExpression', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.querySpecification);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.SUBRULE(this.querySpecification);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.queryExpression);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.SUBRULE(this.queryExpression);
+this.CONSUME(Tokens.OP);
           }
         }
       ]);
@@ -3396,17 +3395,17 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('queryExpressionNointo', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.querySpecificationNointo);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.SUBRULE(this.querySpecificationNointo);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.queryExpressionNointo);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.SUBRULE(this.queryExpressionNointo);
+this.CONSUME(Tokens.OP);
           }
         }
       ]);
@@ -3416,31 +3415,31 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('querySpecification', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SELECT);
+            this.CONSUME(Tokens.SELECT);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.selectSpec);
+          this.SUBRULE(this.selectSpec);
         });
       
-this.SUBRULENaN(this.selectElements);
+this.SUBRULE(this.selectElements);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.selectIntoExpression);
-        });
-      
-
-        this.OPTION(() => {
-          this.SUBRULENaN(this.fromClause);
+          this.SUBRULE(this.selectIntoExpression);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.orderByClause);
+          this.SUBRULE(this.fromClause);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.limitClause);
+          this.SUBRULE(this.orderByClause);
+        });
+      
+
+        this.OPTION(() => {
+          this.SUBRULE(this.limitClause);
         });
       
           }
@@ -3448,31 +3447,31 @@ this.SUBRULENaN(this.selectElements);
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SELECT);
+            this.CONSUME(Tokens.SELECT);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.selectSpec);
+          this.SUBRULE(this.selectSpec);
         });
       
-this.SUBRULENaN(this.selectElements);
+this.SUBRULE(this.selectElements);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.fromClause);
-        });
-      
-
-        this.OPTION(() => {
-          this.SUBRULENaN(this.orderByClause);
+          this.SUBRULE(this.fromClause);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.limitClause);
+          this.SUBRULE(this.orderByClause);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.selectIntoExpression);
+          this.SUBRULE(this.limitClause);
+        });
+      
+
+        this.OPTION(() => {
+          this.SUBRULE(this.selectIntoExpression);
         });
       
           }
@@ -3482,26 +3481,26 @@ this.SUBRULENaN(this.selectElements);
 
 
       this.RULE('querySpecificationNointo', () => {
-        this.CONSUMENaN(Tokens.SELECT);
+        this.CONSUME(Tokens.SELECT);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.selectSpec);
+          this.SUBRULE(this.selectSpec);
         });
       
-this.SUBRULENaN(this.selectElements);
+this.SUBRULE(this.selectElements);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.fromClause);
-        });
-      
-
-        this.OPTION(() => {
-          this.SUBRULENaN(this.orderByClause);
+          this.SUBRULE(this.fromClause);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.limitClause);
+          this.SUBRULE(this.orderByClause);
+        });
+      
+
+        this.OPTION(() => {
+          this.SUBRULE(this.limitClause);
         });
       
       });
@@ -3509,27 +3508,27 @@ this.SUBRULENaN(this.selectElements);
 
 
       this.RULE('unionParenthesis', () => {
-        this.CONSUMENaN(Tokens.UNION);
+        this.CONSUME(Tokens.UNION);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.unionType);
+          this.SUBRULE(this.unionType);
         });
       
-this.SUBRULENaN(this.queryExpressionNointo);
+this.SUBRULE(this.queryExpressionNointo);
       });
     
 
 
       this.RULE('unionStatement', () => {
-        this.CONSUMENaN(Tokens.UNION);
+        this.CONSUME(Tokens.UNION);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.unionType);
+          this.SUBRULE(this.unionType);
         });
       
-this.SUBRULENaN(this.querySpecificationNointo);
+this.SUBRULE(this.querySpecificationNointo);
 
-this.SUBRULENaN(this.queryExpressionNointo);
+this.SUBRULE(this.queryExpressionNointo);
       });
     
 
@@ -3537,55 +3536,55 @@ this.SUBRULENaN(this.queryExpressionNointo);
       this.RULE('selectSpec', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ALL);
+            this.CONSUME(Tokens.ALL);
 
-this.CONSUMENaN(Tokens.DISTINCT);
+this.CONSUME(Tokens.DISTINCT);
 
-this.CONSUMENaN(Tokens.DISTINCTROW);
+this.CONSUME(Tokens.DISTINCTROW);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HIGH_PRIORITY);
+            this.CONSUME(Tokens.HIGH_PRIORITY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRAIGHT_JOIN);
+            this.CONSUME(Tokens.STRAIGHT_JOIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_SMALL_RESULT);
+            this.CONSUME(Tokens.SQL_SMALL_RESULT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_BIG_RESULT);
+            this.CONSUME(Tokens.SQL_BIG_RESULT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_BUFFER_RESULT);
+            this.CONSUME(Tokens.SQL_BUFFER_RESULT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_CACHE);
+            this.CONSUME(Tokens.SQL_CACHE);
 
-this.CONSUMENaN(Tokens.SQL_NO_CACHE);
+this.CONSUME(Tokens.SQL_NO_CACHE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_CALC_FOUND_ROWS);
+            this.CONSUME(Tokens.SQL_CALC_FOUND_ROWS);
           }
         }
       ]);
@@ -3593,13 +3592,13 @@ this.CONSUMENaN(Tokens.SQL_NO_CACHE);
 
 
       this.RULE('selectElements', () => {
-        this.SUBRULENaN(this.star);
+        this.SUBRULE(this.star);
 
-this.SUBRULENaN(this.selectElement);
+this.SUBRULE(this.selectElement);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.selectElement);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.selectElement);
         });
       
       });
@@ -3607,20 +3606,20 @@ this.SUBRULENaN(this.selectElement);
 
 
       this.RULE('selectElement', () => {
-        this.SUBRULENaN(this.fullId);
-this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+        this.SUBRULE(this.fullId);
+this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('selectIntoExpression', () => {
-        this.CONSUMENaN(Tokens.INTO);
-this.SUBRULENaN(this.assignmentField);
+        this.CONSUME(Tokens.INTO);
+this.SUBRULE(this.assignmentField);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.assignmentField);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.assignmentField);
         });
       
       });
@@ -3630,9 +3629,9 @@ this.SUBRULENaN(this.assignmentField);
       this.RULE('selectFieldsInto', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TERMINATED);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.terminationField);
+            this.CONSUME(Tokens.TERMINATED);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.terminationField);
           }
         }
       ,
@@ -3640,20 +3639,20 @@ this.SUBRULENaN(this.terminationField);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OPTIONALLY);
+          this.CONSUME(Tokens.OPTIONALLY);
         });
       
-this.CONSUMENaN(Tokens.ENCLOSED);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.enclosion);
+this.CONSUME(Tokens.ENCLOSED);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.enclosion);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ESCAPED);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.escaping);
+            this.CONSUME(Tokens.ESCAPED);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.escaping);
           }
         }
       ]);
@@ -3663,17 +3662,17 @@ this.SUBRULENaN(this.escaping);
       this.RULE('selectLinesInto', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STARTING);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.starting);
+            this.CONSUME(Tokens.STARTING);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.starting);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TERMINATED);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.terminationLine);
+            this.CONSUME(Tokens.TERMINATED);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.terminationLine);
           }
         }
       ]);
@@ -3681,37 +3680,37 @@ this.SUBRULENaN(this.terminationLine);
 
 
       this.RULE('fromClause', () => {
-        this.CONSUMENaN(Tokens.FROM);
-this.SUBRULENaN(this.tableSources);
+        this.CONSUME(Tokens.FROM);
+this.SUBRULE(this.tableSources);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.whereExpr);
+          this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.whereExpr);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.GROUP);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.groupByItem);
+          this.CONSUME(Tokens.GROUP);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.groupByItem);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.groupByItem);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.groupByItem);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WITH);
-this.CONSUMENaN(Tokens.ROLLUP);
+          this.CONSUME(Tokens.WITH);
+this.CONSUME(Tokens.ROLLUP);
         });
       
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.HAVING);
-this.SUBRULENaN(this.havingExpr);
+          this.CONSUME(Tokens.HAVING);
+this.SUBRULE(this.havingExpr);
         });
       
       });
@@ -3719,10 +3718,10 @@ this.SUBRULENaN(this.havingExpr);
 
 
       this.RULE('groupByItem', () => {
-        this.SUBRULENaN(this.expression);
+        this.SUBRULE(this.expression);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.order);
+          this.SUBRULE(this.order);
         });
       
       });
@@ -3730,32 +3729,32 @@ this.SUBRULENaN(this.havingExpr);
 
 
       this.RULE('limitClause', () => {
-        this.CONSUMENaN(Tokens.LIMIT);
+        this.CONSUME(Tokens.LIMIT);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.offset);
-this.CONSUMENaN(Tokens.OP);
+          this.SUBRULE(this.offset);
+this.CONSUME(Tokens.OP);
         });
       
-this.SUBRULENaN(this.limit);
+this.SUBRULE(this.limit);
 
-this.SUBRULENaN(this.limit);
-this.CONSUMENaN(Tokens.OFFSET);
-this.SUBRULENaN(this.offset);
+this.SUBRULE(this.limit);
+this.CONSUME(Tokens.OFFSET);
+this.SUBRULE(this.offset);
       });
     
 
 
       this.RULE('startTransaction', () => {
-        this.CONSUMENaN(Tokens.START);
-this.CONSUMENaN(Tokens.TRANSACTION);
+        this.CONSUME(Tokens.START);
+this.CONSUME(Tokens.TRANSACTION);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.transactionMode);
+          this.SUBRULE(this.transactionMode);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.transactionMode);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.transactionMode);
         });
       
         });
@@ -3765,10 +3764,10 @@ this.SUBRULENaN(this.transactionMode);
 
 
       this.RULE('beginWork', () => {
-        this.CONSUMENaN(Tokens.BEGIN);
+        this.CONSUME(Tokens.BEGIN);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WORK);
+          this.CONSUME(Tokens.WORK);
         });
       
       });
@@ -3776,31 +3775,31 @@ this.SUBRULENaN(this.transactionMode);
 
 
       this.RULE('commitWork', () => {
-        this.CONSUMENaN(Tokens.COMMIT);
+        this.CONSUME(Tokens.COMMIT);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WORK);
+          this.CONSUME(Tokens.WORK);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AND);
+          this.CONSUME(Tokens.AND);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.nochain);
+          this.SUBRULE(this.nochain);
         });
       
-this.CONSUMENaN(Tokens.CHAIN);
+this.CONSUME(Tokens.CHAIN);
         });
       
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.SUBRULENaN(this.norelease);
+          this.SUBRULE(this.norelease);
         });
       
-this.CONSUMENaN(Tokens.RELEASE);
+this.CONSUME(Tokens.RELEASE);
         });
       
       });
@@ -3808,31 +3807,31 @@ this.CONSUMENaN(Tokens.RELEASE);
 
 
       this.RULE('rollbackWork', () => {
-        this.CONSUMENaN(Tokens.ROLLBACK);
+        this.CONSUME(Tokens.ROLLBACK);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WORK);
+          this.CONSUME(Tokens.WORK);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AND);
+          this.CONSUME(Tokens.AND);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.nochain);
+          this.SUBRULE(this.nochain);
         });
       
-this.CONSUMENaN(Tokens.CHAIN);
+this.CONSUME(Tokens.CHAIN);
         });
       
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.SUBRULENaN(this.norelease);
+          this.SUBRULE(this.norelease);
         });
       
-this.CONSUMENaN(Tokens.RELEASE);
+this.CONSUME(Tokens.RELEASE);
         });
       
       });
@@ -3840,46 +3839,46 @@ this.CONSUMENaN(Tokens.RELEASE);
 
 
       this.RULE('savepointStatement', () => {
-        this.CONSUMENaN(Tokens.SAVEPOINT);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.SAVEPOINT);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('rollbackStatement', () => {
-        this.CONSUMENaN(Tokens.ROLLBACK);
+        this.CONSUME(Tokens.ROLLBACK);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WORK);
+          this.CONSUME(Tokens.WORK);
         });
       
-this.CONSUMENaN(Tokens.TO);
+this.CONSUME(Tokens.TO);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SAVEPOINT);
+          this.CONSUME(Tokens.SAVEPOINT);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('releaseStatement', () => {
-        this.CONSUMENaN(Tokens.RELEASE);
-this.CONSUMENaN(Tokens.SAVEPOINT);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.RELEASE);
+this.CONSUME(Tokens.SAVEPOINT);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('lockTables', () => {
-        this.CONSUMENaN(Tokens.LOCK);
-this.CONSUMENaN(Tokens.TABLES);
-this.SUBRULENaN(this.lockTableElement);
+        this.CONSUME(Tokens.LOCK);
+this.CONSUME(Tokens.TABLES);
+this.SUBRULE(this.lockTableElement);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.lockTableElement);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.lockTableElement);
         });
       
       });
@@ -3887,34 +3886,34 @@ this.SUBRULENaN(this.lockTableElement);
 
 
       this.RULE('unlockTables', () => {
-        this.CONSUMENaN(Tokens.UNLOCK);
-this.CONSUMENaN(Tokens.TABLES);
+        this.CONSUME(Tokens.UNLOCK);
+this.CONSUME(Tokens.TABLES);
       });
     
 
 
       this.RULE('setAutocommitStatement', () => {
-        this.CONSUMENaN(Tokens.SET);
-this.CONSUMENaN(Tokens.AUTOCOMMIT);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.autocommitValue);
+        this.CONSUME(Tokens.SET);
+this.CONSUME(Tokens.AUTOCOMMIT);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.autocommitValue);
       });
     
 
 
       this.RULE('setTransactionStatement', () => {
-        this.CONSUMENaN(Tokens.SET);
+        this.CONSUME(Tokens.SET);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.transactionContext);
+          this.SUBRULE(this.transactionContext);
         });
       
-this.CONSUMENaN(Tokens.TRANSACTION);
-this.SUBRULENaN(this.transactionOption);
+this.CONSUME(Tokens.TRANSACTION);
+this.SUBRULE(this.transactionOption);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.transactionOption);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.transactionOption);
         });
       
       });
@@ -3924,23 +3923,23 @@ this.SUBRULENaN(this.transactionOption);
       this.RULE('transactionMode', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WITH);
-this.CONSUMENaN(Tokens.CONSISTENT);
-this.CONSUMENaN(Tokens.SNAPSHOT);
+            this.CONSUME(Tokens.WITH);
+this.CONSUME(Tokens.CONSISTENT);
+this.CONSUME(Tokens.SNAPSHOT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.WRITE);
+            this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.WRITE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.ONLY);
+            this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.ONLY);
           }
         }
       ]);
@@ -3948,18 +3947,18 @@ this.CONSUMENaN(Tokens.ONLY);
 
 
       this.RULE('lockTableElement', () => {
-        this.SUBRULENaN(this.tableName);
+        this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AS);
+          this.CONSUME(Tokens.AS);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
         });
       
-this.SUBRULENaN(this.lockAction);
+this.SUBRULE(this.lockAction);
       });
     
 
@@ -3967,10 +3966,10 @@ this.SUBRULENaN(this.lockAction);
       this.RULE('lockAction', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.READ);
+            this.CONSUME(Tokens.READ);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LOCAL);
+          this.CONSUME(Tokens.LOCAL);
         });
       
           }
@@ -3980,10 +3979,10 @@ this.SUBRULENaN(this.lockAction);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.LOW_PRIORITY);
+          this.CONSUME(Tokens.LOW_PRIORITY);
         });
       
-this.CONSUMENaN(Tokens.WRITE);
+this.CONSUME(Tokens.WRITE);
           }
         }
       ]);
@@ -3993,23 +3992,23 @@ this.CONSUMENaN(Tokens.WRITE);
       this.RULE('transactionOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISOLATION);
-this.CONSUMENaN(Tokens.LEVEL);
-this.SUBRULENaN(this.transactionLevel);
+            this.CONSUME(Tokens.ISOLATION);
+this.CONSUME(Tokens.LEVEL);
+this.SUBRULE(this.transactionLevel);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.WRITE);
+            this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.WRITE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.ONLY);
+            this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.ONLY);
           }
         }
       ]);
@@ -4019,28 +4018,28 @@ this.CONSUMENaN(Tokens.ONLY);
       this.RULE('transactionLevel', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPEATABLE);
-this.CONSUMENaN(Tokens.READ);
+            this.CONSUME(Tokens.REPEATABLE);
+this.CONSUME(Tokens.READ);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.COMMITTED);
+            this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.COMMITTED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.UNCOMMITTED);
+            this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.UNCOMMITTED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SERIALIZABLE);
+            this.CONSUME(Tokens.SERIALIZABLE);
           }
         }
       ]);
@@ -4048,19 +4047,19 @@ this.CONSUMENaN(Tokens.UNCOMMITTED);
 
 
       this.RULE('changeMaster', () => {
-        this.CONSUMENaN(Tokens.CHANGE);
-this.CONSUMENaN(Tokens.MASTER);
-this.CONSUMENaN(Tokens.TO);
-this.SUBRULENaN(this.masterOption);
+        this.CONSUME(Tokens.CHANGE);
+this.CONSUME(Tokens.MASTER);
+this.CONSUME(Tokens.TO);
+this.SUBRULE(this.masterOption);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.masterOption);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.masterOption);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.channelOption);
+          this.SUBRULE(this.channelOption);
         });
       
       });
@@ -4068,14 +4067,14 @@ this.SUBRULENaN(this.masterOption);
 
 
       this.RULE('changeReplicationFilter', () => {
-        this.CONSUMENaN(Tokens.CHANGE);
-this.CONSUMENaN(Tokens.REPLICATION);
-this.CONSUMENaN(Tokens.FILTER);
-this.SUBRULENaN(this.replicationFilter);
+        this.CONSUME(Tokens.CHANGE);
+this.CONSUME(Tokens.REPLICATION);
+this.CONSUME(Tokens.FILTER);
+this.SUBRULE(this.replicationFilter);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.replicationFilter);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.replicationFilter);
         });
       
       });
@@ -4083,36 +4082,36 @@ this.SUBRULENaN(this.replicationFilter);
 
 
       this.RULE('purgeBinaryLogs', () => {
-        this.CONSUMENaN(Tokens.PURGE);
-this.SUBRULENaN(this.purgeFormat);
-this.CONSUMENaN(Tokens.LOGS);
-this.CONSUMENaN(Tokens.TO);
-this.SUBRULENaN(this.fileName);
+        this.CONSUME(Tokens.PURGE);
+this.SUBRULE(this.purgeFormat);
+this.CONSUME(Tokens.LOGS);
+this.CONSUME(Tokens.TO);
+this.SUBRULE(this.fileName);
 
-this.CONSUMENaN(Tokens.BEFORE);
-this.SUBRULENaN(this.timeValue);
+this.CONSUME(Tokens.BEFORE);
+this.SUBRULE(this.timeValue);
       });
     
 
 
       this.RULE('resetMaster', () => {
-        this.CONSUMENaN(Tokens.RESET);
-this.CONSUMENaN(Tokens.MASTER);
+        this.CONSUME(Tokens.RESET);
+this.CONSUME(Tokens.MASTER);
       });
     
 
 
       this.RULE('resetSlave', () => {
-        this.CONSUMENaN(Tokens.RESET);
-this.CONSUMENaN(Tokens.SLAVE);
+        this.CONSUME(Tokens.RESET);
+this.CONSUME(Tokens.SLAVE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ALL);
+          this.CONSUME(Tokens.ALL);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.channelOption);
+          this.SUBRULE(this.channelOption);
         });
       
       });
@@ -4120,33 +4119,33 @@ this.CONSUMENaN(Tokens.SLAVE);
 
 
       this.RULE('startSlave', () => {
-        this.CONSUMENaN(Tokens.START);
-this.CONSUMENaN(Tokens.SLAVE);
+        this.CONSUME(Tokens.START);
+this.CONSUME(Tokens.SLAVE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.threadType);
+          this.SUBRULE(this.threadType);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.threadType);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.threadType);
         });
       
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.UNTIL);
-this.SUBRULENaN(this.untilOption);
+          this.CONSUME(Tokens.UNTIL);
+this.SUBRULE(this.untilOption);
         });
       
 
         this.MANY(() => {
-          this.SUBRULENaN(this.connectionOption);
+          this.SUBRULE(this.connectionOption);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.channelOption);
+          this.SUBRULE(this.channelOption);
         });
       
       });
@@ -4154,15 +4153,15 @@ this.SUBRULENaN(this.untilOption);
 
 
       this.RULE('stopSlave', () => {
-        this.CONSUMENaN(Tokens.STOP);
-this.CONSUMENaN(Tokens.SLAVE);
+        this.CONSUME(Tokens.STOP);
+this.CONSUME(Tokens.SLAVE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.threadType);
+          this.SUBRULE(this.threadType);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.threadType);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.threadType);
         });
       
         });
@@ -4172,23 +4171,23 @@ this.SUBRULENaN(this.threadType);
 
 
       this.RULE('startGroupReplication', () => {
-        this.CONSUMENaN(Tokens.START);
-this.CONSUMENaN(Tokens.GROUP_REPLICATION);
+        this.CONSUME(Tokens.START);
+this.CONSUME(Tokens.GROUP_REPLICATION);
       });
     
 
 
       this.RULE('stopGroupReplication', () => {
-        this.CONSUMENaN(Tokens.STOP);
-this.CONSUMENaN(Tokens.GROUP_REPLICATION);
+        this.CONSUME(Tokens.STOP);
+this.CONSUME(Tokens.GROUP_REPLICATION);
       });
     
 
 
       this.RULE('masterOption', () => {
-        this.SUBRULENaN(this.stringMasterOption);
-this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.SUBRULE(this.stringMasterOption);
+this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
@@ -4196,85 +4195,85 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
       this.RULE('stringMasterOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_BIND);
+            this.CONSUME(Tokens.MASTER_BIND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_HOST);
+            this.CONSUME(Tokens.MASTER_HOST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_USER);
+            this.CONSUME(Tokens.MASTER_USER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_PASSWORD);
+            this.CONSUME(Tokens.MASTER_PASSWORD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_LOG_FILE);
+            this.CONSUME(Tokens.MASTER_LOG_FILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELAY_LOG_FILE);
+            this.CONSUME(Tokens.RELAY_LOG_FILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CA);
+            this.CONSUME(Tokens.MASTER_SSL_CA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CAPATH);
+            this.CONSUME(Tokens.MASTER_SSL_CAPATH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CERT);
+            this.CONSUME(Tokens.MASTER_SSL_CERT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CRL);
+            this.CONSUME(Tokens.MASTER_SSL_CRL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CRLPATH);
+            this.CONSUME(Tokens.MASTER_SSL_CRLPATH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_KEY);
+            this.CONSUME(Tokens.MASTER_SSL_KEY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CIPHER);
+            this.CONSUME(Tokens.MASTER_SSL_CIPHER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_TLS_VERSION);
+            this.CONSUME(Tokens.MASTER_TLS_VERSION);
           }
         }
       ]);
@@ -4284,37 +4283,37 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
       this.RULE('decimalMasterOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_PORT);
+            this.CONSUME(Tokens.MASTER_PORT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_CONNECT_RETRY);
+            this.CONSUME(Tokens.MASTER_CONNECT_RETRY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_RETRY_COUNT);
+            this.CONSUME(Tokens.MASTER_RETRY_COUNT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_DELAY);
+            this.CONSUME(Tokens.MASTER_DELAY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_LOG_POS);
+            this.CONSUME(Tokens.MASTER_LOG_POS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELAY_LOG_POS);
+            this.CONSUME(Tokens.RELAY_LOG_POS);
           }
         }
       ]);
@@ -4324,19 +4323,19 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
       this.RULE('boolMasterOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_AUTO_POSITION);
+            this.CONSUME(Tokens.MASTER_AUTO_POSITION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL);
+            this.CONSUME(Tokens.MASTER_SSL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_VERIFY_SERVER_CERT);
+            this.CONSUME(Tokens.MASTER_SSL_VERIFY_SERVER_CERT);
           }
         }
       ]);
@@ -4344,29 +4343,29 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
 
 
       this.RULE('channelOption', () => {
-        this.CONSUMENaN(Tokens.FOR);
-this.CONSUMENaN(Tokens.CHANNEL);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.FOR);
+this.CONSUME(Tokens.CHANNEL);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
 
       this.RULE('replicationFilter', () => {
-        this.CONSUMENaN(Tokens.REPLICATE_DO_DB);
-this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+        this.CONSUME(Tokens.REPLICATE_DO_DB);
+this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('tablePair', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.firstTable);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.secondTable);
-this.CONSUMENaN(Tokens.OP);
+        this.CONSUME(Tokens.OP);
+this.SUBRULE(this.firstTable);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.secondTable);
+this.CONSUME(Tokens.OP);
       });
     
 
@@ -4374,13 +4373,13 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('threadType', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IO_THREAD);
+            this.CONSUME(Tokens.IO_THREAD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_THREAD);
+            this.CONSUME(Tokens.SQL_THREAD);
           }
         }
       ]);
@@ -4388,17 +4387,17 @@ this.CONSUMENaN(Tokens.OP);
 
 
       this.RULE('untilOption', () => {
-        this.SUBRULENaN(this.gtids);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.gtuidSet);
+        this.SUBRULE(this.gtids);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.gtuidSet);
       });
     
 
 
       this.RULE('connectionOption', () => {
-        this.CONSUMENaN(Tokens.USER);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.conOptUser);
+        this.CONSUME(Tokens.USER);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.conOptUser);
       });
     
 
@@ -4406,11 +4405,11 @@ this.SUBRULENaN(this.conOptUser);
       this.RULE('gtuidSet', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.uuidSet);
+            this.SUBRULE(this.uuidSet);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uuidSet);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uuidSet);
         });
       
           }
@@ -4418,7 +4417,7 @@ this.SUBRULENaN(this.uuidSet);
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ]);
@@ -4426,12 +4425,12 @@ this.SUBRULENaN(this.uuidSet);
 
 
       this.RULE('xaStartTransaction', () => {
-        this.CONSUMENaN(Tokens.XA);
-this.SUBRULENaN(this.xaStart);
-this.SUBRULENaN(this.xid);
+        this.CONSUME(Tokens.XA);
+this.SUBRULE(this.xaStart);
+this.SUBRULE(this.xid);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.xaAction);
+          this.SUBRULE(this.xaAction);
         });
       
       });
@@ -4439,16 +4438,16 @@ this.SUBRULENaN(this.xid);
 
 
       this.RULE('xaEndTransaction', () => {
-        this.CONSUMENaN(Tokens.XA);
-this.CONSUMENaN(Tokens.END);
-this.SUBRULENaN(this.xid);
+        this.CONSUME(Tokens.XA);
+this.CONSUME(Tokens.END);
+this.SUBRULE(this.xid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SUSPEND);
+          this.CONSUME(Tokens.SUSPEND);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.FOR);
-this.CONSUMENaN(Tokens.MIGRATE);
+          this.CONSUME(Tokens.FOR);
+this.CONSUME(Tokens.MIGRATE);
         });
       
         });
@@ -4458,21 +4457,21 @@ this.CONSUMENaN(Tokens.MIGRATE);
 
 
       this.RULE('xaPrepareStatement', () => {
-        this.CONSUMENaN(Tokens.XA);
-this.CONSUMENaN(Tokens.PREPARE);
-this.SUBRULENaN(this.xid);
+        this.CONSUME(Tokens.XA);
+this.CONSUME(Tokens.PREPARE);
+this.SUBRULE(this.xid);
       });
     
 
 
       this.RULE('xaCommitWork', () => {
-        this.CONSUMENaN(Tokens.XA);
-this.CONSUMENaN(Tokens.COMMIT);
-this.SUBRULENaN(this.xid);
+        this.CONSUME(Tokens.XA);
+this.CONSUME(Tokens.COMMIT);
+this.SUBRULE(this.xid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ONE);
-this.CONSUMENaN(Tokens.PHASE);
+          this.CONSUME(Tokens.ONE);
+this.CONSUME(Tokens.PHASE);
         });
       
       });
@@ -4480,20 +4479,20 @@ this.CONSUMENaN(Tokens.PHASE);
 
 
       this.RULE('xaRollbackWork', () => {
-        this.CONSUMENaN(Tokens.XA);
-this.CONSUMENaN(Tokens.ROLLBACK);
-this.SUBRULENaN(this.xid);
+        this.CONSUME(Tokens.XA);
+this.CONSUME(Tokens.ROLLBACK);
+this.SUBRULE(this.xid);
       });
     
 
 
       this.RULE('xaRecoverWork', () => {
-        this.CONSUMENaN(Tokens.XA);
-this.CONSUMENaN(Tokens.RECOVER);
+        this.CONSUME(Tokens.XA);
+this.CONSUME(Tokens.RECOVER);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.CONVERT);
-this.SUBRULENaN(this.xid);
+          this.CONSUME(Tokens.CONVERT);
+this.SUBRULE(this.xid);
         });
       
       });
@@ -4501,23 +4500,23 @@ this.SUBRULENaN(this.xid);
 
 
       this.RULE('prepareStatement', () => {
-        this.CONSUMENaN(Tokens.PREPARE);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.FROM);
-this.SUBRULENaN(this.query);
+        this.CONSUME(Tokens.PREPARE);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.FROM);
+this.SUBRULE(this.query);
 
-this.SUBRULENaN(this.variable);
+this.SUBRULE(this.variable);
       });
     
 
 
       this.RULE('executeStatement', () => {
-        this.CONSUMENaN(Tokens.EXECUTE);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.EXECUTE);
+this.SUBRULE(this.uid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.USING);
-this.SUBRULENaN(this.userVariables);
+          this.CONSUME(Tokens.USING);
+this.SUBRULE(this.userVariables);
         });
       
       });
@@ -4525,9 +4524,9 @@ this.SUBRULENaN(this.userVariables);
 
 
       this.RULE('deallocatePrepare', () => {
-        this.SUBRULENaN(this.dropFormat);
-this.CONSUMENaN(Tokens.PREPARE);
-this.SUBRULENaN(this.uid);
+        this.SUBRULE(this.dropFormat);
+this.CONSUME(Tokens.PREPARE);
+this.SUBRULE(this.uid);
       });
     
 
@@ -4535,13 +4534,13 @@ this.SUBRULENaN(this.uid);
       this.RULE('routineBody', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.blockStatement);
+            this.SUBRULE(this.blockStatement);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.sqlStatement);
+            this.SUBRULE(this.sqlStatement);
           }
         }
       ]);
@@ -4551,48 +4550,48 @@ this.SUBRULENaN(this.uid);
       this.RULE('blockStatement', () => {
         
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.OP);
+          this.SUBRULE(this.uid);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.BEGIN);
+this.CONSUME(Tokens.BEGIN);
 
         this.OPTION(() => {
           
         this.MANY(() => {
-          this.SUBRULENaN(this.declareVariable);
-this.CONSUMENaN(Tokens.SEMI);
+          this.SUBRULE(this.declareVariable);
+this.CONSUME(Tokens.SEMI);
         });
       
 
         this.MANY(() => {
-          this.SUBRULENaN(this.declareCondition);
-this.CONSUMENaN(Tokens.SEMI);
+          this.SUBRULE(this.declareCondition);
+this.CONSUME(Tokens.SEMI);
         });
       
 
         this.MANY(() => {
-          this.SUBRULENaN(this.declareCursor);
-this.CONSUMENaN(Tokens.SEMI);
+          this.SUBRULE(this.declareCursor);
+this.CONSUME(Tokens.SEMI);
         });
       
 
         this.MANY(() => {
-          this.SUBRULENaN(this.declareHandler);
-this.CONSUMENaN(Tokens.SEMI);
+          this.SUBRULE(this.declareHandler);
+this.CONSUME(Tokens.SEMI);
         });
       
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.procedureSqlStatement);
+          this.SUBRULE(this.procedureSqlStatement);
         });
       
         });
       
-this.CONSUMENaN(Tokens.END);
+this.CONSUME(Tokens.END);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
+          this.SUBRULE(this.uid);
         });
       
       });
@@ -4600,75 +4599,75 @@ this.CONSUMENaN(Tokens.END);
 
 
       this.RULE('caseStatement', () => {
-        this.CONSUMENaN(Tokens.CASE);
+        this.CONSUME(Tokens.CASE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
+          this.SUBRULE(this.uid);
 
-this.SUBRULENaN(this.expression);
+this.SUBRULE(this.expression);
         });
       
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.caseAlternative);
+          this.SUBRULE(this.caseAlternative);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ELSE);
+          this.CONSUME(Tokens.ELSE);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.procedureSqlStatement);
+          this.SUBRULE(this.procedureSqlStatement);
         });
       
         });
       
-this.CONSUMENaN(Tokens.END);
-this.CONSUMENaN(Tokens.CASE);
+this.CONSUME(Tokens.END);
+this.CONSUME(Tokens.CASE);
       });
     
 
 
       this.RULE('ifStatement', () => {
-        this.CONSUMENaN(Tokens.IF);
-this.SUBRULENaN(this.expression);
-this.CONSUMENaN(Tokens.THEN);
+        this.CONSUME(Tokens.IF);
+this.SUBRULE(this.expression);
+this.CONSUME(Tokens.THEN);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.thenStatements);
+          this.SUBRULE(this.thenStatements);
         });
       
 
         this.MANY(() => {
-          this.SUBRULENaN(this.elifAlternative);
+          this.SUBRULE(this.elifAlternative);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ELSE);
+          this.CONSUME(Tokens.ELSE);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.elseStatements);
+          this.SUBRULE(this.elseStatements);
         });
       
         });
       
-this.CONSUMENaN(Tokens.END);
-this.CONSUMENaN(Tokens.IF);
+this.CONSUME(Tokens.END);
+this.CONSUME(Tokens.IF);
       });
     
 
 
       this.RULE('iterateStatement', () => {
-        this.CONSUMENaN(Tokens.ITERATE);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.ITERATE);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('leaveStatement', () => {
-        this.CONSUMENaN(Tokens.LEAVE);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.LEAVE);
+this.SUBRULE(this.uid);
       });
     
 
@@ -4676,21 +4675,21 @@ this.SUBRULENaN(this.uid);
       this.RULE('loopStatement', () => {
         
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.OP);
+          this.SUBRULE(this.uid);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.LOOP);
+this.CONSUME(Tokens.LOOP);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.procedureSqlStatement);
+          this.SUBRULE(this.procedureSqlStatement);
         });
       
-this.CONSUMENaN(Tokens.END);
-this.CONSUMENaN(Tokens.LOOP);
+this.CONSUME(Tokens.END);
+this.CONSUME(Tokens.LOOP);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
+          this.SUBRULE(this.uid);
         });
       
       });
@@ -4700,23 +4699,23 @@ this.CONSUMENaN(Tokens.LOOP);
       this.RULE('repeatStatement', () => {
         
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.OP);
+          this.SUBRULE(this.uid);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.REPEAT);
+this.CONSUME(Tokens.REPEAT);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.procedureSqlStatement);
+          this.SUBRULE(this.procedureSqlStatement);
         });
       
-this.CONSUMENaN(Tokens.UNTIL);
-this.SUBRULENaN(this.expression);
-this.CONSUMENaN(Tokens.END);
-this.CONSUMENaN(Tokens.REPEAT);
+this.CONSUME(Tokens.UNTIL);
+this.SUBRULE(this.expression);
+this.CONSUME(Tokens.END);
+this.CONSUME(Tokens.REPEAT);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
+          this.SUBRULE(this.uid);
         });
       
       });
@@ -4724,8 +4723,8 @@ this.CONSUMENaN(Tokens.REPEAT);
 
 
       this.RULE('returnStatement', () => {
-        this.CONSUMENaN(Tokens.RETURN);
-this.SUBRULENaN(this.expression);
+        this.CONSUME(Tokens.RETURN);
+this.SUBRULE(this.expression);
       });
     
 
@@ -4733,23 +4732,23 @@ this.SUBRULENaN(this.expression);
       this.RULE('whileStatement', () => {
         
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.OP);
+          this.SUBRULE(this.uid);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.WHILE);
-this.SUBRULENaN(this.expression);
-this.CONSUMENaN(Tokens.DO);
+this.CONSUME(Tokens.WHILE);
+this.SUBRULE(this.expression);
+this.CONSUME(Tokens.DO);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.procedureSqlStatement);
+          this.SUBRULE(this.procedureSqlStatement);
         });
       
-this.CONSUMENaN(Tokens.END);
-this.CONSUMENaN(Tokens.WHILE);
+this.CONSUME(Tokens.END);
+this.CONSUME(Tokens.WHILE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.uid);
+          this.SUBRULE(this.uid);
         });
       
       });
@@ -4757,20 +4756,20 @@ this.CONSUMENaN(Tokens.WHILE);
 
 
       this.RULE('cursorStatement', () => {
-        this.CONSUMENaN(Tokens.CLOSE);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.CLOSE);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('declareVariable', () => {
-        this.CONSUMENaN(Tokens.DECLARE);
-this.SUBRULENaN(this.uidList);
-this.SUBRULENaN(this.dataType);
+        this.CONSUME(Tokens.DECLARE);
+this.SUBRULE(this.uidList);
+this.SUBRULE(this.dataType);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.DEFAULT);
-this.SUBRULENaN(this.defaultValue);
+          this.CONSUME(Tokens.DEFAULT);
+this.SUBRULE(this.defaultValue);
         });
       
       });
@@ -4778,74 +4777,74 @@ this.SUBRULENaN(this.defaultValue);
 
 
       this.RULE('declareCondition', () => {
-        this.CONSUMENaN(Tokens.DECLARE);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.CONDITION);
-this.CONSUMENaN(Tokens.FOR);
-this.SUBRULENaN(this.decimalLiteral);
+        this.CONSUME(Tokens.DECLARE);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.CONDITION);
+this.CONSUME(Tokens.FOR);
+this.SUBRULE(this.decimalLiteral);
 
-this.CONSUMENaN(Tokens.SQLSTATE);
+this.CONSUME(Tokens.SQLSTATE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.VALUE);
+          this.CONSUME(Tokens.VALUE);
         });
       
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
 
       this.RULE('declareCursor', () => {
-        this.CONSUMENaN(Tokens.DECLARE);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.CURSOR);
-this.CONSUMENaN(Tokens.FOR);
-this.SUBRULENaN(this.selectStatement);
+        this.CONSUME(Tokens.DECLARE);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.CURSOR);
+this.CONSUME(Tokens.FOR);
+this.SUBRULE(this.selectStatement);
       });
     
 
 
       this.RULE('declareHandler', () => {
-        this.CONSUMENaN(Tokens.DECLARE);
-this.SUBRULENaN(this.handlerAction);
-this.CONSUMENaN(Tokens.HANDLER);
-this.CONSUMENaN(Tokens.FOR);
-this.SUBRULENaN(this.handlerConditionValue);
+        this.CONSUME(Tokens.DECLARE);
+this.SUBRULE(this.handlerAction);
+this.CONSUME(Tokens.HANDLER);
+this.CONSUME(Tokens.FOR);
+this.SUBRULE(this.handlerConditionValue);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.handlerConditionValue);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.handlerConditionValue);
         });
       
-this.SUBRULENaN(this.routineBody);
+this.SUBRULE(this.routineBody);
       });
     
 
 
       this.RULE('handlerConditionValue', () => {
-        this.SUBRULENaN(this.decimalLiteral);
+        this.SUBRULE(this.decimalLiteral);
       });
     
 
 
       this.RULE('procedureSqlStatement', () => {
-        this.SUBRULENaN(this.compoundStatement);
+        this.SUBRULE(this.compoundStatement);
 
-this.SUBRULENaN(this.sqlStatement);
-this.CONSUMENaN(Tokens.SEMI);
+this.SUBRULE(this.sqlStatement);
+this.CONSUME(Tokens.SEMI);
       });
     
 
 
       this.RULE('caseAlternative', () => {
-        this.CONSUMENaN(Tokens.WHEN);
-this.SUBRULENaN(this.constant);
+        this.CONSUME(Tokens.WHEN);
+this.SUBRULE(this.constant);
 
-this.SUBRULENaN(this.expression);
-this.CONSUMENaN(Tokens.THEN);
+this.SUBRULE(this.expression);
+this.CONSUME(Tokens.THEN);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.procedureSqlStatement);
+          this.SUBRULE(this.procedureSqlStatement);
         });
       
       });
@@ -4853,12 +4852,12 @@ this.CONSUMENaN(Tokens.THEN);
 
 
       this.RULE('elifAlternative', () => {
-        this.CONSUMENaN(Tokens.ELSEIF);
-this.SUBRULENaN(this.expression);
-this.CONSUMENaN(Tokens.THEN);
+        this.CONSUME(Tokens.ELSEIF);
+this.SUBRULE(this.expression);
+this.CONSUME(Tokens.THEN);
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.procedureSqlStatement);
+          this.SUBRULE(this.procedureSqlStatement);
         });
       
       });
@@ -4866,13 +4865,13 @@ this.CONSUMENaN(Tokens.THEN);
 
 
       this.RULE('alterUser', () => {
-        this.CONSUMENaN(Tokens.ALTER);
-this.CONSUMENaN(Tokens.USER);
-this.SUBRULENaN(this.userSpecification);
+        this.CONSUME(Tokens.ALTER);
+this.CONSUME(Tokens.USER);
+this.SUBRULE(this.userSpecification);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.userSpecification);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.userSpecification);
         });
       
       });
@@ -4880,13 +4879,13 @@ this.SUBRULENaN(this.userSpecification);
 
 
       this.RULE('createUser', () => {
-        this.CONSUMENaN(Tokens.CREATE);
-this.CONSUMENaN(Tokens.USER);
-this.SUBRULENaN(this.userAuthOption);
+        this.CONSUME(Tokens.CREATE);
+this.CONSUME(Tokens.USER);
+this.SUBRULE(this.userAuthOption);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.userAuthOption);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.userAuthOption);
         });
       
       });
@@ -4894,18 +4893,18 @@ this.SUBRULENaN(this.userAuthOption);
 
 
       this.RULE('dropUser', () => {
-        this.CONSUMENaN(Tokens.DROP);
-this.CONSUMENaN(Tokens.USER);
+        this.CONSUME(Tokens.DROP);
+this.CONSUME(Tokens.USER);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.ifExists);
+          this.SUBRULE(this.ifExists);
         });
       
-this.SUBRULENaN(this.userName);
+this.SUBRULE(this.userName);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.userName);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.userName);
         });
       
       });
@@ -4913,56 +4912,56 @@ this.SUBRULENaN(this.userName);
 
 
       this.RULE('grantStatement', () => {
-        this.CONSUMENaN(Tokens.GRANT);
-this.SUBRULENaN(this.privelegeClause);
+        this.CONSUME(Tokens.GRANT);
+this.SUBRULE(this.privelegeClause);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.privelegeClause);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.privelegeClause);
         });
       
-this.CONSUMENaN(Tokens.ON);
+this.CONSUME(Tokens.ON);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.privilegeObject);
+          this.SUBRULE(this.privilegeObject);
         });
       
-this.SUBRULENaN(this.privilegeLevel);
-this.CONSUMENaN(Tokens.TO);
-this.SUBRULENaN(this.userAuthOption);
+this.SUBRULE(this.privilegeLevel);
+this.CONSUME(Tokens.TO);
+this.SUBRULE(this.userAuthOption);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.userAuthOption);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.userAuthOption);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.REQUIRE);
-this.SUBRULENaN(this.tlsNone);
+          this.CONSUME(Tokens.REQUIRE);
+this.SUBRULE(this.tlsNone);
 
-this.SUBRULENaN(this.tlsOption);
+this.SUBRULE(this.tlsOption);
 
         this.MANY(() => {
           
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AND);
+          this.CONSUME(Tokens.AND);
         });
       
-this.SUBRULENaN(this.tlsOption);
+this.SUBRULE(this.tlsOption);
         });
       
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WITH);
+          this.CONSUME(Tokens.WITH);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.GRANT);
-this.CONSUMENaN(Tokens.OPTION);
+          this.CONSUME(Tokens.GRANT);
+this.CONSUME(Tokens.OPTION);
 
-this.SUBRULENaN(this.userResourceOption);
+this.SUBRULE(this.userResourceOption);
         });
       
         });
@@ -4972,23 +4971,23 @@ this.SUBRULENaN(this.userResourceOption);
 
 
       this.RULE('grantProxy', () => {
-        this.CONSUMENaN(Tokens.GRANT);
-this.CONSUMENaN(Tokens.PROXY);
-this.CONSUMENaN(Tokens.ON);
-this.SUBRULENaN(this.fromFirst);
-this.CONSUMENaN(Tokens.TO);
-this.SUBRULENaN(this.toFirst);
+        this.CONSUME(Tokens.GRANT);
+this.CONSUME(Tokens.PROXY);
+this.CONSUME(Tokens.ON);
+this.SUBRULE(this.fromFirst);
+this.CONSUME(Tokens.TO);
+this.SUBRULE(this.toFirst);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.toOther);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.toOther);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WITH);
-this.CONSUMENaN(Tokens.GRANT);
-this.CONSUMENaN(Tokens.OPTION);
+          this.CONSUME(Tokens.WITH);
+this.CONSUME(Tokens.GRANT);
+this.CONSUME(Tokens.OPTION);
         });
       
       });
@@ -4996,13 +4995,13 @@ this.CONSUMENaN(Tokens.OPTION);
 
 
       this.RULE('renameUser', () => {
-        this.CONSUMENaN(Tokens.RENAME);
-this.CONSUMENaN(Tokens.USER);
-this.SUBRULENaN(this.renameUserClause);
+        this.CONSUME(Tokens.RENAME);
+this.CONSUME(Tokens.USER);
+this.SUBRULE(this.renameUserClause);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.renameUserClause);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.renameUserClause);
         });
       
       });
@@ -5010,27 +5009,27 @@ this.SUBRULENaN(this.renameUserClause);
 
 
       this.RULE('revokeStatement', () => {
-        this.CONSUMENaN(Tokens.REVOKE);
-this.SUBRULENaN(this.privelegeClause);
+        this.CONSUME(Tokens.REVOKE);
+this.SUBRULE(this.privelegeClause);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.privelegeClause);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.privelegeClause);
         });
       
-this.CONSUMENaN(Tokens.ON);
+this.CONSUME(Tokens.ON);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.privilegeObject);
+          this.SUBRULE(this.privilegeObject);
         });
       
-this.SUBRULENaN(this.privilegeLevel);
-this.CONSUMENaN(Tokens.FROM);
-this.SUBRULENaN(this.userName);
+this.SUBRULE(this.privilegeLevel);
+this.CONSUME(Tokens.FROM);
+this.SUBRULE(this.userName);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.userName);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.userName);
         });
       
       });
@@ -5038,16 +5037,16 @@ this.SUBRULENaN(this.userName);
 
 
       this.RULE('revokeProxy', () => {
-        this.CONSUMENaN(Tokens.REVOKE);
-this.CONSUMENaN(Tokens.PROXY);
-this.CONSUMENaN(Tokens.ON);
-this.SUBRULENaN(this.onUser);
-this.CONSUMENaN(Tokens.FROM);
-this.SUBRULENaN(this.fromFirst);
+        this.CONSUME(Tokens.REVOKE);
+this.CONSUME(Tokens.PROXY);
+this.CONSUME(Tokens.ON);
+this.SUBRULE(this.onUser);
+this.CONSUME(Tokens.FROM);
+this.SUBRULE(this.fromFirst);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.fromOther);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.fromOther);
         });
       
       });
@@ -5055,35 +5054,35 @@ this.SUBRULENaN(this.fromOther);
 
 
       this.RULE('setPasswordStatement', () => {
-        this.CONSUMENaN(Tokens.SET);
-this.CONSUMENaN(Tokens.PASSWORD);
+        this.CONSUME(Tokens.SET);
+this.CONSUME(Tokens.PASSWORD);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.FOR);
-this.SUBRULENaN(this.userName);
+          this.CONSUME(Tokens.FOR);
+this.SUBRULE(this.userName);
         });
       
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.passwordFunctionClause);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.passwordFunctionClause);
 
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
 
       this.RULE('userSpecification', () => {
-        this.SUBRULENaN(this.userName);
-this.SUBRULENaN(this.userPasswordOption);
+        this.SUBRULE(this.userName);
+this.SUBRULE(this.userPasswordOption);
       });
     
 
 
       this.RULE('userAuthOption', () => {
-        this.SUBRULENaN(this.userName);
-this.CONSUMENaN(Tokens.IDENTIFIED);
-this.CONSUMENaN(Tokens.BY);
-this.CONSUMENaN(Tokens.PASSWORD);
-this.SUBRULENaN(this.hashed);
+        this.SUBRULE(this.userName);
+this.CONSUME(Tokens.IDENTIFIED);
+this.CONSUME(Tokens.BY);
+this.CONSUME(Tokens.PASSWORD);
+this.SUBRULE(this.hashed);
       });
     
 
@@ -5091,34 +5090,34 @@ this.SUBRULENaN(this.hashed);
       this.RULE('tlsOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SSL);
+            this.CONSUME(Tokens.SSL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.X509);
+            this.CONSUME(Tokens.X509);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CIPHER);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.CIPHER);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISSUER);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.ISSUER);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBJECT);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.SUBJECT);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ]);
@@ -5128,29 +5127,29 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
       this.RULE('userResourceOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_QUERIES_PER_HOUR);
-this.SUBRULENaN(this.decimalLiteral);
+            this.CONSUME(Tokens.MAX_QUERIES_PER_HOUR);
+this.SUBRULE(this.decimalLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_UPDATES_PER_HOUR);
-this.SUBRULENaN(this.decimalLiteral);
+            this.CONSUME(Tokens.MAX_UPDATES_PER_HOUR);
+this.SUBRULE(this.decimalLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_CONNECTIONS_PER_HOUR);
-this.SUBRULENaN(this.decimalLiteral);
+            this.CONSUME(Tokens.MAX_CONNECTIONS_PER_HOUR);
+this.SUBRULE(this.decimalLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_USER_CONNECTIONS);
-this.SUBRULENaN(this.decimalLiteral);
+            this.CONSUME(Tokens.MAX_USER_CONNECTIONS);
+this.SUBRULE(this.decimalLiteral);
           }
         }
       ]);
@@ -5158,17 +5157,17 @@ this.SUBRULENaN(this.decimalLiteral);
 
 
       this.RULE('userPasswordOption', () => {
-        this.CONSUMENaN(Tokens.PASSWORD);
-this.CONSUMENaN(Tokens.EXPIRE);
+        this.CONSUME(Tokens.PASSWORD);
+this.CONSUME(Tokens.EXPIRE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.expireType);
+          this.SUBRULE(this.expireType);
 
-this.SUBRULENaN(this.expireType);
+this.SUBRULE(this.expireType);
 
-this.SUBRULENaN(this.expireType);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.DAY);
+this.SUBRULE(this.expireType);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.DAY);
         });
       
       });
@@ -5176,19 +5175,19 @@ this.CONSUMENaN(Tokens.DAY);
 
 
       this.RULE('userLockOption', () => {
-        this.CONSUMENaN(Tokens.ACCOUNT);
-this.SUBRULENaN(this.lockType);
+        this.CONSUME(Tokens.ACCOUNT);
+this.SUBRULE(this.lockType);
       });
     
 
 
       this.RULE('privelegeClause', () => {
-        this.SUBRULENaN(this.privilege);
+        this.SUBRULE(this.privilege);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
       });
@@ -5198,10 +5197,10 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('privilege', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ALL);
+            this.CONSUME(Tokens.ALL);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PRIVILEGES);
+          this.CONSUME(Tokens.PRIVILEGES);
         });
       
           }
@@ -5209,10 +5208,10 @@ this.CONSUMENaN(Tokens.OP);
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ALTER);
+            this.CONSUME(Tokens.ALTER);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ROUTINE);
+          this.CONSUME(Tokens.ROUTINE);
         });
       
           }
@@ -5220,19 +5219,19 @@ this.CONSUMENaN(Tokens.OP);
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CREATE);
+            this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.TEMPORARY);
-this.CONSUMENaN(Tokens.TABLES);
+          this.CONSUME(Tokens.TEMPORARY);
+this.CONSUME(Tokens.TABLES);
 
-this.CONSUMENaN(Tokens.ROUTINE);
+this.CONSUME(Tokens.ROUTINE);
 
-this.CONSUMENaN(Tokens.VIEW);
+this.CONSUME(Tokens.VIEW);
 
-this.CONSUMENaN(Tokens.USER);
+this.CONSUME(Tokens.USER);
 
-this.CONSUMENaN(Tokens.TABLESPACE);
+this.CONSUME(Tokens.TABLESPACE);
         });
       
           }
@@ -5240,135 +5239,135 @@ this.CONSUMENaN(Tokens.TABLESPACE);
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DELETE);
+            this.CONSUME(Tokens.DELETE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DROP);
+            this.CONSUME(Tokens.DROP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EVENT);
+            this.CONSUME(Tokens.EVENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXECUTE);
+            this.CONSUME(Tokens.EXECUTE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FILE);
+            this.CONSUME(Tokens.FILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GRANT);
-this.CONSUMENaN(Tokens.OPTION);
+            this.CONSUME(Tokens.GRANT);
+this.CONSUME(Tokens.OPTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INDEX);
+            this.CONSUME(Tokens.INDEX);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INSERT);
+            this.CONSUME(Tokens.INSERT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCK);
-this.CONSUMENaN(Tokens.TABLES);
+            this.CONSUME(Tokens.LOCK);
+this.CONSUME(Tokens.TABLES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROCESS);
+            this.CONSUME(Tokens.PROCESS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROXY);
+            this.CONSUME(Tokens.PROXY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REFERENCES);
+            this.CONSUME(Tokens.REFERENCES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELOAD);
+            this.CONSUME(Tokens.RELOAD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATION);
-this.CONSUMENaN(Tokens.CLIENT);
+            this.CONSUME(Tokens.REPLICATION);
+this.CONSUME(Tokens.CLIENT);
 
-this.CONSUMENaN(Tokens.SLAVE);
+this.CONSUME(Tokens.SLAVE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SELECT);
+            this.CONSUME(Tokens.SELECT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHOW);
-this.CONSUMENaN(Tokens.VIEW);
+            this.CONSUME(Tokens.SHOW);
+this.CONSUME(Tokens.VIEW);
 
-this.CONSUMENaN(Tokens.DATABASES);
+this.CONSUME(Tokens.DATABASES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHUTDOWN);
+            this.CONSUME(Tokens.SHUTDOWN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUPER);
+            this.CONSUME(Tokens.SUPER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TRIGGER);
+            this.CONSUME(Tokens.TRIGGER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UPDATE);
+            this.CONSUME(Tokens.UPDATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.USAGE);
+            this.CONSUME(Tokens.USAGE);
           }
         }
       ]);
@@ -5376,39 +5375,39 @@ this.CONSUMENaN(Tokens.DATABASES);
 
 
       this.RULE('privilegeLevel', () => {
-        this.CONSUMENaN(Tokens.OP);
+        this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('renameUserClause', () => {
-        this.SUBRULENaN(this.fromFirst);
-this.CONSUMENaN(Tokens.TO);
-this.SUBRULENaN(this.toFirst);
+        this.SUBRULE(this.fromFirst);
+this.CONSUME(Tokens.TO);
+this.SUBRULE(this.toFirst);
       });
     
 
 
       this.RULE('analyzeTable', () => {
-        this.CONSUMENaN(Tokens.ANALYZE);
+        this.CONSUME(Tokens.ANALYZE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.actionOption);
+          this.SUBRULE(this.actionOption);
         });
       
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tables);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tables);
       });
     
 
 
       this.RULE('checkTable', () => {
-        this.CONSUMENaN(Tokens.CHECK);
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tables);
+        this.CONSUME(Tokens.CHECK);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tables);
 
         this.MANY(() => {
-          this.SUBRULENaN(this.checkTableOption);
+          this.SUBRULE(this.checkTableOption);
         });
       
       });
@@ -5416,12 +5415,12 @@ this.SUBRULENaN(this.tables);
 
 
       this.RULE('checksumTable', () => {
-        this.CONSUMENaN(Tokens.CHECKSUM);
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tables);
+        this.CONSUME(Tokens.CHECKSUM);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tables);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.actionOption);
+          this.SUBRULE(this.actionOption);
         });
       
       });
@@ -5429,40 +5428,40 @@ this.SUBRULENaN(this.tables);
 
 
       this.RULE('optimizeTable', () => {
-        this.CONSUMENaN(Tokens.OPTIMIZE);
+        this.CONSUME(Tokens.OPTIMIZE);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.actionOption);
+          this.SUBRULE(this.actionOption);
         });
       
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tables);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tables);
       });
     
 
 
       this.RULE('repairTable', () => {
-        this.CONSUMENaN(Tokens.REPAIR);
+        this.CONSUME(Tokens.REPAIR);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.actionOption);
+          this.SUBRULE(this.actionOption);
         });
       
-this.CONSUMENaN(Tokens.TABLE);
-this.SUBRULENaN(this.tables);
+this.CONSUME(Tokens.TABLE);
+this.SUBRULE(this.tables);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.QUICK);
-        });
-      
-
-        this.OPTION(() => {
-          this.CONSUMENaN(Tokens.EXTENDED);
+          this.CONSUME(Tokens.QUICK);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.USE_FRM);
+          this.CONSUME(Tokens.EXTENDED);
+        });
+      
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.USE_FRM);
         });
       
       });
@@ -5472,38 +5471,38 @@ this.SUBRULENaN(this.tables);
       this.RULE('checkTableOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FOR);
-this.CONSUMENaN(Tokens.UPGRADE);
+            this.CONSUME(Tokens.FOR);
+this.CONSUME(Tokens.UPGRADE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.QUICK);
+            this.CONSUME(Tokens.QUICK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FAST);
+            this.CONSUME(Tokens.FAST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MEDIUM);
+            this.CONSUME(Tokens.MEDIUM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXTENDED);
+            this.CONSUME(Tokens.EXTENDED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHANGED);
+            this.CONSUME(Tokens.CHANGED);
           }
         }
       ]);
@@ -5511,51 +5510,51 @@ this.CONSUMENaN(Tokens.UPGRADE);
 
 
       this.RULE('createUdfunction', () => {
-        this.CONSUMENaN(Tokens.CREATE);
+        this.CONSUME(Tokens.CREATE);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.AGGREGATE);
+          this.CONSUME(Tokens.AGGREGATE);
         });
       
-this.CONSUMENaN(Tokens.FUNCTION);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.RETURNS);
-this.SUBRULENaN(this.returnType);
-this.CONSUMENaN(Tokens.SONAME);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+this.CONSUME(Tokens.FUNCTION);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.RETURNS);
+this.SUBRULE(this.returnType);
+this.CONSUME(Tokens.SONAME);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
 
       this.RULE('installPlugin', () => {
-        this.CONSUMENaN(Tokens.INSTALL);
-this.CONSUMENaN(Tokens.PLUGIN);
-this.SUBRULENaN(this.uid);
-this.CONSUMENaN(Tokens.SONAME);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.INSTALL);
+this.CONSUME(Tokens.PLUGIN);
+this.SUBRULE(this.uid);
+this.CONSUME(Tokens.SONAME);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
 
       this.RULE('uninstallPlugin', () => {
-        this.CONSUMENaN(Tokens.UNINSTALL);
-this.CONSUMENaN(Tokens.PLUGIN);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.UNINSTALL);
+this.CONSUME(Tokens.PLUGIN);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('setStatement', () => {
-        this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.variableClause);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expression);
+        this.CONSUME(Tokens.SET);
+this.SUBRULE(this.variableClause);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expression);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.variableClause);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.variableClause);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expression);
         });
       
       });
@@ -5563,9 +5562,9 @@ this.SUBRULENaN(this.expression);
 
 
       this.RULE('showStatement', () => {
-        this.CONSUMENaN(Tokens.SHOW);
-this.SUBRULENaN(this.logFormat);
-this.CONSUMENaN(Tokens.LOGS);
+        this.CONSUME(Tokens.SHOW);
+this.SUBRULE(this.logFormat);
+this.CONSUME(Tokens.LOGS);
       });
     
 
@@ -5573,13 +5572,13 @@ this.CONSUMENaN(Tokens.LOGS);
       this.RULE('variableClause', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCAL_ID);
+            this.CONSUME(Tokens.LOCAL_ID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GLOBAL_ID);
+            this.CONSUME(Tokens.GLOBAL_ID);
           }
         }
       ,
@@ -5589,16 +5588,16 @@ this.CONSUMENaN(Tokens.LOGS);
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.GLOBAL);
+this.CONSUME(Tokens.GLOBAL);
 
-this.CONSUMENaN(Tokens.SESSION);
+this.CONSUME(Tokens.SESSION);
         });
       
-this.SUBRULENaN(this.uid);
+this.SUBRULE(this.uid);
           }
         }
       ]);
@@ -5608,40 +5607,40 @@ this.SUBRULENaN(this.uid);
       this.RULE('showCommonEntity', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHARACTER);
-this.CONSUMENaN(Tokens.SET);
+            this.CONSUME(Tokens.CHARACTER);
+this.CONSUME(Tokens.SET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COLLATION);
+            this.CONSUME(Tokens.COLLATION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATABASES);
+            this.CONSUME(Tokens.DATABASES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SCHEMAS);
+            this.CONSUME(Tokens.SCHEMAS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FUNCTION);
-this.CONSUMENaN(Tokens.STATUS);
+            this.CONSUME(Tokens.FUNCTION);
+this.CONSUME(Tokens.STATUS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROCEDURE);
-this.CONSUMENaN(Tokens.STATUS);
+            this.CONSUME(Tokens.PROCEDURE);
+this.CONSUME(Tokens.STATUS);
           }
         }
       ,
@@ -5649,14 +5648,14 @@ this.CONSUMENaN(Tokens.STATUS);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.GLOBAL);
+          this.CONSUME(Tokens.GLOBAL);
 
-this.CONSUMENaN(Tokens.SESSION);
+this.CONSUME(Tokens.SESSION);
         });
       
-this.CONSUMENaN(Tokens.STATUS);
+this.CONSUME(Tokens.STATUS);
 
-this.CONSUMENaN(Tokens.VARIABLES);
+this.CONSUME(Tokens.VARIABLES);
           }
         }
       ]);
@@ -5666,15 +5665,15 @@ this.CONSUMENaN(Tokens.VARIABLES);
       this.RULE('showFilter', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LIKE);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.LIKE);
+this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WHERE);
-this.SUBRULENaN(this.expression);
+            this.CONSUME(Tokens.WHERE);
+this.SUBRULE(this.expression);
           }
         }
       ]);
@@ -5686,29 +5685,29 @@ this.SUBRULENaN(this.expression);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.STORAGE);
+          this.CONSUME(Tokens.STORAGE);
         });
       
-this.CONSUMENaN(Tokens.ENGINES);
+this.CONSUME(Tokens.ENGINES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER);
-this.CONSUMENaN(Tokens.STATUS);
+            this.CONSUME(Tokens.MASTER);
+this.CONSUME(Tokens.STATUS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PLUGINS);
+            this.CONSUME(Tokens.PLUGINS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PRIVILEGES);
+            this.CONSUME(Tokens.PRIVILEGES);
           }
         }
       ,
@@ -5716,35 +5715,35 @@ this.CONSUMENaN(Tokens.STATUS);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.FULL);
+          this.CONSUME(Tokens.FULL);
         });
       
-this.CONSUMENaN(Tokens.PROCESSLIST);
+this.CONSUME(Tokens.PROCESSLIST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROFILES);
+            this.CONSUME(Tokens.PROFILES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SLAVE);
-this.CONSUMENaN(Tokens.HOSTS);
+            this.CONSUME(Tokens.SLAVE);
+this.CONSUME(Tokens.HOSTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AUTHORS);
+            this.CONSUME(Tokens.AUTHORS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONTRIBUTORS);
+            this.CONSUME(Tokens.CONTRIBUTORS);
           }
         }
       ]);
@@ -5754,14 +5753,14 @@ this.CONSUMENaN(Tokens.HOSTS);
       this.RULE('showSchemaEntity', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EVENTS);
+            this.CONSUME(Tokens.EVENTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TABLE);
-this.CONSUMENaN(Tokens.STATUS);
+            this.CONSUME(Tokens.TABLE);
+this.CONSUME(Tokens.STATUS);
           }
         }
       ,
@@ -5769,16 +5768,16 @@ this.CONSUMENaN(Tokens.STATUS);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.FULL);
+          this.CONSUME(Tokens.FULL);
         });
       
-this.CONSUMENaN(Tokens.TABLES);
+this.CONSUME(Tokens.TABLES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TRIGGERS);
+            this.CONSUME(Tokens.TRIGGERS);
           }
         }
       ]);
@@ -5788,58 +5787,58 @@ this.CONSUMENaN(Tokens.TABLES);
       this.RULE('showProfileType', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ALL);
+            this.CONSUME(Tokens.ALL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BLOCK);
-this.CONSUMENaN(Tokens.IO);
+            this.CONSUME(Tokens.BLOCK);
+this.CONSUME(Tokens.IO);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONTEXT);
-this.CONSUMENaN(Tokens.SWITCHES);
+            this.CONSUME(Tokens.CONTEXT);
+this.CONSUME(Tokens.SWITCHES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CPU);
+            this.CONSUME(Tokens.CPU);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IPC);
+            this.CONSUME(Tokens.IPC);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MEMORY);
+            this.CONSUME(Tokens.MEMORY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PAGE);
-this.CONSUMENaN(Tokens.FAULTS);
+            this.CONSUME(Tokens.PAGE);
+this.CONSUME(Tokens.FAULTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SOURCE);
+            this.CONSUME(Tokens.SOURCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SWAPS);
+            this.CONSUME(Tokens.SWAPS);
           }
         }
       ]);
@@ -5847,50 +5846,50 @@ this.CONSUMENaN(Tokens.FAULTS);
 
 
       this.RULE('binlogStatement', () => {
-        this.CONSUMENaN(Tokens.BINLOG);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.BINLOG);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
 
       this.RULE('cacheIndexStatement', () => {
-        this.CONSUMENaN(Tokens.CACHE);
-this.CONSUMENaN(Tokens.INDEX);
-this.SUBRULENaN(this.tableIndexes);
+        this.CONSUME(Tokens.CACHE);
+this.CONSUME(Tokens.INDEX);
+this.SUBRULE(this.tableIndexes);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.tableIndexes);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.tableIndexes);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
+          this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
 
-this.CONSUMENaN(Tokens.ALL);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.ALL);
+this.CONSUME(Tokens.OP);
         });
       
-this.CONSUMENaN(Tokens.IN);
-this.SUBRULENaN(this.schema);
+this.CONSUME(Tokens.IN);
+this.SUBRULE(this.schema);
       });
     
 
 
       this.RULE('flushStatement', () => {
-        this.CONSUMENaN(Tokens.FLUSH);
+        this.CONSUME(Tokens.FLUSH);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.flushFormat);
+          this.SUBRULE(this.flushFormat);
         });
       
-this.SUBRULENaN(this.flushOption);
+this.SUBRULE(this.flushOption);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.flushOption);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.flushOption);
         });
       
       });
@@ -5898,15 +5897,15 @@ this.SUBRULENaN(this.flushOption);
 
 
       this.RULE('killStatement', () => {
-        this.CONSUMENaN(Tokens.KILL);
+        this.CONSUME(Tokens.KILL);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.connectionFormat);
+          this.SUBRULE(this.connectionFormat);
         });
       
 
         this.AT_LEAST_ONE(() => {
-          this.SUBRULENaN(this.decimalLiteral);
+          this.SUBRULE(this.decimalLiteral);
         });
       
       });
@@ -5914,15 +5913,15 @@ this.SUBRULENaN(this.flushOption);
 
 
       this.RULE('loadIndexIntoCache', () => {
-        this.CONSUMENaN(Tokens.LOAD);
-this.CONSUMENaN(Tokens.INDEX);
-this.CONSUMENaN(Tokens.INTO);
-this.CONSUMENaN(Tokens.CACHE);
-this.SUBRULENaN(this.loadedTableIndexes);
+        this.CONSUME(Tokens.LOAD);
+this.CONSUME(Tokens.INDEX);
+this.CONSUME(Tokens.INTO);
+this.CONSUME(Tokens.CACHE);
+this.SUBRULE(this.loadedTableIndexes);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.loadedTableIndexes);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.loadedTableIndexes);
         });
       
       });
@@ -5930,31 +5929,31 @@ this.SUBRULENaN(this.loadedTableIndexes);
 
 
       this.RULE('resetStatement', () => {
-        this.CONSUMENaN(Tokens.RESET);
-this.CONSUMENaN(Tokens.QUERY);
-this.CONSUMENaN(Tokens.CACHE);
+        this.CONSUME(Tokens.RESET);
+this.CONSUME(Tokens.QUERY);
+this.CONSUME(Tokens.CACHE);
       });
     
 
 
       this.RULE('shutdownStatement', () => {
-        this.CONSUMENaN(Tokens.SHUTDOWN);
+        this.CONSUME(Tokens.SHUTDOWN);
       });
     
 
 
       this.RULE('tableIndexes', () => {
-        this.SUBRULENaN(this.tableName);
+        this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.SUBRULENaN(this.indexFormat);
+          this.SUBRULE(this.indexFormat);
         });
       
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uidList);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uidList);
+this.CONSUME(Tokens.OP);
         });
       
       });
@@ -5962,44 +5961,44 @@ this.CONSUMENaN(Tokens.OP);
 
 
       this.RULE('flushOption', () => {
-        this.CONSUMENaN(Tokens.DES_KEY_FILE);
+        this.CONSUME(Tokens.DES_KEY_FILE);
 
-this.CONSUMENaN(Tokens.HOSTS);
+this.CONSUME(Tokens.HOSTS);
 
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.BINARY);
+          this.CONSUME(Tokens.BINARY);
 
-this.CONSUMENaN(Tokens.ENGINE);
+this.CONSUME(Tokens.ENGINE);
 
-this.CONSUMENaN(Tokens.ERROR);
+this.CONSUME(Tokens.ERROR);
 
-this.CONSUMENaN(Tokens.GENERAL);
+this.CONSUME(Tokens.GENERAL);
 
-this.CONSUMENaN(Tokens.RELAY);
+this.CONSUME(Tokens.RELAY);
 
-this.CONSUMENaN(Tokens.SLOW);
+this.CONSUME(Tokens.SLOW);
         });
       
-this.CONSUMENaN(Tokens.LOGS);
+this.CONSUME(Tokens.LOGS);
 
-this.CONSUMENaN(Tokens.OPTIMIZER_COSTS);
+this.CONSUME(Tokens.OPTIMIZER_COSTS);
 
-this.CONSUMENaN(Tokens.PRIVILEGES);
+this.CONSUME(Tokens.PRIVILEGES);
 
-this.CONSUMENaN(Tokens.QUERY);
-this.CONSUMENaN(Tokens.CACHE);
+this.CONSUME(Tokens.QUERY);
+this.CONSUME(Tokens.CACHE);
 
-this.CONSUMENaN(Tokens.STATUS);
+this.CONSUME(Tokens.STATUS);
 
-this.CONSUMENaN(Tokens.USER_RESOURCES);
+this.CONSUME(Tokens.USER_RESOURCES);
 
-this.CONSUMENaN(Tokens.TABLES);
+this.CONSUME(Tokens.TABLES);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.WITH);
-this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.LOCK);
+          this.CONSUME(Tokens.WITH);
+this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.LOCK);
         });
       
       });
@@ -6009,16 +6008,16 @@ this.CONSUMENaN(Tokens.LOCK);
       this.RULE('flushTableOption', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WITH);
-this.CONSUMENaN(Tokens.READ);
-this.CONSUMENaN(Tokens.LOCK);
+            this.CONSUME(Tokens.WITH);
+this.CONSUME(Tokens.READ);
+this.CONSUME(Tokens.LOCK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FOR);
-this.CONSUMENaN(Tokens.EXPORT);
+            this.CONSUME(Tokens.FOR);
+this.CONSUME(Tokens.EXPORT);
           }
         }
       ]);
@@ -6026,33 +6025,33 @@ this.CONSUMENaN(Tokens.EXPORT);
 
 
       this.RULE('loadedTableIndexes', () => {
-        this.SUBRULENaN(this.tableName);
+        this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.PARTITION);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.partitionList);
+          this.CONSUME(Tokens.PARTITION);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.partitionList);
 
-this.CONSUMENaN(Tokens.ALL);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.ALL);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
           
         this.OPTION(() => {
-          this.SUBRULENaN(this.indexFormat);
+          this.SUBRULE(this.indexFormat);
         });
       
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.indexList);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.indexList);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.IGNORE);
-this.CONSUMENaN(Tokens.LEAVES);
+          this.CONSUME(Tokens.IGNORE);
+this.CONSUME(Tokens.LEAVES);
         });
       
       });
@@ -6060,13 +6059,13 @@ this.CONSUMENaN(Tokens.LEAVES);
 
 
       this.RULE('simpleDescribeStatement', () => {
-        this.SUBRULENaN(this.command);
-this.SUBRULENaN(this.tableName);
+        this.SUBRULE(this.command);
+this.SUBRULE(this.tableName);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.column);
+          this.SUBRULE(this.column);
 
-this.SUBRULENaN(this.pattern);
+this.SUBRULE(this.pattern);
         });
       
       });
@@ -6074,55 +6073,55 @@ this.SUBRULENaN(this.pattern);
 
 
       this.RULE('fullDescribeStatement', () => {
-        this.SUBRULENaN(this.command);
+        this.SUBRULE(this.command);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.formatType);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.formatValue);
+          this.SUBRULE(this.formatType);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.formatValue);
         });
       
-this.SUBRULENaN(this.describeObjectClause);
+this.SUBRULE(this.describeObjectClause);
       });
     
 
 
       this.RULE('helpStatement', () => {
-        this.CONSUMENaN(Tokens.HELP);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.HELP);
+this.CONSUME(Tokens.STRING_LITERAL);
       });
     
 
 
       this.RULE('useStatement', () => {
-        this.CONSUMENaN(Tokens.USE);
-this.SUBRULENaN(this.uid);
+        this.CONSUME(Tokens.USE);
+this.SUBRULE(this.uid);
       });
     
 
 
       this.RULE('describeObjectClause', () => {
-        this.SUBRULENaN(this.selectStatement);
+        this.SUBRULE(this.selectStatement);
 
-this.SUBRULENaN(this.deleteStatement);
+this.SUBRULE(this.deleteStatement);
 
-this.SUBRULENaN(this.insertStatement);
+this.SUBRULE(this.insertStatement);
 
-this.SUBRULENaN(this.replaceStatement);
+this.SUBRULE(this.replaceStatement);
 
-this.SUBRULENaN(this.updateStatement);
+this.SUBRULE(this.updateStatement);
       });
     
 
 
       this.RULE('fullId', () => {
-        this.SUBRULENaN(this.uid);
+        this.SUBRULE(this.uid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.DOT_ID);
+          this.CONSUME(Tokens.DOT_ID);
 
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uid);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uid);
         });
       
       });
@@ -6130,19 +6129,19 @@ this.SUBRULENaN(this.uid);
 
 
       this.RULE('tableName', () => {
-        this.SUBRULENaN(this.fullId);
+        this.SUBRULE(this.fullId);
       });
     
 
 
       this.RULE('fullColumnName', () => {
-        this.SUBRULENaN(this.uid);
+        this.SUBRULE(this.uid);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.dottedId);
+          this.SUBRULE(this.dottedId);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.dottedId);
+          this.SUBRULE(this.dottedId);
         });
       
         });
@@ -6152,17 +6151,17 @@ this.SUBRULENaN(this.uid);
 
 
       this.RULE('indexColumnName', () => {
-        this.SUBRULENaN(this.uid);
+        this.SUBRULE(this.uid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
         });
       
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.sortType);
+          this.SUBRULE(this.sortType);
         });
       
       });
@@ -6172,13 +6171,13 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('userName', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRING_USER_NAME);
+            this.CONSUME(Tokens.STRING_USER_NAME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ID);
+            this.CONSUME(Tokens.ID);
           }
         }
       ]);
@@ -6188,13 +6187,13 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('mysqlVariable', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCAL_ID);
+            this.CONSUME(Tokens.LOCAL_ID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GLOBAL_ID);
+            this.CONSUME(Tokens.GLOBAL_ID);
           }
         }
       ]);
@@ -6204,25 +6203,25 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('charsetName', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BINARY);
+            this.CONSUME(Tokens.BINARY);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.charsetNameBase);
+            this.SUBRULE(this.charsetNameBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHARSET_REVERSE_QOUTE_STRING);
+            this.CONSUME(Tokens.CHARSET_REVERSE_QOUTE_STRING);
           }
         }
       ]);
@@ -6232,13 +6231,13 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('collationName', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.uid);
+            this.SUBRULE(this.uid);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ]);
@@ -6248,67 +6247,67 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('engineName', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ARCHIVE);
+            this.CONSUME(Tokens.ARCHIVE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BLACKHOLE);
+            this.CONSUME(Tokens.BLACKHOLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CSV);
+            this.CONSUME(Tokens.CSV);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FEDERATED);
+            this.CONSUME(Tokens.FEDERATED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INNODB);
+            this.CONSUME(Tokens.INNODB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MEMORY);
+            this.CONSUME(Tokens.MEMORY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MRG_MYISAM);
+            this.CONSUME(Tokens.MRG_MYISAM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MYISAM);
+            this.CONSUME(Tokens.MYISAM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NDB);
+            this.CONSUME(Tokens.NDB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NDBCLUSTER);
+            this.CONSUME(Tokens.NDBCLUSTER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PERFOMANCE_SCHEMA);
+            this.CONSUME(Tokens.PERFOMANCE_SCHEMA);
           }
         }
       ]);
@@ -6316,21 +6315,21 @@ this.CONSUMENaN(Tokens.OP);
 
 
       this.RULE('uuidSet', () => {
-        this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
+        this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
 
         this.AT_LEAST_ONE(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
         });
       
       });
@@ -6338,15 +6337,15 @@ this.SUBRULENaN(this.decimalLiteral);
 
 
       this.RULE('xid', () => {
-        this.SUBRULENaN(this.globalTableUid);
+        this.SUBRULE(this.globalTableUid);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.qualifier);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.qualifier);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.idFormat);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.idFormat);
         });
       
         });
@@ -6358,13 +6357,13 @@ this.SUBRULENaN(this.idFormat);
       this.RULE('xuidStringId', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIT_STRING);
+            this.CONSUME(Tokens.BIT_STRING);
           }
         }
       ,
@@ -6372,7 +6371,7 @@ this.SUBRULENaN(this.idFormat);
           ALT: () => {
             
         this.AT_LEAST_ONE(() => {
-          this.CONSUMENaN(Tokens.HEXADECIMAL_LITERAL);
+          this.CONSUME(Tokens.HEXADECIMAL_LITERAL);
         });
       
           }
@@ -6384,13 +6383,13 @@ this.SUBRULENaN(this.idFormat);
       this.RULE('authPlugin', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.uid);
+            this.SUBRULE(this.uid);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRING_LITERAL);
+            this.CONSUME(Tokens.STRING_LITERAL);
           }
         }
       ]);
@@ -6400,19 +6399,19 @@ this.SUBRULENaN(this.idFormat);
       this.RULE('uid', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.simpleId);
+            this.SUBRULE(this.simpleId);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REVERSE_QUOTE_ID);
+            this.CONSUME(Tokens.REVERSE_QUOTE_ID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHARSET_REVERSE_QOUTE_STRING);
+            this.CONSUME(Tokens.CHARSET_REVERSE_QOUTE_STRING);
           }
         }
       ]);
@@ -6422,55 +6421,55 @@ this.SUBRULENaN(this.idFormat);
       this.RULE('simpleId', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ID);
+            this.CONSUME(Tokens.ID);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.charsetNameBase);
+            this.SUBRULE(this.charsetNameBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.transactionLevelBase);
+            this.SUBRULE(this.transactionLevelBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.engineName);
+            this.SUBRULE(this.engineName);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.privilegesBase);
+            this.SUBRULE(this.privilegesBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.intervalTypeBase);
+            this.SUBRULE(this.intervalTypeBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.dataTypeBase);
+            this.SUBRULE(this.dataTypeBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.keywordsCanBeId);
+            this.SUBRULE(this.keywordsCanBeId);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.functionNameBase);
+            this.SUBRULE(this.functionNameBase);
           }
         }
       ]);
@@ -6480,14 +6479,14 @@ this.SUBRULENaN(this.idFormat);
       this.RULE('dottedId', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DOT_ID);
+            this.CONSUME(Tokens.DOT_ID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uid);
+            this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uid);
           }
         }
       ]);
@@ -6497,25 +6496,25 @@ this.SUBRULENaN(this.uid);
       this.RULE('decimalLiteral', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DECIMAL_LITERAL);
+            this.CONSUME(Tokens.DECIMAL_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ZERO_DECIMAL);
+            this.CONSUME(Tokens.ZERO_DECIMAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ONE_DECIMAL);
+            this.CONSUME(Tokens.ONE_DECIMAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TWO_DECIMAL);
+            this.CONSUME(Tokens.TWO_DECIMAL);
           }
         }
       ]);
@@ -6525,13 +6524,13 @@ this.SUBRULENaN(this.uid);
       this.RULE('fileSizeLiteral', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FILESIZE_LITERAL);
+            this.CONSUME(Tokens.FILESIZE_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.decimalLiteral);
+            this.SUBRULE(this.decimalLiteral);
           }
         }
       ]);
@@ -6543,15 +6542,15 @@ this.SUBRULENaN(this.uid);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.STRING_CHARSET_NAME);
+          this.CONSUME(Tokens.STRING_CHARSET_NAME);
         });
       
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+this.CONSUME(Tokens.STRING_LITERAL);
 
-this.CONSUMENaN(Tokens.START_NATIONAL_STRING_LITERAL);
+this.CONSUME(Tokens.START_NATIONAL_STRING_LITERAL);
 
         this.AT_LEAST_ONE(() => {
-          this.CONSUMENaN(Tokens.STRING_LITERAL);
+          this.CONSUME(Tokens.STRING_LITERAL);
         });
       
           }
@@ -6561,16 +6560,16 @@ this.CONSUMENaN(Tokens.START_NATIONAL_STRING_LITERAL);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.STRING_CHARSET_NAME);
+          this.CONSUME(Tokens.STRING_CHARSET_NAME);
         });
       
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+this.CONSUME(Tokens.STRING_LITERAL);
 
-this.CONSUMENaN(Tokens.START_NATIONAL_STRING_LITERAL);
+this.CONSUME(Tokens.START_NATIONAL_STRING_LITERAL);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.COLLATE);
-this.SUBRULENaN(this.collationName);
+          this.CONSUME(Tokens.COLLATE);
+this.SUBRULE(this.collationName);
         });
       
           }
@@ -6582,13 +6581,13 @@ this.SUBRULENaN(this.collationName);
       this.RULE('booleanLiteral', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TRUE);
+            this.CONSUME(Tokens.TRUE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FALSE);
+            this.CONSUME(Tokens.FALSE);
           }
         }
       ]);
@@ -6598,10 +6597,10 @@ this.SUBRULENaN(this.collationName);
       this.RULE('hexadecimalLiteral', () => {
         
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.STRING_CHARSET_NAME);
+          this.CONSUME(Tokens.STRING_CHARSET_NAME);
         });
       
-this.CONSUMENaN(Tokens.HEXADECIMAL_LITERAL);
+this.CONSUME(Tokens.HEXADECIMAL_LITERAL);
       });
     
 
@@ -6609,12 +6608,12 @@ this.CONSUMENaN(Tokens.HEXADECIMAL_LITERAL);
       this.RULE('nullNotnull', () => {
         
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.NOT);
+          this.CONSUME(Tokens.NOT);
         });
       
-this.CONSUMENaN(Tokens.NULL_LITERAL);
+this.CONSUME(Tokens.NULL_LITERAL);
 
-this.CONSUMENaN(Tokens.NULL_SPEC_LITERAL);
+this.CONSUME(Tokens.NULL_SPEC_LITERAL);
       });
     
 
@@ -6622,37 +6621,37 @@ this.CONSUMENaN(Tokens.NULL_SPEC_LITERAL);
       this.RULE('constant', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.stringLiteral);
+            this.SUBRULE(this.stringLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.decimalLiteral);
+            this.SUBRULE(this.decimalLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.hexadecimalLiteral);
+            this.SUBRULE(this.hexadecimalLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.booleanLiteral);
+            this.SUBRULE(this.booleanLiteral);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REAL_LITERAL);
+            this.CONSUME(Tokens.REAL_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIT_STRING);
+            this.CONSUME(Tokens.BIT_STRING);
           }
         }
       ,
@@ -6660,10 +6659,10 @@ this.CONSUMENaN(Tokens.NULL_SPEC_LITERAL);
           ALT: () => {
             
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.NOT);
+          this.CONSUME(Tokens.NOT);
         });
       
-this.SUBRULENaN(this.nullLiteral);
+this.SUBRULE(this.nullLiteral);
           }
         }
       ]);
@@ -6671,28 +6670,28 @@ this.SUBRULENaN(this.nullLiteral);
 
 
       this.RULE('dataType', () => {
-        this.SUBRULENaN(this.typeName);
+        this.SUBRULE(this.typeName);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.lengthOneDimension);
+          this.SUBRULE(this.lengthOneDimension);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.BINARY);
+          this.CONSUME(Tokens.BINARY);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.CHARACTER);
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.charsetName);
+          this.CONSUME(Tokens.CHARACTER);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.charsetName);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.COLLATE);
-this.SUBRULENaN(this.collationName);
+          this.CONSUME(Tokens.COLLATE);
+this.SUBRULE(this.collationName);
         });
       
       });
@@ -6702,10 +6701,10 @@ this.SUBRULENaN(this.collationName);
       this.RULE('convertedDataType', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.typeName);
+            this.SUBRULE(this.typeName);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.lengthOneDimension);
+          this.SUBRULE(this.lengthOneDimension);
         });
       
           }
@@ -6713,34 +6712,17 @@ this.SUBRULENaN(this.collationName);
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.typeName);
+            this.SUBRULE(this.typeName);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.lengthOneDimension);
+          this.SUBRULE(this.lengthOneDimension);
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.CHARACTER);
-this.CONSUMENaN(Tokens.SET);
-this.SUBRULENaN(this.charsetName);
-        });
-      
-          }
-        }
-      ,
-        {
-          ALT: () => {
-            this.SUBRULENaN(this.typeName);
-          }
-        }
-      ,
-        {
-          ALT: () => {
-            this.SUBRULENaN(this.typeName);
-
-        this.OPTION(() => {
-          this.SUBRULENaN(this.lengthTwoDimension);
+          this.CONSUME(Tokens.CHARACTER);
+this.CONSUME(Tokens.SET);
+this.SUBRULE(this.charsetName);
         });
       
           }
@@ -6748,12 +6730,29 @@ this.SUBRULENaN(this.charsetName);
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SIGNED);
-
-this.CONSUMENaN(Tokens.UNSIGNED);
+            this.SUBRULE(this.typeName);
+          }
+        }
+      ,
+        {
+          ALT: () => {
+            this.SUBRULE(this.typeName);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.INTEGER);
+          this.SUBRULE(this.lengthTwoDimension);
+        });
+      
+          }
+        }
+      ,
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SIGNED);
+
+this.CONSUME(Tokens.UNSIGNED);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.INTEGER);
         });
       
           }
@@ -6763,43 +6762,43 @@ this.CONSUMENaN(Tokens.UNSIGNED);
 
 
       this.RULE('lengthOneDimension', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
+        this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('lengthTwoDimension', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
-this.CONSUMENaN(Tokens.OP);
+        this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('lengthTwoOptionalDimension', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
+        this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.decimalLiteral);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.decimalLiteral);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('uidList', () => {
-        this.SUBRULENaN(this.uid);
+        this.SUBRULE(this.uid);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.uid);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.uid);
         });
       
       });
@@ -6807,11 +6806,11 @@ this.SUBRULENaN(this.uid);
 
 
       this.RULE('tables', () => {
-        this.SUBRULENaN(this.tableName);
+        this.SUBRULE(this.tableName);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.tableName);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.tableName);
         });
       
       });
@@ -6819,25 +6818,25 @@ this.SUBRULENaN(this.tableName);
 
 
       this.RULE('indexColumnNames', () => {
-        this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.indexColumnName);
+        this.CONSUME(Tokens.OP);
+this.SUBRULE(this.indexColumnName);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.indexColumnName);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.indexColumnName);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('expressions', () => {
-        this.SUBRULENaN(this.expression);
+        this.SUBRULE(this.expression);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expression);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expression);
         });
       
       });
@@ -6845,11 +6844,11 @@ this.SUBRULENaN(this.expression);
 
 
       this.RULE('expressionsWithDefaults', () => {
-        this.SUBRULENaN(this.expressionOrDefault);
+        this.SUBRULE(this.expressionOrDefault);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.expressionOrDefault);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.expressionOrDefault);
         });
       
       });
@@ -6857,11 +6856,11 @@ this.SUBRULENaN(this.expressionOrDefault);
 
 
       this.RULE('constants', () => {
-        this.SUBRULENaN(this.constant);
+        this.SUBRULE(this.constant);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.constant);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.constant);
         });
       
       });
@@ -6869,11 +6868,11 @@ this.SUBRULENaN(this.constant);
 
 
       this.RULE('simpleStrings', () => {
-        this.CONSUMENaN(Tokens.STRING_LITERAL);
+        this.CONSUME(Tokens.STRING_LITERAL);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.STRING_LITERAL);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.STRING_LITERAL);
         });
       
       });
@@ -6881,11 +6880,11 @@ this.CONSUMENaN(Tokens.STRING_LITERAL);
 
 
       this.RULE('userVariables', () => {
-        this.CONSUMENaN(Tokens.LOCAL_ID);
+        this.CONSUME(Tokens.LOCAL_ID);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.LOCAL_ID);
+          this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.LOCAL_ID);
         });
       
       });
@@ -6895,24 +6894,24 @@ this.CONSUMENaN(Tokens.LOCAL_ID);
       this.RULE('defaultValue', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NULL_LITERAL);
+            this.CONSUME(Tokens.NULL_LITERAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.constant);
+            this.SUBRULE(this.constant);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CURRENT_TIMESTAMP);
+            this.CONSUME(Tokens.CURRENT_TIMESTAMP);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ON);
-this.CONSUMENaN(Tokens.UPDATE);
-this.CONSUMENaN(Tokens.LOCALTIMESTAMP);
+          this.CONSUME(Tokens.ON);
+this.CONSUME(Tokens.UPDATE);
+this.CONSUME(Tokens.LOCALTIMESTAMP);
         });
       
           }
@@ -6924,13 +6923,13 @@ this.CONSUMENaN(Tokens.LOCALTIMESTAMP);
       this.RULE('expressionOrDefault', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.expression);
+            this.SUBRULE(this.expression);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DEFAULT);
+            this.CONSUME(Tokens.DEFAULT);
           }
         }
       ]);
@@ -6938,56 +6937,56 @@ this.CONSUMENaN(Tokens.LOCALTIMESTAMP);
 
 
       this.RULE('ifExists', () => {
-        this.CONSUMENaN(Tokens.IF);
-this.CONSUMENaN(Tokens.EXISTS);
+        this.CONSUME(Tokens.IF);
+this.CONSUME(Tokens.EXISTS);
       });
     
 
 
       this.RULE('ifNotExists', () => {
-        this.CONSUMENaN(Tokens.IF);
-this.CONSUMENaN(Tokens.NOT);
-this.CONSUMENaN(Tokens.EXISTS);
+        this.CONSUME(Tokens.IF);
+this.CONSUME(Tokens.NOT);
+this.CONSUME(Tokens.EXISTS);
       });
     
 
 
       this.RULE('functionCall', () => {
-        this.SUBRULENaN(this.specificFunction);
+        this.SUBRULE(this.specificFunction);
       });
     
 
 
       this.RULE('specificFunction', () => {
-        this.CONSUMENaN(Tokens.CURRENT_DATE);
+        this.CONSUME(Tokens.CURRENT_DATE);
 
-this.CONSUMENaN(Tokens.CURRENT_TIME);
+this.CONSUME(Tokens.CURRENT_TIME);
 
-this.CONSUMENaN(Tokens.CURRENT_TIMESTAMP);
+this.CONSUME(Tokens.CURRENT_TIMESTAMP);
 
-this.CONSUMENaN(Tokens.CURRENT_USER);
+this.CONSUME(Tokens.CURRENT_USER);
 
-this.CONSUMENaN(Tokens.LOCALTIME);
+this.CONSUME(Tokens.LOCALTIME);
       });
     
 
 
       this.RULE('caseFuncAlternative', () => {
-        this.CONSUMENaN(Tokens.WHEN);
-this.SUBRULENaN(this.condition);
-this.CONSUMENaN(Tokens.THEN);
-this.SUBRULENaN(this.consequent);
+        this.CONSUME(Tokens.WHEN);
+this.SUBRULE(this.condition);
+this.CONSUME(Tokens.THEN);
+this.SUBRULE(this.consequent);
       });
     
 
 
       this.RULE('levelsInWeightString', () => {
-        this.CONSUMENaN(Tokens.LEVEL);
-this.SUBRULENaN(this.levelInWeightListElement);
+        this.CONSUME(Tokens.LEVEL);
+this.SUBRULE(this.levelInWeightListElement);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.levelInWeightListElement);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.levelInWeightListElement);
         });
       
       });
@@ -6995,10 +6994,10 @@ this.SUBRULENaN(this.levelInWeightListElement);
 
 
       this.RULE('levelInWeightListElement', () => {
-        this.SUBRULENaN(this.decimalLiteral);
+        this.SUBRULE(this.decimalLiteral);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.orderType);
+          this.SUBRULE(this.orderType);
         });
       
       });
@@ -7008,112 +7007,112 @@ this.SUBRULENaN(this.levelInWeightListElement);
       this.RULE('aggregateWindowedFunction', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AVG);
+            this.CONSUME(Tokens.AVG);
 
-this.CONSUMENaN(Tokens.MAX);
+this.CONSUME(Tokens.MAX);
 
-this.CONSUMENaN(Tokens.MIN);
+this.CONSUME(Tokens.MIN);
 
-this.CONSUMENaN(Tokens.SUM);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.SUM);
+this.CONSUME(Tokens.OP);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.aggregator);
+          this.SUBRULE(this.aggregator);
         });
       
-this.SUBRULENaN(this.functionArg);
-this.CONSUMENaN(Tokens.OP);
+this.SUBRULE(this.functionArg);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COUNT);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.starArg);
+            this.CONSUME(Tokens.COUNT);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.starArg);
 
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.aggregator);
+          this.SUBRULE(this.aggregator);
         });
       
-this.SUBRULENaN(this.functionArg);
-this.CONSUMENaN(Tokens.OP);
+this.SUBRULE(this.functionArg);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COUNT);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.aggregator);
-this.SUBRULENaN(this.functionArgs);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.COUNT);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.aggregator);
+this.SUBRULE(this.functionArgs);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIT_AND);
+            this.CONSUME(Tokens.BIT_AND);
 
-this.CONSUMENaN(Tokens.BIT_OR);
+this.CONSUME(Tokens.BIT_OR);
 
-this.CONSUMENaN(Tokens.BIT_XOR);
+this.CONSUME(Tokens.BIT_XOR);
 
-this.CONSUMENaN(Tokens.STD);
+this.CONSUME(Tokens.STD);
 
-this.CONSUMENaN(Tokens.STDDEV);
+this.CONSUME(Tokens.STDDEV);
 
-this.CONSUMENaN(Tokens.STDDEV_POP);
+this.CONSUME(Tokens.STDDEV_POP);
 
-this.CONSUMENaN(Tokens.STDDEV_SAMP);
+this.CONSUME(Tokens.STDDEV_SAMP);
 
-this.CONSUMENaN(Tokens.VAR_POP);
+this.CONSUME(Tokens.VAR_POP);
 
-this.CONSUMENaN(Tokens.VAR_SAMP);
+this.CONSUME(Tokens.VAR_SAMP);
 
-this.CONSUMENaN(Tokens.VARIANCE);
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.VARIANCE);
+this.CONSUME(Tokens.OP);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.aggregator);
+          this.SUBRULE(this.aggregator);
         });
       
-this.SUBRULENaN(this.functionArg);
-this.CONSUMENaN(Tokens.OP);
+this.SUBRULE(this.functionArg);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GROUP_CONCAT);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.GROUP_CONCAT);
+this.CONSUME(Tokens.OP);
 
         this.OPTION(() => {
-          this.SUBRULENaN(this.aggregator);
+          this.SUBRULE(this.aggregator);
         });
       
-this.SUBRULENaN(this.functionArgs);
+this.SUBRULE(this.functionArgs);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.ORDER);
-this.CONSUMENaN(Tokens.BY);
-this.SUBRULENaN(this.orderByExpression);
+          this.CONSUME(Tokens.ORDER);
+this.CONSUME(Tokens.BY);
+this.SUBRULE(this.orderByExpression);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.orderByExpression);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.orderByExpression);
         });
       
         });
       
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.SEPARATOR);
-this.SUBRULENaN(this.separator);
+          this.CONSUME(Tokens.SEPARATOR);
+this.SUBRULE(this.separator);
         });
       
-this.CONSUMENaN(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ]);
@@ -7123,139 +7122,139 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('scalarFunctionName', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.functionNameBase);
+            this.SUBRULE(this.functionNameBase);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASCII);
+            this.CONSUME(Tokens.ASCII);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CURDATE);
+            this.CONSUME(Tokens.CURDATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CURRENT_DATE);
+            this.CONSUME(Tokens.CURRENT_DATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CURRENT_TIME);
+            this.CONSUME(Tokens.CURRENT_TIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CURRENT_TIMESTAMP);
+            this.CONSUME(Tokens.CURRENT_TIMESTAMP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CURTIME);
+            this.CONSUME(Tokens.CURTIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATE_ADD);
+            this.CONSUME(Tokens.DATE_ADD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATE_SUB);
+            this.CONSUME(Tokens.DATE_SUB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IF);
+            this.CONSUME(Tokens.IF);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INSERT);
+            this.CONSUME(Tokens.INSERT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCALTIME);
+            this.CONSUME(Tokens.LOCALTIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCALTIMESTAMP);
+            this.CONSUME(Tokens.LOCALTIMESTAMP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MID);
+            this.CONSUME(Tokens.MID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NOW);
+            this.CONSUME(Tokens.NOW);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLACE);
+            this.CONSUME(Tokens.REPLACE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBSTR);
+            this.CONSUME(Tokens.SUBSTR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBSTRING);
+            this.CONSUME(Tokens.SUBSTRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SYSDATE);
+            this.CONSUME(Tokens.SYSDATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TRIM);
+            this.CONSUME(Tokens.TRIM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTC_DATE);
+            this.CONSUME(Tokens.UTC_DATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTC_TIME);
+            this.CONSUME(Tokens.UTC_TIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTC_TIMESTAMP);
+            this.CONSUME(Tokens.UTC_TIMESTAMP);
           }
         }
       ]);
@@ -7263,32 +7262,32 @@ this.CONSUMENaN(Tokens.OP);
 
 
       this.RULE('passwordFunctionClause', () => {
-        this.SUBRULENaN(this.functionName);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.functionArg);
-this.CONSUMENaN(Tokens.OP);
+        this.SUBRULE(this.functionName);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.functionArg);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('functionArgs', () => {
-        this.SUBRULENaN(this.constant);
+        this.SUBRULE(this.constant);
 
-this.SUBRULENaN(this.fullColumnName);
+this.SUBRULE(this.fullColumnName);
 
-this.SUBRULENaN(this.functionCall);
+this.SUBRULE(this.functionCall);
 
-this.SUBRULENaN(this.expression);
+this.SUBRULE(this.expression);
 
         this.MANY(() => {
-          this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.constant);
+          this.CONSUME(Tokens.OP);
+this.SUBRULE(this.constant);
 
-this.SUBRULENaN(this.fullColumnName);
+this.SUBRULE(this.fullColumnName);
 
-this.SUBRULENaN(this.functionCall);
+this.SUBRULE(this.functionCall);
 
-this.SUBRULENaN(this.expression);
+this.SUBRULE(this.expression);
         });
       
       });
@@ -7298,25 +7297,25 @@ this.SUBRULENaN(this.expression);
       this.RULE('functionArg', this.OR([
         {
           ALT: () => {
-            this.SUBRULENaN(this.constant);
+            this.SUBRULE(this.constant);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.fullColumnName);
+            this.SUBRULE(this.fullColumnName);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.functionCall);
+            this.SUBRULE(this.functionCall);
           }
         }
       ,
         {
           ALT: () => {
-            this.SUBRULENaN(this.expression);
+            this.SUBRULE(this.expression);
           }
         }
       ]);
@@ -7324,31 +7323,31 @@ this.SUBRULENaN(this.expression);
 
 
       this.RULE('expression', () => {
-        this.SUBRULENaN(this.notOperator);
-this.SUBRULENaN(this.expression);
+        this.SUBRULE(this.notOperator);
+this.SUBRULE(this.expression);
       });
     
 
 
       this.RULE('predicate', () => {
-        this.SUBRULENaN(this.predicate);
+        this.SUBRULE(this.predicate);
 
         this.OPTION(() => {
-          this.CONSUMENaN(Tokens.NOT);
+          this.CONSUME(Tokens.NOT);
         });
       
-this.CONSUMENaN(Tokens.IN);
-this.CONSUMENaN(Tokens.OP);
-this.SUBRULENaN(this.selectStatement);
+this.CONSUME(Tokens.IN);
+this.CONSUME(Tokens.OP);
+this.SUBRULE(this.selectStatement);
 
-this.SUBRULENaN(this.expressions);
-this.CONSUMENaN(Tokens.OP);
+this.SUBRULE(this.expressions);
+this.CONSUME(Tokens.OP);
       });
     
 
 
       this.RULE('expressionAtom', () => {
-        this.SUBRULENaN(this.constant);
+        this.SUBRULE(this.constant);
       });
     
 
@@ -7356,31 +7355,31 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('unaryOperator', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NOT);
+            this.CONSUME(Tokens.NOT);
           }
         }
       ]);
@@ -7390,55 +7389,55 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('comparisonOperator', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ]);
@@ -7448,33 +7447,33 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('logicalOperator', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AND);
+            this.CONSUME(Tokens.AND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.XOR);
+            this.CONSUME(Tokens.XOR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OR);
+            this.CONSUME(Tokens.OR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ]);
@@ -7484,33 +7483,33 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('bitOperator', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
-this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
+this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ]);
@@ -7520,49 +7519,49 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('mathOperator', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DIV);
+            this.CONSUME(Tokens.DIV);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MOD);
+            this.CONSUME(Tokens.MOD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OP);
+            this.CONSUME(Tokens.OP);
           }
         }
       ]);
@@ -7572,241 +7571,241 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('charsetNameBase', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ARMSCII8);
+            this.CONSUME(Tokens.ARMSCII8);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASCII);
+            this.CONSUME(Tokens.ASCII);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIG5);
+            this.CONSUME(Tokens.BIG5);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP1250);
+            this.CONSUME(Tokens.CP1250);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP1251);
+            this.CONSUME(Tokens.CP1251);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP1256);
+            this.CONSUME(Tokens.CP1256);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP1257);
+            this.CONSUME(Tokens.CP1257);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP850);
+            this.CONSUME(Tokens.CP850);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP852);
+            this.CONSUME(Tokens.CP852);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP866);
+            this.CONSUME(Tokens.CP866);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CP932);
+            this.CONSUME(Tokens.CP932);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DEC8);
+            this.CONSUME(Tokens.DEC8);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EUCJPMS);
+            this.CONSUME(Tokens.EUCJPMS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EUCKR);
+            this.CONSUME(Tokens.EUCKR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GB2312);
+            this.CONSUME(Tokens.GB2312);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GBK);
+            this.CONSUME(Tokens.GBK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOSTD8);
+            this.CONSUME(Tokens.GEOSTD8);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GREEK);
+            this.CONSUME(Tokens.GREEK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HEBREW);
+            this.CONSUME(Tokens.HEBREW);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HP8);
+            this.CONSUME(Tokens.HP8);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.KEYBCS2);
+            this.CONSUME(Tokens.KEYBCS2);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.KOI8R);
+            this.CONSUME(Tokens.KOI8R);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.KOI8U);
+            this.CONSUME(Tokens.KOI8U);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LATIN1);
+            this.CONSUME(Tokens.LATIN1);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LATIN2);
+            this.CONSUME(Tokens.LATIN2);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LATIN5);
+            this.CONSUME(Tokens.LATIN5);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LATIN7);
+            this.CONSUME(Tokens.LATIN7);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MACCE);
+            this.CONSUME(Tokens.MACCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MACROMAN);
+            this.CONSUME(Tokens.MACROMAN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SJIS);
+            this.CONSUME(Tokens.SJIS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SWE7);
+            this.CONSUME(Tokens.SWE7);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIS620);
+            this.CONSUME(Tokens.TIS620);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UCS2);
+            this.CONSUME(Tokens.UCS2);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UJIS);
+            this.CONSUME(Tokens.UJIS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTF16);
+            this.CONSUME(Tokens.UTF16);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTF16LE);
+            this.CONSUME(Tokens.UTF16LE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTF32);
+            this.CONSUME(Tokens.UTF32);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTF8);
+            this.CONSUME(Tokens.UTF8);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTF8MB3);
+            this.CONSUME(Tokens.UTF8MB3);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UTF8MB4);
+            this.CONSUME(Tokens.UTF8MB4);
           }
         }
       ]);
@@ -7816,25 +7815,25 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('transactionLevelBase', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPEATABLE);
+            this.CONSUME(Tokens.REPEATABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMMITTED);
+            this.CONSUME(Tokens.COMMITTED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNCOMMITTED);
+            this.CONSUME(Tokens.UNCOMMITTED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SERIALIZABLE);
+            this.CONSUME(Tokens.SERIALIZABLE);
           }
         }
       ]);
@@ -7844,55 +7843,55 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('privilegesBase', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TABLES);
+            this.CONSUME(Tokens.TABLES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROUTINE);
+            this.CONSUME(Tokens.ROUTINE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXECUTE);
+            this.CONSUME(Tokens.EXECUTE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FILE);
+            this.CONSUME(Tokens.FILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROCESS);
+            this.CONSUME(Tokens.PROCESS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELOAD);
+            this.CONSUME(Tokens.RELOAD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHUTDOWN);
+            this.CONSUME(Tokens.SHUTDOWN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUPER);
+            this.CONSUME(Tokens.SUPER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PRIVILEGES);
+            this.CONSUME(Tokens.PRIVILEGES);
           }
         }
       ]);
@@ -7902,49 +7901,49 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('intervalTypeBase', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.QUARTER);
+            this.CONSUME(Tokens.QUARTER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MONTH);
+            this.CONSUME(Tokens.MONTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAY);
+            this.CONSUME(Tokens.DAY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HOUR);
+            this.CONSUME(Tokens.HOUR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MINUTE);
+            this.CONSUME(Tokens.MINUTE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WEEK);
+            this.CONSUME(Tokens.WEEK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SECOND);
+            this.CONSUME(Tokens.SECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MICROSECOND);
+            this.CONSUME(Tokens.MICROSECOND);
           }
         }
       ]);
@@ -7954,43 +7953,43 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('dataTypeBase', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATE);
+            this.CONSUME(Tokens.DATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIME);
+            this.CONSUME(Tokens.TIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIMESTAMP);
+            this.CONSUME(Tokens.TIMESTAMP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATETIME);
+            this.CONSUME(Tokens.DATETIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.YEAR);
+            this.CONSUME(Tokens.YEAR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENUM);
+            this.CONSUME(Tokens.ENUM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TEXT);
+            this.CONSUME(Tokens.TEXT);
           }
         }
       ]);
@@ -8000,1627 +7999,1627 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('keywordsCanBeId', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ACCOUNT);
+            this.CONSUME(Tokens.ACCOUNT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ACTION);
+            this.CONSUME(Tokens.ACTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AFTER);
+            this.CONSUME(Tokens.AFTER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AGGREGATE);
+            this.CONSUME(Tokens.AGGREGATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ALGORITHM);
+            this.CONSUME(Tokens.ALGORITHM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ANY);
+            this.CONSUME(Tokens.ANY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AT);
+            this.CONSUME(Tokens.AT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AUTHORS);
+            this.CONSUME(Tokens.AUTHORS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AUTOCOMMIT);
+            this.CONSUME(Tokens.AUTOCOMMIT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AUTOEXTEND_SIZE);
+            this.CONSUME(Tokens.AUTOEXTEND_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AUTO_INCREMENT);
+            this.CONSUME(Tokens.AUTO_INCREMENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AVG_ROW_LENGTH);
+            this.CONSUME(Tokens.AVG_ROW_LENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BEGIN);
+            this.CONSUME(Tokens.BEGIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BINLOG);
+            this.CONSUME(Tokens.BINLOG);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIT);
+            this.CONSUME(Tokens.BIT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BLOCK);
+            this.CONSUME(Tokens.BLOCK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BOOL);
+            this.CONSUME(Tokens.BOOL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BOOLEAN);
+            this.CONSUME(Tokens.BOOLEAN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BTREE);
+            this.CONSUME(Tokens.BTREE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CASCADED);
+            this.CONSUME(Tokens.CASCADED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHAIN);
+            this.CONSUME(Tokens.CHAIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHANNEL);
+            this.CONSUME(Tokens.CHANNEL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHECKSUM);
+            this.CONSUME(Tokens.CHECKSUM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CIPHER);
+            this.CONSUME(Tokens.CIPHER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CLIENT);
+            this.CONSUME(Tokens.CLIENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COALESCE);
+            this.CONSUME(Tokens.COALESCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CODE);
+            this.CONSUME(Tokens.CODE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COLUMNS);
+            this.CONSUME(Tokens.COLUMNS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COLUMN_FORMAT);
+            this.CONSUME(Tokens.COLUMN_FORMAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMMENT);
+            this.CONSUME(Tokens.COMMENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMMIT);
+            this.CONSUME(Tokens.COMMIT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMPACT);
+            this.CONSUME(Tokens.COMPACT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMPLETION);
+            this.CONSUME(Tokens.COMPLETION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMPRESSED);
+            this.CONSUME(Tokens.COMPRESSED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMPRESSION);
+            this.CONSUME(Tokens.COMPRESSION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONCURRENT);
+            this.CONSUME(Tokens.CONCURRENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONNECTION);
+            this.CONSUME(Tokens.CONNECTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONSISTENT);
+            this.CONSUME(Tokens.CONSISTENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONTAINS);
+            this.CONSUME(Tokens.CONTAINS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONTEXT);
+            this.CONSUME(Tokens.CONTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONTRIBUTORS);
+            this.CONSUME(Tokens.CONTRIBUTORS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COPY);
+            this.CONSUME(Tokens.COPY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CPU);
+            this.CONSUME(Tokens.CPU);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATA);
+            this.CONSUME(Tokens.DATA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATAFILE);
+            this.CONSUME(Tokens.DATAFILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DEALLOCATE);
+            this.CONSUME(Tokens.DEALLOCATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DEFAULT_AUTH);
+            this.CONSUME(Tokens.DEFAULT_AUTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DEFINER);
+            this.CONSUME(Tokens.DEFINER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DELAY_KEY_WRITE);
+            this.CONSUME(Tokens.DELAY_KEY_WRITE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DIRECTORY);
+            this.CONSUME(Tokens.DIRECTORY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DISABLE);
+            this.CONSUME(Tokens.DISABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DISCARD);
+            this.CONSUME(Tokens.DISCARD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DISK);
+            this.CONSUME(Tokens.DISK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DO);
+            this.CONSUME(Tokens.DO);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DUMPFILE);
+            this.CONSUME(Tokens.DUMPFILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DUPLICATE);
+            this.CONSUME(Tokens.DUPLICATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DYNAMIC);
+            this.CONSUME(Tokens.DYNAMIC);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENABLE);
+            this.CONSUME(Tokens.ENABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENCRYPTION);
+            this.CONSUME(Tokens.ENCRYPTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENDS);
+            this.CONSUME(Tokens.ENDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENGINE);
+            this.CONSUME(Tokens.ENGINE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENGINES);
+            this.CONSUME(Tokens.ENGINES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ERROR);
+            this.CONSUME(Tokens.ERROR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ERRORS);
+            this.CONSUME(Tokens.ERRORS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ESCAPE);
+            this.CONSUME(Tokens.ESCAPE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EVEN);
+            this.CONSUME(Tokens.EVEN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EVENT);
+            this.CONSUME(Tokens.EVENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EVENTS);
+            this.CONSUME(Tokens.EVENTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EVERY);
+            this.CONSUME(Tokens.EVERY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXCHANGE);
+            this.CONSUME(Tokens.EXCHANGE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXCLUSIVE);
+            this.CONSUME(Tokens.EXCLUSIVE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXPIRE);
+            this.CONSUME(Tokens.EXPIRE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXTENT_SIZE);
+            this.CONSUME(Tokens.EXTENT_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FAULTS);
+            this.CONSUME(Tokens.FAULTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FIELDS);
+            this.CONSUME(Tokens.FIELDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FILE_BLOCK_SIZE);
+            this.CONSUME(Tokens.FILE_BLOCK_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FILTER);
+            this.CONSUME(Tokens.FILTER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FIRST);
+            this.CONSUME(Tokens.FIRST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FIXED);
+            this.CONSUME(Tokens.FIXED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FOLLOWS);
+            this.CONSUME(Tokens.FOLLOWS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FULL);
+            this.CONSUME(Tokens.FULL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FUNCTION);
+            this.CONSUME(Tokens.FUNCTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GLOBAL);
+            this.CONSUME(Tokens.GLOBAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GRANTS);
+            this.CONSUME(Tokens.GRANTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GROUP_REPLICATION);
+            this.CONSUME(Tokens.GROUP_REPLICATION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HASH);
+            this.CONSUME(Tokens.HASH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HOST);
+            this.CONSUME(Tokens.HOST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IDENTIFIED);
+            this.CONSUME(Tokens.IDENTIFIED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IGNORE_SERVER_IDS);
+            this.CONSUME(Tokens.IGNORE_SERVER_IDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IMPORT);
+            this.CONSUME(Tokens.IMPORT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INDEXES);
+            this.CONSUME(Tokens.INDEXES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INITIAL_SIZE);
+            this.CONSUME(Tokens.INITIAL_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INPLACE);
+            this.CONSUME(Tokens.INPLACE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INSERT_METHOD);
+            this.CONSUME(Tokens.INSERT_METHOD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INSTANCE);
+            this.CONSUME(Tokens.INSTANCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INVOKER);
+            this.CONSUME(Tokens.INVOKER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IO);
+            this.CONSUME(Tokens.IO);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IO_THREAD);
+            this.CONSUME(Tokens.IO_THREAD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IPC);
+            this.CONSUME(Tokens.IPC);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISOLATION);
+            this.CONSUME(Tokens.ISOLATION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISSUER);
+            this.CONSUME(Tokens.ISSUER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.KEY_BLOCK_SIZE);
+            this.CONSUME(Tokens.KEY_BLOCK_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LANGUAGE);
+            this.CONSUME(Tokens.LANGUAGE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LAST);
+            this.CONSUME(Tokens.LAST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LEAVES);
+            this.CONSUME(Tokens.LEAVES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LESS);
+            this.CONSUME(Tokens.LESS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LEVEL);
+            this.CONSUME(Tokens.LEVEL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LIST);
+            this.CONSUME(Tokens.LIST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCAL);
+            this.CONSUME(Tokens.LOCAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOGFILE);
+            this.CONSUME(Tokens.LOGFILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOGS);
+            this.CONSUME(Tokens.LOGS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER);
+            this.CONSUME(Tokens.MASTER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_AUTO_POSITION);
+            this.CONSUME(Tokens.MASTER_AUTO_POSITION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_CONNECT_RETRY);
+            this.CONSUME(Tokens.MASTER_CONNECT_RETRY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_DELAY);
+            this.CONSUME(Tokens.MASTER_DELAY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_HEARTBEAT_PERIOD);
+            this.CONSUME(Tokens.MASTER_HEARTBEAT_PERIOD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_HOST);
+            this.CONSUME(Tokens.MASTER_HOST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_LOG_FILE);
+            this.CONSUME(Tokens.MASTER_LOG_FILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_LOG_POS);
+            this.CONSUME(Tokens.MASTER_LOG_POS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_PASSWORD);
+            this.CONSUME(Tokens.MASTER_PASSWORD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_PORT);
+            this.CONSUME(Tokens.MASTER_PORT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_RETRY_COUNT);
+            this.CONSUME(Tokens.MASTER_RETRY_COUNT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL);
+            this.CONSUME(Tokens.MASTER_SSL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CA);
+            this.CONSUME(Tokens.MASTER_SSL_CA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CAPATH);
+            this.CONSUME(Tokens.MASTER_SSL_CAPATH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CERT);
+            this.CONSUME(Tokens.MASTER_SSL_CERT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CIPHER);
+            this.CONSUME(Tokens.MASTER_SSL_CIPHER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CRL);
+            this.CONSUME(Tokens.MASTER_SSL_CRL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_CRLPATH);
+            this.CONSUME(Tokens.MASTER_SSL_CRLPATH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_SSL_KEY);
+            this.CONSUME(Tokens.MASTER_SSL_KEY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_TLS_VERSION);
+            this.CONSUME(Tokens.MASTER_TLS_VERSION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_USER);
+            this.CONSUME(Tokens.MASTER_USER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_CONNECTIONS_PER_HOUR);
+            this.CONSUME(Tokens.MAX_CONNECTIONS_PER_HOUR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_QUERIES_PER_HOUR);
+            this.CONSUME(Tokens.MAX_QUERIES_PER_HOUR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_ROWS);
+            this.CONSUME(Tokens.MAX_ROWS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_SIZE);
+            this.CONSUME(Tokens.MAX_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_UPDATES_PER_HOUR);
+            this.CONSUME(Tokens.MAX_UPDATES_PER_HOUR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAX_USER_CONNECTIONS);
+            this.CONSUME(Tokens.MAX_USER_CONNECTIONS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MEMORY);
+            this.CONSUME(Tokens.MEMORY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MERGE);
+            this.CONSUME(Tokens.MERGE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MID);
+            this.CONSUME(Tokens.MID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MIGRATE);
+            this.CONSUME(Tokens.MIGRATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MIN_ROWS);
+            this.CONSUME(Tokens.MIN_ROWS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MODIFY);
+            this.CONSUME(Tokens.MODIFY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MUTEX);
+            this.CONSUME(Tokens.MUTEX);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MYSQL);
+            this.CONSUME(Tokens.MYSQL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NAME);
+            this.CONSUME(Tokens.NAME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NAMES);
+            this.CONSUME(Tokens.NAMES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NCHAR);
+            this.CONSUME(Tokens.NCHAR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NEVER);
+            this.CONSUME(Tokens.NEVER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NO);
+            this.CONSUME(Tokens.NO);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NODEGROUP);
+            this.CONSUME(Tokens.NODEGROUP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NONE);
+            this.CONSUME(Tokens.NONE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OFFLINE);
+            this.CONSUME(Tokens.OFFLINE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OFFSET);
+            this.CONSUME(Tokens.OFFSET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OJ);
+            this.CONSUME(Tokens.OJ);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OLD_PASSWORD);
+            this.CONSUME(Tokens.OLD_PASSWORD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ONE);
+            this.CONSUME(Tokens.ONE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ONLINE);
+            this.CONSUME(Tokens.ONLINE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ONLY);
+            this.CONSUME(Tokens.ONLY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OPTIMIZER_COSTS);
+            this.CONSUME(Tokens.OPTIMIZER_COSTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OPTIONS);
+            this.CONSUME(Tokens.OPTIONS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OWNER);
+            this.CONSUME(Tokens.OWNER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PACK_KEYS);
+            this.CONSUME(Tokens.PACK_KEYS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PAGE);
+            this.CONSUME(Tokens.PAGE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PARSER);
+            this.CONSUME(Tokens.PARSER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PARTIAL);
+            this.CONSUME(Tokens.PARTIAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PARTITIONING);
+            this.CONSUME(Tokens.PARTITIONING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PARTITIONS);
+            this.CONSUME(Tokens.PARTITIONS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PASSWORD);
+            this.CONSUME(Tokens.PASSWORD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PHASE);
+            this.CONSUME(Tokens.PHASE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PLUGINS);
+            this.CONSUME(Tokens.PLUGINS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PLUGIN_DIR);
+            this.CONSUME(Tokens.PLUGIN_DIR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PORT);
+            this.CONSUME(Tokens.PORT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PRECEDES);
+            this.CONSUME(Tokens.PRECEDES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PREPARE);
+            this.CONSUME(Tokens.PREPARE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PRESERVE);
+            this.CONSUME(Tokens.PRESERVE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PREV);
+            this.CONSUME(Tokens.PREV);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROCESSLIST);
+            this.CONSUME(Tokens.PROCESSLIST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROFILE);
+            this.CONSUME(Tokens.PROFILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROFILES);
+            this.CONSUME(Tokens.PROFILES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PROXY);
+            this.CONSUME(Tokens.PROXY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.QUERY);
+            this.CONSUME(Tokens.QUERY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.QUICK);
+            this.CONSUME(Tokens.QUICK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REBUILD);
+            this.CONSUME(Tokens.REBUILD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RECOVER);
+            this.CONSUME(Tokens.RECOVER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REDO_BUFFER_SIZE);
+            this.CONSUME(Tokens.REDO_BUFFER_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REDUNDANT);
+            this.CONSUME(Tokens.REDUNDANT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELAYLOG);
+            this.CONSUME(Tokens.RELAYLOG);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELAY_LOG_FILE);
+            this.CONSUME(Tokens.RELAY_LOG_FILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELAY_LOG_POS);
+            this.CONSUME(Tokens.RELAY_LOG_POS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REMOVE);
+            this.CONSUME(Tokens.REMOVE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REORGANIZE);
+            this.CONSUME(Tokens.REORGANIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPAIR);
+            this.CONSUME(Tokens.REPAIR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATE_DO_DB);
+            this.CONSUME(Tokens.REPLICATE_DO_DB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATE_DO_TABLE);
+            this.CONSUME(Tokens.REPLICATE_DO_TABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATE_IGNORE_DB);
+            this.CONSUME(Tokens.REPLICATE_IGNORE_DB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATE_IGNORE_TABLE);
+            this.CONSUME(Tokens.REPLICATE_IGNORE_TABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATE_REWRITE_DB);
+            this.CONSUME(Tokens.REPLICATE_REWRITE_DB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATE_WILD_DO_TABLE);
+            this.CONSUME(Tokens.REPLICATE_WILD_DO_TABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATE_WILD_IGNORE_TABLE);
+            this.CONSUME(Tokens.REPLICATE_WILD_IGNORE_TABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REPLICATION);
+            this.CONSUME(Tokens.REPLICATION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RESUME);
+            this.CONSUME(Tokens.RESUME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RETURNS);
+            this.CONSUME(Tokens.RETURNS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROLLBACK);
+            this.CONSUME(Tokens.ROLLBACK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROLLUP);
+            this.CONSUME(Tokens.ROLLUP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROTATE);
+            this.CONSUME(Tokens.ROTATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROW);
+            this.CONSUME(Tokens.ROW);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROWS);
+            this.CONSUME(Tokens.ROWS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROW_FORMAT);
+            this.CONSUME(Tokens.ROW_FORMAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SAVEPOINT);
+            this.CONSUME(Tokens.SAVEPOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SCHEDULE);
+            this.CONSUME(Tokens.SCHEDULE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SECURITY);
+            this.CONSUME(Tokens.SECURITY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SERVER);
+            this.CONSUME(Tokens.SERVER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SESSION);
+            this.CONSUME(Tokens.SESSION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHARE);
+            this.CONSUME(Tokens.SHARE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHARED);
+            this.CONSUME(Tokens.SHARED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SIGNED);
+            this.CONSUME(Tokens.SIGNED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SIMPLE);
+            this.CONSUME(Tokens.SIMPLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SLAVE);
+            this.CONSUME(Tokens.SLAVE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SNAPSHOT);
+            this.CONSUME(Tokens.SNAPSHOT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SOCKET);
+            this.CONSUME(Tokens.SOCKET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SOME);
+            this.CONSUME(Tokens.SOME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SOUNDS);
+            this.CONSUME(Tokens.SOUNDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SOURCE);
+            this.CONSUME(Tokens.SOURCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_AFTER_GTIDS);
+            this.CONSUME(Tokens.SQL_AFTER_GTIDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_AFTER_MTS_GAPS);
+            this.CONSUME(Tokens.SQL_AFTER_MTS_GAPS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_BEFORE_GTIDS);
+            this.CONSUME(Tokens.SQL_BEFORE_GTIDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_BUFFER_RESULT);
+            this.CONSUME(Tokens.SQL_BUFFER_RESULT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_CACHE);
+            this.CONSUME(Tokens.SQL_CACHE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_NO_CACHE);
+            this.CONSUME(Tokens.SQL_NO_CACHE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_THREAD);
+            this.CONSUME(Tokens.SQL_THREAD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.START);
+            this.CONSUME(Tokens.START);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STARTS);
+            this.CONSUME(Tokens.STARTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STATS_AUTO_RECALC);
+            this.CONSUME(Tokens.STATS_AUTO_RECALC);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STATS_PERSISTENT);
+            this.CONSUME(Tokens.STATS_PERSISTENT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STATS_SAMPLE_PAGES);
+            this.CONSUME(Tokens.STATS_SAMPLE_PAGES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STATUS);
+            this.CONSUME(Tokens.STATUS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STOP);
+            this.CONSUME(Tokens.STOP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STORAGE);
+            this.CONSUME(Tokens.STORAGE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRING);
+            this.CONSUME(Tokens.STRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBJECT);
+            this.CONSUME(Tokens.SUBJECT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBPARTITION);
+            this.CONSUME(Tokens.SUBPARTITION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBPARTITIONS);
+            this.CONSUME(Tokens.SUBPARTITIONS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUSPEND);
+            this.CONSUME(Tokens.SUSPEND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SWAPS);
+            this.CONSUME(Tokens.SWAPS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SWITCHES);
+            this.CONSUME(Tokens.SWITCHES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TABLESPACE);
+            this.CONSUME(Tokens.TABLESPACE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TEMPORARY);
+            this.CONSUME(Tokens.TEMPORARY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TEMPTABLE);
+            this.CONSUME(Tokens.TEMPTABLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.THAN);
+            this.CONSUME(Tokens.THAN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TRANSACTION);
+            this.CONSUME(Tokens.TRANSACTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TRUNCATE);
+            this.CONSUME(Tokens.TRUNCATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNDEFINED);
+            this.CONSUME(Tokens.UNDEFINED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNDOFILE);
+            this.CONSUME(Tokens.UNDOFILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNDO_BUFFER_SIZE);
+            this.CONSUME(Tokens.UNDO_BUFFER_SIZE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNKNOWN);
+            this.CONSUME(Tokens.UNKNOWN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UPGRADE);
+            this.CONSUME(Tokens.UPGRADE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.USER);
+            this.CONSUME(Tokens.USER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.VALIDATION);
+            this.CONSUME(Tokens.VALIDATION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.VALUE);
+            this.CONSUME(Tokens.VALUE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.VARIABLES);
+            this.CONSUME(Tokens.VARIABLES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.VIEW);
+            this.CONSUME(Tokens.VIEW);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WAIT);
+            this.CONSUME(Tokens.WAIT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WARNINGS);
+            this.CONSUME(Tokens.WARNINGS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WITHOUT);
+            this.CONSUME(Tokens.WITHOUT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WORK);
+            this.CONSUME(Tokens.WORK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WRAPPER);
+            this.CONSUME(Tokens.WRAPPER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.X509);
+            this.CONSUME(Tokens.X509);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.XA);
+            this.CONSUME(Tokens.XA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.XML);
+            this.CONSUME(Tokens.XML);
           }
         }
       ]);
@@ -9630,1881 +9629,1880 @@ this.CONSUMENaN(Tokens.OP);
       this.RULE('functionNameBase', this.OR([
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ABS);
+            this.CONSUME(Tokens.ABS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ACOS);
+            this.CONSUME(Tokens.ACOS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ADDDATE);
+            this.CONSUME(Tokens.ADDDATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ADDTIME);
+            this.CONSUME(Tokens.ADDTIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AES_DECRYPT);
+            this.CONSUME(Tokens.AES_DECRYPT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AES_ENCRYPT);
+            this.CONSUME(Tokens.AES_ENCRYPT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.AREA);
+            this.CONSUME(Tokens.AREA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASBINARY);
+            this.CONSUME(Tokens.ASBINARY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASIN);
+            this.CONSUME(Tokens.ASIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASTEXT);
+            this.CONSUME(Tokens.ASTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASWKB);
+            this.CONSUME(Tokens.ASWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASWKT);
+            this.CONSUME(Tokens.ASWKT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASYMMETRIC_DECRYPT);
+            this.CONSUME(Tokens.ASYMMETRIC_DECRYPT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASYMMETRIC_DERIVE);
+            this.CONSUME(Tokens.ASYMMETRIC_DERIVE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASYMMETRIC_ENCRYPT);
+            this.CONSUME(Tokens.ASYMMETRIC_ENCRYPT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASYMMETRIC_SIGN);
+            this.CONSUME(Tokens.ASYMMETRIC_SIGN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ASYMMETRIC_VERIFY);
+            this.CONSUME(Tokens.ASYMMETRIC_VERIFY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ATAN);
+            this.CONSUME(Tokens.ATAN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ATAN2);
+            this.CONSUME(Tokens.ATAN2);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BENCHMARK);
+            this.CONSUME(Tokens.BENCHMARK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIN);
+            this.CONSUME(Tokens.BIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIT_COUNT);
+            this.CONSUME(Tokens.BIT_COUNT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BIT_LENGTH);
+            this.CONSUME(Tokens.BIT_LENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.BUFFER);
+            this.CONSUME(Tokens.BUFFER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CEIL);
+            this.CONSUME(Tokens.CEIL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CEILING);
+            this.CONSUME(Tokens.CEILING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CENTROID);
+            this.CONSUME(Tokens.CENTROID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHARACTER_LENGTH);
+            this.CONSUME(Tokens.CHARACTER_LENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHARSET);
+            this.CONSUME(Tokens.CHARSET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CHAR_LENGTH);
+            this.CONSUME(Tokens.CHAR_LENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COERCIBILITY);
+            this.CONSUME(Tokens.COERCIBILITY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COLLATION);
+            this.CONSUME(Tokens.COLLATION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COMPRESS);
+            this.CONSUME(Tokens.COMPRESS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONCAT);
+            this.CONSUME(Tokens.CONCAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONCAT_WS);
+            this.CONSUME(Tokens.CONCAT_WS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONNECTION_ID);
+            this.CONSUME(Tokens.CONNECTION_ID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONV);
+            this.CONSUME(Tokens.CONV);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CONVERT_TZ);
+            this.CONSUME(Tokens.CONVERT_TZ);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COS);
+            this.CONSUME(Tokens.COS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COT);
+            this.CONSUME(Tokens.COT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.COUNT);
+            this.CONSUME(Tokens.COUNT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CRC32);
+            this.CONSUME(Tokens.CRC32);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CREATE_ASYMMETRIC_PRIV_KEY);
+            this.CONSUME(Tokens.CREATE_ASYMMETRIC_PRIV_KEY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CREATE_ASYMMETRIC_PUB_KEY);
+            this.CONSUME(Tokens.CREATE_ASYMMETRIC_PUB_KEY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CREATE_DH_PARAMETERS);
+            this.CONSUME(Tokens.CREATE_DH_PARAMETERS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CREATE_DIGEST);
+            this.CONSUME(Tokens.CREATE_DIGEST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.CROSSES);
+            this.CONSUME(Tokens.CROSSES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATE);
+            this.CONSUME(Tokens.DATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATEDIFF);
+            this.CONSUME(Tokens.DATEDIFF);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DATE_FORMAT);
+            this.CONSUME(Tokens.DATE_FORMAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAY);
+            this.CONSUME(Tokens.DAY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAYNAME);
+            this.CONSUME(Tokens.DAYNAME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAYOFMONTH);
+            this.CONSUME(Tokens.DAYOFMONTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAYOFWEEK);
+            this.CONSUME(Tokens.DAYOFWEEK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DAYOFYEAR);
+            this.CONSUME(Tokens.DAYOFYEAR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DECODE);
+            this.CONSUME(Tokens.DECODE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DEGREES);
+            this.CONSUME(Tokens.DEGREES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DES_DECRYPT);
+            this.CONSUME(Tokens.DES_DECRYPT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DES_ENCRYPT);
+            this.CONSUME(Tokens.DES_ENCRYPT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DIMENSION);
+            this.CONSUME(Tokens.DIMENSION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.DISJOINT);
+            this.CONSUME(Tokens.DISJOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ELT);
+            this.CONSUME(Tokens.ELT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENCODE);
+            this.CONSUME(Tokens.ENCODE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENCRYPT);
+            this.CONSUME(Tokens.ENCRYPT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENDPOINT);
+            this.CONSUME(Tokens.ENDPOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ENVELOPE);
+            this.CONSUME(Tokens.ENVELOPE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EQUALS);
+            this.CONSUME(Tokens.EQUALS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXP);
+            this.CONSUME(Tokens.EXP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXPORT_SET);
+            this.CONSUME(Tokens.EXPORT_SET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXTERIORRING);
+            this.CONSUME(Tokens.EXTERIORRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.EXTRACTVALUE);
+            this.CONSUME(Tokens.EXTRACTVALUE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FIELD);
+            this.CONSUME(Tokens.FIELD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FIND_IN_SET);
+            this.CONSUME(Tokens.FIND_IN_SET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FLOOR);
+            this.CONSUME(Tokens.FLOOR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FORMAT);
+            this.CONSUME(Tokens.FORMAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FOUND_ROWS);
+            this.CONSUME(Tokens.FOUND_ROWS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FROM_BASE64);
+            this.CONSUME(Tokens.FROM_BASE64);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FROM_DAYS);
+            this.CONSUME(Tokens.FROM_DAYS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.FROM_UNIXTIME);
+            this.CONSUME(Tokens.FROM_UNIXTIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMCOLLFROMTEXT);
+            this.CONSUME(Tokens.GEOMCOLLFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMCOLLFROMWKB);
+            this.CONSUME(Tokens.GEOMCOLLFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMETRYCOLLECTION);
+            this.CONSUME(Tokens.GEOMETRYCOLLECTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMETRYCOLLECTIONFROMTEXT);
+            this.CONSUME(Tokens.GEOMETRYCOLLECTIONFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMETRYCOLLECTIONFROMWKB);
+            this.CONSUME(Tokens.GEOMETRYCOLLECTIONFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMETRYFROMTEXT);
+            this.CONSUME(Tokens.GEOMETRYFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMETRYFROMWKB);
+            this.CONSUME(Tokens.GEOMETRYFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMETRYN);
+            this.CONSUME(Tokens.GEOMETRYN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMETRYTYPE);
+            this.CONSUME(Tokens.GEOMETRYTYPE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMFROMTEXT);
+            this.CONSUME(Tokens.GEOMFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GEOMFROMWKB);
+            this.CONSUME(Tokens.GEOMFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GET_FORMAT);
+            this.CONSUME(Tokens.GET_FORMAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GET_LOCK);
+            this.CONSUME(Tokens.GET_LOCK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GLENGTH);
+            this.CONSUME(Tokens.GLENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GREATEST);
+            this.CONSUME(Tokens.GREATEST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GTID_SUBSET);
+            this.CONSUME(Tokens.GTID_SUBSET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.GTID_SUBTRACT);
+            this.CONSUME(Tokens.GTID_SUBTRACT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HEX);
+            this.CONSUME(Tokens.HEX);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.HOUR);
+            this.CONSUME(Tokens.HOUR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IFNULL);
+            this.CONSUME(Tokens.IFNULL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INET6_ATON);
+            this.CONSUME(Tokens.INET6_ATON);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INET6_NTOA);
+            this.CONSUME(Tokens.INET6_NTOA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INET_ATON);
+            this.CONSUME(Tokens.INET_ATON);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INET_NTOA);
+            this.CONSUME(Tokens.INET_NTOA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INSTR);
+            this.CONSUME(Tokens.INSTR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INTERIORRINGN);
+            this.CONSUME(Tokens.INTERIORRINGN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.INTERSECTS);
+            this.CONSUME(Tokens.INTERSECTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISCLOSED);
+            this.CONSUME(Tokens.ISCLOSED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISEMPTY);
+            this.CONSUME(Tokens.ISEMPTY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISNULL);
+            this.CONSUME(Tokens.ISNULL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ISSIMPLE);
+            this.CONSUME(Tokens.ISSIMPLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IS_FREE_LOCK);
+            this.CONSUME(Tokens.IS_FREE_LOCK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IS_IPV4);
+            this.CONSUME(Tokens.IS_IPV4);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IS_IPV4_COMPAT);
+            this.CONSUME(Tokens.IS_IPV4_COMPAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IS_IPV4_MAPPED);
+            this.CONSUME(Tokens.IS_IPV4_MAPPED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IS_IPV6);
+            this.CONSUME(Tokens.IS_IPV6);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.IS_USED_LOCK);
+            this.CONSUME(Tokens.IS_USED_LOCK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LAST_INSERT_ID);
+            this.CONSUME(Tokens.LAST_INSERT_ID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LCASE);
+            this.CONSUME(Tokens.LCASE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LEAST);
+            this.CONSUME(Tokens.LEAST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LEFT);
+            this.CONSUME(Tokens.LEFT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LENGTH);
+            this.CONSUME(Tokens.LENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LINEFROMTEXT);
+            this.CONSUME(Tokens.LINEFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LINEFROMWKB);
+            this.CONSUME(Tokens.LINEFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LINESTRING);
+            this.CONSUME(Tokens.LINESTRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LINESTRINGFROMTEXT);
+            this.CONSUME(Tokens.LINESTRINGFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LINESTRINGFROMWKB);
+            this.CONSUME(Tokens.LINESTRINGFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LN);
+            this.CONSUME(Tokens.LN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOAD_FILE);
+            this.CONSUME(Tokens.LOAD_FILE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOCATE);
+            this.CONSUME(Tokens.LOCATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOG);
+            this.CONSUME(Tokens.LOG);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOG10);
+            this.CONSUME(Tokens.LOG10);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOG2);
+            this.CONSUME(Tokens.LOG2);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LOWER);
+            this.CONSUME(Tokens.LOWER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LPAD);
+            this.CONSUME(Tokens.LPAD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.LTRIM);
+            this.CONSUME(Tokens.LTRIM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAKEDATE);
+            this.CONSUME(Tokens.MAKEDATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAKETIME);
+            this.CONSUME(Tokens.MAKETIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MAKE_SET);
+            this.CONSUME(Tokens.MAKE_SET);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MASTER_POS_WAIT);
+            this.CONSUME(Tokens.MASTER_POS_WAIT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MBRCONTAINS);
+            this.CONSUME(Tokens.MBRCONTAINS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MBRDISJOINT);
+            this.CONSUME(Tokens.MBRDISJOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MBREQUAL);
+            this.CONSUME(Tokens.MBREQUAL);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MBRINTERSECTS);
+            this.CONSUME(Tokens.MBRINTERSECTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MBROVERLAPS);
+            this.CONSUME(Tokens.MBROVERLAPS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MBRTOUCHES);
+            this.CONSUME(Tokens.MBRTOUCHES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MBRWITHIN);
+            this.CONSUME(Tokens.MBRWITHIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MD5);
+            this.CONSUME(Tokens.MD5);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MICROSECOND);
+            this.CONSUME(Tokens.MICROSECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MINUTE);
+            this.CONSUME(Tokens.MINUTE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MLINEFROMTEXT);
+            this.CONSUME(Tokens.MLINEFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MLINEFROMWKB);
+            this.CONSUME(Tokens.MLINEFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MONTH);
+            this.CONSUME(Tokens.MONTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MONTHNAME);
+            this.CONSUME(Tokens.MONTHNAME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MPOINTFROMTEXT);
+            this.CONSUME(Tokens.MPOINTFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MPOINTFROMWKB);
+            this.CONSUME(Tokens.MPOINTFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MPOLYFROMTEXT);
+            this.CONSUME(Tokens.MPOLYFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MPOLYFROMWKB);
+            this.CONSUME(Tokens.MPOLYFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTILINESTRING);
+            this.CONSUME(Tokens.MULTILINESTRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTILINESTRINGFROMTEXT);
+            this.CONSUME(Tokens.MULTILINESTRINGFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTILINESTRINGFROMWKB);
+            this.CONSUME(Tokens.MULTILINESTRINGFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTIPOINT);
+            this.CONSUME(Tokens.MULTIPOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTIPOINTFROMTEXT);
+            this.CONSUME(Tokens.MULTIPOINTFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTIPOINTFROMWKB);
+            this.CONSUME(Tokens.MULTIPOINTFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTIPOLYGON);
+            this.CONSUME(Tokens.MULTIPOLYGON);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTIPOLYGONFROMTEXT);
+            this.CONSUME(Tokens.MULTIPOLYGONFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.MULTIPOLYGONFROMWKB);
+            this.CONSUME(Tokens.MULTIPOLYGONFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NAME_CONST);
+            this.CONSUME(Tokens.NAME_CONST);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NULLIF);
+            this.CONSUME(Tokens.NULLIF);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NUMGEOMETRIES);
+            this.CONSUME(Tokens.NUMGEOMETRIES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NUMINTERIORRINGS);
+            this.CONSUME(Tokens.NUMINTERIORRINGS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.NUMPOINTS);
+            this.CONSUME(Tokens.NUMPOINTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OCT);
+            this.CONSUME(Tokens.OCT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OCTET_LENGTH);
+            this.CONSUME(Tokens.OCTET_LENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ORD);
+            this.CONSUME(Tokens.ORD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.OVERLAPS);
+            this.CONSUME(Tokens.OVERLAPS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PERIOD_ADD);
+            this.CONSUME(Tokens.PERIOD_ADD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PERIOD_DIFF);
+            this.CONSUME(Tokens.PERIOD_DIFF);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.PI);
+            this.CONSUME(Tokens.PI);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POINT);
+            this.CONSUME(Tokens.POINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POINTFROMTEXT);
+            this.CONSUME(Tokens.POINTFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POINTFROMWKB);
+            this.CONSUME(Tokens.POINTFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POINTN);
+            this.CONSUME(Tokens.POINTN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POLYFROMTEXT);
+            this.CONSUME(Tokens.POLYFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POLYFROMWKB);
+            this.CONSUME(Tokens.POLYFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POLYGON);
+            this.CONSUME(Tokens.POLYGON);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POLYGONFROMTEXT);
+            this.CONSUME(Tokens.POLYGONFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POLYGONFROMWKB);
+            this.CONSUME(Tokens.POLYGONFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POSITION);
+            this.CONSUME(Tokens.POSITION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POW);
+            this.CONSUME(Tokens.POW);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.POWER);
+            this.CONSUME(Tokens.POWER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.QUARTER);
+            this.CONSUME(Tokens.QUARTER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.QUOTE);
+            this.CONSUME(Tokens.QUOTE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RADIANS);
+            this.CONSUME(Tokens.RADIANS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RAND);
+            this.CONSUME(Tokens.RAND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RANDOM_BYTES);
+            this.CONSUME(Tokens.RANDOM_BYTES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RELEASE_LOCK);
+            this.CONSUME(Tokens.RELEASE_LOCK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.REVERSE);
+            this.CONSUME(Tokens.REVERSE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RIGHT);
+            this.CONSUME(Tokens.RIGHT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROUND);
+            this.CONSUME(Tokens.ROUND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ROW_COUNT);
+            this.CONSUME(Tokens.ROW_COUNT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RPAD);
+            this.CONSUME(Tokens.RPAD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.RTRIM);
+            this.CONSUME(Tokens.RTRIM);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SECOND);
+            this.CONSUME(Tokens.SECOND);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SEC_TO_TIME);
+            this.CONSUME(Tokens.SEC_TO_TIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SESSION_USER);
+            this.CONSUME(Tokens.SESSION_USER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHA);
+            this.CONSUME(Tokens.SHA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHA1);
+            this.CONSUME(Tokens.SHA1);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SHA2);
+            this.CONSUME(Tokens.SHA2);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SIGN);
+            this.CONSUME(Tokens.SIGN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SIN);
+            this.CONSUME(Tokens.SIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SLEEP);
+            this.CONSUME(Tokens.SLEEP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SOUNDEX);
+            this.CONSUME(Tokens.SOUNDEX);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQL_THREAD_WAIT_AFTER_GTIDS);
+            this.CONSUME(Tokens.SQL_THREAD_WAIT_AFTER_GTIDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SQRT);
+            this.CONSUME(Tokens.SQRT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SRID);
+            this.CONSUME(Tokens.SRID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STARTPOINT);
+            this.CONSUME(Tokens.STARTPOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STRCMP);
+            this.CONSUME(Tokens.STRCMP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.STR_TO_DATE);
+            this.CONSUME(Tokens.STR_TO_DATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_AREA);
+            this.CONSUME(Tokens.ST_AREA);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ASBINARY);
+            this.CONSUME(Tokens.ST_ASBINARY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ASTEXT);
+            this.CONSUME(Tokens.ST_ASTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ASWKB);
+            this.CONSUME(Tokens.ST_ASWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ASWKT);
+            this.CONSUME(Tokens.ST_ASWKT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_BUFFER);
+            this.CONSUME(Tokens.ST_BUFFER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_CENTROID);
+            this.CONSUME(Tokens.ST_CENTROID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_CONTAINS);
+            this.CONSUME(Tokens.ST_CONTAINS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_CROSSES);
+            this.CONSUME(Tokens.ST_CROSSES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_DIFFERENCE);
+            this.CONSUME(Tokens.ST_DIFFERENCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_DIMENSION);
+            this.CONSUME(Tokens.ST_DIMENSION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_DISJOINT);
+            this.CONSUME(Tokens.ST_DISJOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_DISTANCE);
+            this.CONSUME(Tokens.ST_DISTANCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ENDPOINT);
+            this.CONSUME(Tokens.ST_ENDPOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ENVELOPE);
+            this.CONSUME(Tokens.ST_ENVELOPE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_EQUALS);
+            this.CONSUME(Tokens.ST_EQUALS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_EXTERIORRING);
+            this.CONSUME(Tokens.ST_EXTERIORRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMCOLLFROMTEXT);
+            this.CONSUME(Tokens.ST_GEOMCOLLFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMCOLLFROMTXT);
+            this.CONSUME(Tokens.ST_GEOMCOLLFROMTXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMCOLLFROMWKB);
+            this.CONSUME(Tokens.ST_GEOMCOLLFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMETRYCOLLECTIONFROMTEXT);
+            this.CONSUME(Tokens.ST_GEOMETRYCOLLECTIONFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMETRYCOLLECTIONFROMWKB);
+            this.CONSUME(Tokens.ST_GEOMETRYCOLLECTIONFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMETRYFROMTEXT);
+            this.CONSUME(Tokens.ST_GEOMETRYFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMETRYFROMWKB);
+            this.CONSUME(Tokens.ST_GEOMETRYFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMETRYN);
+            this.CONSUME(Tokens.ST_GEOMETRYN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMETRYTYPE);
+            this.CONSUME(Tokens.ST_GEOMETRYTYPE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMFROMTEXT);
+            this.CONSUME(Tokens.ST_GEOMFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_GEOMFROMWKB);
+            this.CONSUME(Tokens.ST_GEOMFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_INTERIORRINGN);
+            this.CONSUME(Tokens.ST_INTERIORRINGN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_INTERSECTION);
+            this.CONSUME(Tokens.ST_INTERSECTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_INTERSECTS);
+            this.CONSUME(Tokens.ST_INTERSECTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ISCLOSED);
+            this.CONSUME(Tokens.ST_ISCLOSED);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ISEMPTY);
+            this.CONSUME(Tokens.ST_ISEMPTY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_ISSIMPLE);
+            this.CONSUME(Tokens.ST_ISSIMPLE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_LINEFROMTEXT);
+            this.CONSUME(Tokens.ST_LINEFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_LINEFROMWKB);
+            this.CONSUME(Tokens.ST_LINEFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_LINESTRINGFROMTEXT);
+            this.CONSUME(Tokens.ST_LINESTRINGFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_LINESTRINGFROMWKB);
+            this.CONSUME(Tokens.ST_LINESTRINGFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_NUMGEOMETRIES);
+            this.CONSUME(Tokens.ST_NUMGEOMETRIES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_NUMINTERIORRING);
+            this.CONSUME(Tokens.ST_NUMINTERIORRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_NUMINTERIORRINGS);
+            this.CONSUME(Tokens.ST_NUMINTERIORRINGS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_NUMPOINTS);
+            this.CONSUME(Tokens.ST_NUMPOINTS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_OVERLAPS);
+            this.CONSUME(Tokens.ST_OVERLAPS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_POINTFROMTEXT);
+            this.CONSUME(Tokens.ST_POINTFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_POINTFROMWKB);
+            this.CONSUME(Tokens.ST_POINTFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_POINTN);
+            this.CONSUME(Tokens.ST_POINTN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_POLYFROMTEXT);
+            this.CONSUME(Tokens.ST_POLYFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_POLYFROMWKB);
+            this.CONSUME(Tokens.ST_POLYFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_POLYGONFROMTEXT);
+            this.CONSUME(Tokens.ST_POLYGONFROMTEXT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_POLYGONFROMWKB);
+            this.CONSUME(Tokens.ST_POLYGONFROMWKB);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_SRID);
+            this.CONSUME(Tokens.ST_SRID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_STARTPOINT);
+            this.CONSUME(Tokens.ST_STARTPOINT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_SYMDIFFERENCE);
+            this.CONSUME(Tokens.ST_SYMDIFFERENCE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_TOUCHES);
+            this.CONSUME(Tokens.ST_TOUCHES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_UNION);
+            this.CONSUME(Tokens.ST_UNION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_WITHIN);
+            this.CONSUME(Tokens.ST_WITHIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_X);
+            this.CONSUME(Tokens.ST_X);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.ST_Y);
+            this.CONSUME(Tokens.ST_Y);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBDATE);
+            this.CONSUME(Tokens.SUBDATE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBSTRING_INDEX);
+            this.CONSUME(Tokens.SUBSTRING_INDEX);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SUBTIME);
+            this.CONSUME(Tokens.SUBTIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.SYSTEM_USER);
+            this.CONSUME(Tokens.SYSTEM_USER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TAN);
+            this.CONSUME(Tokens.TAN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIME);
+            this.CONSUME(Tokens.TIME);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIMEDIFF);
+            this.CONSUME(Tokens.TIMEDIFF);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIMESTAMP);
+            this.CONSUME(Tokens.TIMESTAMP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIMESTAMPADD);
+            this.CONSUME(Tokens.TIMESTAMPADD);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIMESTAMPDIFF);
+            this.CONSUME(Tokens.TIMESTAMPDIFF);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIME_FORMAT);
+            this.CONSUME(Tokens.TIME_FORMAT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TIME_TO_SEC);
+            this.CONSUME(Tokens.TIME_TO_SEC);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TOUCHES);
+            this.CONSUME(Tokens.TOUCHES);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TO_BASE64);
+            this.CONSUME(Tokens.TO_BASE64);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TO_DAYS);
+            this.CONSUME(Tokens.TO_DAYS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.TO_SECONDS);
+            this.CONSUME(Tokens.TO_SECONDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UCASE);
+            this.CONSUME(Tokens.UCASE);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNCOMPRESS);
+            this.CONSUME(Tokens.UNCOMPRESS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNCOMPRESSED_LENGTH);
+            this.CONSUME(Tokens.UNCOMPRESSED_LENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNHEX);
+            this.CONSUME(Tokens.UNHEX);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UNIX_TIMESTAMP);
+            this.CONSUME(Tokens.UNIX_TIMESTAMP);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UPDATEXML);
+            this.CONSUME(Tokens.UPDATEXML);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UPPER);
+            this.CONSUME(Tokens.UPPER);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UUID);
+            this.CONSUME(Tokens.UUID);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.UUID_SHORT);
+            this.CONSUME(Tokens.UUID_SHORT);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.VALIDATE_PASSWORD_STRENGTH);
+            this.CONSUME(Tokens.VALIDATE_PASSWORD_STRENGTH);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.VERSION);
+            this.CONSUME(Tokens.VERSION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS);
+            this.CONSUME(Tokens.WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WEEK);
+            this.CONSUME(Tokens.WEEK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WEEKDAY);
+            this.CONSUME(Tokens.WEEKDAY);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WEEKOFYEAR);
+            this.CONSUME(Tokens.WEEKOFYEAR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WEIGHT_STRING);
+            this.CONSUME(Tokens.WEIGHT_STRING);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.WITHIN);
+            this.CONSUME(Tokens.WITHIN);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.YEAR);
+            this.CONSUME(Tokens.YEAR);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.YEARWEEK);
+            this.CONSUME(Tokens.YEARWEEK);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.Y_FUNCTION);
+            this.CONSUME(Tokens.Y_FUNCTION);
           }
         }
       ,
         {
           ALT: () => {
-            this.CONSUMENaN(Tokens.X_FUNCTION);
+            this.CONSUME(Tokens.X_FUNCTION);
           }
         }
       ]);
-    }
-  }
+    
