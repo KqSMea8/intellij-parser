@@ -64,11 +64,11 @@ const Plus = chevrotain.createToken({
 });
 const Fragment = chevrotain.createToken({
   name: 'Fragment',
-  pattern: 'fragment'
+  pattern: /fragment/
 });
 const ReExp = chevrotain.createToken({
   name: 'ReExp',
-  pattern: /\[.+\]/
+  pattern: /\[.+?\][\*\?\+]*/
 });
 const Not = chevrotain.createToken({
   name: 'Not',

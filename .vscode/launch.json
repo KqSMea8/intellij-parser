@@ -7,8 +7,15 @@
     {
       "type": "node",
       "request": "launch",
-      "name": "启动程序",
+      "name": "metaParser",
       "program": "${workspaceFolder}/meta/index.ts",
+      "outFiles": ["${workspaceFolder}/lib/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "sql-parser",
+      "program": "${workspaceFolder}/sql-parser/index.ts",
       "outFiles": ["${workspaceFolder}/lib/**/*.js"]
     }
   ]

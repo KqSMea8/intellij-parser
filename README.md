@@ -77,3 +77,7 @@ https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL
 https://github.com/antlr/antlr4/blob/master/doc/grammars.md
 
 https://github.com/apache/hive/blob/master/ql/src/java/org/apache/hadoop/hive/ql/parse/HiveLexer.g
+
+https://github.com/apache/hive/blob/master/hplsql/src/main/antlr4/org/apache/hive/hplsql/Hplsql.g4
+
+https://github.com/antlr/grammars-v4/blob/master/javascript/JavaScriptParser.g4
