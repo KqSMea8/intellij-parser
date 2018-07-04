@@ -20,7 +20,7 @@ import {
   TextEdit
 } from 'vscode-languageserver-types';
 
-import { Parser } from '../sql-parser/index';
+import { Parser } from '../sql-parser/parser.g';
 import { SQLCompletion } from './services/sqlCompletion';
 import { SQLHover } from './services/sqlHover';
 import { SQLNavigation } from './services/sqlNavigation';
@@ -148,7 +148,7 @@ function createFacade(
 
 export function getSQLLanguageService(): LanguageService {
   return createFacade(
-    new Parser(),
+    new Parser([]),
     new SQLCompletion(),
     new SQLHover(),
     new SQLNavigation(),

@@ -95,9 +95,9 @@ export class DiagnostcsAdapter {
   }
 
   private _resetSchema(resource: Uri): void {
-    this._worker().then(worker => {
-      worker.resetSchema(resource.toString());
-    });
+    // this._worker().then(worker => {
+    //   worker.resetSchema(resource.toString());
+    // });
   }
 
   private _doValidate(resource: Uri, languageId: string): void {
@@ -529,54 +529,54 @@ function fromFormattingOptions(options: monaco.languages.FormattingOptions): ls.
   };
 }
 
-export class DocumentFormattingEditProvider implements monaco.languages.DocumentFormattingEditProvider {
-  constructor(private _worker: WorkerAccessor) {}
+// export class DocumentFormattingEditProvider implements monaco.languages.DocumentFormattingEditProvider {
+//   constructor(private _worker: WorkerAccessor) {}
 
-  public provideDocumentFormattingEdits(
-    model: monaco.editor.IReadOnlyModel,
-    options: monaco.languages.FormattingOptions,
-    token: CancellationToken
-  ): Thenable<monaco.editor.ISingleEditOperation[]> {
-    const resource = model.uri;
+//   public provideDocumentFormattingEdits(
+//     model: monaco.editor.IReadOnlyModel,
+//     options: monaco.languages.FormattingOptions,
+//     token: CancellationToken
+//   ): Thenable<monaco.editor.ISingleEditOperation[]> {
+//     const resource = model.uri;
 
-    return wireCancellationToken(
-      token,
-      this._worker(resource).then(worker => {
-        return worker.format(resource.toString(), null, fromFormattingOptions(options)).then(edits => {
-          if (!edits || edits.length === 0) {
-            return;
-          }
-          return edits.map(toTextEdit);
-        });
-      })
-    );
-  }
-}
+//     return wireCancellationToken(
+//       token,
+//       this._worker(resource).then(worker => {
+//         return worker.format(resource.toString(), null, fromFormattingOptions(options)).then(edits => {
+//           if (!edits || edits.length === 0) {
+//             return;
+//           }
+//           return edits.map(toTextEdit);
+//         });
+//       })
+//     );
+//   }
+// }
 
-export class DocumentRangeFormattingEditProvider implements monaco.languages.DocumentRangeFormattingEditProvider {
-  constructor(private _worker: WorkerAccessor) {}
+// export class DocumentRangeFormattingEditProvider implements monaco.languages.DocumentRangeFormattingEditProvider {
+//   constructor(private _worker: WorkerAccessor) {}
 
-  public provideDocumentRangeFormattingEdits(
-    model: monaco.editor.IReadOnlyModel,
-    range: Range,
-    options: monaco.languages.FormattingOptions,
-    token: CancellationToken
-  ): Thenable<monaco.editor.ISingleEditOperation[]> {
-    const resource = model.uri;
+//   public provideDocumentRangeFormattingEdits(
+//     model: monaco.editor.IReadOnlyModel,
+//     range: Range,
+//     options: monaco.languages.FormattingOptions,
+//     token: CancellationToken
+//   ): Thenable<monaco.editor.ISingleEditOperation[]> {
+//     const resource = model.uri;
 
-    return wireCancellationToken(
-      token,
-      this._worker(resource).then(worker => {
-        return worker.format(resource.toString(), fromRange(range), fromFormattingOptions(options)).then(edits => {
-          if (!edits || edits.length === 0) {
-            return;
-          }
-          return edits.map(toTextEdit);
-        });
-      })
-    );
-  }
-}
+//     return wireCancellationToken(
+//       token,
+//       this._worker(resource).then(worker => {
+//         return worker.format(resource.toString(), fromRange(range), fromFormattingOptions(options)).then(edits => {
+//           if (!edits || edits.length === 0) {
+//             return;
+//           }
+//           return edits.map(toTextEdit);
+//         });
+//       })
+//     );
+//   }
+// }
 
 /**
  * Hook a cancellation token to a WinJS Promise

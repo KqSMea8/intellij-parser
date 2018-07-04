@@ -29,31 +29,31 @@ export class SQLWorker {
     let document = this._getTextDocument(uri);
     if (document) {
       let sqlDocument = this._languageService.parseSQLDocument(document);
-      return this._languageService.doValidation(document, sqlDocument);
+      return Promise.as(this._languageService.doValidation(document, sqlDocument));
     }
     return Promise.as([]);
   }
   doComplete(uri: string, position: ls.Position): Thenable<ls.CompletionList> {
     let document = this._getTextDocument(uri);
     let sqlDocument = this._languageService.parseSQLDocument(document);
-    return this._languageService.doComplete(document, position, sqlDocument);
+    return Promise.as(this._languageService.doComplete(document, position, sqlDocument));
   }
-  doResolve(item: ls.CompletionItem): Thenable<ls.CompletionItem> {
-    return this._languageService.doResolve(item);
-  }
+  // doResolve(item: ls.CompletionItem): Thenable<ls.CompletionItem> {
+  //   return this._languageService.doResolve(item);
+  // }
   doHover(uri: string, position: ls.Position): Thenable<ls.Hover> {
     let document = this._getTextDocument(uri);
     let sqlDocument = this._languageService.parseSQLDocument(document);
-    return this._languageService.doHover(document, position, sqlDocument);
+    return Promise.as(this._languageService.doHover(document, position, sqlDocument));
   }
-  format(uri: string, range: ls.Range, options: ls.FormattingOptions): Thenable<ls.TextEdit[]> {
-    let document = this._getTextDocument(uri);
-    let textEdits = this._languageService.format(document, range, options);
-    return Promise.as(textEdits);
-  }
-  resetSchema(uri: string): Thenable<boolean> {
-    return Promise.as(this._languageService.resetSchema(uri));
-  }
+  // format(uri: string, range: ls.Range, options: ls.FormattingOptions): Thenable<ls.TextEdit[]> {
+  //   let document = this._getTextDocument(uri);
+  //   let textEdits = this._languageService.format(document, range, options);
+  //   return Promise.as(textEdits);
+  // }
+  // resetSchema(uri: string): Thenable<boolean> {
+  //   return Promise.as(this._languageService.resetSchema(uri));
+  // }
   findDocumentSymbols(uri: string): Thenable<ls.SymbolInformation[]> {
     let document = this._getTextDocument(uri);
     let sqlDocument = this._languageService.parseSQLDocument(document);

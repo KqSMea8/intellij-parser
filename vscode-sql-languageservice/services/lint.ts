@@ -6,7 +6,7 @@
 
 import * as languageFacts from './languageFacts';
 import { Rules, LintConfigurationSettings, Rule } from './lintRules';
-import * as nodes from '../parser/cssNodes';
+import * as nodes from '../parser/sqlNodes';
 
 import * as nls from 'vscode-nls';
 import { TextDocument } from 'vscode-languageserver-types';
