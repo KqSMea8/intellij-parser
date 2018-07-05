@@ -1,6 +1,6 @@
 
 root
-    : sqlStatements? MINUSMINUS? EOF
+    : sqlStatements? MINUSMINUS
     ;
 
 sqlStatements
