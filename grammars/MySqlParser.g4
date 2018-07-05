@@ -1,4 +1,3 @@
-
 root
     : sqlStatements? MINUSMINUS
     ;
