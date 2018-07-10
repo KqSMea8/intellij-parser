@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "UMD",
+    "noImplicitAny": false,
+    "declaration": false,
+    "target": "es5",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "sourceMap": true,
+    "outDir": "../lib/sql-parser",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": ["dom", "es5", "es6", "es2017", "dom.iterable", "scripthost"]
+  }
+}
