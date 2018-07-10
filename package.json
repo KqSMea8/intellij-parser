@@ -2,7 +2,7 @@
   "name": "@ali/intellij-sql-editor",
   "version": "0.0.2",
   "description": "",
-  "main": "./lib/sql-parser/index.js",
+  "main": "lib/sql-parser/index.js",
   "scripts": {
     "compile-meta": "tsc && node lib/meta/index.js",
     "compile-parser": "tsc sql-parser/index.ts",
