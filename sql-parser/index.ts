@@ -28,17 +28,17 @@ export function parseMysql(mysqlCode: string) {
   };
 }
 
-(function test() {
-  const mysqlCode = fs.readFileSync(path.join(__dirname, '../../sql-parser/mysql.sql')).toString('utf8');
+// (function test() {
+//   const mysqlCode = fs.readFileSync(path.join(__dirname, '../../sql-parser/mysql.sql')).toString('utf8');
 
-  try {
-    const { cst, lexErrors, parseErrors } = parseMysql(mysqlCode);
+//   try {
+//     const { cst, lexErrors, parseErrors } = parseMysql(mysqlCode);
 
-    console.log(lexErrors, parseErrors);
+//     console.log(lexErrors, parseErrors);
 
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/mysql_output_cst.json'), JSON.stringify(cst));
-  } catch (e) {
-    debugger;
-    console.log(e);
-  }
-})();
+//     fs.writeFileSync(path.join(__dirname, '../../sql-parser/mysql_output_cst.json'), JSON.stringify(cst));
+//   } catch (e) {
+//     debugger;
+//     console.log(e);
+//   }
+// })();
