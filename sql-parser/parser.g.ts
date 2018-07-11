@@ -2,7 +2,6 @@ import * as chevrotain from 'chevrotain';
 import { tokens, Lexer, Tokens, TokenEnum } from './lexer.g';
 
 export enum SyntaxKind {
-  root = 'root',
   sqlStatements = 'sqlStatements',
   emptyStatement = 'emptyStatement',
   sqlStatement = 'sqlStatement',
@@ -123,15 +122,7 @@ export class Parser extends chevrotain.Parser {
       outputCst: true,
     });
 
-    this.RULE('root', () => {
-      this.OPTION(() => {
-        this.SUBRULE(this.sqlStatements);
-      });
-
-      this.CONSUME(Tokens.MINUSMINUS);
-    });
-
-    this.RULE('sqlStatements', () => {
+    this.RULE('selectStatement', () => {
       this.MANY(() => {
         this.OR([
           {

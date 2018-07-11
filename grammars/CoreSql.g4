@@ -1,5 +1,3 @@
-root: sqlStatements? MINUSMINUS;
-
 sqlStatements: (sqlStatement MINUSMINUS? SEMI | emptyStatement)* (
 		sqlStatement (MINUSMINUS? SEMI)?
 		| emptyStatement
