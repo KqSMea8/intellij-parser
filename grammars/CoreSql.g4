@@ -28,17 +28,17 @@ createTable:
 
 
 selectStatement:
-	querySpecification lockClause?	# simpleSelect
-	| queryExpression lockClause?	# parenthesisSelect
+	querySpecification lockClause?	
+	| queryExpression lockClause?	
 	| querySpecificationNointo unionStatement+ (
 		UNION unionType = (ALL | DISTINCT)? (
 			querySpecification
 			| queryExpression
 		)
-	)? orderByClause? limitClause? lockClause? # unionSelect
+	)? orderByClause? limitClause? lockClause? 
 	| queryExpressionNointo unionParenthesis+ (
 		UNION unionType = (ALL | DISTINCT)? queryExpression
-	)? orderByClause? limitClause? lockClause? # unionParenthesisSelect;
+	)? orderByClause? limitClause? lockClause?;
 
 lockClause: FOR UPDATE | LOCK IN SHARE MODE;
 
@@ -86,19 +86,19 @@ orderByClause:
 tableSources: tableSource (',' tableSource)*;
 
 tableSource:
-	tableSourceItem joinPart*			# tableSourceBase
-	| '(' tableSourceItem joinPart* ')'	# tableSourceNested;
+	tableSourceItem joinPart*	
+	| '(' tableSourceItem joinPart* ')';
 
 joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 		ON expression
 		| USING '(' uidList ')'
-	)?													# innerJoin
-	| STRAIGHT_JOIN tableSourceItem (ON expression)?	# straightJoin
+	)?													
+	| STRAIGHT_JOIN tableSourceItem (ON expression)?	
 	| (LEFT | RIGHT) OUTER? JOIN tableSourceItem (
 		ON expression
 		| USING '(' uidList ')'
-	)														# outerJoin
-	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem	# naturalJoin;
+	)													
+	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem;
 
 uidList: uid (',' uid)*;
 
@@ -113,23 +113,23 @@ indexHintType: JOIN | ORDER BY | GROUP BY;
 tableSourceItem:
 	tableName (PARTITION '(' uidList ')')? (AS? alias = uid)? (
 		indexHint (',' indexHint)*
-	)? # atomTableItem
+	)? 
 	| (
 		selectStatement
 		| '(' parenthesisSubquery = selectStatement ')'
-	) AS? alias = uid		# subqueryTableItem
-	| '(' tableSources ')'	# tableSourcesItem;
+	) AS? alias = uid
+	| '(' tableSources ')';
 
 selectIntoExpression:
-	INTO assignmentField (',' assignmentField)*	# selectIntoVariables
-	| INTO DUMPFILE STRING_LITERAL				# selectIntoDumpFile
+	INTO assignmentField (',' assignmentField)*	
+	| INTO DUMPFILE STRING_LITERAL				
 	| (
 		INTO OUTFILE filename = STRING_LITERAL (
 			CHARACTER SET charset = charsetName
 		)? (fieldsFormat = (FIELDS | COLUMNS) selectFieldsInto+)? (
 			LINES selectLinesInto+
 		)?
-	) # selectIntoTextFile;
+	);
 
 assignmentField: uid | LOCAL_ID;
 
@@ -154,17 +154,17 @@ selectSpec: (ALL | DISTINCT | DISTINCTROW)
 selectElements: (star = '*' | selectElement) (',' selectElement)*;
 
 selectElement:
-	fullId '.' '*'									# selectStarElement
-	| fullColumnName (AS? uid)?						# selectColumnElement
-	| functionCall (AS? uid)?						# selectFunctionElement
-	| (LOCAL_ID VAR_ASSIGN)? expression (AS? uid)?	# selectExpressionElement;
+	fullId '.' '*'								
+	| fullColumnName (AS? uid)?					
+	| functionCall (AS? uid)?						
+	| (LOCAL_ID VAR_ASSIGN)? expression (AS? uid)?;
 
 functionCall:
-	specificFunction							# specificFunctionCall
-	| aggregateWindowedFunction					# aggregateFunctionCall
-	| scalarFunctionName '(' functionArgs? ')'	# scalarFunctionCall
-	| fullId '(' functionArgs? ')'				# udfFunctionCall
-	| passwordFunctionClause					# passwordFunctionCall;
+	specificFunction						
+	| aggregateWindowedFunction					
+	| scalarFunctionName '(' functionArgs? ')'	
+	| fullId '(' functionArgs? ')'			
+	| passwordFunctionClause;
 
 passwordFunctionClause:
 	functionName = (PASSWORD | OLD_PASSWORD) '(' functionArg ')';
@@ -195,25 +195,25 @@ scalarFunctionName:
 	| UTC_TIMESTAMP;
 
 expression:
-	notOperator = (NOT | '!') expression						# notExpression
-	| expression logicalOperator expression						# logicalExpression
-	| predicate IS NOT? testValue = (TRUE | FALSE | UNKNOWN)	# isExpression
-	| predicate													# predicateExpression;
+	notOperator = (NOT | '!') expression						
+	| expression logicalOperator expression					
+	| predicate IS NOT? testValue = (TRUE | FALSE | UNKNOWN)	
+	| predicate;
 
 predicate:
-	predicate NOT? IN '(' (selectStatement | expressions) ')'	# inPredicate
-	| predicate IS nullNotnull									# isNullPredicate
-	| left = predicate comparisonOperator right = predicate		# binaryComparasionPredicate
+	predicate NOT? IN '(' (selectStatement | expressions) ')'	
+	| predicate IS nullNotnull								
+	| left = predicate comparisonOperator right = predicate		
 	| predicate comparisonOperator quantifier = (
 		ALL
 		| ANY
 		| SOME
-	) '(' selectStatement ')'									# subqueryComparasionPredicate
-	| predicate NOT? BETWEEN predicate AND predicate			# betweenPredicate
-	| predicate SOUNDS LIKE predicate							# soundsLikePredicate
-	| predicate NOT? LIKE predicate (ESCAPE STRING_LITERAL)?	# likePredicate
-	| predicate NOT? regex = (REGEXP | RLIKE) predicate			# regexpPredicate
-	| (LOCAL_ID VAR_ASSIGN)? expressionAtom						# expressionAtomPredicate;
+	) '(' selectStatement ')'									
+	| predicate NOT? BETWEEN predicate AND predicate			
+	| predicate SOUNDS LIKE predicate						
+	| predicate NOT? LIKE predicate (ESCAPE STRING_LITERAL)?
+	| predicate NOT? regex = (REGEXP | RLIKE) predicate			
+	| (LOCAL_ID VAR_ASSIGN)? expressionAtom;
 
 nullNotnull: NOT? (NULL_LITERAL | NULL_SPEC_LITERAL);
 
@@ -247,20 +247,20 @@ specificFunction: (
 		| CURRENT_TIMESTAMP
 		| CURRENT_USER
 		| LOCALTIME
-	)																# simpleFunctionCall
-	| CONVERT '(' expression separator = ',' convertedDataType ')'	# dataTypeFunctionCall
-	| CONVERT '(' expression USING charsetName ')'					# dataTypeFunctionCall
-	| CAST '(' expression AS convertedDataType ')'					# dataTypeFunctionCall
-	| VALUES '(' fullColumnName ')'									# valuesFunctionCall
+	)																
+	| CONVERT '(' expression separator = ',' convertedDataType ')'	
+	| CONVERT '(' expression USING charsetName ')'				
+	| CAST '(' expression AS convertedDataType ')'				
+	| VALUES '(' fullColumnName ')'									
 	| CASE expression caseFuncAlternative+ (
 		ELSE elseArg = functionArg
-	)? END															# caseFunctionCall
-	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END	# caseFunctionCall
-	| CHAR '(' functionArgs (USING charsetName)? ')'				# charFunctionCall
+	)? END														
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END	
+	| CHAR '(' functionArgs (USING charsetName)? ')'				
 	| POSITION '(' (
 		positionString = stringLiteral
 		| positionExpression = expression
-	) IN (inString = stringLiteral | inExpression = expression) ')' # positionFunctionCall
+	) IN (inString = stringLiteral | inExpression = expression) ')' 
 	| (SUBSTR | SUBSTRING) '(' (
 		sourceString = stringLiteral
 		| sourceExpression = expression
@@ -272,30 +272,29 @@ specificFunction: (
 			forDecimal = decimalLiteral
 			| forExpression = expression
 		)
-	)? ')' # substrFunctionCall
+	)? ')' 
 	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) (
 		sourceString = stringLiteral
 		| sourceExpression = expression
 	)? FROM (
 		fromString = stringLiteral
 		| fromExpression = expression
-	) ')' # trimFunctionCall
+	) ')' 
 	| TRIM '(' (
 		sourceString = stringLiteral
 		| sourceExpression = expression
 	) FROM (
 		fromString = stringLiteral
 		| fromExpression = expression
-	) ')' # trimFunctionCall
+	) ')' 
 	| WEIGHT_STRING '(' (stringLiteral | expression) (
 		AS stringFormat = (CHAR | BINARY) '(' decimalLiteral ')'
-	)? levelsInWeightString? ')' # weightFunctionCall
+	)? levelsInWeightString? ')' 
 	| EXTRACT '(' intervalType FROM (
 		sourceString = stringLiteral
 		| sourceExpression = expression
-	) ')'																				# extractFunctionCall
-	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')'	#
-		getFormatFunctionCall;
+	) ')'																			
+	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')';
 
 convertedDataType:
 	typeName = (BINARY | NCHAR) lengthOneDimension?
@@ -311,8 +310,8 @@ lengthOneDimension: '(' decimalLiteral ')';
 lengthTwoDimension: '(' decimalLiteral ',' decimalLiteral ')';
 
 levelsInWeightString:
-	LEVEL levelInWeightListElement (',' levelInWeightListElement)*		# levelWeightList
-	| LEVEL firstLevel = decimalLiteral '-' lastLevel = decimalLiteral	# levelWeightRange;
+	LEVEL levelInWeightListElement (',' levelInWeightListElement)*	
+	| LEVEL firstLevel = decimalLiteral '-' lastLevel = decimalLiteral;
 
 levelInWeightListElement:
 	decimalLiteral orderType = (ASC | DESC | REVERSE)?;
@@ -351,20 +350,20 @@ comparisonOperator:
 	| '<' '=' '>';
 
 expressionAtom:
-	constant													# constantExpressionAtom
-	| fullColumnName											# fullColumnNameExpressionAtom
-	| functionCall												# functionCallExpressionAtom
-	| expressionAtom COLLATE collationName						# collateExpressionAtom
-	| mysqlVariable												# mysqlVariableExpressionAtom
-	| unaryOperator expressionAtom								# unaryExpressionAtom
-	| BINARY expressionAtom										# binaryExpressionAtom
-	| '(' expression (',' expression)* ')'						# nestedExpressionAtom
-	| ROW '(' expression (',' expression)+ ')'					# nestedRowExpressionAtom
-	| EXISTS '(' selectStatement ')'							# existsExpessionAtom
-	| '(' selectStatement ')'									# subqueryExpessionAtom
-	| INTERVAL expression intervalType							# intervalExpressionAtom
-	| left = expressionAtom bitOperator right = expressionAtom	# bitExpressionAtom
-	| left = expressionAtom mathOperator right = expressionAtom	# mathExpressionAtom;
+	constant													
+	| fullColumnName										
+	| functionCall											
+	| expressionAtom COLLATE collationName					
+	| mysqlVariable												
+	| unaryOperator expressionAtom								
+	| BINARY expressionAtom										
+	| '(' expression (',' expression)* ')'					
+	| ROW '(' expression (',' expression)+ ')'				
+	| EXISTS '(' selectStatement ')'						
+	| '(' selectStatement ')'									
+	| INTERVAL expression intervalType						
+	| left = expressionAtom bitOperator right = expressionAtom
+	| left = expressionAtom mathOperator right = expressionAtom;
 
 bitOperator: '<' '<' | '>' '>' | '&' | '^' | '|';
 
