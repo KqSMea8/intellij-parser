@@ -1,8 +1,6 @@
 import { Lexer, TokenEnum } from './lexer.g';
 import { Parser, SyntaxKind } from './parser.g';
-import { SelectParser, SelectLexer } from './tmp.g';
-import * as fs from 'fs';
-import * as path from 'path';
+// import { SelectParser, SelectLexer } from './tmp.g';
 
 class CstNode {
   name: SyntaxKind | TokenEnum;
@@ -15,7 +13,7 @@ class CstNode {
 export function parseMysql(mysqlCode: string) {
   const lexResult = Lexer.tokenize(mysqlCode);
 
-  const parser = new SelectParser([]);
+  const parser = new Parser([]);
   parser.input = lexResult.tokens;
 
   const cst = parser.selectStatement() as CstNode;

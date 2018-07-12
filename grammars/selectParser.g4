@@ -6,27 +6,26 @@ sqlStatement: dmlStatement;
 
 dmlStatement: selectStatement;
 
-selectStatement: querySpecification? # simpleSelect;
+selectStatement: querySpecification?;
 
 querySpecification: SELECT selectElements fromClause?;
 
-selectElements: (star = '*' | selectElement) (',' selectElement)*;
+selectElements: ('*' | selectElement) (',' selectElement)*;
 
 fromClause: FROM tableSources;
 
 tableSources: tableSource (',' tableSource)*;
 
-tableSource: tableSourceItem # tableSourceBase;
+tableSource: tableSourceItem;
 
-tableSourceItem: tableName # atomTableItem;
+tableSourceItem: tableName;
 
 tableName: fullId;
 
-selectElement: fullId '.' '*' # selectStarElement;
+selectElement: fullId (AS? ID)?;
 
-fullId: uid (DOT_ID | '.' uid)?;
+fullColumnName: ID (dottedId)*;
 
-uid: simpleId;
+dottedId: DOT_ID;
 
-simpleId: ID;
-
+fullId: ID (DOT_ID)*;

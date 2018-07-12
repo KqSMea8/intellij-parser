@@ -15,9 +15,9 @@ export enum SyntaxKind {
   tableSourceItem = 'tableSourceItem',
   tableName = 'tableName',
   selectElement = 'selectElement',
+  fullColumnName = 'fullColumnName',
+  dottedId = 'dottedId',
   fullId = 'fullId',
-  uid = 'uid',
-  simpleId = 'simpleId'
 }
 
 export class BaseNode {
@@ -53,7 +53,7 @@ export class Parser extends chevrotain.Parser {
   constructor(input) {
     super(input, tokens, {
       recoveryEnabled: true,
-      outputCst: true
+      outputCst: true,
     });
 
     this.RULE('root', () => {
@@ -91,18 +91,18 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.ADD);
-          }
+            this.CONSUME(Tokens.EOF);
+          },
         },
         {
           ALT: () => {
             this.SUBRULE(this.selectElement);
-          }
-        }
+          },
+        },
       ]);
 
       this.MANY(() => {
-        this.CONSUME(Tokens.ADD);
+        this.CONSUME(Tokens.EOF);
         this.SUBRULE2(this.selectElement);
       });
     });
@@ -116,7 +116,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.tableSource);
 
       this.MANY(() => {
-        this.CONSUME(Tokens.ADD);
+        this.CONSUME(Tokens.EOF);
         this.SUBRULE2(this.tableSource);
       });
     });
@@ -135,36 +135,34 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('selectElement', () => {
       this.SUBRULE(this.fullId);
-      this.CONSUME(Tokens.ADD);
-      this.CONSUME(Tokens.ADD);
-    });
-
-    this.RULE('fullId', () => {
-      this.SUBRULE(this.uid);
 
       this.OPTION(() => {
-        this.OR([
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.DOT_ID);
-            }
-          },
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.ADD);
-              this.SUBRULE2(this.uid);
-            }
-          }
-        ]);
+        this.OPTION2(() => {
+          this.CONSUME(Tokens.AS);
+        });
+
+        this.CONSUME(Tokens.ID);
       });
     });
 
-    this.RULE('uid', () => {
-      this.SUBRULE(this.simpleId);
+    this.RULE('fullColumnName', () => {
+      this.CONSUME(Tokens.ID);
+
+      this.MANY(() => {
+        this.SUBRULE(this.dottedId);
+      });
     });
 
-    this.RULE('simpleId', () => {
+    this.RULE('dottedId', () => {
+      this.CONSUME(Tokens.DOT_ID);
+    });
+
+    this.RULE('fullId', () => {
       this.CONSUME(Tokens.ID);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.DOT_ID);
+      });
     });
 
     chevrotain.Parser.performSelfAnalysis(this);

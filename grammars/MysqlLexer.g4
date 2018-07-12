@@ -1,4 +1,3 @@
-ADD: 'ADD';
 EOF: 'EOF';
 ALL: 'ALL';
 ALTER: 'ALTER';
@@ -1035,7 +1034,7 @@ STRING_CHARSET_NAME: '_' CHARSET_NAME;
 // Hack for dotID Prevent recognize string: .123somelatin AS ((.123), FLOAT_LITERAL), ((somelatin),
 // ID) it must recoginze: .123somelatin AS ((.), DOT), (123somelatin, ID)
 
-DOT_ID: '.' ID_LITERAL;
+DOT_ID: '.'ID_LITERAL;
 
 // Identifiers
 
@@ -1108,7 +1107,7 @@ fragment CHARSET_NAME:
 
 fragment EXPONENT_NUM_PART: 'E' '-'? DEC_DIGIT+;
 fragment ID_LITERAL:
-	[A-Za-z_$0-9]*? [A-Za-z_$]+? [A-Za-z_$0-9]*;
+	[A-Za-z_$0-9]+;
 fragment DQUOTA_STRING:
 	'"' ('\\' . | '""' | ~('"' | '\\'))* '"';
 fragment SQUOTA_STRING:

@@ -545,9 +545,9 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 164,
+              "startOffset": 149,
               "startLine": 9,
-              "startColumn": 52,
+              "startColumn": 37,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
@@ -569,7 +569,7 @@
           "LowerName": [
             {
               "image": "querySpecification",
-              "startOffset": 167,
+              "startOffset": 152,
               "startLine": 11,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -587,7 +587,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 185,
+              "startOffset": 170,
               "startLine": 11,
               "startColumn": 19,
               "tokenTypeIdx": 4,
@@ -622,7 +622,7 @@
                                   "UpperName": [
                                     {
                                       "image": "SELECT",
-                                      "startOffset": 187,
+                                      "startOffset": 172,
                                       "startLine": 11,
                                       "startColumn": 21,
                                       "tokenTypeIdx": 10,
@@ -652,7 +652,7 @@
                                   "LowerName": [
                                     {
                                       "image": "selectElements",
-                                      "startOffset": 194,
+                                      "startOffset": 179,
                                       "startLine": 11,
                                       "startColumn": 28,
                                       "tokenTypeIdx": 11,
@@ -682,7 +682,7 @@
                                   "LowerName": [
                                     {
                                       "image": "fromClause",
-                                      "startOffset": 209,
+                                      "startOffset": 194,
                                       "startLine": 11,
                                       "startColumn": 43,
                                       "tokenTypeIdx": 11,
@@ -707,7 +707,7 @@
                                   "Optional": [
                                     {
                                       "image": "?",
-                                      "startOffset": 219,
+                                      "startOffset": 204,
                                       "startLine": 11,
                                       "startColumn": 53,
                                       "tokenTypeIdx": 6,
@@ -738,7 +738,7 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 220,
+              "startOffset": 205,
               "startLine": 11,
               "startColumn": 54,
               "tokenTypeIdx": 3,
@@ -762,7 +762,7 @@
           "LowerName": [
             {
               "image": "selectElements",
-              "startOffset": 223,
+              "startOffset": 208,
               "startLine": 13,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -780,7 +780,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 237,
+              "startOffset": 222,
               "startLine": 13,
               "startColumn": 15,
               "tokenTypeIdx": 4,
@@ -815,7 +815,7 @@
                                   "LeftBracket": [
                                     {
                                       "image": "(",
-                                      "startOffset": 239,
+                                      "startOffset": 224,
                                       "startLine": 13,
                                       "startColumn": 17,
                                       "tokenTypeIdx": 7,
@@ -847,72 +847,21 @@
                                                       {
                                                         "name": "item",
                                                         "children": {
-                                                          "LowerName": [
+                                                          "Stringliteral": [
                                                             {
-                                                              "image": "star",
-                                                              "startOffset": 240,
+                                                              "image": "'*'",
+                                                              "startOffset": 225,
                                                               "startLine": 13,
                                                               "startColumn": 18,
-                                                              "tokenTypeIdx": 11,
+                                                              "tokenTypeIdx": 9,
                                                               "tokenType": {
                                                                 "PATTERN": {},
-                                                                "tokenTypeIdx": 11,
+                                                                "tokenTypeIdx": 9,
                                                                 "CATEGORIES": [],
                                                                 "categoryMatches": [],
                                                                 "categoryMatchesMap": {},
-                                                                "tokenName": "LowerName",
+                                                                "tokenName": "Stringliteral",
                                                                 "isParent": false
-                                                              }
-                                                            }
-                                                          ],
-                                                          "alias": [
-                                                            {
-                                                              "name": "alias",
-                                                              "children": {
-                                                                "Equal": [
-                                                                  {
-                                                                    "image": "=",
-                                                                    "startOffset": 245,
-                                                                    "startLine": 13,
-                                                                    "startColumn": 23,
-                                                                    "tokenTypeIdx": 12,
-                                                                    "tokenType": {
-                                                                      "PATTERN": "=",
-                                                                      "tokenTypeIdx": 12,
-                                                                      "CATEGORIES": [],
-                                                                      "categoryMatches": [],
-                                                                      "categoryMatchesMap": {},
-                                                                      "tokenName": "Equal",
-                                                                      "isParent": false,
-                                                                      "LABEL": "="
-                                                                    }
-                                                                  }
-                                                                ],
-                                                                "item": [
-                                                                  {
-                                                                    "name": "item",
-                                                                    "children": {
-                                                                      "Stringliteral": [
-                                                                        {
-                                                                          "image": "'*'",
-                                                                          "startOffset": 247,
-                                                                          "startLine": 13,
-                                                                          "startColumn": 25,
-                                                                          "tokenTypeIdx": 9,
-                                                                          "tokenType": {
-                                                                            "PATTERN": {},
-                                                                            "tokenTypeIdx": 9,
-                                                                            "CATEGORIES": [],
-                                                                            "categoryMatches": [],
-                                                                            "categoryMatchesMap": {},
-                                                                            "tokenName": "Stringliteral",
-                                                                            "isParent": false
-                                                                          }
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  }
-                                                                ]
                                                               }
                                                             }
                                                           ]
@@ -938,9 +887,9 @@
                                                           "LowerName": [
                                                             {
                                                               "image": "selectElement",
-                                                              "startOffset": 253,
+                                                              "startOffset": 231,
                                                               "startLine": 13,
-                                                              "startColumn": 31,
+                                                              "startColumn": 24,
                                                               "tokenTypeIdx": 11,
                                                               "tokenType": {
                                                                 "PATTERN": {},
@@ -965,9 +914,9 @@
                                         "Bar": [
                                           {
                                             "image": "|",
-                                            "startOffset": 251,
+                                            "startOffset": 229,
                                             "startLine": 13,
-                                            "startColumn": 29,
+                                            "startColumn": 22,
                                             "tokenTypeIdx": 2,
                                             "tokenType": {
                                               "PATTERN": {},
@@ -987,9 +936,9 @@
                                   "RightBracket": [
                                     {
                                       "image": ")",
-                                      "startOffset": 266,
+                                      "startOffset": 244,
                                       "startLine": 13,
-                                      "startColumn": 44,
+                                      "startColumn": 37,
                                       "tokenTypeIdx": 8,
                                       "tokenType": {
                                         "PATTERN": {},
@@ -1018,9 +967,9 @@
                                   "LeftBracket": [
                                     {
                                       "image": "(",
-                                      "startOffset": 268,
+                                      "startOffset": 246,
                                       "startLine": 13,
-                                      "startColumn": 46,
+                                      "startColumn": 39,
                                       "tokenTypeIdx": 7,
                                       "tokenType": {
                                         "PATTERN": {},
@@ -1053,9 +1002,9 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "','",
-                                                              "startOffset": 269,
+                                                              "startOffset": 247,
                                                               "startLine": 13,
-                                                              "startColumn": 47,
+                                                              "startColumn": 40,
                                                               "tokenTypeIdx": 9,
                                                               "tokenType": {
                                                                 "PATTERN": {},
@@ -1083,9 +1032,9 @@
                                                           "LowerName": [
                                                             {
                                                               "image": "selectElement",
-                                                              "startOffset": 273,
+                                                              "startOffset": 251,
                                                               "startLine": 13,
-                                                              "startColumn": 51,
+                                                              "startColumn": 44,
                                                               "tokenTypeIdx": 11,
                                                               "tokenType": {
                                                                 "PATTERN": {},
@@ -1113,9 +1062,9 @@
                                   "RightBracket": [
                                     {
                                       "image": ")",
-                                      "startOffset": 286,
+                                      "startOffset": 264,
                                       "startLine": 13,
-                                      "startColumn": 64,
+                                      "startColumn": 57,
                                       "tokenTypeIdx": 8,
                                       "tokenType": {
                                         "PATTERN": {},
@@ -1139,9 +1088,9 @@
                                   "Asterisk": [
                                     {
                                       "image": "*",
-                                      "startOffset": 287,
+                                      "startOffset": 265,
                                       "startLine": 13,
-                                      "startColumn": 65,
+                                      "startColumn": 58,
                                       "tokenTypeIdx": 5,
                                       "tokenType": {
                                         "PATTERN": {},
@@ -1170,9 +1119,9 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 288,
+              "startOffset": 266,
               "startLine": 13,
-              "startColumn": 66,
+              "startColumn": 59,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
@@ -1194,7 +1143,7 @@
           "LowerName": [
             {
               "image": "fromClause",
-              "startOffset": 291,
+              "startOffset": 269,
               "startLine": 15,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -1212,7 +1161,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 301,
+              "startOffset": 279,
               "startLine": 15,
               "startColumn": 11,
               "tokenTypeIdx": 4,
@@ -1247,7 +1196,7 @@
                                   "UpperName": [
                                     {
                                       "image": "FROM",
-                                      "startOffset": 303,
+                                      "startOffset": 281,
                                       "startLine": 15,
                                       "startColumn": 13,
                                       "tokenTypeIdx": 10,
@@ -1277,7 +1226,7 @@
                                   "LowerName": [
                                     {
                                       "image": "tableSources",
-                                      "startOffset": 308,
+                                      "startOffset": 286,
                                       "startLine": 15,
                                       "startColumn": 18,
                                       "tokenTypeIdx": 11,
@@ -1307,7 +1256,7 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 320,
+              "startOffset": 298,
               "startLine": 15,
               "startColumn": 30,
               "tokenTypeIdx": 3,
@@ -1331,7 +1280,7 @@
           "LowerName": [
             {
               "image": "tableSources",
-              "startOffset": 323,
+              "startOffset": 301,
               "startLine": 17,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -1349,7 +1298,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 335,
+              "startOffset": 313,
               "startLine": 17,
               "startColumn": 13,
               "tokenTypeIdx": 4,
@@ -1384,7 +1333,7 @@
                                   "LowerName": [
                                     {
                                       "image": "tableSource",
-                                      "startOffset": 337,
+                                      "startOffset": 315,
                                       "startLine": 17,
                                       "startColumn": 15,
                                       "tokenTypeIdx": 11,
@@ -1414,7 +1363,7 @@
                                   "LeftBracket": [
                                     {
                                       "image": "(",
-                                      "startOffset": 349,
+                                      "startOffset": 327,
                                       "startLine": 17,
                                       "startColumn": 27,
                                       "tokenTypeIdx": 7,
@@ -1449,7 +1398,7 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "','",
-                                                              "startOffset": 350,
+                                                              "startOffset": 328,
                                                               "startLine": 17,
                                                               "startColumn": 28,
                                                               "tokenTypeIdx": 9,
@@ -1479,7 +1428,7 @@
                                                           "LowerName": [
                                                             {
                                                               "image": "tableSource",
-                                                              "startOffset": 354,
+                                                              "startOffset": 332,
                                                               "startLine": 17,
                                                               "startColumn": 32,
                                                               "tokenTypeIdx": 11,
@@ -1509,7 +1458,7 @@
                                   "RightBracket": [
                                     {
                                       "image": ")",
-                                      "startOffset": 365,
+                                      "startOffset": 343,
                                       "startLine": 17,
                                       "startColumn": 43,
                                       "tokenTypeIdx": 8,
@@ -1535,7 +1484,7 @@
                                   "Asterisk": [
                                     {
                                       "image": "*",
-                                      "startOffset": 366,
+                                      "startOffset": 344,
                                       "startLine": 17,
                                       "startColumn": 44,
                                       "tokenTypeIdx": 5,
@@ -1566,7 +1515,7 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 367,
+              "startOffset": 345,
               "startLine": 17,
               "startColumn": 45,
               "tokenTypeIdx": 3,
@@ -1590,7 +1539,7 @@
           "LowerName": [
             {
               "image": "tableSource",
-              "startOffset": 370,
+              "startOffset": 348,
               "startLine": 19,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -1608,7 +1557,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 381,
+              "startOffset": 359,
               "startLine": 19,
               "startColumn": 12,
               "tokenTypeIdx": 4,
@@ -1643,7 +1592,7 @@
                                   "LowerName": [
                                     {
                                       "image": "tableSourceItem",
-                                      "startOffset": 383,
+                                      "startOffset": 361,
                                       "startLine": 19,
                                       "startColumn": 14,
                                       "tokenTypeIdx": 11,
@@ -1673,9 +1622,9 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 416,
+              "startOffset": 376,
               "startLine": 19,
-              "startColumn": 47,
+              "startColumn": 29,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
@@ -1697,7 +1646,7 @@
           "LowerName": [
             {
               "image": "tableSourceItem",
-              "startOffset": 419,
+              "startOffset": 379,
               "startLine": 21,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -1715,7 +1664,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 434,
+              "startOffset": 394,
               "startLine": 21,
               "startColumn": 16,
               "tokenTypeIdx": 4,
@@ -1750,7 +1699,7 @@
                                   "LowerName": [
                                     {
                                       "image": "tableName",
-                                      "startOffset": 436,
+                                      "startOffset": 396,
                                       "startLine": 21,
                                       "startColumn": 18,
                                       "tokenTypeIdx": 11,
@@ -1780,9 +1729,9 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 461,
+              "startOffset": 405,
               "startLine": 21,
-              "startColumn": 43,
+              "startColumn": 27,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
@@ -1804,7 +1753,7 @@
           "LowerName": [
             {
               "image": "tableName",
-              "startOffset": 464,
+              "startOffset": 408,
               "startLine": 23,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -1822,7 +1771,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 473,
+              "startOffset": 417,
               "startLine": 23,
               "startColumn": 10,
               "tokenTypeIdx": 4,
@@ -1857,7 +1806,7 @@
                                   "LowerName": [
                                     {
                                       "image": "fullId",
-                                      "startOffset": 475,
+                                      "startOffset": 419,
                                       "startLine": 23,
                                       "startColumn": 12,
                                       "tokenTypeIdx": 11,
@@ -1887,7 +1836,7 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 481,
+              "startOffset": 425,
               "startLine": 23,
               "startColumn": 18,
               "tokenTypeIdx": 3,
@@ -1911,7 +1860,7 @@
           "LowerName": [
             {
               "image": "selectElement",
-              "startOffset": 484,
+              "startOffset": 428,
               "startLine": 25,
               "startColumn": 1,
               "tokenTypeIdx": 11,
@@ -1929,7 +1878,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 497,
+              "startOffset": 441,
               "startLine": 25,
               "startColumn": 14,
               "tokenTypeIdx": 4,
@@ -1964,176 +1913,9 @@
                                   "LowerName": [
                                     {
                                       "image": "fullId",
-                                      "startOffset": 499,
+                                      "startOffset": 443,
                                       "startLine": 25,
                                       "startColumn": 16,
-                                      "tokenTypeIdx": 11,
-                                      "tokenType": {
-                                        "PATTERN": {},
-                                        "tokenTypeIdx": 11,
-                                        "CATEGORIES": [],
-                                        "categoryMatches": [],
-                                        "categoryMatchesMap": {},
-                                        "tokenName": "LowerName",
-                                        "isParent": false
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "name": "itemSuff",
-                          "children": {
-                            "item": [
-                              {
-                                "name": "item",
-                                "children": {
-                                  "Stringliteral": [
-                                    {
-                                      "image": "'.'",
-                                      "startOffset": 506,
-                                      "startLine": 25,
-                                      "startColumn": 23,
-                                      "tokenTypeIdx": 9,
-                                      "tokenType": {
-                                        "PATTERN": {},
-                                        "tokenTypeIdx": 9,
-                                        "CATEGORIES": [],
-                                        "categoryMatches": [],
-                                        "categoryMatchesMap": {},
-                                        "tokenName": "Stringliteral",
-                                        "isParent": false
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        },
-                        {
-                          "name": "itemSuff",
-                          "children": {
-                            "item": [
-                              {
-                                "name": "item",
-                                "children": {
-                                  "Stringliteral": [
-                                    {
-                                      "image": "'*'",
-                                      "startOffset": 510,
-                                      "startLine": 25,
-                                      "startColumn": 27,
-                                      "tokenTypeIdx": 9,
-                                      "tokenType": {
-                                        "PATTERN": {},
-                                        "tokenTypeIdx": 9,
-                                        "CATEGORIES": [],
-                                        "categoryMatches": [],
-                                        "categoryMatchesMap": {},
-                                        "tokenName": "Stringliteral",
-                                        "isParent": false
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "Semi": [
-            {
-              "image": ";",
-              "startOffset": 533,
-              "startLine": 25,
-              "startColumn": 50,
-              "tokenTypeIdx": 3,
-              "tokenType": {
-                "PATTERN": {},
-                "tokenTypeIdx": 3,
-                "CATEGORIES": [],
-                "categoryMatches": [],
-                "categoryMatchesMap": {},
-                "tokenName": "Semi",
-                "isParent": false,
-                "LABEL": ";"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "rule",
-        "children": {
-          "LowerName": [
-            {
-              "image": "fullId",
-              "startOffset": 536,
-              "startLine": 27,
-              "startColumn": 1,
-              "tokenTypeIdx": 11,
-              "tokenType": {
-                "PATTERN": {},
-                "tokenTypeIdx": 11,
-                "CATEGORIES": [],
-                "categoryMatches": [],
-                "categoryMatchesMap": {},
-                "tokenName": "LowerName",
-                "isParent": false
-              }
-            }
-          ],
-          "Colon": [
-            {
-              "image": ":",
-              "startOffset": 542,
-              "startLine": 27,
-              "startColumn": 7,
-              "tokenTypeIdx": 4,
-              "tokenType": {
-                "PATTERN": {},
-                "tokenTypeIdx": 4,
-                "CATEGORIES": [],
-                "categoryMatches": [],
-                "categoryMatchesMap": {},
-                "tokenName": "Colon",
-                "isParent": false,
-                "LABEL": ":"
-              }
-            }
-          ],
-          "atoms": [
-            {
-              "name": "atoms",
-              "children": {
-                "atom": [
-                  {
-                    "name": "atom",
-                    "children": {
-                      "itemSuff": [
-                        {
-                          "name": "itemSuff",
-                          "children": {
-                            "item": [
-                              {
-                                "name": "item",
-                                "children": {
-                                  "LowerName": [
-                                    {
-                                      "image": "uid",
-                                      "startOffset": 544,
-                                      "startLine": 27,
-                                      "startColumn": 9,
                                       "tokenTypeIdx": 11,
                                       "tokenType": {
                                         "PATTERN": {},
@@ -2161,9 +1943,9 @@
                                   "LeftBracket": [
                                     {
                                       "image": "(",
-                                      "startOffset": 548,
-                                      "startLine": 27,
-                                      "startColumn": 13,
+                                      "startOffset": 450,
+                                      "startLine": 25,
+                                      "startColumn": 23,
                                       "tokenTypeIdx": 7,
                                       "tokenType": {
                                         "PATTERN": {},
@@ -2195,10 +1977,66 @@
                                                         "children": {
                                                           "UpperName": [
                                                             {
-                                                              "image": "DOT_ID",
-                                                              "startOffset": 549,
-                                                              "startLine": 27,
-                                                              "startColumn": 14,
+                                                              "image": "AS",
+                                                              "startOffset": 451,
+                                                              "startLine": 25,
+                                                              "startColumn": 24,
+                                                              "tokenTypeIdx": 10,
+                                                              "tokenType": {
+                                                                "PATTERN": {},
+                                                                "tokenTypeIdx": 10,
+                                                                "CATEGORIES": [],
+                                                                "categoryMatches": [],
+                                                                "categoryMatchesMap": {},
+                                                                "tokenName": "UpperName",
+                                                                "isParent": false
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ],
+                                                    "suff": [
+                                                      {
+                                                        "name": "suff",
+                                                        "children": {
+                                                          "Optional": [
+                                                            {
+                                                              "image": "?",
+                                                              "startOffset": 453,
+                                                              "startLine": 25,
+                                                              "startColumn": 26,
+                                                              "tokenTypeIdx": 6,
+                                                              "tokenType": {
+                                                                "PATTERN": {},
+                                                                "tokenTypeIdx": 6,
+                                                                "CATEGORIES": [],
+                                                                "categoryMatches": [],
+                                                                "categoryMatchesMap": {},
+                                                                "tokenName": "Optional",
+                                                                "isParent": false,
+                                                                "LABEL": "?"
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                },
+                                                {
+                                                  "name": "itemSuff",
+                                                  "children": {
+                                                    "item": [
+                                                      {
+                                                        "name": "item",
+                                                        "children": {
+                                                          "UpperName": [
+                                                            {
+                                                              "image": "ID",
+                                                              "startOffset": 455,
+                                                              "startLine": 25,
+                                                              "startColumn": 28,
                                                               "tokenTypeIdx": 10,
                                                               "tokenType": {
                                                                 "PATTERN": {},
@@ -2218,92 +2056,6 @@
                                                 }
                                               ]
                                             }
-                                          },
-                                          {
-                                            "name": "atom",
-                                            "children": {
-                                              "itemSuff": [
-                                                {
-                                                  "name": "itemSuff",
-                                                  "children": {
-                                                    "item": [
-                                                      {
-                                                        "name": "item",
-                                                        "children": {
-                                                          "Stringliteral": [
-                                                            {
-                                                              "image": "'.'",
-                                                              "startOffset": 558,
-                                                              "startLine": 27,
-                                                              "startColumn": 23,
-                                                              "tokenTypeIdx": 9,
-                                                              "tokenType": {
-                                                                "PATTERN": {},
-                                                                "tokenTypeIdx": 9,
-                                                                "CATEGORIES": [],
-                                                                "categoryMatches": [],
-                                                                "categoryMatchesMap": {},
-                                                                "tokenName": "Stringliteral",
-                                                                "isParent": false
-                                                              }
-                                                            }
-                                                          ]
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                },
-                                                {
-                                                  "name": "itemSuff",
-                                                  "children": {
-                                                    "item": [
-                                                      {
-                                                        "name": "item",
-                                                        "children": {
-                                                          "LowerName": [
-                                                            {
-                                                              "image": "uid",
-                                                              "startOffset": 562,
-                                                              "startLine": 27,
-                                                              "startColumn": 27,
-                                                              "tokenTypeIdx": 11,
-                                                              "tokenType": {
-                                                                "PATTERN": {},
-                                                                "tokenTypeIdx": 11,
-                                                                "CATEGORIES": [],
-                                                                "categoryMatches": [],
-                                                                "categoryMatchesMap": {},
-                                                                "tokenName": "LowerName",
-                                                                "isParent": false
-                                                              }
-                                                            }
-                                                          ]
-                                                        }
-                                                      }
-                                                    ]
-                                                  }
-                                                }
-                                              ]
-                                            }
-                                          }
-                                        ],
-                                        "Bar": [
-                                          {
-                                            "image": "|",
-                                            "startOffset": 556,
-                                            "startLine": 27,
-                                            "startColumn": 21,
-                                            "tokenTypeIdx": 2,
-                                            "tokenType": {
-                                              "PATTERN": {},
-                                              "tokenTypeIdx": 2,
-                                              "CATEGORIES": [],
-                                              "categoryMatches": [],
-                                              "categoryMatchesMap": {},
-                                              "tokenName": "Bar",
-                                              "isParent": false,
-                                              "LABEL": "|"
-                                            }
                                           }
                                         ]
                                       }
@@ -2312,8 +2064,8 @@
                                   "RightBracket": [
                                     {
                                       "image": ")",
-                                      "startOffset": 565,
-                                      "startLine": 27,
+                                      "startOffset": 457,
+                                      "startLine": 25,
                                       "startColumn": 30,
                                       "tokenTypeIdx": 8,
                                       "tokenType": {
@@ -2338,8 +2090,8 @@
                                   "Optional": [
                                     {
                                       "image": "?",
-                                      "startOffset": 566,
-                                      "startLine": 27,
+                                      "startOffset": 458,
+                                      "startLine": 25,
                                       "startColumn": 31,
                                       "tokenTypeIdx": 6,
                                       "tokenType": {
@@ -2369,8 +2121,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 567,
-              "startLine": 27,
+              "startOffset": 459,
+              "startLine": 25,
               "startColumn": 32,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2392,9 +2144,9 @@
         "children": {
           "LowerName": [
             {
-              "image": "uid",
-              "startOffset": 570,
-              "startLine": 29,
+              "image": "fullColumnName",
+              "startOffset": 462,
+              "startLine": 27,
               "startColumn": 1,
               "tokenTypeIdx": 11,
               "tokenType": {
@@ -2411,116 +2163,9 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 573,
-              "startLine": 29,
-              "startColumn": 4,
-              "tokenTypeIdx": 4,
-              "tokenType": {
-                "PATTERN": {},
-                "tokenTypeIdx": 4,
-                "CATEGORIES": [],
-                "categoryMatches": [],
-                "categoryMatchesMap": {},
-                "tokenName": "Colon",
-                "isParent": false,
-                "LABEL": ":"
-              }
-            }
-          ],
-          "atoms": [
-            {
-              "name": "atoms",
-              "children": {
-                "atom": [
-                  {
-                    "name": "atom",
-                    "children": {
-                      "itemSuff": [
-                        {
-                          "name": "itemSuff",
-                          "children": {
-                            "item": [
-                              {
-                                "name": "item",
-                                "children": {
-                                  "LowerName": [
-                                    {
-                                      "image": "simpleId",
-                                      "startOffset": 575,
-                                      "startLine": 29,
-                                      "startColumn": 6,
-                                      "tokenTypeIdx": 11,
-                                      "tokenType": {
-                                        "PATTERN": {},
-                                        "tokenTypeIdx": 11,
-                                        "CATEGORIES": [],
-                                        "categoryMatches": [],
-                                        "categoryMatchesMap": {},
-                                        "tokenName": "LowerName",
-                                        "isParent": false
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ],
-          "Semi": [
-            {
-              "image": ";",
-              "startOffset": 583,
-              "startLine": 29,
-              "startColumn": 14,
-              "tokenTypeIdx": 3,
-              "tokenType": {
-                "PATTERN": {},
-                "tokenTypeIdx": 3,
-                "CATEGORIES": [],
-                "categoryMatches": [],
-                "categoryMatchesMap": {},
-                "tokenName": "Semi",
-                "isParent": false,
-                "LABEL": ";"
-              }
-            }
-          ]
-        }
-      },
-      {
-        "name": "rule",
-        "children": {
-          "LowerName": [
-            {
-              "image": "simpleId",
-              "startOffset": 586,
-              "startLine": 31,
-              "startColumn": 1,
-              "tokenTypeIdx": 11,
-              "tokenType": {
-                "PATTERN": {},
-                "tokenTypeIdx": 11,
-                "CATEGORIES": [],
-                "categoryMatches": [],
-                "categoryMatchesMap": {},
-                "tokenName": "LowerName",
-                "isParent": false
-              }
-            }
-          ],
-          "Colon": [
-            {
-              "image": ":",
-              "startOffset": 594,
-              "startLine": 31,
-              "startColumn": 9,
+              "startOffset": 476,
+              "startLine": 27,
+              "startColumn": 15,
               "tokenTypeIdx": 4,
               "tokenType": {
                 "PATTERN": {},
@@ -2553,8 +2198,237 @@
                                   "UpperName": [
                                     {
                                       "image": "ID",
-                                      "startOffset": 596,
-                                      "startLine": 31,
+                                      "startOffset": 478,
+                                      "startLine": 27,
+                                      "startColumn": 17,
+                                      "tokenTypeIdx": 10,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 10,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "UpperName",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "LeftBracket": [
+                                    {
+                                      "image": "(",
+                                      "startOffset": 481,
+                                      "startLine": 27,
+                                      "startColumn": 20,
+                                      "tokenTypeIdx": 7,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 7,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "LeftBracket",
+                                        "isParent": false,
+                                        "LABEL": "("
+                                      }
+                                    }
+                                  ],
+                                  "atoms": [
+                                    {
+                                      "name": "atoms",
+                                      "children": {
+                                        "atom": [
+                                          {
+                                            "name": "atom",
+                                            "children": {
+                                              "itemSuff": [
+                                                {
+                                                  "name": "itemSuff",
+                                                  "children": {
+                                                    "item": [
+                                                      {
+                                                        "name": "item",
+                                                        "children": {
+                                                          "LowerName": [
+                                                            {
+                                                              "image": "dottedId",
+                                                              "startOffset": 482,
+                                                              "startLine": 27,
+                                                              "startColumn": 21,
+                                                              "tokenTypeIdx": 11,
+                                                              "tokenType": {
+                                                                "PATTERN": {},
+                                                                "tokenTypeIdx": 11,
+                                                                "CATEGORIES": [],
+                                                                "categoryMatches": [],
+                                                                "categoryMatchesMap": {},
+                                                                "tokenName": "LowerName",
+                                                                "isParent": false
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "RightBracket": [
+                                    {
+                                      "image": ")",
+                                      "startOffset": 490,
+                                      "startLine": 27,
+                                      "startColumn": 29,
+                                      "tokenTypeIdx": 8,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 8,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "RightBracket",
+                                        "isParent": false,
+                                        "LABEL": ")"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "suff": [
+                              {
+                                "name": "suff",
+                                "children": {
+                                  "Asterisk": [
+                                    {
+                                      "image": "*",
+                                      "startOffset": 491,
+                                      "startLine": 27,
+                                      "startColumn": 30,
+                                      "tokenTypeIdx": 5,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 5,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Asterisk",
+                                        "isParent": false,
+                                        "LABEL": "*"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 492,
+              "startLine": 27,
+              "startColumn": 31,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "LowerName": [
+            {
+              "image": "dottedId",
+              "startOffset": 495,
+              "startLine": 29,
+              "startColumn": 1,
+              "tokenTypeIdx": 11,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 11,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "LowerName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 503,
+              "startLine": 29,
+              "startColumn": 9,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "UpperName": [
+                                    {
+                                      "image": "DOT_ID",
+                                      "startOffset": 505,
+                                      "startLine": 29,
                                       "startColumn": 11,
                                       "tokenTypeIdx": 10,
                                       "tokenType": {
@@ -2583,9 +2457,238 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 598,
+              "startOffset": 511,
+              "startLine": 29,
+              "startColumn": 17,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "LowerName": [
+            {
+              "image": "fullId",
+              "startOffset": 514,
               "startLine": 31,
-              "startColumn": 13,
+              "startColumn": 1,
+              "tokenTypeIdx": 11,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 11,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "LowerName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 520,
+              "startLine": 31,
+              "startColumn": 7,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "UpperName": [
+                                    {
+                                      "image": "ID",
+                                      "startOffset": 522,
+                                      "startLine": 31,
+                                      "startColumn": 9,
+                                      "tokenTypeIdx": 10,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 10,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "UpperName",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        },
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "LeftBracket": [
+                                    {
+                                      "image": "(",
+                                      "startOffset": 525,
+                                      "startLine": 31,
+                                      "startColumn": 12,
+                                      "tokenTypeIdx": 7,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 7,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "LeftBracket",
+                                        "isParent": false,
+                                        "LABEL": "("
+                                      }
+                                    }
+                                  ],
+                                  "atoms": [
+                                    {
+                                      "name": "atoms",
+                                      "children": {
+                                        "atom": [
+                                          {
+                                            "name": "atom",
+                                            "children": {
+                                              "itemSuff": [
+                                                {
+                                                  "name": "itemSuff",
+                                                  "children": {
+                                                    "item": [
+                                                      {
+                                                        "name": "item",
+                                                        "children": {
+                                                          "UpperName": [
+                                                            {
+                                                              "image": "DOT_ID",
+                                                              "startOffset": 526,
+                                                              "startLine": 31,
+                                                              "startColumn": 13,
+                                                              "tokenTypeIdx": 10,
+                                                              "tokenType": {
+                                                                "PATTERN": {},
+                                                                "tokenTypeIdx": 10,
+                                                                "CATEGORIES": [],
+                                                                "categoryMatches": [],
+                                                                "categoryMatchesMap": {},
+                                                                "tokenName": "UpperName",
+                                                                "isParent": false
+                                                              }
+                                                            }
+                                                          ]
+                                                        }
+                                                      }
+                                                    ]
+                                                  }
+                                                }
+                                              ]
+                                            }
+                                          }
+                                        ]
+                                      }
+                                    }
+                                  ],
+                                  "RightBracket": [
+                                    {
+                                      "image": ")",
+                                      "startOffset": 532,
+                                      "startLine": 31,
+                                      "startColumn": 19,
+                                      "tokenTypeIdx": 8,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 8,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "RightBracket",
+                                        "isParent": false,
+                                        "LABEL": ")"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ],
+                            "suff": [
+                              {
+                                "name": "suff",
+                                "children": {
+                                  "Asterisk": [
+                                    {
+                                      "image": "*",
+                                      "startOffset": 533,
+                                      "startLine": 31,
+                                      "startColumn": 20,
+                                      "tokenTypeIdx": 5,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 5,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Asterisk",
+                                        "isParent": false,
+                                        "LABEL": "*"
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 534,
+              "startLine": 31,
+              "startColumn": 21,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
