@@ -1,5 +1,3 @@
-// Keywords Common Keywords
-
 ADD: 'ADD';
 ALL: 'ALL';
 ALTER: 'ALTER';
@@ -1108,12 +1106,13 @@ fragment CHARSET_NAME:
 	| UTF8MB4;
 
 fragment EXPONENT_NUM_PART: 'E' '-'? DEC_DIGIT+;
-fragment ID_LITERAL: [A-Za-z_$0-9]*? [A-Za-z_$]+? [A-Za-z_$0-9]*;
+fragment ID_LITERAL:
+	[A-Za-z_$0-9]*? [A-Za-z_$]+? [A-Za-z_$0-9]*;
 fragment DQUOTA_STRING:
 	'"' ('\\' . | '""' | ~('"' | '\\'))* '"';
 fragment SQUOTA_STRING:
 	'\'' ('\\' . | '\'\'' | ~('\'' | '\\'))* '\'';
-	
+
 fragment BQUOTA_STRING:
 	'`' ('\\' . | '``' | ~('`' | '\\'))* '`';
 fragment HEX_DIGIT: [0-9A-F];

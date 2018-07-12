@@ -235,21 +235,7 @@ function quickSort<T>(arr: T[], sortCallback: (pre: T, next: T) => boolean, resu
 }
 
 function noMeta(pattern: string) {
-  const metaChs = [
-    ".",
-    "\\",
-    "[",
-    "]",
-    "|",
-    "^",
-    "$",
-    "(",
-    ")",
-    "?",
-    "*",
-    "+",
-    "{"
-  ];
+  const metaChs = ['.', '\\', '[', ']', '|', '^', '$', '(', ')', '?', '*', '+', '{'];
 
   return pattern.split('').every(ch => !metaChs.includes(ch));
 }
@@ -468,13 +454,16 @@ export class StringliteralNode extends BaseNode {
     if (tokenText.includes('\\')) {
       return tokenText;
     } else {
-      return tokenText.split('').map(ch => {
-        if (!ch.match(/[a-zA-Z0-9_]/)) {
-          return `\\${ch}`;
-        }
+      return tokenText
+        .split('')
+        .map(ch => {
+          if (!ch.match(/[a-zA-Z0-9_]/)) {
+            return `\\${ch}`;
+          }
 
-        return ch;
-      }).join('');
+          return ch;
+        })
+        .join('');
     }
   }
 
@@ -499,7 +488,7 @@ export class RegExpNode extends BaseNode {
   kind = TokenEnum.ReExp;
 
   toLexerCode() {
-    return this.content.replace(/\$/, '\\\$');
+    return this.content.replace(/\$/, '\\$');
   }
 }
 

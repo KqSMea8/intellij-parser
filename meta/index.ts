@@ -12,7 +12,7 @@ class MetaParserConfig {
     trailingComma: 'all',
     singleQuote: true
   };
-  parserCodePath = '../../grammars/CoreSql.g4';
+  parserCodePath = '../../grammars/selectParser.g4';
   lexerCodePath = '../../grammars/MysqlLexer.g4';
   templatePath = '../parser/parserTemplate';
   outDir = '../parser/test.json';

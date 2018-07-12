@@ -7,16 +7,11 @@ sqlStatements: (sqlStatement MINUSMINUS? SEMI | emptyStatement)* (
 
 emptyStatement: SEMI;
 
-sqlStatement:
-	ddlStatement
-	| dmlStatement;
+sqlStatement: ddlStatement | dmlStatement;
 
-ddlStatement:
-	createDatabase
-	| createTable;
+ddlStatement: createDatabase | createTable;
 
-dmlStatement:
-	selectStatement;
+dmlStatement: selectStatement;
 
 createDatabase:
 	CREATE dbFormat = (DATABASE | SCHEMA) ifNotExists? uid createDatabaseOption*;
@@ -26,16 +21,15 @@ createTable:
 		LIKE tableName
 	);
 
-
 selectStatement:
-	querySpecification lockClause?	
-	| queryExpression lockClause?	
+	querySpecification lockClause?
+	| queryExpression lockClause?
 	| querySpecificationNointo unionStatement+ (
 		UNION unionType = (ALL | DISTINCT)? (
 			querySpecification
 			| queryExpression
 		)
-	)? orderByClause? limitClause? lockClause? 
+	)? orderByClause? limitClause? lockClause?
 	| queryExpressionNointo unionParenthesis+ (
 		UNION unionType = (ALL | DISTINCT)? queryExpression
 	)? orderByClause? limitClause? lockClause?;
@@ -71,7 +65,7 @@ limitClause:
 	LIMIT (
 		(offset = decimalLiteral ',')? limit = decimalLiteral
 		| limit = decimalLiteral OFFSET offset = decimalLiteral
-	);	
+	);
 
 fromClause:
 	FROM tableSources (WHERE whereExpr = expression)? (
@@ -86,18 +80,18 @@ orderByClause:
 tableSources: tableSource (',' tableSource)*;
 
 tableSource:
-	tableSourceItem joinPart*	
+	tableSourceItem joinPart*
 	| '(' tableSourceItem joinPart* ')';
 
 joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 		ON expression
 		| USING '(' uidList ')'
-	)?													
-	| STRAIGHT_JOIN tableSourceItem (ON expression)?	
+	)?
+	| STRAIGHT_JOIN tableSourceItem (ON expression)?
 	| (LEFT | RIGHT) OUTER? JOIN tableSourceItem (
 		ON expression
 		| USING '(' uidList ')'
-	)													
+	)
 	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem;
 
 uidList: uid (',' uid)*;
@@ -113,7 +107,7 @@ indexHintType: JOIN | ORDER BY | GROUP BY;
 tableSourceItem:
 	tableName (PARTITION '(' uidList ')')? (AS? alias = uid)? (
 		indexHint (',' indexHint)*
-	)? 
+	)?
 	| (
 		selectStatement
 		| '(' parenthesisSubquery = selectStatement ')'
@@ -121,8 +115,8 @@ tableSourceItem:
 	| '(' tableSources ')';
 
 selectIntoExpression:
-	INTO assignmentField (',' assignmentField)*	
-	| INTO DUMPFILE STRING_LITERAL				
+	INTO assignmentField (',' assignmentField)*
+	| INTO DUMPFILE STRING_LITERAL
 	| (
 		INTO OUTFILE filename = STRING_LITERAL (
 			CHARACTER SET charset = charsetName
@@ -154,16 +148,16 @@ selectSpec: (ALL | DISTINCT | DISTINCTROW)
 selectElements: (star = '*' | selectElement) (',' selectElement)*;
 
 selectElement:
-	fullId '.' '*'								
-	| fullColumnName (AS? uid)?					
-	| functionCall (AS? uid)?						
+	fullId '.' '*'
+	| fullColumnName (AS? uid)?
+	| functionCall (AS? uid)?
 	| (LOCAL_ID VAR_ASSIGN)? expression (AS? uid)?;
 
 functionCall:
-	specificFunction						
-	| aggregateWindowedFunction					
-	| scalarFunctionName '(' functionArgs? ')'	
-	| fullId '(' functionArgs? ')'			
+	specificFunction
+	| aggregateWindowedFunction
+	| scalarFunctionName '(' functionArgs? ')'
+	| fullId '(' functionArgs? ')'
 	| passwordFunctionClause;
 
 passwordFunctionClause:
@@ -195,24 +189,24 @@ scalarFunctionName:
 	| UTC_TIMESTAMP;
 
 expression:
-	notOperator = (NOT | '!') expression						
-	| expression logicalOperator expression					
-	| predicate IS NOT? testValue = (TRUE | FALSE | UNKNOWN)	
+	notOperator = (NOT | '!') expression
+	| expression logicalOperator expression
+	| predicate IS NOT? testValue = (TRUE | FALSE | UNKNOWN)
 	| predicate;
 
 predicate:
-	predicate NOT? IN '(' (selectStatement | expressions) ')'	
-	| predicate IS nullNotnull								
-	| left = predicate comparisonOperator right = predicate		
+	predicate NOT? IN '(' (selectStatement | expressions) ')'
+	| predicate IS nullNotnull
+	| left = predicate comparisonOperator right = predicate
 	| predicate comparisonOperator quantifier = (
 		ALL
 		| ANY
 		| SOME
-	) '(' selectStatement ')'									
-	| predicate NOT? BETWEEN predicate AND predicate			
-	| predicate SOUNDS LIKE predicate						
+	) '(' selectStatement ')'
+	| predicate NOT? BETWEEN predicate AND predicate
+	| predicate SOUNDS LIKE predicate
 	| predicate NOT? LIKE predicate (ESCAPE STRING_LITERAL)?
-	| predicate NOT? regex = (REGEXP | RLIKE) predicate			
+	| predicate NOT? regex = (REGEXP | RLIKE) predicate
 	| (LOCAL_ID VAR_ASSIGN)? expressionAtom;
 
 nullNotnull: NOT? (NULL_LITERAL | NULL_SPEC_LITERAL);
@@ -247,20 +241,20 @@ specificFunction: (
 		| CURRENT_TIMESTAMP
 		| CURRENT_USER
 		| LOCALTIME
-	)																
-	| CONVERT '(' expression separator = ',' convertedDataType ')'	
-	| CONVERT '(' expression USING charsetName ')'				
-	| CAST '(' expression AS convertedDataType ')'				
-	| VALUES '(' fullColumnName ')'									
+	)
+	| CONVERT '(' expression separator = ',' convertedDataType ')'
+	| CONVERT '(' expression USING charsetName ')'
+	| CAST '(' expression AS convertedDataType ')'
+	| VALUES '(' fullColumnName ')'
 	| CASE expression caseFuncAlternative+ (
 		ELSE elseArg = functionArg
-	)? END														
-	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END	
-	| CHAR '(' functionArgs (USING charsetName)? ')'				
+	)? END
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END
+	| CHAR '(' functionArgs (USING charsetName)? ')'
 	| POSITION '(' (
 		positionString = stringLiteral
 		| positionExpression = expression
-	) IN (inString = stringLiteral | inExpression = expression) ')' 
+	) IN (inString = stringLiteral | inExpression = expression) ')'
 	| (SUBSTR | SUBSTRING) '(' (
 		sourceString = stringLiteral
 		| sourceExpression = expression
@@ -272,28 +266,28 @@ specificFunction: (
 			forDecimal = decimalLiteral
 			| forExpression = expression
 		)
-	)? ')' 
+	)? ')'
 	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) (
 		sourceString = stringLiteral
 		| sourceExpression = expression
 	)? FROM (
 		fromString = stringLiteral
 		| fromExpression = expression
-	) ')' 
+	) ')'
 	| TRIM '(' (
 		sourceString = stringLiteral
 		| sourceExpression = expression
 	) FROM (
 		fromString = stringLiteral
 		| fromExpression = expression
-	) ')' 
+	) ')'
 	| WEIGHT_STRING '(' (stringLiteral | expression) (
 		AS stringFormat = (CHAR | BINARY) '(' decimalLiteral ')'
-	)? levelsInWeightString? ')' 
+	)? levelsInWeightString? ')'
 	| EXTRACT '(' intervalType FROM (
 		sourceString = stringLiteral
 		| sourceExpression = expression
-	) ')'																			
+	) ')'
 	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')';
 
 convertedDataType:
@@ -310,7 +304,7 @@ lengthOneDimension: '(' decimalLiteral ')';
 lengthTwoDimension: '(' decimalLiteral ',' decimalLiteral ')';
 
 levelsInWeightString:
-	LEVEL levelInWeightListElement (',' levelInWeightListElement)*	
+	LEVEL levelInWeightListElement (',' levelInWeightListElement)*
 	| LEVEL firstLevel = decimalLiteral '-' lastLevel = decimalLiteral;
 
 levelInWeightListElement:
@@ -350,18 +344,18 @@ comparisonOperator:
 	| '<' '=' '>';
 
 expressionAtom:
-	constant													
-	| fullColumnName										
-	| functionCall											
-	| expressionAtom COLLATE collationName					
-	| mysqlVariable												
-	| unaryOperator expressionAtom								
-	| BINARY expressionAtom										
-	| '(' expression (',' expression)* ')'					
-	| ROW '(' expression (',' expression)+ ')'				
-	| EXISTS '(' selectStatement ')'						
-	| '(' selectStatement ')'									
-	| INTERVAL expression intervalType						
+	constant
+	| fullColumnName
+	| functionCall
+	| expressionAtom COLLATE collationName
+	| mysqlVariable
+	| unaryOperator expressionAtom
+	| BINARY expressionAtom
+	| '(' expression (',' expression)* ')'
+	| ROW '(' expression (',' expression)+ ')'
+	| EXISTS '(' selectStatement ')'
+	| '(' selectStatement ')'
+	| INTERVAL expression intervalType
 	| left = expressionAtom bitOperator right = expressionAtom
 	| left = expressionAtom mathOperator right = expressionAtom;
 
@@ -430,11 +424,7 @@ tableName: fullId;
 
 ifNotExists: IF NOT EXISTS;
 
-uid:
-	simpleId
-	 
-	| REVERSE_QUOTE_ID
-	| CHARSET_REVERSE_QOUTE_STRING;
+uid: simpleId | REVERSE_QUOTE_ID | CHARSET_REVERSE_QOUTE_STRING;
 
 simpleId:
 	ID
