@@ -133,6 +133,7 @@ export const Tokens = {
 };
 
 export const tokens = [
+  WhiteSpace,
   Fragment,
   Bar,
   Not,
@@ -148,7 +149,6 @@ export const tokens = [
   Equal,
   UpperName,
   LowerName,
-  WhiteSpace,
   SlashComment,
   Plus,
   ReExp,

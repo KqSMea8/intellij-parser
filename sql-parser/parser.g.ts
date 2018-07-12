@@ -17,7 +17,7 @@ export enum SyntaxKind {
   selectElement = 'selectElement',
   fullId = 'fullId',
   uid = 'uid',
-  simpleId = 'simpleId'
+  simpleId = 'simpleId',
 }
 
 export class BaseNode {
@@ -53,7 +53,7 @@ export class Parser extends chevrotain.Parser {
   constructor(input) {
     super(input, tokens, {
       recoveryEnabled: true,
-      outputCst: true
+      outputCst: true,
     });
 
     this.RULE('root', () => {
@@ -91,18 +91,18 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.ADD);
-          }
+            this.CONSUME(Tokens.STAR);
+          },
         },
         {
           ALT: () => {
             this.SUBRULE(this.selectElement);
-          }
-        }
+          },
+        },
       ]);
 
       this.MANY(() => {
-        this.CONSUME(Tokens.ADD);
+        this.CONSUME(Tokens.COMMA);
         this.SUBRULE2(this.selectElement);
       });
     });
@@ -116,7 +116,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.tableSource);
 
       this.MANY(() => {
-        this.CONSUME(Tokens.ADD);
+        this.CONSUME(Tokens.COMMA);
         this.SUBRULE2(this.tableSource);
       });
     });
@@ -135,8 +135,8 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('selectElement', () => {
       this.SUBRULE(this.fullId);
-      this.CONSUME(Tokens.ADD);
-      this.CONSUME(Tokens.ADD);
+      this.CONSUME(Tokens.DOT);
+      this.CONSUME(Tokens.STAR);
     });
 
     this.RULE('fullId', () => {
@@ -147,14 +147,14 @@ export class Parser extends chevrotain.Parser {
           {
             ALT: () => {
               this.CONSUME(Tokens.DOT_ID);
-            }
+            },
           },
           {
             ALT: () => {
-              this.CONSUME(Tokens.ADD);
+              this.CONSUME(Tokens.DOT);
               this.SUBRULE2(this.uid);
-            }
-          }
+            },
+          },
         ]);
       });
     });

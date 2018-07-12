@@ -196,7 +196,7 @@ function getTokens(lexerGCode: string) {
   const tokens = ast.rules.filter(rule => !rule.fragName).map(rule => {
     return {
       name: rule.tokenName,
-      content: new RegExp(rule.pattern),
+      content: new RegExp(rule.pattern || rule.setPattern()),
       ignorable: rule.ignorable
     };
   });
