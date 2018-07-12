@@ -1,4 +1,5 @@
 ADD: 'ADD';
+EOF: 'EOF';
 ALL: 'ALL';
 ALTER: 'ALTER';
 ANALYZE: 'ANALYZE';
