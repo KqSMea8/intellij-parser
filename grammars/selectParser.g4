@@ -9,6 +9,7 @@ sqlStatement: dmlStatement;
 dmlStatement:
 	updateStatement
 	| insertStatement
+	| deleteStatement
 	| selectStatement;
 
 selectStatement: querySpecification?;
@@ -19,6 +20,11 @@ insertStatement:
 	INSERT INTO? tableName (
 		('(' columns = uidList ')')? insertStatementValue
 	);
+
+deleteStatement: singleDeleteStatement;
+
+singleDeleteStatement:
+	DELETE FROM tableName (WHERE expression)?;
 
 singleUpdateStatement:
 	UPDATE tableName (AS? uid)? SET updatedElement (

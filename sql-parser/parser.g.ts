@@ -10,6 +10,8 @@ export enum SyntaxKind {
   selectStatement = 'selectStatement',
   updateStatement = 'updateStatement',
   insertStatement = 'insertStatement',
+  deleteStatement = 'deleteStatement',
+  singleDeleteStatement = 'singleDeleteStatement',
   singleUpdateStatement = 'singleUpdateStatement',
   updatedElement = 'updatedElement',
   insertStatementValue = 'insertStatementValue',
@@ -111,6 +113,11 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
+            this.SUBRULE(this.deleteStatement);
+          }
+        },
+        {
+          ALT: () => {
             this.SUBRULE(this.selectStatement);
           }
         }
@@ -143,6 +150,21 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.SUBRULE(this.insertStatementValue);
+    });
+
+    this.RULE('deleteStatement', () => {
+      this.SUBRULE(this.singleDeleteStatement);
+    });
+
+    this.RULE('singleDeleteStatement', () => {
+      this.CONSUME(Tokens.DELETE);
+      this.CONSUME(Tokens.FROM);
+      this.SUBRULE(this.tableName);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
+      });
     });
 
     this.RULE('singleUpdateStatement', () => {
