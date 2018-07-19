@@ -120,7 +120,6 @@ export function cstToAst(cst: CstNode): BaseNode {
         return itemNode;
       } else if (Stringliteral) {
         const itemNode = new StringliteralNode();
-
         itemNode.content = Stringliteral[0].image;
 
         return itemNode;
@@ -299,6 +298,7 @@ export class RuleNode extends BaseNode {
     } else {
       this.pattern = this.atoms[0].toDebugLexerCode();
     }
+    return this.pattern;
   }
 
   toLexerCode() {
@@ -471,7 +471,6 @@ export class StringliteralNode extends BaseNode {
     let name = this.content.match(/'(.+)'/)[1];
     if (!name.match(/[a-zA-Z]/)) {
       const foundToken = this.getTokens().find(token => !!name.match(token.content));
-
       if (foundToken) {
         name = foundToken.name;
       } else {
@@ -575,6 +574,7 @@ export function parseGCode(gCode: string, isParser = true, tokens = []) {
           node.index = uppers.filter(upName => upName === node.name).length;
           uppers.push(node.name);
         });
+        // Stringliteral 指的是没用使用 Lexer 定义的 Token，需要自己在 解析好的 tokens 列表里自己查找。
         traverse(ruleNode, TokenEnum.Stringliteral, (node: StringliteralNode) => {
           node.index = strs.filter(str => str === node.content).length;
           node.getTokens = () => tokens;

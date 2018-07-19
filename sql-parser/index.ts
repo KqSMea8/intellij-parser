@@ -1,6 +1,8 @@
 import { Lexer, TokenEnum } from './lexer.g';
 import { Parser, SyntaxKind } from './parser.g';
 // import { SelectParser, SelectLexer } from './tmp.g';
+// import * as fs from 'fs';
+// import * as path from 'path';
 
 class CstNode {
   name: SyntaxKind | TokenEnum;

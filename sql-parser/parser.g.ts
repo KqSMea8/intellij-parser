@@ -15,7 +15,6 @@ export enum SyntaxKind {
   tableSourceItem = 'tableSourceItem',
   tableName = 'tableName',
   selectElement = 'selectElement',
-  fullColumnName = 'fullColumnName',
   dottedId = 'dottedId',
   fullId = 'fullId',
 }
@@ -81,17 +80,14 @@ export class Parser extends chevrotain.Parser {
     this.RULE('querySpecification', () => {
       this.CONSUME(Tokens.SELECT);
       this.SUBRULE(this.selectElements);
-
-      this.OPTION(() => {
-        this.SUBRULE(this.fromClause);
-      });
+      this.SUBRULE(this.fromClause);
     });
 
     this.RULE('selectElements', () => {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.EOF);
+            this.CONSUME(Tokens.STAR);
           },
         },
         {
@@ -102,7 +98,7 @@ export class Parser extends chevrotain.Parser {
       ]);
 
       this.MANY(() => {
-        this.CONSUME(Tokens.EOF);
+        this.CONSUME(Tokens.COMMA);
         this.SUBRULE2(this.selectElement);
       });
     });
@@ -116,7 +112,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.tableSource);
 
       this.MANY(() => {
-        this.CONSUME(Tokens.EOF);
+        this.CONSUME(Tokens.COMMA);
         this.SUBRULE2(this.tableSource);
       });
     });
@@ -145,23 +141,22 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
-    this.RULE('fullColumnName', () => {
-      this.CONSUME(Tokens.ID);
-
-      this.MANY(() => {
-        this.SUBRULE(this.dottedId);
-      });
-    });
-
-    this.RULE('dottedId', () => {
-      this.CONSUME(Tokens.DOT_ID);
-    });
-
     this.RULE('fullId', () => {
       this.CONSUME(Tokens.ID);
 
-      this.MANY(() => {
-        this.CONSUME(Tokens.DOT_ID);
+      this.MANY({
+        GATE: () => {
+          if(this.LA(1).tokenType === Tokens.DOT) {
+            throw this.SAVE_ERROR( 
+              new chevrotain.MismatchedTokenException("Expecting token of type --> ID <-- but found ''", this.LA(1), this.LA(0)) 
+            ) 
+          }
+
+          return this.LA(1).tokenType === Tokens.DOT_ID || this.LA(1).tokenType === Tokens.DOT
+        },
+        DEF: () => {
+          this.CONSUME(Tokens.DOT_ID);
+        }
       });
     });
 

@@ -8,7 +8,7 @@ dmlStatement: selectStatement;
 
 selectStatement: querySpecification?;
 
-querySpecification: SELECT selectElements fromClause?;
+querySpecification: SELECT selectElements fromClause;
 
 selectElements: ('*' | selectElement) (',' selectElement)*;
 
@@ -24,8 +24,6 @@ tableName: fullId;
 
 selectElement: fullId (AS? ID)?;
 
-fullColumnName: ID (dottedId)*;
-
 dottedId: DOT_ID;
 
-fullId: ID (DOT_ID)*;
+fullId: ID (dottedId)*;

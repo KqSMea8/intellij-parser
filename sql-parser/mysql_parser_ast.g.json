@@ -151,7 +151,6 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -484,57 +483,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "ruleName": "fullColumnName",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "ID"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "*",
-              "item": {
-                "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "dottedId"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "ruleName": "dottedId",
       "atoms": [
         {
@@ -593,8 +541,8 @@
                         "hasNot": false,
                         "item": {
                           "index": 0,
-                          "kind": "UpperName",
-                          "name": "DOT_ID"
+                          "kind": "LowerName",
+                          "name": "dottedId"
                         }
                       }
                     ]
