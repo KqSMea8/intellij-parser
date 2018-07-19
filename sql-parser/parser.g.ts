@@ -7,6 +7,11 @@ export enum SyntaxKind {
   sqlStatement = 'sqlStatement',
   dmlStatement = 'dmlStatement',
   selectStatement = 'selectStatement',
+  updateStatement = 'updateStatement',
+  singleUpdateStatement = 'singleUpdateStatement',
+  updatedElement = 'updatedElement',
+  expression = 'expression',
+  logicalOperator = 'logicalOperator',
   querySpecification = 'querySpecification',
   selectElements = 'selectElements',
   fromClause = 'fromClause',
@@ -15,11 +20,11 @@ export enum SyntaxKind {
   tableSourceItem = 'tableSourceItem',
   tableName = 'tableName',
   selectElement = 'selectElement',
+  fullColumnName = 'fullColumnName',
+  dottedId = 'dottedId',
   fullId = 'fullId',
   uid = 'uid',
-  simpleId = 'simpleId',
-  fullColumnName = 'fullColumnName',
-  dottedId = 'dottedId'
+  simpleId = 'simpleId'
 }
 
 export class BaseNode {
@@ -71,7 +76,18 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('dmlStatement', () => {
-      this.SUBRULE(this.selectStatement);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.updateStatement);
+          }
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.selectStatement);
+          }
+        }
+      ]);
     });
 
     this.RULE('selectStatement', () => {
@@ -80,13 +96,82 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
+    this.RULE('updateStatement', () => {
+      this.SUBRULE(this.singleUpdateStatement);
+    });
+
+    this.RULE('singleUpdateStatement', () => {
+      this.CONSUME(Tokens.UPDATE);
+      this.SUBRULE(this.tableName);
+
+      this.OPTION(() => {
+        this.OPTION2(() => {
+          this.CONSUME(Tokens.AS);
+        });
+
+        this.SUBRULE(this.uid);
+      });
+
+      this.CONSUME(Tokens.SET);
+      this.SUBRULE(this.updatedElement);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.updatedElement);
+      });
+
+      this.OPTION3(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
+      });
+    });
+
+    this.RULE('updatedElement', () => {
+      this.SUBRULE(this.fullColumnName);
+      this.CONSUME(Tokens.EQUAL_SYMBOL);
+      this.SUBRULE(this.expression);
+    });
+
+    this.RULE('expression', () => {
+      this.SUBRULE(this.logicalOperator);
+    });
+
+    this.RULE('logicalOperator', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.AND);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIT_AND_OP);
+            this.CONSUME2(Tokens.BIT_AND_OP);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.XOR);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.OR);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIT_OR_OP);
+            this.CONSUME2(Tokens.BIT_OR_OP);
+          }
+        }
+      ]);
+    });
+
     this.RULE('querySpecification', () => {
       this.CONSUME(Tokens.SELECT);
       this.SUBRULE(this.selectElements);
-
-      this.OPTION(() => {
-        this.SUBRULE(this.fromClause);
-      });
+      this.SUBRULE(this.fromClause);
     });
 
     this.RULE('selectElements', () => {
@@ -159,34 +244,6 @@ export class Parser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE('fullId', () => {
-      this.SUBRULE(this.uid);
-
-      this.OPTION(() => {
-        this.OR([
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.DOT_ID);
-            }
-          },
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.DOT);
-              this.SUBRULE2(this.uid);
-            }
-          }
-        ]);
-      });
-    });
-
-    this.RULE('uid', () => {
-      this.SUBRULE(this.simpleId);
-    });
-
-    this.RULE('simpleId', () => {
-      this.CONSUME(Tokens.ID);
-    });
-
     this.RULE('fullColumnName', () => {
       this.SUBRULE(this.uid);
 
@@ -213,6 +270,50 @@ export class Parser extends chevrotain.Parser {
           }
         }
       ]);
+    });
+
+    this.RULE('fullId', () => {
+      this.SUBRULE(this.uid);
+
+      this.OPTION(() => {
+        this.OR([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DOT_ID);
+            }
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DOT);
+              this.SUBRULE2(this.uid);
+            }
+          }
+        ]);
+      });
+    });
+
+    this.RULE('uid', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.simpleId);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.REVERSE_QUOTE_ID);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHARSET_REVERSE_QOUTE_STRING);
+          }
+        }
+      ]);
+    });
+
+    this.RULE('simpleId', () => {
+      this.CONSUME(Tokens.ID);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);
