@@ -4,12 +4,18 @@ import { tokens, Lexer, Tokens, TokenEnum } from './lexer.g';
 export enum SyntaxKind {
   root = 'root',
   sqlStatements = 'sqlStatements',
+  emptyStatement = 'emptyStatement',
   sqlStatement = 'sqlStatement',
   dmlStatement = 'dmlStatement',
   selectStatement = 'selectStatement',
   updateStatement = 'updateStatement',
+  insertStatement = 'insertStatement',
   singleUpdateStatement = 'singleUpdateStatement',
   updatedElement = 'updatedElement',
+  insertStatementValue = 'insertStatementValue',
+  expressionsWithDefaults = 'expressionsWithDefaults',
+  expressionOrDefault = 'expressionOrDefault',
+  uidList = 'uidList',
   expression = 'expression',
   logicalOperator = 'logicalOperator',
   querySpecification = 'querySpecification',
@@ -64,11 +70,27 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('root', () => {
-      this.SUBRULE(this.sqlStatements);
+      this.OPTION(() => {
+        this.SUBRULE(this.sqlStatements);
+      });
+
+      this.CONSUME(Tokens.MINUSMINUS);
     });
 
     this.RULE('sqlStatements', () => {
-      this.SUBRULE(this.sqlStatement);
+      this.MANY(() => {
+        this.SUBRULE(this.sqlStatement);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.MINUSMINUS);
+        });
+
+        this.CONSUME(Tokens.SEMI);
+      });
+    });
+
+    this.RULE('emptyStatement', () => {
+      this.CONSUME(Tokens.SEMI);
     });
 
     this.RULE('sqlStatement', () => {
@@ -80,6 +102,11 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.updateStatement);
+          }
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.insertStatement);
           }
         },
         {
@@ -98,6 +125,24 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('updateStatement', () => {
       this.SUBRULE(this.singleUpdateStatement);
+    });
+
+    this.RULE('insertStatement', () => {
+      this.CONSUME(Tokens.INSERT);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.INTO);
+      });
+
+      this.SUBRULE(this.tableName);
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.LR_BRACKET);
+        this.SUBRULE(this.uidList);
+        this.CONSUME(Tokens.RR_BRACKET);
+      });
+
+      this.SUBRULE(this.insertStatementValue);
     });
 
     this.RULE('singleUpdateStatement', () => {
@@ -130,6 +175,75 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.fullColumnName);
       this.CONSUME(Tokens.EQUAL_SYMBOL);
       this.SUBRULE(this.expression);
+    });
+
+    this.RULE('insertStatementValue', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.VALUES);
+                }
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.VALUE);
+                }
+              }
+            ]);
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.SUBRULE(this.expressionsWithDefaults);
+            this.CONSUME(Tokens.RR_BRACKET);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.CONSUME2(Tokens.LR_BRACKET);
+              this.SUBRULE2(this.expressionsWithDefaults);
+              this.CONSUME2(Tokens.RR_BRACKET);
+            });
+          }
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.selectStatement);
+          }
+        }
+      ]);
+    });
+
+    this.RULE('expressionsWithDefaults', () => {
+      this.SUBRULE(this.expressionOrDefault);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.expressionOrDefault);
+      });
+    });
+
+    this.RULE('expressionOrDefault', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.expression);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DEFAULT);
+          }
+        }
+      ]);
+    });
+
+    this.RULE('uidList', () => {
+      this.SUBRULE(this.uid);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.uid);
+      });
     });
 
     this.RULE('expression', () => {

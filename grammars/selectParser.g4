@@ -1,14 +1,24 @@
-root: sqlStatements;
+root: sqlStatements? MINUSMINUS;
 
-sqlStatements: sqlStatement;
+sqlStatements: (sqlStatement MINUSMINUS? SEMI)*;
+
+emptyStatement: SEMI;
 
 sqlStatement: dmlStatement;
 
-dmlStatement: updateStatement | selectStatement;
+dmlStatement:
+	updateStatement
+	| insertStatement
+	| selectStatement;
 
 selectStatement: querySpecification?;
 
 updateStatement: singleUpdateStatement;
+
+insertStatement:
+	INSERT INTO? tableName (
+		('(' columns = uidList ')')? insertStatementValue
+	);
 
 singleUpdateStatement:
 	UPDATE tableName (AS? uid)? SET updatedElement (
@@ -16,6 +26,19 @@ singleUpdateStatement:
 	)* (WHERE expression)?;
 
 updatedElement: fullColumnName '=' expression;
+
+insertStatementValue:
+	insertFormat = (VALUES | VALUE) '(' expressionsWithDefaults ')' (
+		',' '(' expressionsWithDefaults ')'
+	)*
+	| selectStatement;
+
+expressionsWithDefaults:
+	expressionOrDefault (',' expressionOrDefault)*;
+
+expressionOrDefault: expression | DEFAULT;
+
+uidList: uid (',' uid)*;
 
 expression: logicalOperator # logicalExpression;
 
@@ -36,7 +59,7 @@ tableSourceItem: tableName;
 tableName: fullId;
 
 selectElement:
-	fullId '.' '*'				# selectStarElement
+	fullId '*'					# selectStarElement
 	| fullColumnName (AS? uid)?	# selectColumnElement;
 
 fullColumnName: uid (dottedId dottedId?)?;
