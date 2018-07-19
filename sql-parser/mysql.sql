@@ -1,1 +1,1 @@
-SELECT * FROM dataphin
+SELECT a.id FROM dataphin

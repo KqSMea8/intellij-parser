@@ -18,6 +18,8 @@ export enum SyntaxKind {
   fullId = 'fullId',
   uid = 'uid',
   simpleId = 'simpleId',
+  fullColumnName = 'fullColumnName',
+  dottedId = 'dottedId'
 }
 
 export class BaseNode {
@@ -53,7 +55,7 @@ export class Parser extends chevrotain.Parser {
   constructor(input) {
     super(input, tokens, {
       recoveryEnabled: true,
-      outputCst: true,
+      outputCst: true
     });
 
     this.RULE('root', () => {
@@ -92,13 +94,13 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.STAR);
-          },
+          }
         },
         {
           ALT: () => {
             this.SUBRULE(this.selectElement);
-          },
-        },
+          }
+        }
       ]);
 
       this.MANY(() => {
@@ -134,9 +136,27 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('selectElement', () => {
-      this.SUBRULE(this.fullId);
-      this.CONSUME(Tokens.DOT);
-      this.CONSUME(Tokens.STAR);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullId);
+            this.CONSUME(Tokens.STAR);
+          }
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullColumnName);
+
+            this.OPTION(() => {
+              this.OPTION2(() => {
+                this.CONSUME(Tokens.AS);
+              });
+
+              this.SUBRULE(this.uid);
+            });
+          }
+        }
+      ]);
     });
 
     this.RULE('fullId', () => {
@@ -147,14 +167,14 @@ export class Parser extends chevrotain.Parser {
           {
             ALT: () => {
               this.CONSUME(Tokens.DOT_ID);
-            },
+            }
           },
           {
             ALT: () => {
               this.CONSUME(Tokens.DOT);
               this.SUBRULE2(this.uid);
-            },
-          },
+            }
+          }
         ]);
       });
     });
@@ -165,6 +185,34 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('simpleId', () => {
       this.CONSUME(Tokens.ID);
+    });
+
+    this.RULE('fullColumnName', () => {
+      this.SUBRULE(this.uid);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.dottedId);
+
+        this.OPTION2(() => {
+          this.SUBRULE2(this.dottedId);
+        });
+      });
+    });
+
+    this.RULE('dottedId', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DOT_ID);
+          }
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DOT);
+            this.SUBRULE(this.uid);
+          }
+        }
+      ]);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);

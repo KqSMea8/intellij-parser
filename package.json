@@ -4,10 +4,11 @@
   "description": "",
   "main": "lib/sql-parser/index.js",
   "scripts": {
-    "compile-meta": "tsc && node lib/meta/index.js",
+    "meta": "tsc && node lib/meta/index.js",
     "compile-parser": "tsc sql-parser/index.ts",
     "dev": "tsc -w",
-    "start": "cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=development webpack-dev-server --config webpack.config.dev.js"
+    "start": "cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
+    "parser": "tsc && node lib/sql-parser/index.js"
   },
   "publishConfig": {
     "registry": "http://registry.npm.alibaba-inc.com"
@@ -17,12 +18,7 @@
     "url": "git@github.com:nefe/intellij-sql-editor.git"
   },
   "bin": {},
-  "files": [
-    "lib",
-    "bin",
-    "src",
-    "*.md"
-  ],
+  "files": ["lib", "bin", "src", "*.md"],
   "author": "NEFE",
   "license": "MIT",
   "devDependencies": {
