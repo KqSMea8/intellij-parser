@@ -1,1 +1,0 @@
-{"version":3,"file":"sql.worker.js","sourceRoot":"","sources":["../../monaco-sql/sql.worker.ts"],"names":[],"mappings":"AAIA,YAAY,CAAC;;AAEb,uEAAyE;AACzE,yCAAwC;AAExC,IAAI,CAAC,SAAS,GAAG;IAEf,MAAM,CAAC,UAAU,CAAC,UAAC,GAAG,EAAE,UAAU;QAChC,OAAO,IAAI,qBAAS,CAAC,GAAG,EAAE,UAAU,CAAC,CAAC;IACxC,CAAC,CAAC,CAAC;AACL,CAAC,CAAC"}
