@@ -75,18 +75,11 @@ export class Parser extends chevrotain.Parser {
       this.OPTION(() => {
         this.SUBRULE(this.sqlStatements);
       });
-
-      this.CONSUME(Tokens.MINUSMINUS);
     });
 
     this.RULE('sqlStatements', () => {
       this.MANY(() => {
         this.SUBRULE(this.sqlStatement);
-
-        this.OPTION(() => {
-          this.CONSUME(Tokens.MINUSMINUS);
-        });
-
         this.CONSUME(Tokens.SEMI);
       });
     });

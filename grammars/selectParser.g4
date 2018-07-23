@@ -1,6 +1,6 @@
-root: sqlStatements? MINUSMINUS;
+root: sqlStatements?;
 
-sqlStatements: (sqlStatement MINUSMINUS? SEMI)*;
+sqlStatements: (sqlStatement SEMI)*;
 
 emptyStatement: SEMI;
 

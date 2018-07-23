@@ -3870,10 +3870,6 @@ const ALL = chevrotain.createToken({
   name: 'ALL',
   pattern: /ALL/,
 });
-const EOF = chevrotain.createToken({
-  name: 'EOF',
-  pattern: /EOF/,
-});
 const ID = chevrotain.createToken({
   name: 'ID',
   pattern: /[A-Za-z_\$0-9]+/,
@@ -4846,7 +4842,6 @@ export enum TokenEnum {
   Y_FUNCTION = 'Y_FUNCTION',
   ALTER = 'ALTER',
   ALL = 'ALL',
-  EOF = 'EOF',
   ID = 'ID',
 }
 
@@ -5817,7 +5812,6 @@ export const Tokens = {
   Y_FUNCTION,
   ALTER,
   ALL,
-  EOF,
   ID,
 };
 
@@ -6789,7 +6783,6 @@ export const tokens = [
   Y_FUNCTION,
   ALTER,
   ALL,
-  EOF,
   ID,
 ];
 
