@@ -16,7 +16,7 @@
       "request": "launch",
       "name": "sql-parser",
       "program": "${workspaceFolder}/sql-parser/index.ts",
-      "outFiles": ["${workspaceFolder}/lib/**/*.js"]
+      "outFiles": ["${workspaceFolder}/lib/sql-parser/**/*.js"]
     }
   ]
 }

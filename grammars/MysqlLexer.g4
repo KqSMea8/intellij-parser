@@ -1,4 +1,3 @@
-EOF: 'EOF';
 ALL: 'ALL';
 ALTER: 'ALTER';
 ANALYZE: 'ANALYZE';
@@ -1106,8 +1105,7 @@ fragment CHARSET_NAME:
 	| UTF8MB4;
 
 fragment EXPONENT_NUM_PART: 'E' '-'? DEC_DIGIT+;
-fragment ID_LITERAL:
-	[A-Za-z_$0-9]+;
+fragment ID_LITERAL: [A-Za-z_$0-9]+;
 fragment DQUOTA_STRING:
 	'"' ('\\' . | '""' | ~('"' | '\\'))* '"';
 fragment SQUOTA_STRING:

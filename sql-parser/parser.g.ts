@@ -80,11 +80,6 @@ export class Parser extends chevrotain.Parser {
     this.RULE('sqlStatements', () => {
       this.MANY(() => {
         this.SUBRULE(this.sqlStatement);
-
-        this.OPTION(() => {
-          this.CONSUME(Tokens.MINUSMINUS);
-        });
-
         this.CONSUME(Tokens.SEMI);
       });
     });
