@@ -4,9 +4,22 @@ import { tokens, Lexer, Tokens, TokenEnum } from './lexer.g';
 export enum SyntaxKind {
   root = 'root',
   sqlStatements = 'sqlStatements',
+  emptyStatement = 'emptyStatement',
   sqlStatement = 'sqlStatement',
   dmlStatement = 'dmlStatement',
   selectStatement = 'selectStatement',
+  updateStatement = 'updateStatement',
+  insertStatement = 'insertStatement',
+  deleteStatement = 'deleteStatement',
+  singleDeleteStatement = 'singleDeleteStatement',
+  singleUpdateStatement = 'singleUpdateStatement',
+  updatedElement = 'updatedElement',
+  insertStatementValue = 'insertStatementValue',
+  expressionsWithDefaults = 'expressionsWithDefaults',
+  expressionOrDefault = 'expressionOrDefault',
+  uidList = 'uidList',
+  expression = 'expression',
+  logicalOperator = 'logicalOperator',
   querySpecification = 'querySpecification',
   selectElements = 'selectElements',
   fromClause = 'fromClause',
@@ -15,8 +28,11 @@ export enum SyntaxKind {
   tableSourceItem = 'tableSourceItem',
   tableName = 'tableName',
   selectElement = 'selectElement',
+  fullColumnName = 'fullColumnName',
   dottedId = 'dottedId',
   fullId = 'fullId',
+  uid = 'uid',
+  simpleId = 'simpleId',
 }
 
 export class BaseNode {
@@ -56,11 +72,25 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('root', () => {
-      this.SUBRULE(this.sqlStatements);
+      this.OPTION(() => {
+        this.SUBRULE(this.sqlStatements);
+      });
     });
 
     this.RULE('sqlStatements', () => {
-      this.SUBRULE(this.sqlStatement);
+      this.MANY(() => {
+        this.SUBRULE(this.sqlStatement);
+
+        this.OPTION(() => {
+          this.CONSUME(Tokens.MINUSMINUS);
+        });
+
+        this.CONSUME(Tokens.SEMI);
+      });
+    });
+
+    this.RULE('emptyStatement', () => {
+      this.CONSUME(Tokens.SEMI);
     });
 
     this.RULE('sqlStatement', () => {
@@ -68,13 +98,208 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('dmlStatement', () => {
-      this.SUBRULE(this.selectStatement);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.updateStatement);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.insertStatement);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.deleteStatement);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.selectStatement);
+          },
+        },
+      ]);
     });
 
     this.RULE('selectStatement', () => {
       this.OPTION(() => {
         this.SUBRULE(this.querySpecification);
       });
+    });
+
+    this.RULE('updateStatement', () => {
+      this.SUBRULE(this.singleUpdateStatement);
+    });
+
+    this.RULE('insertStatement', () => {
+      this.CONSUME(Tokens.INSERT);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.INTO);
+      });
+
+      this.SUBRULE(this.tableName);
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.LR_BRACKET);
+        this.SUBRULE(this.uidList);
+        this.CONSUME(Tokens.RR_BRACKET);
+      });
+
+      this.SUBRULE(this.insertStatementValue);
+    });
+
+    this.RULE('deleteStatement', () => {
+      this.SUBRULE(this.singleDeleteStatement);
+    });
+
+    this.RULE('singleDeleteStatement', () => {
+      this.CONSUME(Tokens.DELETE);
+      this.CONSUME(Tokens.FROM);
+      this.SUBRULE(this.tableName);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
+      });
+    });
+
+    this.RULE('singleUpdateStatement', () => {
+      this.CONSUME(Tokens.UPDATE);
+      this.SUBRULE(this.tableName);
+
+      this.OPTION(() => {
+        this.OPTION2(() => {
+          this.CONSUME(Tokens.AS);
+        });
+
+        this.SUBRULE(this.uid);
+      });
+
+      this.CONSUME(Tokens.SET);
+      this.SUBRULE(this.updatedElement);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.updatedElement);
+      });
+
+      this.OPTION3(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
+      });
+    });
+
+    this.RULE('updatedElement', () => {
+      this.SUBRULE(this.fullColumnName);
+      this.CONSUME(Tokens.EQUAL_SYMBOL);
+      this.SUBRULE(this.expression);
+    });
+
+    this.RULE('insertStatementValue', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.VALUES);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.VALUE);
+                },
+              },
+            ]);
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.SUBRULE(this.expressionsWithDefaults);
+            this.CONSUME(Tokens.RR_BRACKET);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.CONSUME2(Tokens.LR_BRACKET);
+              this.SUBRULE2(this.expressionsWithDefaults);
+              this.CONSUME2(Tokens.RR_BRACKET);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.selectStatement);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('expressionsWithDefaults', () => {
+      this.SUBRULE(this.expressionOrDefault);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.expressionOrDefault);
+      });
+    });
+
+    this.RULE('expressionOrDefault', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.expression);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DEFAULT);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('uidList', () => {
+      this.SUBRULE(this.uid);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.uid);
+      });
+    });
+
+    this.RULE('expression', () => {
+      this.SUBRULE(this.logicalOperator);
+    });
+
+    this.RULE('logicalOperator', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.AND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIT_AND_OP);
+            this.CONSUME2(Tokens.BIT_AND_OP);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.XOR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.OR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIT_OR_OP);
+            this.CONSUME2(Tokens.BIT_OR_OP);
+          },
+        },
+      ]);
     });
 
     this.RULE('querySpecification', () => {
@@ -130,34 +355,99 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('selectElement', () => {
-      this.SUBRULE(this.fullId);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullId);
+            this.CONSUME(Tokens.STAR);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullColumnName);
+
+            this.OPTION(() => {
+              this.OPTION2(() => {
+                this.CONSUME(Tokens.AS);
+              });
+
+              this.SUBRULE(this.uid);
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('fullColumnName', () => {
+      this.SUBRULE(this.uid);
 
       this.OPTION(() => {
-        this.OPTION2(() => {
-          this.CONSUME(Tokens.AS);
-        });
+        this.SUBRULE(this.dottedId);
 
-        this.CONSUME(Tokens.ID);
+        this.OPTION2(() => {
+          this.SUBRULE2(this.dottedId);
+        });
       });
     });
 
-    this.RULE('fullId', () => {
-      this.CONSUME(Tokens.ID);
-
-      this.MANY({
-        GATE: () => {
-          if(this.LA(1).tokenType === Tokens.DOT) {
-            throw this.SAVE_ERROR( 
-              new chevrotain.MismatchedTokenException("Expecting token of type --> ID <-- but found ''", this.LA(1), this.LA(0)) 
-            ) 
-          }
-
-          return this.LA(1).tokenType === Tokens.DOT_ID || this.LA(1).tokenType === Tokens.DOT
+    this.RULE('dottedId', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DOT_ID);
+          },
         },
-        DEF: () => {
-          this.CONSUME(Tokens.DOT_ID);
-        }
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DOT);
+            this.SUBRULE(this.uid);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('fullId', () => {
+      this.SUBRULE(this.uid);
+
+      this.MANY(() => {
+        this.OR([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DOT_ID);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DOT);
+              this.SUBRULE2(this.uid);
+            },
+          },
+        ]);
       });
+    });
+
+    this.RULE('uid', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.simpleId);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.REVERSE_QUOTE_ID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHARSET_REVERSE_QOUTE_STRING);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('simpleId', () => {
+      this.CONSUME(Tokens.ID);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);

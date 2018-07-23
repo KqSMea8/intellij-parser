@@ -15,6 +15,7 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -38,10 +39,72 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "*",
               "item": {
                 "index": 0,
-                "kind": "LowerName",
-                "name": "sqlStatement"
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "sqlStatement"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MINUSMINUS"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "SEMI"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "emptyStatement",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "SEMI"
               }
             }
           ]
@@ -87,6 +150,54 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
+                "name": "updateStatement"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "insertStatement"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "deleteStatement"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
                 "name": "selectStatement"
               }
             }
@@ -112,6 +223,914 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "querySpecification"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "updateStatement",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "singleUpdateStatement"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "insertStatement",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "INSERT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "INTO"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableName"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 1,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 0,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "'('"
+                                  }
+                                },
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "LowerName",
+                                    "name": "uidList"
+                                  }
+                                },
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "')'"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "insertStatementValue"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "deleteStatement",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "singleDeleteStatement"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "singleDeleteStatement",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DELETE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "FROM"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableName"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "WHERE"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "expression"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "singleUpdateStatement",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "UPDATE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableName"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 1,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "AS"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "uid"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "SET"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "updatedElement"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "updatedElement"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "WHERE"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "expression"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "updatedElement",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "fullColumnName"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "expression"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "insertStatementValue",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "VALUES"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "VALUE"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "expressionsWithDefaults"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "Stringliteral",
+                          "content": "'('"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "expressionsWithDefaults"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "Stringliteral",
+                          "content": "')'"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "selectStatement"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "expressionsWithDefaults",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "expressionOrDefault"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "expressionOrDefault"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "expressionOrDefault",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "expression"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DEFAULT"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "uidList",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "uid"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "uid"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "expression",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "logicalOperator"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "logicalOperator",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "AND"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'&'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'&'"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "XOR"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "OR"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'|'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'|'"
               }
             }
           ]
@@ -441,6 +1460,32 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'*'"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "fullColumnName"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
               "suff": "?",
               "item": {
                 "index": 0,
@@ -467,8 +1512,70 @@
                         "hasNot": false,
                         "item": {
                           "index": 0,
-                          "kind": "UpperName",
-                          "name": "ID"
+                          "kind": "LowerName",
+                          "name": "uid"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "fullColumnName",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "uid"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "dottedId"
+                        }
+                      },
+                      {
+                        "index": 1,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "dottedId"
                         }
                       }
                     ]
@@ -500,6 +1607,32 @@
               }
             }
           ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'.'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "uid"
+              }
+            }
+          ]
         }
       ]
     },
@@ -518,8 +1651,8 @@
               "hasNot": false,
               "item": {
                 "index": 0,
-                "kind": "UpperName",
-                "name": "ID"
+                "kind": "LowerName",
+                "name": "uid"
               }
             },
             {
@@ -541,13 +1674,117 @@
                         "hasNot": false,
                         "item": {
                           "index": 0,
+                          "kind": "UpperName",
+                          "name": "DOT_ID"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'.'"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
                           "kind": "LowerName",
-                          "name": "dottedId"
+                          "name": "uid"
                         }
                       }
                     ]
                   }
                 ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "uid",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "simpleId"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "REVERSE_QUOTE_ID"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "CHARSET_REVERSE_QOUTE_STRING"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "simpleId",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ID"
               }
             }
           ]

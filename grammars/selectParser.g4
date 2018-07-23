@@ -1,12 +1,54 @@
-root: sqlStatements;
+root: sqlStatements?;
 
-sqlStatements: sqlStatement;
+sqlStatements: (sqlStatement MINUSMINUS? SEMI)*;
+
+emptyStatement: SEMI;
 
 sqlStatement: dmlStatement;
 
-dmlStatement: selectStatement;
+dmlStatement:
+	updateStatement
+	| insertStatement
+	| deleteStatement
+	| selectStatement;
 
 selectStatement: querySpecification?;
+
+updateStatement: singleUpdateStatement;
+
+insertStatement:
+	INSERT INTO? tableName (
+		('(' columns = uidList ')')? insertStatementValue
+	);
+
+deleteStatement: singleDeleteStatement;
+
+singleDeleteStatement:
+	DELETE FROM tableName (WHERE expression)?;
+
+singleUpdateStatement:
+	UPDATE tableName (AS? uid)? SET updatedElement (
+		',' updatedElement
+	)* (WHERE expression)?;
+
+updatedElement: fullColumnName '=' expression;
+
+insertStatementValue:
+	insertFormat = (VALUES | VALUE) '(' expressionsWithDefaults ')' (
+		',' '(' expressionsWithDefaults ')'
+	)*
+	| selectStatement;
+
+expressionsWithDefaults:
+	expressionOrDefault (',' expressionOrDefault)*;
+
+expressionOrDefault: expression | DEFAULT;
+
+uidList: uid (',' uid)*;
+
+expression: logicalOperator;
+
+logicalOperator: AND | '&' '&' | XOR | OR | '|' '|';
 
 querySpecification: SELECT selectElements fromClause;
 
@@ -22,8 +64,20 @@ tableSourceItem: tableName;
 
 tableName: fullId;
 
-selectElement: fullId (AS? ID)?;
+selectElement:
+	fullId '*'					
+	| fullColumnName (AS? uid)?;
 
-dottedId: DOT_ID;
+fullColumnName: uid (dottedId dottedId?)?;
 
-fullId: ID (dottedId)*;
+dottedId: DOT_ID | '.' uid;
+
+fullId: uid (DOT_ID | '.' uid)*;
+
+uid:
+	simpleId
+	| REVERSE_QUOTE_ID
+	| CHARSET_REVERSE_QOUTE_STRING;
+
+simpleId: ID;
+
