@@ -401,6 +401,7 @@ export class ItemSuffNode extends BaseNode {
 }
 
 export class BracketExpNode extends BaseNode {
+  index = 0;
   atoms: AtomNode[];
   kind = SyntaxKind.bracketExp;
 
@@ -427,7 +428,7 @@ export class BracketExpNode extends BaseNode {
       `;
     });
     if (this.atoms.length > 1) {
-      return `this.OR([${orStrs.join(',')}])`;
+      return `this.OR${this.indexStr}([${orStrs.join(',')}])`;
     } else {
       return `${this.atoms[0].toCode()}`;
     }
@@ -551,6 +552,16 @@ export function parseGCode(gCode: string, isParser = true, tokens = []) {
             node.index = manyIndex++;
           } else if (node.suff === SuffEnum.OPTION) {
             node.index = optionIndex++;
+          }
+        });
+      }
+
+      // or 的 index
+      {
+        let orIndex = 0;
+        traverse(ruleNode, SyntaxKind.bracketExp, (node: BracketExpNode) => {
+          if (node.atoms.length > 1) {
+            node.index = ++orIndex;
           }
         });
       }
