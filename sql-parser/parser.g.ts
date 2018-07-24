@@ -8,6 +8,12 @@ export enum SyntaxKind {
   sqlStatement = 'sqlStatement',
   dmlStatement = 'dmlStatement',
   selectStatement = 'selectStatement',
+  querySpecification = 'querySpecification',
+  limitClause = 'limitClause',
+  decimalLiteral = 'decimalLiteral',
+  orderByClause = 'orderByClause',
+  orderByExpression = 'orderByExpression',
+  selectSpec = 'selectSpec',
   updateStatement = 'updateStatement',
   insertStatement = 'insertStatement',
   deleteStatement = 'deleteStatement',
@@ -20,11 +26,11 @@ export enum SyntaxKind {
   uidList = 'uidList',
   expression = 'expression',
   logicalOperator = 'logicalOperator',
-  querySpecification = 'querySpecification',
   selectElements = 'selectElements',
   fromClause = 'fromClause',
   tableSources = 'tableSources',
   tableSource = 'tableSource',
+  joinPart = 'joinPart',
   tableSourceItem = 'tableSourceItem',
   tableName = 'tableName',
   selectElement = 'selectElement',
@@ -118,9 +124,158 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('selectStatement', () => {
-      this.OPTION(() => {
-        this.SUBRULE(this.querySpecification);
+      this.SUBRULE(this.querySpecification);
+    });
+
+    this.RULE('querySpecification', () => {
+      this.CONSUME(Tokens.SELECT);
+
+      this.MANY(() => {
+        this.SUBRULE(this.selectSpec);
       });
+
+      this.SUBRULE(this.selectElements);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.fromClause);
+      });
+
+      this.OPTION2(() => {
+        this.SUBRULE(this.orderByClause);
+      });
+
+      this.OPTION3(() => {
+        this.SUBRULE(this.limitClause);
+      });
+    });
+
+    this.RULE('limitClause', () => {
+      this.CONSUME(Tokens.LIMIT);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.decimalLiteral);
+            this.CONSUME(Tokens.OFFSET);
+            this.SUBRULE2(this.decimalLiteral);
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.SUBRULE3(this.decimalLiteral);
+              this.CONSUME(Tokens.COMMA);
+            });
+
+            this.SUBRULE4(this.decimalLiteral);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('decimalLiteral', () => {
+      this.CONSUME(Tokens.DECIMAL_LITERAL);
+    });
+
+    this.RULE('orderByClause', () => {
+      this.CONSUME(Tokens.ORDER);
+      this.CONSUME(Tokens.BY);
+      this.SUBRULE(this.orderByExpression);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.orderByExpression);
+      });
+    });
+
+    this.RULE('orderByExpression', () => {
+      this.SUBRULE(this.expression);
+
+      this.OPTION(() => {
+        this.OR([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ASC);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DESC);
+            },
+          },
+        ]);
+      });
+    });
+
+    this.RULE('selectSpec', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.ALL);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DISTINCT);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DISTINCTROW);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HIGH_PRIORITY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STRAIGHT_JOIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SQL_SMALL_RESULT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SQL_BIG_RESULT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SQL_BUFFER_RESULT);
+          },
+        },
+        {
+          ALT: () => {
+            this.OR([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SQL_CACHE);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SQL_NO_CACHE);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SQL_CALC_FOUND_ROWS);
+          },
+        },
+      ]);
     });
 
     this.RULE('updateStatement', () => {
@@ -297,12 +452,6 @@ export class Parser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE('querySpecification', () => {
-      this.CONSUME(Tokens.SELECT);
-      this.SUBRULE(this.selectElements);
-      this.SUBRULE(this.fromClause);
-    });
-
     this.RULE('selectElements', () => {
       this.OR([
         {
@@ -338,11 +487,163 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('tableSource', () => {
-      this.SUBRULE(this.tableSourceItem);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.tableSourceItem);
+
+            this.MANY(() => {
+              this.SUBRULE(this.joinPart);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.SUBRULE2(this.tableSourceItem);
+
+            this.MANY2(() => {
+              this.SUBRULE2(this.joinPart);
+            });
+
+            this.CONSUME(Tokens.RR_BRACKET);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('joinPart', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.OR([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.INNER);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.CROSS);
+                  },
+                },
+              ]);
+            });
+
+            this.CONSUME(Tokens.JOIN);
+            this.SUBRULE(this.tableSourceItem);
+
+            this.OPTION2(() => {
+              this.OR([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.ON);
+                    this.SUBRULE(this.expression);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.USING);
+                    this.CONSUME(Tokens.LR_BRACKET);
+                    this.SUBRULE(this.uidList);
+                    this.CONSUME(Tokens.RR_BRACKET);
+                  },
+                },
+              ]);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STRAIGHT_JOIN);
+            this.SUBRULE2(this.tableSourceItem);
+
+            this.OPTION3(() => {
+              this.CONSUME2(Tokens.ON);
+              this.SUBRULE2(this.expression);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.OR([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.LEFT);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.RIGHT);
+                },
+              },
+            ]);
+
+            this.OPTION4(() => {
+              this.CONSUME(Tokens.OUTER);
+            });
+
+            this.CONSUME2(Tokens.JOIN);
+            this.SUBRULE3(this.tableSourceItem);
+            this.OR([
+              {
+                ALT: () => {
+                  this.CONSUME3(Tokens.ON);
+                  this.SUBRULE3(this.expression);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME2(Tokens.USING);
+                  this.CONSUME2(Tokens.LR_BRACKET);
+                  this.SUBRULE2(this.uidList);
+                  this.CONSUME2(Tokens.RR_BRACKET);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NATURAL);
+
+            this.OPTION5(() => {
+              this.OR([
+                {
+                  ALT: () => {
+                    this.CONSUME2(Tokens.LEFT);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME2(Tokens.RIGHT);
+                  },
+                },
+              ]);
+
+              this.OPTION6(() => {
+                this.CONSUME2(Tokens.OUTER);
+              });
+            });
+
+            this.CONSUME3(Tokens.JOIN);
+            this.SUBRULE4(this.tableSourceItem);
+          },
+        },
+      ]);
     });
 
     this.RULE('tableSourceItem', () => {
       this.SUBRULE(this.tableName);
+
+      this.OPTION(() => {
+        this.OPTION2(() => {
+          this.CONSUME(Tokens.AS);
+        });
+
+        this.SUBRULE(this.uid);
+      });
     });
 
     this.RULE('tableName', () => {

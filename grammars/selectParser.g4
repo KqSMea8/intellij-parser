@@ -12,7 +12,33 @@ dmlStatement:
 	| deleteStatement
 	| selectStatement;
 
-selectStatement: querySpecification?;
+selectStatement:
+	querySpecification;
+
+querySpecification:
+	SELECT selectSpec* selectElements fromClause? orderByClause? limitClause?;
+
+limitClause:
+	LIMIT (
+    limit = decimalLiteral OFFSET offset = decimalLiteral |
+		(offset = decimalLiteral ',')? limit = decimalLiteral
+	);
+
+decimalLiteral: DECIMAL_LITERAL;
+
+orderByClause:
+	ORDER BY orderByExpression (',' orderByExpression)*;
+
+orderByExpression: expression order = (ASC | DESC)?;
+
+selectSpec: (ALL | DISTINCT | DISTINCTROW)
+	| HIGH_PRIORITY
+	| STRAIGHT_JOIN
+	| SQL_SMALL_RESULT
+	| SQL_BIG_RESULT
+	| SQL_BUFFER_RESULT
+	| (SQL_CACHE | SQL_NO_CACHE)
+	| SQL_CALC_FOUND_ROWS;
 
 updateStatement: singleUpdateStatement;
 
@@ -50,17 +76,28 @@ expression: logicalOperator;
 
 logicalOperator: AND | '&' '&' | XOR | OR | '|' '|';
 
-querySpecification: SELECT selectElements fromClause;
-
 selectElements: ('*' | selectElement) (',' selectElement)*;
 
 fromClause: FROM tableSources;
 
 tableSources: tableSource (',' tableSource)*;
 
-tableSource: tableSourceItem;
+tableSource:
+	tableSourceItem joinPart*
+	| '(' tableSourceItem joinPart* ')';
 
-tableSourceItem: tableName;
+joinPart: (INNER | CROSS)? JOIN tableSourceItem (
+		ON expression
+		| USING '(' uidList ')'
+	)?												
+	| STRAIGHT_JOIN tableSourceItem (ON expression)?	
+	| (LEFT | RIGHT) OUTER? JOIN tableSourceItem (
+		ON expression
+		| USING '(' uidList ')'
+	)													
+	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem;  
+
+tableSourceItem: tableName (AS? alias = uid)?;
 
 tableName: fullId;
 
