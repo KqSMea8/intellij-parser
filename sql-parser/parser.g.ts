@@ -32,7 +32,7 @@ export enum SyntaxKind {
   dottedId = 'dottedId',
   fullId = 'fullId',
   uid = 'uid',
-  simpleId = 'simpleId'
+  simpleId = 'simpleId',
 }
 
 export class BaseNode {
@@ -68,7 +68,7 @@ export class Parser extends chevrotain.Parser {
   constructor(input) {
     super(input, tokens, {
       recoveryEnabled: true,
-      outputCst: true
+      outputCst: true,
     });
 
     this.RULE('root', () => {
@@ -97,23 +97,23 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.updateStatement);
-          }
+          },
         },
         {
           ALT: () => {
             this.SUBRULE(this.insertStatement);
-          }
+          },
         },
         {
           ALT: () => {
             this.SUBRULE(this.deleteStatement);
-          }
+          },
         },
         {
           ALT: () => {
             this.SUBRULE(this.selectStatement);
-          }
-        }
+          },
+        },
       ]);
     });
 
@@ -200,13 +200,13 @@ export class Parser extends chevrotain.Parser {
               {
                 ALT: () => {
                   this.CONSUME(Tokens.VALUES);
-                }
+                },
               },
               {
                 ALT: () => {
                   this.CONSUME(Tokens.VALUE);
-                }
-              }
+                },
+              },
             ]);
             this.CONSUME(Tokens.LR_BRACKET);
             this.SUBRULE(this.expressionsWithDefaults);
@@ -218,13 +218,13 @@ export class Parser extends chevrotain.Parser {
               this.SUBRULE2(this.expressionsWithDefaults);
               this.CONSUME2(Tokens.RR_BRACKET);
             });
-          }
+          },
         },
         {
           ALT: () => {
             this.SUBRULE(this.selectStatement);
-          }
-        }
+          },
+        },
       ]);
     });
 
@@ -242,13 +242,13 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.expression);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.DEFAULT);
-          }
-        }
+          },
+        },
       ]);
     });
 
@@ -270,30 +270,30 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.AND);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.BIT_AND_OP);
             this.CONSUME2(Tokens.BIT_AND_OP);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.XOR);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.OR);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.BIT_OR_OP);
             this.CONSUME2(Tokens.BIT_OR_OP);
-          }
-        }
+          },
+        },
       ]);
     });
 
@@ -308,13 +308,13 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.STAR);
-          }
+          },
         },
         {
           ALT: () => {
             this.SUBRULE(this.selectElement);
-          }
-        }
+          },
+        },
       ]);
 
       this.MANY(() => {
@@ -355,7 +355,7 @@ export class Parser extends chevrotain.Parser {
           ALT: () => {
             this.SUBRULE(this.fullId);
             this.CONSUME(Tokens.STAR);
-          }
+          },
         },
         {
           ALT: () => {
@@ -368,8 +368,8 @@ export class Parser extends chevrotain.Parser {
 
               this.SUBRULE(this.uid);
             });
-          }
-        }
+          },
+        },
       ]);
     });
 
@@ -390,33 +390,33 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.DOT_ID);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.DOT);
             this.SUBRULE(this.uid);
-          }
-        }
+          },
+        },
       ]);
     });
 
     this.RULE('fullId', () => {
       this.SUBRULE(this.uid);
 
-      this.OPTION(() => {
+      this.MANY(() => {
         this.OR([
           {
             ALT: () => {
               this.CONSUME(Tokens.DOT_ID);
-            }
+            },
           },
           {
             ALT: () => {
               this.CONSUME(Tokens.DOT);
               this.SUBRULE2(this.uid);
-            }
-          }
+            },
+          },
         ]);
       });
     });
@@ -426,18 +426,18 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.simpleId);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.REVERSE_QUOTE_ID);
-          }
+          },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.CHARSET_REVERSE_QOUTE_STRING);
-          }
-        }
+          },
+        },
       ]);
     });
 

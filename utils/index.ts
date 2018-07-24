@@ -1,5 +1,5 @@
 import { ErrorType, ErrorPrefix, ErrorToken } from './definations';
-import { Tokens } from '../sql-parser/lexer.g';
+import { Tokens, TokenEnum } from '../sql-parser/lexer.g';
 /** ast解析方法 */
 const getClassification = (ast, pos) => {
   const queue = [ast.cst];
@@ -37,7 +37,12 @@ const getCompleteInfo = (ast, pos) => {
   return errorMsg;
 }
 
+const getKeywords = () => {
+  return TokenEnum;
+}
+
 export {
   getClassification,
-  getCompleteInfo
+  getCompleteInfo,
+  getKeywords
 }

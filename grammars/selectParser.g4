@@ -46,7 +46,7 @@ expressionOrDefault: expression | DEFAULT;
 
 uidList: uid (',' uid)*;
 
-expression: logicalOperator # logicalExpression;
+expression: logicalOperator;
 
 logicalOperator: AND | '&' '&' | XOR | OR | '|' '|';
 
@@ -65,18 +65,17 @@ tableSourceItem: tableName;
 tableName: fullId;
 
 selectElement:
-	fullId '*'					# selectStarElement
-	| fullColumnName (AS? uid)?	# selectColumnElement;
+	fullId '*'					
+	| fullColumnName (AS? uid)?;
 
 fullColumnName: uid (dottedId dottedId?)?;
 
 dottedId: DOT_ID | '.' uid;
 
-fullId: uid (DOT_ID | '.' uid)?;
+fullId: uid (DOT_ID | '.' uid)*;
 
 uid:
 	simpleId
-	//| DOUBLE_QUOTE_ID
 	| REVERSE_QUOTE_ID
 	| CHARSET_REVERSE_QOUTE_STRING;
 

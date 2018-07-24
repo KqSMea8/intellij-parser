@@ -1648,7 +1648,7 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
+              "suff": "*",
               "item": {
                 "index": 0,
                 "kind": "bracketExp",
