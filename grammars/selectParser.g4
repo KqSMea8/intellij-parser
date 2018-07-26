@@ -7,17 +7,19 @@ emptyStatement: SEMI;
 sqlStatement: dmlStatement;
 
 dmlStatement:
-	updateStatement
+	selectStatement
 	| insertStatement
-	| deleteStatement
-	| selectStatement;
+	| updateStatement
+	| deleteStatement;
 
 selectStatement: querySpecification | queryExpression;
 
 updateStatement: singleUpdateStatement;
 
-insertStatement:
+insertStatement: 
 	INSERT INTO? tableName (
+		PARTITION '(' partitions = uidList ')'
+	)? (
 		('(' columns = uidList ')')? insertStatementValue
 	);
 
@@ -154,9 +156,39 @@ orderByExpression: expression order = (ASC | DESC)?;
 limitClause:
 	LIMIT decimalLiteral OFFSET decimalLiteral;
 
-expression: fullColumnName logicalOperator? fullColumnName?;
+expression: fullColumnName logicalOperator? fullColumnName? | predicate;
+
+predicate:
+ expressionAtom							# expressionAtomPredicate;
+
+expressionAtom:
+	constant													# constantExpressionAtom;
 
 expressions: expression (',' expression)*;
+
+constant:
+	stringLiteral
+	| decimalLiteral
+	| hexadecimalLiteral
+	| booleanLiteral
+	| REAL_LITERAL
+	| BIT_STRING
+	| NOT? nullLiteral = (NULL_LITERAL | NULL_SPEC_LITERAL);
+
+stringLiteral: (
+		STRING_CHARSET_NAME? STRING_LITERAL
+		| START_NATIONAL_STRING_LITERAL
+	) STRING_LITERAL+
+	| (
+		STRING_CHARSET_NAME? STRING_LITERAL
+		| START_NATIONAL_STRING_LITERAL
+	) (COLLATE collationName)?;
+
+hexadecimalLiteral: STRING_CHARSET_NAME? HEXADECIMAL_LITERAL;
+
+booleanLiteral: TRUE | FALSE;
+
+collationName: uid | STRING_LITERAL;
 
 decimalLiteral:
 	DECIMAL_LITERAL
