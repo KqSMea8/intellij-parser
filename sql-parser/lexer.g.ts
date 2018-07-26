@@ -3870,6 +3870,14 @@ const ALL = chevrotain.createToken({
   name: 'ALL',
   pattern: /ALL/,
 });
+const ADD = chevrotain.createToken({
+  name: 'ADD',
+  pattern: /ADD/,
+});
+const SKIP = chevrotain.createToken({
+  name: 'SKIP',
+  pattern: /SKIP/,
+});
 const ID = chevrotain.createToken({
   name: 'ID',
   pattern: /[A-Za-z_\$0-9]+/,
@@ -4842,6 +4850,8 @@ export enum TokenEnum {
   Y_FUNCTION = 'Y_FUNCTION',
   ALTER = 'ALTER',
   ALL = 'ALL',
+  ADD = 'ADD',
+  SKIP = 'SKIP',
   ID = 'ID',
 }
 
@@ -5812,6 +5822,8 @@ export const Tokens = {
   Y_FUNCTION,
   ALTER,
   ALL,
+  ADD,
+  SKIP,
   ID,
 };
 
@@ -6783,6 +6795,8 @@ export const tokens = [
   Y_FUNCTION,
   ALTER,
   ALL,
+  ADD,
+  SKIP,
   ID,
 ];
 

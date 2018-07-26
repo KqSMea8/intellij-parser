@@ -98,7 +98,6 @@ preparedStatement:
 	| executeStatement
 	| deallocatePrepare;
 
-// remark: NOT INCLUDED IN sqlStatement, but include in body of routine's statements
 compoundStatement:
 	blockStatement
 	| caseStatement
@@ -143,10 +142,6 @@ utilityStatement:
 	| fullDescribeStatement
 	| helpStatement
 	| useStatement;
-
-// Data Definition Language
-
-//    Create statements
 
 createDatabase:
 	CREATE dbFormat = (DATABASE | SCHEMA) ifNotExists? uid createDatabaseOption*;
@@ -238,8 +233,6 @@ createView:
 	)? VIEW fullId ('(' uidList ')')? AS selectStatement (
 		WITH checkOption = (CASCADED | LOCAL)? CHECK OPTION
 	)?;
-
-// details
 
 createDatabaseOption:
 	DEFAULT? CHARACTER SET '='? charsetName
@@ -368,10 +361,8 @@ referenceControlType:
 	| NO ACTION;
 
 indexColumnDefinition:
-	indexFormat = (INDEX | KEY) uid? indexType? indexColumnNames indexOption* #
-		simpleIndexDeclaration
-	| (FULLTEXT | SPATIAL) indexFormat = (INDEX | KEY)? uid? indexColumnNames indexOption* #
-		specialIndexDeclaration;
+	indexFormat = (INDEX | KEY) uid? indexType? indexColumnNames indexOption* # simpleIndexDeclaration
+	| (FULLTEXT | SPATIAL) indexFormat = (INDEX | KEY)? uid? indexColumnNames indexOption* # specialIndexDeclaration;
 
 tableOption:
 	ENGINE '='? engineName									# tableOptionEngine
@@ -465,8 +456,6 @@ partitionOption:
 	| TABLESPACE '='? tablespace = uid						# partitionOptionTablespace
 	| NODEGROUP '='? nodegroup = uid						# partitionOptionNodeGroup;
 
-//    Alter statements
-
 alterDatabase:
 	ALTER dbFormat = (DATABASE | SCHEMA) uid? createDatabaseOption+			# alterSimpleDatabase
 	| ALTER dbFormat = (DATABASE | SCHEMA) uid UPGRADE DATA DIRECTORY NAME	# alterUpgradeName;
@@ -511,8 +500,6 @@ alterView:
 		WITH checkOpt = (CASCADED | LOCAL)? CHECK OPTION
 	)?;
 
-// details
-
 alterSpecification:
 	tableOption												# alterByTableOption
 	| ADD COLUMN? uid columnDefinition (FIRST | AFTER uid)?	# alterByAddColumn
@@ -520,8 +507,7 @@ alterSpecification:
 		',' uid columnDefinition
 	)* ')'																					# alterByAddColumns
 	| ADD indexFormat = (INDEX | KEY) uid? indexType? indexColumnNames indexOption*			# alterByAddIndex
-	| ADD (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption*	#
-		alterByAddPrimaryKey
+	| ADD (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption*	# alterByAddPrimaryKey
 	| ADD (CONSTRAINT name = uid?)? UNIQUE indexFormat = (
 		INDEX
 		| KEY
@@ -578,8 +564,6 @@ alterSpecification:
 	| REMOVE PARTITIONING					# alterByRemovePartitioning
 	| UPGRADE PARTITIONING					# alterByUpgradePartitioning;
 
-//    Drop statements
-
 dropDatabase: DROP dbFormat = (DATABASE | SCHEMA) ifExists? uid;
 
 dropEvent: DROP EVENT ifExists? fullId;
@@ -620,18 +604,12 @@ dropView:
 		| CASCADE
 	)?;
 
-//    Other DDL statements
-
 renameTable:
 	RENAME TABLE renameTableClause (',' renameTableClause)*;
 
 renameTableClause: tableName TO tableName;
 
 truncateTable: TRUNCATE TABLE? tableName;
-
-// Data Manipulation Language
-
-//    Primary DML Statements
 
 callStatement:
 	CALL fullId ('(' (constants | expressions)? ')')?;
@@ -711,8 +689,6 @@ updateStatement:
 	singleUpdateStatement
 	| multipleUpdateStatement;
 
-// details
-
 insertStatementValue:
 	selectStatement
 	| insertFormat = (VALUES | VALUE) '(' expressionsWithDefaults ')' (
@@ -724,8 +700,6 @@ updatedElement: fullColumnName '=' (expression | DEFAULT);
 assignmentField: uid | LOCAL_ID;
 
 lockClause: FOR UPDATE | LOCK IN SHARE MODE;
-
-//    Detailed DML Statements
 
 singleDeleteStatement:
 	DELETE priority = LOW_PRIORITY? QUICK? IGNORE? FROM tableName (
@@ -762,8 +736,6 @@ multipleUpdateStatement:
 	UPDATE priority = LOW_PRIORITY? IGNORE? tableSources SET updatedElement (
 		',' updatedElement
 	)* (WHERE expression)?;
-
-// details
 
 orderByClause:
 	ORDER BY orderByExpression (',' orderByExpression)*;
@@ -805,8 +777,6 @@ joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 	)														# outerJoin
 	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem	# naturalJoin;
 
-//    Select Statement's Details
-
 queryExpression:
 	'(' querySpecification ')'
 	| queryExpressionUnit;
@@ -833,8 +803,6 @@ unionStatement:
 		querySpecificationNointo
 		| queryExpressionNointo
 	);
-
-// details
 
 selectSpec: (ALL | DISTINCT | DISTINCTROW)
 	| HIGH_PRIORITY
@@ -886,8 +854,6 @@ limitClause:
 		| limit = decimalLiteral OFFSET offset = decimalLiteral
 	);
 
-// Transaction's Statements
-
 startTransaction:
 	START TRANSACTION (transactionMode (',' transactionMode)*)?;
 
@@ -913,8 +879,6 @@ lockTables:
 	LOCK TABLES lockTableElement (',' lockTableElement)*;
 
 unlockTables: UNLOCK TABLES;
-
-// details
 
 setAutocommitStatement:
 	SET AUTOCOMMIT '=' autocommitValue = ('0' | '1');
@@ -944,10 +908,6 @@ transactionLevel:
 	| READ UNCOMMITTED
 	| SERIALIZABLE;
 
-// Replication's Statements
-
-//    Base Replication
-
 changeMaster:
 	CHANGE MASTER TO masterOption (',' masterOption)* channelOption?;
 
@@ -976,8 +936,6 @@ stopSlave: STOP SLAVE (threadType (',' threadType)*)?;
 startGroupReplication: START GROUP_REPLICATION;
 
 stopGroupReplication: STOP GROUP_REPLICATION;
-
-// details
 
 masterOption:
 	stringMasterOption '=' STRING_LITERAL				# masterStringOption
@@ -1044,8 +1002,6 @@ connectionOption:
 
 gtuidSet: uuidSet (',' uuidSet)* | STRING_LITERAL;
 
-//    XA Transactions
-
 xaStartTransaction:
 	XA xaStart = (START | BEGIN) xid xaAction = (JOIN | RESUME)?;
 
@@ -1059,8 +1015,6 @@ xaRollbackWork: XA ROLLBACK xid;
 
 xaRecoverWork: XA RECOVER (CONVERT xid)?;
 
-// Prepared Statements
-
 prepareStatement:
 	PREPARE uid FROM (
 		query = STRING_LITERAL
@@ -1071,11 +1025,7 @@ executeStatement: EXECUTE uid (USING userVariables)?;
 
 deallocatePrepare: dropFormat = (DEALLOCATE | DROP) PREPARE uid;
 
-// Compound Statements
-
 routineBody: blockStatement | sqlStatement;
-
-// details
 
 blockStatement: (uid ':')? BEGIN (
 		(declareVariable SEMI)* (declareCondition SEMI)* (
@@ -1110,8 +1060,6 @@ cursorStatement:
 	| FETCH (NEXT? FROM)? uid INTO uidList	# FetchCursor
 	| OPEN uid								# OpenCursor;
 
-// details
-
 declareVariable:
 	DECLARE uidList dataType (DEFAULT defaultValue)?;
 
@@ -1142,10 +1090,6 @@ caseAlternative:
 	WHEN (constant | expression) THEN procedureSqlStatement+;
 
 elifAlternative: ELSEIF expression THEN procedureSqlStatement+;
-
-// Administration Statements
-
-//    Account management statements
 
 alterUser:
 	ALTER USER userSpecification (',' userSpecification)* # alterUserMysqlV56
@@ -1203,8 +1147,6 @@ setPasswordStatement:
 		passwordFunctionClause
 		| STRING_LITERAL
 	);
-
-// details
 
 userSpecification: userName userPasswordOption;
 
@@ -1279,8 +1221,6 @@ privilegeLevel:
 
 renameUserClause: fromFirst = userName TO toFirst = userName;
 
-//    Table maintenance statements
-
 analyzeTable:
 	ANALYZE actionOption = (NO_WRITE_TO_BINLOG | LOCAL)? TABLE tables;
 
@@ -1295,8 +1235,6 @@ optimizeTable:
 repairTable:
 	REPAIR actionOption = (NO_WRITE_TO_BINLOG | LOCAL)? TABLE tables QUICK? EXTENDED? USE_FRM?;
 
-// details
-
 checkTableOption:
 	FOR UPGRADE
 	| QUICK
@@ -1304,8 +1242,6 @@ checkTableOption:
 	| MEDIUM
 	| EXTENDED
 	| CHANGED;
-
-//    Plugin and udf statements
 
 createUdfunction:
 	CREATE AGGREGATE? FUNCTION uid RETURNS returnType = (
@@ -1318,8 +1254,6 @@ createUdfunction:
 installPlugin: INSTALL PLUGIN uid SONAME STRING_LITERAL;
 
 uninstallPlugin: UNINSTALL PLUGIN uid;
-
-//    Set and show statements
 
 setStatement:
 	SET variableClause '=' expression (
@@ -1376,8 +1310,6 @@ showStatement:
 	)													# showProfile
 	| SHOW SLAVE STATUS (FOR CHANNEL STRING_LITERAL)?	# showSlaveStatus;
 
-// details
-
 variableClause:
 	LOCAL_ID
 	| GLOBAL_ID
@@ -1422,8 +1354,6 @@ showProfileType:
 	| SOURCE
 	| SWAPS;
 
-//    Other administrative statements
-
 binlogStatement: BINLOG STRING_LITERAL;
 
 cacheIndexStatement:
@@ -1444,12 +1374,9 @@ loadIndexIntoCache:
 		',' loadedTableIndexes
 	)*;
 
-// remark reset (maser | slave) describe in replication's statements section
 resetStatement: RESET QUERY CACHE;
 
 shutdownStatement: SHUTDOWN;
-
-// details
 
 tableIndexes:
 	tableName (indexFormat = (INDEX | KEY)? '(' uidList ')')?;
@@ -1475,8 +1402,6 @@ loadedTableIndexes:
 		indexFormat = (INDEX | KEY)? '(' indexList = uidList ')'
 	)? (IGNORE LEAVES)?;
 
-// Utility Statements
-
 simpleDescribeStatement:
 	command = (EXPLAIN | DESCRIBE | DESC) tableName (
 		column = uid
@@ -1495,8 +1420,6 @@ helpStatement: HELP STRING_LITERAL;
 
 useStatement: USE uid;
 
-// details
-
 describeObjectClause: (
 		selectStatement
 		| deleteStatement
@@ -1505,10 +1428,6 @@ describeObjectClause: (
 		| updateStatement
 	)						# describeStatements
 	| FOR CONNECTION uid	# describeConnection;
-
-// Common Clauses
-
-//    DB Objects
 
 fullId: uid (DOT_ID | '.' uid)?;
 
@@ -1563,11 +1482,7 @@ xuidStringId:
 
 authPlugin: uid | STRING_LITERAL;
 
-uid:
-	simpleId
-	//| DOUBLE_QUOTE_ID
-	| REVERSE_QUOTE_ID
-	| CHARSET_REVERSE_QOUTE_STRING;
+uid: simpleId | REVERSE_QUOTE_ID | CHARSET_REVERSE_QOUTE_STRING;
 
 simpleId:
 	ID
@@ -1581,8 +1496,6 @@ simpleId:
 	| functionNameBase;
 
 dottedId: DOT_ID | '.' uid;
-
-//    Literals
 
 decimalLiteral:
 	DECIMAL_LITERAL
@@ -1616,8 +1529,6 @@ constant:
 	| BIT_STRING
 	| NOT? nullLiteral = (NULL_LITERAL | NULL_SPEC_LITERAL);
 
-//    Data Types
-
 dataType:
 	typeName = (
 		CHAR
@@ -1638,8 +1549,7 @@ dataType:
 		| BIGINT
 	) lengthOneDimension? UNSIGNED? ZEROFILL?											# dimensionDataType
 	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?		# dimensionDataType
-	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	#
-		dimensionDataType
+	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	# dimensionDataType
 	| typeName = (
 		DATE
 		| TINYBLOB
@@ -1689,8 +1599,6 @@ lengthTwoDimension: '(' decimalLiteral ',' decimalLiteral ')';
 lengthTwoOptionalDimension:
 	'(' decimalLiteral (',' decimalLiteral)? ')';
 
-//    Common Lists
-
 uidList: uid (',' uid)*;
 
 tables: tableName (',' tableName)*;
@@ -1709,8 +1617,6 @@ simpleStrings: STRING_LITERAL (',' STRING_LITERAL)*;
 
 userVariables: LOCAL_ID (',' LOCAL_ID)*;
 
-//    Common Expressons
-
 defaultValue:
 	NULL_LITERAL
 	| constant
@@ -1721,8 +1627,6 @@ expressionOrDefault: expression | DEFAULT;
 ifExists: IF EXISTS;
 
 ifNotExists: IF NOT EXISTS;
-
-//    Functions
 
 functionCall:
 	specificFunction							# specificFunctionCall
@@ -1784,8 +1688,7 @@ specificFunction: (
 		sourceString = stringLiteral
 		| sourceExpression = expression
 	) ')'																				# extractFunctionCall
-	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')'	#
-		getFormatFunctionCall;
+	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')'	# getFormatFunctionCall;
 
 caseFuncAlternative:
 	WHEN condition = functionArg THEN consequent = functionArg;
@@ -1867,31 +1770,27 @@ functionArg:
 	| functionCall
 	| expression;
 
-//    Expressions, predicates
-
-// Simplified approach for expression
 expression:
 	notOperator = (NOT | '!') expression						# notExpression
-	| expression logicalOperator expression						# logicalExpression
+	| SKIP expression logicalOperator expression				# logicalExpression
 	| predicate IS NOT? testValue = (TRUE | FALSE | UNKNOWN)	# isExpression
 	| predicate													# predicateExpression;
 
 predicate:
-	predicate NOT? IN '(' (selectStatement | expressions) ')'	# inPredicate
-	| predicate IS nullNotnull									# isNullPredicate
-	| left = predicate comparisonOperator right = predicate		# binaryComparasionPredicate
-	| predicate comparisonOperator quantifier = (
+	SKIP predicate NOT? IN '(' (selectStatement | expressions) ')'	# inPredicate
+	| SKIP predicate IS nullNotnull									# isNullPredicate
+	| left = SKIP predicate comparisonOperator right = predicate	# binaryComparasionPredicate
+	| SKIP predicate comparisonOperator quantifier = (
 		ALL
 		| ANY
 		| SOME
-	) '(' selectStatement ')'									# subqueryComparasionPredicate
-	| predicate NOT? BETWEEN predicate AND predicate			# betweenPredicate
-	| predicate SOUNDS LIKE predicate							# soundsLikePredicate
-	| predicate NOT? LIKE predicate (ESCAPE STRING_LITERAL)?	# likePredicate
-	| predicate NOT? regex = (REGEXP | RLIKE) predicate			# regexpPredicate
-	| (LOCAL_ID VAR_ASSIGN)? expressionAtom						# expressionAtomPredicate;
+	) '(' selectStatement ')'										# subqueryComparasionPredicate
+	| SKIP predicate NOT? BETWEEN predicate AND predicate			# betweenPredicate
+	| SKIP predicate SOUNDS LIKE predicate							# soundsLikePredicate
+	| SKIP predicate NOT? LIKE predicate (ESCAPE STRING_LITERAL)?	# likePredicate
+	| SKIP predicate NOT? regex = (REGEXP | RLIKE) predicate		# regexpPredicate
+	| (LOCAL_ID VAR_ASSIGN)? expressionAtom							# expressionAtomPredicate;
 
-// Add in ASTVisitor nullNotnull in constant
 expressionAtom:
 	constant													# constantExpressionAtom
 	| fullColumnName											# fullColumnNameExpressionAtom
@@ -1925,8 +1824,6 @@ logicalOperator: AND | '&' '&' | XOR | OR | '|' '|';
 bitOperator: '<' '<' | '>' '>' | '&' | '^' | '|';
 
 mathOperator: '*' | '/' | '%' | DIV | MOD | '+' | '-' | '--';
-
-// Simple id sets (that keyword, which can be id)
 
 charsetNameBase:
 	ARMSCII8
