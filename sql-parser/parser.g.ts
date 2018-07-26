@@ -8,7 +8,19 @@ export enum SyntaxKind {
   sqlStatement = 'sqlStatement',
   dmlStatement = 'dmlStatement',
   selectStatement = 'selectStatement',
+  lockClause = 'lockClause',
+  unionParenthesis = 'unionParenthesis',
+  queryExpression = 'queryExpression',
+  queryExpressionUnit = 'queryExpressionUnit',
   querySpecification = 'querySpecification',
+  querySpecificationNointo = 'querySpecificationNointo',
+  unionStatement = 'unionStatement',
+  selectIntoExpression = 'selectIntoExpression',
+  selectLinesInto = 'selectLinesInto',
+  selectFieldsInto = 'selectFieldsInto',
+  charsetName = 'charsetName',
+  assignmentField = 'assignmentField',
+  charsetNameBase = 'charsetNameBase',
   limitClause = 'limitClause',
   decimalLiteral = 'decimalLiteral',
   orderByClause = 'orderByClause',
@@ -29,6 +41,7 @@ export enum SyntaxKind {
   selectElements = 'selectElements',
   fromClause = 'fromClause',
   tableSources = 'tableSources',
+  groupByItem = 'groupByItem',
   tableSource = 'tableSource',
   joinPart = 'joinPart',
   tableSourceItem = 'tableSourceItem',
@@ -75,6 +88,7 @@ export class Parser extends chevrotain.Parser {
     super(input, tokens, {
       recoveryEnabled: true,
       outputCst: true,
+      maxLookahead: 6,
     });
 
     this.RULE('root', () => {
@@ -124,7 +138,89 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('selectStatement', () => {
-      this.SUBRULE(this.querySpecification);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.querySpecification);
+
+            this.OPTION(() => {
+              this.SUBRULE(this.lockClause);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.queryExpression);
+
+            this.OPTION2(() => {
+              this.SUBRULE2(this.lockClause);
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('lockClause', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FOR);
+            this.CONSUME(Tokens.UPDATE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOCK);
+            this.CONSUME(Tokens.IN);
+            this.CONSUME(Tokens.SHARE);
+            this.CONSUME(Tokens.MODE);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('unionParenthesis', () => {
+      this.CONSUME(Tokens.UNION);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ALL);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DISTINCT);
+            },
+          },
+        ]);
+      });
+    });
+
+    this.RULE('queryExpression', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.SUBRULE(this.querySpecification);
+            this.CONSUME(Tokens.RR_BRACKET);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.queryExpressionUnit);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('queryExpressionUnit', () => {
+      this.OPTION(() => {
+        this.CONSUME(Tokens.LR_BRACKET);
+        this.SUBRULE(this.queryExpression);
+        this.CONSUME(Tokens.RR_BRACKET);
+      });
     });
 
     this.RULE('querySpecification', () => {
@@ -147,11 +243,415 @@ export class Parser extends chevrotain.Parser {
       this.OPTION3(() => {
         this.SUBRULE(this.limitClause);
       });
+
+      this.OPTION4(() => {
+        this.SUBRULE(this.selectIntoExpression);
+      });
+    });
+
+    this.RULE('querySpecificationNointo', () => {
+      this.CONSUME(Tokens.SELECT);
+
+      this.MANY(() => {
+        this.SUBRULE(this.selectSpec);
+      });
+
+      this.SUBRULE(this.selectElements);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.fromClause);
+      });
+
+      this.OPTION2(() => {
+        this.SUBRULE(this.orderByClause);
+      });
+
+      this.OPTION3(() => {
+        this.SUBRULE(this.limitClause);
+      });
+    });
+
+    this.RULE('unionStatement', () => {
+      this.CONSUME(Tokens.UNION);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ALL);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DISTINCT);
+            },
+          },
+        ]);
+      });
+
+      this.SUBRULE(this.querySpecificationNointo);
+    });
+
+    this.RULE('selectIntoExpression', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INTO);
+            this.SUBRULE(this.assignmentField);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.SUBRULE2(this.assignmentField);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.INTO);
+            this.CONSUME(Tokens.DUMPFILE);
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME3(Tokens.INTO);
+            this.CONSUME(Tokens.OUTFILE);
+            this.CONSUME2(Tokens.STRING_LITERAL);
+
+            this.OPTION(() => {
+              this.CONSUME(Tokens.CHARACTER);
+              this.CONSUME(Tokens.SET);
+              this.SUBRULE(this.charsetName);
+            });
+
+            this.OPTION2(() => {
+              this.OR2([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.FIELDS);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.COLUMNS);
+                  },
+                },
+              ]);
+
+              this.AT_LEAST_ONE(() => {
+                this.SUBRULE(this.selectFieldsInto);
+              });
+            });
+
+            this.OPTION3(() => {
+              this.CONSUME(Tokens.LINES);
+
+              this.AT_LEAST_ONE2(() => {
+                this.SUBRULE(this.selectLinesInto);
+              });
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('selectLinesInto', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STARTING);
+            this.CONSUME(Tokens.BY);
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TERMINATED);
+            this.CONSUME2(Tokens.BY);
+            this.CONSUME2(Tokens.STRING_LITERAL);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('selectFieldsInto', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TERMINATED);
+            this.CONSUME(Tokens.BY);
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.CONSUME(Tokens.OPTIONALLY);
+            });
+
+            this.CONSUME(Tokens.ENCLOSED);
+            this.CONSUME2(Tokens.BY);
+            this.CONSUME2(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ESCAPED);
+            this.CONSUME3(Tokens.BY);
+            this.CONSUME3(Tokens.STRING_LITERAL);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('charsetName', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BINARY);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.charsetNameBase);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHARSET_REVERSE_QOUTE_STRING);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('assignmentField', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.uid);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOCAL_ID);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('charsetNameBase', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ARMSCII8);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASCII);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIG5);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP1250);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP1251);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP1256);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP1257);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP850);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP852);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP866);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CP932);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DEC8);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EUCJPMS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EUCKR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GB2312);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GBK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOSTD8);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GREEK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HEBREW);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HP8);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KEYBCS2);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KOI8R);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KOI8U);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LATIN1);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LATIN2);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LATIN5);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LATIN7);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MACCE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MACROMAN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SJIS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SWE7);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TIS620);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UCS2);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UJIS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UTF16);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UTF16LE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UTF32);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UTF8);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UTF8MB3);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UTF8MB4);
+          },
+        },
+      ]);
     });
 
     this.RULE('limitClause', () => {
       this.CONSUME(Tokens.LIMIT);
-      this.OR([
+      this.OR2([
         {
           ALT: () => {
             this.SUBRULE(this.decimalLiteral);
@@ -191,7 +691,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.expression);
 
       this.OPTION(() => {
-        this.OR([
+        this.OR2([
           {
             ALT: () => {
               this.CONSUME(Tokens.ASC);
@@ -210,7 +710,7 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.OR([
+            this.OR2([
               {
                 ALT: () => {
                   this.CONSUME(Tokens.ALL);
@@ -256,7 +756,7 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.OR([
+            this.OR3([
               {
                 ALT: () => {
                   this.CONSUME(Tokens.SQL_CACHE);
@@ -453,7 +953,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('selectElements', () => {
-      this.OR([
+      this.OR2([
         {
           ALT: () => {
             this.CONSUME(Tokens.STAR);
@@ -475,6 +975,32 @@ export class Parser extends chevrotain.Parser {
     this.RULE('fromClause', () => {
       this.CONSUME(Tokens.FROM);
       this.SUBRULE(this.tableSources);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
+      });
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.GROUP);
+        this.CONSUME(Tokens.BY);
+        this.SUBRULE(this.groupByItem);
+
+        this.MANY(() => {
+          this.CONSUME(Tokens.COMMA);
+          this.SUBRULE2(this.groupByItem);
+        });
+
+        this.OPTION3(() => {
+          this.CONSUME(Tokens.WITH);
+          this.CONSUME(Tokens.ROLLUP);
+        });
+      });
+
+      this.OPTION4(() => {
+        this.CONSUME(Tokens.HAVING);
+        this.SUBRULE2(this.expression);
+      });
     });
 
     this.RULE('tableSources', () => {
@@ -483,6 +1009,25 @@ export class Parser extends chevrotain.Parser {
       this.MANY(() => {
         this.CONSUME(Tokens.COMMA);
         this.SUBRULE2(this.tableSource);
+      });
+    });
+
+    this.RULE('groupByItem', () => {
+      this.SUBRULE(this.expression);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ASC);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DESC);
+            },
+          },
+        ]);
       });
     });
 
@@ -517,7 +1062,7 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.OPTION(() => {
-              this.OR([
+              this.OR2([
                 {
                   ALT: () => {
                     this.CONSUME(Tokens.INNER);
@@ -535,7 +1080,7 @@ export class Parser extends chevrotain.Parser {
             this.SUBRULE(this.tableSourceItem);
 
             this.OPTION2(() => {
-              this.OR([
+              this.OR3([
                 {
                   ALT: () => {
                     this.CONSUME(Tokens.ON);
@@ -567,7 +1112,7 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.OR([
+            this.OR4([
               {
                 ALT: () => {
                   this.CONSUME(Tokens.LEFT);
@@ -586,7 +1131,7 @@ export class Parser extends chevrotain.Parser {
 
             this.CONSUME2(Tokens.JOIN);
             this.SUBRULE3(this.tableSourceItem);
-            this.OR([
+            this.OR5([
               {
                 ALT: () => {
                   this.CONSUME3(Tokens.ON);
@@ -609,7 +1154,7 @@ export class Parser extends chevrotain.Parser {
             this.CONSUME(Tokens.NATURAL);
 
             this.OPTION5(() => {
-              this.OR([
+              this.OR6([
                 {
                   ALT: () => {
                     this.CONSUME2(Tokens.LEFT);
@@ -706,7 +1251,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.uid);
 
       this.MANY(() => {
-        this.OR([
+        this.OR2([
           {
             ALT: () => {
               this.CONSUME(Tokens.DOT_ID);

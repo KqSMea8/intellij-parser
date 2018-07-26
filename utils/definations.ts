@@ -33,6 +33,9 @@ export enum CommonStartToken {
   'DROP' = 'DROP',
   'INSERT' = 'INSERT',
   'DELETE' = 'DELETE',
-  'SUM' = 'SUM'
+  'SUM' = 'SUM',
+  // snippet语法
+  'sel' = 'sel',
+  'cre' = 'cre'
 }
   

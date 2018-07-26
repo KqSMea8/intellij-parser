@@ -13,10 +13,122 @@ dmlStatement:
 	| selectStatement;
 
 selectStatement:
-	querySpecification;
+	querySpecification lockClause?
+	| queryExpression lockClause?;
+	// | querySpecificationNointo unionStatement+ (
+	// 	UNION unionType = (ALL | DISTINCT)? (
+	// 		querySpecification
+	// 		| queryExpression
+	// 	)
+	// )? orderByClause? limitClause? lockClause?;
+	// | queryExpressionNointo unionParenthesis+ (
+	// 	UNION unionType = (ALL | DISTINCT)? queryExpression
+	// )? orderByClause? limitClause? lockClause?;
+
+lockClause: FOR UPDATE | LOCK IN SHARE MODE;
+
+unionParenthesis:
+	UNION unionType = (ALL | DISTINCT)?;
+  // queryExpressionNointo;
+
+queryExpression:
+	'(' querySpecification ')'
+	| queryExpressionUnit;
+
+queryExpressionUnit: ('(' queryExpression ')')?;
+
+// queryExpressionNointo:
+// 	'(' querySpecificationNointo ')'
+// 	| '(' queryExpressionNointo ')';
+
+// selectStatement:
+// 	querySpecification;
 
 querySpecification:
+  SELECT selectSpec* selectElements fromClause? orderByClause? limitClause? selectIntoExpression?;
+	// | SELECT selectSpec* selectElements selectIntoExpression? fromClause? orderByClause? limitClause?;
+
+querySpecificationNointo:
 	SELECT selectSpec* selectElements fromClause? orderByClause? limitClause?;
+
+unionStatement:
+	UNION unionType = (ALL | DISTINCT)? (
+		querySpecificationNointo
+		// | queryExpressionNointo
+	);
+
+// querySpecification:
+// 	SELECT selectSpec* selectElements fromClause orderByClause? limitClause?;
+
+selectIntoExpression:
+	INTO assignmentField (',' assignmentField)*
+	| INTO DUMPFILE STRING_LITERAL			
+	| (
+		INTO OUTFILE filename = STRING_LITERAL (
+			CHARACTER SET charset = charsetName
+		)? (fieldsFormat = (FIELDS | COLUMNS) selectFieldsInto+)? (
+			LINES selectLinesInto+
+		)?
+	);
+
+selectLinesInto:
+	STARTING BY starting = STRING_LITERAL
+	| TERMINATED BY terminationLine = STRING_LITERAL;
+
+selectFieldsInto:
+	TERMINATED BY terminationField = STRING_LITERAL
+	| OPTIONALLY? ENCLOSED BY enclosion = STRING_LITERAL
+	| ESCAPED BY escaping = STRING_LITERAL;
+
+charsetName:
+	BINARY
+	| charsetNameBase
+	| STRING_LITERAL
+	| CHARSET_REVERSE_QOUTE_STRING;
+
+assignmentField: uid | LOCAL_ID;
+
+charsetNameBase:
+	ARMSCII8
+	| ASCII
+	| BIG5
+	| CP1250
+	| CP1251
+	| CP1256
+	| CP1257
+	| CP850
+	| CP852
+	| CP866
+	| CP932
+	| DEC8
+	| EUCJPMS
+	| EUCKR
+	| GB2312
+	| GBK
+	| GEOSTD8
+	| GREEK
+	| HEBREW
+	| HP8
+	| KEYBCS2
+	| KOI8R
+	| KOI8U
+	| LATIN1
+	| LATIN2
+	| LATIN5
+	| LATIN7
+	| MACCE
+	| MACROMAN
+	| SJIS
+	| SWE7
+	| TIS620
+	| UCS2
+	| UJIS
+	| UTF16
+	| UTF16LE
+	| UTF32
+	| UTF8
+	| UTF8MB3
+	| UTF8MB4;
 
 limitClause:
 	LIMIT (
@@ -78,9 +190,14 @@ logicalOperator: AND | '&' '&' | XOR | OR | '|' '|';
 
 selectElements: ('*' | selectElement) (',' selectElement)*;
 
-fromClause: FROM tableSources;
+fromClause:
+	FROM tableSources (WHERE whereExpr = expression)? (
+		GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?
+	)? (HAVING havingExpr = expression)?;
 
 tableSources: tableSource (',' tableSource)*;
+
+groupByItem: expression order = (ASC | DESC)?;
 
 tableSource:
 	tableSourceItem joinPart*
