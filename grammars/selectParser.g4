@@ -4,13 +4,161 @@ sqlStatements: (sqlStatement SEMI)*;
 
 emptyStatement: SEMI;
 
-sqlStatement: dmlStatement;
+sqlStatement: ddlStatement | dmlStatement;
 
 dmlStatement:
 	selectStatement
 	| insertStatement
 	| updateStatement
 	| deleteStatement;
+
+ddlStatement: createTable;
+
+createTable:
+	CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
+		tableOption (','? tableOption)*
+	)? # columnCreateTable;
+
+engineName:
+	ARCHIVE
+	| BLACKHOLE
+	| CSV
+	| FEDERATED
+	| INNODB
+	| MEMORY
+	| MRG_MYISAM
+	| MYISAM
+	| NDB
+	| NDBCLUSTER
+	| PERFOMANCE_SCHEMA;
+
+fileSizeLiteral: FILESIZE_LITERAL | decimalLiteral;
+
+tableOption:
+	ENGINE '='? engineName									# tableOptionEngine
+	| AUTO_INCREMENT '='? decimalLiteral					# tableOptionAutoIncrement
+	| AVG_ROW_LENGTH '='? decimalLiteral					# tableOptionAverage
+	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName	# tableOptionCharset
+	| CHECKSUM '='? boolValue = ('0' | '1')					# tableOptionChecksum
+	| DEFAULT? COLLATE '='? collationName					# tableOptionCollate
+	| COMMENT '='? STRING_LITERAL							# tableOptionComment
+	| COMPRESSION '='? STRING_LITERAL						# tableOptionCompression
+	| CONNECTION '='? STRING_LITERAL						# tableOptionConnection
+	| DATA DIRECTORY '='? STRING_LITERAL					# tableOptionDataDirectory
+	| DELAY_KEY_WRITE '='? boolValue = ('0' | '1')			# tableOptionDelay
+	| ENCRYPTION '='? STRING_LITERAL						# tableOptionEncryption
+	| INDEX DIRECTORY '='? STRING_LITERAL					# tableOptionIndexDirectory
+	| INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)	# tableOptionInsertMethod
+	| KEY_BLOCK_SIZE '='? fileSizeLiteral					# tableOptionKeyBlockSize
+	| MAX_ROWS '='? decimalLiteral							# tableOptionMaxRows
+	| MIN_ROWS '='? decimalLiteral							# tableOptionMinRows
+	| PACK_KEYS '='? extBoolValue = ('0' | '1' | DEFAULT)	# tableOptionPackKeys
+	| PASSWORD '='? STRING_LITERAL							# tableOptionPassword
+	| ROW_FORMAT '='? rowFormat = (
+		DEFAULT
+		| DYNAMIC
+		| FIXED
+		| COMPRESSED
+		| REDUNDANT
+		| COMPACT
+	)																# tableOptionRowFormat
+	| STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')	# tableOptionRecalculation
+	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | '0' | '1')	# tableOptionPersistent
+	| STATS_SAMPLE_PAGES '='? decimalLiteral						# tableOptionSamplePage
+	| TABLESPACE uid tablespaceStorage?								# tableOptionTablespace
+	| UNION '='? '(' tables ')'										# tableOptionUnion;
+
+tablespaceStorage: STORAGE (DISK | MEMORY | DEFAULT);
+
+tables: tableName (',' tableName)*;
+
+ifNotExists: IF NOT EXISTS;
+
+createDefinitions:
+	'(' createDefinition (',' createDefinition)* ')';
+
+createDefinition:
+	uid columnDefinition	# columnDeclaration;
+
+columnDefinition: dataType columnConstraint*;
+
+columnConstraint:
+	nullNotnull												# nullColumnConstraint
+	| DEFAULT defaultValue									# defaultColumnConstraint
+	| AUTO_INCREMENT										# autoIncrementColumnConstraint
+	| PRIMARY? KEY											# primaryKeyColumnConstraint
+	| UNIQUE KEY?											# uniqueKeyColumnConstraint
+	| COMMENT STRING_LITERAL								# commentColumnConstraint
+	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)	# formatColumnConstraint
+	| STORAGE storageval = (DISK | MEMORY | DEFAULT)		# storageColumnConstraint;
+
+nullNotnull: NOT? (NULL_LITERAL | NULL_SPEC_LITERAL);
+
+defaultValue:
+	constant
+	| CURRENT_TIMESTAMP (ON UPDATE LOCALTIMESTAMP)?;
+
+lengthOneDimension: '(' decimalLiteral+ ')';
+
+lengthTwoDimension: '(' decimalLiteral ',' decimalLiteral ')';
+
+lengthTwoOptionalDimension:
+	'(' decimalLiteral (',' decimalLiteral)? ')';
+
+
+dataType:
+	typeName = (
+		CHAR
+		| VARCHAR
+		| TINYTEXT
+		| TEXT
+		| MEDIUMTEXT
+		| LONGTEXT
+	) lengthOneDimension? BINARY? (CHARACTER SET charsetName)? (
+		COLLATE collationName
+	)? # stringDataType
+	| typeName = (
+		TINYINT
+		| SMALLINT
+		| MEDIUMINT
+		| INT
+		| INTEGER
+		| BIGINT
+	) lengthOneDimension? UNSIGNED? ZEROFILL?											# dimensionDataType
+	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?		# dimensionDataType
+	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	# dimensionDataType
+	| typeName = (
+		DATE
+		| TINYBLOB
+		| BLOB
+		| MEDIUMBLOB
+		| LONGBLOB
+		| BOOL
+		| BOOLEAN
+	) # simpleDataType
+	| typeName = (
+		BIT
+		| TIME
+		| TIMESTAMP
+		| DATETIME
+		| BINARY
+		| VARBINARY
+		| YEAR
+	) lengthOneDimension? # dimensionDataType
+	| typeName = (ENUM | SET) '(' STRING_LITERAL (
+		',' STRING_LITERAL
+	)* ')' BINARY? (CHARACTER SET charsetName)? (
+		COLLATE collationName
+	)? # collectionDataType
+	| typeName = (
+		GEOMETRYCOLLECTION
+		| LINESTRING
+		| MULTILINESTRING
+		| MULTIPOINT
+		| MULTIPOLYGON
+		| POINT
+		| POLYGON
+	) # spatialDataType;
 
 selectStatement: querySpecification | queryExpression;
 
@@ -154,7 +302,7 @@ orderByClause:
 orderByExpression: expression order = (ASC | DESC)?;
 
 limitClause:
-	LIMIT decimalLiteral OFFSET decimalLiteral;
+	LIMIT decimalLiteral+ OFFSET decimalLiteral;
 
 expression: fullColumnName logicalOperator? fullColumnName? | predicate;
 
@@ -195,7 +343,6 @@ decimalLiteral:
 	| ZERO_DECIMAL
 	| ONE_DECIMAL
 	| TWO_DECIMAL;
-
 
 comparisonOperator:
   '<' '=' '>'

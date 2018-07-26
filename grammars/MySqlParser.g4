@@ -1547,8 +1547,7 @@ dataType:
 		| BIGINT
 	) lengthOneDimension? UNSIGNED? ZEROFILL?											# dimensionDataType
 	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?		# dimensionDataType
-	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	#
-		dimensionDataType
+	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	# dimensionDataType
 	| typeName = (
 		DATE
 		| TINYBLOB
