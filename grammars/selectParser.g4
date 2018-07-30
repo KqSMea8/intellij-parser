@@ -35,25 +35,25 @@ engineName:
 fileSizeLiteral: FILESIZE_LITERAL | decimalLiteral;
 
 tableOption:
-	ENGINE '='? engineName									
-	| AUTO_INCREMENT '='? decimalLiteral					
-	| AVG_ROW_LENGTH '='? decimalLiteral				
-	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName	
-	| CHECKSUM '='? boolValue = ('0' | '1')				
-	| DEFAULT? COLLATE '='? collationName			
-	| COMMENT '='? STRING_LITERAL						
-	| COMPRESSION '='? STRING_LITERAL					
-	| CONNECTION '='? STRING_LITERAL					
-	| DATA DIRECTORY '='? STRING_LITERAL					
-	| DELAY_KEY_WRITE '='? boolValue = ('0' | '1')			
-	| ENCRYPTION '='? STRING_LITERAL						
-	| INDEX DIRECTORY '='? STRING_LITERAL				
-	| INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)	
-	| KEY_BLOCK_SIZE '='? fileSizeLiteral				
-	| MAX_ROWS '='? decimalLiteral						
-	| MIN_ROWS '='? decimalLiteral						
-	| PACK_KEYS '='? extBoolValue = ('0' | '1' | DEFAULT)	
-	| PASSWORD '='? STRING_LITERAL						
+	ENGINE '='? engineName
+	| AUTO_INCREMENT '='? decimalLiteral
+	| AVG_ROW_LENGTH '='? decimalLiteral
+	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName
+	| CHECKSUM '='? boolValue = ('0' | '1')
+	| DEFAULT? COLLATE '='? collationName
+	| COMMENT '='? STRING_LITERAL
+	| COMPRESSION '='? STRING_LITERAL
+	| CONNECTION '='? STRING_LITERAL
+	| DATA DIRECTORY '='? STRING_LITERAL
+	| DELAY_KEY_WRITE '='? boolValue = ('0' | '1')
+	| ENCRYPTION '='? STRING_LITERAL
+	| INDEX DIRECTORY '='? STRING_LITERAL
+	| INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)
+	| KEY_BLOCK_SIZE '='? fileSizeLiteral
+	| MAX_ROWS '='? decimalLiteral
+	| MIN_ROWS '='? decimalLiteral
+	| PACK_KEYS '='? extBoolValue = ('0' | '1' | DEFAULT)
+	| PASSWORD '='? STRING_LITERAL
 	| ROW_FORMAT '='? rowFormat = (
 		DEFAULT
 		| DYNAMIC
@@ -61,11 +61,10 @@ tableOption:
 		| COMPRESSED
 		| REDUNDANT
 		| COMPACT
-	)															
-	| STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')	
+	)
+	| STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')
 	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | '0' | '1')
-	| STATS_SAMPLE_PAGES '='? decimalLiteral			
-	| TABLESPACE uid tablespaceStorage?							
+	| TABLESPACE uid tablespaceStorage?
 	| UNION '='? '(' tables ')';
 
 tablespaceStorage: STORAGE (DISK | MEMORY | DEFAULT);
@@ -77,19 +76,18 @@ ifNotExists: IF NOT EXISTS;
 createDefinitions:
 	'(' createDefinition (',' createDefinition)* ')';
 
-createDefinition:
-	uid columnDefinition;
+createDefinition: uid columnDefinition;
 
 columnDefinition: dataType columnConstraint*;
 
 columnConstraint:
-	nullNotnull												
+	nullNotnull
 	| DEFAULT defaultValue
-	| AUTO_INCREMENT									
-	| PRIMARY? KEY											
-	| UNIQUE KEY?										
-	| COMMENT STRING_LITERAL								
-	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)	
+	| AUTO_INCREMENT
+	| PRIMARY? KEY
+	| UNIQUE KEY?
+	| COMMENT STRING_LITERAL
+	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)
 	| STORAGE storageval = (DISK | MEMORY | DEFAULT);
 
 nullNotnull: NOT? (NULL_LITERAL | NULL_SPEC_LITERAL);
@@ -104,7 +102,6 @@ lengthTwoDimension: '(' decimalLiteral ',' decimalLiteral ')';
 
 lengthTwoOptionalDimension:
 	'(' decimalLiteral (',' decimalLiteral)? ')';
-
 
 dataType:
 	typeName = (
@@ -124,9 +121,9 @@ dataType:
 		| INT
 		| INTEGER
 		| BIGINT
-	) lengthOneDimension? UNSIGNED? ZEROFILL?									
-	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?		
-	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	
+	) lengthOneDimension? UNSIGNED? ZEROFILL?
+	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?
+	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?
 	| typeName = (
 		DATE
 		| TINYBLOB
@@ -164,12 +161,10 @@ selectStatement: querySpecification | queryExpression;
 
 updateStatement: singleUpdateStatement;
 
-insertStatement: 
+insertStatement:
 	INSERT INTO? tableName (
 		PARTITION '(' partitions = uidList ')'
-	)? (
-		('(' columns = uidList ')')? insertStatementValue
-	);
+	)? (('(' columns = uidList ')')? insertStatementValue);
 
 deleteStatement: singleDeleteStatement;
 
@@ -198,7 +193,8 @@ uidList: uid (',' uid)*;
 
 logicalOperator: AND | '&' '&' | XOR | OR | '|' '|';
 
-querySpecification: SELECT selectSpec* selectElements selectIntoExpression? fromClause? orderByClause? limitClause?;
+querySpecification:
+	SELECT selectSpec* selectElements selectIntoExpression? fromClause? orderByClause? limitClause?;
 
 querySpecificationNointo:
 	SELECT selectSpec* selectElements fromClause? orderByClause? limitClause?;
@@ -301,16 +297,15 @@ orderByClause:
 
 orderByExpression: expression order = (ASC | DESC)?;
 
-limitClause:
-	LIMIT decimalLiteral+ OFFSET decimalLiteral;
+limitClause: LIMIT decimalLiteral+ OFFSET decimalLiteral+;
 
-expression: fullColumnName logicalOperator? fullColumnName? | predicate;
+expression:
+	fullColumnName logicalOperator? fullColumnName?
+	| predicate;
 
-predicate:
- expressionAtom;
+predicate: expressionAtom;
 
-expressionAtom:
-	constant;
+expressionAtom: constant;
 
 expressions: expression (',' expression)*;
 
@@ -345,7 +340,7 @@ decimalLiteral:
 	| TWO_DECIMAL;
 
 comparisonOperator:
-  '<' '=' '>'
+	'<' '=' '>'
 	| '<' '='
 	| '>' '='
 	| '<' '>'
@@ -384,9 +379,7 @@ tableSourceItem: tableName (AS? alias = uid)?;
 
 tableName: fullId;
 
-selectElement:
-	fullId '*'					
-	| fullColumnName (AS? uid)?;
+selectElement: fullId '*' | fullColumnName (AS? uid)?;
 
 fullColumnName: uid (dottedId dottedId?)?;
 
@@ -394,10 +387,7 @@ dottedId: DOT_ID | '.' uid;
 
 fullId: uid (DOT_ID | '.' uid)*;
 
-uid:
-	simpleId
-	| REVERSE_QUOTE_ID
-	| CHARSET_REVERSE_QOUTE_STRING;
+uid: simpleId | REVERSE_QUOTE_ID | CHARSET_REVERSE_QOUTE_STRING;
 
 simpleId: ID;
 
