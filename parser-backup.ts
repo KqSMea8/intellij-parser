@@ -146,9 +146,9 @@ export class Parser extends chevrotain.Parser {
 
       this.MANY({
         GATE: () => {
-          if(this.LA(1).tokenType === Tokens.DOT) {
+          if(this.LA(1).tokenType === Tokens.AS) {
             throw this.SAVE_ERROR( 
-              new chevrotain.MismatchedTokenException("Expecting token of type --> ID <-- but found ''", this.LA(1), this.LA(0)) 
+              new chevrotain.MismatchedTokenException("Expecting token of type --> AS <-- but found ''", this.LA(1), this.LA(0)) 
             ) 
           }
 

@@ -17,7 +17,7 @@ ddlStatement: createTable;
 createTable:
 	CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
 		tableOption (','? tableOption)*
-	)? # columnCreateTable;
+	)?;
 
 engineName:
 	ARCHIVE
@@ -35,25 +35,25 @@ engineName:
 fileSizeLiteral: FILESIZE_LITERAL | decimalLiteral;
 
 tableOption:
-	ENGINE '='? engineName									# tableOptionEngine
-	| AUTO_INCREMENT '='? decimalLiteral					# tableOptionAutoIncrement
-	| AVG_ROW_LENGTH '='? decimalLiteral					# tableOptionAverage
-	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName	# tableOptionCharset
-	| CHECKSUM '='? boolValue = ('0' | '1')					# tableOptionChecksum
-	| DEFAULT? COLLATE '='? collationName					# tableOptionCollate
-	| COMMENT '='? STRING_LITERAL							# tableOptionComment
-	| COMPRESSION '='? STRING_LITERAL						# tableOptionCompression
-	| CONNECTION '='? STRING_LITERAL						# tableOptionConnection
-	| DATA DIRECTORY '='? STRING_LITERAL					# tableOptionDataDirectory
-	| DELAY_KEY_WRITE '='? boolValue = ('0' | '1')			# tableOptionDelay
-	| ENCRYPTION '='? STRING_LITERAL						# tableOptionEncryption
-	| INDEX DIRECTORY '='? STRING_LITERAL					# tableOptionIndexDirectory
-	| INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)	# tableOptionInsertMethod
-	| KEY_BLOCK_SIZE '='? fileSizeLiteral					# tableOptionKeyBlockSize
-	| MAX_ROWS '='? decimalLiteral							# tableOptionMaxRows
-	| MIN_ROWS '='? decimalLiteral							# tableOptionMinRows
-	| PACK_KEYS '='? extBoolValue = ('0' | '1' | DEFAULT)	# tableOptionPackKeys
-	| PASSWORD '='? STRING_LITERAL							# tableOptionPassword
+	ENGINE '='? engineName									
+	| AUTO_INCREMENT '='? decimalLiteral					
+	| AVG_ROW_LENGTH '='? decimalLiteral				
+	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName	
+	| CHECKSUM '='? boolValue = ('0' | '1')				
+	| DEFAULT? COLLATE '='? collationName			
+	| COMMENT '='? STRING_LITERAL						
+	| COMPRESSION '='? STRING_LITERAL					
+	| CONNECTION '='? STRING_LITERAL					
+	| DATA DIRECTORY '='? STRING_LITERAL					
+	| DELAY_KEY_WRITE '='? boolValue = ('0' | '1')			
+	| ENCRYPTION '='? STRING_LITERAL						
+	| INDEX DIRECTORY '='? STRING_LITERAL				
+	| INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)	
+	| KEY_BLOCK_SIZE '='? fileSizeLiteral				
+	| MAX_ROWS '='? decimalLiteral						
+	| MIN_ROWS '='? decimalLiteral						
+	| PACK_KEYS '='? extBoolValue = ('0' | '1' | DEFAULT)	
+	| PASSWORD '='? STRING_LITERAL						
 	| ROW_FORMAT '='? rowFormat = (
 		DEFAULT
 		| DYNAMIC
@@ -61,12 +61,12 @@ tableOption:
 		| COMPRESSED
 		| REDUNDANT
 		| COMPACT
-	)																# tableOptionRowFormat
-	| STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')	# tableOptionRecalculation
-	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | '0' | '1')	# tableOptionPersistent
-	| STATS_SAMPLE_PAGES '='? decimalLiteral						# tableOptionSamplePage
-	| TABLESPACE uid tablespaceStorage?								# tableOptionTablespace
-	| UNION '='? '(' tables ')'										# tableOptionUnion;
+	)															
+	| STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')	
+	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | '0' | '1')
+	| STATS_SAMPLE_PAGES '='? decimalLiteral			
+	| TABLESPACE uid tablespaceStorage?							
+	| UNION '='? '(' tables ')';
 
 tablespaceStorage: STORAGE (DISK | MEMORY | DEFAULT);
 
@@ -78,19 +78,19 @@ createDefinitions:
 	'(' createDefinition (',' createDefinition)* ')';
 
 createDefinition:
-	uid columnDefinition	# columnDeclaration;
+	uid columnDefinition;
 
 columnDefinition: dataType columnConstraint*;
 
 columnConstraint:
-	nullNotnull												# nullColumnConstraint
-	| DEFAULT defaultValue									# defaultColumnConstraint
-	| AUTO_INCREMENT										# autoIncrementColumnConstraint
-	| PRIMARY? KEY											# primaryKeyColumnConstraint
-	| UNIQUE KEY?											# uniqueKeyColumnConstraint
-	| COMMENT STRING_LITERAL								# commentColumnConstraint
-	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)	# formatColumnConstraint
-	| STORAGE storageval = (DISK | MEMORY | DEFAULT)		# storageColumnConstraint;
+	nullNotnull												
+	| DEFAULT defaultValue
+	| AUTO_INCREMENT									
+	| PRIMARY? KEY											
+	| UNIQUE KEY?										
+	| COMMENT STRING_LITERAL								
+	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)	
+	| STORAGE storageval = (DISK | MEMORY | DEFAULT);
 
 nullNotnull: NOT? (NULL_LITERAL | NULL_SPEC_LITERAL);
 
@@ -116,7 +116,7 @@ dataType:
 		| LONGTEXT
 	) lengthOneDimension? BINARY? (CHARACTER SET charsetName)? (
 		COLLATE collationName
-	)? # stringDataType
+	)?
 	| typeName = (
 		TINYINT
 		| SMALLINT
@@ -124,9 +124,9 @@ dataType:
 		| INT
 		| INTEGER
 		| BIGINT
-	) lengthOneDimension? UNSIGNED? ZEROFILL?											# dimensionDataType
-	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?		# dimensionDataType
-	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	# dimensionDataType
+	) lengthOneDimension? UNSIGNED? ZEROFILL?									
+	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?		
+	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?	
 	| typeName = (
 		DATE
 		| TINYBLOB
@@ -135,7 +135,7 @@ dataType:
 		| LONGBLOB
 		| BOOL
 		| BOOLEAN
-	) # simpleDataType
+	)
 	| typeName = (
 		BIT
 		| TIME
@@ -144,12 +144,12 @@ dataType:
 		| BINARY
 		| VARBINARY
 		| YEAR
-	) lengthOneDimension? # dimensionDataType
+	) lengthOneDimension?
 	| typeName = (ENUM | SET) '(' STRING_LITERAL (
 		',' STRING_LITERAL
 	)* ')' BINARY? (CHARACTER SET charsetName)? (
 		COLLATE collationName
-	)? # collectionDataType
+	)?
 	| typeName = (
 		GEOMETRYCOLLECTION
 		| LINESTRING
@@ -158,7 +158,7 @@ dataType:
 		| MULTIPOLYGON
 		| POINT
 		| POLYGON
-	) # spatialDataType;
+	);
 
 selectStatement: querySpecification | queryExpression;
 
@@ -307,10 +307,10 @@ limitClause:
 expression: fullColumnName logicalOperator? fullColumnName? | predicate;
 
 predicate:
- expressionAtom							# expressionAtomPredicate;
+ expressionAtom;
 
 expressionAtom:
-	constant													# constantExpressionAtom;
+	constant;
 
 expressions: expression (',' expression)*;
 

@@ -1,5 +1,6 @@
 import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken } from './definations';
 import { Tokens, TokenEnum } from '../sql-parser/lexer.g';
+import * as _ from 'lodash/lodash';
 
 // ----------- private func ------ //、
 /** 获取节点的叶子节点 */

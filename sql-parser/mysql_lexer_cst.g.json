@@ -110628,36 +110628,6 @@
                               }
                             ]
                           }
-                        },
-                        {
-                          "name": "itemSuff",
-                          "children": {
-                            "item": [
-                              {
-                                "name": "item",
-                                "children": {
-                                  "Stringliteral": [
-                                    {
-                                      "image": "'`'",
-                                      "startOffset": 24014,
-                                      "startLine": 1117,
-                                      "startColumn": 39,
-                                      "tokenTypeIdx": 9,
-                                      "tokenType": {
-                                        "PATTERN": {},
-                                        "tokenTypeIdx": 9,
-                                        "CATEGORIES": [],
-                                        "categoryMatches": [],
-                                        "categoryMatchesMap": {},
-                                        "tokenName": "Stringliteral",
-                                        "isParent": false
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
                         }
                       ]
                     }
@@ -110669,9 +110639,9 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24017,
+              "startOffset": 24013,
               "startLine": 1117,
-              "startColumn": 42,
+              "startColumn": 38,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
@@ -110693,7 +110663,7 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 24019,
+              "startOffset": 24015,
               "startLine": 1118,
               "startColumn": 1,
               "tokenTypeIdx": 17,
@@ -110711,7 +110681,7 @@
           "UpperName": [
             {
               "image": "HEX_DIGIT",
-              "startOffset": 24028,
+              "startOffset": 24024,
               "startLine": 1118,
               "startColumn": 10,
               "tokenTypeIdx": 10,
@@ -110729,7 +110699,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 24037,
+              "startOffset": 24033,
               "startLine": 1118,
               "startColumn": 19,
               "tokenTypeIdx": 4,
@@ -110764,7 +110734,7 @@
                                   "ReExp": [
                                     {
                                       "image": "[0-9A-F]",
-                                      "startOffset": 24039,
+                                      "startOffset": 24035,
                                       "startLine": 1118,
                                       "startColumn": 21,
                                       "tokenTypeIdx": 18,
@@ -110794,7 +110764,7 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24047,
+              "startOffset": 24043,
               "startLine": 1118,
               "startColumn": 29,
               "tokenTypeIdx": 3,
@@ -110818,7 +110788,7 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 24049,
+              "startOffset": 24045,
               "startLine": 1119,
               "startColumn": 1,
               "tokenTypeIdx": 17,
@@ -110836,7 +110806,7 @@
           "UpperName": [
             {
               "image": "DEC_DIGIT",
-              "startOffset": 24058,
+              "startOffset": 24054,
               "startLine": 1119,
               "startColumn": 10,
               "tokenTypeIdx": 10,
@@ -110854,7 +110824,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 24067,
+              "startOffset": 24063,
               "startLine": 1119,
               "startColumn": 19,
               "tokenTypeIdx": 4,
@@ -110889,7 +110859,7 @@
                                   "ReExp": [
                                     {
                                       "image": "[0-9]",
-                                      "startOffset": 24069,
+                                      "startOffset": 24065,
                                       "startLine": 1119,
                                       "startColumn": 21,
                                       "tokenTypeIdx": 18,
@@ -110919,7 +110889,7 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24074,
+              "startOffset": 24070,
               "startLine": 1119,
               "startColumn": 26,
               "tokenTypeIdx": 3,
@@ -110943,7 +110913,7 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 24076,
+              "startOffset": 24072,
               "startLine": 1120,
               "startColumn": 1,
               "tokenTypeIdx": 17,
@@ -110961,7 +110931,7 @@
           "UpperName": [
             {
               "image": "BIT_STRING_L",
-              "startOffset": 24085,
+              "startOffset": 24081,
               "startLine": 1120,
               "startColumn": 10,
               "tokenTypeIdx": 10,
@@ -110979,7 +110949,7 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 24097,
+              "startOffset": 24093,
               "startLine": 1120,
               "startColumn": 22,
               "tokenTypeIdx": 4,
@@ -111014,7 +110984,7 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'B'",
-                                      "startOffset": 24099,
+                                      "startOffset": 24095,
                                       "startLine": 1120,
                                       "startColumn": 24,
                                       "tokenTypeIdx": 9,
@@ -111044,7 +111014,7 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\\''",
-                                      "startOffset": 24103,
+                                      "startOffset": 24099,
                                       "startLine": 1120,
                                       "startColumn": 28,
                                       "tokenTypeIdx": 9,
@@ -111074,7 +111044,7 @@
                                   "ReExp": [
                                     {
                                       "image": "[01]+",
-                                      "startOffset": 24108,
+                                      "startOffset": 24104,
                                       "startLine": 1120,
                                       "startColumn": 33,
                                       "tokenTypeIdx": 18,
@@ -111104,7 +111074,7 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\\''",
-                                      "startOffset": 24114,
+                                      "startOffset": 24110,
                                       "startLine": 1120,
                                       "startColumn": 39,
                                       "tokenTypeIdx": 9,
@@ -111134,7 +111104,7 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24118,
+              "startOffset": 24114,
               "startLine": 1120,
               "startColumn": 43,
               "tokenTypeIdx": 3,

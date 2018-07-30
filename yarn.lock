@@ -2544,6 +2544,10 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
+lodash-amd@^4.17.10:
+  version "4.17.10"
+  resolved "http://registry.npm.alibaba-inc.com/lodash-amd/download/lodash-amd-4.17.10.tgz#b1053bb90182ed7d96e6e80189c8410837e34032"
+
 lodash@^4.13.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.3.0:
   version "4.17.5"
   resolved "http://registry.npm.alibaba-inc.com/lodash/download/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
