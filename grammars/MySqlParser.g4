@@ -779,7 +779,9 @@ joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 
 queryExpression:
 	'(' querySpecification ')'
-	| '(' queryExpression ')';
+	| queryExpressionUnit;
+
+queryExpressionUnit: ('(' queryExpression ')')?
 
 queryExpressionNointo:
 	'(' querySpecificationNointo ')'

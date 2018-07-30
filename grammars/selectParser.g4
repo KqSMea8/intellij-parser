@@ -351,13 +351,31 @@ comparisonOperator:
 
 selectElements: ('*' | selectElement) (',' selectElement)*;
 
-fromClause: FROM tableSources;
+fromClause:
+	FROM tableSources (WHERE whereExpr = expression)? (
+		GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?
+	)? (HAVING havingExpr = expression)?;
 
 tableSources: tableSource (',' tableSource)*;
 
-tableSource: tableSourceItem;
+groupByItem: expression order = (ASC | DESC)?;
 
-tableSourceItem: tableName;
+tableSource:
+	tableSourceItem joinPart*
+	| '(' tableSourceItem joinPart* ')';
+
+joinPart: (INNER | CROSS)? JOIN tableSourceItem (
+		ON expression
+		| USING '(' uidList ')'
+	)?												
+	| STRAIGHT_JOIN tableSourceItem (ON expression)?	
+	| (LEFT | RIGHT) OUTER? JOIN tableSourceItem (
+		ON expression
+		| USING '(' uidList ')'
+	)													
+	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem;  
+
+tableSourceItem: tableName (AS? alias = uid)?;
 
 tableName: fullId;
 

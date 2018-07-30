@@ -171,7 +171,8 @@ function metaParserGenerator(parserGCode: string, config: MetaParserConfig, toke
       constructor(input) {
         super(input, tokens, {
           recoveryEnabled: true,
-          outputCst: true
+          outputCst: true,
+          maxLookahead: 6
         });
         ${ast.toCode()}
         chevrotain.Parser.performSelfAnalysis(this);

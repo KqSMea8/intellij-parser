@@ -25093,6 +25093,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "ADD",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'ADD'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "ADD"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "fragName": "HEX_DIGIT",
       "atoms": [
         {
@@ -25113,6 +25137,30 @@
         }
       ],
       "pattern": "[0-9A-F]"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "SKIP",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'SKIP'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "SKIP"
     },
     {
       "index": 0,
