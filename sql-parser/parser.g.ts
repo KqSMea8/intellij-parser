@@ -53,7 +53,9 @@ export enum SyntaxKind {
   orderByExpression = 'orderByExpression',
   limitClause = 'limitClause',
   expression = 'expression',
+  logicalExpression = 'logicalExpression',
   predicate = 'predicate',
+  predicateReplace = 'predicateReplace',
   expressionAtom = 'expressionAtom',
   expressions = 'expressions',
   constant = 'constant',
@@ -666,21 +668,10 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.STATS_SAMPLE_PAGES);
-
-            this.OPTION25(() => {
-              this.CONSUME23(Tokens.EQUAL_SYMBOL);
-            });
-
-            this.SUBRULE5(this.decimalLiteral);
-          },
-        },
-        {
-          ALT: () => {
             this.CONSUME(Tokens.TABLESPACE);
             this.SUBRULE(this.uid);
 
-            this.OPTION26(() => {
+            this.OPTION25(() => {
               this.SUBRULE(this.tablespaceStorage);
             });
           },
@@ -689,8 +680,8 @@ export class Parser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.UNION);
 
-            this.OPTION27(() => {
-              this.CONSUME24(Tokens.EQUAL_SYMBOL);
+            this.OPTION26(() => {
+              this.CONSUME23(Tokens.EQUAL_SYMBOL);
             });
 
             this.CONSUME(Tokens.LR_BRACKET);
@@ -2034,38 +2025,59 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.CONSUME(Tokens.OFFSET);
-      this.SUBRULE2(this.decimalLiteral);
+
+      this.AT_LEAST_ONE2(() => {
+        this.SUBRULE2(this.decimalLiteral);
+      });
     });
 
     this.RULE('expression', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.fullColumnName);
+      this.SUBRULE(this.predicate);
 
-            this.OPTION(() => {
-              this.SUBRULE(this.logicalOperator);
-            });
+      this.OPTION(() => {
+        this.SUBRULE(this.logicalExpression);
+      });
+    });
 
-            this.OPTION2(() => {
-              this.SUBRULE2(this.fullColumnName);
-            });
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.predicate);
-          },
-        },
-      ]);
+    this.RULE('logicalExpression', () => {
+      this.SUBRULE(this.logicalOperator);
+      this.SUBRULE(this.expression);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.logicalExpression);
+      });
     });
 
     this.RULE('predicate', () => {
       this.SUBRULE(this.expressionAtom);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.predicateReplace);
+      });
+    });
+
+    this.RULE('predicateReplace', () => {
+      this.SUBRULE(this.comparisonOperator);
+      this.SUBRULE(this.predicate);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.predicateReplace);
+      });
     });
 
     this.RULE('expressionAtom', () => {
-      this.SUBRULE(this.constant);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.constant);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullColumnName);
+          },
+        },
+      ]);
     });
 
     this.RULE('expressions', () => {
@@ -2324,19 +2336,9 @@ export class Parser extends chevrotain.Parser {
       this.CONSUME(Tokens.FROM);
       this.SUBRULE(this.tableSources);
 
-      this.OPTION({
-        GATE: () => {
-          if(Tokens.ID.tokenTypeIdx === this.LA(0).tokenTypeIdx && this.LA(1).image === '') {
-            throw this.SAVE_ERROR( 
-              new chevrotain.MismatchedTokenException("Expecting token of type --> WHERE <-- but found ''", this.LA(1), this.LA(0)) 
-            ) 
-          }
-          return Tokens.ID.tokenTypeIdx === this.LA(0).tokenTypeIdx;
-        },
-        DEF: () => {
-          this.CONSUME(Tokens.WHERE);
-          this.SUBRULE(this.expression);
-        }
+      this.OPTION(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
       });
 
       this.OPTION2(() => {

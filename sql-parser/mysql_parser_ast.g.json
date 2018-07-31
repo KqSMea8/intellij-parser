@@ -1871,43 +1871,6 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "STATS_SAMPLE_PAGES"
-              }
-            },
-            {
-              "index": 24,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 22,
-                "kind": "Stringliteral",
-                "content": "'='"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 4,
-                "kind": "LowerName",
-                "name": "decimalLiteral"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
                 "name": "TABLESPACE"
               }
             },
@@ -1922,7 +1885,7 @@
               }
             },
             {
-              "index": 25,
+              "index": 24,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -1949,12 +1912,12 @@
               }
             },
             {
-              "index": 26,
+              "index": 25,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 23,
+                "index": 22,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -7232,9 +7195,10 @@
               }
             },
             {
-              "index": 0,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "+",
               "item": {
                 "index": 1,
                 "kind": "LowerName",
@@ -7261,7 +7225,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "fullColumnName"
+                "name": "predicate"
               }
             },
             {
@@ -7272,22 +7236,18 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "logicalOperator"
-              }
-            },
-            {
-              "index": 1,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 1,
-                "kind": "LowerName",
-                "name": "fullColumnName"
+                "name": "logicalExpression"
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "logicalExpression",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -7299,7 +7259,28 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "predicate"
+                "name": "logicalOperator"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "expression"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "logicalExpression"
               }
             }
           ]
@@ -7324,6 +7305,61 @@
                 "kind": "LowerName",
                 "name": "expressionAtom"
               }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "predicateReplace"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "predicateReplace",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "comparisonOperator"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "predicate"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "predicateReplace"
+              }
             }
           ]
         }
@@ -7346,6 +7382,22 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "constant"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "fullColumnName"
               }
             }
           ]

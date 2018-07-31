@@ -210,7 +210,8 @@ function metaGenerator(config = new MetaParserConfig()) {
   const parserCode = fs.readFileSync(path.join(__dirname, config.parserCodePath)).toString('utf8');
   const tokens = getTokens(lexerCode);
 
-  metaLexerGenerator(lexerCode, config);
+  // lexger不需要重新生成
+  // metaLexerGenerator(lexerCode, config);
   metaParserGenerator(parserCode, config, tokens);
 }
 
