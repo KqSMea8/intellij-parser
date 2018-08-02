@@ -1,5 +1,5 @@
 import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken } from './definations';
-import { Tokens, TokenEnum } from '../sql-parser/lexer.g';
+import { SyntaxKind, Tokens, TokenEnum } from '../sql-parser/parser.g';
 import * as _ from 'lodash/lodash';
 
 // ----------- private func ------ //、
@@ -28,6 +28,8 @@ const getFilteredNode = (cst, filter, global?: boolean): any | any[] => {
     }
   }
 }
+
+// -------------- public func -------- //
 /** 获取hover对象类型 */
 const getClassification = (ast, pos) => {
   return getFilteredNode(ast.cst, target =>
@@ -71,7 +73,7 @@ const getCompleteInfo = (ast, pos) => {
 
 /** 获取别名Map */
 const getAliasMap = (ast) => {
-  const raw = getFilteredNode(ast.cst, target => target.children && (Object.keys(target.children) as any).find(item => item === TokenEnum.AS), true)
+  const raw = getFilteredNode(ast.cst, target => target.name === SyntaxKind.tableSourceItem, true)
   return raw.map(item => {
     const singleMap = [];
     (Object as any).entries(item.children).forEach(([key, value]) => {
@@ -83,6 +85,13 @@ const getAliasMap = (ast) => {
   })
 }
 
+/** 获取指定关键词之后相邻的信息 */
+const getNextToken = (ast, token) => {
+  const parent = getFilteredNode(ast.cst, target => target.children[token]);
+  const tokenIdx = _.findIndex(Object.keys(parent), o => o === token);
+  return (Object as any).values(parent)[tokenIdx + 1];
+}
+
 const getKeywords = () => {
   return TokenEnum;
 }
@@ -91,5 +100,6 @@ export {
   getClassification,
   getCompleteInfo,
   getKeywords,
-  getAliasMap
+  getAliasMap,
+  getNextToken
 }

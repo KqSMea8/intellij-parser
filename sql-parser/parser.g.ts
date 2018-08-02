@@ -81,6 +81,8 @@ export enum SyntaxKind {
   simpleId = 'simpleId',
 }
 
+export { tokens, Lexer, Tokens, TokenEnum };
+
 export class BaseNode {
   private _source = '';
 
