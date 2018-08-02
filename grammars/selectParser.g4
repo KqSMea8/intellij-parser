@@ -299,13 +299,17 @@ orderByExpression: expression order = (ASC | DESC)?;
 
 limitClause: LIMIT decimalLiteral+ OFFSET decimalLiteral+;
 
-expression:
-	fullColumnName logicalOperator? fullColumnName?
-	| predicate;
+expression: predicate logicalExpression?;
 
-predicate: expressionAtom;
+logicalExpression:
+	logicalOperator expression logicalExpression?;
 
-expressionAtom: constant;
+predicate: expressionAtom predicateReplace?;
+
+predicateReplace:
+	comparisonOperator predicate predicateReplace?;
+
+expressionAtom: constant | fullColumnName;
 
 expressions: expression (',' expression)*;
 
@@ -367,13 +371,13 @@ tableSource:
 joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 		ON expression
 		| USING '(' uidList ')'
-	)?												
-	| STRAIGHT_JOIN tableSourceItem (ON expression)?	
+	)?
+	| STRAIGHT_JOIN tableSourceItem (ON expression)?
 	| (LEFT | RIGHT) OUTER? JOIN tableSourceItem (
 		ON expression
 		| USING '(' uidList ')'
-	)													
-	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem;  
+	)
+	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem;
 
 tableSourceItem: tableName (AS? alias = uid)?;
 

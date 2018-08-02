@@ -53,7 +53,9 @@ export enum SyntaxKind {
   orderByExpression = 'orderByExpression',
   limitClause = 'limitClause',
   expression = 'expression',
+  logicalExpression = 'logicalExpression',
   predicate = 'predicate',
+  predicateReplace = 'predicateReplace',
   expressionAtom = 'expressionAtom',
   expressions = 'expressions',
   constant = 'constant',
@@ -2032,34 +2034,52 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('expression', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.fullColumnName);
+      this.SUBRULE(this.predicate);
 
-            this.OPTION(() => {
-              this.SUBRULE(this.logicalOperator);
-            });
+      this.OPTION(() => {
+        this.SUBRULE(this.logicalExpression);
+      });
+    });
 
-            this.OPTION2(() => {
-              this.SUBRULE2(this.fullColumnName);
-            });
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.predicate);
-          },
-        },
-      ]);
+    this.RULE('logicalExpression', () => {
+      this.SUBRULE(this.logicalOperator);
+      this.SUBRULE(this.expression);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.logicalExpression);
+      });
     });
 
     this.RULE('predicate', () => {
       this.SUBRULE(this.expressionAtom);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.predicateReplace);
+      });
+    });
+
+    this.RULE('predicateReplace', () => {
+      this.SUBRULE(this.comparisonOperator);
+      this.SUBRULE(this.predicate);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.predicateReplace);
+      });
     });
 
     this.RULE('expressionAtom', () => {
-      this.SUBRULE(this.constant);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.constant);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullColumnName);
+          },
+        },
+      ]);
     });
 
     this.RULE('expressions', () => {
