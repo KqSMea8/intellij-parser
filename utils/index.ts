@@ -20,7 +20,7 @@ const getFilteredNode = (cst, filter, global?: boolean): any | any[] => {
         if(global) {
           result.push(target);
         } else {
-          return target;
+          return [target];
         }
       }
     } else {
@@ -39,11 +39,15 @@ const getClassification = (ast, pos) => {
 const getCompleteInfo = (ast, pos) => {
   const errorMsg = [];
   ast.parseErrors.forEach(err => {
+    const singleError = {
+      previousToken: err.previousToken,
+      completeType: []
+    }
     // if(err.name === ErrorType.NoViableAltException) {
       // errorMsg[ErrorType.NoViableAltException] = [];
       const errorType = ErrorPrefix.filter(item => err.message.match(item.key))[0] || {} as any;
       if(errorType.type === ErrorToken.singleMissingToken) {
-        errorMsg.push({
+        singleError.completeType.push({
           errType: err.message.match(errorType.pattern)[1],
           ...err
         });
@@ -53,19 +57,21 @@ const getCompleteInfo = (ast, pos) => {
           if(Tokens[content]) {
             console.log(Tokens[content]);
           }
-          errorMsg.push({
+          singleError.completeType.push({
             errType: content,
             ...err
           });
         })
       } else if(errorType.type === ErrorToken.initMissingToken) {
         Object.keys(CommonStartToken).filter(item => item.indexOf(err.message.match(errorType.pattern)[1]) === 0).forEach(errType => {
-          errorMsg.push({
+          singleError.completeType.push({
             errType,
             ...err
           })
         })
       }
+
+      errorMsg.push(singleError)
     // }
   })
   return errorMsg;
@@ -87,9 +93,15 @@ const getAliasMap = (ast) => {
 
 /** 获取指定关键词之后相邻的信息 */
 const getNextToken = (ast, token) => {
-  const parent = getFilteredNode(ast.cst, target => target.children[token]);
-  const tokenIdx = _.findIndex(Object.keys(parent), o => o === token);
-  return (Object as any).values(parent)[tokenIdx + 1];
+  const parent = getFilteredNode(ast.cst, target => target.children && target.children[token]);
+  return parent && (Object as any).values(parent.children)[_.findIndex(Object.keys(parent.children), o => o === token) + 1];
+}
+
+/** 获取级联字段的完整路径 */
+const getTotalPath = (ast, token) => {
+  const columnRoot = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fullColumnName, true);
+  const targetColumn = _.find(columnRoot, o => getFilteredNode(o, target => target === token));
+  return _.flatten(Object.values(targetColumn.children)).map(node => getLeafNode(node).image);
 }
 
 const getKeywords = () => {
@@ -101,5 +113,6 @@ export {
   getCompleteInfo,
   getKeywords,
   getAliasMap,
-  getNextToken
+  getNextToken,
+  getTotalPath
 }
