@@ -7,3 +7,5 @@ FROM Persons
 INNER JOIN Orders
 ON Persons.Id_P = Orders.Id_P
 ORDER BY Persons.LastName;
+
+SELECT * FROM (SELECT * FROM (SELECT a,b,c,d FROM (SELECT * FROM card) a1) a);
