@@ -4109,7 +4109,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "querySpecification"
+                "name": "queryExpression"
               }
             }
           ]
@@ -4125,7 +4125,58 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "queryExpression"
+                "name": "querySpecification"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "*",
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "unionStatement"
+                        }
+                      },
+                      {
+                        "index": 1,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "orderByClause"
+                        }
+                      },
+                      {
+                        "index": 2,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "limitClause"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             }
           ]
@@ -5322,7 +5373,7 @@
                         "item": {
                           "index": 0,
                           "kind": "LowerName",
-                          "name": "querySpecificationNointo"
+                          "name": "querySpecification"
                         }
                       }
                     ]
@@ -5338,12 +5389,89 @@
                         "item": {
                           "index": 0,
                           "kind": "LowerName",
-                          "name": "queryExpressionNointo"
+                          "name": "queryExpression"
                         }
                       }
                     ]
                   }
                 ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "unionParenthesis",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "UNION"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ALL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DISTINCT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "queryExpressionNointo"
               }
             }
           ]
@@ -8650,33 +8778,7 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "tableSourceItem"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "*",
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "joinPart"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
+              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "Stringliteral",
@@ -8688,26 +8790,27 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
+                "index": 0,
                 "kind": "LowerName",
                 "name": "tableSourceItem"
-              }
-            },
-            {
-              "index": 1,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "*",
-              "item": {
-                "index": 1,
-                "kind": "LowerName",
-                "name": "joinPart"
               }
             },
             {
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "joinPart"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "Stringliteral",
@@ -9227,6 +9330,66 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "selectStatement"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "AS"
+              }
+            },
+            {
+              "index": 3,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "uid"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -9234,7 +9397,7 @@
               }
             },
             {
-              "index": 0,
+              "index": 4,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -9247,12 +9410,12 @@
                     "kind": "atom",
                     "itemSuffs": [
                       {
-                        "index": 1,
+                        "index": 5,
                         "kind": "itemSuff",
                         "hasNot": false,
                         "suff": "?",
                         "item": {
-                          "index": 0,
+                          "index": 1,
                           "kind": "UpperName",
                           "name": "AS"
                         }
@@ -9262,7 +9425,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 0,
+                          "index": 1,
                           "kind": "LowerName",
                           "name": "uid"
                         }
@@ -9592,38 +9755,6 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "simpleId"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "REVERSE_QUOTE_ID"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "CHARSET_REVERSE_QOUTE_STRING"
               }
             }
           ]

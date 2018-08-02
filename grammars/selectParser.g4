@@ -157,7 +157,11 @@ dataType:
 		| POLYGON
 	);
 
-selectStatement: querySpecification | queryExpression;
+selectStatement:
+	queryExpression
+	| querySpecification (
+		unionStatement* orderByClause? limitClause?
+	)?;
 
 updateStatement: singleUpdateStatement;
 
@@ -201,9 +205,12 @@ querySpecificationNointo:
 
 unionStatement:
 	UNION unionType = (ALL | DISTINCT)? (
-		querySpecificationNointo
-		| queryExpressionNointo
+		querySpecification
+		| queryExpression
 	);
+
+unionParenthesis:
+	UNION unionType = (ALL | DISTINCT)? queryExpressionNointo;
 
 selectIntoExpression:
 	INTO assignmentField (',' assignmentField)*
@@ -364,9 +371,7 @@ tableSources: tableSource (',' tableSource)*;
 
 groupByItem: expression order = (ASC | DESC)?;
 
-tableSource:
-	tableSourceItem joinPart*
-	| '(' tableSourceItem joinPart* ')';
+tableSource: '('? tableSourceItem joinPart* ')'?;
 
 joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 		ON expression
@@ -379,7 +384,9 @@ joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 	)
 	| NATURAL ((LEFT | RIGHT) OUTER?)? JOIN tableSourceItem;
 
-tableSourceItem: tableName (AS? alias = uid)?;
+tableSourceItem:
+	'('? selectStatement ')'? AS? alias = uid?
+	| tableName (AS? alias = uid)?;
 
 tableName: fullId;
 
@@ -391,7 +398,7 @@ dottedId: DOT_ID | '.' uid;
 
 fullId: uid (DOT_ID | '.' uid)*;
 
-uid: simpleId | REVERSE_QUOTE_ID | CHARSET_REVERSE_QOUTE_STRING;
+uid: simpleId;
 
 simpleId: ID;
 
