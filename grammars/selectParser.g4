@@ -157,7 +157,11 @@ dataType:
 		| POLYGON
 	);
 
-selectStatement: querySpecification | queryExpression;
+selectStatement:
+	queryExpression
+	| querySpecification (
+		unionStatement* orderByClause? limitClause?
+	)?;
 
 updateStatement: singleUpdateStatement;
 
@@ -201,8 +205,8 @@ querySpecificationNointo:
 
 unionStatement:
 	UNION unionType = (ALL | DISTINCT)? (
-		querySpecificationNointo
-		| queryExpressionNointo
+		querySpecification
+		| queryExpression
 	);
 
 unionParenthesis:
