@@ -1,5 +1,4 @@
-import { Lexer, TokenEnum } from './lexer.g';
-import { Parser, SyntaxKind } from './parser.g';
+import { Parser, SyntaxKind, Lexer, TokenEnum  } from './parser.g';
 // import * as fs from 'fs';
 // import * as path from 'path';
 

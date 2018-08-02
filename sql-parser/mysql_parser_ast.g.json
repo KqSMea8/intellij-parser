@@ -1871,43 +1871,6 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "STATS_SAMPLE_PAGES"
-              }
-            },
-            {
-              "index": 24,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 22,
-                "kind": "Stringliteral",
-                "content": "'='"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 4,
-                "kind": "LowerName",
-                "name": "decimalLiteral"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
                 "name": "TABLESPACE"
               }
             },
@@ -1922,7 +1885,7 @@
               }
             },
             {
-              "index": 25,
+              "index": 24,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -1949,12 +1912,12 @@
               }
             },
             {
-              "index": 26,
+              "index": 25,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 23,
+                "index": 22,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -7232,9 +7195,10 @@
               }
             },
             {
-              "index": 0,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "+",
               "item": {
                 "index": 1,
                 "kind": "LowerName",

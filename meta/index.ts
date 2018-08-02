@@ -138,6 +138,10 @@ function metaParserGenerator(parserGCode: string, config: MetaParserConfig, toke
         .join(',\n')}
     }
 
+    export {
+      tokens, Lexer, Tokens, TokenEnum
+    }
+
     export class BaseNode {
       private _source = '';
     
