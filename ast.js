@@ -138,3 +138,32 @@ export const testJson = {
 		}
   }
 }
+
+
+SELECT
+  *
+FROM
+  (
+    SELECT
+      a,
+      b,
+      c
+    FROM
+      fct_order U
+    UNION ALL
+    SELECT
+      *
+    FROM
+      (
+        SELECT
+          f1,
+          f2
+        FROM
+          fct_order I
+      ) L
+  ) K,
+	sisgsusgusg M; 
+	
+	SELECT * FROM fct_order Q;
+
+	UPDATE s SET b = d;
