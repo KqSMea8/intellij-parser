@@ -198,10 +198,10 @@ uidList: uid (',' uid)*;
 logicalOperator: AND | '&' '&' | XOR | OR | '|' '|';
 
 querySpecification:
-	SELECT selectSpec* selectElements selectIntoExpression? fromClause? orderByClause? limitClause?;
+	SELECT selectSpec* selectElements selectIntoExpression? fromClause orderByClause? limitClause?;
 
 querySpecificationNointo:
-	SELECT selectSpec* selectElements fromClause? orderByClause? limitClause?;
+	SELECT selectSpec* selectElements fromClause orderByClause? limitClause?;
 
 unionStatement:
 	UNION unionType = (ALL | DISTINCT)? (

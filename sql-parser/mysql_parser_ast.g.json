@@ -5178,10 +5178,9 @@
               }
             },
             {
-              "index": 1,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -5189,7 +5188,7 @@
               }
             },
             {
-              "index": 2,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -5200,7 +5199,7 @@
               }
             },
             {
-              "index": 3,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -5258,7 +5257,6 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -5266,7 +5264,7 @@
               }
             },
             {
-              "index": 1,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -5277,7 +5275,7 @@
               }
             },
             {
-              "index": 2,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",

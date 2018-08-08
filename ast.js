@@ -141,28 +141,25 @@ export const testJson = {
 
 
 SELECT
-  *
+  *, K.member_id, K.URL, fct_order_t.is_payed, T.period_day_id
 FROM
   (
     SELECT
-      a,
-      b,
-      c
+      item_id
     FROM
-      fct_order U
+      dws_global
     UNION ALL
     SELECT
       *
     FROM
       (
         SELECT
-          f1,
-          f2
+          member_id, URL, period_day_id
         FROM
-          fct_order I
-      ) L
+          dim_seller
+      ) M
   ) K,
-	sisgsusgusg M; 
+  fct_order_t T;
 	
 	SELECT * FROM fct_order Q;
 

@@ -1470,15 +1470,13 @@ export class Parser extends chevrotain.Parser {
         this.SUBRULE(this.selectIntoExpression);
       });
 
-      this.OPTION2(() => {
-        this.SUBRULE(this.fromClause);
-      });
+      this.SUBRULE(this.fromClause);
 
-      this.OPTION3(() => {
+      this.OPTION2(() => {
         this.SUBRULE(this.orderByClause);
       });
 
-      this.OPTION4(() => {
+      this.OPTION3(() => {
         this.SUBRULE(this.limitClause);
       });
     });
@@ -1491,16 +1489,13 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.SUBRULE(this.selectElements);
+      this.SUBRULE(this.fromClause);
 
       this.OPTION(() => {
-        this.SUBRULE(this.fromClause);
-      });
-
-      this.OPTION2(() => {
         this.SUBRULE(this.orderByClause);
       });
 
-      this.OPTION3(() => {
+      this.OPTION2(() => {
         this.SUBRULE(this.limitClause);
       });
     });
