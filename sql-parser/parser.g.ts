@@ -2369,19 +2369,9 @@ export class Parser extends chevrotain.Parser {
       this.CONSUME(Tokens.FROM);
       this.SUBRULE(this.tableSources);
 
-      this.OPTION({
-        GATE: () => {
-          if (Tokens.ID.tokenTypeIdx === this.LA(0).tokenTypeIdx && this.LA(1).image === '') {
-            throw this.SAVE_ERROR(
-              new chevrotain.MismatchedTokenException("Expecting: one of these possible Token sequences: 1.[WHERE], 2:[GROUP], 3:[HAVING] <-- but found ''", this.LA(1), this.LA(0))
-            )
-          }
-          return Tokens.ID.tokenTypeIdx === this.LA(0).tokenTypeIdx;
-        },
-        DEF: () => {
-          this.CONSUME(Tokens.WHERE);
-          this.SUBRULE(this.expression);
-        }
+      this.OPTION(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
       });
 
       this.OPTION2(() => {
