@@ -1498,24 +1498,13 @@ const CP1250 = chevrotain.createToken({
   name: 'CP1250',
   pattern: /CP1250/,
 });
-const DECIMAL_LITERAL = chevrotain.createToken({
-  name: 'DECIMAL_LITERAL',
-  pattern: /[0-9]+/,
-});
-const ZERO_DECIMAL = chevrotain.createToken({
-  name: 'ZERO_DECIMAL',
-  pattern: /0/,
-  longer_alt: DECIMAL_LITERAL
-});
 const TWO_DECIMAL = chevrotain.createToken({
   name: 'TWO_DECIMAL',
   pattern: /2/,
-  longer_alt: DECIMAL_LITERAL
 });
 const ONE_DECIMAL = chevrotain.createToken({
   name: 'ONE_DECIMAL',
   pattern: /1/,
-  longer_alt: DECIMAL_LITERAL
 });
 const BIG5 = chevrotain.createToken({
   name: 'BIG5',
@@ -1584,6 +1573,14 @@ const XA = chevrotain.createToken({
 const X509 = chevrotain.createToken({
   name: 'X509',
   pattern: /X509/,
+});
+const ZERO_DECIMAL = chevrotain.createToken({
+  name: 'ZERO_DECIMAL',
+  pattern: /0/,
+});
+const DECIMAL_LITERAL = chevrotain.createToken({
+  name: 'DECIMAL_LITERAL',
+  pattern: /[0-9]+/,
 });
 const WRAPPER = chevrotain.createToken({
   name: 'WRAPPER',
@@ -3065,6 +3062,10 @@ const TINYINT = chevrotain.createToken({
   name: 'TINYINT',
   pattern: /TINYINT/,
 });
+const OVERWRITE = chevrotain.createToken({
+  name: 'OVERWRITE',
+  pattern: /OVERWRITE/,
+});
 const ZEROFILL = chevrotain.createToken({
   name: 'ZEROFILL',
   pattern: /ZEROFILL/,
@@ -3877,6 +3878,10 @@ const ADD = chevrotain.createToken({
   name: 'ADD',
   pattern: /ADD/,
 });
+const SKIP = chevrotain.createToken({
+  name: 'SKIP',
+  pattern: /SKIP/,
+});
 const ID = chevrotain.createToken({
   name: 'ID',
   pattern: /[A-Za-z_\$0-9]+/,
@@ -4647,6 +4652,7 @@ export enum TokenEnum {
   MEDIUM = 'MEDIUM',
   SMALLINT = 'SMALLINT',
   TINYINT = 'TINYINT',
+  OVERWRITE = 'OVERWRITE',
   ZEROFILL = 'ZEROFILL',
   XOR = 'XOR',
   WITH = 'WITH',
@@ -4850,6 +4856,7 @@ export enum TokenEnum {
   ALTER = 'ALTER',
   ALL = 'ALL',
   ADD = 'ADD',
+  SKIP = 'SKIP',
   ID = 'ID',
 }
 
@@ -5618,6 +5625,7 @@ export const Tokens = {
   MEDIUM,
   SMALLINT,
   TINYINT,
+  OVERWRITE,
   ZEROFILL,
   XOR,
   WITH,
@@ -5821,6 +5829,7 @@ export const Tokens = {
   ALTER,
   ALL,
   ADD,
+  SKIP,
   ID,
 };
 
@@ -6590,6 +6599,7 @@ export const tokens = [
   MEDIUM,
   SMALLINT,
   TINYINT,
+  OVERWRITE,
   ZEROFILL,
   XOR,
   WITH,
@@ -6793,6 +6803,7 @@ export const tokens = [
   ALTER,
   ALL,
   ADD,
+  SKIP,
   ID,
 ];
 

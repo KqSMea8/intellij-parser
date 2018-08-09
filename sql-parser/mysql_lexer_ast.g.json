@@ -20235,6 +20235,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "OVERWRITE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'OVERWRITE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "OVERWRITE"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "ZEROFILL",
       "atoms": [
         {
@@ -25127,6 +25151,30 @@
         }
       ],
       "pattern": "[0-9A-F]"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "SKIP",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'SKIP'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "SKIP"
     },
     {
       "index": 0,

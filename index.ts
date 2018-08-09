@@ -13,8 +13,8 @@ namespace IntellijSqlEditor {
   }
 }
 
-import { parseMysql } from './sql-parser/index';
-import * as utils from './utils/index';
+import { parseMysql } from './sql-parser';
+import * as utils from './utils';
 
 export {
   utils,

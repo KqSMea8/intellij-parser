@@ -342,10 +342,17 @@ tableSourceItem:
 	'('? selectStatement ')'? AS? alias = uid?
 	| tableName (AS? alias = uid)?;
 
-selectElement: tableName | fullColumnName (AS? uid)?;
+tableName: fullId;
 
-tableName: uid DOT_ID*;
+selectElement: fullId '*' | fullColumnName (AS? uid)?;
 
-fullColumnName: uid DOT_ID*;
+fullColumnName: uid (dottedId dottedId?)?;
 
-uid: ID;
+dottedId: DOT_ID | '.' uid;
+
+fullId: uid (DOT_ID | '.' uid)*;
+
+uid: simpleId;
+
+simpleId: ID;
+

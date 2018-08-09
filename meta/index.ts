@@ -215,7 +215,7 @@ function metaGenerator(config = new MetaParserConfig()) {
   const tokens = getTokens(lexerCode);
 
   // lexger不需要重新生成
-  // metaLexerGenerator(lexerCode, config);
+  metaLexerGenerator(lexerCode, config);
   metaParserGenerator(parserCode, config, tokens);
 }
 

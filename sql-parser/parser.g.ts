@@ -1287,20 +1287,34 @@ export class Parser extends chevrotain.Parser {
     this.RULE('insertStatement', () => {
       this.CONSUME(Tokens.INSERT);
 
-      this.OPTION(() => {
-        this.CONSUME(Tokens.INTO);
+      this.OPTION({
+        GATE: () => {
+          if (Tokens.INSERT.tokenTypeIdx === this.LA(0).tokenTypeIdx && this.LA(1).image === '') {
+            throw this.SAVE_ERROR(
+              new chevrotain.MismatchedTokenException("Expecting: one of these possible Token sequences: 1.[INTO], 2:[OVERWRITE] <-- but found ''", this.LA(1), this.LA(0))
+            )
+          }
+          return Tokens.INSERT.tokenTypeIdx === this.LA(0).tokenTypeIdx;
+        },
+        DEF: () => {
+          this.CONSUME(Tokens.INTO);
+        }
+      });
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.OVERWRITE);
       });
 
       this.SUBRULE(this.tableName);
 
-      this.OPTION2(() => {
+      this.OPTION3(() => {
         this.CONSUME(Tokens.PARTITION);
         this.CONSUME(Tokens.LR_BRACKET);
         this.SUBRULE(this.uidList);
         this.CONSUME(Tokens.RR_BRACKET);
       });
 
-      this.OPTION3(() => {
+      this.OPTION4(() => {
         this.CONSUME2(Tokens.LR_BRACKET);
         this.SUBRULE2(this.uidList);
         this.CONSUME2(Tokens.RR_BRACKET);
