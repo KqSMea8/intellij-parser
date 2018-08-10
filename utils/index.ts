@@ -144,15 +144,15 @@ const getTabelDetails = (init, fromClause, more?: boolean) => {
 const peel = (cst) => {
   const query = getFilteredNode(cst, target => target.name === SyntaxKind.querySpecification)[0];
 
-  const exportsFields = _.flatten(getFilteredNode(query.children[SyntaxKind.selectElements][0], target => target.name === SyntaxKind.selectElements, true).map(fields => {
+  const exportsFields = query ? _.flatten(getFilteredNode(query.children[SyntaxKind.selectElements][0], target => target.name === SyntaxKind.selectElements, true).map(fields => {
     return _.filter(getLeafNode(fields, true), o => o.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx)
-  })).map((item: any) => item.image);
+  })).map((item: any) => item.image) : [];
 
   const tableInfo = {
     exportsFields
   };
 
-  return getTabelDetails(tableInfo, (query.children[SyntaxKind.fromClause] || [])[0], true);
+  return query ? getTabelDetails(tableInfo, (query.children[SyntaxKind.fromClause] || [])[0], true) : {};
 }
 
 /** 获取表，别名，字段映射 */
