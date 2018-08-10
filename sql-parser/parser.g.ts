@@ -43,7 +43,6 @@ export enum SyntaxKind {
   unionParenthesis = 'unionParenthesis',
   selectIntoExpression = 'selectIntoExpression',
   charsetName = 'charsetName',
-  charsetNameBase = 'charsetNameBase',
   assignmentField = 'assignmentField',
   selectFieldsInto = 'selectFieldsInto',
   selectLinesInto = 'selectLinesInto',
@@ -79,7 +78,6 @@ export enum SyntaxKind {
   dottedId = 'dottedId',
   fullId = 'fullId',
   uid = 'uid',
-  simpleId = 'simpleId',
 }
 
 export { tokens, Lexer, Tokens, TokenEnum };
@@ -1287,18 +1285,8 @@ export class Parser extends chevrotain.Parser {
     this.RULE('insertStatement', () => {
       this.CONSUME(Tokens.INSERT);
 
-      this.OPTION({
-        GATE: () => {
-          if (Tokens.INSERT.tokenTypeIdx === this.LA(0).tokenTypeIdx && this.LA(1).image === '') {
-            throw this.SAVE_ERROR(
-              new chevrotain.MismatchedTokenException("Expecting: one of these possible Token sequences: 1.[INTO], 2:[OVERWRITE] <-- but found ''", this.LA(1), this.LA(0))
-            )
-          }
-          return Tokens.INSERT.tokenTypeIdx === this.LA(0).tokenTypeIdx;
-        },
-        DEF: () => {
-          this.CONSUME(Tokens.INTO);
-        }
+      this.OPTION(() => {
+        this.CONSUME(Tokens.INTO);
       });
 
       this.OPTION2(() => {
@@ -1639,7 +1627,7 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.SUBRULE(this.charsetNameBase);
+            this.CONSUME(Tokens.CHARSET_NAME_L);
           },
         },
         {
@@ -1650,211 +1638,6 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.CHARSET_REVERSE_QOUTE_STRING);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('charsetNameBase', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ARMSCII8);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ASCII);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BIG5);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP1250);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP1251);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP1256);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP1257);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP850);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP852);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP866);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CP932);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DEC8);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.EUCJPMS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.EUCKR);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.GB2312);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.GBK);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.GEOSTD8);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.GREEK);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.HEBREW);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.HP8);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.KEYBCS2);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.KOI8R);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.KOI8U);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LATIN1);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LATIN2);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LATIN5);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LATIN7);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.MACCE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.MACROMAN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SJIS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SWE7);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TIS620);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UCS2);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UJIS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTF16);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTF16LE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTF32);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTF8);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTF8MB3);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTF8MB4);
           },
         },
       ]);
@@ -2284,28 +2067,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('decimalLiteral', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DECIMAL_LITERAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ZERO_DECIMAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ONE_DECIMAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TWO_DECIMAL);
-          },
-        },
-      ]);
+      this.CONSUME(Tokens.DECIMAL_LITERAL);
     });
 
     this.RULE('comparisonOperator', () => {
@@ -2383,19 +2145,9 @@ export class Parser extends chevrotain.Parser {
       this.CONSUME(Tokens.FROM);
       this.SUBRULE(this.tableSources);
 
-      this.OPTION({
-        GATE: () => {
-          if (Tokens.ID.tokenTypeIdx === this.LA(0).tokenTypeIdx && this.LA(1).image === '') {
-            throw this.SAVE_ERROR(
-              new chevrotain.MismatchedTokenException("Expecting: one of these possible Token sequences: 1.[WHERE], 2:[GROUP], 3:[HAVING] <-- but found ''", this.LA(1), this.LA(0))
-            )
-          }
-          return Tokens.ID.tokenTypeIdx === this.LA(0).tokenTypeIdx;
-        },
-        DEF: () => {
-          this.CONSUME(Tokens.WHERE);
-          this.SUBRULE(this.expression);
-        }
+      this.OPTION(() => {
+        this.CONSUME(Tokens.WHERE);
+        this.SUBRULE(this.expression);
       });
 
       this.OPTION2(() => {
@@ -2702,10 +2454,6 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('uid', () => {
-      this.SUBRULE(this.simpleId);
-    });
-
-    this.RULE('simpleId', () => {
       this.CONSUME(Tokens.ID);
     });
 

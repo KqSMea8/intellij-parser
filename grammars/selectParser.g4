@@ -225,7 +225,7 @@ selectIntoExpression:
 
 charsetName:
 	BINARY
-	| CHARSET_NAME
+	| CHARSET_NAME_L
 	| STRING_LITERAL
 	| CHARSET_REVERSE_QOUTE_STRING;
 
@@ -302,7 +302,7 @@ booleanLiteral: TRUE | FALSE;
 
 collationName: uid | STRING_LITERAL;
 
-decimalLiteral: DECIMAL_LITERAL
+decimalLiteral: DECIMAL_LITERAL;
 
 comparisonOperator:
 	'<' '=' '>'
@@ -342,10 +342,14 @@ tableSourceItem:
 	'('? selectStatement ')'? AS? alias = uid?
 	| tableName (AS? alias = uid)?;
 
-selectElement: tableName | fullColumnName (AS? uid)?;
+tableName: fullId;
 
-tableName: uid DOT_ID*;
+selectElement: fullId '*' | fullColumnName (AS? uid)?;
 
-fullColumnName: uid DOT_ID*;
+fullColumnName: uid (dottedId dottedId?)?;
+
+dottedId: DOT_ID | '.' uid;
+
+fullId: uid (DOT_ID | '.' uid)*;
 
 uid: ID;

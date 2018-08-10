@@ -19851,6 +19851,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "CHARSET_NAME_L",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "CHARSET_NAME"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "(ARMSCII8|ASCII|BIG5|BINARY|CP1250|CP1251|CP1256|CP1257|CP850|CP852|CP866|CP932|DEC8|EUCJPMS|EUCKR|GB2312|GBK|GEOSTD8|GREEK|HEBREW|HP8|KEYBCS2|KOI8R|KOI8U|LATIN1|LATIN2|LATIN5|LATIN7|MACCE|MACROMAN|SJIS|SWE7|TIS620|UCS2|UJIS|UTF16|UTF16LE|UTF32|UTF8|UTF8MB4)"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "VARCHAR",
       "atoms": [
         {

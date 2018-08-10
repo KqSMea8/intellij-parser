@@ -1062,6 +1062,7 @@ LOCAL_ID:
 		| BQUOTA_STRING
 	);
 GLOBAL_ID: '@' '@' ( [A-Za-z0-9._$]+ | BQUOTA_STRING);
+CHARSET_NAME_L: CHARSET_NAME; 
 
 // Fragments for Literal primitives
 

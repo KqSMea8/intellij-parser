@@ -106532,11 +106532,118 @@
       {
         "name": "rule",
         "children": {
+          "UpperName": [
+            {
+              "image": "CHARSET_NAME_L",
+              "startOffset": 23312,
+              "startLine": 1065,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 23326,
+              "startLine": 1065,
+              "startColumn": 15,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "UpperName": [
+                                    {
+                                      "image": "CHARSET_NAME",
+                                      "startOffset": 23328,
+                                      "startLine": 1065,
+                                      "startColumn": 17,
+                                      "tokenTypeIdx": 10,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 10,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "UpperName",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 23340,
+              "startLine": 1065,
+              "startColumn": 29,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 23350,
-              "startLine": 1068,
+              "startOffset": 23381,
+              "startLine": 1069,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -106553,8 +106660,8 @@
           "UpperName": [
             {
               "image": "CHARSET_NAME",
-              "startOffset": 23359,
-              "startLine": 1068,
+              "startOffset": 23390,
+              "startLine": 1069,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -106571,8 +106678,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 23371,
-              "startLine": 1068,
+              "startOffset": 23402,
+              "startLine": 1069,
               "startColumn": 22,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -106606,8 +106713,8 @@
                                   "UpperName": [
                                     {
                                       "image": "ARMSCII8",
-                                      "startOffset": 23374,
-                                      "startLine": 1069,
+                                      "startOffset": 23405,
+                                      "startLine": 1070,
                                       "startColumn": 2,
                                       "tokenTypeIdx": 10,
                                       "tokenType": {
@@ -106643,44 +106750,7 @@
                                   "UpperName": [
                                     {
                                       "image": "ASCII",
-                                      "startOffset": 23386,
-                                      "startLine": 1070,
-                                      "startColumn": 4,
-                                      "tokenTypeIdx": 10,
-                                      "tokenType": {
-                                        "PATTERN": {},
-                                        "tokenTypeIdx": 10,
-                                        "CATEGORIES": [],
-                                        "categoryMatches": [],
-                                        "categoryMatchesMap": {},
-                                        "tokenName": "UpperName",
-                                        "isParent": false
-                                      }
-                                    }
-                                  ]
-                                }
-                              }
-                            ]
-                          }
-                        }
-                      ]
-                    }
-                  },
-                  {
-                    "name": "atom",
-                    "children": {
-                      "itemSuff": [
-                        {
-                          "name": "itemSuff",
-                          "children": {
-                            "item": [
-                              {
-                                "name": "item",
-                                "children": {
-                                  "UpperName": [
-                                    {
-                                      "image": "BIG5",
-                                      "startOffset": 23395,
+                                      "startOffset": 23417,
                                       "startLine": 1071,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106716,8 +106786,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "BINARY",
-                                      "startOffset": 23403,
+                                      "image": "BIG5",
+                                      "startOffset": 23426,
                                       "startLine": 1072,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106753,8 +106823,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP1250",
-                                      "startOffset": 23413,
+                                      "image": "BINARY",
+                                      "startOffset": 23434,
                                       "startLine": 1073,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106790,8 +106860,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP1251",
-                                      "startOffset": 23423,
+                                      "image": "CP1250",
+                                      "startOffset": 23444,
                                       "startLine": 1074,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106827,8 +106897,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP1256",
-                                      "startOffset": 23433,
+                                      "image": "CP1251",
+                                      "startOffset": 23454,
                                       "startLine": 1075,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106864,8 +106934,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP1257",
-                                      "startOffset": 23443,
+                                      "image": "CP1256",
+                                      "startOffset": 23464,
                                       "startLine": 1076,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106901,8 +106971,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP850",
-                                      "startOffset": 23453,
+                                      "image": "CP1257",
+                                      "startOffset": 23474,
                                       "startLine": 1077,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106938,8 +107008,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP852",
-                                      "startOffset": 23462,
+                                      "image": "CP850",
+                                      "startOffset": 23484,
                                       "startLine": 1078,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -106975,8 +107045,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP866",
-                                      "startOffset": 23471,
+                                      "image": "CP852",
+                                      "startOffset": 23493,
                                       "startLine": 1079,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107012,8 +107082,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "CP932",
-                                      "startOffset": 23480,
+                                      "image": "CP866",
+                                      "startOffset": 23502,
                                       "startLine": 1080,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107049,8 +107119,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "DEC8",
-                                      "startOffset": 23489,
+                                      "image": "CP932",
+                                      "startOffset": 23511,
                                       "startLine": 1081,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107086,8 +107156,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "EUCJPMS",
-                                      "startOffset": 23497,
+                                      "image": "DEC8",
+                                      "startOffset": 23520,
                                       "startLine": 1082,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107123,8 +107193,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "EUCKR",
-                                      "startOffset": 23508,
+                                      "image": "EUCJPMS",
+                                      "startOffset": 23528,
                                       "startLine": 1083,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107160,8 +107230,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "GB2312",
-                                      "startOffset": 23517,
+                                      "image": "EUCKR",
+                                      "startOffset": 23539,
                                       "startLine": 1084,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107197,8 +107267,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "GBK",
-                                      "startOffset": 23527,
+                                      "image": "GB2312",
+                                      "startOffset": 23548,
                                       "startLine": 1085,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107234,8 +107304,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "GEOSTD8",
-                                      "startOffset": 23534,
+                                      "image": "GBK",
+                                      "startOffset": 23558,
                                       "startLine": 1086,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107271,8 +107341,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "GREEK",
-                                      "startOffset": 23545,
+                                      "image": "GEOSTD8",
+                                      "startOffset": 23565,
                                       "startLine": 1087,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107308,8 +107378,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "HEBREW",
-                                      "startOffset": 23554,
+                                      "image": "GREEK",
+                                      "startOffset": 23576,
                                       "startLine": 1088,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107345,8 +107415,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "HP8",
-                                      "startOffset": 23564,
+                                      "image": "HEBREW",
+                                      "startOffset": 23585,
                                       "startLine": 1089,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107382,8 +107452,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "KEYBCS2",
-                                      "startOffset": 23571,
+                                      "image": "HP8",
+                                      "startOffset": 23595,
                                       "startLine": 1090,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107419,8 +107489,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "KOI8R",
-                                      "startOffset": 23582,
+                                      "image": "KEYBCS2",
+                                      "startOffset": 23602,
                                       "startLine": 1091,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107456,8 +107526,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "KOI8U",
-                                      "startOffset": 23591,
+                                      "image": "KOI8R",
+                                      "startOffset": 23613,
                                       "startLine": 1092,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107493,8 +107563,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "LATIN1",
-                                      "startOffset": 23600,
+                                      "image": "KOI8U",
+                                      "startOffset": 23622,
                                       "startLine": 1093,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107530,8 +107600,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "LATIN2",
-                                      "startOffset": 23610,
+                                      "image": "LATIN1",
+                                      "startOffset": 23631,
                                       "startLine": 1094,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107567,8 +107637,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "LATIN5",
-                                      "startOffset": 23620,
+                                      "image": "LATIN2",
+                                      "startOffset": 23641,
                                       "startLine": 1095,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107604,8 +107674,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "LATIN7",
-                                      "startOffset": 23630,
+                                      "image": "LATIN5",
+                                      "startOffset": 23651,
                                       "startLine": 1096,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107641,8 +107711,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "MACCE",
-                                      "startOffset": 23640,
+                                      "image": "LATIN7",
+                                      "startOffset": 23661,
                                       "startLine": 1097,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107678,8 +107748,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "MACROMAN",
-                                      "startOffset": 23649,
+                                      "image": "MACCE",
+                                      "startOffset": 23671,
                                       "startLine": 1098,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107715,8 +107785,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "SJIS",
-                                      "startOffset": 23661,
+                                      "image": "MACROMAN",
+                                      "startOffset": 23680,
                                       "startLine": 1099,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107752,8 +107822,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "SWE7",
-                                      "startOffset": 23669,
+                                      "image": "SJIS",
+                                      "startOffset": 23692,
                                       "startLine": 1100,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107789,8 +107859,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "TIS620",
-                                      "startOffset": 23677,
+                                      "image": "SWE7",
+                                      "startOffset": 23700,
                                       "startLine": 1101,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107826,8 +107896,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "UCS2",
-                                      "startOffset": 23687,
+                                      "image": "TIS620",
+                                      "startOffset": 23708,
                                       "startLine": 1102,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107863,8 +107933,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "UJIS",
-                                      "startOffset": 23695,
+                                      "image": "UCS2",
+                                      "startOffset": 23718,
                                       "startLine": 1103,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107900,8 +107970,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "UTF16",
-                                      "startOffset": 23703,
+                                      "image": "UJIS",
+                                      "startOffset": 23726,
                                       "startLine": 1104,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107937,8 +108007,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "UTF16LE",
-                                      "startOffset": 23712,
+                                      "image": "UTF16",
+                                      "startOffset": 23734,
                                       "startLine": 1105,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -107974,8 +108044,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "UTF32",
-                                      "startOffset": 23723,
+                                      "image": "UTF16LE",
+                                      "startOffset": 23743,
                                       "startLine": 1106,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -108011,8 +108081,8 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "UTF8",
-                                      "startOffset": 23732,
+                                      "image": "UTF32",
+                                      "startOffset": 23754,
                                       "startLine": 1107,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
@@ -108048,9 +108118,46 @@
                                 "children": {
                                   "UpperName": [
                                     {
-                                      "image": "UTF8MB4",
-                                      "startOffset": 23740,
+                                      "image": "UTF8",
+                                      "startOffset": 23763,
                                       "startLine": 1108,
+                                      "startColumn": 4,
+                                      "tokenTypeIdx": 10,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 10,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "UpperName",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "UpperName": [
+                                    {
+                                      "image": "UTF8MB4",
+                                      "startOffset": 23771,
+                                      "startLine": 1109,
                                       "startColumn": 4,
                                       "tokenTypeIdx": 10,
                                       "tokenType": {
@@ -108076,24 +108183,7 @@
                 "Bar": [
                   {
                     "image": "|",
-                    "startOffset": 23384,
-                    "startLine": 1070,
-                    "startColumn": 2,
-                    "tokenTypeIdx": 2,
-                    "tokenType": {
-                      "PATTERN": {},
-                      "tokenTypeIdx": 2,
-                      "CATEGORIES": [],
-                      "categoryMatches": [],
-                      "categoryMatchesMap": {},
-                      "tokenName": "Bar",
-                      "isParent": false,
-                      "LABEL": "|"
-                    }
-                  },
-                  {
-                    "image": "|",
-                    "startOffset": 23393,
+                    "startOffset": 23415,
                     "startLine": 1071,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108110,7 +108200,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23401,
+                    "startOffset": 23424,
                     "startLine": 1072,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108127,7 +108217,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23411,
+                    "startOffset": 23432,
                     "startLine": 1073,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108144,7 +108234,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23421,
+                    "startOffset": 23442,
                     "startLine": 1074,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108161,7 +108251,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23431,
+                    "startOffset": 23452,
                     "startLine": 1075,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108178,7 +108268,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23441,
+                    "startOffset": 23462,
                     "startLine": 1076,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108195,7 +108285,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23451,
+                    "startOffset": 23472,
                     "startLine": 1077,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108212,7 +108302,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23460,
+                    "startOffset": 23482,
                     "startLine": 1078,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108229,7 +108319,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23469,
+                    "startOffset": 23491,
                     "startLine": 1079,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108246,7 +108336,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23478,
+                    "startOffset": 23500,
                     "startLine": 1080,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108263,7 +108353,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23487,
+                    "startOffset": 23509,
                     "startLine": 1081,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108280,7 +108370,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23495,
+                    "startOffset": 23518,
                     "startLine": 1082,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108297,7 +108387,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23506,
+                    "startOffset": 23526,
                     "startLine": 1083,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108314,7 +108404,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23515,
+                    "startOffset": 23537,
                     "startLine": 1084,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108331,7 +108421,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23525,
+                    "startOffset": 23546,
                     "startLine": 1085,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108348,7 +108438,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23532,
+                    "startOffset": 23556,
                     "startLine": 1086,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108365,7 +108455,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23543,
+                    "startOffset": 23563,
                     "startLine": 1087,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108382,7 +108472,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23552,
+                    "startOffset": 23574,
                     "startLine": 1088,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108399,7 +108489,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23562,
+                    "startOffset": 23583,
                     "startLine": 1089,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108416,7 +108506,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23569,
+                    "startOffset": 23593,
                     "startLine": 1090,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108433,7 +108523,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23580,
+                    "startOffset": 23600,
                     "startLine": 1091,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108450,7 +108540,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23589,
+                    "startOffset": 23611,
                     "startLine": 1092,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108467,7 +108557,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23598,
+                    "startOffset": 23620,
                     "startLine": 1093,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108484,7 +108574,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23608,
+                    "startOffset": 23629,
                     "startLine": 1094,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108501,7 +108591,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23618,
+                    "startOffset": 23639,
                     "startLine": 1095,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108518,7 +108608,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23628,
+                    "startOffset": 23649,
                     "startLine": 1096,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108535,7 +108625,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23638,
+                    "startOffset": 23659,
                     "startLine": 1097,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108552,7 +108642,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23647,
+                    "startOffset": 23669,
                     "startLine": 1098,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108569,7 +108659,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23659,
+                    "startOffset": 23678,
                     "startLine": 1099,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108586,7 +108676,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23667,
+                    "startOffset": 23690,
                     "startLine": 1100,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108603,7 +108693,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23675,
+                    "startOffset": 23698,
                     "startLine": 1101,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108620,7 +108710,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23685,
+                    "startOffset": 23706,
                     "startLine": 1102,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108637,7 +108727,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23693,
+                    "startOffset": 23716,
                     "startLine": 1103,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108654,7 +108744,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23701,
+                    "startOffset": 23724,
                     "startLine": 1104,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108671,7 +108761,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23710,
+                    "startOffset": 23732,
                     "startLine": 1105,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108688,7 +108778,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23721,
+                    "startOffset": 23741,
                     "startLine": 1106,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108705,7 +108795,7 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23730,
+                    "startOffset": 23752,
                     "startLine": 1107,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
@@ -108722,8 +108812,25 @@
                   },
                   {
                     "image": "|",
-                    "startOffset": 23738,
+                    "startOffset": 23761,
                     "startLine": 1108,
+                    "startColumn": 2,
+                    "tokenTypeIdx": 2,
+                    "tokenType": {
+                      "PATTERN": {},
+                      "tokenTypeIdx": 2,
+                      "CATEGORIES": [],
+                      "categoryMatches": [],
+                      "categoryMatchesMap": {},
+                      "tokenName": "Bar",
+                      "isParent": false,
+                      "LABEL": "|"
+                    }
+                  },
+                  {
+                    "image": "|",
+                    "startOffset": 23769,
+                    "startLine": 1109,
                     "startColumn": 2,
                     "tokenTypeIdx": 2,
                     "tokenType": {
@@ -108744,8 +108851,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 23747,
-              "startLine": 1108,
+              "startOffset": 23778,
+              "startLine": 1109,
               "startColumn": 11,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -108768,8 +108875,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 23750,
-              "startLine": 1110,
+              "startOffset": 23781,
+              "startLine": 1111,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -108786,8 +108893,8 @@
           "UpperName": [
             {
               "image": "EXPONENT_NUM_PART",
-              "startOffset": 23759,
-              "startLine": 1110,
+              "startOffset": 23790,
+              "startLine": 1111,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -108804,8 +108911,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 23776,
-              "startLine": 1110,
+              "startOffset": 23807,
+              "startLine": 1111,
               "startColumn": 27,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -108839,8 +108946,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'E'",
-                                      "startOffset": 23778,
-                                      "startLine": 1110,
+                                      "startOffset": 23809,
+                                      "startLine": 1111,
                                       "startColumn": 29,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -108869,8 +108976,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'-'",
-                                      "startOffset": 23782,
-                                      "startLine": 1110,
+                                      "startOffset": 23813,
+                                      "startLine": 1111,
                                       "startColumn": 33,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -108894,8 +109001,8 @@
                                   "Optional": [
                                     {
                                       "image": "?",
-                                      "startOffset": 23785,
-                                      "startLine": 1110,
+                                      "startOffset": 23816,
+                                      "startLine": 1111,
                                       "startColumn": 36,
                                       "tokenTypeIdx": 6,
                                       "tokenType": {
@@ -108925,8 +109032,8 @@
                                   "UpperName": [
                                     {
                                       "image": "DEC_DIGIT",
-                                      "startOffset": 23787,
-                                      "startLine": 1110,
+                                      "startOffset": 23818,
+                                      "startLine": 1111,
                                       "startColumn": 38,
                                       "tokenTypeIdx": 10,
                                       "tokenType": {
@@ -108950,8 +109057,8 @@
                                   "Plus": [
                                     {
                                       "image": "+",
-                                      "startOffset": 23796,
-                                      "startLine": 1110,
+                                      "startOffset": 23827,
+                                      "startLine": 1111,
                                       "startColumn": 47,
                                       "tokenTypeIdx": 16,
                                       "tokenType": {
@@ -108980,8 +109087,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 23797,
-              "startLine": 1110,
+              "startOffset": 23828,
+              "startLine": 1111,
               "startColumn": 48,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -109004,8 +109111,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 23799,
-              "startLine": 1111,
+              "startOffset": 23830,
+              "startLine": 1112,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -109022,8 +109129,8 @@
           "UpperName": [
             {
               "image": "ID_LITERAL",
-              "startOffset": 23808,
-              "startLine": 1111,
+              "startOffset": 23839,
+              "startLine": 1112,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -109040,8 +109147,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 23818,
-              "startLine": 1111,
+              "startOffset": 23849,
+              "startLine": 1112,
               "startColumn": 20,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -109075,8 +109182,8 @@
                                   "ReExp": [
                                     {
                                       "image": "[A-Za-z_$0-9]+",
-                                      "startOffset": 23820,
-                                      "startLine": 1111,
+                                      "startOffset": 23851,
+                                      "startLine": 1112,
                                       "startColumn": 22,
                                       "tokenTypeIdx": 18,
                                       "tokenType": {
@@ -109105,8 +109212,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 23834,
-              "startLine": 1111,
+              "startOffset": 23865,
+              "startLine": 1112,
               "startColumn": 36,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -109129,8 +109236,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 23836,
-              "startLine": 1112,
+              "startOffset": 23867,
+              "startLine": 1113,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -109147,8 +109254,8 @@
           "UpperName": [
             {
               "image": "DQUOTA_STRING",
-              "startOffset": 23845,
-              "startLine": 1112,
+              "startOffset": 23876,
+              "startLine": 1113,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -109165,8 +109272,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 23858,
-              "startLine": 1112,
+              "startOffset": 23889,
+              "startLine": 1113,
               "startColumn": 23,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -109200,8 +109307,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\"'",
-                                      "startOffset": 23861,
-                                      "startLine": 1113,
+                                      "startOffset": 23892,
+                                      "startLine": 1114,
                                       "startColumn": 2,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -109230,8 +109337,8 @@
                                   "LeftBracket": [
                                     {
                                       "image": "(",
-                                      "startOffset": 23865,
-                                      "startLine": 1113,
+                                      "startOffset": 23896,
+                                      "startLine": 1114,
                                       "startColumn": 6,
                                       "tokenTypeIdx": 7,
                                       "tokenType": {
@@ -109265,8 +109372,8 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "'\\\\'",
-                                                              "startOffset": 23866,
-                                                              "startLine": 1113,
+                                                              "startOffset": 23897,
+                                                              "startLine": 1114,
                                                               "startColumn": 7,
                                                               "tokenTypeIdx": 9,
                                                               "tokenType": {
@@ -109295,8 +109402,8 @@
                                                           "All": [
                                                             {
                                                               "image": ".",
-                                                              "startOffset": 23871,
-                                                              "startLine": 1113,
+                                                              "startOffset": 23902,
+                                                              "startLine": 1114,
                                                               "startColumn": 12,
                                                               "tokenTypeIdx": 20,
                                                               "tokenType": {
@@ -109332,8 +109439,8 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "'\"\"'",
-                                                              "startOffset": 23875,
-                                                              "startLine": 1113,
+                                                              "startOffset": 23906,
+                                                              "startLine": 1114,
                                                               "startColumn": 16,
                                                               "tokenTypeIdx": 9,
                                                               "tokenType": {
@@ -109365,8 +109472,8 @@
                                                     "Not": [
                                                       {
                                                         "image": "~",
-                                                        "startOffset": 23882,
-                                                        "startLine": 1113,
+                                                        "startOffset": 23913,
+                                                        "startLine": 1114,
                                                         "startColumn": 23,
                                                         "tokenTypeIdx": 19,
                                                         "tokenType": {
@@ -109387,8 +109494,8 @@
                                                           "LeftBracket": [
                                                             {
                                                               "image": "(",
-                                                              "startOffset": 23883,
-                                                              "startLine": 1113,
+                                                              "startOffset": 23914,
+                                                              "startLine": 1114,
                                                               "startColumn": 24,
                                                               "tokenTypeIdx": 7,
                                                               "tokenType": {
@@ -109422,8 +109529,8 @@
                                                                                   "Stringliteral": [
                                                                                     {
                                                                                       "image": "'\"'",
-                                                                                      "startOffset": 23884,
-                                                                                      "startLine": 1113,
+                                                                                      "startOffset": 23915,
+                                                                                      "startLine": 1114,
                                                                                       "startColumn": 25,
                                                                                       "tokenTypeIdx": 9,
                                                                                       "tokenType": {
@@ -109459,8 +109566,8 @@
                                                                                   "Stringliteral": [
                                                                                     {
                                                                                       "image": "'\\\\'",
-                                                                                      "startOffset": 23890,
-                                                                                      "startLine": 1113,
+                                                                                      "startOffset": 23921,
+                                                                                      "startLine": 1114,
                                                                                       "startColumn": 31,
                                                                                       "tokenTypeIdx": 9,
                                                                                       "tokenType": {
@@ -109486,8 +109593,8 @@
                                                                 "Bar": [
                                                                   {
                                                                     "image": "|",
-                                                                    "startOffset": 23888,
-                                                                    "startLine": 1113,
+                                                                    "startOffset": 23919,
+                                                                    "startLine": 1114,
                                                                     "startColumn": 29,
                                                                     "tokenTypeIdx": 2,
                                                                     "tokenType": {
@@ -109508,8 +109615,8 @@
                                                           "RightBracket": [
                                                             {
                                                               "image": ")",
-                                                              "startOffset": 23894,
-                                                              "startLine": 1113,
+                                                              "startOffset": 23925,
+                                                              "startLine": 1114,
                                                               "startColumn": 35,
                                                               "tokenTypeIdx": 8,
                                                               "tokenType": {
@@ -109536,8 +109643,8 @@
                                         "Bar": [
                                           {
                                             "image": "|",
-                                            "startOffset": 23873,
-                                            "startLine": 1113,
+                                            "startOffset": 23904,
+                                            "startLine": 1114,
                                             "startColumn": 14,
                                             "tokenTypeIdx": 2,
                                             "tokenType": {
@@ -109553,8 +109660,8 @@
                                           },
                                           {
                                             "image": "|",
-                                            "startOffset": 23880,
-                                            "startLine": 1113,
+                                            "startOffset": 23911,
+                                            "startLine": 1114,
                                             "startColumn": 21,
                                             "tokenTypeIdx": 2,
                                             "tokenType": {
@@ -109575,8 +109682,8 @@
                                   "RightBracket": [
                                     {
                                       "image": ")",
-                                      "startOffset": 23895,
-                                      "startLine": 1113,
+                                      "startOffset": 23926,
+                                      "startLine": 1114,
                                       "startColumn": 36,
                                       "tokenTypeIdx": 8,
                                       "tokenType": {
@@ -109601,8 +109708,8 @@
                                   "Asterisk": [
                                     {
                                       "image": "*",
-                                      "startOffset": 23896,
-                                      "startLine": 1113,
+                                      "startOffset": 23927,
+                                      "startLine": 1114,
                                       "startColumn": 37,
                                       "tokenTypeIdx": 5,
                                       "tokenType": {
@@ -109632,8 +109739,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\"'",
-                                      "startOffset": 23898,
-                                      "startLine": 1113,
+                                      "startOffset": 23929,
+                                      "startLine": 1114,
                                       "startColumn": 39,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -109662,8 +109769,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 23901,
-              "startLine": 1113,
+              "startOffset": 23932,
+              "startLine": 1114,
               "startColumn": 42,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -109686,8 +109793,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 23903,
-              "startLine": 1114,
+              "startOffset": 23934,
+              "startLine": 1115,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -109704,8 +109811,8 @@
           "UpperName": [
             {
               "image": "SQUOTA_STRING",
-              "startOffset": 23912,
-              "startLine": 1114,
+              "startOffset": 23943,
+              "startLine": 1115,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -109722,8 +109829,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 23925,
-              "startLine": 1114,
+              "startOffset": 23956,
+              "startLine": 1115,
               "startColumn": 23,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -109757,8 +109864,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\\''",
-                                      "startOffset": 23928,
-                                      "startLine": 1115,
+                                      "startOffset": 23959,
+                                      "startLine": 1116,
                                       "startColumn": 2,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -109787,8 +109894,8 @@
                                   "LeftBracket": [
                                     {
                                       "image": "(",
-                                      "startOffset": 23933,
-                                      "startLine": 1115,
+                                      "startOffset": 23964,
+                                      "startLine": 1116,
                                       "startColumn": 7,
                                       "tokenTypeIdx": 7,
                                       "tokenType": {
@@ -109822,8 +109929,8 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "'\\\\'",
-                                                              "startOffset": 23934,
-                                                              "startLine": 1115,
+                                                              "startOffset": 23965,
+                                                              "startLine": 1116,
                                                               "startColumn": 8,
                                                               "tokenTypeIdx": 9,
                                                               "tokenType": {
@@ -109852,8 +109959,8 @@
                                                           "All": [
                                                             {
                                                               "image": ".",
-                                                              "startOffset": 23939,
-                                                              "startLine": 1115,
+                                                              "startOffset": 23970,
+                                                              "startLine": 1116,
                                                               "startColumn": 13,
                                                               "tokenTypeIdx": 20,
                                                               "tokenType": {
@@ -109889,8 +109996,8 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "'\\'\\''",
-                                                              "startOffset": 23943,
-                                                              "startLine": 1115,
+                                                              "startOffset": 23974,
+                                                              "startLine": 1116,
                                                               "startColumn": 17,
                                                               "tokenTypeIdx": 9,
                                                               "tokenType": {
@@ -109922,8 +110029,8 @@
                                                     "Not": [
                                                       {
                                                         "image": "~",
-                                                        "startOffset": 23952,
-                                                        "startLine": 1115,
+                                                        "startOffset": 23983,
+                                                        "startLine": 1116,
                                                         "startColumn": 26,
                                                         "tokenTypeIdx": 19,
                                                         "tokenType": {
@@ -109944,8 +110051,8 @@
                                                           "LeftBracket": [
                                                             {
                                                               "image": "(",
-                                                              "startOffset": 23953,
-                                                              "startLine": 1115,
+                                                              "startOffset": 23984,
+                                                              "startLine": 1116,
                                                               "startColumn": 27,
                                                               "tokenTypeIdx": 7,
                                                               "tokenType": {
@@ -109979,8 +110086,8 @@
                                                                                   "Stringliteral": [
                                                                                     {
                                                                                       "image": "'\\''",
-                                                                                      "startOffset": 23954,
-                                                                                      "startLine": 1115,
+                                                                                      "startOffset": 23985,
+                                                                                      "startLine": 1116,
                                                                                       "startColumn": 28,
                                                                                       "tokenTypeIdx": 9,
                                                                                       "tokenType": {
@@ -110016,8 +110123,8 @@
                                                                                   "Stringliteral": [
                                                                                     {
                                                                                       "image": "'\\\\'",
-                                                                                      "startOffset": 23961,
-                                                                                      "startLine": 1115,
+                                                                                      "startOffset": 23992,
+                                                                                      "startLine": 1116,
                                                                                       "startColumn": 35,
                                                                                       "tokenTypeIdx": 9,
                                                                                       "tokenType": {
@@ -110043,8 +110150,8 @@
                                                                 "Bar": [
                                                                   {
                                                                     "image": "|",
-                                                                    "startOffset": 23959,
-                                                                    "startLine": 1115,
+                                                                    "startOffset": 23990,
+                                                                    "startLine": 1116,
                                                                     "startColumn": 33,
                                                                     "tokenTypeIdx": 2,
                                                                     "tokenType": {
@@ -110065,8 +110172,8 @@
                                                           "RightBracket": [
                                                             {
                                                               "image": ")",
-                                                              "startOffset": 23965,
-                                                              "startLine": 1115,
+                                                              "startOffset": 23996,
+                                                              "startLine": 1116,
                                                               "startColumn": 39,
                                                               "tokenTypeIdx": 8,
                                                               "tokenType": {
@@ -110093,8 +110200,8 @@
                                         "Bar": [
                                           {
                                             "image": "|",
-                                            "startOffset": 23941,
-                                            "startLine": 1115,
+                                            "startOffset": 23972,
+                                            "startLine": 1116,
                                             "startColumn": 15,
                                             "tokenTypeIdx": 2,
                                             "tokenType": {
@@ -110110,8 +110217,8 @@
                                           },
                                           {
                                             "image": "|",
-                                            "startOffset": 23950,
-                                            "startLine": 1115,
+                                            "startOffset": 23981,
+                                            "startLine": 1116,
                                             "startColumn": 24,
                                             "tokenTypeIdx": 2,
                                             "tokenType": {
@@ -110132,8 +110239,8 @@
                                   "RightBracket": [
                                     {
                                       "image": ")",
-                                      "startOffset": 23966,
-                                      "startLine": 1115,
+                                      "startOffset": 23997,
+                                      "startLine": 1116,
                                       "startColumn": 40,
                                       "tokenTypeIdx": 8,
                                       "tokenType": {
@@ -110158,8 +110265,8 @@
                                   "Asterisk": [
                                     {
                                       "image": "*",
-                                      "startOffset": 23967,
-                                      "startLine": 1115,
+                                      "startOffset": 23998,
+                                      "startLine": 1116,
                                       "startColumn": 41,
                                       "tokenTypeIdx": 5,
                                       "tokenType": {
@@ -110189,8 +110296,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\\''",
-                                      "startOffset": 23969,
-                                      "startLine": 1115,
+                                      "startOffset": 24000,
+                                      "startLine": 1116,
                                       "startColumn": 43,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -110219,8 +110326,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 23973,
-              "startLine": 1115,
+              "startOffset": 24004,
+              "startLine": 1116,
               "startColumn": 47,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -110243,8 +110350,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 23976,
-              "startLine": 1117,
+              "startOffset": 24007,
+              "startLine": 1118,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -110261,8 +110368,8 @@
           "UpperName": [
             {
               "image": "BQUOTA_STRING",
-              "startOffset": 23985,
-              "startLine": 1117,
+              "startOffset": 24016,
+              "startLine": 1118,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -110279,8 +110386,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 23998,
-              "startLine": 1117,
+              "startOffset": 24029,
+              "startLine": 1118,
               "startColumn": 23,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -110314,8 +110421,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'`'",
-                                      "startOffset": 24001,
-                                      "startLine": 1118,
+                                      "startOffset": 24032,
+                                      "startLine": 1119,
                                       "startColumn": 2,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -110344,8 +110451,8 @@
                                   "LeftBracket": [
                                     {
                                       "image": "(",
-                                      "startOffset": 24005,
-                                      "startLine": 1118,
+                                      "startOffset": 24036,
+                                      "startLine": 1119,
                                       "startColumn": 6,
                                       "tokenTypeIdx": 7,
                                       "tokenType": {
@@ -110379,8 +110486,8 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "'\\\\'",
-                                                              "startOffset": 24006,
-                                                              "startLine": 1118,
+                                                              "startOffset": 24037,
+                                                              "startLine": 1119,
                                                               "startColumn": 7,
                                                               "tokenTypeIdx": 9,
                                                               "tokenType": {
@@ -110409,8 +110516,8 @@
                                                           "All": [
                                                             {
                                                               "image": ".",
-                                                              "startOffset": 24011,
-                                                              "startLine": 1118,
+                                                              "startOffset": 24042,
+                                                              "startLine": 1119,
                                                               "startColumn": 12,
                                                               "tokenTypeIdx": 20,
                                                               "tokenType": {
@@ -110446,8 +110553,8 @@
                                                           "Stringliteral": [
                                                             {
                                                               "image": "'``'",
-                                                              "startOffset": 24015,
-                                                              "startLine": 1118,
+                                                              "startOffset": 24046,
+                                                              "startLine": 1119,
                                                               "startColumn": 16,
                                                               "tokenTypeIdx": 9,
                                                               "tokenType": {
@@ -110479,8 +110586,8 @@
                                                     "Not": [
                                                       {
                                                         "image": "~",
-                                                        "startOffset": 24022,
-                                                        "startLine": 1118,
+                                                        "startOffset": 24053,
+                                                        "startLine": 1119,
                                                         "startColumn": 23,
                                                         "tokenTypeIdx": 19,
                                                         "tokenType": {
@@ -110501,8 +110608,8 @@
                                                           "LeftBracket": [
                                                             {
                                                               "image": "(",
-                                                              "startOffset": 24023,
-                                                              "startLine": 1118,
+                                                              "startOffset": 24054,
+                                                              "startLine": 1119,
                                                               "startColumn": 24,
                                                               "tokenTypeIdx": 7,
                                                               "tokenType": {
@@ -110536,8 +110643,8 @@
                                                                                   "Stringliteral": [
                                                                                     {
                                                                                       "image": "'`'",
-                                                                                      "startOffset": 24024,
-                                                                                      "startLine": 1118,
+                                                                                      "startOffset": 24055,
+                                                                                      "startLine": 1119,
                                                                                       "startColumn": 25,
                                                                                       "tokenTypeIdx": 9,
                                                                                       "tokenType": {
@@ -110573,8 +110680,8 @@
                                                                                   "Stringliteral": [
                                                                                     {
                                                                                       "image": "'\\\\'",
-                                                                                      "startOffset": 24030,
-                                                                                      "startLine": 1118,
+                                                                                      "startOffset": 24061,
+                                                                                      "startLine": 1119,
                                                                                       "startColumn": 31,
                                                                                       "tokenTypeIdx": 9,
                                                                                       "tokenType": {
@@ -110600,8 +110707,8 @@
                                                                 "Bar": [
                                                                   {
                                                                     "image": "|",
-                                                                    "startOffset": 24028,
-                                                                    "startLine": 1118,
+                                                                    "startOffset": 24059,
+                                                                    "startLine": 1119,
                                                                     "startColumn": 29,
                                                                     "tokenTypeIdx": 2,
                                                                     "tokenType": {
@@ -110622,8 +110729,8 @@
                                                           "RightBracket": [
                                                             {
                                                               "image": ")",
-                                                              "startOffset": 24034,
-                                                              "startLine": 1118,
+                                                              "startOffset": 24065,
+                                                              "startLine": 1119,
                                                               "startColumn": 35,
                                                               "tokenTypeIdx": 8,
                                                               "tokenType": {
@@ -110650,8 +110757,8 @@
                                         "Bar": [
                                           {
                                             "image": "|",
-                                            "startOffset": 24013,
-                                            "startLine": 1118,
+                                            "startOffset": 24044,
+                                            "startLine": 1119,
                                             "startColumn": 14,
                                             "tokenTypeIdx": 2,
                                             "tokenType": {
@@ -110667,8 +110774,8 @@
                                           },
                                           {
                                             "image": "|",
-                                            "startOffset": 24020,
-                                            "startLine": 1118,
+                                            "startOffset": 24051,
+                                            "startLine": 1119,
                                             "startColumn": 21,
                                             "tokenTypeIdx": 2,
                                             "tokenType": {
@@ -110689,8 +110796,8 @@
                                   "RightBracket": [
                                     {
                                       "image": ")",
-                                      "startOffset": 24035,
-                                      "startLine": 1118,
+                                      "startOffset": 24066,
+                                      "startLine": 1119,
                                       "startColumn": 36,
                                       "tokenTypeIdx": 8,
                                       "tokenType": {
@@ -110715,8 +110822,8 @@
                                   "Asterisk": [
                                     {
                                       "image": "*",
-                                      "startOffset": 24036,
-                                      "startLine": 1118,
+                                      "startOffset": 24067,
+                                      "startLine": 1119,
                                       "startColumn": 37,
                                       "tokenTypeIdx": 5,
                                       "tokenType": {
@@ -110746,8 +110853,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24037,
-              "startLine": 1118,
+              "startOffset": 24068,
+              "startLine": 1119,
               "startColumn": 38,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -110770,8 +110877,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 24039,
-              "startLine": 1119,
+              "startOffset": 24070,
+              "startLine": 1120,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -110788,8 +110895,8 @@
           "UpperName": [
             {
               "image": "HEX_DIGIT",
-              "startOffset": 24048,
-              "startLine": 1119,
+              "startOffset": 24079,
+              "startLine": 1120,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -110806,8 +110913,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 24057,
-              "startLine": 1119,
+              "startOffset": 24088,
+              "startLine": 1120,
               "startColumn": 19,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -110841,8 +110948,8 @@
                                   "ReExp": [
                                     {
                                       "image": "[0-9A-F]",
-                                      "startOffset": 24059,
-                                      "startLine": 1119,
+                                      "startOffset": 24090,
+                                      "startLine": 1120,
                                       "startColumn": 21,
                                       "tokenTypeIdx": 18,
                                       "tokenType": {
@@ -110871,8 +110978,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24067,
-              "startLine": 1119,
+              "startOffset": 24098,
+              "startLine": 1120,
               "startColumn": 29,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -110895,8 +111002,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 24069,
-              "startLine": 1120,
+              "startOffset": 24100,
+              "startLine": 1121,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -110913,8 +111020,8 @@
           "UpperName": [
             {
               "image": "DEC_DIGIT",
-              "startOffset": 24078,
-              "startLine": 1120,
+              "startOffset": 24109,
+              "startLine": 1121,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -110931,8 +111038,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 24087,
-              "startLine": 1120,
+              "startOffset": 24118,
+              "startLine": 1121,
               "startColumn": 19,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -110966,8 +111073,8 @@
                                   "ReExp": [
                                     {
                                       "image": "[0-9]",
-                                      "startOffset": 24089,
-                                      "startLine": 1120,
+                                      "startOffset": 24120,
+                                      "startLine": 1121,
                                       "startColumn": 21,
                                       "tokenTypeIdx": 18,
                                       "tokenType": {
@@ -110996,8 +111103,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24094,
-              "startLine": 1120,
+              "startOffset": 24125,
+              "startLine": 1121,
               "startColumn": 26,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -111020,8 +111127,8 @@
           "Fragment": [
             {
               "image": "fragment",
-              "startOffset": 24096,
-              "startLine": 1121,
+              "startOffset": 24127,
+              "startLine": 1122,
               "startColumn": 1,
               "tokenTypeIdx": 17,
               "tokenType": {
@@ -111038,8 +111145,8 @@
           "UpperName": [
             {
               "image": "BIT_STRING_L",
-              "startOffset": 24105,
-              "startLine": 1121,
+              "startOffset": 24136,
+              "startLine": 1122,
               "startColumn": 10,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -111056,8 +111163,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 24117,
-              "startLine": 1121,
+              "startOffset": 24148,
+              "startLine": 1122,
               "startColumn": 22,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -111091,8 +111198,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'B'",
-                                      "startOffset": 24119,
-                                      "startLine": 1121,
+                                      "startOffset": 24150,
+                                      "startLine": 1122,
                                       "startColumn": 24,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -111121,8 +111228,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\\''",
-                                      "startOffset": 24123,
-                                      "startLine": 1121,
+                                      "startOffset": 24154,
+                                      "startLine": 1122,
                                       "startColumn": 28,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -111151,8 +111258,8 @@
                                   "ReExp": [
                                     {
                                       "image": "[01]+",
-                                      "startOffset": 24128,
-                                      "startLine": 1121,
+                                      "startOffset": 24159,
+                                      "startLine": 1122,
                                       "startColumn": 33,
                                       "tokenTypeIdx": 18,
                                       "tokenType": {
@@ -111181,8 +111288,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\\''",
-                                      "startOffset": 24134,
-                                      "startLine": 1121,
+                                      "startOffset": 24165,
+                                      "startLine": 1122,
                                       "startColumn": 39,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -111211,8 +111318,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24138,
-              "startLine": 1121,
+              "startOffset": 24169,
+              "startLine": 1122,
               "startColumn": 43,
               "tokenTypeIdx": 3,
               "tokenType": {

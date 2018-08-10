@@ -1,6 +1,6 @@
 import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken } from './definations';
 import { SyntaxKind, Tokens, TokenEnum } from '../sql-parser/parser.g';
-import * as _ from 'lodash/lodash';
+import * as _ from 'lodash';
 
 // ----------- private func ------ //、
 /** 获取节点的叶子节点 */
@@ -107,7 +107,7 @@ const getFieldsMap = (ast) => {
 const getTabelDetails = (init, fromClause, more?: boolean) => {
   return _.flatten(_.get(getFilteredNode(fromClause, target => target.name === SyntaxKind.tableSources), '[0].children.tableSource', []).map(tableSource => {
     return getFilteredNode(tableSource, target => target.name === SyntaxKind.tableSourceItem)
-  })).map(table => {
+  })).map((table: any) => {
     const tableInfo = {
       /** 子查询透出给父查询的字段 */
       exportsFields: [],
@@ -146,7 +146,7 @@ const peel = (cst) => {
 
   const exportsFields = _.flatten(getFilteredNode(query.children[SyntaxKind.selectElements][0], target => target.name === SyntaxKind.selectElements, true).map(fields => {
     return _.filter(getLeafNode(fields, true), o => o.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx)
-  })).map(item => item.image);
+  })).map((item: any) => item.image);
 
   const tableInfo = {
     exportsFields
