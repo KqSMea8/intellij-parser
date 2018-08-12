@@ -1692,8 +1692,7 @@ specificFunction: (
 		sourceString = stringLiteral
 		| sourceExpression = expression
 	) ')'																				# extractFunctionCall
-	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')'	#
-		getFormatFunctionCall;
+	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')'	#getFormatFunctionCall;
 
 caseFuncAlternative:
 	WHEN condition = functionArg THEN consequent = functionArg;
