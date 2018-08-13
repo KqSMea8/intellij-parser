@@ -1,30 +1,26 @@
---name:SQL
---author:Xiwang
---create time:2018-07-31 13:59
---subject:BI补录系统表union结果中间表
-create table if not exists s_bi_brc_n_plan1data_to_bi_union (
-  accountcode string comment '',
-  period string comment '',
-  yearcode string comment '',
-  scenario string comment '',
-  version string comment '',
-  entitycode string comment '',
-  layout string comment '',
-  detail string comment '',
-  caliber string comment '',
-  tversion string comment '',
-  others1 string comment '',
-  others2 string comment '',
-  data string comment '',
-  create_date string comment '',
-  tab string comment '',
-  s_version string comment '',
-  union_table string comment '来源表名'
-) comment 'BI系统_补录指标表_union' partitioned by (ds string) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0001' STORED AS orc;
+CREATE TABLE IF NOT EXISTS s_bi_brc_n_plan1data_to_bi_union (
+  accountcode STRING COMMENT '',
+  period STRING COMMENT '',
+  yearcode STRING COMMENT '',
+  scenario STRING COMMENT '',
+  version STRING COMMENT '',
+  entitycode STRING COMMENT '',
+  layout STRING COMMENT '',
+  detail STRING COMMENT '',
+  caliber STRING COMMENT '',
+  tversion STRING COMMENT '',
+  others1 STRING COMMENT '',
+  others2 STRING COMMENT '',
+  data STRING COMMENT '',
+  create_date STRING COMMENT '',
+  tab STRING COMMENT '',
+  s_version STRING COMMENT '',
+  union_table STRING COMMENT '来源表名'
+) COMMENT 'BI系统_补录指标表_union' PARTITIONED BY (ds STRING) ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0001' STORED AS orc;
 
 --union脚本
-insert overwrite table s_bi_brc_n_plan1data_to_bi_union partition (ds = ${bizdate})
-select
+INSERT OVERWRITE TABLE s_bi_brc_n_plan1data_to_bi_union PARTITION (ds = ${bizdate})
+SELECT
         accountcode,
         period,
         yearcode,
@@ -42,9 +38,9 @@ select
         tab,
         s_version,
         union_table
-        from
+        FROM
         (
-            select
+            SELECT
             accountcode,
             period,
             yearcode,
@@ -61,13 +57,13 @@ select
             create_date,
             tab,
             s_version,
-            's_bi_brc_n_plan1data_to_bi' as union_table
-            from
+            's_bi_brc_n_plan1data_to_bi' AS union_table
+            FROM
             s_bi_brc_n_plan1data_to_bi
-            where
+            WHERE
             ds = ${bizdate}
-            union all
-            select
+            UNION ALL
+            SELECT
             accountcode,
             period,
             yearcode,
@@ -84,13 +80,13 @@ select
             create_date,
             '' tab,
             '' s_version,
-            's_bi_brc_n_plan1data_to_bi' as union_table
-            from
+            's_bi_brc_n_plan1data_to_bi' AS union_table
+            FROM
             s_bi_dw_brc_n_plan1data_to_bi_2
-            where
+            WHERE
             ds = ${bizdate}
-            union all
-            select
+            UNION ALL
+            SELECT
             accountcode,
             period,
             yearcode,
@@ -107,9 +103,26 @@ select
             create_date,
             tab,
             s_version,
-            's_bi_brc_n_plan1data_to_bi' as union_table
-            from
+            's_bi_brc_n_plan1data_to_bi' AS union_table
+            FROM
             s_bi_brc_n_plan1data_to_bi_2
-            where
+            WHERE
             ds = ${bizdate}
         ) a
+
+/** 从非子查询开始 */
+SELECT *, T2.period_day_id, T1.period_day_id, T1.K, T1.PAY_AMT
+FROM
+  (SELECT *, COUNT(PATY_MONEY) AS K FROM fct_order_t) T1
+  JOIN
+(SELECT M.period_day_id
+FROM
+  (
+    SELECT
+      member_id,
+      URL,
+      period_day_id
+    FROM
+      dim_seller
+  ) M ) T2;
+
