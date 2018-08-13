@@ -35,25 +35,38 @@ engineName:
 fileSizeLiteral: FILESIZE_LITERAL | decimalLiteral;
 
 tableOption:
+	tableOption1
+	| tableOption2
+	| tableOption3
+	| tableOption4
+	| tableOption5;
+
+tableOption1:
 	ENGINE '='? engineName
 	| AUTO_INCREMENT '='? decimalLiteral
 	| AVG_ROW_LENGTH '='? decimalLiteral
 	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName
 	| CHECKSUM '='? boolValue = ('0' | '1')
-	| DEFAULT? COLLATE '='? collationName
-	| COMMENT '='? STRING_LITERAL
+	| DEFAULT? COLLATE '='? collationName;
+
+tableOption2:
+	COMMENT '='? STRING_LITERAL
 	| COMPRESSION '='? STRING_LITERAL
 	| CONNECTION '='? STRING_LITERAL
 	| DATA DIRECTORY '='? STRING_LITERAL
 	| DELAY_KEY_WRITE '='? boolValue = ('0' | '1')
 	| ENCRYPTION '='? STRING_LITERAL
-	| INDEX DIRECTORY '='? STRING_LITERAL
-	| INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)
+	| INDEX DIRECTORY '='? STRING_LITERAL;
+
+tableOption3:
+	INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)
 	| KEY_BLOCK_SIZE '='? fileSizeLiteral
 	| MAX_ROWS '='? decimalLiteral
 	| MIN_ROWS '='? decimalLiteral
-	| PACK_KEYS '='? extBoolValue = ('0' | '1' | DEFAULT)
-	| PASSWORD '='? STRING_LITERAL
+	| PACK_KEYS '='? extBoolValue = ('0' | '1' | DEFAULT);
+
+tableOption4:
+	PASSWORD '='? STRING_LITERAL
 	| ROW_FORMAT '='? rowFormat = (
 		DEFAULT
 		| DYNAMIC
@@ -61,8 +74,10 @@ tableOption:
 		| COMPRESSED
 		| REDUNDANT
 		| COMPACT
-	)
-	| STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')
+	);
+
+tableOption5:
+	STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')
 	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | '0' | '1')
 	| TABLESPACE uid tablespaceStorage?
 	| UNION '='? '(' tables ')';
@@ -104,6 +119,15 @@ lengthTwoOptionalDimension:
 	'(' decimalLiteral (',' decimalLiteral)? ')';
 
 dataType:
+	dataType1
+	| dataType2
+	| dataType3
+	| dataType4
+	| dataType5
+	| dataType6
+	| dataType7;
+
+dataType1:
 	typeName = (
 		CHAR
 		| VARCHAR
@@ -113,18 +137,24 @@ dataType:
 		| LONGTEXT
 	) lengthOneDimension? BINARY? (CHARACTER SET charsetName)? (
 		COLLATE collationName
-	)?
-	| typeName = (
+	)?;
+
+dataType2:
+	typeName = (
 		TINYINT
 		| SMALLINT
 		| MEDIUMINT
 		| INT
 		| INTEGER
 		| BIGINT
-	) lengthOneDimension? UNSIGNED? ZEROFILL?
-	| typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?
-	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?
-	| typeName = (
+	) lengthOneDimension? UNSIGNED? ZEROFILL?;
+
+dataType3:
+	typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?
+	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?;
+
+dataType4:
+	typeName = (
 		DATE
 		| TINYBLOB
 		| BLOB
@@ -132,8 +162,10 @@ dataType:
 		| LONGBLOB
 		| BOOL
 		| BOOLEAN
-	)
-	| typeName = (
+	);
+
+dataType5:
+	typeName = (
 		BIT
 		| TIME
 		| TIMESTAMP
@@ -141,13 +173,17 @@ dataType:
 		| BINARY
 		| VARBINARY
 		| YEAR
-	) lengthOneDimension?
-	| typeName = (ENUM | SET) '(' STRING_LITERAL (
+	) lengthOneDimension?;
+
+dataType6:
+	typeName = (ENUM | SET) '(' STRING_LITERAL (
 		',' STRING_LITERAL
 	)* ')' BINARY? (CHARACTER SET charsetName)? (
 		COLLATE collationName
-	)?
-	| typeName = (
+	)?;
+
+dataType7:
+	typeName = (
 		GEOMETRYCOLLECTION
 		| LINESTRING
 		| MULTILINESTRING
@@ -167,7 +203,8 @@ updateStatement: singleUpdateStatement;
 
 insertStatement:
 	INSERT INTO? OVERWRITE? tableName (
-		PARTITION '(' partitions = uidList ')'
+		PARTITION '(' partitions = uidList
+		| fullColumnName '=' ID ')'
 	)? (('(' columns = uidList ')')? insertStatementValue);
 
 deleteStatement: singleDeleteStatement;

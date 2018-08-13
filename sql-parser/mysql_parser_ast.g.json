@@ -612,6 +612,93 @@
               "hasNot": false,
               "item": {
                 "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption1"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption2"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption3"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption4"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption5"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption1",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
                 "kind": "UpperName",
                 "name": "ENGINE"
               }
@@ -921,7 +1008,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption2",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -937,12 +1031,12 @@
               }
             },
             {
-              "index": 8,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 6,
+                "index": 0,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -974,12 +1068,12 @@
               }
             },
             {
-              "index": 9,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 7,
+                "index": 1,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1011,12 +1105,12 @@
               }
             },
             {
-              "index": 10,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 8,
+                "index": 2,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1058,12 +1152,12 @@
               }
             },
             {
-              "index": 11,
+              "index": 3,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 9,
+                "index": 3,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1095,12 +1189,12 @@
               }
             },
             {
-              "index": 12,
+              "index": 4,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 10,
+                "index": 4,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1110,7 +1204,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 3,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -1122,7 +1216,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "Stringliteral",
                           "content": "'0'"
                         }
@@ -1138,7 +1232,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "Stringliteral",
                           "content": "'1'"
                         }
@@ -1165,12 +1259,12 @@
               }
             },
             {
-              "index": 13,
+              "index": 5,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 11,
+                "index": 5,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1212,12 +1306,12 @@
               }
             },
             {
-              "index": 14,
+              "index": 6,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 12,
+                "index": 6,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1233,7 +1327,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption3",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -1249,12 +1350,12 @@
               }
             },
             {
-              "index": 15,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 13,
+                "index": 0,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1264,7 +1365,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 4,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -1335,12 +1436,12 @@
               }
             },
             {
-              "index": 16,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 14,
+                "index": 1,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1372,12 +1473,12 @@
               }
             },
             {
-              "index": 17,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 15,
+                "index": 2,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1387,7 +1488,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 2,
+                "index": 0,
                 "kind": "LowerName",
                 "name": "decimalLiteral"
               }
@@ -1409,12 +1510,12 @@
               }
             },
             {
-              "index": 18,
+              "index": 3,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 16,
+                "index": 3,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1424,7 +1525,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 3,
+                "index": 1,
                 "kind": "LowerName",
                 "name": "decimalLiteral"
               }
@@ -1446,12 +1547,12 @@
               }
             },
             {
-              "index": 19,
+              "index": 4,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 17,
+                "index": 4,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1461,7 +1562,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 5,
+                "index": 2,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -1473,7 +1574,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 2,
+                          "index": 0,
                           "kind": "Stringliteral",
                           "content": "'0'"
                         }
@@ -1489,7 +1590,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 2,
+                          "index": 0,
                           "kind": "Stringliteral",
                           "content": "'1'"
                         }
@@ -1505,7 +1606,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 2,
+                          "index": 0,
                           "kind": "UpperName",
                           "name": "DEFAULT"
                         }
@@ -1516,7 +1617,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption4",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -1532,12 +1640,12 @@
               }
             },
             {
-              "index": 20,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 18,
+                "index": 0,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1547,7 +1655,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 6,
+                "index": 0,
                 "kind": "UpperName",
                 "name": "STRING_LITERAL"
               }
@@ -1569,12 +1677,12 @@
               }
             },
             {
-              "index": 21,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 19,
+                "index": 1,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1584,7 +1692,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 6,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -1596,7 +1704,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 3,
+                          "index": 0,
                           "kind": "UpperName",
                           "name": "DEFAULT"
                         }
@@ -1687,7 +1795,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption5",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -1703,12 +1818,12 @@
               }
             },
             {
-              "index": 22,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 20,
+                "index": 0,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1718,7 +1833,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 7,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -1730,7 +1845,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 4,
+                          "index": 0,
                           "kind": "UpperName",
                           "name": "DEFAULT"
                         }
@@ -1746,7 +1861,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 3,
+                          "index": 0,
                           "kind": "Stringliteral",
                           "content": "'0'"
                         }
@@ -1762,7 +1877,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 3,
+                          "index": 0,
                           "kind": "Stringliteral",
                           "content": "'1'"
                         }
@@ -1789,12 +1904,12 @@
               }
             },
             {
-              "index": 23,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 21,
+                "index": 1,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -1804,7 +1919,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 8,
+                "index": 2,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -1816,7 +1931,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 5,
+                          "index": 1,
                           "kind": "UpperName",
                           "name": "DEFAULT"
                         }
@@ -1832,7 +1947,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 4,
+                          "index": 1,
                           "kind": "Stringliteral",
                           "content": "'0'"
                         }
@@ -1848,7 +1963,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 4,
+                          "index": 1,
                           "kind": "Stringliteral",
                           "content": "'1'"
                         }
@@ -1885,7 +2000,7 @@
               }
             },
             {
-              "index": 24,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -1912,12 +2027,12 @@
               }
             },
             {
-              "index": 25,
+              "index": 3,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 22,
+                "index": 2,
                 "kind": "Stringliteral",
                 "content": "'='"
               }
@@ -2941,6 +3056,125 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType1"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType2"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType3"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType4"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType5"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType6"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType1",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
                 "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
@@ -3152,7 +3386,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType2",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -3162,7 +3403,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 2,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -3265,18 +3506,18 @@
               }
             },
             {
-              "index": 4,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 1,
+                "index": 0,
                 "kind": "LowerName",
                 "name": "lengthOneDimension"
               }
             },
             {
-              "index": 5,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -3287,7 +3528,7 @@
               }
             },
             {
-              "index": 6,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -3298,7 +3539,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType3",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -3308,7 +3556,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 3,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -3363,7 +3611,7 @@
               }
             },
             {
-              "index": 7,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -3374,23 +3622,23 @@
               }
             },
             {
-              "index": 8,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 1,
+                "index": 0,
                 "kind": "UpperName",
                 "name": "UNSIGNED"
               }
             },
             {
-              "index": 9,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 1,
+                "index": 0,
                 "kind": "UpperName",
                 "name": "ZEROFILL"
               }
@@ -3406,7 +3654,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 4,
+                "index": 2,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -3445,7 +3693,7 @@
               }
             },
             {
-              "index": 10,
+              "index": 3,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -3456,29 +3704,36 @@
               }
             },
             {
-              "index": 11,
+              "index": 4,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 2,
+                "index": 1,
                 "kind": "UpperName",
                 "name": "UNSIGNED"
               }
             },
             {
-              "index": 12,
+              "index": 5,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 2,
+                "index": 1,
                 "kind": "UpperName",
                 "name": "ZEROFILL"
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType4",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -3488,7 +3743,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 5,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -3607,7 +3862,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType5",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -3617,7 +3879,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 6,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -3693,7 +3955,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "UpperName",
                           "name": "BINARY"
                         }
@@ -3736,18 +3998,25 @@
               }
             },
             {
-              "index": 13,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 2,
+                "index": 0,
                 "kind": "LowerName",
                 "name": "lengthOneDimension"
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType6",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -3757,7 +4026,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 7,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -3785,7 +4054,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "UpperName",
                           "name": "SET"
                         }
@@ -3864,18 +4133,18 @@
               }
             },
             {
-              "index": 14,
+              "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 2,
+                "index": 0,
                 "kind": "UpperName",
                 "name": "BINARY"
               }
             },
             {
-              "index": 15,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -3892,7 +4161,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "UpperName",
                           "name": "CHARACTER"
                         }
@@ -3902,7 +4171,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 2,
+                          "index": 1,
                           "kind": "UpperName",
                           "name": "SET"
                         }
@@ -3912,7 +4181,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "LowerName",
                           "name": "charsetName"
                         }
@@ -3923,7 +4192,7 @@
               }
             },
             {
-              "index": 16,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -3940,7 +4209,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "UpperName",
                           "name": "COLLATE"
                         }
@@ -3950,7 +4219,7 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
+                          "index": 0,
                           "kind": "LowerName",
                           "name": "collationName"
                         }
@@ -3961,7 +4230,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType7",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
@@ -3971,7 +4247,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 8,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -4263,7 +4539,7 @@
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 0,
+                "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -4298,6 +4574,42 @@
                           "index": 0,
                           "kind": "LowerName",
                           "name": "uidList"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "fullColumnName"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'='"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ID"
                         }
                       },
                       {
