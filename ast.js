@@ -184,4 +184,29 @@ FROM
           dim_seller
       ) M
   ) K,
+	fct_order_t T;
+	
+
+	SELECT
+  *,
+  K.
+FROM
+  (
+    SELECT
+      COUNT(hsihsi, hsihi)
+    FROM
+      dws_global
+      JOIN
+    SELECT
+      *
+    FROM
+      (
+        SELECT
+          member_id,
+          URL,
+          period_day_id
+        FROM
+          dim_seller
+      ) M
+  ) K,
   fct_order_t T;

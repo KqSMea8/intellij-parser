@@ -264,15 +264,24 @@ orderByExpression: expression order = (ASC | DESC)?;
 
 limitClause: LIMIT decimalLiteral+ OFFSET decimalLiteral+;
 
-expression: predicate logicalExpression?;
+expression: predicate logicalExpression*;
+
+//
+expression: expressionAtom (comparisonOperator predicate predicateReplace)?; logicalExpression?;
+
+
+//
+
+
+
 
 logicalExpression:
-	logicalOperator expression logicalExpression?;
+	logicalOperator expression;
 
 predicate: expressionAtom predicateReplace?;
 
 predicateReplace:
-	comparisonOperator predicate predicateReplace?;
+	comparisonOperator predicate;
 
 expressionAtom: constant | fullColumnName;
 

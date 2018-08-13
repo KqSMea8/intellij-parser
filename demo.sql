@@ -110,3 +110,19 @@ SELECT
             ds = ${bizdate}
         ) a
 
+/** 从非子查询开始 */
+SELECT *, T2.period_day_id, T1.period_day_id, T1.K, T1.PAY_AMT
+FROM
+  (SELECT *, COUNT(PATY_MONEY) AS K FROM fct_order_t) T1
+  JOIN
+(SELECT M.period_day_id
+FROM
+  (
+    SELECT
+      member_id,
+      URL,
+      period_day_id
+    FROM
+      dim_seller
+  ) M ) T2;
+

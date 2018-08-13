@@ -105,8 +105,19 @@ const getCompleteInfo = (ast, pos) => {
 
 /** 获取详细tableSource信息的接口，more为true时，提供额外的透出字段信息 */
 const getTabelDetails = (init, fromClause, more?: boolean) => {
-  return _.flatten(_.get(getFilteredNode(fromClause, target => target.name === SyntaxKind.tableSources), '[0].children.tableSource', []).map(tableSource => {
-    return getFilteredNode(tableSource, target => target.name === SyntaxKind.tableSourceItem)
+  return _.flattenDeep(_.get(getFilteredNode(fromClause, target => target.name === SyntaxKind.tableSources), '[0].children.tableSource', []).map(tableSource => {
+    const tableSourceItems = [];
+    if(tableSource.children[SyntaxKind.joinPart]) {
+      tableSource.children[SyntaxKind.joinPart].forEach(join => {
+        tableSourceItems.push(getFilteredNode(join, target => target.name === SyntaxKind.tableSourceItem))
+      })
+    }
+
+    if(tableSource.children[SyntaxKind.tableSourceItem]) {
+      tableSourceItems.push(tableSource.children[SyntaxKind.tableSourceItem])
+    }
+    
+    return tableSourceItems;
   })).map((table: any) => {
     const tableInfo = {
       /** 子查询透出给父查询的字段 */
@@ -173,11 +184,11 @@ const peel = (cst) => {
     if (fields.children[SyntaxKind.functionCall]) {
       /** 函数场景 */
       const functionCallStructure = fields.children[SyntaxKind.functionCall][0].children;
-      const args = _.filter(getLeafNode(functionCallStructure[SyntaxKind.functionArgs][0], true), leaf => leaf.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx);
-      const func = getLeafNode(functionCallStructure[SyntaxKind.scalarFunctionName][0] || functionCallStructure[SyntaxKind.specificFunction][0])[0].image;
+      const args = functionCallStructure[SyntaxKind.functionArgs] ? _.filter(getLeafNode(functionCallStructure[SyntaxKind.functionArgs][0], true), leaf => leaf.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx) : [];
+      const func = (getLeafNode((functionCallStructure[SyntaxKind.scalarFunctionName] || [])[0] || (functionCallStructure[SyntaxKind.specificFunction] || [])[0])[0] || {}).image;
 
       /** 未找到函数别名时，使用完整函数体的字符串作为名称 */
-      name = `${func}(${args.map(arg => arg.image).join(', ')})`;
+      name = func ? `${func}(${args.map(arg => arg.image).join(', ')})` : '';
     } else if (fields.children[SyntaxKind.fullColumnName] && !hasStar) {
       /** 常规表字段场景 */
       const fullColumnNameStructure = fields.children[SyntaxKind.fullColumnName][0].children;
@@ -229,7 +240,7 @@ const getAliasMap = (ast) => {
 
 /** 获取指定FROM之后的tableSource */
 const getNextTableSource = (ast, token) => {
-  const parent = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fromClause && target.children[TokenEnum.FROM][0] === token);
+  const parent = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fromClause && target.children[TokenEnum.FROM][0].startOffset === token.startOffset);
   return parent ? getTabelDetails({}, parent[0]) : []
 }
 
