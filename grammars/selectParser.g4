@@ -303,22 +303,13 @@ limitClause: LIMIT decimalLiteral+ OFFSET decimalLiteral+;
 
 expression: predicate logicalExpression*;
 
-//
-expression: expressionAtom (comparisonOperator predicate predicateReplace)?; logicalExpression?;
+// expression: expressionAtom (comparisonOperator predicate predicateReplace)?; logicalExpression?;
 
-
-//
-
-
-
-
-logicalExpression:
-	logicalOperator expression;
+logicalExpression: logicalOperator expression;
 
 predicate: expressionAtom predicateReplace?;
 
-predicateReplace:
-	comparisonOperator predicate;
+predicateReplace: comparisonOperator predicate;
 
 expressionAtom: constant | fullColumnName;
 
@@ -390,12 +381,16 @@ tableSourceItem:
 
 tableName: fullId;
 
-selectElement: fullId '*' | fullColumnName (AS? uid)? | functionCall (AS? uid)?	;
+selectElement:
+	fullId '*'
+	| fullColumnName (AS? uid)?
+	| functionCall (AS? uid)?;
 
 functionCall:
-	specificFunction | scalarFunctionName '(' functionArgs? ')';
+	specificFunction
+	| scalarFunctionName '(' functionArgs? ')';
 
-functionArgs: functionArg (',' functionArg)*;				
+functionArgs: functionArg (',' functionArg)*;
 
 scalarFunctionName: COUNT;
 
@@ -405,29 +400,35 @@ specificFunction: (
 		| CURRENT_TIMESTAMP
 		| CURRENT_USER
 		| LOCALTIME
-	)															
-	| CONVERT '(' expression (',' convertedDataType) | (USING charsetName) ')'
-	| CAST '(' expression AS convertedDataType ')'				
-	| VALUES '(' fullColumnName ')'						
+	)
+	| CONVERT '(' expression (',' convertedDataType)
+	| (USING charsetName) ')'
+	| CAST '(' expression AS convertedDataType ')'
+	| VALUES '(' fullColumnName ')'
 	| CASE expression caseFuncAlternative+ (
 		ELSE elseArg = functionArg
-	)? END													
-	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END	
-	| CHAR '(' functionArgs (USING charsetName)? ')'			
-	| POSITION '(' expression IN expression ')' 
+	)? END
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END
+	| CHAR '(' functionArgs (USING charsetName)? ')'
+	| POSITION '(' expression IN expression ')'
 	| (SUBSTR | SUBSTRING) '(' expression FROM expression (
 		FOR expression
-	)? ')' 
-	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression ? FROM expression ')' 
-	| TRIM '(' expression FROM expression ')' 
+	)? ')'
+	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression? FROM expression ')'
+	| TRIM '(' expression FROM expression ')'
 	| WEIGHT_STRING '(' expression (
 		AS stringFormat = (CHAR | BINARY) '(' decimalLiteral ')'
 	)? levelsInWeightString? ')'
-	| EXTRACT '(' intervalType FROM expression ')'																			
+	| EXTRACT '(' intervalType FROM expression ')'
 	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')';
 
 levelsInWeightString:
-	LEVEL decimalLiteral (orderType = (ASC | DESC | REVERSE)? (',' levelInWeightListElement)*) | '-' decimalLiteral;
+	LEVEL decimalLiteral (
+		orderType = (ASC | DESC | REVERSE)? (
+			',' levelInWeightListElement
+		)*
+	)
+	| '-' decimalLiteral;
 
 levelInWeightListElement:
 	decimalLiteral orderType = (ASC | DESC | REVERSE)?;
@@ -469,9 +470,7 @@ convertedDataType:
 caseFuncAlternative:
 	WHEN condition = functionArg THEN consequent = functionArg;
 
-functionArg:
-	functionCall
-	| expression;
+functionArg: functionCall | expression;
 
 fullColumnName: uid (dottedId dottedId?)?;
 

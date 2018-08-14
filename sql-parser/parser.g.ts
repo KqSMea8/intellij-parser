@@ -1984,7 +1984,7 @@ export class Parser extends chevrotain.Parser {
     this.RULE('expression', () => {
       this.SUBRULE(this.predicate);
 
-      this.OPTION(() => {
+      this.MANY(() => {
         this.SUBRULE(this.logicalExpression);
       });
     });
@@ -1992,10 +1992,6 @@ export class Parser extends chevrotain.Parser {
     this.RULE('logicalExpression', () => {
       this.SUBRULE(this.logicalOperator);
       this.SUBRULE(this.expression);
-
-      this.OPTION(() => {
-        this.SUBRULE(this.logicalExpression);
-      });
     });
 
     this.RULE('predicate', () => {
@@ -2009,10 +2005,6 @@ export class Parser extends chevrotain.Parser {
     this.RULE('predicateReplace', () => {
       this.SUBRULE(this.comparisonOperator);
       this.SUBRULE(this.predicate);
-
-      this.OPTION(() => {
-        this.SUBRULE(this.predicateReplace);
-      });
     });
 
     this.RULE('expressionAtom', () => {

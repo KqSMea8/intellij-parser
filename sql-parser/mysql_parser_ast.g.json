@@ -7034,7 +7034,7 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
+              "suff": "*",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -7072,17 +7072,6 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "expression"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "logicalExpression"
               }
             }
           ]
@@ -7150,17 +7139,6 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "predicate"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "predicateReplace"
               }
             }
           ]
