@@ -203,8 +203,10 @@ updateStatement: singleUpdateStatement;
 
 insertStatement:
 	INSERT INTO? OVERWRITE? tableName (
-		PARTITION '(' partitions = uidList
-		| fullColumnName '=' ID ')'
+		PARTITION BY? (
+			uidList
+			| '(' fullColumnName '=' constant ')'
+		)
 	)? (('(' columns = uidList ')')? insertStatementValue);
 
 deleteStatement: singleDeleteStatement;
@@ -383,12 +385,12 @@ tableName: fullId;
 
 selectElement:
 	fullId '*'
-	| fullColumnName (AS? uid)?
-	| functionCall (AS? uid)?;
+	| functionCall (AS? uid)?
+	| fullColumnName (AS? uid)?;
 
 functionCall:
 	specificFunction
-	| scalarFunctionName '(' functionArgs? ')';
+	| (scalarFunctionName | fullId) '(' functionArgs? ')';
 
 functionArgs: functionArg (',' functionArg)*;
 
