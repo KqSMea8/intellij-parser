@@ -20,15 +20,7 @@ createTable:
 	)? partitionDefinitions?;
 
 partitionDefinitions:
-	PARTITION BY partitionFunctionDefinition (
-		PARTITIONS count = decimalLiteral
-	)?;
-
-partitionFunctionDefinition:
-	LINEAR? HASH '(' expression ')'
-	| LINEAR? KEY (ALGORITHM '=' algType = ('1' | '2'))? '(' uidList ')'
-	| RANGE ('(' expression ')' | COLUMNS '(' uidList ')')
-	| LIST ('(' expression ')' | COLUMNS '(' uidList ')');
+	PARTITION BY '(' createDefinition ')';
 
 engineName:
 	ARCHIVE

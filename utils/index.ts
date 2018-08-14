@@ -177,38 +177,40 @@ const peel = (cst) => {
   }
 
   /** 异常输入处理，exports中包含*的时候，直接透出* */
-  exportsFields = _.uniqBy(exportsFields.concat(_.flatten((query.children[SyntaxKind.selectElements][0].children[SyntaxKind.selectElement] || []).map(fields => {
-    let name = '';
-    let alias = fields.children[SyntaxKind.uid] ? getLeafNode(fields.children[SyntaxKind.uid][0])[0].image : '';
-
-    if (fields.children[SyntaxKind.functionCall]) {
-      /** 函数场景 */
-      const functionCallStructure = fields.children[SyntaxKind.functionCall][0].children;
-      const args = functionCallStructure[SyntaxKind.functionArgs] ? _.filter(getLeafNode(functionCallStructure[SyntaxKind.functionArgs][0], true), leaf => leaf.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx) : [];
-      const func = (getLeafNode((functionCallStructure[SyntaxKind.scalarFunctionName] || [])[0] || (functionCallStructure[SyntaxKind.specificFunction] || [])[0])[0] || {}).image;
-
-      /** 未找到函数别名时，使用完整函数体的字符串作为名称 */
-      name = func ? `${func}(${args.map(arg => arg.image).join(', ')})` : '';
-    } else if (fields.children[SyntaxKind.fullColumnName] && !hasStar) {
-      /** 常规表字段场景 */
-      const fullColumnNameStructure = fields.children[SyntaxKind.fullColumnName][0].children;
-      /** 级联字段，找到最后一个.之后的值作为字段名 */
-      if (fullColumnNameStructure[SyntaxKind.dottedId]) {
-        name = getLeafNode(fullColumnNameStructure[SyntaxKind.dottedId].slice(-1)[0])[0].image.slice(1);
+  if(query) {
+    exportsFields = _.uniqBy(exportsFields.concat(_.flatten((query.children[SyntaxKind.selectElements][0].children[SyntaxKind.selectElement] || []).map(fields => {
+      let name = '';
+      let alias = fields.children[SyntaxKind.uid] ? getLeafNode(fields.children[SyntaxKind.uid][0])[0].image : '';
+  
+      if (fields.children[SyntaxKind.functionCall]) {
+        /** 函数场景 */
+        const functionCallStructure = fields.children[SyntaxKind.functionCall][0].children;
+        const args = functionCallStructure[SyntaxKind.functionArgs] ? _.filter(getLeafNode(functionCallStructure[SyntaxKind.functionArgs][0], true), leaf => leaf.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx) : [];
+        const func = (getLeafNode((functionCallStructure[SyntaxKind.scalarFunctionName] || [])[0] || (functionCallStructure[SyntaxKind.specificFunction] || [])[0])[0] || {}).image;
+  
+        /** 未找到函数别名时，使用完整函数体的字符串作为名称 */
+        name = func ? `${func}(${args.map(arg => arg.image).join(', ')})` : '';
+      } else if (fields.children[SyntaxKind.fullColumnName] && !hasStar) {
+        /** 常规表字段场景 */
+        const fullColumnNameStructure = fields.children[SyntaxKind.fullColumnName][0].children;
+        /** 级联字段，找到最后一个.之后的值作为字段名 */
+        if (fullColumnNameStructure[SyntaxKind.dottedId]) {
+          name = getLeafNode(fullColumnNameStructure[SyntaxKind.dottedId].slice(-1)[0])[0].image.slice(1);
+        } else {
+          /** 非级联的简单场景 */
+          name = getLeafNode(fullColumnNameStructure[SyntaxKind.uid][0])[0].image;
+        }
       } else {
-        /** 非级联的简单场景 */
-        name = getLeafNode(fullColumnNameStructure[SyntaxKind.uid][0])[0].image;
+        name = '*';
+        alias = ''
       }
-    } else {
-      name = '*';
-      alias = ''
-    }
-
-    return {
-      name,
-      alias
-    }
-  }))), 'name');
+  
+      return {
+        name,
+        alias
+      }
+    }))), 'name');
+  }
 
   const tableInfo = {
     exportsFields
