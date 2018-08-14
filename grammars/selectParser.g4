@@ -317,8 +317,6 @@ limitClause: LIMIT decimalLiteral+ OFFSET decimalLiteral+;
 
 expression: predicate logicalExpression*;
 
-// expression: expressionAtom (comparisonOperator predicate predicateReplace)?; logicalExpression?;
-
 logicalExpression: logicalOperator expression;
 
 predicate: expressionAtom predicateReplace?;
@@ -368,9 +366,11 @@ comparisonOperator:
 selectElements: ('*' | selectElement) (',' selectElement)*;
 
 fromClause:
-	FROM tableSources (WHERE whereExpr = expression)? (
-		GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?
-	)? (HAVING havingExpr = expression)?;
+	FROM tableSources whereClause? groupClause? havingClause?;
+
+whereClause: WHERE whereExpr = expression;
+groupClause: GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
+havingClause: HAVING havingExpr = expression;
 
 tableSources: tableSource (',' tableSource)*;
 
@@ -422,7 +422,7 @@ specificFunction: (
 	| CASE expression caseFuncAlternative+ (
 		ELSE elseArg = functionArg
 	)? END
-	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (AS uid)?
 	| CHAR '(' functionArgs (USING charsetName)? ')'
 	| POSITION '(' expression IN expression ')'
 	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression? FROM expression ')'

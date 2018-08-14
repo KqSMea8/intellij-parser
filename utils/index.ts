@@ -239,9 +239,9 @@ const getAliasMap = (ast) => {
 }
 
 /** 获取指定FROM之后的tableSource */
-const getNextTableSource = (ast, token) => {
+const getNextTableSource = (ast, token, more) => {
   const parent = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fromClause && target.children[TokenEnum.FROM][0].startOffset === token.startOffset);
-  return parent ? getTabelDetails({}, parent[0]) : []
+  return parent ? getTabelDetails({}, parent[0], more) : []
 }
 
 /** 获取级联字段的完整路径 */

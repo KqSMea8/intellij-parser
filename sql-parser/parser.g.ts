@@ -81,6 +81,9 @@ export enum SyntaxKind {
   comparisonOperator = 'comparisonOperator',
   selectElements = 'selectElements',
   fromClause = 'fromClause',
+  whereClause = 'whereClause',
+  groupClause = 'groupClause',
+  havingClause = 'havingClause',
   tableSources = 'tableSources',
   groupByItem = 'groupByItem',
   tableSource = 'tableSource',
@@ -2125,6 +2128,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('predicateReplace', () => {
+<<<<<<< HEAD
       this.OR([
         {
           ALT: () => {
@@ -2139,6 +2143,10 @@ export class Parser extends chevrotain.Parser {
           },
         },
       ]);
+=======
+      this.SUBRULE(this.comparisonOperator);
+      this.SUBRULE(this.predicate);
+>>>>>>> finish demo3 test
     });
 
     this.RULE('expressionAtom', () => {
@@ -2392,30 +2400,42 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.tableSources);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.WHERE);
-        this.SUBRULE(this.expression);
+        this.SUBRULE(this.whereClause);
       });
 
       this.OPTION2(() => {
-        this.CONSUME(Tokens.GROUP);
-        this.CONSUME(Tokens.BY);
-        this.SUBRULE(this.groupByItem);
-
-        this.MANY(() => {
-          this.CONSUME(Tokens.COMMA);
-          this.SUBRULE2(this.groupByItem);
-        });
-
-        this.OPTION3(() => {
-          this.CONSUME(Tokens.WITH);
-          this.CONSUME(Tokens.ROLLUP);
-        });
+        this.SUBRULE(this.groupClause);
       });
 
-      this.OPTION4(() => {
-        this.CONSUME(Tokens.HAVING);
-        this.SUBRULE2(this.expression);
+      this.OPTION3(() => {
+        this.SUBRULE(this.havingClause);
       });
+    });
+
+    this.RULE('whereClause', () => {
+      this.CONSUME(Tokens.WHERE);
+      this.SUBRULE(this.expression);
+    });
+
+    this.RULE('groupClause', () => {
+      this.CONSUME(Tokens.GROUP);
+      this.CONSUME(Tokens.BY);
+      this.SUBRULE(this.groupByItem);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.groupByItem);
+      });
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.WITH);
+        this.CONSUME(Tokens.ROLLUP);
+      });
+    });
+
+    this.RULE('havingClause', () => {
+      this.CONSUME(Tokens.HAVING);
+      this.SUBRULE(this.expression);
     });
 
     this.RULE('tableSources', () => {
@@ -2819,6 +2839,11 @@ export class Parser extends chevrotain.Parser {
             });
 
             this.CONSUME2(Tokens.END);
+
+            this.OPTION3(() => {
+              this.CONSUME2(Tokens.AS);
+              this.SUBRULE(this.uid);
+            });
           },
         },
         {
@@ -2827,7 +2852,7 @@ export class Parser extends chevrotain.Parser {
             this.CONSUME4(Tokens.LR_BRACKET);
             this.SUBRULE(this.functionArgs);
 
-            this.OPTION3(() => {
+            this.OPTION4(() => {
               this.CONSUME2(Tokens.USING);
               this.SUBRULE2(this.charsetName);
             });
@@ -2847,6 +2872,36 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
+<<<<<<< HEAD
+=======
+            this.OR3([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SUBSTR);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SUBSTRING);
+                },
+              },
+            ]);
+            this.CONSUME6(Tokens.LR_BRACKET);
+            this.SUBRULE6(this.expression);
+            this.CONSUME(Tokens.FROM);
+            this.SUBRULE7(this.expression);
+
+            this.OPTION5(() => {
+              this.CONSUME(Tokens.FOR);
+              this.SUBRULE8(this.expression);
+            });
+
+            this.CONSUME6(Tokens.RR_BRACKET);
+          },
+        },
+        {
+          ALT: () => {
+>>>>>>> finish demo3 test
             this.CONSUME(Tokens.TRIM);
             this.CONSUME6(Tokens.LR_BRACKET);
             this.OR3([
@@ -2867,8 +2922,13 @@ export class Parser extends chevrotain.Parser {
               },
             ]);
 
+<<<<<<< HEAD
             this.OPTION4(() => {
               this.SUBRULE6(this.expression);
+=======
+            this.OPTION6(() => {
+              this.SUBRULE9(this.expression);
+>>>>>>> finish demo3 test
             });
 
             this.CONSUME(Tokens.FROM);
@@ -2892,9 +2952,15 @@ export class Parser extends chevrotain.Parser {
             this.CONSUME8(Tokens.LR_BRACKET);
             this.SUBRULE10(this.expression);
 
+<<<<<<< HEAD
             this.OPTION5(() => {
               this.CONSUME2(Tokens.AS);
               this.OR4([
+=======
+            this.OPTION7(() => {
+              this.CONSUME3(Tokens.AS);
+              this.OR5([
+>>>>>>> finish demo3 test
                 {
                   ALT: () => {
                     this.CONSUME2(Tokens.CHAR);
@@ -2911,7 +2977,11 @@ export class Parser extends chevrotain.Parser {
               this.CONSUME8(Tokens.RR_BRACKET);
             });
 
+<<<<<<< HEAD
             this.OPTION6(() => {
+=======
+            this.OPTION8(() => {
+>>>>>>> finish demo3 test
               this.SUBRULE(this.levelsInWeightString);
             });
 
