@@ -9,6 +9,8 @@ export enum SyntaxKind {
   dmlStatement = 'dmlStatement',
   ddlStatement = 'ddlStatement',
   createTable = 'createTable',
+  partitionDefinitions = 'partitionDefinitions',
+  partitionFunctionDefinition = 'partitionFunctionDefinition',
   engineName = 'engineName',
   fileSizeLiteral = 'fileSizeLiteral',
   tableOption = 'tableOption',
@@ -230,6 +232,112 @@ export class Parser extends chevrotain.Parser {
           this.SUBRULE2(this.tableOption);
         });
       });
+
+      this.OPTION5(() => {
+        this.SUBRULE(this.partitionDefinitions);
+      });
+    });
+
+    this.RULE('partitionDefinitions', () => {
+      this.CONSUME(Tokens.PARTITION);
+      this.CONSUME(Tokens.BY);
+      this.SUBRULE(this.partitionFunctionDefinition);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.PARTITIONS);
+        this.SUBRULE(this.decimalLiteral);
+      });
+    });
+
+    this.RULE('partitionFunctionDefinition', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.CONSUME(Tokens.LINEAR);
+            });
+
+            this.CONSUME(Tokens.HASH);
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.SUBRULE(this.expression);
+            this.CONSUME(Tokens.RR_BRACKET);
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION2(() => {
+              this.CONSUME2(Tokens.LINEAR);
+            });
+
+            this.CONSUME(Tokens.KEY);
+
+            this.OPTION3(() => {
+              this.CONSUME(Tokens.ALGORITHM);
+              this.CONSUME(Tokens.EQUAL_SYMBOL);
+              this.OR2([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.ONE_DECIMAL);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.TWO_DECIMAL);
+                  },
+                },
+              ]);
+            });
+
+            this.CONSUME2(Tokens.LR_BRACKET);
+            this.SUBRULE(this.uidList);
+            this.CONSUME2(Tokens.RR_BRACKET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RANGE);
+            this.OR3([
+              {
+                ALT: () => {
+                  this.CONSUME3(Tokens.LR_BRACKET);
+                  this.SUBRULE2(this.expression);
+                  this.CONSUME3(Tokens.RR_BRACKET);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.COLUMNS);
+                  this.CONSUME4(Tokens.LR_BRACKET);
+                  this.SUBRULE2(this.uidList);
+                  this.CONSUME4(Tokens.RR_BRACKET);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LIST);
+            this.OR4([
+              {
+                ALT: () => {
+                  this.CONSUME5(Tokens.LR_BRACKET);
+                  this.SUBRULE3(this.expression);
+                  this.CONSUME5(Tokens.RR_BRACKET);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME2(Tokens.COLUMNS);
+                  this.CONSUME6(Tokens.LR_BRACKET);
+                  this.SUBRULE3(this.uidList);
+                  this.CONSUME6(Tokens.RR_BRACKET);
+                },
+              },
+            ]);
+          },
+        },
+      ]);
     });
 
     this.RULE('engineName', () => {
@@ -1031,6 +1139,11 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.CHAR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STRING);
           },
         },
         {

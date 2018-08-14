@@ -17,7 +17,18 @@ ddlStatement: createTable;
 createTable:
 	CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
 		tableOption (','? tableOption)*
+	)? partitionDefinitions?;
+
+partitionDefinitions:
+	PARTITION BY partitionFunctionDefinition (
+		PARTITIONS count = decimalLiteral
 	)?;
+
+partitionFunctionDefinition:
+	LINEAR? HASH '(' expression ')'
+	| LINEAR? KEY (ALGORITHM '=' algType = ('1' | '2'))? '(' uidList ')'
+	| RANGE ('(' expression ')' | COLUMNS '(' uidList ')')
+	| LIST ('(' expression ')' | COLUMNS '(' uidList ')');
 
 engineName:
 	ARCHIVE
@@ -130,6 +141,7 @@ dataType:
 dataType1:
 	typeName = (
 		CHAR
+		| STRING
 		| VARCHAR
 		| TINYTEXT
 		| TEXT
