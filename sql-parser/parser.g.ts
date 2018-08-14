@@ -880,19 +880,6 @@ export class Parser extends chevrotain.Parser {
             this.CONSUME(Tokens.RR_BRACKET);
           },
         },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PARTITION);
-
-            this.OPTION5(() => {
-              this.CONSUME(Tokens.BY);
-            });
-
-            this.CONSUME2(Tokens.LR_BRACKET);
-            this.SUBRULE(this.createDefinition);
-            this.CONSUME2(Tokens.RR_BRACKET);
-          },
-        },
       ]);
     });
 
@@ -1161,11 +1148,6 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.CHAR);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.STRING);
           },
         },
         {
@@ -2152,7 +2134,6 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('predicateReplace', () => {
-<<<<<<< HEAD
       this.OR([
         {
           ALT: () => {
@@ -2167,10 +2148,6 @@ export class Parser extends chevrotain.Parser {
           },
         },
       ]);
-=======
-      this.SUBRULE(this.comparisonOperator);
-      this.SUBRULE(this.predicate);
->>>>>>> finish demo3 test
     });
 
     this.RULE('expressionAtom', () => {
@@ -2896,36 +2873,6 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-<<<<<<< HEAD
-=======
-            this.OR3([
-              {
-                ALT: () => {
-                  this.CONSUME(Tokens.SUBSTR);
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME(Tokens.SUBSTRING);
-                },
-              },
-            ]);
-            this.CONSUME6(Tokens.LR_BRACKET);
-            this.SUBRULE6(this.expression);
-            this.CONSUME(Tokens.FROM);
-            this.SUBRULE7(this.expression);
-
-            this.OPTION5(() => {
-              this.CONSUME(Tokens.FOR);
-              this.SUBRULE8(this.expression);
-            });
-
-            this.CONSUME6(Tokens.RR_BRACKET);
-          },
-        },
-        {
-          ALT: () => {
->>>>>>> finish demo3 test
             this.CONSUME(Tokens.TRIM);
             this.CONSUME6(Tokens.LR_BRACKET);
             this.OR3([
@@ -2946,13 +2893,8 @@ export class Parser extends chevrotain.Parser {
               },
             ]);
 
-<<<<<<< HEAD
-            this.OPTION4(() => {
+            this.OPTION5(() => {
               this.SUBRULE6(this.expression);
-=======
-            this.OPTION6(() => {
-              this.SUBRULE9(this.expression);
->>>>>>> finish demo3 test
             });
 
             this.CONSUME(Tokens.FROM);
@@ -2976,15 +2918,9 @@ export class Parser extends chevrotain.Parser {
             this.CONSUME8(Tokens.LR_BRACKET);
             this.SUBRULE10(this.expression);
 
-<<<<<<< HEAD
-            this.OPTION5(() => {
-              this.CONSUME2(Tokens.AS);
-              this.OR4([
-=======
-            this.OPTION7(() => {
+            this.OPTION6(() => {
               this.CONSUME3(Tokens.AS);
-              this.OR5([
->>>>>>> finish demo3 test
+              this.OR4([
                 {
                   ALT: () => {
                     this.CONSUME2(Tokens.CHAR);
@@ -3001,11 +2937,7 @@ export class Parser extends chevrotain.Parser {
               this.CONSUME8(Tokens.RR_BRACKET);
             });
 
-<<<<<<< HEAD
-            this.OPTION6(() => {
-=======
-            this.OPTION8(() => {
->>>>>>> finish demo3 test
+            this.OPTION7(() => {
               this.SUBRULE(this.levelsInWeightString);
             });
 

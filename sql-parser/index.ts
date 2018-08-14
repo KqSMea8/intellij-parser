@@ -1,7 +1,5 @@
 import { Lexer, TokenEnum } from './lexer.g';
 import { Parser, SyntaxKind } from './parser.g';
-import * as fs from 'fs';
-import * as path from 'path';
 
 class CstNode {
   name: SyntaxKind | TokenEnum;
@@ -43,18 +41,3 @@ export function getAvailableTokens(text) {
 
   return Array.from(new Set(finalSuggestions));
 }
-
-(function test() {
-  const mysqlCode = fs.readFileSync(path.join(__dirname, '../../sql-parser/mysql.sql')).toString('utf8');
-
-  try {
-    const { cst, lexErrors, parseErrors } = parseMysql(mysqlCode);
-
-    console.log(lexErrors, parseErrors);
-
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/mysql_output_cst.json'), JSON.stringify(cst));
-  } catch (e) {
-    debugger;
-    console.log(e);
-  }
-})();

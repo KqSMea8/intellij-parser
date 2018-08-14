@@ -92,8 +92,7 @@ tableOption5:
 	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | '0' | '1')
 	| TABLESPACE uid tablespaceStorage?
 	| LIFECYCLE DECIMAL_LITERAL
-	| UNION '='? '(' tables ')'
-	| PARTITION BY? '(' createDefinition ')';
+	| UNION '='? '(' tables ')';
 
 tablespaceStorage: STORAGE (DISK | MEMORY | DEFAULT);
 
@@ -143,7 +142,6 @@ dataType:
 dataType1:
 	typeName = (
 		CHAR
-		| STRING
 		| VARCHAR
 		| TINYTEXT
 		| TEXT
