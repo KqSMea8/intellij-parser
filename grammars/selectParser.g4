@@ -311,7 +311,7 @@ logicalExpression: logicalOperator expression;
 
 predicate: expressionAtom predicateReplace?;
 
-predicateReplace: comparisonOperator predicate;
+predicateReplace: comparisonOperator predicate | IS nullNotnull;
 
 expressionAtom: constant | fullColumnName;
 

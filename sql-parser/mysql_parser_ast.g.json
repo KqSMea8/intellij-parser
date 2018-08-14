@@ -4539,7 +4539,7 @@
               "hasNot": false,
               "suff": "?",
               "item": {
-                "index": 1,
+                "index": 0,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -4557,59 +4557,14 @@
                         }
                       },
                       {
-                        "index": 0,
+                        "index": 3,
                         "kind": "itemSuff",
                         "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "Stringliteral",
-                          "content": "'('"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "uidList"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "fullColumnName"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "Stringliteral",
-                          "content": "'='"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
+                        "suff": "?",
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "ID"
+                          "name": "BY"
                         }
                       },
                       {
@@ -4617,9 +4572,82 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 0,
-                          "kind": "Stringliteral",
-                          "content": "')'"
+                          "index": 1,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "LowerName",
+                                    "name": "uidList"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "'('"
+                                  }
+                                },
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "LowerName",
+                                    "name": "fullColumnName"
+                                  }
+                                },
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "'='"
+                                  }
+                                },
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "LowerName",
+                                    "name": "constant"
+                                  }
+                                },
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "')'"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
                         }
                       }
                     ]
@@ -4640,7 +4668,7 @@
                     "kind": "atom",
                     "itemSuffs": [
                       {
-                        "index": 3,
+                        "index": 4,
                         "kind": "itemSuff",
                         "hasNot": false,
                         "suff": "?",
@@ -7142,6 +7170,32 @@
               }
             }
           ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "IS"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "nullNotnull"
+              }
+            }
+          ]
         }
       ]
     },
@@ -9108,7 +9162,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "fullColumnName"
+                "name": "functionCall"
               }
             },
             {
@@ -9163,7 +9217,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "functionCall"
+                "name": "fullColumnName"
               }
             },
             {
@@ -9239,9 +9293,42 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "scalarFunctionName"
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "scalarFunctionName"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "fullId"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             },
             {

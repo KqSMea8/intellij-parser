@@ -1403,26 +1403,31 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.tableName);
 
       this.OPTION3(() => {
+        this.CONSUME(Tokens.PARTITION);
+
+        this.OPTION4(() => {
+          this.CONSUME(Tokens.BY);
+        });
+
         this.OR2([
           {
             ALT: () => {
-              this.CONSUME(Tokens.PARTITION);
-              this.CONSUME(Tokens.LR_BRACKET);
               this.SUBRULE(this.uidList);
             },
           },
           {
             ALT: () => {
+              this.CONSUME(Tokens.LR_BRACKET);
               this.SUBRULE(this.fullColumnName);
               this.CONSUME(Tokens.EQUAL_SYMBOL);
-              this.CONSUME(Tokens.ID);
+              this.SUBRULE(this.constant);
               this.CONSUME(Tokens.RR_BRACKET);
             },
           },
         ]);
       });
 
-      this.OPTION4(() => {
+      this.OPTION5(() => {
         this.CONSUME2(Tokens.LR_BRACKET);
         this.SUBRULE2(this.uidList);
         this.CONSUME2(Tokens.RR_BRACKET);
@@ -2003,8 +2008,20 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('predicateReplace', () => {
-      this.SUBRULE(this.comparisonOperator);
-      this.SUBRULE(this.predicate);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.comparisonOperator);
+            this.SUBRULE(this.predicate);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IS);
+            this.SUBRULE(this.nullNotnull);
+          },
+        },
+      ]);
     });
 
     this.RULE('expressionAtom', () => {
@@ -2503,7 +2520,7 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.SUBRULE(this.fullColumnName);
+            this.SUBRULE(this.functionCall);
 
             this.OPTION(() => {
               this.OPTION2(() => {
@@ -2516,7 +2533,7 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.SUBRULE(this.functionCall);
+            this.SUBRULE(this.fullColumnName);
 
             this.OPTION3(() => {
               this.OPTION4(() => {
@@ -2539,7 +2556,18 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.SUBRULE(this.scalarFunctionName);
+            this.OR2([
+              {
+                ALT: () => {
+                  this.SUBRULE(this.scalarFunctionName);
+                },
+              },
+              {
+                ALT: () => {
+                  this.SUBRULE(this.fullId);
+                },
+              },
+            ]);
             this.CONSUME(Tokens.LR_BRACKET);
 
             this.OPTION(() => {
