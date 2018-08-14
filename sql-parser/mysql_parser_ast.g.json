@@ -2535,6 +2535,32 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
+                "name": "LIFECYCLE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DECIMAL_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
                 "name": "UNION"
               }
             },
@@ -2575,6 +2601,63 @@
               "hasNot": false,
               "item": {
                 "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "PARTITION"
+              }
+            },
+            {
+              "index": 4,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "BY"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "createDefinition"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
                 "kind": "Stringliteral",
                 "content": "')'"
               }
@@ -4806,6 +4889,22 @@
                           "index": 0,
                           "kind": "UpperName",
                           "name": "LINESTRING"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "STRING"
                         }
                       }
                     ]
@@ -8607,6 +8706,67 @@
     {
       "index": 0,
       "kind": "rule",
+      "ruleName": "tableSources",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableSource"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "tableSource"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "ruleName": "fromClause",
       "atoms": [
         {
@@ -8849,67 +9009,6 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "expression"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "tableSources",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "tableSource"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "*",
-              "item": {
-                "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "Stringliteral",
-                          "content": "','"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "tableSource"
-                        }
-                      }
-                    ]
-                  }
-                ]
               }
             }
           ]

@@ -80,11 +80,11 @@ export enum SyntaxKind {
   decimalLiteral = 'decimalLiteral',
   comparisonOperator = 'comparisonOperator',
   selectElements = 'selectElements',
+  tableSources = 'tableSources',
   fromClause = 'fromClause',
   whereClause = 'whereClause',
   groupClause = 'groupClause',
   havingClause = 'havingClause',
-  tableSources = 'tableSources',
   groupByItem = 'groupByItem',
   tableSource = 'tableSource',
   joinPart = 'joinPart',
@@ -863,6 +863,12 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
+            this.CONSUME(Tokens.LIFECYCLE);
+            this.CONSUME(Tokens.DECIMAL_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
             this.CONSUME(Tokens.UNION);
 
             this.OPTION4(() => {
@@ -872,6 +878,19 @@ export class Parser extends chevrotain.Parser {
             this.CONSUME(Tokens.LR_BRACKET);
             this.SUBRULE(this.tables);
             this.CONSUME(Tokens.RR_BRACKET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PARTITION);
+
+            this.OPTION5(() => {
+              this.CONSUME(Tokens.BY);
+            });
+
+            this.CONSUME2(Tokens.LR_BRACKET);
+            this.SUBRULE(this.createDefinition);
+            this.CONSUME2(Tokens.RR_BRACKET);
           },
         },
       ]);
@@ -1442,6 +1461,11 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.LINESTRING);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STRING);
           },
         },
         {
@@ -2395,6 +2419,15 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
+    this.RULE('tableSources', () => {
+      this.SUBRULE(this.tableSource);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.tableSource);
+      });
+    });
+
     this.RULE('fromClause', () => {
       this.CONSUME(Tokens.FROM);
       this.SUBRULE(this.tableSources);
@@ -2436,15 +2469,6 @@ export class Parser extends chevrotain.Parser {
     this.RULE('havingClause', () => {
       this.CONSUME(Tokens.HAVING);
       this.SUBRULE(this.expression);
-    });
-
-    this.RULE('tableSources', () => {
-      this.SUBRULE(this.tableSource);
-
-      this.MANY(() => {
-        this.CONSUME(Tokens.COMMA);
-        this.SUBRULE2(this.tableSource);
-      });
     });
 
     this.RULE('groupByItem', () => {

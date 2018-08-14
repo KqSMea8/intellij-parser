@@ -91,7 +91,9 @@ tableOption5:
 	STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | '0' | '1')
 	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | '0' | '1')
 	| TABLESPACE uid tablespaceStorage?
-	| UNION '='? '(' tables ')';
+	| LIFECYCLE DECIMAL_LITERAL
+	| UNION '='? '(' tables ')'
+	| PARTITION BY? '(' createDefinition ')';
 
 tablespaceStorage: STORAGE (DISK | MEMORY | DEFAULT);
 
@@ -198,6 +200,7 @@ dataType7:
 	typeName = (
 		GEOMETRYCOLLECTION
 		| LINESTRING
+		| STRING
 		| MULTILINESTRING
 		| MULTIPOINT
 		| MULTIPOLYGON
@@ -365,14 +368,13 @@ comparisonOperator:
 
 selectElements: ('*' | selectElement) (',' selectElement)*;
 
-fromClause:
-	FROM tableSources whereClause? groupClause? havingClause?;
+tableSources: tableSource (',' tableSource)*;
+
+fromClause: FROM tableSources whereClause? groupClause? havingClause?;
 
 whereClause: WHERE whereExpr = expression;
 groupClause: GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
 havingClause: HAVING havingExpr = expression;
-
-tableSources: tableSource (',' tableSource)*;
 
 groupByItem: expression order = (ASC | DESC)?;
 

@@ -3066,6 +3066,10 @@ const TINYINT = chevrotain.createToken({
   name: 'TINYINT',
   pattern: /TINYINT/,
 });
+const LIFECYCLE = chevrotain.createToken({
+  name: 'LIFECYCLE',
+  pattern: /LIFECYCLE/,
+});
 const OVERWRITE = chevrotain.createToken({
   name: 'OVERWRITE',
   pattern: /OVERWRITE/,
@@ -4657,6 +4661,7 @@ export enum TokenEnum {
   MEDIUM = 'MEDIUM',
   SMALLINT = 'SMALLINT',
   TINYINT = 'TINYINT',
+  LIFECYCLE = 'LIFECYCLE',
   OVERWRITE = 'OVERWRITE',
   ZEROFILL = 'ZEROFILL',
   XOR = 'XOR',
@@ -5631,6 +5636,7 @@ export const Tokens = {
   MEDIUM,
   SMALLINT,
   TINYINT,
+  LIFECYCLE,
   OVERWRITE,
   ZEROFILL,
   XOR,
@@ -6606,6 +6612,7 @@ export const tokens = [
   MEDIUM,
   SMALLINT,
   TINYINT,
+  LIFECYCLE,
   OVERWRITE,
   ZEROFILL,
   XOR,

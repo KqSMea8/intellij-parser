@@ -20259,6 +20259,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "LIFECYCLE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'LIFECYCLE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "LIFECYCLE"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "OVERWRITE",
       "atoms": [
         {

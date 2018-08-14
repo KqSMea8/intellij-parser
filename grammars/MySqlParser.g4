@@ -195,13 +195,13 @@ createTable:
 	CREATE TEMPORARY? TABLE ifNotExists? tableName (
 		LIKE tableName
 		| '(' LIKE parenthesisTable = tableName ')'
-	)
+	) # copyCreateTable
 	| CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions? (
 		tableOption (','? tableOption)*
-	)? partitionDefinitions? keyViolate = (IGNORE | REPLACE)? AS? selectStatement 
+	)? partitionDefinitions? keyViolate = (IGNORE | REPLACE)? AS? selectStatement # queryCreateTable
 	| CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
 		tableOption (','? tableOption)*
-	)? partitionDefinitions?;
+	)? partitionDefinitions? # columnCreateTable;
 
 createTablespaceInnodb:
 	CREATE TABLESPACE uid ADD DATAFILE datafile = STRING_LITERAL (
@@ -290,16 +290,16 @@ procedureParameter: direction = (IN | OUT | INOUT) uid dataType;
 functionParameter: uid dataType;
 
 routineOption:
-	COMMENT STRING_LITERAL
-	| LANGUAGE SQL		
-	| NOT? DETERMINISTIC	
+	COMMENT STRING_LITERAL	# routineComment
+	| LANGUAGE SQL			# routineLanguage
+	| NOT? DETERMINISTIC	# routineBehavior
 	| (
 		CONTAINS SQL
 		| NO SQL
 		| READS SQL DATA
 		| MODIFIES SQL DATA
-	)												
-	| SQL SECURITY context = (DEFINER | INVOKER);
+	)												# routineData
+	| SQL SECURITY context = (DEFINER | INVOKER)	# routineSecurity;
 
 serverOption:
 	HOST STRING_LITERAL
@@ -314,31 +314,32 @@ createDefinitions:
 	'(' createDefinition (',' createDefinition)* ')';
 
 createDefinition:
-	uid columnDefinition
-	| tableConstraint	
-	| indexColumnDefinition;
+	uid columnDefinition	# columnDeclaration
+	| tableConstraint		# constraintDeclaration
+	| indexColumnDefinition	# indexDeclaration;
 
 columnDefinition: dataType columnConstraint*;
 
 columnConstraint:
-	nullNotnull										
-	| DEFAULT defaultValue									
-	| AUTO_INCREMENT									
-	| PRIMARY? KEY									
-	| UNIQUE KEY?							
-	| COMMENT STRING_LITERAL					
-	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)
-	| STORAGE storageval = (DISK | MEMORY | DEFAULT)	
-	| referenceDefinition;
+	nullNotnull												# nullColumnConstraint
+	| DEFAULT defaultValue									# defaultColumnConstraint
+	| AUTO_INCREMENT										# autoIncrementColumnConstraint
+	| PRIMARY? KEY											# primaryKeyColumnConstraint
+	| UNIQUE KEY?											# uniqueKeyColumnConstraint
+	| COMMENT STRING_LITERAL								# commentColumnConstraint
+	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)	# formatColumnConstraint
+	| STORAGE storageval = (DISK | MEMORY | DEFAULT)		# storageColumnConstraint
+	| referenceDefinition									# referenceColumnConstraint;
 
-tableConstraint: (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption* 
+tableConstraint: (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption* #
+		primaryKeyTableConstraint
 	| (CONSTRAINT name = uid?)? UNIQUE indexFormat = (
 		INDEX
 		| KEY
-	)? index = uid? indexType? indexColumnNames indexOption*								
+	)? index = uid? indexType? indexColumnNames indexOption*									# uniqueKeyTableConstraint
 	| (CONSTRAINT name = uid?)? FOREIGN KEY index = uid? indexColumnNames referenceDefinition	#
 		foreignKeyTableConstraint
-	| CHECK '(' expression ')';
+	| CHECK '(' expression ')' # checkTableConstraint;
 
 referenceDefinition:
 	REFERENCES tableName indexColumnNames (
@@ -366,11 +367,11 @@ indexColumnDefinition:
 		specialIndexDeclaration;
 
 tableOption:
-	ENGINE '='? engineName								
-	| AUTO_INCREMENT '='? decimalLiteral				
-	| AVG_ROW_LENGTH '='? decimalLiteral				
-	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName	
-	| CHECKSUM '='? boolValue = ('0' | '1')				
+	ENGINE '='? engineName									# tableOptionEngine
+	| AUTO_INCREMENT '='? decimalLiteral					# tableOptionAutoIncrement
+	| AVG_ROW_LENGTH '='? decimalLiteral					# tableOptionAverage
+	| DEFAULT? (CHARACTER SET | CHARSET) '='? charsetName	# tableOptionCharset
+	| CHECKSUM '='? boolValue = ('0' | '1')					# tableOptionChecksum
 	| DEFAULT? COLLATE '='? collationName					# tableOptionCollate
 	| COMMENT '='? STRING_LITERAL							# tableOptionComment
 	| COMPRESSION '='? STRING_LITERAL						# tableOptionCompression
@@ -747,18 +748,18 @@ orderByExpression: expression order = (ASC | DESC)?;
 tableSources: tableSource (',' tableSource)*;
 
 tableSource:
-	tableSourceItem joinPart*		
-	| '(' tableSourceItem joinPart* ')';
+	tableSourceItem joinPart*			# tableSourceBase
+	| '(' tableSourceItem joinPart* ')'	# tableSourceNested;
 
 tableSourceItem:
 	tableName (PARTITION '(' uidList ')')? (AS? alias = uid)? (
 		indexHint (',' indexHint)*
-	)? 
+	)? # atomTableItem
 	| (
 		selectStatement
 		| '(' parenthesisSubquery = selectStatement ')'
-	) AS? alias = uid		
-	| '(' tableSources ')'	;
+	) AS? alias = uid		# subqueryTableItem
+	| '(' tableSources ')'	# tableSourcesItem;
 
 indexHint:
 	indexHintAction = (USE | IGNORE | FORCE) keyFormat = (
@@ -818,21 +819,21 @@ selectSpec: (ALL | DISTINCT | DISTINCTROW)
 selectElements: (star = '*' | selectElement) (',' selectElement)*;
 
 selectElement:
-	fullId '.' '*'								
-	| fullColumnName (AS? uid)?					
-	| functionCall (AS? uid)?					
-	| (LOCAL_ID VAR_ASSIGN)? expression (AS? uid)?	;
+	fullId '.' '*'									# selectStarElement
+	| fullColumnName (AS? uid)?						# selectColumnElement
+	| functionCall (AS? uid)?						# selectFunctionElement
+	| (LOCAL_ID VAR_ASSIGN)? expression (AS? uid)?	# selectExpressionElement;
 
 selectIntoExpression:
-	INTO assignmentField (',' assignmentField)*	
-	| INTO DUMPFILE STRING_LITERAL			
+	INTO assignmentField (',' assignmentField)*	# selectIntoVariables
+	| INTO DUMPFILE STRING_LITERAL				# selectIntoDumpFile
 	| (
 		INTO OUTFILE filename = STRING_LITERAL (
 			CHARACTER SET charset = charsetName
 		)? (fieldsFormat = (FIELDS | COLUMNS) selectFieldsInto+)? (
 			LINES selectLinesInto+
 		)?
-	);
+	) # selectIntoTextFile;
 
 selectFieldsInto:
 	TERMINATED BY terminationField = STRING_LITERAL
@@ -844,11 +845,9 @@ selectLinesInto:
 	| TERMINATED BY terminationLine = STRING_LITERAL;
 
 fromClause:
-	FROM tableSources whereClause? groupClause? havingClause?;
-
-whereClause: WHERE whereExpr = expression;
-groupClause: GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
-havingClause: HAVING havingExpr = expression;
+	FROM tableSources (WHERE whereExpr = expression)? (
+		GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?
+	)? (HAVING havingExpr = expression)?;
 
 groupByItem: expression order = (ASC | DESC)?;
 
