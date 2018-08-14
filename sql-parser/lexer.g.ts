@@ -16,7 +16,7 @@ const LOCAL_ID = chevrotain.createToken({
 });
 const STRING_USER_NAME = chevrotain.createToken({
   name: 'STRING_USER_NAME',
-  pattern: /(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9]+)\@(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9]+)/,
+  pattern: /(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9*]+)\@(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9*]+)/,
 });
 const REVERSE_QUOTE_ID = chevrotain.createToken({
   name: 'REVERSE_QUOTE_ID',
@@ -24,7 +24,7 @@ const REVERSE_QUOTE_ID = chevrotain.createToken({
 });
 const DOT_ID = chevrotain.createToken({
   name: 'DOT_ID',
-  pattern: /\.[A-Za-z_\$0-9]+/,
+  pattern: /\.[A-Za-z_\$0-9*]+/,
 });
 const STRING_CHARSET_NAME = chevrotain.createToken({
   name: 'STRING_CHARSET_NAME',
@@ -3888,7 +3888,7 @@ const SKIP = chevrotain.createToken({
 });
 const ID = chevrotain.createToken({
   name: 'ID',
-  pattern: /[A-Za-z_\$0-9]+/,
+  pattern: /[A-Za-z_\$0-9*]+/,
 });
 
 export enum TokenEnum {

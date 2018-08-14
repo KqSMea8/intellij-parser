@@ -202,7 +202,7 @@ selectStatement:
 updateStatement: singleUpdateStatement;
 
 insertStatement:
-	INSERT INTO? OVERWRITE? tableName (
+	INSERT INTO? OVERWRITE? TABLE? tableName (
 		PARTITION BY? (
 			uidList
 			| '(' fullColumnName '=' constant ')'
@@ -394,7 +394,7 @@ functionCall:
 
 functionArgs: functionArg (',' functionArg)*;
 
-scalarFunctionName: COUNT;
+scalarFunctionName: COUNT | SUBSTR;
 
 specificFunction: (
 		CURRENT_DATE
@@ -413,9 +413,6 @@ specificFunction: (
 	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END
 	| CHAR '(' functionArgs (USING charsetName)? ')'
 	| POSITION '(' expression IN expression ')'
-	| (SUBSTR | SUBSTRING) '(' expression FROM expression (
-		FOR expression
-	)? ')'
 	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression? FROM expression ')'
 	| TRIM '(' expression FROM expression ')'
 	| WEIGHT_STRING '(' expression (

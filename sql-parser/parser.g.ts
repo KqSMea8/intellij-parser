@@ -1400,12 +1400,16 @@ export class Parser extends chevrotain.Parser {
         this.CONSUME(Tokens.OVERWRITE);
       });
 
+      this.OPTION3(() => {
+        this.CONSUME(Tokens.TABLE);
+      });
+
       this.SUBRULE(this.tableName);
 
-      this.OPTION3(() => {
+      this.OPTION4(() => {
         this.CONSUME(Tokens.PARTITION);
 
-        this.OPTION4(() => {
+        this.OPTION5(() => {
           this.CONSUME(Tokens.BY);
         });
 
@@ -1427,7 +1431,7 @@ export class Parser extends chevrotain.Parser {
         ]);
       });
 
-      this.OPTION5(() => {
+      this.OPTION6(() => {
         this.CONSUME2(Tokens.LR_BRACKET);
         this.SUBRULE2(this.uidList);
         this.CONSUME2(Tokens.RR_BRACKET);
@@ -2590,7 +2594,18 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('scalarFunctionName', () => {
-      this.CONSUME(Tokens.COUNT);
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COUNT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SUBSTR);
+          },
+        },
+      ]);
     });
 
     this.RULE('specificFunction', () => {
@@ -2719,36 +2734,9 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.OR3([
-              {
-                ALT: () => {
-                  this.CONSUME(Tokens.SUBSTR);
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME(Tokens.SUBSTRING);
-                },
-              },
-            ]);
-            this.CONSUME6(Tokens.LR_BRACKET);
-            this.SUBRULE6(this.expression);
-            this.CONSUME(Tokens.FROM);
-            this.SUBRULE7(this.expression);
-
-            this.OPTION4(() => {
-              this.CONSUME(Tokens.FOR);
-              this.SUBRULE8(this.expression);
-            });
-
-            this.CONSUME6(Tokens.RR_BRACKET);
-          },
-        },
-        {
-          ALT: () => {
             this.CONSUME(Tokens.TRIM);
-            this.CONSUME7(Tokens.LR_BRACKET);
-            this.OR4([
+            this.CONSUME6(Tokens.LR_BRACKET);
+            this.OR3([
               {
                 ALT: () => {
                   this.CONSUME(Tokens.BOTH);
@@ -2766,34 +2754,34 @@ export class Parser extends chevrotain.Parser {
               },
             ]);
 
-            this.OPTION5(() => {
-              this.SUBRULE9(this.expression);
+            this.OPTION4(() => {
+              this.SUBRULE6(this.expression);
             });
 
-            this.CONSUME2(Tokens.FROM);
-            this.SUBRULE10(this.expression);
-            this.CONSUME7(Tokens.RR_BRACKET);
+            this.CONSUME(Tokens.FROM);
+            this.SUBRULE7(this.expression);
+            this.CONSUME6(Tokens.RR_BRACKET);
           },
         },
         {
           ALT: () => {
             this.CONSUME2(Tokens.TRIM);
-            this.CONSUME8(Tokens.LR_BRACKET);
-            this.SUBRULE11(this.expression);
-            this.CONSUME3(Tokens.FROM);
-            this.SUBRULE12(this.expression);
-            this.CONSUME8(Tokens.RR_BRACKET);
+            this.CONSUME7(Tokens.LR_BRACKET);
+            this.SUBRULE8(this.expression);
+            this.CONSUME2(Tokens.FROM);
+            this.SUBRULE9(this.expression);
+            this.CONSUME7(Tokens.RR_BRACKET);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.WEIGHT_STRING);
-            this.CONSUME9(Tokens.LR_BRACKET);
-            this.SUBRULE13(this.expression);
+            this.CONSUME8(Tokens.LR_BRACKET);
+            this.SUBRULE10(this.expression);
 
-            this.OPTION6(() => {
+            this.OPTION5(() => {
               this.CONSUME2(Tokens.AS);
-              this.OR5([
+              this.OR4([
                 {
                   ALT: () => {
                     this.CONSUME2(Tokens.CHAR);
@@ -2805,33 +2793,33 @@ export class Parser extends chevrotain.Parser {
                   },
                 },
               ]);
-              this.CONSUME10(Tokens.LR_BRACKET);
+              this.CONSUME9(Tokens.LR_BRACKET);
               this.SUBRULE(this.decimalLiteral);
-              this.CONSUME9(Tokens.RR_BRACKET);
+              this.CONSUME8(Tokens.RR_BRACKET);
             });
 
-            this.OPTION7(() => {
+            this.OPTION6(() => {
               this.SUBRULE(this.levelsInWeightString);
             });
 
-            this.CONSUME10(Tokens.RR_BRACKET);
+            this.CONSUME9(Tokens.RR_BRACKET);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.EXTRACT);
-            this.CONSUME11(Tokens.LR_BRACKET);
+            this.CONSUME10(Tokens.LR_BRACKET);
             this.SUBRULE(this.intervalType);
-            this.CONSUME4(Tokens.FROM);
-            this.SUBRULE14(this.expression);
-            this.CONSUME11(Tokens.RR_BRACKET);
+            this.CONSUME3(Tokens.FROM);
+            this.SUBRULE11(this.expression);
+            this.CONSUME10(Tokens.RR_BRACKET);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.GET_FORMAT);
-            this.CONSUME12(Tokens.LR_BRACKET);
-            this.OR6([
+            this.CONSUME11(Tokens.LR_BRACKET);
+            this.OR5([
               {
                 ALT: () => {
                   this.CONSUME(Tokens.DATE);
@@ -2850,7 +2838,7 @@ export class Parser extends chevrotain.Parser {
             ]);
             this.CONSUME2(Tokens.COMMA);
             this.SUBRULE(this.stringLiteral);
-            this.CONSUME12(Tokens.RR_BRACKET);
+            this.CONSUME11(Tokens.RR_BRACKET);
           },
         },
       ]);

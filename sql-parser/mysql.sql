@@ -1,16 +1,16 @@
-INSERT OVERWRITE s_od_account PARTITION (ds = '${lAStbizdate}')
+INSERT OVERWRITE TABLE s_od_account PARTITION (ds = '${lAStbizdate}')
 SELECT  i.ca_id AS ca_id
         ,coalesce(u.ca_b_id,i.ca_b_id) AS ca_b_id
         ,coalesce(u.ca_c_id,i.ca_c_id) AS ca_c_id
         ,coalesce(u.ca_name,i.ca_name) AS ca_name
         ,coalesce(u.ca_tax_st,i.ca_tax_st) AS ca_tax_st
         ,coalesce(u.ca_st_id,i.ca_st_id) AS ca_st_id
-FROM    (SELECT  a.id
+FROM    (SELECT  a.*
          FROM    s_od_his_account a
          WHERE   ds = '${bizdate}'
          AND     action_type = 'I') i
 LEFT OUTER JOIN
-        (SELECT  a.id
+        (SELECT  a.*
          FROM    s_od_his_account a
          WHERE   ds = '${bizdate}'
          AND     action_type = 'U') u
@@ -19,10 +19,12 @@ AND     u.rn = 5
 WHERE   i.rn = 5;
 
 
-INSERT OVERWRITE s_od_watchlist PARTITION(ds='${bizdate}')
+INSERT OVERWRITE TABLE s_od_watchlist PARTITION(ds='${bizdate}')
 SELECT 
     W_C_ID AS CUSTOMER_ID
     ,W_S_SYMB AS security_SYMBOL 
+    ,SUBSTR(w_actv_dts, 5, 50) AS PLACED_DATE_ID
+    ,SUBSTR(w_cncl_dts, 5, 50) AS REMOV_DATE_ID  
     ,CASE 
 	WHEN w_actv_dts IS NOT NULL
 		AND w_cncl_dts IS NULL
