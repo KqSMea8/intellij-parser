@@ -234,10 +234,6 @@ export class Parser extends chevrotain.Parser {
           this.SUBRULE2(this.tableOption);
         });
       });
-
-      this.OPTION5(() => {
-        this.SUBRULE(this.partitionDefinitions);
-      });
     });
 
     this.RULE('partitionDefinitions', () => {
@@ -545,6 +541,11 @@ export class Parser extends chevrotain.Parser {
             });
 
             this.CONSUME6(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.partitionDefinitions);
           },
         },
       ]);
@@ -2748,7 +2749,7 @@ export class Parser extends chevrotain.Parser {
 
             this.OPTION3(() => {
               this.CONSUME2(Tokens.AS);
-              this.SUBRULE(this.uid);
+              this.SUBRULE(this.expressionAtom);
             });
           },
         },

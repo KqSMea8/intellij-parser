@@ -370,17 +370,6 @@
                   }
                 ]
               }
-            },
-            {
-              "index": 4,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "partitionDefinitions"
-              }
             }
           ]
         }
@@ -1398,6 +1387,22 @@
                 "index": 5,
                 "kind": "UpperName",
                 "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "partitionDefinitions"
               }
             }
           ]
@@ -10139,7 +10144,7 @@
                         "item": {
                           "index": 0,
                           "kind": "LowerName",
-                          "name": "uid"
+                          "name": "expressionAtom"
                         }
                       }
                     ]

@@ -1580,7 +1580,7 @@ const ZERO_DECIMAL = chevrotain.createToken({
 });
 const DECIMAL_LITERAL = chevrotain.createToken({
   name: 'DECIMAL_LITERAL',
-  pattern: /[0-9]+/,
+  pattern: /[0-9]+/
 });
 const WRAPPER = chevrotain.createToken({
   name: 'WRAPPER',
