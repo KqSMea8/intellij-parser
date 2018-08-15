@@ -187,7 +187,13 @@ const peel = (cst) => {
         const functionCallStructure = fields.children[SyntaxKind.functionCall][0].children;
         const args = functionCallStructure[SyntaxKind.functionArgs] ? _.filter(getLeafNode(functionCallStructure[SyntaxKind.functionArgs][0], true), leaf => leaf.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx) : [];
         const func = (getLeafNode((functionCallStructure[SyntaxKind.scalarFunctionName] || [])[0] || (functionCallStructure[SyntaxKind.specificFunction] || [])[0])[0] || {}).image;
-  
+        
+        /** CASE WHEN 场景特殊处理 */
+        if (func === TokenEnum.CASE) {
+          const caseAlias = functionCallStructure[SyntaxKind.specificFunction][0].children[SyntaxKind.expressionAtom] || [];
+          alias = caseAlias[0] ? getLeafNode(caseAlias[0])[0].image : ''
+        }
+
         /** 未找到函数别名时，使用完整函数体的字符串作为名称 */
         name = func ? `${func}(${args.map(arg => arg.image).join(', ')})` : '';
       } else if (fields.children[SyntaxKind.fullColumnName] && !hasStar) {
