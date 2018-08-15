@@ -17,9 +17,10 @@ ddlStatement: createTable;
 createTable:
 	CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
 		tableOption (','? tableOption)*
-	)? partitionDefinitions?;
+	)?;
 
-partitionDefinitions: PARTITION BY '(' createDefinition ')';
+partitionDefinitions:
+	PARTITION BY '(' createDefinition ')';
 
 engineName:
 	ARCHIVE
@@ -58,7 +59,8 @@ tableOption2:
 	| DATA DIRECTORY '='? STRING_LITERAL
 	| DELAY_KEY_WRITE '='? boolValue = ('0' | '1')
 	| ENCRYPTION '='? STRING_LITERAL
-	| INDEX DIRECTORY '='? STRING_LITERAL;
+	| INDEX DIRECTORY '='? STRING_LITERAL
+	| partitionDefinitions;
 
 tableOption3:
 	INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)
@@ -207,10 +209,7 @@ updateStatement: singleUpdateStatement;
 
 insertStatement:
 	INSERT INTO? OVERWRITE? TABLE? tableName (
-		PARTITION BY? (
-			uidList
-			| '(' fullColumnName '=' constant ')'
-		)
+		PARTITION BY? (uidList | '(' fullColumnName '=' constant ')')
 	)? (('(' columns = uidList ')')? insertStatementValue);
 
 deleteStatement: singleDeleteStatement;
@@ -343,11 +342,7 @@ booleanLiteral: TRUE | FALSE;
 
 collationName: uid | STRING_LITERAL;
 
-decimalLiteral:
-	DECIMAL_LITERAL
-	| ZERO_DECIMAL
-	| ONE_DECIMAL
-	| TWO_DECIMAL;
+decimalLiteral: DECIMAL_LITERAL;
 
 comparisonOperator:
 	'<' '=' '>'
@@ -363,12 +358,10 @@ selectElements: ('*' | selectElement) (',' selectElement)*;
 
 tableSources: tableSource (',' tableSource)*;
 
-fromClause:
-	FROM tableSources whereClause? groupClause? havingClause?;
+fromClause: FROM tableSources whereClause? groupClause? havingClause?;
 
 whereClause: WHERE whereExpr = expression;
-groupClause:
-	GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
+groupClause: GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
 havingClause: HAVING havingExpr = expression;
 
 groupByItem: expression order = (ASC | DESC)?;
@@ -419,9 +412,7 @@ specificFunction: (
 	| CASE expression caseFuncAlternative+ (
 		ELSE elseArg = functionArg
 	)? END
-	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (
-		AS uid
-	)?
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (AS expressionAtom)?
 	| CHAR '(' functionArgs (USING charsetName)? ')'
 	| POSITION '(' expression IN expression ')'
 	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression? FROM expression ')'
