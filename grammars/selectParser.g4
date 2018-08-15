@@ -19,8 +19,7 @@ createTable:
 		tableOption (','? tableOption)*
 	)?;
 
-partitionDefinitions:
-	PARTITION BY '(' createDefinition ')';
+partitionDefinitions: PARTITION BY '(' createDefinition ')';
 
 engineName:
 	ARCHIVE
@@ -209,7 +208,10 @@ updateStatement: singleUpdateStatement;
 
 insertStatement:
 	INSERT INTO? OVERWRITE? TABLE? tableName (
-		PARTITION BY? (uidList | '(' fullColumnName '=' constant ')')
+		PARTITION BY? (
+			uidList
+			| '(' fullColumnName '=' constant ')'
+		)
 	)? (('(' columns = uidList ')')? insertStatementValue);
 
 deleteStatement: singleDeleteStatement;
@@ -342,7 +344,11 @@ booleanLiteral: TRUE | FALSE;
 
 collationName: uid | STRING_LITERAL;
 
-decimalLiteral: DECIMAL_LITERAL;
+decimalLiteral:
+	DECIMAL_LITERAL
+	| ZERO_DECIMAL
+	| ONE_DECIMAL
+	| TWO_DECIMAL;
 
 comparisonOperator:
 	'<' '=' '>'
@@ -358,10 +364,12 @@ selectElements: ('*' | selectElement) (',' selectElement)*;
 
 tableSources: tableSource (',' tableSource)*;
 
-fromClause: FROM tableSources whereClause? groupClause? havingClause?;
+fromClause:
+	FROM tableSources whereClause? groupClause? havingClause?;
 
 whereClause: WHERE whereExpr = expression;
-groupClause: GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
+groupClause:
+	GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
 havingClause: HAVING havingExpr = expression;
 
 groupByItem: expression order = (ASC | DESC)?;
@@ -412,7 +420,9 @@ specificFunction: (
 	| CASE expression caseFuncAlternative+ (
 		ELSE elseArg = functionArg
 	)? END
-	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (AS expressionAtom)?
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (
+		AS expressionAtom
+	)?
 	| CHAR '(' functionArgs (USING charsetName)? ')'
 	| POSITION '(' expression IN expression ')'
 	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression? FROM expression ')'
