@@ -19,8 +19,7 @@ createTable:
 		tableOption (','? tableOption)*
 	)? partitionDefinitions?;
 
-partitionDefinitions:
-	PARTITION BY '(' createDefinition ')';
+partitionDefinitions: PARTITION BY '(' createDefinition ')';
 
 engineName:
 	ARCHIVE
@@ -344,7 +343,11 @@ booleanLiteral: TRUE | FALSE;
 
 collationName: uid | STRING_LITERAL;
 
-decimalLiteral: DECIMAL_LITERAL;
+decimalLiteral:
+	DECIMAL_LITERAL
+	| ZERO_DECIMAL
+	| ONE_DECIMAL
+	| TWO_DECIMAL;
 
 comparisonOperator:
 	'<' '=' '>'
@@ -360,10 +363,12 @@ selectElements: ('*' | selectElement) (',' selectElement)*;
 
 tableSources: tableSource (',' tableSource)*;
 
-fromClause: FROM tableSources whereClause? groupClause? havingClause?;
+fromClause:
+	FROM tableSources whereClause? groupClause? havingClause?;
 
 whereClause: WHERE whereExpr = expression;
-groupClause: GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
+groupClause:
+	GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
 havingClause: HAVING havingExpr = expression;
 
 groupByItem: expression order = (ASC | DESC)?;
@@ -414,7 +419,9 @@ specificFunction: (
 	| CASE expression caseFuncAlternative+ (
 		ELSE elseArg = functionArg
 	)? END
-	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (AS uid)?
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (
+		AS uid
+	)?
 	| CHAR '(' functionArgs (USING charsetName)? ')'
 	| POSITION '(' expression IN expression ')'
 	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression? FROM expression ')'

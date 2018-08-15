@@ -23,8 +23,8 @@ INSERT OVERWRITE TABLE s_od_watchlist PARTITION(ds='${bizdate}')
 SELECT 
     W_C_ID AS CUSTOMER_ID
     ,W_S_SYMB AS security_SYMBOL 
-    ,SUBSTR(w_actv_dts, 5, 50) AS PLACED_DATE_ID
-    ,SUBSTR(w_cncl_dts, 5, 50) AS REMOV_DATE_ID  
+    ,SUBSTR(w_actv_dts, 1, 10) AS PLACED_DATE_ID
+    ,SUBSTR(w_cncl_dts, 1, 10) AS REMOV_DATE_ID  
     ,CASE 
 	WHEN w_actv_dts IS NOT NULL
 		AND w_cncl_dts IS NULL

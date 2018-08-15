@@ -42,6 +42,10 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
       group: chevrotain.Lexer.SKIPPED,
       line_breaks: true
     });
+    const DECIMAL_LITERAL = chevrotain.createToken({
+      name: 'DECIMAL_LITERAL',
+      pattern: /[0-9]+/,
+    });
     ${ast.toLexerCode()}
 
     export enum TokenEnum {

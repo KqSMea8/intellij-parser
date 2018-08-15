@@ -2227,7 +2227,28 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('decimalLiteral', () => {
-      this.CONSUME(Tokens.DECIMAL_LITERAL);
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DECIMAL_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ZERO_DECIMAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ONE_DECIMAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TWO_DECIMAL);
+          },
+        },
+      ]);
     });
 
     this.RULE('comparisonOperator', () => {

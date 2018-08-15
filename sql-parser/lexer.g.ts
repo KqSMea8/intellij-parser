@@ -6,6 +6,10 @@ const WhiteSpace = chevrotain.createToken({
   group: chevrotain.Lexer.SKIPPED,
   line_breaks: true,
 });
+const DECIMAL_LITERAL = chevrotain.createToken({
+  name: 'DECIMAL_LITERAL',
+  pattern: /[0-9]+/,
+});
 const GLOBAL_ID = chevrotain.createToken({
   name: 'GLOBAL_ID',
   pattern: /\@\@([A-Za-z0-9._\$]+|\`(\\|\`\`|[^(\`|\\)])*)/,
@@ -1501,10 +1505,12 @@ const CP1250 = chevrotain.createToken({
 const TWO_DECIMAL = chevrotain.createToken({
   name: 'TWO_DECIMAL',
   pattern: /2/,
+  longer_alt: DECIMAL_LITERAL,
 });
 const ONE_DECIMAL = chevrotain.createToken({
   name: 'ONE_DECIMAL',
   pattern: /1/,
+  longer_alt: DECIMAL_LITERAL,
 });
 const BIG5 = chevrotain.createToken({
   name: 'BIG5',
@@ -1577,10 +1583,7 @@ const X509 = chevrotain.createToken({
 const ZERO_DECIMAL = chevrotain.createToken({
   name: 'ZERO_DECIMAL',
   pattern: /0/,
-});
-const DECIMAL_LITERAL = chevrotain.createToken({
-  name: 'DECIMAL_LITERAL',
-  pattern: /[0-9]+/,
+  longer_alt: DECIMAL_LITERAL,
 });
 const WRAPPER = chevrotain.createToken({
   name: 'WRAPPER',

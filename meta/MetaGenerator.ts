@@ -262,6 +262,7 @@ export class RulesNode extends BaseNode {
   toLexerCode() {
     return this.rules
       .filter(rule => !rule.fragName)
+      .filter(rule => rule.tokenName !== 'DECIMAL_LITERAL')
       .map(rule => rule.toDebugLexerCode())
       .join('\n');
   }
@@ -302,10 +303,19 @@ export class RuleNode extends BaseNode {
   }
 
   toLexerCode() {
-    return `const ${this.tokenName} = chevrotain.createToken({
+    const decimalTokens = ['ZERO_DECIMAL', 'ONE_DECIMAL', 'TWO_DECIMAL'];
+    if (decimalTokens.indexOf(this.tokenName) > -1) {
+      return `const ${this.tokenName} = chevrotain.createToken({
+        name: '${this.tokenName}',
+        pattern: /${this.pattern}/,
+        longer_alt: DECIMAL_LITERAL
+      });`;
+    } else {
+      return `const ${this.tokenName} = chevrotain.createToken({
         name: '${this.tokenName}',
         pattern: /${this.pattern}/,
       });`;
+    }
   }
 
   toCode() {
