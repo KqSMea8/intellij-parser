@@ -207,12 +207,12 @@ selectStatement:
 updateStatement: singleUpdateStatement;
 
 insertStatement:
-	INSERT INTO? OVERWRITE? TABLE? tableName (
-		PARTITION BY? (
-			uidList
-			| '(' fullColumnName '=' constant ')'
-		)
-	)? (('(' columns = uidList ')')? insertStatementValue);
+	INSERT INTO? OVERWRITE? TABLE? tableName partitionInsertDefinitions? (
+		('(' columns = uidList ')')? insertStatementValue
+	);
+
+partitionInsertDefinitions:
+	PARTITION BY? (uidList | '(' fullColumnName '=' constant ')');
 
 deleteStatement: singleDeleteStatement;
 
@@ -413,8 +413,12 @@ specificFunction: (
 		| CURRENT_USER
 		| LOCALTIME
 	)
-	| CONVERT '(' expression (',' convertedDataType)
-	| (USING charsetName) ')'
+	| (
+		CONVERT '(' expression (
+			',' convertedDataType
+			| USING charsetName
+		) ')'
+	)
 	| CAST '(' expression AS convertedDataType ')'
 	| VALUES '(' fullColumnName ')'
 	| CASE expression caseFuncAlternative+ (

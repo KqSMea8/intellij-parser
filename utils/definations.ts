@@ -8,7 +8,7 @@ export const ErrorPrefix = [
     type: 'singleMissingToken',
     key: 'Expecting token of type --> ',
     pattern: /Expecting token of type --> (.*) <-- but/
-  },{
+  }, {
     type: 'multiMissingToken',
     key: 'Expecting: one of these possible Token sequences:',
     pattern: /\[.*?\]/g
@@ -34,8 +34,11 @@ export enum CommonStartToken {
   'INSERT' = 'INSERT',
   'DELETE' = 'DELETE',
   'SUM' = 'SUM',
+}
+
+export enum Snippets {
   // snippet语法
   'sel' = 'sel',
   'cre' = 'cre'
 }
-  
+

@@ -41,6 +41,7 @@ export enum SyntaxKind {
   selectStatement = 'selectStatement',
   updateStatement = 'updateStatement',
   insertStatement = 'insertStatement',
+  partitionInsertDefinitions = 'partitionInsertDefinitions',
   deleteStatement = 'deleteStatement',
   singleDeleteStatement = 'singleDeleteStatement',
   singleUpdateStatement = 'singleUpdateStatement',
@@ -1435,37 +1436,41 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.tableName);
 
       this.OPTION4(() => {
-        this.CONSUME(Tokens.PARTITION);
-
-        this.OPTION5(() => {
-          this.CONSUME(Tokens.BY);
-        });
-
-        this.OR2([
-          {
-            ALT: () => {
-              this.SUBRULE(this.uidList);
-            },
-          },
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.LR_BRACKET);
-              this.SUBRULE(this.fullColumnName);
-              this.CONSUME(Tokens.EQUAL_SYMBOL);
-              this.SUBRULE(this.constant);
-              this.CONSUME(Tokens.RR_BRACKET);
-            },
-          },
-        ]);
+        this.SUBRULE(this.partitionInsertDefinitions);
       });
 
-      this.OPTION6(() => {
-        this.CONSUME2(Tokens.LR_BRACKET);
-        this.SUBRULE2(this.uidList);
-        this.CONSUME2(Tokens.RR_BRACKET);
+      this.OPTION5(() => {
+        this.CONSUME(Tokens.LR_BRACKET);
+        this.SUBRULE(this.uidList);
+        this.CONSUME(Tokens.RR_BRACKET);
       });
 
       this.SUBRULE(this.insertStatementValue);
+    });
+
+    this.RULE('partitionInsertDefinitions', () => {
+      this.CONSUME(Tokens.PARTITION);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.BY);
+      });
+
+      this.OR2([
+        {
+          ALT: () => {
+            this.SUBRULE(this.uidList);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.SUBRULE(this.fullColumnName);
+            this.CONSUME(Tokens.EQUAL_SYMBOL);
+            this.SUBRULE(this.constant);
+            this.CONSUME(Tokens.RR_BRACKET);
+          },
+        },
+      ]);
     });
 
     this.RULE('deleteStatement', () => {
@@ -2707,14 +2712,20 @@ export class Parser extends chevrotain.Parser {
             this.CONSUME(Tokens.CONVERT);
             this.CONSUME(Tokens.LR_BRACKET);
             this.SUBRULE(this.expression);
-            this.CONSUME(Tokens.COMMA);
-            this.SUBRULE(this.convertedDataType);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.USING);
-            this.SUBRULE(this.charsetName);
+            this.OR3([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.COMMA);
+                  this.SUBRULE(this.convertedDataType);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.USING);
+                  this.SUBRULE(this.charsetName);
+                },
+              },
+            ]);
             this.CONSUME(Tokens.RR_BRACKET);
           },
         },
@@ -2802,7 +2813,7 @@ export class Parser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.TRIM);
             this.CONSUME6(Tokens.LR_BRACKET);
-            this.OR3([
+            this.OR4([
               {
                 ALT: () => {
                   this.CONSUME(Tokens.BOTH);
@@ -2847,7 +2858,7 @@ export class Parser extends chevrotain.Parser {
 
             this.OPTION6(() => {
               this.CONSUME3(Tokens.AS);
-              this.OR4([
+              this.OR5([
                 {
                   ALT: () => {
                     this.CONSUME2(Tokens.CHAR);
@@ -2885,7 +2896,7 @@ export class Parser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.GET_FORMAT);
             this.CONSUME11(Tokens.LR_BRACKET);
-            this.OR5([
+            this.OR6([
               {
                 ALT: () => {
                   this.CONSUME(Tokens.DATE);

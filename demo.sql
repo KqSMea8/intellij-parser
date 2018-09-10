@@ -126,3 +126,33 @@ FROM
       dim_seller
   ) M ) T2;
 
+
+create table if not exists ads_prd_proj_area_td (
+    prd_proj_id         bigint  comment'',
+    prd_proj_name       string  comment'',
+    property_area_td_proj   double  comment'',
+    sale_bld_area_td_proj   double  comment'',
+    property_area_td_proj_sale  double  comment'',
+    sale_bld_area_td_proj_sale  double  comment'' ,
+    stat_date   bigint comment ''
+)
+comment '测试使用'
+partitioned by (ds string);
+
+insert overwrite table ads_prd_proj_area_td partition (ds = '${bizdate}')
+select 
+     a.prd_proj_id
+    ,b.prd_proj_name
+    ,coalesce(cast(a.property_area_td_proj as double),0.0)
+    ,coalesce(cast(a.sale_bld_area_td_proj as double),0.0)
+    ,coalesce(cast(a.property_area_td_proj_sale as double),0.0)
+    ,coalesce(cast(a.sale_bld_area_td_proj_sale as double),0.0)
+    ,${bizdate} as stat_date
+from
+    (select * from brc_cdm_prod.DWS_PRD_PROJ_OD000_V1 where ds = '${bizdate}') a 
+join
+    (select * from LD_BRC_CORP.dim_prd_proj where ds= '${bizdate}') b 
+on
+    (a.prd_proj_id = b.prd_proj_id)
+;
+

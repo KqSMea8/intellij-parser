@@ -1,4 +1,4 @@
-import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken } from './definations';
+import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken, Snippets } from './definations';
 import { SyntaxKind, Tokens, TokenEnum } from '../sql-parser/parser.g';
 import * as _ from 'lodash';
 
@@ -63,7 +63,18 @@ const getCompleteInfo = (ast, pos) => {
         });
       })
     } else if (errorType.type === ErrorToken.initMissingToken) {
-      Object.keys(CommonStartToken).filter(item => item.indexOf(err.message.match(errorType.pattern)[1]) === 0).forEach(errType => {
+      /** 大小写模糊匹配 */
+      Object.keys(CommonStartToken).filter(item => item.toLowerCase().indexOf(err.message.match(errorType.pattern)[1].toLowerCase()) === 0).forEach(errType => {
+        singleError.completeType.push({
+          errType,
+          ...err
+        })
+      })
+    }
+
+    /** 非；场景，提示snippets，；场景代表语句结束，一般为singleMissingToken，唯一err */
+    if(errorType.type !== ErrorToken.singleMissingToken || err.message.match(errorType.pattern)[1] !== TokenEnum.SEMI) {
+      Object.keys(Snippets).forEach(errType => {
         singleError.completeType.push({
           errType,
           ...err
@@ -116,7 +127,7 @@ const getTabelDetails = (init, fromClause, more?: boolean) => {
     if(tableSource.children[SyntaxKind.tableSourceItem]) {
       tableSourceItems.push(tableSource.children[SyntaxKind.tableSourceItem])
     }
-    
+
     return tableSourceItems;
   })).map((table: any) => {
     const tableInfo = {
@@ -181,13 +192,13 @@ const peel = (cst) => {
     exportsFields = _.uniqBy(exportsFields.concat(_.flatten((query.children[SyntaxKind.selectElements][0].children[SyntaxKind.selectElement] || []).map(fields => {
       let name = '';
       let alias = fields.children[SyntaxKind.uid] ? getLeafNode(fields.children[SyntaxKind.uid][0])[0].image : '';
-  
+
       if (fields.children[SyntaxKind.functionCall]) {
         /** 函数场景 */
         const functionCallStructure = fields.children[SyntaxKind.functionCall][0].children;
         const args = functionCallStructure[SyntaxKind.functionArgs] ? _.filter(getLeafNode(functionCallStructure[SyntaxKind.functionArgs][0], true), leaf => leaf.tokenTypeIdx !== Tokens.COMMA.tokenTypeIdx) : [];
         const func = (getLeafNode((functionCallStructure[SyntaxKind.scalarFunctionName] || [])[0] || (functionCallStructure[SyntaxKind.specificFunction] || [])[0])[0] || {}).image;
-        
+
         /** CASE WHEN 场景特殊处理 */
         if (func === TokenEnum.CASE) {
           const caseAlias = functionCallStructure[SyntaxKind.specificFunction][0].children[SyntaxKind.expressionAtom] || [];
@@ -210,7 +221,7 @@ const peel = (cst) => {
         name = '*';
         alias = ''
       }
-  
+
       return {
         name,
         alias
@@ -248,7 +259,7 @@ const getAliasMap = (ast) => {
 
 /** 获取指定FROM之后的tableSource */
 const getNextTableSource = (ast, token, more) => {
-  const parent = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fromClause && target.children[TokenEnum.FROM][0].startOffset === token.startOffset);
+  const parent = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fromClause && target.children[TokenEnum.FROM][0].startOffset >= token.startOffset);
   return parent ? getTabelDetails({}, parent[0], more) : []
 }
 
