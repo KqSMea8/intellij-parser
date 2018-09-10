@@ -313,7 +313,7 @@ export class RuleNode extends BaseNode {
     } else {
       return `const ${this.tokenName} = chevrotain.createToken({
         name: '${this.tokenName}',
-        pattern: /${this.pattern}/,
+        pattern: /${this.pattern}/i,
       });`;
     }
   }

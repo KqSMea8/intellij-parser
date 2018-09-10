@@ -1,4 +1,4 @@
-INSERT OVERWRITE TABLE s_od_account PARTITION (ds = '${lAStbizdate}')
+Insert OVERWRITE TABLE s_od_account PARTITION (ds = '${lAStbizdate}')
 SELECT  i.ca_id AS ca_id
         ,coalesce(u.ca_b_id,i.ca_b_id) AS ca_b_id
         ,coalesce(u.ca_c_id,i.ca_c_id) AS ca_c_id

@@ -12,1495 +12,1495 @@ const DECIMAL_LITERAL = chevrotain.createToken({
 });
 const GLOBAL_ID = chevrotain.createToken({
   name: 'GLOBAL_ID',
-  pattern: /\@\@([A-Za-z0-9._\$]+|\`(\\|\`\`|[^(\`|\\)])*)/,
+  pattern: /\@\@([A-Za-z0-9._\$]+|\`(\\|\`\`|[^(\`|\\)])*)/i,
 });
 const LOCAL_ID = chevrotain.createToken({
   name: 'LOCAL_ID',
-  pattern: /\@([A-Za-z0-9._\$]+|\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*)/,
+  pattern: /\@([A-Za-z0-9._\$]+|\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*)/i,
 });
 const STRING_USER_NAME = chevrotain.createToken({
   name: 'STRING_USER_NAME',
-  pattern: /(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9*]+)\@(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9*]+)/,
+  pattern: /(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9*]+)\@(\'(\\|\'\'|[^(\'|\\)])*\'|\"(\\|\"\"|[^(\"|\\)])*\"|\`(\\|\`\`|[^(\`|\\)])*|[A-Za-z_\$0-9*]+)/i,
 });
 const REVERSE_QUOTE_ID = chevrotain.createToken({
   name: 'REVERSE_QUOTE_ID',
-  pattern: /\`[^\`]+\`/,
+  pattern: /\`[^\`]+\`/i,
 });
 const DOT_ID = chevrotain.createToken({
   name: 'DOT_ID',
-  pattern: /\.[A-Za-z_\$0-9*]+/,
+  pattern: /\.[A-Za-z_\$0-9*]+/i,
 });
 const STRING_CHARSET_NAME = chevrotain.createToken({
   name: 'STRING_CHARSET_NAME',
-  pattern: /_(ARMSCII8|ASCII|BIG5|BINARY|CP1250|CP1251|CP1256|CP1257|CP850|CP852|CP866|CP932|DEC8|EUCJPMS|EUCKR|GB2312|GBK|GEOSTD8|GREEK|HEBREW|HP8|KEYBCS2|KOI8R|KOI8U|LATIN1|LATIN2|LATIN5|LATIN7|MACCE|MACROMAN|SJIS|SWE7|TIS620|UCS2|UJIS|UTF16|UTF16LE|UTF32|UTF8|UTF8MB4)/,
+  pattern: /_(ARMSCII8|ASCII|BIG5|BINARY|CP1250|CP1251|CP1256|CP1257|CP850|CP852|CP866|CP932|DEC8|EUCJPMS|EUCKR|GB2312|GBK|GEOSTD8|GREEK|HEBREW|HP8|KEYBCS2|KOI8R|KOI8U|LATIN1|LATIN2|LATIN5|LATIN7|MACCE|MACROMAN|SJIS|SWE7|TIS620|UCS2|UJIS|UTF16|UTF16LE|UTF32|UTF8|UTF8MB4)/i,
 });
 const BIT_STRING = chevrotain.createToken({
   name: 'BIT_STRING',
-  pattern: /B\'[01]+\'/,
+  pattern: /B\'[01]+\'/i,
 });
 const NULL_SPEC_LITERAL = chevrotain.createToken({
   name: 'NULL_SPEC_LITERAL',
-  pattern: /\\N/,
+  pattern: /\\N/i,
 });
 const REAL_LITERAL = chevrotain.createToken({
   name: 'REAL_LITERAL',
-  pattern: /(([0-9]+)?\.[0-9]+|[0-9]+\.E\-?[0-9]+|([0-9]+)?\.([0-9]+E\-?[0-9]+)|[0-9]+E\-?[0-9]+)/,
+  pattern: /(([0-9]+)?\.[0-9]+|[0-9]+\.E\-?[0-9]+|([0-9]+)?\.([0-9]+E\-?[0-9]+)|[0-9]+E\-?[0-9]+)/i,
 });
 const HEXADECIMAL_LITERAL = chevrotain.createToken({
   name: 'HEXADECIMAL_LITERAL',
-  pattern: /(X\'([0-9A-F][0-9A-F])+\'|0X[0-9A-F]+)/,
+  pattern: /(X\'([0-9A-F][0-9A-F])+\'|0X[0-9A-F]+)/i,
 });
 const STRING_LITERAL = chevrotain.createToken({
   name: 'STRING_LITERAL',
-  pattern: /(\"(\\|\"\"|[^(\"|\\)])*\"|\'(\\|\'\'|[^(\'|\\)])*\')/,
+  pattern: /(\"(\\|\"\"|[^(\"|\\)])*\"|\'(\\|\'\'|[^(\'|\\)])*\')/i,
 });
 const START_NATIONAL_STRING_LITERAL = chevrotain.createToken({
   name: 'START_NATIONAL_STRING_LITERAL',
-  pattern: /N\'(\\|\'\'|[^(\'|\\)])*\'/,
+  pattern: /N\'(\\|\'\'|[^(\'|\\)])*\'/i,
 });
 const CHARSET_REVERSE_QOUTE_STRING = chevrotain.createToken({
   name: 'CHARSET_REVERSE_QOUTE_STRING',
-  pattern: /\`(ARMSCII8|ASCII|BIG5|BINARY|CP1250|CP1251|CP1256|CP1257|CP850|CP852|CP866|CP932|DEC8|EUCJPMS|EUCKR|GB2312|GBK|GEOSTD8|GREEK|HEBREW|HP8|KEYBCS2|KOI8R|KOI8U|LATIN1|LATIN2|LATIN5|LATIN7|MACCE|MACROMAN|SJIS|SWE7|TIS620|UCS2|UJIS|UTF16|UTF16LE|UTF32|UTF8|UTF8MB4)\`/,
+  pattern: /\`(ARMSCII8|ASCII|BIG5|BINARY|CP1250|CP1251|CP1256|CP1257|CP850|CP852|CP866|CP932|DEC8|EUCJPMS|EUCKR|GB2312|GBK|GEOSTD8|GREEK|HEBREW|HP8|KEYBCS2|KOI8R|KOI8U|LATIN1|LATIN2|LATIN5|LATIN7|MACCE|MACROMAN|SJIS|SWE7|TIS620|UCS2|UJIS|UTF16|UTF16LE|UTF32|UTF8|UTF8MB4)\`/i,
 });
 const COLON_SYMB = chevrotain.createToken({
   name: 'COLON_SYMB',
-  pattern: /\:/,
+  pattern: /\:/i,
 });
 const REVERSE_QUOTE_SYMB = chevrotain.createToken({
   name: 'REVERSE_QUOTE_SYMB',
-  pattern: /\`/,
+  pattern: /\`/i,
 });
 const DOUBLE_QUOTE_SYMB = chevrotain.createToken({
   name: 'DOUBLE_QUOTE_SYMB',
-  pattern: /\"/,
+  pattern: /\"/i,
 });
 const SINGLE_QUOTE_SYMB = chevrotain.createToken({
   name: 'SINGLE_QUOTE_SYMB',
-  pattern: /\'/,
+  pattern: /\'/i,
 });
 const AT_SIGN = chevrotain.createToken({
   name: 'AT_SIGN',
-  pattern: /\@/,
+  pattern: /\@/i,
 });
 const SEMI = chevrotain.createToken({
   name: 'SEMI',
-  pattern: /\;/,
+  pattern: /\;/i,
 });
 const COMMA = chevrotain.createToken({
   name: 'COMMA',
-  pattern: /\,/,
+  pattern: /\,/i,
 });
 const RR_BRACKET = chevrotain.createToken({
   name: 'RR_BRACKET',
-  pattern: /\)/,
+  pattern: /\)/i,
 });
 const LR_BRACKET = chevrotain.createToken({
   name: 'LR_BRACKET',
-  pattern: /\(/,
+  pattern: /\(/i,
 });
 const DOT = chevrotain.createToken({
   name: 'DOT',
-  pattern: /\./,
+  pattern: /\./i,
 });
 const BIT_XOR_OP = chevrotain.createToken({
   name: 'BIT_XOR_OP',
-  pattern: /\^/,
+  pattern: /\^/i,
 });
 const BIT_AND_OP = chevrotain.createToken({
   name: 'BIT_AND_OP',
-  pattern: /\&/,
+  pattern: /\&/i,
 });
 const BIT_OR_OP = chevrotain.createToken({
   name: 'BIT_OR_OP',
-  pattern: /\|/,
+  pattern: /\|/i,
 });
 const BIT_NOT_OP = chevrotain.createToken({
   name: 'BIT_NOT_OP',
-  pattern: /\~/,
+  pattern: /\~/i,
 });
 const EXCLAMATION_SYMBOL = chevrotain.createToken({
   name: 'EXCLAMATION_SYMBOL',
-  pattern: /\!/,
+  pattern: /\!/i,
 });
 const LESS_SYMBOL = chevrotain.createToken({
   name: 'LESS_SYMBOL',
-  pattern: /\</,
+  pattern: /\</i,
 });
 const GREATER_SYMBOL = chevrotain.createToken({
   name: 'GREATER_SYMBOL',
-  pattern: /\>/,
+  pattern: /\>/i,
 });
 const EQUAL_SYMBOL = chevrotain.createToken({
   name: 'EQUAL_SYMBOL',
-  pattern: /\=/,
+  pattern: /\=/i,
 });
 const DIV = chevrotain.createToken({
   name: 'DIV',
-  pattern: /DIV/,
+  pattern: /DIV/i,
 });
 const MINUS = chevrotain.createToken({
   name: 'MINUS',
-  pattern: /\-/,
+  pattern: /\-/i,
 });
 const MINUSMINUS = chevrotain.createToken({
   name: 'MINUSMINUS',
-  pattern: /\-\-/,
+  pattern: /\-\-/i,
 });
 const PLUS = chevrotain.createToken({
   name: 'PLUS',
-  pattern: /\+/,
+  pattern: /\+/i,
 });
 const MODULE = chevrotain.createToken({
   name: 'MODULE',
-  pattern: /\%/,
+  pattern: /\%/i,
 });
 const DIVIDE = chevrotain.createToken({
   name: 'DIVIDE',
-  pattern: /\//,
+  pattern: /\//i,
 });
 const STAR = chevrotain.createToken({
   name: 'STAR',
-  pattern: /\*/,
+  pattern: /\*/i,
 });
 const OR_ASSIGN = chevrotain.createToken({
   name: 'OR_ASSIGN',
-  pattern: /\|\=/,
+  pattern: /\|\=/i,
 });
 const XOR_ASSIGN = chevrotain.createToken({
   name: 'XOR_ASSIGN',
-  pattern: /\^\=/,
+  pattern: /\^\=/i,
 });
 const AND_ASSIGN = chevrotain.createToken({
   name: 'AND_ASSIGN',
-  pattern: /\&\=/,
+  pattern: /\&\=/i,
 });
 const MOD_ASSIGN = chevrotain.createToken({
   name: 'MOD_ASSIGN',
-  pattern: /\%\=/,
+  pattern: /\%\=/i,
 });
 const DIV_ASSIGN = chevrotain.createToken({
   name: 'DIV_ASSIGN',
-  pattern: /\/\=/,
+  pattern: /\/\=/i,
 });
 const MULT_ASSIGN = chevrotain.createToken({
   name: 'MULT_ASSIGN',
-  pattern: /\*\=/,
+  pattern: /\*\=/i,
 });
 const MINUS_ASSIGN = chevrotain.createToken({
   name: 'MINUS_ASSIGN',
-  pattern: /\-\=/,
+  pattern: /\-\=/i,
 });
 const PLUS_ASSIGN = chevrotain.createToken({
   name: 'PLUS_ASSIGN',
-  pattern: /\+\=/,
+  pattern: /\+\=/i,
 });
 const VAR_ASSIGN = chevrotain.createToken({
   name: 'VAR_ASSIGN',
-  pattern: /\:\=/,
+  pattern: /\:\=/i,
 });
 const YEARWEEK = chevrotain.createToken({
   name: 'YEARWEEK',
-  pattern: /YEARWEEK/,
+  pattern: /YEARWEEK/i,
 });
 const WEIGHT_STRING = chevrotain.createToken({
   name: 'WEIGHT_STRING',
-  pattern: /WEIGHT_STRING/,
+  pattern: /WEIGHT_STRING/i,
 });
 const WEEKOFYEAR = chevrotain.createToken({
   name: 'WEEKOFYEAR',
-  pattern: /WEEKOFYEAR/,
+  pattern: /WEEKOFYEAR/i,
 });
 const WEEKDAY = chevrotain.createToken({
   name: 'WEEKDAY',
-  pattern: /WEEKDAY/,
+  pattern: /WEEKDAY/i,
 });
 const WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS = chevrotain.createToken({
   name: 'WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS',
-  pattern: /WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS/,
+  pattern: /WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS/i,
 });
 const VALIDATE_PASSWORD_STRENGTH = chevrotain.createToken({
   name: 'VALIDATE_PASSWORD_STRENGTH',
-  pattern: /VALIDATE_PASSWORD_STRENGTH/,
+  pattern: /VALIDATE_PASSWORD_STRENGTH/i,
 });
 const UUID_SHORT = chevrotain.createToken({
   name: 'UUID_SHORT',
-  pattern: /UUID_SHORT/,
+  pattern: /UUID_SHORT/i,
 });
 const UUID = chevrotain.createToken({
   name: 'UUID',
-  pattern: /UUID/,
+  pattern: /UUID/i,
 });
 const UPPER = chevrotain.createToken({
   name: 'UPPER',
-  pattern: /UPPER/,
+  pattern: /UPPER/i,
 });
 const UPDATEXML = chevrotain.createToken({
   name: 'UPDATEXML',
-  pattern: /UPDATEXML/,
+  pattern: /UPDATEXML/i,
 });
 const UNIX_TIMESTAMP = chevrotain.createToken({
   name: 'UNIX_TIMESTAMP',
-  pattern: /UNIX_TIMESTAMP/,
+  pattern: /UNIX_TIMESTAMP/i,
 });
 const UNHEX = chevrotain.createToken({
   name: 'UNHEX',
-  pattern: /UNHEX/,
+  pattern: /UNHEX/i,
 });
 const UNCOMPRESSED_LENGTH = chevrotain.createToken({
   name: 'UNCOMPRESSED_LENGTH',
-  pattern: /UNCOMPRESSED_LENGTH/,
+  pattern: /UNCOMPRESSED_LENGTH/i,
 });
 const UNCOMPRESS = chevrotain.createToken({
   name: 'UNCOMPRESS',
-  pattern: /UNCOMPRESS/,
+  pattern: /UNCOMPRESS/i,
 });
 const UCASE = chevrotain.createToken({
   name: 'UCASE',
-  pattern: /UCASE/,
+  pattern: /UCASE/i,
 });
 const TO_SECONDS = chevrotain.createToken({
   name: 'TO_SECONDS',
-  pattern: /TO_SECONDS/,
+  pattern: /TO_SECONDS/i,
 });
 const TO_DAYS = chevrotain.createToken({
   name: 'TO_DAYS',
-  pattern: /TO_DAYS/,
+  pattern: /TO_DAYS/i,
 });
 const TO_BASE64 = chevrotain.createToken({
   name: 'TO_BASE64',
-  pattern: /TO_BASE64/,
+  pattern: /TO_BASE64/i,
 });
 const TIME_TO_SEC = chevrotain.createToken({
   name: 'TIME_TO_SEC',
-  pattern: /TIME_TO_SEC/,
+  pattern: /TIME_TO_SEC/i,
 });
 const TIME_FORMAT = chevrotain.createToken({
   name: 'TIME_FORMAT',
-  pattern: /TIME_FORMAT/,
+  pattern: /TIME_FORMAT/i,
 });
 const TIMESTAMPDIFF = chevrotain.createToken({
   name: 'TIMESTAMPDIFF',
-  pattern: /TIMESTAMPDIFF/,
+  pattern: /TIMESTAMPDIFF/i,
 });
 const TIMESTAMPADD = chevrotain.createToken({
   name: 'TIMESTAMPADD',
-  pattern: /TIMESTAMPADD/,
+  pattern: /TIMESTAMPADD/i,
 });
 const TIMEDIFF = chevrotain.createToken({
   name: 'TIMEDIFF',
-  pattern: /TIMEDIFF/,
+  pattern: /TIMEDIFF/i,
 });
 const SYSTEM_USER = chevrotain.createToken({
   name: 'SYSTEM_USER',
-  pattern: /SYSTEM_USER/,
+  pattern: /SYSTEM_USER/i,
 });
 const SUBTIME = chevrotain.createToken({
   name: 'SUBTIME',
-  pattern: /SUBTIME/,
+  pattern: /SUBTIME/i,
 });
 const SUBSTRING_INDEX = chevrotain.createToken({
   name: 'SUBSTRING_INDEX',
-  pattern: /SUBSTRING_INDEX/,
+  pattern: /SUBSTRING_INDEX/i,
 });
 const SUBDATE = chevrotain.createToken({
   name: 'SUBDATE',
-  pattern: /SUBDATE/,
+  pattern: /SUBDATE/i,
 });
 const ST_Y = chevrotain.createToken({
   name: 'ST_Y',
-  pattern: /ST_Y/,
+  pattern: /ST_Y/i,
 });
 const ST_X = chevrotain.createToken({
   name: 'ST_X',
-  pattern: /ST_X/,
+  pattern: /ST_X/i,
 });
 const ST_WITHIN = chevrotain.createToken({
   name: 'ST_WITHIN',
-  pattern: /ST_WITHIN/,
+  pattern: /ST_WITHIN/i,
 });
 const ST_UNION = chevrotain.createToken({
   name: 'ST_UNION',
-  pattern: /ST_UNION/,
+  pattern: /ST_UNION/i,
 });
 const ST_TOUCHES = chevrotain.createToken({
   name: 'ST_TOUCHES',
-  pattern: /ST_TOUCHES/,
+  pattern: /ST_TOUCHES/i,
 });
 const ST_SYMDIFFERENCE = chevrotain.createToken({
   name: 'ST_SYMDIFFERENCE',
-  pattern: /ST_SYMDIFFERENCE/,
+  pattern: /ST_SYMDIFFERENCE/i,
 });
 const ST_STARTPOINT = chevrotain.createToken({
   name: 'ST_STARTPOINT',
-  pattern: /ST_STARTPOINT/,
+  pattern: /ST_STARTPOINT/i,
 });
 const ST_SRID = chevrotain.createToken({
   name: 'ST_SRID',
-  pattern: /ST_SRID/,
+  pattern: /ST_SRID/i,
 });
 const ST_POLYGONFROMWKB = chevrotain.createToken({
   name: 'ST_POLYGONFROMWKB',
-  pattern: /ST_POLYGONFROMWKB/,
+  pattern: /ST_POLYGONFROMWKB/i,
 });
 const ST_POLYGONFROMTEXT = chevrotain.createToken({
   name: 'ST_POLYGONFROMTEXT',
-  pattern: /ST_POLYGONFROMTEXT/,
+  pattern: /ST_POLYGONFROMTEXT/i,
 });
 const ST_POLYFROMWKB = chevrotain.createToken({
   name: 'ST_POLYFROMWKB',
-  pattern: /ST_POLYFROMWKB/,
+  pattern: /ST_POLYFROMWKB/i,
 });
 const ST_POLYFROMTEXT = chevrotain.createToken({
   name: 'ST_POLYFROMTEXT',
-  pattern: /ST_POLYFROMTEXT/,
+  pattern: /ST_POLYFROMTEXT/i,
 });
 const ST_POINTN = chevrotain.createToken({
   name: 'ST_POINTN',
-  pattern: /ST_POINTN/,
+  pattern: /ST_POINTN/i,
 });
 const ST_POINTFROMWKB = chevrotain.createToken({
   name: 'ST_POINTFROMWKB',
-  pattern: /ST_POINTFROMWKB/,
+  pattern: /ST_POINTFROMWKB/i,
 });
 const ST_POINTFROMTEXT = chevrotain.createToken({
   name: 'ST_POINTFROMTEXT',
-  pattern: /ST_POINTFROMTEXT/,
+  pattern: /ST_POINTFROMTEXT/i,
 });
 const ST_OVERLAPS = chevrotain.createToken({
   name: 'ST_OVERLAPS',
-  pattern: /ST_OVERLAPS/,
+  pattern: /ST_OVERLAPS/i,
 });
 const ST_NUMPOINTS = chevrotain.createToken({
   name: 'ST_NUMPOINTS',
-  pattern: /ST_NUMPOINTS/,
+  pattern: /ST_NUMPOINTS/i,
 });
 const ST_NUMINTERIORRINGS = chevrotain.createToken({
   name: 'ST_NUMINTERIORRINGS',
-  pattern: /ST_NUMINTERIORRINGS/,
+  pattern: /ST_NUMINTERIORRINGS/i,
 });
 const ST_NUMINTERIORRING = chevrotain.createToken({
   name: 'ST_NUMINTERIORRING',
-  pattern: /ST_NUMINTERIORRING/,
+  pattern: /ST_NUMINTERIORRING/i,
 });
 const ST_NUMGEOMETRIES = chevrotain.createToken({
   name: 'ST_NUMGEOMETRIES',
-  pattern: /ST_NUMGEOMETRIES/,
+  pattern: /ST_NUMGEOMETRIES/i,
 });
 const ST_LINESTRINGFROMWKB = chevrotain.createToken({
   name: 'ST_LINESTRINGFROMWKB',
-  pattern: /ST_LINESTRINGFROMWKB/,
+  pattern: /ST_LINESTRINGFROMWKB/i,
 });
 const ST_LINESTRINGFROMTEXT = chevrotain.createToken({
   name: 'ST_LINESTRINGFROMTEXT',
-  pattern: /ST_LINESTRINGFROMTEXT/,
+  pattern: /ST_LINESTRINGFROMTEXT/i,
 });
 const ST_LINEFROMWKB = chevrotain.createToken({
   name: 'ST_LINEFROMWKB',
-  pattern: /ST_LINEFROMWKB/,
+  pattern: /ST_LINEFROMWKB/i,
 });
 const ST_LINEFROMTEXT = chevrotain.createToken({
   name: 'ST_LINEFROMTEXT',
-  pattern: /ST_LINEFROMTEXT/,
+  pattern: /ST_LINEFROMTEXT/i,
 });
 const ST_ISSIMPLE = chevrotain.createToken({
   name: 'ST_ISSIMPLE',
-  pattern: /ST_ISSIMPLE/,
+  pattern: /ST_ISSIMPLE/i,
 });
 const ST_ISEMPTY = chevrotain.createToken({
   name: 'ST_ISEMPTY',
-  pattern: /ST_ISEMPTY/,
+  pattern: /ST_ISEMPTY/i,
 });
 const ST_ISCLOSED = chevrotain.createToken({
   name: 'ST_ISCLOSED',
-  pattern: /ST_ISCLOSED/,
+  pattern: /ST_ISCLOSED/i,
 });
 const ST_INTERSECTS = chevrotain.createToken({
   name: 'ST_INTERSECTS',
-  pattern: /ST_INTERSECTS/,
+  pattern: /ST_INTERSECTS/i,
 });
 const ST_INTERSECTION = chevrotain.createToken({
   name: 'ST_INTERSECTION',
-  pattern: /ST_INTERSECTION/,
+  pattern: /ST_INTERSECTION/i,
 });
 const ST_INTERIORRINGN = chevrotain.createToken({
   name: 'ST_INTERIORRINGN',
-  pattern: /ST_INTERIORRINGN/,
+  pattern: /ST_INTERIORRINGN/i,
 });
 const ST_GEOMFROMWKB = chevrotain.createToken({
   name: 'ST_GEOMFROMWKB',
-  pattern: /ST_GEOMFROMWKB/,
+  pattern: /ST_GEOMFROMWKB/i,
 });
 const ST_GEOMFROMTEXT = chevrotain.createToken({
   name: 'ST_GEOMFROMTEXT',
-  pattern: /ST_GEOMFROMTEXT/,
+  pattern: /ST_GEOMFROMTEXT/i,
 });
 const ST_GEOMETRYTYPE = chevrotain.createToken({
   name: 'ST_GEOMETRYTYPE',
-  pattern: /ST_GEOMETRYTYPE/,
+  pattern: /ST_GEOMETRYTYPE/i,
 });
 const ST_GEOMETRYN = chevrotain.createToken({
   name: 'ST_GEOMETRYN',
-  pattern: /ST_GEOMETRYN/,
+  pattern: /ST_GEOMETRYN/i,
 });
 const ST_GEOMETRYFROMWKB = chevrotain.createToken({
   name: 'ST_GEOMETRYFROMWKB',
-  pattern: /ST_GEOMETRYFROMWKB/,
+  pattern: /ST_GEOMETRYFROMWKB/i,
 });
 const ST_GEOMETRYFROMTEXT = chevrotain.createToken({
   name: 'ST_GEOMETRYFROMTEXT',
-  pattern: /ST_GEOMETRYFROMTEXT/,
+  pattern: /ST_GEOMETRYFROMTEXT/i,
 });
 const ST_GEOMETRYCOLLECTIONFROMWKB = chevrotain.createToken({
   name: 'ST_GEOMETRYCOLLECTIONFROMWKB',
-  pattern: /ST_GEOMETRYCOLLECTIONFROMWKB/,
+  pattern: /ST_GEOMETRYCOLLECTIONFROMWKB/i,
 });
 const ST_GEOMETRYCOLLECTIONFROMTEXT = chevrotain.createToken({
   name: 'ST_GEOMETRYCOLLECTIONFROMTEXT',
-  pattern: /ST_GEOMETRYCOLLECTIONFROMTEXT/,
+  pattern: /ST_GEOMETRYCOLLECTIONFROMTEXT/i,
 });
 const ST_GEOMCOLLFROMWKB = chevrotain.createToken({
   name: 'ST_GEOMCOLLFROMWKB',
-  pattern: /ST_GEOMCOLLFROMWKB/,
+  pattern: /ST_GEOMCOLLFROMWKB/i,
 });
 const ST_GEOMCOLLFROMTXT = chevrotain.createToken({
   name: 'ST_GEOMCOLLFROMTXT',
-  pattern: /ST_GEOMCOLLFROMTXT/,
+  pattern: /ST_GEOMCOLLFROMTXT/i,
 });
 const ST_GEOMCOLLFROMTEXT = chevrotain.createToken({
   name: 'ST_GEOMCOLLFROMTEXT',
-  pattern: /ST_GEOMCOLLFROMTEXT/,
+  pattern: /ST_GEOMCOLLFROMTEXT/i,
 });
 const ST_EXTERIORRING = chevrotain.createToken({
   name: 'ST_EXTERIORRING',
-  pattern: /ST_EXTERIORRING/,
+  pattern: /ST_EXTERIORRING/i,
 });
 const ST_EQUALS = chevrotain.createToken({
   name: 'ST_EQUALS',
-  pattern: /ST_EQUALS/,
+  pattern: /ST_EQUALS/i,
 });
 const ST_ENVELOPE = chevrotain.createToken({
   name: 'ST_ENVELOPE',
-  pattern: /ST_ENVELOPE/,
+  pattern: /ST_ENVELOPE/i,
 });
 const ST_ENDPOINT = chevrotain.createToken({
   name: 'ST_ENDPOINT',
-  pattern: /ST_ENDPOINT/,
+  pattern: /ST_ENDPOINT/i,
 });
 const ST_DISTANCE = chevrotain.createToken({
   name: 'ST_DISTANCE',
-  pattern: /ST_DISTANCE/,
+  pattern: /ST_DISTANCE/i,
 });
 const ST_DISJOINT = chevrotain.createToken({
   name: 'ST_DISJOINT',
-  pattern: /ST_DISJOINT/,
+  pattern: /ST_DISJOINT/i,
 });
 const ST_DIMENSION = chevrotain.createToken({
   name: 'ST_DIMENSION',
-  pattern: /ST_DIMENSION/,
+  pattern: /ST_DIMENSION/i,
 });
 const ST_DIFFERENCE = chevrotain.createToken({
   name: 'ST_DIFFERENCE',
-  pattern: /ST_DIFFERENCE/,
+  pattern: /ST_DIFFERENCE/i,
 });
 const ST_CROSSES = chevrotain.createToken({
   name: 'ST_CROSSES',
-  pattern: /ST_CROSSES/,
+  pattern: /ST_CROSSES/i,
 });
 const ST_CONTAINS = chevrotain.createToken({
   name: 'ST_CONTAINS',
-  pattern: /ST_CONTAINS/,
+  pattern: /ST_CONTAINS/i,
 });
 const ST_CENTROID = chevrotain.createToken({
   name: 'ST_CENTROID',
-  pattern: /ST_CENTROID/,
+  pattern: /ST_CENTROID/i,
 });
 const ST_BUFFER = chevrotain.createToken({
   name: 'ST_BUFFER',
-  pattern: /ST_BUFFER/,
+  pattern: /ST_BUFFER/i,
 });
 const ST_ASWKT = chevrotain.createToken({
   name: 'ST_ASWKT',
-  pattern: /ST_ASWKT/,
+  pattern: /ST_ASWKT/i,
 });
 const ST_ASWKB = chevrotain.createToken({
   name: 'ST_ASWKB',
-  pattern: /ST_ASWKB/,
+  pattern: /ST_ASWKB/i,
 });
 const ST_ASTEXT = chevrotain.createToken({
   name: 'ST_ASTEXT',
-  pattern: /ST_ASTEXT/,
+  pattern: /ST_ASTEXT/i,
 });
 const ST_ASBINARY = chevrotain.createToken({
   name: 'ST_ASBINARY',
-  pattern: /ST_ASBINARY/,
+  pattern: /ST_ASBINARY/i,
 });
 const ST_AREA = chevrotain.createToken({
   name: 'ST_AREA',
-  pattern: /ST_AREA/,
+  pattern: /ST_AREA/i,
 });
 const STR_TO_DATE = chevrotain.createToken({
   name: 'STR_TO_DATE',
-  pattern: /STR_TO_DATE/,
+  pattern: /STR_TO_DATE/i,
 });
 const STRCMP = chevrotain.createToken({
   name: 'STRCMP',
-  pattern: /STRCMP/,
+  pattern: /STRCMP/i,
 });
 const STARTPOINT = chevrotain.createToken({
   name: 'STARTPOINT',
-  pattern: /STARTPOINT/,
+  pattern: /STARTPOINT/i,
 });
 const SRID = chevrotain.createToken({
   name: 'SRID',
-  pattern: /SRID/,
+  pattern: /SRID/i,
 });
 const SQRT = chevrotain.createToken({
   name: 'SQRT',
-  pattern: /SQRT/,
+  pattern: /SQRT/i,
 });
 const SQL_THREAD_WAIT_AFTER_GTIDS = chevrotain.createToken({
   name: 'SQL_THREAD_WAIT_AFTER_GTIDS',
-  pattern: /SQL_THREAD_WAIT_AFTER_GTIDS/,
+  pattern: /SQL_THREAD_WAIT_AFTER_GTIDS/i,
 });
 const SOUNDEX = chevrotain.createToken({
   name: 'SOUNDEX',
-  pattern: /SOUNDEX/,
+  pattern: /SOUNDEX/i,
 });
 const SLEEP = chevrotain.createToken({
   name: 'SLEEP',
-  pattern: /SLEEP/,
+  pattern: /SLEEP/i,
 });
 const SHA2 = chevrotain.createToken({
   name: 'SHA2',
-  pattern: /SHA2/,
+  pattern: /SHA2/i,
 });
 const SHA1 = chevrotain.createToken({
   name: 'SHA1',
-  pattern: /SHA1/,
+  pattern: /SHA1/i,
 });
 const SESSION_USER = chevrotain.createToken({
   name: 'SESSION_USER',
-  pattern: /SESSION_USER/,
+  pattern: /SESSION_USER/i,
 });
 const SEC_TO_TIME = chevrotain.createToken({
   name: 'SEC_TO_TIME',
-  pattern: /SEC_TO_TIME/,
+  pattern: /SEC_TO_TIME/i,
 });
 const RTRIM = chevrotain.createToken({
   name: 'RTRIM',
-  pattern: /RTRIM/,
+  pattern: /RTRIM/i,
 });
 const RPAD = chevrotain.createToken({
   name: 'RPAD',
-  pattern: /RPAD/,
+  pattern: /RPAD/i,
 });
 const ROW_COUNT = chevrotain.createToken({
   name: 'ROW_COUNT',
-  pattern: /ROW_COUNT/,
+  pattern: /ROW_COUNT/i,
 });
 const ROUND = chevrotain.createToken({
   name: 'ROUND',
-  pattern: /ROUND/,
+  pattern: /ROUND/i,
 });
 const REVERSE = chevrotain.createToken({
   name: 'REVERSE',
-  pattern: /REVERSE/,
+  pattern: /REVERSE/i,
 });
 const RELEASE_LOCK = chevrotain.createToken({
   name: 'RELEASE_LOCK',
-  pattern: /RELEASE_LOCK/,
+  pattern: /RELEASE_LOCK/i,
 });
 const RANDOM_BYTES = chevrotain.createToken({
   name: 'RANDOM_BYTES',
-  pattern: /RANDOM_BYTES/,
+  pattern: /RANDOM_BYTES/i,
 });
 const RAND = chevrotain.createToken({
   name: 'RAND',
-  pattern: /RAND/,
+  pattern: /RAND/i,
 });
 const RADIANS = chevrotain.createToken({
   name: 'RADIANS',
-  pattern: /RADIANS/,
+  pattern: /RADIANS/i,
 });
 const QUOTE = chevrotain.createToken({
   name: 'QUOTE',
-  pattern: /QUOTE/,
+  pattern: /QUOTE/i,
 });
 const POWER = chevrotain.createToken({
   name: 'POWER',
-  pattern: /POWER/,
+  pattern: /POWER/i,
 });
 const POW = chevrotain.createToken({
   name: 'POW',
-  pattern: /POW/,
+  pattern: /POW/i,
 });
 const POINTN = chevrotain.createToken({
   name: 'POINTN',
-  pattern: /POINTN/,
+  pattern: /POINTN/i,
 });
 const PERIOD_DIFF = chevrotain.createToken({
   name: 'PERIOD_DIFF',
-  pattern: /PERIOD_DIFF/,
+  pattern: /PERIOD_DIFF/i,
 });
 const PERIOD_ADD = chevrotain.createToken({
   name: 'PERIOD_ADD',
-  pattern: /PERIOD_ADD/,
+  pattern: /PERIOD_ADD/i,
 });
 const OCTET_LENGTH = chevrotain.createToken({
   name: 'OCTET_LENGTH',
-  pattern: /OCTET_LENGTH/,
+  pattern: /OCTET_LENGTH/i,
 });
 const OCT = chevrotain.createToken({
   name: 'OCT',
-  pattern: /OCT/,
+  pattern: /OCT/i,
 });
 const NUMPOINTS = chevrotain.createToken({
   name: 'NUMPOINTS',
-  pattern: /NUMPOINTS/,
+  pattern: /NUMPOINTS/i,
 });
 const NUMINTERIORRINGS = chevrotain.createToken({
   name: 'NUMINTERIORRINGS',
-  pattern: /NUMINTERIORRINGS/,
+  pattern: /NUMINTERIORRINGS/i,
 });
 const NUMGEOMETRIES = chevrotain.createToken({
   name: 'NUMGEOMETRIES',
-  pattern: /NUMGEOMETRIES/,
+  pattern: /NUMGEOMETRIES/i,
 });
 const NULLIF = chevrotain.createToken({
   name: 'NULLIF',
-  pattern: /NULLIF/,
+  pattern: /NULLIF/i,
 });
 const NAME_CONST = chevrotain.createToken({
   name: 'NAME_CONST',
-  pattern: /NAME_CONST/,
+  pattern: /NAME_CONST/i,
 });
 const MULTIPOLYGONFROMWKB = chevrotain.createToken({
   name: 'MULTIPOLYGONFROMWKB',
-  pattern: /MULTIPOLYGONFROMWKB/,
+  pattern: /MULTIPOLYGONFROMWKB/i,
 });
 const POLYGONFROMWKB = chevrotain.createToken({
   name: 'POLYGONFROMWKB',
-  pattern: /POLYGONFROMWKB/,
+  pattern: /POLYGONFROMWKB/i,
 });
 const MULTIPOLYGONFROMTEXT = chevrotain.createToken({
   name: 'MULTIPOLYGONFROMTEXT',
-  pattern: /MULTIPOLYGONFROMTEXT/,
+  pattern: /MULTIPOLYGONFROMTEXT/i,
 });
 const POLYGONFROMTEXT = chevrotain.createToken({
   name: 'POLYGONFROMTEXT',
-  pattern: /POLYGONFROMTEXT/,
+  pattern: /POLYGONFROMTEXT/i,
 });
 const MULTIPOINTFROMWKB = chevrotain.createToken({
   name: 'MULTIPOINTFROMWKB',
-  pattern: /MULTIPOINTFROMWKB/,
+  pattern: /MULTIPOINTFROMWKB/i,
 });
 const MULTIPOINTFROMTEXT = chevrotain.createToken({
   name: 'MULTIPOINTFROMTEXT',
-  pattern: /MULTIPOINTFROMTEXT/,
+  pattern: /MULTIPOINTFROMTEXT/i,
 });
 const MULTILINESTRINGFROMWKB = chevrotain.createToken({
   name: 'MULTILINESTRINGFROMWKB',
-  pattern: /MULTILINESTRINGFROMWKB/,
+  pattern: /MULTILINESTRINGFROMWKB/i,
 });
 const MULTILINESTRINGFROMTEXT = chevrotain.createToken({
   name: 'MULTILINESTRINGFROMTEXT',
-  pattern: /MULTILINESTRINGFROMTEXT/,
+  pattern: /MULTILINESTRINGFROMTEXT/i,
 });
 const MPOLYFROMWKB = chevrotain.createToken({
   name: 'MPOLYFROMWKB',
-  pattern: /MPOLYFROMWKB/,
+  pattern: /MPOLYFROMWKB/i,
 });
 const POLYFROMWKB = chevrotain.createToken({
   name: 'POLYFROMWKB',
-  pattern: /POLYFROMWKB/,
+  pattern: /POLYFROMWKB/i,
 });
 const MPOLYFROMTEXT = chevrotain.createToken({
   name: 'MPOLYFROMTEXT',
-  pattern: /MPOLYFROMTEXT/,
+  pattern: /MPOLYFROMTEXT/i,
 });
 const POLYFROMTEXT = chevrotain.createToken({
   name: 'POLYFROMTEXT',
-  pattern: /POLYFROMTEXT/,
+  pattern: /POLYFROMTEXT/i,
 });
 const MPOINTFROMWKB = chevrotain.createToken({
   name: 'MPOINTFROMWKB',
-  pattern: /MPOINTFROMWKB/,
+  pattern: /MPOINTFROMWKB/i,
 });
 const POINTFROMWKB = chevrotain.createToken({
   name: 'POINTFROMWKB',
-  pattern: /POINTFROMWKB/,
+  pattern: /POINTFROMWKB/i,
 });
 const MPOINTFROMTEXT = chevrotain.createToken({
   name: 'MPOINTFROMTEXT',
-  pattern: /MPOINTFROMTEXT/,
+  pattern: /MPOINTFROMTEXT/i,
 });
 const POINTFROMTEXT = chevrotain.createToken({
   name: 'POINTFROMTEXT',
-  pattern: /POINTFROMTEXT/,
+  pattern: /POINTFROMTEXT/i,
 });
 const MONTHNAME = chevrotain.createToken({
   name: 'MONTHNAME',
-  pattern: /MONTHNAME/,
+  pattern: /MONTHNAME/i,
 });
 const MLINEFROMWKB = chevrotain.createToken({
   name: 'MLINEFROMWKB',
-  pattern: /MLINEFROMWKB/,
+  pattern: /MLINEFROMWKB/i,
 });
 const MLINEFROMTEXT = chevrotain.createToken({
   name: 'MLINEFROMTEXT',
-  pattern: /MLINEFROMTEXT/,
+  pattern: /MLINEFROMTEXT/i,
 });
 const MD5 = chevrotain.createToken({
   name: 'MD5',
-  pattern: /MD5/,
+  pattern: /MD5/i,
 });
 const MBRWITHIN = chevrotain.createToken({
   name: 'MBRWITHIN',
-  pattern: /MBRWITHIN/,
+  pattern: /MBRWITHIN/i,
 });
 const WITHIN = chevrotain.createToken({
   name: 'WITHIN',
-  pattern: /WITHIN/,
+  pattern: /WITHIN/i,
 });
 const MBRTOUCHES = chevrotain.createToken({
   name: 'MBRTOUCHES',
-  pattern: /MBRTOUCHES/,
+  pattern: /MBRTOUCHES/i,
 });
 const TOUCHES = chevrotain.createToken({
   name: 'TOUCHES',
-  pattern: /TOUCHES/,
+  pattern: /TOUCHES/i,
 });
 const MBROVERLAPS = chevrotain.createToken({
   name: 'MBROVERLAPS',
-  pattern: /MBROVERLAPS/,
+  pattern: /MBROVERLAPS/i,
 });
 const OVERLAPS = chevrotain.createToken({
   name: 'OVERLAPS',
-  pattern: /OVERLAPS/,
+  pattern: /OVERLAPS/i,
 });
 const MBRINTERSECTS = chevrotain.createToken({
   name: 'MBRINTERSECTS',
-  pattern: /MBRINTERSECTS/,
+  pattern: /MBRINTERSECTS/i,
 });
 const MBREQUAL = chevrotain.createToken({
   name: 'MBREQUAL',
-  pattern: /MBREQUAL/,
+  pattern: /MBREQUAL/i,
 });
 const MBRDISJOINT = chevrotain.createToken({
   name: 'MBRDISJOINT',
-  pattern: /MBRDISJOINT/,
+  pattern: /MBRDISJOINT/i,
 });
 const MBRCONTAINS = chevrotain.createToken({
   name: 'MBRCONTAINS',
-  pattern: /MBRCONTAINS/,
+  pattern: /MBRCONTAINS/i,
 });
 const MASTER_POS_WAIT = chevrotain.createToken({
   name: 'MASTER_POS_WAIT',
-  pattern: /MASTER_POS_WAIT/,
+  pattern: /MASTER_POS_WAIT/i,
 });
 const MAKE_SET = chevrotain.createToken({
   name: 'MAKE_SET',
-  pattern: /MAKE_SET/,
+  pattern: /MAKE_SET/i,
 });
 const MAKETIME = chevrotain.createToken({
   name: 'MAKETIME',
-  pattern: /MAKETIME/,
+  pattern: /MAKETIME/i,
 });
 const MAKEDATE = chevrotain.createToken({
   name: 'MAKEDATE',
-  pattern: /MAKEDATE/,
+  pattern: /MAKEDATE/i,
 });
 const LTRIM = chevrotain.createToken({
   name: 'LTRIM',
-  pattern: /LTRIM/,
+  pattern: /LTRIM/i,
 });
 const LPAD = chevrotain.createToken({
   name: 'LPAD',
-  pattern: /LPAD/,
+  pattern: /LPAD/i,
 });
 const LOWER = chevrotain.createToken({
   name: 'LOWER',
-  pattern: /LOWER/,
+  pattern: /LOWER/i,
 });
 const LOG2 = chevrotain.createToken({
   name: 'LOG2',
-  pattern: /LOG2/,
+  pattern: /LOG2/i,
 });
 const LOG10 = chevrotain.createToken({
   name: 'LOG10',
-  pattern: /LOG10/,
+  pattern: /LOG10/i,
 });
 const LOAD_FILE = chevrotain.createToken({
   name: 'LOAD_FILE',
-  pattern: /LOAD_FILE/,
+  pattern: /LOAD_FILE/i,
 });
 const LN = chevrotain.createToken({
   name: 'LN',
-  pattern: /LN/,
+  pattern: /LN/i,
 });
 const LINESTRINGFROMWKB = chevrotain.createToken({
   name: 'LINESTRINGFROMWKB',
-  pattern: /LINESTRINGFROMWKB/,
+  pattern: /LINESTRINGFROMWKB/i,
 });
 const LINESTRINGFROMTEXT = chevrotain.createToken({
   name: 'LINESTRINGFROMTEXT',
-  pattern: /LINESTRINGFROMTEXT/,
+  pattern: /LINESTRINGFROMTEXT/i,
 });
 const LINEFROMWKB = chevrotain.createToken({
   name: 'LINEFROMWKB',
-  pattern: /LINEFROMWKB/,
+  pattern: /LINEFROMWKB/i,
 });
 const LINEFROMTEXT = chevrotain.createToken({
   name: 'LINEFROMTEXT',
-  pattern: /LINEFROMTEXT/,
+  pattern: /LINEFROMTEXT/i,
 });
 const LEAST = chevrotain.createToken({
   name: 'LEAST',
-  pattern: /LEAST/,
+  pattern: /LEAST/i,
 });
 const LCASE = chevrotain.createToken({
   name: 'LCASE',
-  pattern: /LCASE/,
+  pattern: /LCASE/i,
 });
 const LAST_INSERT_ID = chevrotain.createToken({
   name: 'LAST_INSERT_ID',
-  pattern: /LAST_INSERT_ID/,
+  pattern: /LAST_INSERT_ID/i,
 });
 const IS_USED_LOCK = chevrotain.createToken({
   name: 'IS_USED_LOCK',
-  pattern: /IS_USED_LOCK/,
+  pattern: /IS_USED_LOCK/i,
 });
 const IS_IPV6 = chevrotain.createToken({
   name: 'IS_IPV6',
-  pattern: /IS_IPV6/,
+  pattern: /IS_IPV6/i,
 });
 const IS_IPV4_MAPPED = chevrotain.createToken({
   name: 'IS_IPV4_MAPPED',
-  pattern: /IS_IPV4_MAPPED/,
+  pattern: /IS_IPV4_MAPPED/i,
 });
 const IS_IPV4_COMPAT = chevrotain.createToken({
   name: 'IS_IPV4_COMPAT',
-  pattern: /IS_IPV4_COMPAT/,
+  pattern: /IS_IPV4_COMPAT/i,
 });
 const IS_IPV4 = chevrotain.createToken({
   name: 'IS_IPV4',
-  pattern: /IS_IPV4/,
+  pattern: /IS_IPV4/i,
 });
 const IS_FREE_LOCK = chevrotain.createToken({
   name: 'IS_FREE_LOCK',
-  pattern: /IS_FREE_LOCK/,
+  pattern: /IS_FREE_LOCK/i,
 });
 const ISSIMPLE = chevrotain.createToken({
   name: 'ISSIMPLE',
-  pattern: /ISSIMPLE/,
+  pattern: /ISSIMPLE/i,
 });
 const ISNULL = chevrotain.createToken({
   name: 'ISNULL',
-  pattern: /ISNULL/,
+  pattern: /ISNULL/i,
 });
 const ISEMPTY = chevrotain.createToken({
   name: 'ISEMPTY',
-  pattern: /ISEMPTY/,
+  pattern: /ISEMPTY/i,
 });
 const ISCLOSED = chevrotain.createToken({
   name: 'ISCLOSED',
-  pattern: /ISCLOSED/,
+  pattern: /ISCLOSED/i,
 });
 const INTERSECTS = chevrotain.createToken({
   name: 'INTERSECTS',
-  pattern: /INTERSECTS/,
+  pattern: /INTERSECTS/i,
 });
 const INTERIORRINGN = chevrotain.createToken({
   name: 'INTERIORRINGN',
-  pattern: /INTERIORRINGN/,
+  pattern: /INTERIORRINGN/i,
 });
 const INSTR = chevrotain.createToken({
   name: 'INSTR',
-  pattern: /INSTR/,
+  pattern: /INSTR/i,
 });
 const INET_NTOA = chevrotain.createToken({
   name: 'INET_NTOA',
-  pattern: /INET_NTOA/,
+  pattern: /INET_NTOA/i,
 });
 const INET_ATON = chevrotain.createToken({
   name: 'INET_ATON',
-  pattern: /INET_ATON/,
+  pattern: /INET_ATON/i,
 });
 const INET6_NTOA = chevrotain.createToken({
   name: 'INET6_NTOA',
-  pattern: /INET6_NTOA/,
+  pattern: /INET6_NTOA/i,
 });
 const INET6_ATON = chevrotain.createToken({
   name: 'INET6_ATON',
-  pattern: /INET6_ATON/,
+  pattern: /INET6_ATON/i,
 });
 const IFNULL = chevrotain.createToken({
   name: 'IFNULL',
-  pattern: /IFNULL/,
+  pattern: /IFNULL/i,
 });
 const HEX = chevrotain.createToken({
   name: 'HEX',
-  pattern: /HEX/,
+  pattern: /HEX/i,
 });
 const GTID_SUBTRACT = chevrotain.createToken({
   name: 'GTID_SUBTRACT',
-  pattern: /GTID_SUBTRACT/,
+  pattern: /GTID_SUBTRACT/i,
 });
 const GTID_SUBSET = chevrotain.createToken({
   name: 'GTID_SUBSET',
-  pattern: /GTID_SUBSET/,
+  pattern: /GTID_SUBSET/i,
 });
 const GREATEST = chevrotain.createToken({
   name: 'GREATEST',
-  pattern: /GREATEST/,
+  pattern: /GREATEST/i,
 });
 const GLENGTH = chevrotain.createToken({
   name: 'GLENGTH',
-  pattern: /GLENGTH/,
+  pattern: /GLENGTH/i,
 });
 const GET_LOCK = chevrotain.createToken({
   name: 'GET_LOCK',
-  pattern: /GET_LOCK/,
+  pattern: /GET_LOCK/i,
 });
 const GET_FORMAT = chevrotain.createToken({
   name: 'GET_FORMAT',
-  pattern: /GET_FORMAT/,
+  pattern: /GET_FORMAT/i,
 });
 const GEOMFROMWKB = chevrotain.createToken({
   name: 'GEOMFROMWKB',
-  pattern: /GEOMFROMWKB/,
+  pattern: /GEOMFROMWKB/i,
 });
 const GEOMFROMTEXT = chevrotain.createToken({
   name: 'GEOMFROMTEXT',
-  pattern: /GEOMFROMTEXT/,
+  pattern: /GEOMFROMTEXT/i,
 });
 const GEOMETRYTYPE = chevrotain.createToken({
   name: 'GEOMETRYTYPE',
-  pattern: /GEOMETRYTYPE/,
+  pattern: /GEOMETRYTYPE/i,
 });
 const GEOMETRYN = chevrotain.createToken({
   name: 'GEOMETRYN',
-  pattern: /GEOMETRYN/,
+  pattern: /GEOMETRYN/i,
 });
 const GEOMETRYFROMWKB = chevrotain.createToken({
   name: 'GEOMETRYFROMWKB',
-  pattern: /GEOMETRYFROMWKB/,
+  pattern: /GEOMETRYFROMWKB/i,
 });
 const GEOMETRYFROMTEXT = chevrotain.createToken({
   name: 'GEOMETRYFROMTEXT',
-  pattern: /GEOMETRYFROMTEXT/,
+  pattern: /GEOMETRYFROMTEXT/i,
 });
 const GEOMETRYCOLLECTIONFROMWKB = chevrotain.createToken({
   name: 'GEOMETRYCOLLECTIONFROMWKB',
-  pattern: /GEOMETRYCOLLECTIONFROMWKB/,
+  pattern: /GEOMETRYCOLLECTIONFROMWKB/i,
 });
 const GEOMETRYCOLLECTIONFROMTEXT = chevrotain.createToken({
   name: 'GEOMETRYCOLLECTIONFROMTEXT',
-  pattern: /GEOMETRYCOLLECTIONFROMTEXT/,
+  pattern: /GEOMETRYCOLLECTIONFROMTEXT/i,
 });
 const GEOMCOLLFROMWKB = chevrotain.createToken({
   name: 'GEOMCOLLFROMWKB',
-  pattern: /GEOMCOLLFROMWKB/,
+  pattern: /GEOMCOLLFROMWKB/i,
 });
 const GEOMCOLLFROMTEXT = chevrotain.createToken({
   name: 'GEOMCOLLFROMTEXT',
-  pattern: /GEOMCOLLFROMTEXT/,
+  pattern: /GEOMCOLLFROMTEXT/i,
 });
 const FROM_UNIXTIME = chevrotain.createToken({
   name: 'FROM_UNIXTIME',
-  pattern: /FROM_UNIXTIME/,
+  pattern: /FROM_UNIXTIME/i,
 });
 const FROM_DAYS = chevrotain.createToken({
   name: 'FROM_DAYS',
-  pattern: /FROM_DAYS/,
+  pattern: /FROM_DAYS/i,
 });
 const FROM_BASE64 = chevrotain.createToken({
   name: 'FROM_BASE64',
-  pattern: /FROM_BASE64/,
+  pattern: /FROM_BASE64/i,
 });
 const FLOOR = chevrotain.createToken({
   name: 'FLOOR',
-  pattern: /FLOOR/,
+  pattern: /FLOOR/i,
 });
 const FIND_IN_SET = chevrotain.createToken({
   name: 'FIND_IN_SET',
-  pattern: /FIND_IN_SET/,
+  pattern: /FIND_IN_SET/i,
 });
 const EXTRACTVALUE = chevrotain.createToken({
   name: 'EXTRACTVALUE',
-  pattern: /EXTRACTVALUE/,
+  pattern: /EXTRACTVALUE/i,
 });
 const EXTERIORRING = chevrotain.createToken({
   name: 'EXTERIORRING',
-  pattern: /EXTERIORRING/,
+  pattern: /EXTERIORRING/i,
 });
 const EXPORT_SET = chevrotain.createToken({
   name: 'EXPORT_SET',
-  pattern: /EXPORT_SET/,
+  pattern: /EXPORT_SET/i,
 });
 const EQUALS = chevrotain.createToken({
   name: 'EQUALS',
-  pattern: /EQUALS/,
+  pattern: /EQUALS/i,
 });
 const ENVELOPE = chevrotain.createToken({
   name: 'ENVELOPE',
-  pattern: /ENVELOPE/,
+  pattern: /ENVELOPE/i,
 });
 const ENDPOINT = chevrotain.createToken({
   name: 'ENDPOINT',
-  pattern: /ENDPOINT/,
+  pattern: /ENDPOINT/i,
 });
 const ENCODE = chevrotain.createToken({
   name: 'ENCODE',
-  pattern: /ENCODE/,
+  pattern: /ENCODE/i,
 });
 const ELT = chevrotain.createToken({
   name: 'ELT',
-  pattern: /ELT/,
+  pattern: /ELT/i,
 });
 const DISJOINT = chevrotain.createToken({
   name: 'DISJOINT',
-  pattern: /DISJOINT/,
+  pattern: /DISJOINT/i,
 });
 const DIMENSION = chevrotain.createToken({
   name: 'DIMENSION',
-  pattern: /DIMENSION/,
+  pattern: /DIMENSION/i,
 });
 const DES_ENCRYPT = chevrotain.createToken({
   name: 'DES_ENCRYPT',
-  pattern: /DES_ENCRYPT/,
+  pattern: /DES_ENCRYPT/i,
 });
 const DES_DECRYPT = chevrotain.createToken({
   name: 'DES_DECRYPT',
-  pattern: /DES_DECRYPT/,
+  pattern: /DES_DECRYPT/i,
 });
 const DEGREES = chevrotain.createToken({
   name: 'DEGREES',
-  pattern: /DEGREES/,
+  pattern: /DEGREES/i,
 });
 const DECODE = chevrotain.createToken({
   name: 'DECODE',
-  pattern: /DECODE/,
+  pattern: /DECODE/i,
 });
 const DAYOFYEAR = chevrotain.createToken({
   name: 'DAYOFYEAR',
-  pattern: /DAYOFYEAR/,
+  pattern: /DAYOFYEAR/i,
 });
 const DAYOFWEEK = chevrotain.createToken({
   name: 'DAYOFWEEK',
-  pattern: /DAYOFWEEK/,
+  pattern: /DAYOFWEEK/i,
 });
 const DAYOFMONTH = chevrotain.createToken({
   name: 'DAYOFMONTH',
-  pattern: /DAYOFMONTH/,
+  pattern: /DAYOFMONTH/i,
 });
 const DAYNAME = chevrotain.createToken({
   name: 'DAYNAME',
-  pattern: /DAYNAME/,
+  pattern: /DAYNAME/i,
 });
 const DATE_FORMAT = chevrotain.createToken({
   name: 'DATE_FORMAT',
-  pattern: /DATE_FORMAT/,
+  pattern: /DATE_FORMAT/i,
 });
 const DATEDIFF = chevrotain.createToken({
   name: 'DATEDIFF',
-  pattern: /DATEDIFF/,
+  pattern: /DATEDIFF/i,
 });
 const CROSSES = chevrotain.createToken({
   name: 'CROSSES',
-  pattern: /CROSSES/,
+  pattern: /CROSSES/i,
 });
 const CREATE_DIGEST = chevrotain.createToken({
   name: 'CREATE_DIGEST',
-  pattern: /CREATE_DIGEST/,
+  pattern: /CREATE_DIGEST/i,
 });
 const CREATE_DH_PARAMETERS = chevrotain.createToken({
   name: 'CREATE_DH_PARAMETERS',
-  pattern: /CREATE_DH_PARAMETERS/,
+  pattern: /CREATE_DH_PARAMETERS/i,
 });
 const CREATE_ASYMMETRIC_PUB_KEY = chevrotain.createToken({
   name: 'CREATE_ASYMMETRIC_PUB_KEY',
-  pattern: /CREATE_ASYMMETRIC_PUB_KEY/,
+  pattern: /CREATE_ASYMMETRIC_PUB_KEY/i,
 });
 const CREATE_ASYMMETRIC_PRIV_KEY = chevrotain.createToken({
   name: 'CREATE_ASYMMETRIC_PRIV_KEY',
-  pattern: /CREATE_ASYMMETRIC_PRIV_KEY/,
+  pattern: /CREATE_ASYMMETRIC_PRIV_KEY/i,
 });
 const CRC32 = chevrotain.createToken({
   name: 'CRC32',
-  pattern: /CRC32/,
+  pattern: /CRC32/i,
 });
 const COT = chevrotain.createToken({
   name: 'COT',
-  pattern: /COT/,
+  pattern: /COT/i,
 });
 const CONVERT_TZ = chevrotain.createToken({
   name: 'CONVERT_TZ',
-  pattern: /CONVERT_TZ/,
+  pattern: /CONVERT_TZ/i,
 });
 const CONNECTION_ID = chevrotain.createToken({
   name: 'CONNECTION_ID',
-  pattern: /CONNECTION_ID/,
+  pattern: /CONNECTION_ID/i,
 });
 const CONCAT_WS = chevrotain.createToken({
   name: 'CONCAT_WS',
-  pattern: /CONCAT_WS/,
+  pattern: /CONCAT_WS/i,
 });
 const COLLATION = chevrotain.createToken({
   name: 'COLLATION',
-  pattern: /COLLATION/,
+  pattern: /COLLATION/i,
 });
 const COERCIBILITY = chevrotain.createToken({
   name: 'COERCIBILITY',
-  pattern: /COERCIBILITY/,
+  pattern: /COERCIBILITY/i,
 });
 const CHAR_LENGTH = chevrotain.createToken({
   name: 'CHAR_LENGTH',
-  pattern: /CHAR_LENGTH/,
+  pattern: /CHAR_LENGTH/i,
 });
 const CHARSET = chevrotain.createToken({
   name: 'CHARSET',
-  pattern: /CHARSET/,
+  pattern: /CHARSET/i,
 });
 const CHARACTER_LENGTH = chevrotain.createToken({
   name: 'CHARACTER_LENGTH',
-  pattern: /CHARACTER_LENGTH/,
+  pattern: /CHARACTER_LENGTH/i,
 });
 const CENTROID = chevrotain.createToken({
   name: 'CENTROID',
-  pattern: /CENTROID/,
+  pattern: /CENTROID/i,
 });
 const CEILING = chevrotain.createToken({
   name: 'CEILING',
-  pattern: /CEILING/,
+  pattern: /CEILING/i,
 });
 const CEIL = chevrotain.createToken({
   name: 'CEIL',
-  pattern: /CEIL/,
+  pattern: /CEIL/i,
 });
 const BIT_LENGTH = chevrotain.createToken({
   name: 'BIT_LENGTH',
-  pattern: /BIT_LENGTH/,
+  pattern: /BIT_LENGTH/i,
 });
 const BIT_COUNT = chevrotain.createToken({
   name: 'BIT_COUNT',
-  pattern: /BIT_COUNT/,
+  pattern: /BIT_COUNT/i,
 });
 const BENCHMARK = chevrotain.createToken({
   name: 'BENCHMARK',
-  pattern: /BENCHMARK/,
+  pattern: /BENCHMARK/i,
 });
 const ATAN2 = chevrotain.createToken({
   name: 'ATAN2',
-  pattern: /ATAN2/,
+  pattern: /ATAN2/i,
 });
 const ATAN = chevrotain.createToken({
   name: 'ATAN',
-  pattern: /ATAN/,
+  pattern: /ATAN/i,
 });
 const ASYMMETRIC_VERIFY = chevrotain.createToken({
   name: 'ASYMMETRIC_VERIFY',
-  pattern: /ASYMMETRIC_VERIFY/,
+  pattern: /ASYMMETRIC_VERIFY/i,
 });
 const ASYMMETRIC_SIGN = chevrotain.createToken({
   name: 'ASYMMETRIC_SIGN',
-  pattern: /ASYMMETRIC_SIGN/,
+  pattern: /ASYMMETRIC_SIGN/i,
 });
 const ASYMMETRIC_ENCRYPT = chevrotain.createToken({
   name: 'ASYMMETRIC_ENCRYPT',
-  pattern: /ASYMMETRIC_ENCRYPT/,
+  pattern: /ASYMMETRIC_ENCRYPT/i,
 });
 const ASYMMETRIC_DERIVE = chevrotain.createToken({
   name: 'ASYMMETRIC_DERIVE',
-  pattern: /ASYMMETRIC_DERIVE/,
+  pattern: /ASYMMETRIC_DERIVE/i,
 });
 const ASYMMETRIC_DECRYPT = chevrotain.createToken({
   name: 'ASYMMETRIC_DECRYPT',
-  pattern: /ASYMMETRIC_DECRYPT/,
+  pattern: /ASYMMETRIC_DECRYPT/i,
 });
 const ASWKT = chevrotain.createToken({
   name: 'ASWKT',
-  pattern: /ASWKT/,
+  pattern: /ASWKT/i,
 });
 const ASWKB = chevrotain.createToken({
   name: 'ASWKB',
-  pattern: /ASWKB/,
+  pattern: /ASWKB/i,
 });
 const ASTEXT = chevrotain.createToken({
   name: 'ASTEXT',
-  pattern: /ASTEXT/,
+  pattern: /ASTEXT/i,
 });
 const ASIN = chevrotain.createToken({
   name: 'ASIN',
-  pattern: /ASIN/,
+  pattern: /ASIN/i,
 });
 const ASBINARY = chevrotain.createToken({
   name: 'ASBINARY',
-  pattern: /ASBINARY/,
+  pattern: /ASBINARY/i,
 });
 const AREA = chevrotain.createToken({
   name: 'AREA',
-  pattern: /AREA/,
+  pattern: /AREA/i,
 });
 const AES_ENCRYPT = chevrotain.createToken({
   name: 'AES_ENCRYPT',
-  pattern: /AES_ENCRYPT/,
+  pattern: /AES_ENCRYPT/i,
 });
 const AES_DECRYPT = chevrotain.createToken({
   name: 'AES_DECRYPT',
-  pattern: /AES_DECRYPT/,
+  pattern: /AES_DECRYPT/i,
 });
 const ADDTIME = chevrotain.createToken({
   name: 'ADDTIME',
-  pattern: /ADDTIME/,
+  pattern: /ADDTIME/i,
 });
 const ADDDATE = chevrotain.createToken({
   name: 'ADDDATE',
-  pattern: /ADDDATE/,
+  pattern: /ADDDATE/i,
 });
 const ACOS = chevrotain.createToken({
   name: 'ACOS',
-  pattern: /ACOS/,
+  pattern: /ACOS/i,
 });
 const ABS = chevrotain.createToken({
   name: 'ABS',
-  pattern: /ABS/,
+  pattern: /ABS/i,
 });
 const MULTIPOLYGON = chevrotain.createToken({
   name: 'MULTIPOLYGON',
-  pattern: /MULTIPOLYGON/,
+  pattern: /MULTIPOLYGON/i,
 });
 const POLYGON = chevrotain.createToken({
   name: 'POLYGON',
-  pattern: /POLYGON/,
+  pattern: /POLYGON/i,
 });
 const MULTIPOINT = chevrotain.createToken({
   name: 'MULTIPOINT',
-  pattern: /MULTIPOINT/,
+  pattern: /MULTIPOINT/i,
 });
 const MULTILINESTRING = chevrotain.createToken({
   name: 'MULTILINESTRING',
-  pattern: /MULTILINESTRING/,
+  pattern: /MULTILINESTRING/i,
 });
 const LINESTRING = chevrotain.createToken({
   name: 'LINESTRING',
-  pattern: /LINESTRING/,
+  pattern: /LINESTRING/i,
 });
 const GEOMETRYCOLLECTION = chevrotain.createToken({
   name: 'GEOMETRYCOLLECTION',
-  pattern: /GEOMETRYCOLLECTION/,
+  pattern: /GEOMETRYCOLLECTION/i,
 });
 const SERIALIZABLE = chevrotain.createToken({
   name: 'SERIALIZABLE',
-  pattern: /SERIALIZABLE/,
+  pattern: /SERIALIZABLE/i,
 });
 const UNCOMMITTED = chevrotain.createToken({
   name: 'UNCOMMITTED',
-  pattern: /UNCOMMITTED/,
+  pattern: /UNCOMMITTED/i,
 });
 const COMMITTED = chevrotain.createToken({
   name: 'COMMITTED',
-  pattern: /COMMITTED/,
+  pattern: /COMMITTED/i,
 });
 const REPEATABLE = chevrotain.createToken({
   name: 'REPEATABLE',
-  pattern: /REPEATABLE/,
+  pattern: /REPEATABLE/i,
 });
 const PERFOMANCE_SCHEMA = chevrotain.createToken({
   name: 'PERFOMANCE_SCHEMA',
-  pattern: /PERFOMANCE_SCHEMA/,
+  pattern: /PERFOMANCE_SCHEMA/i,
 });
 const NDBCLUSTER = chevrotain.createToken({
   name: 'NDBCLUSTER',
-  pattern: /NDBCLUSTER/,
+  pattern: /NDBCLUSTER/i,
 });
 const NDB = chevrotain.createToken({
   name: 'NDB',
-  pattern: /NDB/,
+  pattern: /NDB/i,
 });
 const MRG_MYISAM = chevrotain.createToken({
   name: 'MRG_MYISAM',
-  pattern: /MRG_MYISAM/,
+  pattern: /MRG_MYISAM/i,
 });
 const MYISAM = chevrotain.createToken({
   name: 'MYISAM',
-  pattern: /MYISAM/,
+  pattern: /MYISAM/i,
 });
 const MEMORY = chevrotain.createToken({
   name: 'MEMORY',
-  pattern: /MEMORY/,
+  pattern: /MEMORY/i,
 });
 const INNODB = chevrotain.createToken({
   name: 'INNODB',
-  pattern: /INNODB/,
+  pattern: /INNODB/i,
 });
 const FEDERATED = chevrotain.createToken({
   name: 'FEDERATED',
-  pattern: /FEDERATED/,
+  pattern: /FEDERATED/i,
 });
 const CSV = chevrotain.createToken({
   name: 'CSV',
-  pattern: /CSV/,
+  pattern: /CSV/i,
 });
 const BLACKHOLE = chevrotain.createToken({
   name: 'BLACKHOLE',
-  pattern: /BLACKHOLE/,
+  pattern: /BLACKHOLE/i,
 });
 const ARCHIVE = chevrotain.createToken({
   name: 'ARCHIVE',
-  pattern: /ARCHIVE/,
+  pattern: /ARCHIVE/i,
 });
 const UTF8MB4 = chevrotain.createToken({
   name: 'UTF8MB4',
-  pattern: /UTF8MB4/,
+  pattern: /UTF8MB4/i,
 });
 const UTF8MB3 = chevrotain.createToken({
   name: 'UTF8MB3',
-  pattern: /UTF8MB3/,
+  pattern: /UTF8MB3/i,
 });
 const FILESIZE_LITERAL = chevrotain.createToken({
   name: 'FILESIZE_LITERAL',
-  pattern: /[0-9]+(K|M|G|T)/,
+  pattern: /[0-9]+(K|M|G|T)/i,
 });
 const UTF8 = chevrotain.createToken({
   name: 'UTF8',
-  pattern: /UTF8/,
+  pattern: /UTF8/i,
 });
 const UTF32 = chevrotain.createToken({
   name: 'UTF32',
-  pattern: /UTF32/,
+  pattern: /UTF32/i,
 });
 const UTF16LE = chevrotain.createToken({
   name: 'UTF16LE',
-  pattern: /UTF16LE/,
+  pattern: /UTF16LE/i,
 });
 const UTF16 = chevrotain.createToken({
   name: 'UTF16',
-  pattern: /UTF16/,
+  pattern: /UTF16/i,
 });
 const UJIS = chevrotain.createToken({
   name: 'UJIS',
-  pattern: /UJIS/,
+  pattern: /UJIS/i,
 });
 const UCS2 = chevrotain.createToken({
   name: 'UCS2',
-  pattern: /UCS2/,
+  pattern: /UCS2/i,
 });
 const TIS620 = chevrotain.createToken({
   name: 'TIS620',
-  pattern: /TIS620/,
+  pattern: /TIS620/i,
 });
 const SWE7 = chevrotain.createToken({
   name: 'SWE7',
-  pattern: /SWE7/,
+  pattern: /SWE7/i,
 });
 const SJIS = chevrotain.createToken({
   name: 'SJIS',
-  pattern: /SJIS/,
+  pattern: /SJIS/i,
 });
 const MACROMAN = chevrotain.createToken({
   name: 'MACROMAN',
-  pattern: /MACROMAN/,
+  pattern: /MACROMAN/i,
 });
 const MACCE = chevrotain.createToken({
   name: 'MACCE',
-  pattern: /MACCE/,
+  pattern: /MACCE/i,
 });
 const LATIN7 = chevrotain.createToken({
   name: 'LATIN7',
-  pattern: /LATIN7/,
+  pattern: /LATIN7/i,
 });
 const LATIN5 = chevrotain.createToken({
   name: 'LATIN5',
-  pattern: /LATIN5/,
+  pattern: /LATIN5/i,
 });
 const LATIN2 = chevrotain.createToken({
   name: 'LATIN2',
-  pattern: /LATIN2/,
+  pattern: /LATIN2/i,
 });
 const LATIN1 = chevrotain.createToken({
   name: 'LATIN1',
-  pattern: /LATIN1/,
+  pattern: /LATIN1/i,
 });
 const KOI8U = chevrotain.createToken({
   name: 'KOI8U',
-  pattern: /KOI8U/,
+  pattern: /KOI8U/i,
 });
 const KOI8R = chevrotain.createToken({
   name: 'KOI8R',
-  pattern: /KOI8R/,
+  pattern: /KOI8R/i,
 });
 const KEYBCS2 = chevrotain.createToken({
   name: 'KEYBCS2',
-  pattern: /KEYBCS2/,
+  pattern: /KEYBCS2/i,
 });
 const HP8 = chevrotain.createToken({
   name: 'HP8',
-  pattern: /HP8/,
+  pattern: /HP8/i,
 });
 const HEBREW = chevrotain.createToken({
   name: 'HEBREW',
-  pattern: /HEBREW/,
+  pattern: /HEBREW/i,
 });
 const GREEK = chevrotain.createToken({
   name: 'GREEK',
-  pattern: /GREEK/,
+  pattern: /GREEK/i,
 });
 const GEOSTD8 = chevrotain.createToken({
   name: 'GEOSTD8',
-  pattern: /GEOSTD8/,
+  pattern: /GEOSTD8/i,
 });
 const GBK = chevrotain.createToken({
   name: 'GBK',
-  pattern: /GBK/,
+  pattern: /GBK/i,
 });
 const GB2312 = chevrotain.createToken({
   name: 'GB2312',
-  pattern: /GB2312/,
+  pattern: /GB2312/i,
 });
 const EUCKR = chevrotain.createToken({
   name: 'EUCKR',
-  pattern: /EUCKR/,
+  pattern: /EUCKR/i,
 });
 const EUCJPMS = chevrotain.createToken({
   name: 'EUCJPMS',
-  pattern: /EUCJPMS/,
+  pattern: /EUCJPMS/i,
 });
 const DEC8 = chevrotain.createToken({
   name: 'DEC8',
-  pattern: /DEC8/,
+  pattern: /DEC8/i,
 });
 const CP932 = chevrotain.createToken({
   name: 'CP932',
-  pattern: /CP932/,
+  pattern: /CP932/i,
 });
 const CP866 = chevrotain.createToken({
   name: 'CP866',
-  pattern: /CP866/,
+  pattern: /CP866/i,
 });
 const CP852 = chevrotain.createToken({
   name: 'CP852',
-  pattern: /CP852/,
+  pattern: /CP852/i,
 });
 const CP850 = chevrotain.createToken({
   name: 'CP850',
-  pattern: /CP850/,
+  pattern: /CP850/i,
 });
 const CP1257 = chevrotain.createToken({
   name: 'CP1257',
-  pattern: /CP1257/,
+  pattern: /CP1257/i,
 });
 const CP1256 = chevrotain.createToken({
   name: 'CP1256',
-  pattern: /CP1256/,
+  pattern: /CP1256/i,
 });
 const CP1251 = chevrotain.createToken({
   name: 'CP1251',
-  pattern: /CP1251/,
+  pattern: /CP1251/i,
 });
 const CP1250 = chevrotain.createToken({
   name: 'CP1250',
-  pattern: /CP1250/,
+  pattern: /CP1250/i,
 });
 const TWO_DECIMAL = chevrotain.createToken({
   name: 'TWO_DECIMAL',
@@ -1514,71 +1514,71 @@ const ONE_DECIMAL = chevrotain.createToken({
 });
 const BIG5 = chevrotain.createToken({
   name: 'BIG5',
-  pattern: /BIG5/,
+  pattern: /BIG5/i,
 });
 const ASCII = chevrotain.createToken({
   name: 'ASCII',
-  pattern: /ASCII/,
+  pattern: /ASCII/i,
 });
 const ARMSCII8 = chevrotain.createToken({
   name: 'ARMSCII8',
-  pattern: /ARMSCII8/,
+  pattern: /ARMSCII8/i,
 });
 const PRIVILEGES = chevrotain.createToken({
   name: 'PRIVILEGES',
-  pattern: /PRIVILEGES/,
+  pattern: /PRIVILEGES/i,
 });
 const SUPER = chevrotain.createToken({
   name: 'SUPER',
-  pattern: /SUPER/,
+  pattern: /SUPER/i,
 });
 const SHUTDOWN = chevrotain.createToken({
   name: 'SHUTDOWN',
-  pattern: /SHUTDOWN/,
+  pattern: /SHUTDOWN/i,
 });
 const RELOAD = chevrotain.createToken({
   name: 'RELOAD',
-  pattern: /RELOAD/,
+  pattern: /RELOAD/i,
 });
 const EXECUTE = chevrotain.createToken({
   name: 'EXECUTE',
-  pattern: /EXECUTE/,
+  pattern: /EXECUTE/i,
 });
 const ROUTINE = chevrotain.createToken({
   name: 'ROUTINE',
-  pattern: /ROUTINE/,
+  pattern: /ROUTINE/i,
 });
 const WEEK = chevrotain.createToken({
   name: 'WEEK',
-  pattern: /WEEK/,
+  pattern: /WEEK/i,
 });
 const QUARTER = chevrotain.createToken({
   name: 'QUARTER',
-  pattern: /QUARTER/,
+  pattern: /QUARTER/i,
 });
 const INTERNAL = chevrotain.createToken({
   name: 'INTERNAL',
-  pattern: /INTERNAL/,
+  pattern: /INTERNAL/i,
 });
 const JIS = chevrotain.createToken({
   name: 'JIS',
-  pattern: /JIS/,
+  pattern: /JIS/i,
 });
 const EUR = chevrotain.createToken({
   name: 'EUR',
-  pattern: /EUR/,
+  pattern: /EUR/i,
 });
 const XML = chevrotain.createToken({
   name: 'XML',
-  pattern: /XML/,
+  pattern: /XML/i,
 });
 const XA = chevrotain.createToken({
   name: 'XA',
-  pattern: /XA/,
+  pattern: /XA/i,
 });
 const X509 = chevrotain.createToken({
   name: 'X509',
-  pattern: /X509/,
+  pattern: /X509/i,
 });
 const ZERO_DECIMAL = chevrotain.createToken({
   name: 'ZERO_DECIMAL',
@@ -1587,2315 +1587,2315 @@ const ZERO_DECIMAL = chevrotain.createToken({
 });
 const WRAPPER = chevrotain.createToken({
   name: 'WRAPPER',
-  pattern: /WRAPPER/,
+  pattern: /WRAPPER/i,
 });
 const WORK = chevrotain.createToken({
   name: 'WORK',
-  pattern: /WORK/,
+  pattern: /WORK/i,
 });
 const WITHOUT = chevrotain.createToken({
   name: 'WITHOUT',
-  pattern: /WITHOUT/,
+  pattern: /WITHOUT/i,
 });
 const WARNINGS = chevrotain.createToken({
   name: 'WARNINGS',
-  pattern: /WARNINGS/,
+  pattern: /WARNINGS/i,
 });
 const WAIT = chevrotain.createToken({
   name: 'WAIT',
-  pattern: /WAIT/,
+  pattern: /WAIT/i,
 });
 const VIEW = chevrotain.createToken({
   name: 'VIEW',
-  pattern: /VIEW/,
+  pattern: /VIEW/i,
 });
 const VARIABLES = chevrotain.createToken({
   name: 'VARIABLES',
-  pattern: /VARIABLES/,
+  pattern: /VARIABLES/i,
 });
 const VALIDATION = chevrotain.createToken({
   name: 'VALIDATION',
-  pattern: /VALIDATION/,
+  pattern: /VALIDATION/i,
 });
 const USER_RESOURCES = chevrotain.createToken({
   name: 'USER_RESOURCES',
-  pattern: /USER_RESOURCES/,
+  pattern: /USER_RESOURCES/i,
 });
 const USE_FRM = chevrotain.createToken({
   name: 'USE_FRM',
-  pattern: /USE_FRM/,
+  pattern: /USE_FRM/i,
 });
 const UPGRADE = chevrotain.createToken({
   name: 'UPGRADE',
-  pattern: /UPGRADE/,
+  pattern: /UPGRADE/i,
 });
 const UNTIL = chevrotain.createToken({
   name: 'UNTIL',
-  pattern: /UNTIL/,
+  pattern: /UNTIL/i,
 });
 const UNKNOWN = chevrotain.createToken({
   name: 'UNKNOWN',
-  pattern: /UNKNOWN/,
+  pattern: /UNKNOWN/i,
 });
 const UNINSTALL = chevrotain.createToken({
   name: 'UNINSTALL',
-  pattern: /UNINSTALL/,
+  pattern: /UNINSTALL/i,
 });
 const UNDO_BUFFER_SIZE = chevrotain.createToken({
   name: 'UNDO_BUFFER_SIZE',
-  pattern: /UNDO_BUFFER_SIZE/,
+  pattern: /UNDO_BUFFER_SIZE/i,
 });
 const UNDOFILE = chevrotain.createToken({
   name: 'UNDOFILE',
-  pattern: /UNDOFILE/,
+  pattern: /UNDOFILE/i,
 });
 const UNDEFINED = chevrotain.createToken({
   name: 'UNDEFINED',
-  pattern: /UNDEFINED/,
+  pattern: /UNDEFINED/i,
 });
 const TRUNCATE = chevrotain.createToken({
   name: 'TRUNCATE',
-  pattern: /TRUNCATE/,
+  pattern: /TRUNCATE/i,
 });
 const TRIGGERS = chevrotain.createToken({
   name: 'TRIGGERS',
-  pattern: /TRIGGERS/,
+  pattern: /TRIGGERS/i,
 });
 const TRANSACTION = chevrotain.createToken({
   name: 'TRANSACTION',
-  pattern: /TRANSACTION/,
+  pattern: /TRANSACTION/i,
 });
 const TRADITIONAL = chevrotain.createToken({
   name: 'TRADITIONAL',
-  pattern: /TRADITIONAL/,
+  pattern: /TRADITIONAL/i,
 });
 const THAN = chevrotain.createToken({
   name: 'THAN',
-  pattern: /THAN/,
+  pattern: /THAN/i,
 });
 const TEMPTABLE = chevrotain.createToken({
   name: 'TEMPTABLE',
-  pattern: /TEMPTABLE/,
+  pattern: /TEMPTABLE/i,
 });
 const TEMPORARY = chevrotain.createToken({
   name: 'TEMPORARY',
-  pattern: /TEMPORARY/,
+  pattern: /TEMPORARY/i,
 });
 const TABLESPACE = chevrotain.createToken({
   name: 'TABLESPACE',
-  pattern: /TABLESPACE/,
+  pattern: /TABLESPACE/i,
 });
 const TABLES = chevrotain.createToken({
   name: 'TABLES',
-  pattern: /TABLES/,
+  pattern: /TABLES/i,
 });
 const SWITCHES = chevrotain.createToken({
   name: 'SWITCHES',
-  pattern: /SWITCHES/,
+  pattern: /SWITCHES/i,
 });
 const SWAPS = chevrotain.createToken({
   name: 'SWAPS',
-  pattern: /SWAPS/,
+  pattern: /SWAPS/i,
 });
 const SUSPEND = chevrotain.createToken({
   name: 'SUSPEND',
-  pattern: /SUSPEND/,
+  pattern: /SUSPEND/i,
 });
 const SUBPARTITIONS = chevrotain.createToken({
   name: 'SUBPARTITIONS',
-  pattern: /SUBPARTITIONS/,
+  pattern: /SUBPARTITIONS/i,
 });
 const SUBPARTITION = chevrotain.createToken({
   name: 'SUBPARTITION',
-  pattern: /SUBPARTITION/,
+  pattern: /SUBPARTITION/i,
 });
 const SUBJECT = chevrotain.createToken({
   name: 'SUBJECT',
-  pattern: /SUBJECT/,
+  pattern: /SUBJECT/i,
 });
 const STORAGE = chevrotain.createToken({
   name: 'STORAGE',
-  pattern: /STORAGE/,
+  pattern: /STORAGE/i,
 });
 const STOP = chevrotain.createToken({
   name: 'STOP',
-  pattern: /STOP/,
+  pattern: /STOP/i,
 });
 const STATUS = chevrotain.createToken({
   name: 'STATUS',
-  pattern: /STATUS/,
+  pattern: /STATUS/i,
 });
 const STATS_SAMPLE_PAGES = chevrotain.createToken({
   name: 'STATS_SAMPLE_PAGES',
-  pattern: /STATS_SAMPLE_PAGES/,
+  pattern: /STATS_SAMPLE_PAGES/i,
 });
 const STATS_PERSISTENT = chevrotain.createToken({
   name: 'STATS_PERSISTENT',
-  pattern: /STATS_PERSISTENT/,
+  pattern: /STATS_PERSISTENT/i,
 });
 const STATS_AUTO_RECALC = chevrotain.createToken({
   name: 'STATS_AUTO_RECALC',
-  pattern: /STATS_AUTO_RECALC/,
+  pattern: /STATS_AUTO_RECALC/i,
 });
 const STARTS = chevrotain.createToken({
   name: 'STARTS',
-  pattern: /STARTS/,
+  pattern: /STARTS/i,
 });
 const SQL_THREAD = chevrotain.createToken({
   name: 'SQL_THREAD',
-  pattern: /SQL_THREAD/,
+  pattern: /SQL_THREAD/i,
 });
 const SQL_NO_CACHE = chevrotain.createToken({
   name: 'SQL_NO_CACHE',
-  pattern: /SQL_NO_CACHE/,
+  pattern: /SQL_NO_CACHE/i,
 });
 const SQL_CACHE = chevrotain.createToken({
   name: 'SQL_CACHE',
-  pattern: /SQL_CACHE/,
+  pattern: /SQL_CACHE/i,
 });
 const SQL_BUFFER_RESULT = chevrotain.createToken({
   name: 'SQL_BUFFER_RESULT',
-  pattern: /SQL_BUFFER_RESULT/,
+  pattern: /SQL_BUFFER_RESULT/i,
 });
 const SQL_BEFORE_GTIDS = chevrotain.createToken({
   name: 'SQL_BEFORE_GTIDS',
-  pattern: /SQL_BEFORE_GTIDS/,
+  pattern: /SQL_BEFORE_GTIDS/i,
 });
 const SQL_AFTER_MTS_GAPS = chevrotain.createToken({
   name: 'SQL_AFTER_MTS_GAPS',
-  pattern: /SQL_AFTER_MTS_GAPS/,
+  pattern: /SQL_AFTER_MTS_GAPS/i,
 });
 const SQL_AFTER_GTIDS = chevrotain.createToken({
   name: 'SQL_AFTER_GTIDS',
-  pattern: /SQL_AFTER_GTIDS/,
+  pattern: /SQL_AFTER_GTIDS/i,
 });
 const SOURCE = chevrotain.createToken({
   name: 'SOURCE',
-  pattern: /SOURCE/,
+  pattern: /SOURCE/i,
 });
 const SOUNDS = chevrotain.createToken({
   name: 'SOUNDS',
-  pattern: /SOUNDS/,
+  pattern: /SOUNDS/i,
 });
 const SONAME = chevrotain.createToken({
   name: 'SONAME',
-  pattern: /SONAME/,
+  pattern: /SONAME/i,
 });
 const SOME = chevrotain.createToken({
   name: 'SOME',
-  pattern: /SOME/,
+  pattern: /SOME/i,
 });
 const SOCKET = chevrotain.createToken({
   name: 'SOCKET',
-  pattern: /SOCKET/,
+  pattern: /SOCKET/i,
 });
 const SNAPSHOT = chevrotain.createToken({
   name: 'SNAPSHOT',
-  pattern: /SNAPSHOT/,
+  pattern: /SNAPSHOT/i,
 });
 const SLOW = chevrotain.createToken({
   name: 'SLOW',
-  pattern: /SLOW/,
+  pattern: /SLOW/i,
 });
 const SLAVE = chevrotain.createToken({
   name: 'SLAVE',
-  pattern: /SLAVE/,
+  pattern: /SLAVE/i,
 });
 const SIMPLE = chevrotain.createToken({
   name: 'SIMPLE',
-  pattern: /SIMPLE/,
+  pattern: /SIMPLE/i,
 });
 const SHARED = chevrotain.createToken({
   name: 'SHARED',
-  pattern: /SHARED/,
+  pattern: /SHARED/i,
 });
 const SHARE = chevrotain.createToken({
   name: 'SHARE',
-  pattern: /SHARE/,
+  pattern: /SHARE/i,
 });
 const SHA = chevrotain.createToken({
   name: 'SHA',
-  pattern: /SHA/,
+  pattern: /SHA/i,
 });
 const SESSION = chevrotain.createToken({
   name: 'SESSION',
-  pattern: /SESSION/,
+  pattern: /SESSION/i,
 });
 const SECURITY = chevrotain.createToken({
   name: 'SECURITY',
-  pattern: /SECURITY/,
+  pattern: /SECURITY/i,
 });
 const SCHEDULE = chevrotain.createToken({
   name: 'SCHEDULE',
-  pattern: /SCHEDULE/,
+  pattern: /SCHEDULE/i,
 });
 const SAVEPOINT = chevrotain.createToken({
   name: 'SAVEPOINT',
-  pattern: /SAVEPOINT/,
+  pattern: /SAVEPOINT/i,
 });
 const POINT = chevrotain.createToken({
   name: 'POINT',
-  pattern: /POINT/,
+  pattern: /POINT/i,
 });
 const ROW_FORMAT = chevrotain.createToken({
   name: 'ROW_FORMAT',
-  pattern: /ROW_FORMAT/,
+  pattern: /ROW_FORMAT/i,
 });
 const ROTATE = chevrotain.createToken({
   name: 'ROTATE',
-  pattern: /ROTATE/,
+  pattern: /ROTATE/i,
 });
 const ROLLUP = chevrotain.createToken({
   name: 'ROLLUP',
-  pattern: /ROLLUP/,
+  pattern: /ROLLUP/i,
 });
 const ROLLBACK = chevrotain.createToken({
   name: 'ROLLBACK',
-  pattern: /ROLLBACK/,
+  pattern: /ROLLBACK/i,
 });
 const RETURNS = chevrotain.createToken({
   name: 'RETURNS',
-  pattern: /RETURNS/,
+  pattern: /RETURNS/i,
 });
 const RESUME = chevrotain.createToken({
   name: 'RESUME',
-  pattern: /RESUME/,
+  pattern: /RESUME/i,
 });
 const RESET = chevrotain.createToken({
   name: 'RESET',
-  pattern: /RESET/,
+  pattern: /RESET/i,
 });
 const REPLICATE_WILD_IGNORE_TABLE = chevrotain.createToken({
   name: 'REPLICATE_WILD_IGNORE_TABLE',
-  pattern: /REPLICATE_WILD_IGNORE_TABLE/,
+  pattern: /REPLICATE_WILD_IGNORE_TABLE/i,
 });
 const REPLICATE_WILD_DO_TABLE = chevrotain.createToken({
   name: 'REPLICATE_WILD_DO_TABLE',
-  pattern: /REPLICATE_WILD_DO_TABLE/,
+  pattern: /REPLICATE_WILD_DO_TABLE/i,
 });
 const REPLICATE_REWRITE_DB = chevrotain.createToken({
   name: 'REPLICATE_REWRITE_DB',
-  pattern: /REPLICATE_REWRITE_DB/,
+  pattern: /REPLICATE_REWRITE_DB/i,
 });
 const REPLICATE_IGNORE_TABLE = chevrotain.createToken({
   name: 'REPLICATE_IGNORE_TABLE',
-  pattern: /REPLICATE_IGNORE_TABLE/,
+  pattern: /REPLICATE_IGNORE_TABLE/i,
 });
 const REPLICATE_IGNORE_DB = chevrotain.createToken({
   name: 'REPLICATE_IGNORE_DB',
-  pattern: /REPLICATE_IGNORE_DB/,
+  pattern: /REPLICATE_IGNORE_DB/i,
 });
 const REPLICATE_DO_TABLE = chevrotain.createToken({
   name: 'REPLICATE_DO_TABLE',
-  pattern: /REPLICATE_DO_TABLE/,
+  pattern: /REPLICATE_DO_TABLE/i,
 });
 const REPLICATE_DO_DB = chevrotain.createToken({
   name: 'REPLICATE_DO_DB',
-  pattern: /REPLICATE_DO_DB/,
+  pattern: /REPLICATE_DO_DB/i,
 });
 const REPAIR = chevrotain.createToken({
   name: 'REPAIR',
-  pattern: /REPAIR/,
+  pattern: /REPAIR/i,
 });
 const REORGANIZE = chevrotain.createToken({
   name: 'REORGANIZE',
-  pattern: /REORGANIZE/,
+  pattern: /REORGANIZE/i,
 });
 const REMOVE = chevrotain.createToken({
   name: 'REMOVE',
-  pattern: /REMOVE/,
+  pattern: /REMOVE/i,
 });
 const RELAYLOG = chevrotain.createToken({
   name: 'RELAYLOG',
-  pattern: /RELAYLOG/,
+  pattern: /RELAYLOG/i,
 });
 const RELAY_LOG_POS = chevrotain.createToken({
   name: 'RELAY_LOG_POS',
-  pattern: /RELAY_LOG_POS/,
+  pattern: /RELAY_LOG_POS/i,
 });
 const RELAY_LOG_FILE = chevrotain.createToken({
   name: 'RELAY_LOG_FILE',
-  pattern: /RELAY_LOG_FILE/,
+  pattern: /RELAY_LOG_FILE/i,
 });
 const RELAY = chevrotain.createToken({
   name: 'RELAY',
-  pattern: /RELAY/,
+  pattern: /RELAY/i,
 });
 const REDUNDANT = chevrotain.createToken({
   name: 'REDUNDANT',
-  pattern: /REDUNDANT/,
+  pattern: /REDUNDANT/i,
 });
 const REDO_BUFFER_SIZE = chevrotain.createToken({
   name: 'REDO_BUFFER_SIZE',
-  pattern: /REDO_BUFFER_SIZE/,
+  pattern: /REDO_BUFFER_SIZE/i,
 });
 const BUFFER = chevrotain.createToken({
   name: 'BUFFER',
-  pattern: /BUFFER/,
+  pattern: /BUFFER/i,
 });
 const RECOVER = chevrotain.createToken({
   name: 'RECOVER',
-  pattern: /RECOVER/,
+  pattern: /RECOVER/i,
 });
 const REBUILD = chevrotain.createToken({
   name: 'REBUILD',
-  pattern: /REBUILD/,
+  pattern: /REBUILD/i,
 });
 const QUICK = chevrotain.createToken({
   name: 'QUICK',
-  pattern: /QUICK/,
+  pattern: /QUICK/i,
 });
 const QUERY = chevrotain.createToken({
   name: 'QUERY',
-  pattern: /QUERY/,
+  pattern: /QUERY/i,
 });
 const PROXY = chevrotain.createToken({
   name: 'PROXY',
-  pattern: /PROXY/,
+  pattern: /PROXY/i,
 });
 const PROFILES = chevrotain.createToken({
   name: 'PROFILES',
-  pattern: /PROFILES/,
+  pattern: /PROFILES/i,
 });
 const PROFILE = chevrotain.createToken({
   name: 'PROFILE',
-  pattern: /PROFILE/,
+  pattern: /PROFILE/i,
 });
 const PROCESSLIST = chevrotain.createToken({
   name: 'PROCESSLIST',
-  pattern: /PROCESSLIST/,
+  pattern: /PROCESSLIST/i,
 });
 const PROCESS = chevrotain.createToken({
   name: 'PROCESS',
-  pattern: /PROCESS/,
+  pattern: /PROCESS/i,
 });
 const PREV = chevrotain.createToken({
   name: 'PREV',
-  pattern: /PREV/,
+  pattern: /PREV/i,
 });
 const PRESERVE = chevrotain.createToken({
   name: 'PRESERVE',
-  pattern: /PRESERVE/,
+  pattern: /PRESERVE/i,
 });
 const PREPARE = chevrotain.createToken({
   name: 'PREPARE',
-  pattern: /PREPARE/,
+  pattern: /PREPARE/i,
 });
 const PRECEDES = chevrotain.createToken({
   name: 'PRECEDES',
-  pattern: /PRECEDES/,
+  pattern: /PRECEDES/i,
 });
 const PLUGINS = chevrotain.createToken({
   name: 'PLUGINS',
-  pattern: /PLUGINS/,
+  pattern: /PLUGINS/i,
 });
 const PLUGIN_DIR = chevrotain.createToken({
   name: 'PLUGIN_DIR',
-  pattern: /PLUGIN_DIR/,
+  pattern: /PLUGIN_DIR/i,
 });
 const PLUGIN = chevrotain.createToken({
   name: 'PLUGIN',
-  pattern: /PLUGIN/,
+  pattern: /PLUGIN/i,
 });
 const PHASE = chevrotain.createToken({
   name: 'PHASE',
-  pattern: /PHASE/,
+  pattern: /PHASE/i,
 });
 const PARTITIONS = chevrotain.createToken({
   name: 'PARTITIONS',
-  pattern: /PARTITIONS/,
+  pattern: /PARTITIONS/i,
 });
 const PARTITIONING = chevrotain.createToken({
   name: 'PARTITIONING',
-  pattern: /PARTITIONING/,
+  pattern: /PARTITIONING/i,
 });
 const PARTIAL = chevrotain.createToken({
   name: 'PARTIAL',
-  pattern: /PARTIAL/,
+  pattern: /PARTIAL/i,
 });
 const PARSER = chevrotain.createToken({
   name: 'PARSER',
-  pattern: /PARSER/,
+  pattern: /PARSER/i,
 });
 const PAGE = chevrotain.createToken({
   name: 'PAGE',
-  pattern: /PAGE/,
+  pattern: /PAGE/i,
 });
 const PACK_KEYS = chevrotain.createToken({
   name: 'PACK_KEYS',
-  pattern: /PACK_KEYS/,
+  pattern: /PACK_KEYS/i,
 });
 const OWNER = chevrotain.createToken({
   name: 'OWNER',
-  pattern: /OWNER/,
+  pattern: /OWNER/i,
 });
 const OPTIONS = chevrotain.createToken({
   name: 'OPTIONS',
-  pattern: /OPTIONS/,
+  pattern: /OPTIONS/i,
 });
 const OPTIMIZER_COSTS = chevrotain.createToken({
   name: 'OPTIMIZER_COSTS',
-  pattern: /OPTIMIZER_COSTS/,
+  pattern: /OPTIMIZER_COSTS/i,
 });
 const COS = chevrotain.createToken({
   name: 'COS',
-  pattern: /COS/,
+  pattern: /COS/i,
 });
 const OPEN = chevrotain.createToken({
   name: 'OPEN',
-  pattern: /OPEN/,
+  pattern: /OPEN/i,
 });
 const ONLY = chevrotain.createToken({
   name: 'ONLY',
-  pattern: /ONLY/,
+  pattern: /ONLY/i,
 });
 const ONLINE = chevrotain.createToken({
   name: 'ONLINE',
-  pattern: /ONLINE/,
+  pattern: /ONLINE/i,
 });
 const OLD_PASSWORD = chevrotain.createToken({
   name: 'OLD_PASSWORD',
-  pattern: /OLD_PASSWORD/,
+  pattern: /OLD_PASSWORD/i,
 });
 const OJ = chevrotain.createToken({
   name: 'OJ',
-  pattern: /OJ/,
+  pattern: /OJ/i,
 });
 const OFFSET = chevrotain.createToken({
   name: 'OFFSET',
-  pattern: /OFFSET/,
+  pattern: /OFFSET/i,
 });
 const OFFLINE = chevrotain.createToken({
   name: 'OFFLINE',
-  pattern: /OFFLINE/,
+  pattern: /OFFLINE/i,
 });
 const NONE = chevrotain.createToken({
   name: 'NONE',
-  pattern: /NONE/,
+  pattern: /NONE/i,
 });
 const ONE = chevrotain.createToken({
   name: 'ONE',
-  pattern: /ONE/,
+  pattern: /ONE/i,
 });
 const NODEGROUP = chevrotain.createToken({
   name: 'NODEGROUP',
-  pattern: /NODEGROUP/,
+  pattern: /NODEGROUP/i,
 });
 const NEXT = chevrotain.createToken({
   name: 'NEXT',
-  pattern: /NEXT/,
+  pattern: /NEXT/i,
 });
 const NEVER = chevrotain.createToken({
   name: 'NEVER',
-  pattern: /NEVER/,
+  pattern: /NEVER/i,
 });
 const NCHAR = chevrotain.createToken({
   name: 'NCHAR',
-  pattern: /NCHAR/,
+  pattern: /NCHAR/i,
 });
 const NAMES = chevrotain.createToken({
   name: 'NAMES',
-  pattern: /NAMES/,
+  pattern: /NAMES/i,
 });
 const MYSQL = chevrotain.createToken({
   name: 'MYSQL',
-  pattern: /MYSQL/,
+  pattern: /MYSQL/i,
 });
 const MUTEX = chevrotain.createToken({
   name: 'MUTEX',
-  pattern: /MUTEX/,
+  pattern: /MUTEX/i,
 });
 const MODIFY = chevrotain.createToken({
   name: 'MODIFY',
-  pattern: /MODIFY/,
+  pattern: /MODIFY/i,
 });
 const MODE = chevrotain.createToken({
   name: 'MODE',
-  pattern: /MODE/,
+  pattern: /MODE/i,
 });
 const MIN_ROWS = chevrotain.createToken({
   name: 'MIN_ROWS',
-  pattern: /MIN_ROWS/,
+  pattern: /MIN_ROWS/i,
 });
 const MIGRATE = chevrotain.createToken({
   name: 'MIGRATE',
-  pattern: /MIGRATE/,
+  pattern: /MIGRATE/i,
 });
 const MID = chevrotain.createToken({
   name: 'MID',
-  pattern: /MID/,
+  pattern: /MID/i,
 });
 const MERGE = chevrotain.createToken({
   name: 'MERGE',
-  pattern: /MERGE/,
+  pattern: /MERGE/i,
 });
 const MAX_USER_CONNECTIONS = chevrotain.createToken({
   name: 'MAX_USER_CONNECTIONS',
-  pattern: /MAX_USER_CONNECTIONS/,
+  pattern: /MAX_USER_CONNECTIONS/i,
 });
 const MAX_UPDATES_PER_HOUR = chevrotain.createToken({
   name: 'MAX_UPDATES_PER_HOUR',
-  pattern: /MAX_UPDATES_PER_HOUR/,
+  pattern: /MAX_UPDATES_PER_HOUR/i,
 });
 const MAX_SIZE = chevrotain.createToken({
   name: 'MAX_SIZE',
-  pattern: /MAX_SIZE/,
+  pattern: /MAX_SIZE/i,
 });
 const MAX_ROWS = chevrotain.createToken({
   name: 'MAX_ROWS',
-  pattern: /MAX_ROWS/,
+  pattern: /MAX_ROWS/i,
 });
 const MAX_QUERIES_PER_HOUR = chevrotain.createToken({
   name: 'MAX_QUERIES_PER_HOUR',
-  pattern: /MAX_QUERIES_PER_HOUR/,
+  pattern: /MAX_QUERIES_PER_HOUR/i,
 });
 const MAX_CONNECTIONS_PER_HOUR = chevrotain.createToken({
   name: 'MAX_CONNECTIONS_PER_HOUR',
-  pattern: /MAX_CONNECTIONS_PER_HOUR/,
+  pattern: /MAX_CONNECTIONS_PER_HOUR/i,
 });
 const MASTER_USER = chevrotain.createToken({
   name: 'MASTER_USER',
-  pattern: /MASTER_USER/,
+  pattern: /MASTER_USER/i,
 });
 const MASTER_TLS_VERSION = chevrotain.createToken({
   name: 'MASTER_TLS_VERSION',
-  pattern: /MASTER_TLS_VERSION/,
+  pattern: /MASTER_TLS_VERSION/i,
 });
 const VERSION = chevrotain.createToken({
   name: 'VERSION',
-  pattern: /VERSION/,
+  pattern: /VERSION/i,
 });
 const MASTER_SSL_KEY = chevrotain.createToken({
   name: 'MASTER_SSL_KEY',
-  pattern: /MASTER_SSL_KEY/,
+  pattern: /MASTER_SSL_KEY/i,
 });
 const MASTER_SSL_CRLPATH = chevrotain.createToken({
   name: 'MASTER_SSL_CRLPATH',
-  pattern: /MASTER_SSL_CRLPATH/,
+  pattern: /MASTER_SSL_CRLPATH/i,
 });
 const MASTER_SSL_CRL = chevrotain.createToken({
   name: 'MASTER_SSL_CRL',
-  pattern: /MASTER_SSL_CRL/,
+  pattern: /MASTER_SSL_CRL/i,
 });
 const MASTER_SSL_CIPHER = chevrotain.createToken({
   name: 'MASTER_SSL_CIPHER',
-  pattern: /MASTER_SSL_CIPHER/,
+  pattern: /MASTER_SSL_CIPHER/i,
 });
 const MASTER_SSL_CERT = chevrotain.createToken({
   name: 'MASTER_SSL_CERT',
-  pattern: /MASTER_SSL_CERT/,
+  pattern: /MASTER_SSL_CERT/i,
 });
 const MASTER_SSL_CAPATH = chevrotain.createToken({
   name: 'MASTER_SSL_CAPATH',
-  pattern: /MASTER_SSL_CAPATH/,
+  pattern: /MASTER_SSL_CAPATH/i,
 });
 const MASTER_SSL_CA = chevrotain.createToken({
   name: 'MASTER_SSL_CA',
-  pattern: /MASTER_SSL_CA/,
+  pattern: /MASTER_SSL_CA/i,
 });
 const MASTER_RETRY_COUNT = chevrotain.createToken({
   name: 'MASTER_RETRY_COUNT',
-  pattern: /MASTER_RETRY_COUNT/,
+  pattern: /MASTER_RETRY_COUNT/i,
 });
 const MASTER_PORT = chevrotain.createToken({
   name: 'MASTER_PORT',
-  pattern: /MASTER_PORT/,
+  pattern: /MASTER_PORT/i,
 });
 const MASTER_PASSWORD = chevrotain.createToken({
   name: 'MASTER_PASSWORD',
-  pattern: /MASTER_PASSWORD/,
+  pattern: /MASTER_PASSWORD/i,
 });
 const PASSWORD = chevrotain.createToken({
   name: 'PASSWORD',
-  pattern: /PASSWORD/,
+  pattern: /PASSWORD/i,
 });
 const MASTER_LOG_POS = chevrotain.createToken({
   name: 'MASTER_LOG_POS',
-  pattern: /MASTER_LOG_POS/,
+  pattern: /MASTER_LOG_POS/i,
 });
 const MASTER_LOG_FILE = chevrotain.createToken({
   name: 'MASTER_LOG_FILE',
-  pattern: /MASTER_LOG_FILE/,
+  pattern: /MASTER_LOG_FILE/i,
 });
 const MASTER_HOST = chevrotain.createToken({
   name: 'MASTER_HOST',
-  pattern: /MASTER_HOST/,
+  pattern: /MASTER_HOST/i,
 });
 const MASTER_HEARTBEAT_PERIOD = chevrotain.createToken({
   name: 'MASTER_HEARTBEAT_PERIOD',
-  pattern: /MASTER_HEARTBEAT_PERIOD/,
+  pattern: /MASTER_HEARTBEAT_PERIOD/i,
 });
 const MASTER_DELAY = chevrotain.createToken({
   name: 'MASTER_DELAY',
-  pattern: /MASTER_DELAY/,
+  pattern: /MASTER_DELAY/i,
 });
 const MASTER_CONNECT_RETRY = chevrotain.createToken({
   name: 'MASTER_CONNECT_RETRY',
-  pattern: /MASTER_CONNECT_RETRY/,
+  pattern: /MASTER_CONNECT_RETRY/i,
 });
 const MASTER_AUTO_POSITION = chevrotain.createToken({
   name: 'MASTER_AUTO_POSITION',
-  pattern: /MASTER_AUTO_POSITION/,
+  pattern: /MASTER_AUTO_POSITION/i,
 });
 const LOGS = chevrotain.createToken({
   name: 'LOGS',
-  pattern: /LOGS/,
+  pattern: /LOGS/i,
 });
 const LOGFILE = chevrotain.createToken({
   name: 'LOGFILE',
-  pattern: /LOGFILE/,
+  pattern: /LOGFILE/i,
 });
 const LIST = chevrotain.createToken({
   name: 'LIST',
-  pattern: /LIST/,
+  pattern: /LIST/i,
 });
 const LEVEL = chevrotain.createToken({
   name: 'LEVEL',
-  pattern: /LEVEL/,
+  pattern: /LEVEL/i,
 });
 const LESS = chevrotain.createToken({
   name: 'LESS',
-  pattern: /LESS/,
+  pattern: /LESS/i,
 });
 const LEAVES = chevrotain.createToken({
   name: 'LEAVES',
-  pattern: /LEAVES/,
+  pattern: /LEAVES/i,
 });
 const LAST = chevrotain.createToken({
   name: 'LAST',
-  pattern: /LAST/,
+  pattern: /LAST/i,
 });
 const LANGUAGE = chevrotain.createToken({
   name: 'LANGUAGE',
-  pattern: /LANGUAGE/,
+  pattern: /LANGUAGE/i,
 });
 const KEY_BLOCK_SIZE = chevrotain.createToken({
   name: 'KEY_BLOCK_SIZE',
-  pattern: /KEY_BLOCK_SIZE/,
+  pattern: /KEY_BLOCK_SIZE/i,
 });
 const JSON = chevrotain.createToken({
   name: 'JSON',
-  pattern: /JSON/,
+  pattern: /JSON/i,
 });
 const ISSUER = chevrotain.createToken({
   name: 'ISSUER',
-  pattern: /ISSUER/,
+  pattern: /ISSUER/i,
 });
 const ISOLATION = chevrotain.createToken({
   name: 'ISOLATION',
-  pattern: /ISOLATION/,
+  pattern: /ISOLATION/i,
 });
 const ISO = chevrotain.createToken({
   name: 'ISO',
-  pattern: /ISO/,
+  pattern: /ISO/i,
 });
 const IPC = chevrotain.createToken({
   name: 'IPC',
-  pattern: /IPC/,
+  pattern: /IPC/i,
 });
 const IO_THREAD = chevrotain.createToken({
   name: 'IO_THREAD',
-  pattern: /IO_THREAD/,
+  pattern: /IO_THREAD/i,
 });
 const INVOKER = chevrotain.createToken({
   name: 'INVOKER',
-  pattern: /INVOKER/,
+  pattern: /INVOKER/i,
 });
 const INSTANCE = chevrotain.createToken({
   name: 'INSTANCE',
-  pattern: /INSTANCE/,
+  pattern: /INSTANCE/i,
 });
 const TAN = chevrotain.createToken({
   name: 'TAN',
-  pattern: /TAN/,
+  pattern: /TAN/i,
 });
 const INSTALL = chevrotain.createToken({
   name: 'INSTALL',
-  pattern: /INSTALL/,
+  pattern: /INSTALL/i,
 });
 const INSERT_METHOD = chevrotain.createToken({
   name: 'INSERT_METHOD',
-  pattern: /INSERT_METHOD/,
+  pattern: /INSERT_METHOD/i,
 });
 const INPLACE = chevrotain.createToken({
   name: 'INPLACE',
-  pattern: /INPLACE/,
+  pattern: /INPLACE/i,
 });
 const INITIAL_SIZE = chevrotain.createToken({
   name: 'INITIAL_SIZE',
-  pattern: /INITIAL_SIZE/,
+  pattern: /INITIAL_SIZE/i,
 });
 const INDEXES = chevrotain.createToken({
   name: 'INDEXES',
-  pattern: /INDEXES/,
+  pattern: /INDEXES/i,
 });
 const IMPORT = chevrotain.createToken({
   name: 'IMPORT',
-  pattern: /IMPORT/,
+  pattern: /IMPORT/i,
 });
 const IGNORE_SERVER_IDS = chevrotain.createToken({
   name: 'IGNORE_SERVER_IDS',
-  pattern: /IGNORE_SERVER_IDS/,
+  pattern: /IGNORE_SERVER_IDS/i,
 });
 const IDENTIFIED = chevrotain.createToken({
   name: 'IDENTIFIED',
-  pattern: /IDENTIFIED/,
+  pattern: /IDENTIFIED/i,
 });
 const HOSTS = chevrotain.createToken({
   name: 'HOSTS',
-  pattern: /HOSTS/,
+  pattern: /HOSTS/i,
 });
 const HOST = chevrotain.createToken({
   name: 'HOST',
-  pattern: /HOST/,
+  pattern: /HOST/i,
 });
 const HELP = chevrotain.createToken({
   name: 'HELP',
-  pattern: /HELP/,
+  pattern: /HELP/i,
 });
 const HASH = chevrotain.createToken({
   name: 'HASH',
-  pattern: /HASH/,
+  pattern: /HASH/i,
 });
 const HANDLER = chevrotain.createToken({
   name: 'HANDLER',
-  pattern: /HANDLER/,
+  pattern: /HANDLER/i,
 });
 const GROUP_REPLICATION = chevrotain.createToken({
   name: 'GROUP_REPLICATION',
-  pattern: /GROUP_REPLICATION/,
+  pattern: /GROUP_REPLICATION/i,
 });
 const REPLICATION = chevrotain.createToken({
   name: 'REPLICATION',
-  pattern: /REPLICATION/,
+  pattern: /REPLICATION/i,
 });
 const GRANTS = chevrotain.createToken({
   name: 'GRANTS',
-  pattern: /GRANTS/,
+  pattern: /GRANTS/i,
 });
 const GLOBAL = chevrotain.createToken({
   name: 'GLOBAL',
-  pattern: /GLOBAL/,
+  pattern: /GLOBAL/i,
 });
 const GENERAL = chevrotain.createToken({
   name: 'GENERAL',
-  pattern: /GENERAL/,
+  pattern: /GENERAL/i,
 });
 const FUNCTION = chevrotain.createToken({
   name: 'FUNCTION',
-  pattern: /FUNCTION/,
+  pattern: /FUNCTION/i,
 });
 const FOLLOWS = chevrotain.createToken({
   name: 'FOLLOWS',
-  pattern: /FOLLOWS/,
+  pattern: /FOLLOWS/i,
 });
 const FLUSH = chevrotain.createToken({
   name: 'FLUSH',
-  pattern: /FLUSH/,
+  pattern: /FLUSH/i,
 });
 const FIXED = chevrotain.createToken({
   name: 'FIXED',
-  pattern: /FIXED/,
+  pattern: /FIXED/i,
 });
 const FIRST = chevrotain.createToken({
   name: 'FIRST',
-  pattern: /FIRST/,
+  pattern: /FIRST/i,
 });
 const FILTER = chevrotain.createToken({
   name: 'FILTER',
-  pattern: /FILTER/,
+  pattern: /FILTER/i,
 });
 const FILE_BLOCK_SIZE = chevrotain.createToken({
   name: 'FILE_BLOCK_SIZE',
-  pattern: /FILE_BLOCK_SIZE/,
+  pattern: /FILE_BLOCK_SIZE/i,
 });
 const FIELDS = chevrotain.createToken({
   name: 'FIELDS',
-  pattern: /FIELDS/,
+  pattern: /FIELDS/i,
 });
 const FIELD = chevrotain.createToken({
   name: 'FIELD',
-  pattern: /FIELD/,
+  pattern: /FIELD/i,
 });
 const FAULTS = chevrotain.createToken({
   name: 'FAULTS',
-  pattern: /FAULTS/,
+  pattern: /FAULTS/i,
 });
 const FAST = chevrotain.createToken({
   name: 'FAST',
-  pattern: /FAST/,
+  pattern: /FAST/i,
 });
 const EXTENT_SIZE = chevrotain.createToken({
   name: 'EXTENT_SIZE',
-  pattern: /EXTENT_SIZE/,
+  pattern: /EXTENT_SIZE/i,
 });
 const EXTENDED = chevrotain.createToken({
   name: 'EXTENDED',
-  pattern: /EXTENDED/,
+  pattern: /EXTENDED/i,
 });
 const EXPORT = chevrotain.createToken({
   name: 'EXPORT',
-  pattern: /EXPORT/,
+  pattern: /EXPORT/i,
 });
 const PORT = chevrotain.createToken({
   name: 'PORT',
-  pattern: /PORT/,
+  pattern: /PORT/i,
 });
 const EXPIRE = chevrotain.createToken({
   name: 'EXPIRE',
-  pattern: /EXPIRE/,
+  pattern: /EXPIRE/i,
 });
 const PI = chevrotain.createToken({
   name: 'PI',
-  pattern: /PI/,
+  pattern: /PI/i,
 });
 const EXCLUSIVE = chevrotain.createToken({
   name: 'EXCLUSIVE',
-  pattern: /EXCLUSIVE/,
+  pattern: /EXCLUSIVE/i,
 });
 const EXCHANGE = chevrotain.createToken({
   name: 'EXCHANGE',
-  pattern: /EXCHANGE/,
+  pattern: /EXCHANGE/i,
 });
 const EVERY = chevrotain.createToken({
   name: 'EVERY',
-  pattern: /EVERY/,
+  pattern: /EVERY/i,
 });
 const EVENTS = chevrotain.createToken({
   name: 'EVENTS',
-  pattern: /EVENTS/,
+  pattern: /EVENTS/i,
 });
 const EVENT = chevrotain.createToken({
   name: 'EVENT',
-  pattern: /EVENT/,
+  pattern: /EVENT/i,
 });
 const EVEN = chevrotain.createToken({
   name: 'EVEN',
-  pattern: /EVEN/,
+  pattern: /EVEN/i,
 });
 const ERRORS = chevrotain.createToken({
   name: 'ERRORS',
-  pattern: /ERRORS/,
+  pattern: /ERRORS/i,
 });
 const ERROR = chevrotain.createToken({
   name: 'ERROR',
-  pattern: /ERROR/,
+  pattern: /ERROR/i,
 });
 const ENGINES = chevrotain.createToken({
   name: 'ENGINES',
-  pattern: /ENGINES/,
+  pattern: /ENGINES/i,
 });
 const ENGINE = chevrotain.createToken({
   name: 'ENGINE',
-  pattern: /ENGINE/,
+  pattern: /ENGINE/i,
 });
 const ENDS = chevrotain.createToken({
   name: 'ENDS',
-  pattern: /ENDS/,
+  pattern: /ENDS/i,
 });
 const ENCRYPTION = chevrotain.createToken({
   name: 'ENCRYPTION',
-  pattern: /ENCRYPTION/,
+  pattern: /ENCRYPTION/i,
 });
 const ENCRYPT = chevrotain.createToken({
   name: 'ENCRYPT',
-  pattern: /ENCRYPT/,
+  pattern: /ENCRYPT/i,
 });
 const ENABLE = chevrotain.createToken({
   name: 'ENABLE',
-  pattern: /ENABLE/,
+  pattern: /ENABLE/i,
 });
 const DYNAMIC = chevrotain.createToken({
   name: 'DYNAMIC',
-  pattern: /DYNAMIC/,
+  pattern: /DYNAMIC/i,
 });
 const DUPLICATE = chevrotain.createToken({
   name: 'DUPLICATE',
-  pattern: /DUPLICATE/,
+  pattern: /DUPLICATE/i,
 });
 const DUMPFILE = chevrotain.createToken({
   name: 'DUMPFILE',
-  pattern: /DUMPFILE/,
+  pattern: /DUMPFILE/i,
 });
 const DISK = chevrotain.createToken({
   name: 'DISK',
-  pattern: /DISK/,
+  pattern: /DISK/i,
 });
 const DISCARD = chevrotain.createToken({
   name: 'DISCARD',
-  pattern: /DISCARD/,
+  pattern: /DISCARD/i,
 });
 const DISABLE = chevrotain.createToken({
   name: 'DISABLE',
-  pattern: /DISABLE/,
+  pattern: /DISABLE/i,
 });
 const DIRECTORY = chevrotain.createToken({
   name: 'DIRECTORY',
-  pattern: /DIRECTORY/,
+  pattern: /DIRECTORY/i,
 });
 const DES_KEY_FILE = chevrotain.createToken({
   name: 'DES_KEY_FILE',
-  pattern: /DES_KEY_FILE/,
+  pattern: /DES_KEY_FILE/i,
 });
 const DELAY_KEY_WRITE = chevrotain.createToken({
   name: 'DELAY_KEY_WRITE',
-  pattern: /DELAY_KEY_WRITE/,
+  pattern: /DELAY_KEY_WRITE/i,
 });
 const DEFINER = chevrotain.createToken({
   name: 'DEFINER',
-  pattern: /DEFINER/,
+  pattern: /DEFINER/i,
 });
 const DEFAULT_AUTH = chevrotain.createToken({
   name: 'DEFAULT_AUTH',
-  pattern: /DEFAULT_AUTH/,
+  pattern: /DEFAULT_AUTH/i,
 });
 const DEALLOCATE = chevrotain.createToken({
   name: 'DEALLOCATE',
-  pattern: /DEALLOCATE/,
+  pattern: /DEALLOCATE/i,
 });
 const LOCATE = chevrotain.createToken({
   name: 'LOCATE',
-  pattern: /LOCATE/,
+  pattern: /LOCATE/i,
 });
 const DATAFILE = chevrotain.createToken({
   name: 'DATAFILE',
-  pattern: /DATAFILE/,
+  pattern: /DATAFILE/i,
 });
 const CPU = chevrotain.createToken({
   name: 'CPU',
-  pattern: /CPU/,
+  pattern: /CPU/i,
 });
 const COPY = chevrotain.createToken({
   name: 'COPY',
-  pattern: /COPY/,
+  pattern: /COPY/i,
 });
 const CONTRIBUTORS = chevrotain.createToken({
   name: 'CONTRIBUTORS',
-  pattern: /CONTRIBUTORS/,
+  pattern: /CONTRIBUTORS/i,
 });
 const CONTEXT = chevrotain.createToken({
   name: 'CONTEXT',
-  pattern: /CONTEXT/,
+  pattern: /CONTEXT/i,
 });
 const CONTAINS = chevrotain.createToken({
   name: 'CONTAINS',
-  pattern: /CONTAINS/,
+  pattern: /CONTAINS/i,
 });
 const CONSISTENT = chevrotain.createToken({
   name: 'CONSISTENT',
-  pattern: /CONSISTENT/,
+  pattern: /CONSISTENT/i,
 });
 const CONNECTION = chevrotain.createToken({
   name: 'CONNECTION',
-  pattern: /CONNECTION/,
+  pattern: /CONNECTION/i,
 });
 const CONCURRENT = chevrotain.createToken({
   name: 'CONCURRENT',
-  pattern: /CONCURRENT/,
+  pattern: /CONCURRENT/i,
 });
 const COMPRESSION = chevrotain.createToken({
   name: 'COMPRESSION',
-  pattern: /COMPRESSION/,
+  pattern: /COMPRESSION/i,
 });
 const COMPRESSED = chevrotain.createToken({
   name: 'COMPRESSED',
-  pattern: /COMPRESSED/,
+  pattern: /COMPRESSED/i,
 });
 const COMPRESS = chevrotain.createToken({
   name: 'COMPRESS',
-  pattern: /COMPRESS/,
+  pattern: /COMPRESS/i,
 });
 const COMPLETION = chevrotain.createToken({
   name: 'COMPLETION',
-  pattern: /COMPLETION/,
+  pattern: /COMPLETION/i,
 });
 const COMPACT = chevrotain.createToken({
   name: 'COMPACT',
-  pattern: /COMPACT/,
+  pattern: /COMPACT/i,
 });
 const COMMENT = chevrotain.createToken({
   name: 'COMMENT',
-  pattern: /COMMENT/,
+  pattern: /COMMENT/i,
 });
 const COLUMN_FORMAT = chevrotain.createToken({
   name: 'COLUMN_FORMAT',
-  pattern: /COLUMN_FORMAT/,
+  pattern: /COLUMN_FORMAT/i,
 });
 const FORMAT = chevrotain.createToken({
   name: 'FORMAT',
-  pattern: /FORMAT/,
+  pattern: /FORMAT/i,
 });
 const COLUMNS = chevrotain.createToken({
   name: 'COLUMNS',
-  pattern: /COLUMNS/,
+  pattern: /COLUMNS/i,
 });
 const CODE = chevrotain.createToken({
   name: 'CODE',
-  pattern: /CODE/,
+  pattern: /CODE/i,
 });
 const COALESCE = chevrotain.createToken({
   name: 'COALESCE',
-  pattern: /COALESCE/,
+  pattern: /COALESCE/i,
 });
 const CLIENT = chevrotain.createToken({
   name: 'CLIENT',
-  pattern: /CLIENT/,
+  pattern: /CLIENT/i,
 });
 const CIPHER = chevrotain.createToken({
   name: 'CIPHER',
-  pattern: /CIPHER/,
+  pattern: /CIPHER/i,
 });
 const CHECKSUM = chevrotain.createToken({
   name: 'CHECKSUM',
-  pattern: /CHECKSUM/,
+  pattern: /CHECKSUM/i,
 });
 const CHANNEL = chevrotain.createToken({
   name: 'CHANNEL',
-  pattern: /CHANNEL/,
+  pattern: /CHANNEL/i,
 });
 const CHANGED = chevrotain.createToken({
   name: 'CHANGED',
-  pattern: /CHANGED/,
+  pattern: /CHANGED/i,
 });
 const CHAIN = chevrotain.createToken({
   name: 'CHAIN',
-  pattern: /CHAIN/,
+  pattern: /CHAIN/i,
 });
 const CASCADED = chevrotain.createToken({
   name: 'CASCADED',
-  pattern: /CASCADED/,
+  pattern: /CASCADED/i,
 });
 const CACHE = chevrotain.createToken({
   name: 'CACHE',
-  pattern: /CACHE/,
+  pattern: /CACHE/i,
 });
 const BTREE = chevrotain.createToken({
   name: 'BTREE',
-  pattern: /BTREE/,
+  pattern: /BTREE/i,
 });
 const BOOLEAN = chevrotain.createToken({
   name: 'BOOLEAN',
-  pattern: /BOOLEAN/,
+  pattern: /BOOLEAN/i,
 });
 const BOOL = chevrotain.createToken({
   name: 'BOOL',
-  pattern: /BOOL/,
+  pattern: /BOOL/i,
 });
 const BLOCK = chevrotain.createToken({
   name: 'BLOCK',
-  pattern: /BLOCK/,
+  pattern: /BLOCK/i,
 });
 const BEGIN = chevrotain.createToken({
   name: 'BEGIN',
-  pattern: /BEGIN/,
+  pattern: /BEGIN/i,
 });
 const AVG_ROW_LENGTH = chevrotain.createToken({
   name: 'AVG_ROW_LENGTH',
-  pattern: /AVG_ROW_LENGTH/,
+  pattern: /AVG_ROW_LENGTH/i,
 });
 const LENGTH = chevrotain.createToken({
   name: 'LENGTH',
-  pattern: /LENGTH/,
+  pattern: /LENGTH/i,
 });
 const AUTO_INCREMENT = chevrotain.createToken({
   name: 'AUTO_INCREMENT',
-  pattern: /AUTO_INCREMENT/,
+  pattern: /AUTO_INCREMENT/i,
 });
 const AUTOEXTEND_SIZE = chevrotain.createToken({
   name: 'AUTOEXTEND_SIZE',
-  pattern: /AUTOEXTEND_SIZE/,
+  pattern: /AUTOEXTEND_SIZE/i,
 });
 const END = chevrotain.createToken({
   name: 'END',
-  pattern: /END/,
+  pattern: /END/i,
 });
 const AUTOCOMMIT = chevrotain.createToken({
   name: 'AUTOCOMMIT',
-  pattern: /AUTOCOMMIT/,
+  pattern: /AUTOCOMMIT/i,
 });
 const COMMIT = chevrotain.createToken({
   name: 'COMMIT',
-  pattern: /COMMIT/,
+  pattern: /COMMIT/i,
 });
 const AUTHORS = chevrotain.createToken({
   name: 'AUTHORS',
-  pattern: /AUTHORS/,
+  pattern: /AUTHORS/i,
 });
 const ANY = chevrotain.createToken({
   name: 'ANY',
-  pattern: /ANY/,
+  pattern: /ANY/i,
 });
 const ALGORITHM = chevrotain.createToken({
   name: 'ALGORITHM',
-  pattern: /ALGORITHM/,
+  pattern: /ALGORITHM/i,
 });
 const AGGREGATE = chevrotain.createToken({
   name: 'AGGREGATE',
-  pattern: /AGGREGATE/,
+  pattern: /AGGREGATE/i,
 });
 const AFTER = chevrotain.createToken({
   name: 'AFTER',
-  pattern: /AFTER/,
+  pattern: /AFTER/i,
 });
 const ACTION = chevrotain.createToken({
   name: 'ACTION',
-  pattern: /ACTION/,
+  pattern: /ACTION/i,
 });
 const ACCOUNT = chevrotain.createToken({
   name: 'ACCOUNT',
-  pattern: /ACCOUNT/,
+  pattern: /ACCOUNT/i,
 });
 const UTC_TIMESTAMP = chevrotain.createToken({
   name: 'UTC_TIMESTAMP',
-  pattern: /UTC_TIMESTAMP/,
+  pattern: /UTC_TIMESTAMP/i,
 });
 const UTC_TIME = chevrotain.createToken({
   name: 'UTC_TIME',
-  pattern: /UTC_TIME/,
+  pattern: /UTC_TIME/i,
 });
 const UTC_DATE = chevrotain.createToken({
   name: 'UTC_DATE',
-  pattern: /UTC_DATE/,
+  pattern: /UTC_DATE/i,
 });
 const TRIM = chevrotain.createToken({
   name: 'TRIM',
-  pattern: /TRIM/,
+  pattern: /TRIM/i,
 });
 const SYSDATE = chevrotain.createToken({
   name: 'SYSDATE',
-  pattern: /SYSDATE/,
+  pattern: /SYSDATE/i,
 });
 const SUBSTRING = chevrotain.createToken({
   name: 'SUBSTRING',
-  pattern: /SUBSTRING/,
+  pattern: /SUBSTRING/i,
 });
 const STRING = chevrotain.createToken({
   name: 'STRING',
-  pattern: /STRING/,
+  pattern: /STRING/i,
 });
 const SUBSTR = chevrotain.createToken({
   name: 'SUBSTR',
-  pattern: /SUBSTR/,
+  pattern: /SUBSTR/i,
 });
 const POSITION = chevrotain.createToken({
   name: 'POSITION',
-  pattern: /POSITION/,
+  pattern: /POSITION/i,
 });
 const NOW = chevrotain.createToken({
   name: 'NOW',
-  pattern: /NOW/,
+  pattern: /NOW/i,
 });
 const LOCALTIMESTAMP = chevrotain.createToken({
   name: 'LOCALTIMESTAMP',
-  pattern: /LOCALTIMESTAMP/,
+  pattern: /LOCALTIMESTAMP/i,
 });
 const EXTRACT = chevrotain.createToken({
   name: 'EXTRACT',
-  pattern: /EXTRACT/,
+  pattern: /EXTRACT/i,
 });
 const DATE_SUB = chevrotain.createToken({
   name: 'DATE_SUB',
-  pattern: /DATE_SUB/,
+  pattern: /DATE_SUB/i,
 });
 const DATE_ADD = chevrotain.createToken({
   name: 'DATE_ADD',
-  pattern: /DATE_ADD/,
+  pattern: /DATE_ADD/i,
 });
 const CURTIME = chevrotain.createToken({
   name: 'CURTIME',
-  pattern: /CURTIME/,
+  pattern: /CURTIME/i,
 });
 const CURDATE = chevrotain.createToken({
   name: 'CURDATE',
-  pattern: /CURDATE/,
+  pattern: /CURDATE/i,
 });
 const LOCALTIME = chevrotain.createToken({
   name: 'LOCALTIME',
-  pattern: /LOCALTIME/,
+  pattern: /LOCALTIME/i,
 });
 const LOCAL = chevrotain.createToken({
   name: 'LOCAL',
-  pattern: /LOCAL/,
+  pattern: /LOCAL/i,
 });
 const CURRENT_TIMESTAMP = chevrotain.createToken({
   name: 'CURRENT_TIMESTAMP',
-  pattern: /CURRENT_TIMESTAMP/,
+  pattern: /CURRENT_TIMESTAMP/i,
 });
 const CURRENT_TIME = chevrotain.createToken({
   name: 'CURRENT_TIME',
-  pattern: /CURRENT_TIME/,
+  pattern: /CURRENT_TIME/i,
 });
 const CURRENT_DATE = chevrotain.createToken({
   name: 'CURRENT_DATE',
-  pattern: /CURRENT_DATE/,
+  pattern: /CURRENT_DATE/i,
 });
 const VARIANCE = chevrotain.createToken({
   name: 'VARIANCE',
-  pattern: /VARIANCE/,
+  pattern: /VARIANCE/i,
 });
 const VAR_SAMP = chevrotain.createToken({
   name: 'VAR_SAMP',
-  pattern: /VAR_SAMP/,
+  pattern: /VAR_SAMP/i,
 });
 const VAR_POP = chevrotain.createToken({
   name: 'VAR_POP',
-  pattern: /VAR_POP/,
+  pattern: /VAR_POP/i,
 });
 const SUM = chevrotain.createToken({
   name: 'SUM',
-  pattern: /SUM/,
+  pattern: /SUM/i,
 });
 const STDDEV_SAMP = chevrotain.createToken({
   name: 'STDDEV_SAMP',
-  pattern: /STDDEV_SAMP/,
+  pattern: /STDDEV_SAMP/i,
 });
 const STDDEV_POP = chevrotain.createToken({
   name: 'STDDEV_POP',
-  pattern: /STDDEV_POP/,
+  pattern: /STDDEV_POP/i,
 });
 const STDDEV = chevrotain.createToken({
   name: 'STDDEV',
-  pattern: /STDDEV/,
+  pattern: /STDDEV/i,
 });
 const STD = chevrotain.createToken({
   name: 'STD',
-  pattern: /STD/,
+  pattern: /STD/i,
 });
 const GROUP_CONCAT = chevrotain.createToken({
   name: 'GROUP_CONCAT',
-  pattern: /GROUP_CONCAT/,
+  pattern: /GROUP_CONCAT/i,
 });
 const CONCAT = chevrotain.createToken({
   name: 'CONCAT',
-  pattern: /CONCAT/,
+  pattern: /CONCAT/i,
 });
 const COUNT = chevrotain.createToken({
   name: 'COUNT',
-  pattern: /COUNT/,
+  pattern: /COUNT/i,
 });
 const BIT_XOR = chevrotain.createToken({
   name: 'BIT_XOR',
-  pattern: /BIT_XOR/,
+  pattern: /BIT_XOR/i,
 });
 const BIT_OR = chevrotain.createToken({
   name: 'BIT_OR',
-  pattern: /BIT_OR/,
+  pattern: /BIT_OR/i,
 });
 const BIT_AND = chevrotain.createToken({
   name: 'BIT_AND',
-  pattern: /BIT_AND/,
+  pattern: /BIT_AND/i,
 });
 const BIT = chevrotain.createToken({
   name: 'BIT',
-  pattern: /BIT/,
+  pattern: /BIT/i,
 });
 const AVG = chevrotain.createToken({
   name: 'AVG',
-  pattern: /AVG/,
+  pattern: /AVG/i,
 });
 const DAY_MICROSECOND = chevrotain.createToken({
   name: 'DAY_MICROSECOND',
-  pattern: /DAY_MICROSECOND/,
+  pattern: /DAY_MICROSECOND/i,
 });
 const HOUR_MICROSECOND = chevrotain.createToken({
   name: 'HOUR_MICROSECOND',
-  pattern: /HOUR_MICROSECOND/,
+  pattern: /HOUR_MICROSECOND/i,
 });
 const MINUTE_MICROSECOND = chevrotain.createToken({
   name: 'MINUTE_MICROSECOND',
-  pattern: /MINUTE_MICROSECOND/,
+  pattern: /MINUTE_MICROSECOND/i,
 });
 const SECOND_MICROSECOND = chevrotain.createToken({
   name: 'SECOND_MICROSECOND',
-  pattern: /SECOND_MICROSECOND/,
+  pattern: /SECOND_MICROSECOND/i,
 });
 const MICROSECOND = chevrotain.createToken({
   name: 'MICROSECOND',
-  pattern: /MICROSECOND/,
+  pattern: /MICROSECOND/i,
 });
 const MINUTE_SECOND = chevrotain.createToken({
   name: 'MINUTE_SECOND',
-  pattern: /MINUTE_SECOND/,
+  pattern: /MINUTE_SECOND/i,
 });
 const HOUR_SECOND = chevrotain.createToken({
   name: 'HOUR_SECOND',
-  pattern: /HOUR_SECOND/,
+  pattern: /HOUR_SECOND/i,
 });
 const HOUR_MINUTE = chevrotain.createToken({
   name: 'HOUR_MINUTE',
-  pattern: /HOUR_MINUTE/,
+  pattern: /HOUR_MINUTE/i,
 });
 const DAY_SECOND = chevrotain.createToken({
   name: 'DAY_SECOND',
-  pattern: /DAY_SECOND/,
+  pattern: /DAY_SECOND/i,
 });
 const SECOND = chevrotain.createToken({
   name: 'SECOND',
-  pattern: /SECOND/,
+  pattern: /SECOND/i,
 });
 const DAY_MINUTE = chevrotain.createToken({
   name: 'DAY_MINUTE',
-  pattern: /DAY_MINUTE/,
+  pattern: /DAY_MINUTE/i,
 });
 const MINUTE = chevrotain.createToken({
   name: 'MINUTE',
-  pattern: /MINUTE/,
+  pattern: /MINUTE/i,
 });
 const DAY_HOUR = chevrotain.createToken({
   name: 'DAY_HOUR',
-  pattern: /DAY_HOUR/,
+  pattern: /DAY_HOUR/i,
 });
 const HOUR = chevrotain.createToken({
   name: 'HOUR',
-  pattern: /HOUR/,
+  pattern: /HOUR/i,
 });
 const DAY = chevrotain.createToken({
   name: 'DAY',
-  pattern: /DAY/,
+  pattern: /DAY/i,
 });
 const YEAR_MONTH = chevrotain.createToken({
   name: 'YEAR_MONTH',
-  pattern: /YEAR_MONTH/,
+  pattern: /YEAR_MONTH/i,
 });
 const MONTH = chevrotain.createToken({
   name: 'MONTH',
-  pattern: /MONTH/,
+  pattern: /MONTH/i,
 });
 const ENUM = chevrotain.createToken({
   name: 'ENUM',
-  pattern: /ENUM/,
+  pattern: /ENUM/i,
 });
 const LONGTEXT = chevrotain.createToken({
   name: 'LONGTEXT',
-  pattern: /LONGTEXT/,
+  pattern: /LONGTEXT/i,
 });
 const MEDIUMTEXT = chevrotain.createToken({
   name: 'MEDIUMTEXT',
-  pattern: /MEDIUMTEXT/,
+  pattern: /MEDIUMTEXT/i,
 });
 const TINYTEXT = chevrotain.createToken({
   name: 'TINYTEXT',
-  pattern: /TINYTEXT/,
+  pattern: /TINYTEXT/i,
 });
 const LONGBLOB = chevrotain.createToken({
   name: 'LONGBLOB',
-  pattern: /LONGBLOB/,
+  pattern: /LONGBLOB/i,
 });
 const MEDIUMBLOB = chevrotain.createToken({
   name: 'MEDIUMBLOB',
-  pattern: /MEDIUMBLOB/,
+  pattern: /MEDIUMBLOB/i,
 });
 const TINYBLOB = chevrotain.createToken({
   name: 'TINYBLOB',
-  pattern: /TINYBLOB/,
+  pattern: /TINYBLOB/i,
 });
 const BLOB = chevrotain.createToken({
   name: 'BLOB',
-  pattern: /BLOB/,
+  pattern: /BLOB/i,
 });
 const VARBINARY = chevrotain.createToken({
   name: 'VARBINARY',
-  pattern: /VARBINARY/,
+  pattern: /VARBINARY/i,
 });
 const BINARY = chevrotain.createToken({
   name: 'BINARY',
-  pattern: /BINARY/,
+  pattern: /BINARY/i,
 });
 const CHARSET_NAME_L = chevrotain.createToken({
   name: 'CHARSET_NAME_L',
-  pattern: /(ARMSCII8|ASCII|BIG5|BINARY|CP1250|CP1251|CP1256|CP1257|CP850|CP852|CP866|CP932|DEC8|EUCJPMS|EUCKR|GB2312|GBK|GEOSTD8|GREEK|HEBREW|HP8|KEYBCS2|KOI8R|KOI8U|LATIN1|LATIN2|LATIN5|LATIN7|MACCE|MACROMAN|SJIS|SWE7|TIS620|UCS2|UJIS|UTF16|UTF16LE|UTF32|UTF8|UTF8MB4)/,
+  pattern: /(ARMSCII8|ASCII|BIG5|BINARY|CP1250|CP1251|CP1256|CP1257|CP850|CP852|CP866|CP932|DEC8|EUCJPMS|EUCKR|GB2312|GBK|GEOSTD8|GREEK|HEBREW|HP8|KEYBCS2|KOI8R|KOI8U|LATIN1|LATIN2|LATIN5|LATIN7|MACCE|MACROMAN|SJIS|SWE7|TIS620|UCS2|UJIS|UTF16|UTF16LE|UTF32|UTF8|UTF8MB4)/i,
 });
 const VARCHAR = chevrotain.createToken({
   name: 'VARCHAR',
-  pattern: /VARCHAR/,
+  pattern: /VARCHAR/i,
 });
 const YEAR = chevrotain.createToken({
   name: 'YEAR',
-  pattern: /YEAR/,
+  pattern: /YEAR/i,
 });
 const DATETIME = chevrotain.createToken({
   name: 'DATETIME',
-  pattern: /DATETIME/,
+  pattern: /DATETIME/i,
 });
 const TIMESTAMP = chevrotain.createToken({
   name: 'TIMESTAMP',
-  pattern: /TIMESTAMP/,
+  pattern: /TIMESTAMP/i,
 });
 const TIME = chevrotain.createToken({
   name: 'TIME',
-  pattern: /TIME/,
+  pattern: /TIME/i,
 });
 const NUMERIC = chevrotain.createToken({
   name: 'NUMERIC',
-  pattern: /NUMERIC/,
+  pattern: /NUMERIC/i,
 });
 const DECIMAL = chevrotain.createToken({
   name: 'DECIMAL',
-  pattern: /DECIMAL/,
+  pattern: /DECIMAL/i,
 });
 const FLOAT = chevrotain.createToken({
   name: 'FLOAT',
-  pattern: /FLOAT/,
+  pattern: /FLOAT/i,
 });
 const DOUBLE = chevrotain.createToken({
   name: 'DOUBLE',
-  pattern: /DOUBLE/,
+  pattern: /DOUBLE/i,
 });
 const REAL = chevrotain.createToken({
   name: 'REAL',
-  pattern: /REAL/,
+  pattern: /REAL/i,
 });
 const BIGINT = chevrotain.createToken({
   name: 'BIGINT',
-  pattern: /BIGINT/,
+  pattern: /BIGINT/i,
 });
 const INTEGER = chevrotain.createToken({
   name: 'INTEGER',
-  pattern: /INTEGER/,
+  pattern: /INTEGER/i,
 });
 const MEDIUMINT = chevrotain.createToken({
   name: 'MEDIUMINT',
-  pattern: /MEDIUMINT/,
+  pattern: /MEDIUMINT/i,
 });
 const MEDIUM = chevrotain.createToken({
   name: 'MEDIUM',
-  pattern: /MEDIUM/,
+  pattern: /MEDIUM/i,
 });
 const SMALLINT = chevrotain.createToken({
   name: 'SMALLINT',
-  pattern: /SMALLINT/,
+  pattern: /SMALLINT/i,
 });
 const TINYINT = chevrotain.createToken({
   name: 'TINYINT',
-  pattern: /TINYINT/,
+  pattern: /TINYINT/i,
 });
 const LIFECYCLE = chevrotain.createToken({
   name: 'LIFECYCLE',
-  pattern: /LIFECYCLE/,
+  pattern: /LIFECYCLE/i,
 });
 const OVERWRITE = chevrotain.createToken({
   name: 'OVERWRITE',
-  pattern: /OVERWRITE/,
+  pattern: /OVERWRITE/i,
 });
 const ZEROFILL = chevrotain.createToken({
   name: 'ZEROFILL',
-  pattern: /ZEROFILL/,
+  pattern: /ZEROFILL/i,
 });
 const XOR = chevrotain.createToken({
   name: 'XOR',
-  pattern: /XOR/,
+  pattern: /XOR/i,
 });
 const WITH = chevrotain.createToken({
   name: 'WITH',
-  pattern: /WITH/,
+  pattern: /WITH/i,
 });
 const WHILE = chevrotain.createToken({
   name: 'WHILE',
-  pattern: /WHILE/,
+  pattern: /WHILE/i,
 });
 const WHERE = chevrotain.createToken({
   name: 'WHERE',
-  pattern: /WHERE/,
+  pattern: /WHERE/i,
 });
 const WHEN = chevrotain.createToken({
   name: 'WHEN',
-  pattern: /WHEN/,
+  pattern: /WHEN/i,
 });
 const VALUES = chevrotain.createToken({
   name: 'VALUES',
-  pattern: /VALUES/,
+  pattern: /VALUES/i,
 });
 const USING = chevrotain.createToken({
   name: 'USING',
-  pattern: /USING/,
+  pattern: /USING/i,
 });
 const SIN = chevrotain.createToken({
   name: 'SIN',
-  pattern: /SIN/,
+  pattern: /SIN/i,
 });
 const USAGE = chevrotain.createToken({
   name: 'USAGE',
-  pattern: /USAGE/,
+  pattern: /USAGE/i,
 });
 const USA = chevrotain.createToken({
   name: 'USA',
-  pattern: /USA/,
+  pattern: /USA/i,
 });
 const UPDATE = chevrotain.createToken({
   name: 'UPDATE',
-  pattern: /UPDATE/,
+  pattern: /UPDATE/i,
 });
 const DATE = chevrotain.createToken({
   name: 'DATE',
-  pattern: /DATE/,
+  pattern: /DATE/i,
 });
 const UNSIGNED = chevrotain.createToken({
   name: 'UNSIGNED',
-  pattern: /UNSIGNED/,
+  pattern: /UNSIGNED/i,
 });
 const SIGNED = chevrotain.createToken({
   name: 'SIGNED',
-  pattern: /SIGNED/,
+  pattern: /SIGNED/i,
 });
 const SIGN = chevrotain.createToken({
   name: 'SIGN',
-  pattern: /SIGN/,
+  pattern: /SIGN/i,
 });
 const UNLOCK = chevrotain.createToken({
   name: 'UNLOCK',
-  pattern: /UNLOCK/,
+  pattern: /UNLOCK/i,
 });
 const UNIQUE = chevrotain.createToken({
   name: 'UNIQUE',
-  pattern: /UNIQUE/,
+  pattern: /UNIQUE/i,
 });
 const UNION = chevrotain.createToken({
   name: 'UNION',
-  pattern: /UNION/,
+  pattern: /UNION/i,
 });
 const UNDO = chevrotain.createToken({
   name: 'UNDO',
-  pattern: /UNDO/,
+  pattern: /UNDO/i,
 });
 const DO = chevrotain.createToken({
   name: 'DO',
-  pattern: /DO/,
+  pattern: /DO/i,
 });
 const TRUE = chevrotain.createToken({
   name: 'TRUE',
-  pattern: /TRUE/,
+  pattern: /TRUE/i,
 });
 const TRIGGER = chevrotain.createToken({
   name: 'TRIGGER',
-  pattern: /TRIGGER/,
+  pattern: /TRIGGER/i,
 });
 const TRAILING = chevrotain.createToken({
   name: 'TRAILING',
-  pattern: /TRAILING/,
+  pattern: /TRAILING/i,
 });
 const THEN = chevrotain.createToken({
   name: 'THEN',
-  pattern: /THEN/,
+  pattern: /THEN/i,
 });
 const TERMINATED = chevrotain.createToken({
   name: 'TERMINATED',
-  pattern: /TERMINATED/,
+  pattern: /TERMINATED/i,
 });
 const TABLE = chevrotain.createToken({
   name: 'TABLE',
-  pattern: /TABLE/,
+  pattern: /TABLE/i,
 });
 const STRAIGHT_JOIN = chevrotain.createToken({
   name: 'STRAIGHT_JOIN',
-  pattern: /STRAIGHT_JOIN/,
+  pattern: /STRAIGHT_JOIN/i,
 });
 const STARTING = chevrotain.createToken({
   name: 'STARTING',
-  pattern: /STARTING/,
+  pattern: /STARTING/i,
 });
 const START = chevrotain.createToken({
   name: 'START',
-  pattern: /START/,
+  pattern: /START/i,
 });
 const SQL_SMALL_RESULT = chevrotain.createToken({
   name: 'SQL_SMALL_RESULT',
-  pattern: /SQL_SMALL_RESULT/,
+  pattern: /SQL_SMALL_RESULT/i,
 });
 const SQL_CALC_FOUND_ROWS = chevrotain.createToken({
   name: 'SQL_CALC_FOUND_ROWS',
-  pattern: /SQL_CALC_FOUND_ROWS/,
+  pattern: /SQL_CALC_FOUND_ROWS/i,
 });
 const FOUND_ROWS = chevrotain.createToken({
   name: 'FOUND_ROWS',
-  pattern: /FOUND_ROWS/,
+  pattern: /FOUND_ROWS/i,
 });
 const ROWS = chevrotain.createToken({
   name: 'ROWS',
-  pattern: /ROWS/,
+  pattern: /ROWS/i,
 });
 const FOUND = chevrotain.createToken({
   name: 'FOUND',
-  pattern: /FOUND/,
+  pattern: /FOUND/i,
 });
 const SQL_BIG_RESULT = chevrotain.createToken({
   name: 'SQL_BIG_RESULT',
-  pattern: /SQL_BIG_RESULT/,
+  pattern: /SQL_BIG_RESULT/i,
 });
 const SQLWARNING = chevrotain.createToken({
   name: 'SQLWARNING',
-  pattern: /SQLWARNING/,
+  pattern: /SQLWARNING/i,
 });
 const SQLSTATE = chevrotain.createToken({
   name: 'SQLSTATE',
-  pattern: /SQLSTATE/,
+  pattern: /SQLSTATE/i,
 });
 const SQLEXCEPTION = chevrotain.createToken({
   name: 'SQLEXCEPTION',
-  pattern: /SQLEXCEPTION/,
+  pattern: /SQLEXCEPTION/i,
 });
 const SQL = chevrotain.createToken({
   name: 'SQL',
-  pattern: /SQL/,
+  pattern: /SQL/i,
 });
 const SPATIAL = chevrotain.createToken({
   name: 'SPATIAL',
-  pattern: /SPATIAL/,
+  pattern: /SPATIAL/i,
 });
 const SHOW = chevrotain.createToken({
   name: 'SHOW',
-  pattern: /SHOW/,
+  pattern: /SHOW/i,
 });
 const SEPARATOR = chevrotain.createToken({
   name: 'SEPARATOR',
-  pattern: /SEPARATOR/,
+  pattern: /SEPARATOR/i,
 });
 const SET = chevrotain.createToken({
   name: 'SET',
-  pattern: /SET/,
+  pattern: /SET/i,
 });
 const SELECT = chevrotain.createToken({
   name: 'SELECT',
-  pattern: /SELECT/,
+  pattern: /SELECT/i,
 });
 const SCHEMAS = chevrotain.createToken({
   name: 'SCHEMAS',
-  pattern: /SCHEMAS/,
+  pattern: /SCHEMAS/i,
 });
 const SCHEMA = chevrotain.createToken({
   name: 'SCHEMA',
-  pattern: /SCHEMA/,
+  pattern: /SCHEMA/i,
 });
 const RLIKE = chevrotain.createToken({
   name: 'RLIKE',
-  pattern: /RLIKE/,
+  pattern: /RLIKE/i,
 });
 const RIGHT = chevrotain.createToken({
   name: 'RIGHT',
-  pattern: /RIGHT/,
+  pattern: /RIGHT/i,
 });
 const REVOKE = chevrotain.createToken({
   name: 'REVOKE',
-  pattern: /REVOKE/,
+  pattern: /REVOKE/i,
 });
 const RETURN = chevrotain.createToken({
   name: 'RETURN',
-  pattern: /RETURN/,
+  pattern: /RETURN/i,
 });
 const RESTRICT = chevrotain.createToken({
   name: 'RESTRICT',
-  pattern: /RESTRICT/,
+  pattern: /RESTRICT/i,
 });
 const REQUIRE = chevrotain.createToken({
   name: 'REQUIRE',
-  pattern: /REQUIRE/,
+  pattern: /REQUIRE/i,
 });
 const REPLACE = chevrotain.createToken({
   name: 'REPLACE',
-  pattern: /REPLACE/,
+  pattern: /REPLACE/i,
 });
 const REPEAT = chevrotain.createToken({
   name: 'REPEAT',
-  pattern: /REPEAT/,
+  pattern: /REPEAT/i,
 });
 const RENAME = chevrotain.createToken({
   name: 'RENAME',
-  pattern: /RENAME/,
+  pattern: /RENAME/i,
 });
 const NAME = chevrotain.createToken({
   name: 'NAME',
-  pattern: /NAME/,
+  pattern: /NAME/i,
 });
 const RELEASE = chevrotain.createToken({
   name: 'RELEASE',
-  pattern: /RELEASE/,
+  pattern: /RELEASE/i,
 });
 const REGEXP = chevrotain.createToken({
   name: 'REGEXP',
-  pattern: /REGEXP/,
+  pattern: /REGEXP/i,
 });
 const REFERENCES = chevrotain.createToken({
   name: 'REFERENCES',
-  pattern: /REFERENCES/,
+  pattern: /REFERENCES/i,
 });
 const READS = chevrotain.createToken({
   name: 'READS',
-  pattern: /READS/,
+  pattern: /READS/i,
 });
 const READ = chevrotain.createToken({
   name: 'READ',
-  pattern: /READ/,
+  pattern: /READ/i,
 });
 const RANGE = chevrotain.createToken({
   name: 'RANGE',
-  pattern: /RANGE/,
+  pattern: /RANGE/i,
 });
 const PURGE = chevrotain.createToken({
   name: 'PURGE',
-  pattern: /PURGE/,
+  pattern: /PURGE/i,
 });
 const PROCEDURE = chevrotain.createToken({
   name: 'PROCEDURE',
-  pattern: /PROCEDURE/,
+  pattern: /PROCEDURE/i,
 });
 const PRIMARY = chevrotain.createToken({
   name: 'PRIMARY',
-  pattern: /PRIMARY/,
+  pattern: /PRIMARY/i,
 });
 const PARTITION = chevrotain.createToken({
   name: 'PARTITION',
-  pattern: /PARTITION/,
+  pattern: /PARTITION/i,
 });
 const OUTFILE = chevrotain.createToken({
   name: 'OUTFILE',
-  pattern: /OUTFILE/,
+  pattern: /OUTFILE/i,
 });
 const OUTER = chevrotain.createToken({
   name: 'OUTER',
-  pattern: /OUTER/,
+  pattern: /OUTER/i,
 });
 const ORDER = chevrotain.createToken({
   name: 'ORDER',
-  pattern: /ORDER/,
+  pattern: /ORDER/i,
 });
 const ORD = chevrotain.createToken({
   name: 'ORD',
-  pattern: /ORD/,
+  pattern: /ORD/i,
 });
 const OPTIONALLY = chevrotain.createToken({
   name: 'OPTIONALLY',
-  pattern: /OPTIONALLY/,
+  pattern: /OPTIONALLY/i,
 });
 const OPTION = chevrotain.createToken({
   name: 'OPTION',
-  pattern: /OPTION/,
+  pattern: /OPTION/i,
 });
 const OPTIMIZE = chevrotain.createToken({
   name: 'OPTIMIZE',
-  pattern: /OPTIMIZE/,
+  pattern: /OPTIMIZE/i,
 });
 const NULL_LITERAL = chevrotain.createToken({
   name: 'NULL_LITERAL',
-  pattern: /NULL/,
+  pattern: /NULL/i,
 });
 const NO_WRITE_TO_BINLOG = chevrotain.createToken({
   name: 'NO_WRITE_TO_BINLOG',
-  pattern: /NO_WRITE_TO_BINLOG/,
+  pattern: /NO_WRITE_TO_BINLOG/i,
 });
 const BINLOG = chevrotain.createToken({
   name: 'BINLOG',
-  pattern: /BINLOG/,
+  pattern: /BINLOG/i,
 });
 const LOG = chevrotain.createToken({
   name: 'LOG',
-  pattern: /LOG/,
+  pattern: /LOG/i,
 });
 const WRITE = chevrotain.createToken({
   name: 'WRITE',
-  pattern: /WRITE/,
+  pattern: /WRITE/i,
 });
 const NOT = chevrotain.createToken({
   name: 'NOT',
-  pattern: /NOT/,
+  pattern: /NOT/i,
 });
 const NATURAL = chevrotain.createToken({
   name: 'NATURAL',
-  pattern: /NATURAL/,
+  pattern: /NATURAL/i,
 });
 const MODIFIES = chevrotain.createToken({
   name: 'MODIFIES',
-  pattern: /MODIFIES/,
+  pattern: /MODIFIES/i,
 });
 const MOD = chevrotain.createToken({
   name: 'MOD',
-  pattern: /MOD/,
+  pattern: /MOD/i,
 });
 const MAXVALUE = chevrotain.createToken({
   name: 'MAXVALUE',
-  pattern: /MAXVALUE/,
+  pattern: /MAXVALUE/i,
 });
 const VALUE = chevrotain.createToken({
   name: 'VALUE',
-  pattern: /VALUE/,
+  pattern: /VALUE/i,
 });
 const MAX = chevrotain.createToken({
   name: 'MAX',
-  pattern: /MAX/,
+  pattern: /MAX/i,
 });
 const MATCH = chevrotain.createToken({
   name: 'MATCH',
-  pattern: /MATCH/,
+  pattern: /MATCH/i,
 });
 const MASTER_SSL_VERIFY_SERVER_CERT = chevrotain.createToken({
   name: 'MASTER_SSL_VERIFY_SERVER_CERT',
-  pattern: /MASTER_SSL_VERIFY_SERVER_CERT/,
+  pattern: /MASTER_SSL_VERIFY_SERVER_CERT/i,
 });
 const SERVER = chevrotain.createToken({
   name: 'SERVER',
-  pattern: /SERVER/,
+  pattern: /SERVER/i,
 });
 const MASTER_SSL = chevrotain.createToken({
   name: 'MASTER_SSL',
-  pattern: /MASTER_SSL/,
+  pattern: /MASTER_SSL/i,
 });
 const SSL = chevrotain.createToken({
   name: 'SSL',
-  pattern: /SSL/,
+  pattern: /SSL/i,
 });
 const MASTER_BIND = chevrotain.createToken({
   name: 'MASTER_BIND',
-  pattern: /MASTER_BIND/,
+  pattern: /MASTER_BIND/i,
 });
 const BIN = chevrotain.createToken({
   name: 'BIN',
-  pattern: /BIN/,
+  pattern: /BIN/i,
 });
 const MASTER = chevrotain.createToken({
   name: 'MASTER',
-  pattern: /MASTER/,
+  pattern: /MASTER/i,
 });
 const LOW_PRIORITY = chevrotain.createToken({
   name: 'LOW_PRIORITY',
-  pattern: /LOW_PRIORITY/,
+  pattern: /LOW_PRIORITY/i,
 });
 const LOOP = chevrotain.createToken({
   name: 'LOOP',
-  pattern: /LOOP/,
+  pattern: /LOOP/i,
 });
 const LOCK = chevrotain.createToken({
   name: 'LOCK',
-  pattern: /LOCK/,
+  pattern: /LOCK/i,
 });
 const LOAD = chevrotain.createToken({
   name: 'LOAD',
-  pattern: /LOAD/,
+  pattern: /LOAD/i,
 });
 const LINES = chevrotain.createToken({
   name: 'LINES',
-  pattern: /LINES/,
+  pattern: /LINES/i,
 });
 const LINEAR = chevrotain.createToken({
   name: 'LINEAR',
-  pattern: /LINEAR/,
+  pattern: /LINEAR/i,
 });
 const LIMIT = chevrotain.createToken({
   name: 'LIMIT',
-  pattern: /LIMIT/,
+  pattern: /LIMIT/i,
 });
 const LIKE = chevrotain.createToken({
   name: 'LIKE',
-  pattern: /LIKE/,
+  pattern: /LIKE/i,
 });
 const LEFT = chevrotain.createToken({
   name: 'LEFT',
-  pattern: /LEFT/,
+  pattern: /LEFT/i,
 });
 const LEAVE = chevrotain.createToken({
   name: 'LEAVE',
-  pattern: /LEAVE/,
+  pattern: /LEAVE/i,
 });
 const LEADING = chevrotain.createToken({
   name: 'LEADING',
-  pattern: /LEADING/,
+  pattern: /LEADING/i,
 });
 const KILL = chevrotain.createToken({
   name: 'KILL',
-  pattern: /KILL/,
+  pattern: /KILL/i,
 });
 const KEYS = chevrotain.createToken({
   name: 'KEYS',
-  pattern: /KEYS/,
+  pattern: /KEYS/i,
 });
 const KEY = chevrotain.createToken({
   name: 'KEY',
-  pattern: /KEY/,
+  pattern: /KEY/i,
 });
 const JOIN = chevrotain.createToken({
   name: 'JOIN',
-  pattern: /JOIN/,
+  pattern: /JOIN/i,
 });
 const ITERATE = chevrotain.createToken({
   name: 'ITERATE',
-  pattern: /ITERATE/,
+  pattern: /ITERATE/i,
 });
 const INTO = chevrotain.createToken({
   name: 'INTO',
-  pattern: /INTO/,
+  pattern: /INTO/i,
 });
 const TO = chevrotain.createToken({
   name: 'TO',
-  pattern: /TO/,
+  pattern: /TO/i,
 });
 const INTERVAL = chevrotain.createToken({
   name: 'INTERVAL',
-  pattern: /INTERVAL/,
+  pattern: /INTERVAL/i,
 });
 const INSERT = chevrotain.createToken({
   name: 'INSERT',
-  pattern: /INSERT/,
+  pattern: /INSERT/i,
 });
 const INOUT = chevrotain.createToken({
   name: 'INOUT',
-  pattern: /INOUT/,
+  pattern: /INOUT/i,
 });
 const OUT = chevrotain.createToken({
   name: 'OUT',
-  pattern: /OUT/,
+  pattern: /OUT/i,
 });
 const INNER = chevrotain.createToken({
   name: 'INNER',
-  pattern: /INNER/,
+  pattern: /INNER/i,
 });
 const INFILE = chevrotain.createToken({
   name: 'INFILE',
-  pattern: /INFILE/,
+  pattern: /INFILE/i,
 });
 const FILE = chevrotain.createToken({
   name: 'FILE',
-  pattern: /FILE/,
+  pattern: /FILE/i,
 });
 const INDEX = chevrotain.createToken({
   name: 'INDEX',
-  pattern: /INDEX/,
+  pattern: /INDEX/i,
 });
 const IGNORE = chevrotain.createToken({
   name: 'IGNORE',
-  pattern: /IGNORE/,
+  pattern: /IGNORE/i,
 });
 const NO = chevrotain.createToken({
   name: 'NO',
-  pattern: /NO/,
+  pattern: /NO/i,
 });
 const HIGH_PRIORITY = chevrotain.createToken({
   name: 'HIGH_PRIORITY',
-  pattern: /HIGH_PRIORITY/,
+  pattern: /HIGH_PRIORITY/i,
 });
 const HAVING = chevrotain.createToken({
   name: 'HAVING',
-  pattern: /HAVING/,
+  pattern: /HAVING/i,
 });
 const GROUP = chevrotain.createToken({
   name: 'GROUP',
-  pattern: /GROUP/,
+  pattern: /GROUP/i,
 });
 const GRANT = chevrotain.createToken({
   name: 'GRANT',
-  pattern: /GRANT/,
+  pattern: /GRANT/i,
 });
 const FULLTEXT = chevrotain.createToken({
   name: 'FULLTEXT',
-  pattern: /FULLTEXT/,
+  pattern: /FULLTEXT/i,
 });
 const FULL = chevrotain.createToken({
   name: 'FULL',
-  pattern: /FULL/,
+  pattern: /FULL/i,
 });
 const TEXT = chevrotain.createToken({
   name: 'TEXT',
-  pattern: /TEXT/,
+  pattern: /TEXT/i,
 });
 const FROM = chevrotain.createToken({
   name: 'FROM',
-  pattern: /FROM/,
+  pattern: /FROM/i,
 });
 const FOREIGN = chevrotain.createToken({
   name: 'FOREIGN',
-  pattern: /FOREIGN/,
+  pattern: /FOREIGN/i,
 });
 const FORCE = chevrotain.createToken({
   name: 'FORCE',
-  pattern: /FORCE/,
+  pattern: /FORCE/i,
 });
 const FETCH = chevrotain.createToken({
   name: 'FETCH',
-  pattern: /FETCH/,
+  pattern: /FETCH/i,
 });
 const FALSE = chevrotain.createToken({
   name: 'FALSE',
-  pattern: /FALSE/,
+  pattern: /FALSE/i,
 });
 const EXPLAIN = chevrotain.createToken({
   name: 'EXPLAIN',
-  pattern: /EXPLAIN/,
+  pattern: /EXPLAIN/i,
 });
 const EXP = chevrotain.createToken({
   name: 'EXP',
-  pattern: /EXP/,
+  pattern: /EXP/i,
 });
 const EXIT = chevrotain.createToken({
   name: 'EXIT',
-  pattern: /EXIT/,
+  pattern: /EXIT/i,
 });
 const EXISTS = chevrotain.createToken({
   name: 'EXISTS',
-  pattern: /EXISTS/,
+  pattern: /EXISTS/i,
 });
 const X_FUNCTION = chevrotain.createToken({
   name: 'X_FUNCTION',
-  pattern: /X/,
+  pattern: /X/i,
 });
 const ESCAPED = chevrotain.createToken({
   name: 'ESCAPED',
-  pattern: /ESCAPED/,
+  pattern: /ESCAPED/i,
 });
 const ESCAPE = chevrotain.createToken({
   name: 'ESCAPE',
-  pattern: /ESCAPE/,
+  pattern: /ESCAPE/i,
 });
 const ENCLOSED = chevrotain.createToken({
   name: 'ENCLOSED',
-  pattern: /ENCLOSED/,
+  pattern: /ENCLOSED/i,
 });
 const CLOSE = chevrotain.createToken({
   name: 'CLOSE',
-  pattern: /CLOSE/,
+  pattern: /CLOSE/i,
 });
 const ELSEIF = chevrotain.createToken({
   name: 'ELSEIF',
-  pattern: /ELSEIF/,
+  pattern: /ELSEIF/i,
 });
 const IF = chevrotain.createToken({
   name: 'IF',
-  pattern: /IF/,
+  pattern: /IF/i,
 });
 const ELSE = chevrotain.createToken({
   name: 'ELSE',
-  pattern: /ELSE/,
+  pattern: /ELSE/i,
 });
 const EACH = chevrotain.createToken({
   name: 'EACH',
-  pattern: /EACH/,
+  pattern: /EACH/i,
 });
 const DROP = chevrotain.createToken({
   name: 'DROP',
-  pattern: /DROP/,
+  pattern: /DROP/i,
 });
 const DISTINCTROW = chevrotain.createToken({
   name: 'DISTINCTROW',
-  pattern: /DISTINCTROW/,
+  pattern: /DISTINCTROW/i,
 });
 const ROW = chevrotain.createToken({
   name: 'ROW',
-  pattern: /ROW/,
+  pattern: /ROW/i,
 });
 const DISTINCT = chevrotain.createToken({
   name: 'DISTINCT',
-  pattern: /DISTINCT/,
+  pattern: /DISTINCT/i,
 });
 const DETERMINISTIC = chevrotain.createToken({
   name: 'DETERMINISTIC',
-  pattern: /DETERMINISTIC/,
+  pattern: /DETERMINISTIC/i,
 });
 const MIN = chevrotain.createToken({
   name: 'MIN',
-  pattern: /MIN/,
+  pattern: /MIN/i,
 });
 const IS = chevrotain.createToken({
   name: 'IS',
-  pattern: /IS/,
+  pattern: /IS/i,
 });
 const DESCRIBE = chevrotain.createToken({
   name: 'DESCRIBE',
-  pattern: /DESCRIBE/,
+  pattern: /DESCRIBE/i,
 });
 const DESC = chevrotain.createToken({
   name: 'DESC',
-  pattern: /DESC/,
+  pattern: /DESC/i,
 });
 const DELETE = chevrotain.createToken({
   name: 'DELETE',
-  pattern: /DELETE/,
+  pattern: /DELETE/i,
 });
 const DELAYED = chevrotain.createToken({
   name: 'DELAYED',
-  pattern: /DELAYED/,
+  pattern: /DELAYED/i,
 });
 const DEFAULT = chevrotain.createToken({
   name: 'DEFAULT',
-  pattern: /DEFAULT/,
+  pattern: /DEFAULT/i,
 });
 const DECLARE = chevrotain.createToken({
   name: 'DECLARE',
-  pattern: /DECLARE/,
+  pattern: /DECLARE/i,
 });
 const DATABASES = chevrotain.createToken({
   name: 'DATABASES',
-  pattern: /DATABASES/,
+  pattern: /DATABASES/i,
 });
 const DATABASE = chevrotain.createToken({
   name: 'DATABASE',
-  pattern: /DATABASE/,
+  pattern: /DATABASE/i,
 });
 const DATA = chevrotain.createToken({
   name: 'DATA',
-  pattern: /DATA/,
+  pattern: /DATA/i,
 });
 const CURSOR = chevrotain.createToken({
   name: 'CURSOR',
-  pattern: /CURSOR/,
+  pattern: /CURSOR/i,
 });
 const CURRENT_USER = chevrotain.createToken({
   name: 'CURRENT_USER',
-  pattern: /CURRENT_USER/,
+  pattern: /CURRENT_USER/i,
 });
 const USER = chevrotain.createToken({
   name: 'USER',
-  pattern: /USER/,
+  pattern: /USER/i,
 });
 const USE = chevrotain.createToken({
   name: 'USE',
-  pattern: /USE/,
+  pattern: /USE/i,
 });
 const CROSS = chevrotain.createToken({
   name: 'CROSS',
-  pattern: /CROSS/,
+  pattern: /CROSS/i,
 });
 const CREATE = chevrotain.createToken({
   name: 'CREATE',
-  pattern: /CREATE/,
+  pattern: /CREATE/i,
 });
 const CONVERT = chevrotain.createToken({
   name: 'CONVERT',
-  pattern: /CONVERT/,
+  pattern: /CONVERT/i,
 });
 const CONV = chevrotain.createToken({
   name: 'CONV',
-  pattern: /CONV/,
+  pattern: /CONV/i,
 });
 const CONTINUE = chevrotain.createToken({
   name: 'CONTINUE',
-  pattern: /CONTINUE/,
+  pattern: /CONTINUE/i,
 });
 const CONSTRAINT = chevrotain.createToken({
   name: 'CONSTRAINT',
-  pattern: /CONSTRAINT/,
+  pattern: /CONSTRAINT/i,
 });
 const INT = chevrotain.createToken({
   name: 'INT',
-  pattern: /INT/,
+  pattern: /INT/i,
 });
 const IN = chevrotain.createToken({
   name: 'IN',
-  pattern: /IN/,
+  pattern: /IN/i,
 });
 const CONDITION = chevrotain.createToken({
   name: 'CONDITION',
-  pattern: /CONDITION/,
+  pattern: /CONDITION/i,
 });
 const IO = chevrotain.createToken({
   name: 'IO',
-  pattern: /IO/,
+  pattern: /IO/i,
 });
 const ON = chevrotain.createToken({
   name: 'ON',
-  pattern: /ON/,
+  pattern: /ON/i,
 });
 const COLUMN = chevrotain.createToken({
   name: 'COLUMN',
-  pattern: /COLUMN/,
+  pattern: /COLUMN/i,
 });
 const COLLATE = chevrotain.createToken({
   name: 'COLLATE',
-  pattern: /COLLATE/,
+  pattern: /COLLATE/i,
 });
 const AT = chevrotain.createToken({
   name: 'AT',
-  pattern: /AT/,
+  pattern: /AT/i,
 });
 const CHECK = chevrotain.createToken({
   name: 'CHECK',
-  pattern: /CHECK/,
+  pattern: /CHECK/i,
 });
 const CHARACTER = chevrotain.createToken({
   name: 'CHARACTER',
-  pattern: /CHARACTER/,
+  pattern: /CHARACTER/i,
 });
 const CHAR = chevrotain.createToken({
   name: 'CHAR',
-  pattern: /CHAR/,
+  pattern: /CHAR/i,
 });
 const CHANGE = chevrotain.createToken({
   name: 'CHANGE',
-  pattern: /CHANGE/,
+  pattern: /CHANGE/i,
 });
 const CAST = chevrotain.createToken({
   name: 'CAST',
-  pattern: /CAST/,
+  pattern: /CAST/i,
 });
 const CASE = chevrotain.createToken({
   name: 'CASE',
-  pattern: /CASE/,
+  pattern: /CASE/i,
 });
 const CASCADE = chevrotain.createToken({
   name: 'CASCADE',
-  pattern: /CASCADE/,
+  pattern: /CASCADE/i,
 });
 const CALL = chevrotain.createToken({
   name: 'CALL',
-  pattern: /CALL/,
+  pattern: /CALL/i,
 });
 const BY = chevrotain.createToken({
   name: 'BY',
-  pattern: /BY/,
+  pattern: /BY/i,
 });
 const BOTH = chevrotain.createToken({
   name: 'BOTH',
-  pattern: /BOTH/,
+  pattern: /BOTH/i,
 });
 const BETWEEN = chevrotain.createToken({
   name: 'BETWEEN',
-  pattern: /BETWEEN/,
+  pattern: /BETWEEN/i,
 });
 const BEFORE = chevrotain.createToken({
   name: 'BEFORE',
-  pattern: /BEFORE/,
+  pattern: /BEFORE/i,
 });
 const FOR = chevrotain.createToken({
   name: 'FOR',
-  pattern: /FOR/,
+  pattern: /FOR/i,
 });
 const OR = chevrotain.createToken({
   name: 'OR',
-  pattern: /OR/,
+  pattern: /OR/i,
 });
 const ASC = chevrotain.createToken({
   name: 'ASC',
-  pattern: /ASC/,
+  pattern: /ASC/i,
 });
 const AS = chevrotain.createToken({
   name: 'AS',
-  pattern: /AS/,
+  pattern: /AS/i,
 });
 const AND = chevrotain.createToken({
   name: 'AND',
-  pattern: /AND/,
+  pattern: /AND/i,
 });
 const ANALYZE = chevrotain.createToken({
   name: 'ANALYZE',
-  pattern: /ANALYZE/,
+  pattern: /ANALYZE/i,
 });
 const Y_FUNCTION = chevrotain.createToken({
   name: 'Y_FUNCTION',
-  pattern: /Y/,
+  pattern: /Y/i,
 });
 const ALTER = chevrotain.createToken({
   name: 'ALTER',
-  pattern: /ALTER/,
+  pattern: /ALTER/i,
 });
 const ALL = chevrotain.createToken({
   name: 'ALL',
-  pattern: /ALL/,
+  pattern: /ALL/i,
 });
 const ADD = chevrotain.createToken({
   name: 'ADD',
-  pattern: /ADD/,
+  pattern: /ADD/i,
 });
 const SKIP = chevrotain.createToken({
   name: 'SKIP',
-  pattern: /SKIP/,
+  pattern: /SKIP/i,
 });
 const ID = chevrotain.createToken({
   name: 'ID',
-  pattern: /[A-Za-z_\$0-9*]+/,
+  pattern: /[A-Za-z_\$0-9*]+/i,
 });
 
 export enum TokenEnum {
