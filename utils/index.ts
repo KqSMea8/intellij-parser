@@ -73,7 +73,7 @@ const getCompleteInfo = (ast, pos) => {
     }
 
     /** 非；场景，提示snippets，；场景代表语句结束，一般为singleMissingToken，唯一err */
-    if(errorType.type !== ErrorToken.singleMissingToken || err.message.match(errorType.pattern)[1] !== TokenEnum.SEMI) {
+    if (errorType.type !== ErrorToken.singleMissingToken || err.message.match(errorType.pattern)[1] !== TokenEnum.SEMI) {
       Object.keys(Snippets).forEach(errType => {
         singleError.completeType.push({
           errType,
@@ -118,13 +118,13 @@ const getCompleteInfo = (ast, pos) => {
 const getTabelDetails = (init, fromClause, more?: boolean) => {
   return _.flattenDeep(_.get(getFilteredNode(fromClause, target => target.name === SyntaxKind.tableSources), '[0].children.tableSource', []).map(tableSource => {
     const tableSourceItems = [];
-    if(tableSource.children[SyntaxKind.joinPart]) {
+    if (tableSource.children[SyntaxKind.joinPart]) {
       tableSource.children[SyntaxKind.joinPart].forEach(join => {
         tableSourceItems.push(getFilteredNode(join, target => target.name === SyntaxKind.tableSourceItem))
       })
     }
 
-    if(tableSource.children[SyntaxKind.tableSourceItem]) {
+    if (tableSource.children[SyntaxKind.tableSourceItem]) {
       tableSourceItems.push(tableSource.children[SyntaxKind.tableSourceItem])
     }
 
@@ -147,14 +147,14 @@ const getTabelDetails = (init, fromClause, more?: boolean) => {
 
     /** 获取表名，如果可以得到表名，export字段为表的全字段 */
     if (table.children[SyntaxKind.tableName]) {
-      const tableName = getLeafNode(table.children[SyntaxKind.tableName][0])[0].image;
-      tableInfo.table = tableName,
-        /** 额外的表名字段便于外部获取到全字段场景时，可以根据表明查询字段 */
-        tableInfo.availableFields = [{
-          name: '*',
-          alias: '',
-          origin: tableName
-        }]
+      const tableName = _.sortBy(getLeafNode(table.children[SyntaxKind.tableName][0], true), ["startOffset"], ["asc"]).map(item => item.image).join('')
+      tableInfo.table = tableName;
+      /** 额外的表名字段便于外部获取到全字段场景时，可以根据表明查询字段 */
+      tableInfo.availableFields = [{
+        name: '*',
+        alias: '',
+        origin: tableName
+      }]
       tableInfo.exportsFields = tableInfo.exportsFields.map(item => ({
         ...item,
         origin: tableName
@@ -188,7 +188,7 @@ const peel = (cst) => {
   }
 
   /** 异常输入处理，exports中包含*的时候，直接透出* */
-  if(query) {
+  if (query) {
     exportsFields = _.uniqBy(exportsFields.concat(_.flatten((query.children[SyntaxKind.selectElements][0].children[SyntaxKind.selectElement] || []).map(fields => {
       let name = '';
       let alias = fields.children[SyntaxKind.uid] ? getLeafNode(fields.children[SyntaxKind.uid][0])[0].image : '';
@@ -265,9 +265,10 @@ const getNextTableSource = (ast, token, more) => {
 
 /** 获取级联字段的完整路径 */
 const getTotalPath = (ast, token) => {
-  const columnRoot = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fullColumnName, true);
-  const targetColumn = _.find(columnRoot, o => getFilteredNode(o, target => target.image === token.image && target.startColumn === token.startColumn)[0]);
-  return _.flatten(Object.values(targetColumn.children)).map(node => getLeafNode(node)[0].image);
+  const columnRoot = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fullColumnName || target.name === SyntaxKind.tableName, true);
+  const targetColumn = _.find(columnRoot, o => getFilteredNode(o, target => target.image && target.image.indexOf(token.image) === 0 && target.startColumn === token.startColumn)[0]);
+  const leafNodes = _.flatten(_.flatten(Object.values(targetColumn.children)).map(node => getLeafNode(node, true)));
+  return _.orderBy(leafNodes, ['startOffset'], ['asc']).map(item => item.image).join('');
 }
 
 const getKeywords = () => {
