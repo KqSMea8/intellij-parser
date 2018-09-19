@@ -8640,17 +8640,6 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'('"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -8666,17 +8655,6 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "joinPart"
-              }
-            },
-            {
-              "index": 1,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "')'"
               }
             }
           ]

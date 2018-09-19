@@ -2400,18 +2400,10 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('tableSource', () => {
-      this.OPTION(() => {
-        this.CONSUME(Tokens.LR_BRACKET);
-      });
-
       this.SUBRULE(this.tableSourceItem);
 
       this.MANY(() => {
         this.SUBRULE(this.joinPart);
-      });
-
-      this.OPTION2(() => {
-        this.CONSUME(Tokens.RR_BRACKET);
       });
     });
 

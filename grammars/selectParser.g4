@@ -374,7 +374,7 @@ havingClause: HAVING havingExpr = expression;
 
 groupByItem: expression order = (ASC | DESC)?;
 
-tableSource: '('? tableSourceItem joinPart* ')'?;
+tableSource: tableSourceItem joinPart*;
 
 joinPart: (INNER | CROSS)? JOIN tableSourceItem (
 		ON expression
