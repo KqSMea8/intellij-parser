@@ -42,3 +42,8 @@ export enum Snippets {
   'cre' = 'cre'
 }
 
+export interface Pos {
+  line: string,
+  offset: string
+}
+

@@ -1,21 +1,35 @@
-import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken, Snippets } from './definations';
+import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken, Snippets, Pos } from './definations';
 import { SyntaxKind, Tokens, TokenEnum } from '../sql-parser/parser.g';
 import * as _ from 'lodash';
 
-// ----------- private func ------ //、
+
 /** 获取节点的叶子节点 */
 const getLeafNode = (cst, global?) => {
   return getFilteredNode(cst, target => target.image, global);
 }
 
+/** 获取指定位置的节点 */
+const getPositiondNode = (cst, pos: Pos) => {
+  return getFilteredNode(cst, target => target.startLine === pos.line && target.startOffset === pos.offset);
+}
+
+/** 获取指定位置节点最近的某类型父节点 */
+const getNearestTargetNode = (cst, pos: Pos, parentName: string) => {
+  const target = getPositiondNode(cst, pos)[0];
+  if (target) {
+    return [].concat(_.findLast(target.ruleStack, {name: parentName}))
+  }
+  return [];
+}
+
 /** 筛选符合条件的节点 */
 const getFilteredNode = (cst, filter, global?: boolean): any | any[] => {
-  const queue = [cst];
+  const queue = [{ ...cst, ruleStack: [] }];
   const result = [];
   while (true) {
     let target = queue.shift();
     if (target) {
-      queue.push(...(Object as any).values(target.children || []).reduce((sum, item) => sum.concat(item), []))
+      queue.push(_.flatten(Object.values(target.children || [])).reduce((sum, item) => sum.concat({ ...item, ruleStack: target.ruleStack.concat(target) }), []))
       if (filter(target)) {
         if (global) {
           result.push(target);
@@ -236,13 +250,6 @@ const peel = (cst) => {
   return query ? getTabelDetails(tableInfo, (query.children[SyntaxKind.fromClause] || [])[0], true) : {};
 }
 
-// if (fields.children[SyntaxKind.dottedId]) {
-//   /** 如果是级联路径，则找到最后一段，为真实的字段名，同时删除首位的点 */
-//   return getLeafNode(fields.children[SyntaxKind.dottedId].slice(-1)[0])[0].image.slice(1)
-// } else {
-//   return getLeafNode(fields.children[SyntaxKind.uid][0])[0].image
-// }
-
 /** 获取表，别名，字段映射 */
 const getAliasMap = (ast) => {
   /** 获取顶层sql数组, 广度优先遍历场景下，查找父节点后获取子节点，性能更好 */
@@ -282,5 +289,8 @@ export {
   getAliasMap,
   getNextTableSource,
   getTotalPath,
-  getFilteredNode
+  
+  getFilteredNode,
+  getPositiondNode,
+  getNearestTargetNode
 }
