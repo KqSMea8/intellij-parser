@@ -1,10 +1,10 @@
 Insert OVERWRITE TABLE s_od_account PARTITION (ds = '${lAStbizdate}')
 SELECT  i.ca_id AS ca_id
-        ,coalesce(u.ca_b_id,i.ca_b_id) AS ca_b_id
-        ,coalesce(u.ca_c_id,i.ca_c_id) AS ca_c_id
-        ,coalesce(u.ca_name,i.ca_name) AS ca_name
-        ,coalesce(u.ca_tax_st,i.ca_tax_st) AS ca_tax_st
-        ,coalesce(u.ca_st_id,i.ca_st_id) AS ca_st_id
+        ,coalesce2(u.ca_b_id,i.ca_b_id) AS ca_b_id
+        ,coalesce2(u.ca_c_id,i.ca_c_id) AS ca_c_id
+        ,coalesce2(u.ca_name,i.ca_name) AS ca_name
+        ,coalesce2(u.ca_tax_st,i.ca_tax_st) AS ca_tax_st
+        ,coalesce2(u.ca_st_id,i.ca_st_id) AS ca_st_id
 FROM    (SELECT  a.*
          FROM    s_od_his_account a
          WHERE   ds = '${bizdate}'
@@ -62,7 +62,7 @@ CREATE TABLE IF NOT EXISTS s_bi_brc_n_plan1data_to_bi_union (
   period STRING COMMENT '',
   yearcode STRING COMMENT '',
   scenario STRING COMMENT '',
-  version STRING COMMENT '',
+  version2 STRING COMMENT '',
   entitycode STRING COMMENT '',
   layout STRING COMMENT '',
   detail STRING COMMENT '',
@@ -70,7 +70,7 @@ CREATE TABLE IF NOT EXISTS s_bi_brc_n_plan1data_to_bi_union (
   tversion STRING COMMENT '',
   others1 STRING COMMENT '',
   others2 STRING COMMENT '',
-  data STRING COMMENT '',
+  data2 STRING COMMENT '',
   create_date STRING COMMENT '',
   tab STRING COMMENT '',
   s_version STRING COMMENT '',
@@ -99,7 +99,7 @@ SELECT
         period,
         yearcode,
         scenario,
-        version,
+        version2,
         entitycode,
         layout,
         detail,
@@ -107,7 +107,7 @@ SELECT
         tversion,
         others1,
         others2,
-        data,
+        data2,
         create_date,
         tab,
         s_version,
@@ -119,7 +119,7 @@ SELECT
             period,
             yearcode,
             scenario,
-            version,
+            version2,
             entitycode,
             layout,
             detail,
@@ -127,7 +127,7 @@ SELECT
             tversion,
             others1,
             others2,
-            data,
+            data2,
             create_date,
             tab,
             s_version,
@@ -142,7 +142,7 @@ SELECT
             period,
             yearcode,
             scenario,
-            version,
+            version2,
             entitycode,
             layout,
             detail,
@@ -150,7 +150,7 @@ SELECT
             tversion,
             others1,
             others2,
-            data,
+            data2,
             create_date,
             s_bi_brc_n_plan1data_to_bi AS union_table
             FROM
@@ -163,7 +163,7 @@ SELECT
             period,
             yearcode,
             scenario,
-            version,
+            version2,
             entitycode,
             layout,
             detail,
@@ -171,7 +171,7 @@ SELECT
             tversion,
             others1,
             others2,
-            data,
+            data2,
             create_date,
             tab,
             s_version,

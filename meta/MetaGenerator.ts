@@ -263,6 +263,7 @@ export class RulesNode extends BaseNode {
     return this.rules
       .filter(rule => !rule.fragName)
       .filter(rule => rule.tokenName !== 'DECIMAL_LITERAL')
+      .filter(rule => rule.tokenName !== 'ID')
       .map(rule => rule.toDebugLexerCode())
       .join('\n');
   }
@@ -314,6 +315,7 @@ export class RuleNode extends BaseNode {
       return `const ${this.tokenName} = chevrotain.createToken({
         name: '${this.tokenName}',
         pattern: /${this.pattern}/i,
+        longer_alt: ID
       });`;
     }
   }

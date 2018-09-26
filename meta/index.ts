@@ -46,6 +46,10 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
       name: 'DECIMAL_LITERAL',
       pattern: /[0-9]+/,
     });
+    const ID = chevrotain.createToken({
+      name: 'ID',
+      pattern: /[A-Za-z_\$0-9*]+/i,
+    });    
     ${ast.toLexerCode()}
 
     export enum TokenEnum {
