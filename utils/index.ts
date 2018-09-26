@@ -10,14 +10,51 @@ const getLeafNode = (cst, global?) => {
 
 /** 获取指定位置的节点 */
 const getPositiondNode = (cst, pos: Pos) => {
-  return getFilteredNode(cst, target => target.startLine === pos.line && target.startOffset === pos.offset);
+  let virtualMinOffset = 10000;
+  let virtualLineLength = 1000;
+  let targetToken;
+  let nearestRecoveredNode;
+  /** 找到位于光标前方，距离最近的token */
+  getFilteredNode(cst, target => {
+    if (target.image) {
+      const newOffset = (+pos.line - target.startLine) * virtualLineLength + +pos.offset - target.startColumn + 1;
+      if (newOffset > 0 && newOffset < virtualMinOffset) {
+        virtualMinOffset = newOffset;
+        targetToken = target;
+      }
+
+      if (newOffset === 1) {
+        return true;
+      }
+    }
+
+    return false;
+  })
+
+  /** 点场景补全特殊情况，可能同时出现在语义解析和业务解析冲突/不冲突的场景 */
+  if(targetToken.image !== '.') {
+    /** 调用栈不完整 */
+    nearestRecoveredNode = getFilteredNode(_.findLast(targetToken.ruleStack, {recoveredNode: true}), target => target.recoveredNode && _.isEmpty(target.children))[0];
+  }
+  
+  if (nearestRecoveredNode) {
+    /** 自动补全场景，直到叶子节点都包含recoveredNode */
+    return [{
+      ...nearestRecoveredNode,
+      ruleStack: targetToken.ruleStack.concat(nearestRecoveredNode.ruleStack.slice(1))
+    }]
+  } else {
+    /** 输入场景时，直接返回targetToken */
+    return [targetToken]
+  }
+  // return getFilteredNode(cst, target => target.startLine === pos.line && target.startOffset <= pos.offset && target.startOffset + target.image.length >= pos.offset );
 }
 
 /** 获取指定位置节点最近的某类型父节点 */
 const getNearestTargetNode = (cst, pos: Pos, parentName: string) => {
   const target = getPositiondNode(cst, pos)[0];
   if (target) {
-    return [].concat(_.findLast(target.ruleStack, {name: parentName}))
+    return [].concat(_.findLast(target.ruleStack, { name: parentName }))
   }
   return [];
 }
@@ -29,7 +66,7 @@ const getFilteredNode = (cst, filter, global?: boolean): any | any[] => {
   while (true) {
     let target = queue.shift();
     if (target) {
-      queue.push(_.flatten(Object.values(target.children || [])).reduce((sum, item) => sum.concat({ ...item, ruleStack: target.ruleStack.concat(target) }), []))
+      queue.push(...(_.flatten((Object as any).values(target.children || []))).reduce((sum: any, item) => sum.concat({ ...item, ruleStack: target.ruleStack.concat(target) }), []))
       if (filter(target)) {
         if (global) {
           result.push(target);
@@ -271,9 +308,9 @@ const getNextTableSource = (ast, token, more) => {
 }
 
 /** 获取级联字段的完整路径 */
-const getTotalPath = (ast, token) => {
-  const columnRoot = getFilteredNode(ast.cst, target => target.name === SyntaxKind.fullColumnName || target.name === SyntaxKind.tableName, true);
-  const targetColumn = _.find(columnRoot, o => getFilteredNode(o, target => target.image && target.image.indexOf(token.image) === 0 && target.startColumn === token.startColumn)[0]);
+const getTotalPath = (cst, token) => {
+  const columnRoot = getFilteredNode(cst, target => target.name === SyntaxKind.fullColumnName || target.name === SyntaxKind.tableName, true);
+  const targetColumn = _.find(columnRoot, o => getFilteredNode(o, target => target.image && target.image.indexOf(token.image) === 0 && target.startColumn === token.startColumn && target.startLine === token.startLine)[0]);
   const leafNodes = _.flatten(_.flatten(Object.values(targetColumn.children)).map(node => getLeafNode(node, true)));
   return _.orderBy(leafNodes, ['startOffset'], ['asc']).map(item => item.image).join('');
 }
@@ -289,7 +326,7 @@ export {
   getAliasMap,
   getNextTableSource,
   getTotalPath,
-  
+
   getFilteredNode,
   getPositiondNode,
   getNearestTargetNode
