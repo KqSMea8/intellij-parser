@@ -7353,22 +7353,6 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "constant"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
                 "name": "fullColumnName"
               }
             }
@@ -11867,6 +11851,22 @@
       "kind": "rule",
       "ruleName": "fullColumnName",
       "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "constant"
+              }
+            }
+          ]
+        },
         {
           "index": 0,
           "kind": "atom",

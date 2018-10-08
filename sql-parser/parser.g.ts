@@ -2062,18 +2062,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('expressionAtom', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.constant);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.fullColumnName);
-          },
-        },
-      ]);
+      this.SUBRULE(this.fullColumnName);
     });
 
     this.RULE('expressions', () => {
@@ -3207,15 +3196,26 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('fullColumnName', () => {
-      this.SUBRULE(this.uid);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.constant);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.uid);
 
-      this.OPTION(() => {
-        this.SUBRULE(this.dottedId);
+            this.OPTION(() => {
+              this.SUBRULE(this.dottedId);
 
-        this.OPTION2(() => {
-          this.SUBRULE2(this.dottedId);
-        });
-      });
+              this.OPTION2(() => {
+                this.SUBRULE2(this.dottedId);
+              });
+            });
+          },
+        },
+      ]);
     });
 
     this.RULE('dottedId', () => {

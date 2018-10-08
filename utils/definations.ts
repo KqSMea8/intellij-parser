@@ -43,7 +43,7 @@ export enum Snippets {
 }
 
 export interface Pos {
-  line: string,
-  offset: string
+  line: number,
+  offset: number
 }
 

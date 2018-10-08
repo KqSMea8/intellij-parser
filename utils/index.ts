@@ -32,11 +32,11 @@ const getPositiondNode = (cst, pos: Pos) => {
   })
 
   /** 点场景补全特殊情况，可能同时出现在语义解析和业务解析冲突/不冲突的场景 */
-  if(targetToken.image !== '.') {
+  if (targetToken.image !== '.') {
     /** 调用栈不完整 */
-    nearestRecoveredNode = getFilteredNode(_.findLast(targetToken.ruleStack, {recoveredNode: true}), target => target.recoveredNode && _.isEmpty(target.children))[0];
+    nearestRecoveredNode = getFilteredNode(_.findLast(targetToken.ruleStack, { recoveredNode: true }), target => target.recoveredNode && _.isEmpty(target.children))[0];
   }
-  
+
   if (nearestRecoveredNode) {
     /** 自动补全场景，直到叶子节点都包含recoveredNode */
     return [{
@@ -123,15 +123,15 @@ const getCompleteInfo = (ast, pos) => {
       })
     }
 
-    /** 非；场景，提示snippets，；场景代表语句结束，一般为singleMissingToken，唯一err */
-    if (errorType.type !== ErrorToken.singleMissingToken || err.message.match(errorType.pattern)[1] !== TokenEnum.SEMI) {
-      Object.keys(Snippets).forEach(errType => {
-        singleError.completeType.push({
-          errType,
-          ...err
-        })
-      })
-    }
+    // /** 非；场景，提示snippets，；场景代表语句结束，一般为singleMissingToken，唯一err */
+    // if (errorType.type !== ErrorToken.singleMissingToken || err.message.match(errorType.pattern)[1] !== TokenEnum.SEMI) {
+    //   Object.keys(Snippets).forEach(errType => {
+    //     singleError.completeType.push({
+    //       errType,
+    //       ...err
+    //     })
+    //   })
+    // }
 
     errorMsg.push(singleError)
     // }
@@ -261,9 +261,12 @@ const peel = (cst) => {
       } else if (fields.children[SyntaxKind.fullColumnName] && !hasStar) {
         /** 常规表字段场景 */
         const fullColumnNameStructure = fields.children[SyntaxKind.fullColumnName][0].children;
-        /** 级联字段，找到最后一个.之后的值作为字段名 */
         if (fullColumnNameStructure[SyntaxKind.dottedId]) {
+          /** 级联字段，找到最后一个.之后的值作为字段名 */
           name = getLeafNode(fullColumnNameStructure[SyntaxKind.dottedId].slice(-1)[0])[0].image.slice(1);
+        } else if (fullColumnNameStructure[SyntaxKind.constant]) {
+          /** 常量场景 */
+          name = getLeafNode(fullColumnNameStructure[SyntaxKind.constant][0])[0].image;
         } else {
           /** 非级联的简单场景 */
           name = getLeafNode(fullColumnNameStructure[SyntaxKind.uid][0])[0].image;

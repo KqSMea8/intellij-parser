@@ -316,7 +316,7 @@ predicate: expressionAtom predicateReplace?;
 
 predicateReplace: comparisonOperator predicate | IS nullNotnull;
 
-expressionAtom: constant | fullColumnName;
+expressionAtom: fullColumnName;
 
 expressions: expression (',' expression)*;
 
@@ -487,7 +487,7 @@ caseFuncAlternative:
 
 functionArg: functionCall | expression;
 
-fullColumnName: uid (dottedId dottedId?)?;
+fullColumnName: constant | uid (dottedId dottedId?)?;
 
 dottedId: DOT_ID | '.' uid;
 
