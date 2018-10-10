@@ -34,6 +34,7 @@ export enum CommonStartToken {
   'INSERT' = 'INSERT',
   'DELETE' = 'DELETE',
   'SUM' = 'SUM',
+  'ALTER' = 'ALTER'
 }
 
 export enum Snippets {
