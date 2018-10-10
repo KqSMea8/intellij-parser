@@ -509,8 +509,7 @@ alterSpecification:
 		',' uid columnDefinition
 	)* ')'																					# alterByAddColumns
 	| ADD indexFormat = (INDEX | KEY) uid? indexType? indexColumnNames indexOption*			# alterByAddIndex
-	| ADD (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption*	#
-		alterByAddPrimaryKey
+	| ADD (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption*	# alterByAddPrimaryKey
 	| ADD (CONSTRAINT name = uid?)? UNIQUE indexFormat = (
 		INDEX
 		| KEY
@@ -520,7 +519,7 @@ alterSpecification:
 		| KEY
 	)? uid? indexColumnNames indexOption* # alterByAddSpecialIndex
 	| ADD (CONSTRAINT name = uid?)? FOREIGN KEY indexName = uid? indexColumnNames
-		referenceDefinition											# alterByAddForeignKey
+		referenceDefinition
 	| ALGORITHM '='? algType = (DEFAULT | INPLACE | COPY)			# alterBySetAlgorithm
 	| ALTER COLUMN? uid (SET DEFAULT defaultValue | DROP DEFAULT)	# alterByChangeDefault
 	| CHANGE COLUMN? oldColumn = uid newColumn = uid columnDefinition (
@@ -1692,7 +1691,8 @@ specificFunction: (
 		sourceString = stringLiteral
 		| sourceExpression = expression
 	) ')'																				# extractFunctionCall
-	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')'	#getFormatFunctionCall;
+	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' stringLiteral ')'	#
+		getFormatFunctionCall;
 
 caseFuncAlternative:
 	WHEN condition = functionArg THEN consequent = functionArg;

@@ -108,6 +108,20 @@ export enum SyntaxKind {
   dottedId = 'dottedId',
   fullId = 'fullId',
   uid = 'uid',
+  alterTable = 'alterTable',
+  alterSpecification = 'alterSpecification',
+  indexType = 'indexType',
+  indexColumnNames = 'indexColumnNames',
+  indexColumnName = 'indexColumnName',
+  indexOption = 'indexOption',
+  referenceDefinition = 'referenceDefinition',
+  referenceAction = 'referenceAction',
+  referenceControlType = 'referenceControlType',
+  partitionDefinition = 'partitionDefinition',
+  partitionDefinerAtom = 'partitionDefinerAtom',
+  partitionOption = 'partitionOption',
+  subpartitionDefinition = 'subpartitionDefinition',
+  partitionDefinerVector = 'partitionDefinerVector',
 }
 
 export { tokens, Lexer, Tokens, TokenEnum };
@@ -216,6 +230,11 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.dropTable);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.alterTable);
           },
         },
       ]);
@@ -3305,6 +3324,856 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('uid', () => {
       this.CONSUME(Tokens.ID);
+    });
+
+    this.RULE('alterTable', () => {
+      this.CONSUME(Tokens.ALTER);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ONLINE);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.OFFLINE);
+            },
+          },
+        ]);
+      });
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.IGNORE);
+      });
+
+      this.CONSUME(Tokens.TABLE);
+      this.SUBRULE(this.tableName);
+      this.SUBRULE(this.alterSpecification);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.alterSpecification);
+      });
+
+      this.OPTION3(() => {
+        this.SUBRULE(this.partitionDefinitions);
+      });
+    });
+
+    this.RULE('alterSpecification', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.tableOption);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ADD);
+
+            this.OPTION(() => {
+              this.CONSUME(Tokens.COLUMN);
+            });
+
+            this.OPTION2(() => {
+              this.CONSUME(Tokens.LR_BRACKET);
+            });
+
+            this.SUBRULE(this.uid);
+            this.SUBRULE(this.columnDefinition);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.SUBRULE2(this.uid);
+              this.SUBRULE2(this.columnDefinition);
+            });
+
+            this.OPTION3(() => {
+              this.CONSUME(Tokens.RR_BRACKET);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.ADD);
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.INDEX);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.KEY);
+                },
+              },
+            ]);
+
+            this.OPTION4(() => {
+              this.SUBRULE3(this.uid);
+            });
+
+            this.OPTION5(() => {
+              this.SUBRULE(this.indexType);
+            });
+
+            this.SUBRULE(this.indexColumnNames);
+
+            this.MANY2(() => {
+              this.SUBRULE(this.indexOption);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME3(Tokens.ADD);
+
+            this.OPTION6(() => {
+              this.CONSUME(Tokens.CONSTRAINT);
+
+              this.OPTION7(() => {
+                this.SUBRULE4(this.uid);
+              });
+            });
+
+            this.CONSUME(Tokens.PRIMARY);
+            this.CONSUME2(Tokens.KEY);
+
+            this.OPTION8(() => {
+              this.SUBRULE2(this.indexType);
+            });
+
+            this.SUBRULE2(this.indexColumnNames);
+
+            this.MANY3(() => {
+              this.SUBRULE2(this.indexOption);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME4(Tokens.ADD);
+
+            this.OPTION9(() => {
+              this.CONSUME2(Tokens.CONSTRAINT);
+
+              this.OPTION10(() => {
+                this.SUBRULE5(this.uid);
+              });
+            });
+
+            this.CONSUME(Tokens.UNIQUE);
+
+            this.OPTION11(() => {
+              this.OR3([
+                {
+                  ALT: () => {
+                    this.CONSUME2(Tokens.INDEX);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME3(Tokens.KEY);
+                  },
+                },
+              ]);
+            });
+
+            this.OPTION12(() => {
+              this.SUBRULE6(this.uid);
+            });
+
+            this.OPTION13(() => {
+              this.SUBRULE3(this.indexType);
+            });
+
+            this.SUBRULE3(this.indexColumnNames);
+
+            this.MANY4(() => {
+              this.SUBRULE3(this.indexOption);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME5(Tokens.ADD);
+            this.OR4([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.FULLTEXT);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SPATIAL);
+                },
+              },
+            ]);
+
+            this.OPTION14(() => {
+              this.OR5([
+                {
+                  ALT: () => {
+                    this.CONSUME3(Tokens.INDEX);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME4(Tokens.KEY);
+                  },
+                },
+              ]);
+            });
+
+            this.OPTION15(() => {
+              this.SUBRULE7(this.uid);
+            });
+
+            this.SUBRULE4(this.indexColumnNames);
+
+            this.MANY5(() => {
+              this.SUBRULE4(this.indexOption);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME6(Tokens.ADD);
+
+            this.OPTION16(() => {
+              this.CONSUME3(Tokens.CONSTRAINT);
+
+              this.OPTION17(() => {
+                this.SUBRULE8(this.uid);
+              });
+            });
+
+            this.CONSUME(Tokens.FOREIGN);
+            this.CONSUME5(Tokens.KEY);
+
+            this.OPTION18(() => {
+              this.SUBRULE9(this.uid);
+            });
+
+            this.SUBRULE5(this.indexColumnNames);
+            this.SUBRULE(this.referenceDefinition);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ALGORITHM);
+
+            this.OPTION19(() => {
+              this.CONSUME(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.OR6([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DEFAULT);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.INPLACE);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.COPY);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ALTER);
+
+            this.OPTION20(() => {
+              this.CONSUME2(Tokens.COLUMN);
+            });
+
+            this.SUBRULE10(this.uid);
+            this.OR7([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SET);
+                  this.CONSUME2(Tokens.DEFAULT);
+                  this.SUBRULE(this.defaultValue);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DROP);
+                  this.CONSUME3(Tokens.DEFAULT);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHANGE);
+
+            this.OPTION21(() => {
+              this.CONSUME3(Tokens.COLUMN);
+            });
+
+            this.SUBRULE11(this.uid);
+            this.SUBRULE12(this.uid);
+            this.SUBRULE3(this.columnDefinition);
+
+            this.OPTION22(() => {
+              this.OR8([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.FIRST);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.AFTER);
+                    this.SUBRULE13(this.uid);
+                  },
+                },
+              ]);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOCK);
+
+            this.OPTION23(() => {
+              this.CONSUME2(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.OR9([
+              {
+                ALT: () => {
+                  this.CONSUME4(Tokens.DEFAULT);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.NONE);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SHARED);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.EXCLUSIVE);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MODIFY);
+
+            this.OPTION24(() => {
+              this.CONSUME4(Tokens.COLUMN);
+            });
+
+            this.SUBRULE14(this.uid);
+            this.SUBRULE4(this.columnDefinition);
+
+            this.OPTION25(() => {
+              this.OR10([
+                {
+                  ALT: () => {
+                    this.CONSUME2(Tokens.FIRST);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME2(Tokens.AFTER);
+                    this.SUBRULE15(this.uid);
+                  },
+                },
+              ]);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.DROP);
+
+            this.OPTION26(() => {
+              this.CONSUME5(Tokens.COLUMN);
+            });
+
+            this.SUBRULE16(this.uid);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME3(Tokens.DROP);
+            this.CONSUME2(Tokens.PRIMARY);
+            this.CONSUME6(Tokens.KEY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME4(Tokens.DROP);
+            this.OR11([
+              {
+                ALT: () => {
+                  this.CONSUME4(Tokens.INDEX);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME7(Tokens.KEY);
+                },
+              },
+            ]);
+            this.SUBRULE17(this.uid);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME5(Tokens.DROP);
+            this.CONSUME2(Tokens.FOREIGN);
+            this.CONSUME8(Tokens.KEY);
+            this.SUBRULE18(this.uid);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('indexType', () => {
+      this.CONSUME(Tokens.USING);
+      this.OR2([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BTREE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HASH);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('indexColumnNames', () => {
+      this.CONSUME(Tokens.LR_BRACKET);
+      this.SUBRULE(this.indexColumnName);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.indexColumnName);
+      });
+
+      this.CONSUME(Tokens.RR_BRACKET);
+    });
+
+    this.RULE('indexColumnName', () => {
+      this.SUBRULE(this.uid);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.LR_BRACKET);
+        this.SUBRULE(this.decimalLiteral);
+        this.CONSUME(Tokens.RR_BRACKET);
+      });
+
+      this.OPTION2(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ASC);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DESC);
+            },
+          },
+        ]);
+      });
+    });
+
+    this.RULE('indexOption', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KEY_BLOCK_SIZE);
+
+            this.OPTION(() => {
+              this.CONSUME(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.SUBRULE(this.fileSizeLiteral);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.indexType);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.WITH);
+            this.CONSUME(Tokens.PARSER);
+            this.SUBRULE(this.uid);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COMMENT);
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('referenceDefinition', () => {
+      this.CONSUME(Tokens.REFERENCES);
+      this.SUBRULE(this.tableName);
+      this.SUBRULE(this.indexColumnNames);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.MATCH);
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.FULL);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.PARTIAL);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.SIMPLE);
+            },
+          },
+        ]);
+      });
+
+      this.OPTION2(() => {
+        this.SUBRULE(this.referenceAction);
+      });
+    });
+
+    this.RULE('referenceAction', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ON);
+            this.CONSUME(Tokens.DELETE);
+            this.SUBRULE(this.referenceControlType);
+
+            this.OPTION(() => {
+              this.CONSUME2(Tokens.ON);
+              this.CONSUME(Tokens.UPDATE);
+              this.SUBRULE2(this.referenceControlType);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME3(Tokens.ON);
+            this.CONSUME2(Tokens.UPDATE);
+            this.SUBRULE3(this.referenceControlType);
+
+            this.OPTION2(() => {
+              this.CONSUME4(Tokens.ON);
+              this.CONSUME2(Tokens.DELETE);
+              this.SUBRULE4(this.referenceControlType);
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('referenceControlType', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RESTRICT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CASCADE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SET);
+            this.CONSUME(Tokens.NULL_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NO);
+            this.CONSUME(Tokens.ACTION);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('partitionDefinition', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PARTITION);
+            this.SUBRULE(this.uid);
+            this.CONSUME(Tokens.VALUES);
+            this.CONSUME(Tokens.LESS);
+            this.CONSUME(Tokens.THAN);
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.SUBRULE(this.partitionDefinerAtom);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.SUBRULE2(this.partitionDefinerAtom);
+            });
+
+            this.CONSUME(Tokens.RR_BRACKET);
+
+            this.MANY2(() => {
+              this.SUBRULE(this.partitionOption);
+            });
+
+            this.OPTION(() => {
+              this.SUBRULE(this.subpartitionDefinition);
+
+              this.MANY3(() => {
+                this.CONSUME2(Tokens.COMMA);
+                this.SUBRULE2(this.subpartitionDefinition);
+              });
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.PARTITION);
+            this.SUBRULE2(this.uid);
+            this.CONSUME2(Tokens.VALUES);
+            this.CONSUME(Tokens.IN);
+            this.CONSUME2(Tokens.LR_BRACKET);
+            this.SUBRULE3(this.partitionDefinerAtom);
+
+            this.MANY4(() => {
+              this.CONSUME3(Tokens.COMMA);
+              this.SUBRULE4(this.partitionDefinerAtom);
+            });
+
+            this.CONSUME2(Tokens.RR_BRACKET);
+
+            this.MANY5(() => {
+              this.SUBRULE2(this.partitionOption);
+            });
+
+            this.OPTION2(() => {
+              this.SUBRULE3(this.subpartitionDefinition);
+
+              this.MANY6(() => {
+                this.CONSUME4(Tokens.COMMA);
+                this.SUBRULE4(this.subpartitionDefinition);
+              });
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME3(Tokens.PARTITION);
+            this.SUBRULE3(this.uid);
+            this.CONSUME3(Tokens.VALUES);
+            this.CONSUME2(Tokens.IN);
+            this.CONSUME3(Tokens.LR_BRACKET);
+            this.SUBRULE(this.partitionDefinerVector);
+
+            this.MANY7(() => {
+              this.CONSUME5(Tokens.COMMA);
+              this.SUBRULE2(this.partitionDefinerVector);
+            });
+
+            this.CONSUME3(Tokens.RR_BRACKET);
+
+            this.MANY8(() => {
+              this.SUBRULE3(this.partitionOption);
+            });
+
+            this.OPTION3(() => {
+              this.SUBRULE5(this.subpartitionDefinition);
+
+              this.MANY9(() => {
+                this.CONSUME6(Tokens.COMMA);
+                this.SUBRULE6(this.subpartitionDefinition);
+              });
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME4(Tokens.PARTITION);
+            this.SUBRULE4(this.uid);
+
+            this.MANY10(() => {
+              this.SUBRULE4(this.partitionOption);
+            });
+
+            this.OPTION4(() => {
+              this.SUBRULE7(this.subpartitionDefinition);
+
+              this.MANY11(() => {
+                this.CONSUME7(Tokens.COMMA);
+                this.SUBRULE8(this.subpartitionDefinition);
+              });
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('partitionDefinerAtom', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MAXVALUE);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.expression);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('partitionOption', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.CONSUME(Tokens.STORAGE);
+            });
+
+            this.CONSUME(Tokens.ENGINE);
+
+            this.OPTION2(() => {
+              this.CONSUME(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.SUBRULE(this.engineName);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COMMENT);
+
+            this.OPTION3(() => {
+              this.CONSUME2(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DATA);
+            this.CONSUME(Tokens.DIRECTORY);
+
+            this.OPTION4(() => {
+              this.CONSUME3(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.CONSUME2(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INDEX);
+            this.CONSUME2(Tokens.DIRECTORY);
+
+            this.OPTION5(() => {
+              this.CONSUME4(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.CONSUME3(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MAX_ROWS);
+
+            this.OPTION6(() => {
+              this.CONSUME5(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.SUBRULE(this.decimalLiteral);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MIN_ROWS);
+
+            this.OPTION7(() => {
+              this.CONSUME6(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.SUBRULE2(this.decimalLiteral);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TABLESPACE);
+
+            this.OPTION8(() => {
+              this.CONSUME7(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.SUBRULE(this.uid);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NODEGROUP);
+
+            this.OPTION9(() => {
+              this.CONSUME8(Tokens.EQUAL_SYMBOL);
+            });
+
+            this.SUBRULE2(this.uid);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('subpartitionDefinition', () => {
+      this.CONSUME(Tokens.SUBPARTITION);
+      this.SUBRULE(this.uid);
+
+      this.MANY(() => {
+        this.SUBRULE(this.partitionOption);
+      });
+    });
+
+    this.RULE('partitionDefinerVector', () => {
+      this.CONSUME(Tokens.LR_BRACKET);
+      this.SUBRULE(this.partitionDefinerAtom);
+
+      this.AT_LEAST_ONE(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.partitionDefinerAtom);
+      });
+
+      this.CONSUME(Tokens.RR_BRACKET);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);
