@@ -12,11 +12,17 @@ dmlStatement:
 	| updateStatement
 	| deleteStatement;
 
-ddlStatement: createTable;
+ddlStatement: createTable | dropTable;
 
 createTable:
 	CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
 		tableOption (','? tableOption)*
+	)?;
+
+dropTable:
+	DROP TEMPORARY? TABLE ifExists? tables dropType = (
+		RESTRICT
+		| CASCADE
 	)?;
 
 partitionDefinitions: PARTITION BY '(' createDefinition ')';
@@ -481,6 +487,8 @@ convertedDataType:
 	| typeName = (DATE | DATETIME | TIME)
 	| typeName = DECIMAL lengthTwoDimension?
 	| (SIGNED | UNSIGNED) INTEGER?;
+
+ifExists: IF EXISTS;
 
 caseFuncAlternative:
 	WHEN condition = functionArg THEN consequent = functionArg;

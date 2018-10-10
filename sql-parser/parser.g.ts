@@ -9,6 +9,7 @@ export enum SyntaxKind {
   dmlStatement = 'dmlStatement',
   ddlStatement = 'ddlStatement',
   createTable = 'createTable',
+  dropTable = 'dropTable',
   partitionDefinitions = 'partitionDefinitions',
   engineName = 'engineName',
   fileSizeLiteral = 'fileSizeLiteral',
@@ -100,6 +101,7 @@ export enum SyntaxKind {
   intervalTypeBase = 'intervalTypeBase',
   intervalType = 'intervalType',
   convertedDataType = 'convertedDataType',
+  ifExists = 'ifExists',
   caseFuncAlternative = 'caseFuncAlternative',
   functionArg = 'functionArg',
   fullColumnName = 'fullColumnName',
@@ -205,7 +207,18 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('ddlStatement', () => {
-      this.SUBRULE(this.createTable);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.createTable);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.dropTable);
+          },
+        },
+      ]);
     });
 
     this.RULE('createTable', () => {
@@ -234,6 +247,37 @@ export class Parser extends chevrotain.Parser {
 
           this.SUBRULE2(this.tableOption);
         });
+      });
+    });
+
+    this.RULE('dropTable', () => {
+      this.CONSUME(Tokens.DROP);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.TEMPORARY);
+      });
+
+      this.CONSUME(Tokens.TABLE);
+
+      this.OPTION2(() => {
+        this.SUBRULE(this.ifExists);
+      });
+
+      this.SUBRULE(this.tables);
+
+      this.OPTION3(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.RESTRICT);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.CASCADE);
+            },
+          },
+        ]);
       });
     });
 
@@ -3171,6 +3215,11 @@ export class Parser extends chevrotain.Parser {
           },
         },
       ]);
+    });
+
+    this.RULE('ifExists', () => {
+      this.CONSUME(Tokens.IF);
+      this.CONSUME(Tokens.EXISTS);
     });
 
     this.RULE('caseFuncAlternative', () => {
