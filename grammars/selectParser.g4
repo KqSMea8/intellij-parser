@@ -4,11 +4,12 @@ sqlStatements: (sqlStatement SEMI)*;
 
 emptyStatement: SEMI;
 
-sqlStatement: ddlStatement | dmlStatement;
+sqlStatement: ddlStatement | dmlStatement | dqlStatement;
+
+dqlStatement: selectStatement;
 
 dmlStatement:
-	selectStatement
-	| insertStatement
+	insertStatement
 	| updateStatement
 	| deleteStatement;
 
@@ -514,7 +515,7 @@ alterSpecification:
 		',' uid columnDefinition
 	)* ')'?
 	| ADD indexFormat = (INDEX | KEY) uid? indexType? indexColumnNames indexOption*
-	| ADD (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption* 
+	| ADD (CONSTRAINT name = uid?)? PRIMARY KEY indexType? indexColumnNames indexOption*
 	| ADD (CONSTRAINT name = uid?)? UNIQUE indexFormat = (
 		INDEX
 		| KEY

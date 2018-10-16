@@ -6,6 +6,7 @@ export enum SyntaxKind {
   sqlStatements = 'sqlStatements',
   emptyStatement = 'emptyStatement',
   sqlStatement = 'sqlStatement',
+  dqlStatement = 'dqlStatement',
   dmlStatement = 'dmlStatement',
   ddlStatement = 'ddlStatement',
   createTable = 'createTable',
@@ -192,16 +193,20 @@ export class Parser extends chevrotain.Parser {
             this.SUBRULE(this.dmlStatement);
           },
         },
+        {
+          ALT: () => {
+            this.SUBRULE(this.dqlStatement);
+          },
+        },
       ]);
+    });
+
+    this.RULE('dqlStatement', () => {
+      this.SUBRULE(this.selectStatement);
     });
 
     this.RULE('dmlStatement', () => {
       this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.selectStatement);
-          },
-        },
         {
           ALT: () => {
             this.SUBRULE(this.insertStatement);

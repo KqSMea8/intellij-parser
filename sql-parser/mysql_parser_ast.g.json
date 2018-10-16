@@ -136,13 +136,29 @@
               }
             }
           ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dqlStatement"
+              }
+            }
+          ]
         }
       ]
     },
     {
       "index": 0,
       "kind": "rule",
-      "ruleName": "dmlStatement",
+      "ruleName": "dqlStatement",
       "atoms": [
         {
           "index": 0,
@@ -159,7 +175,14 @@
               }
             }
           ]
-        },
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dmlStatement",
+      "atoms": [
         {
           "index": 0,
           "kind": "atom",
