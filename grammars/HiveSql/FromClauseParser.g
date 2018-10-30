@@ -1,19 +1,12 @@
-tableAllColumns:
-	STAR -> (TOK_ALLCOLREF)
-	| tableName DOT STAR -> (TOK_ALLCOLREF tableName);
+tableAllColumns: STAR | tableName DOT STAR;
 
-// (table|column)
-tableOrColumn: identifier -> (TOK_TABLE_OR_COL identifier);
+tableOrColumn: identifier;
 
-expressionList:
-	expression (COMMA expression)* -> (TOK_EXPLIST expression+ );
+expressionList: expression (COMMA expression)*;
 
-aliasList:
-	identifier (COMMA identifier)* -> (TOK_ALIASLIST identifier+ );
+aliasList: identifier (COMMA identifier)*;
 
-//----------------------- Rules for parsing fromClause ------------------------------ from [col1,
-// col2, col3] table1, [col4, col5] table2
-fromClause: KW_FROM joinSource -> (TOK_FROM joinSource);
+fromClause: KW_FROM joinSource;
 
 joinSource:
 	fromSource (joinToken fromSource (KW_ON expression)?)*
@@ -22,94 +15,68 @@ joinSource:
 uniqueJoinSource: KW_PRESERVE? fromSource uniqueJoinExpr;
 
 uniqueJoinExpr:
-	LPAREN e1 += expression (COMMA e1 += expression)* RPAREN -> (TOK_EXPLIST $e1* );
+	LPAREN e1 += expression (COMMA e1 += expression)* RPAREN;
 
-uniqueJoinToken: KW_UNIQUEJOIN -> TOK_UNIQUEJOIN;
+uniqueJoinToken: KW_UNIQUEJOIN;
 
 joinToken:
-	KW_JOIN -> TOK_JOIN
-	| KW_INNER KW_JOIN -> TOK_JOIN
-	| KW_CROSS KW_JOIN -> TOK_CROSSJOIN
-	| KW_LEFT (KW_OUTER)? KW_JOIN -> TOK_LEFTOUTERJOIN
-	| KW_RIGHT (KW_OUTER)? KW_JOIN -> TOK_RIGHTOUTERJOIN
-	| KW_FULL (KW_OUTER)? KW_JOIN -> TOK_FULLOUTERJOIN
-	| KW_LEFT KW_SEMI KW_JOIN -> TOK_LEFTSEMIJOIN;
+	KW_JOIN
+	| KW_INNER KW_JOIN
+	| KW_CROSS KW_JOIN
+	| KW_LEFT (KW_OUTER)? KW_JOIN
+	| KW_RIGHT (KW_OUTER)? KW_JOIN
+	| KW_FULL (KW_OUTER)? KW_JOIN
+	| KW_LEFT KW_SEMI KW_JOIN;
 
 lateralView:
 	KW_LATERAL KW_VIEW KW_OUTER function tableAlias (
 		KW_AS identifier (COMMA identifier)*
-	)? -> (TOK_LATERAL_VIEW_OUTER (TOK_SELECT (TOK_SELEXPR function identifier* tableAlias)))
-	| KW_LATERAL KW_VIEW function tableAlias (KW_AS identifier (COMMA identifier)* )? -> (
-		TOK_LATERAL_VIEW (TOK_SELECT (TOK_SELEXPR function identifier* tableAlias)));
+	)?
+	| KW_LATERAL KW_VIEW function tableAlias (
+		KW_AS identifier (COMMA identifier)*
+	)?;
 
-tableAlias: identifier -> (TOK_TABALIAS identifier);
+tableAlias: identifier;
 
-fromSource:
-	(
-		(Identifier LPAREN) => partitionedTableFunction
-		| tableSource
-		| subQuerySource
-	) (lateralView)*;
+fromSource: (tableSource | subQuerySource) ( lateralView)*;
 
 tableBucketSample:
 	KW_TABLESAMPLE LPAREN KW_BUCKET (numerator = Number) KW_OUT KW_OF (
 		denominator = Number
-	) (KW_ON expr += expression (COMMA expr += expression)*)? RPAREN -> (TOK_TABLEBUCKETSAMPLE $
-		numerator $denominator $expr* );
+	) (KW_ON expr += expression (COMMA expr += expression)*)? RPAREN;
 
 splitSample:
 	KW_TABLESAMPLE LPAREN (numerator = Number) (
 		percent = KW_PERCENT
 		| KW_ROWS
-	) RPAREN -> {percent != null}? (TOK_TABLESPLITSAMPLE TOK_PERCENT $numerator) -> (
-		TOK_TABLESPLITSAMPLE TOK_ROWCOUNT $numerator)
-	| KW_TABLESAMPLE LPAREN (numerator = ByteLengthLiteral) RPAREN -> (TOK_TABLESPLITSAMPLE
-		TOK_LENGTH $numerator);
+	) RPAREN
+	| KW_TABLESAMPLE LPAREN (numerator = ByteLengthLiteral) RPAREN;
 
 tableSample: tableBucketSample | splitSample;
 
 tableSource:
 	tabname = tableName (props = tableProperties)? (
 		ts = tableSample
-	)? (KW_AS? alias = Identifier)? -> (TOK_TABREF $tabname $props? $ts? $alias? );
+	)? (KW_AS? alias = Identifier)?;
 
 tableName:
-	db = identifier DOT tab = identifier -> (TOK_TABNAME $db $tab)
-	| tab = identifier -> (TOK_TABNAME $tab);
+	db = identifier DOT tab = identifier
+	| tab = identifier;
 
-viewName:
-	(db = identifier DOT)? view = identifier -> (TOK_TABNAME $db? $view);
+viewName: (db = identifier DOT)? view = identifier;
 
 subQuerySource:
-	LPAREN queryStatementExpression RPAREN identifier -> (TOK_SUBQUERY queryStatementExpression
-		identifier);
+	LPAREN queryStatementExpression RPAREN identifier;
 
-//---------------------- Rules for parsing PTF clauses -----------------------------
 partitioningSpec:
-	partitionByClause orderByClause? -> (TOK_PARTITIONINGSPEC partitionByClause orderByClause? )
-	| orderByClause -> (TOK_PARTITIONINGSPEC orderByClause)
-	| distributeByClause sortByClause? -> (TOK_PARTITIONINGSPEC distributeByClause sortByClause? )
-	| sortByClause -> (TOK_PARTITIONINGSPEC sortByClause)
-	| clusterByClause -> (TOK_PARTITIONINGSPEC clusterByClause);
+	partitionByClause orderByClause?
+	| orderByClause
+	| distributeByClause sortByClause?
+	| sortByClause
+	| clusterByClause;
 
-partitionTableFunctionSource:
-	subQuerySource
-	| tableSource
-	| partitionedTableFunction;
+partitionTableFunctionSource: subQuerySource | tableSource;
 
-partitionedTableFunction:
-	name = Identifier LPAREN KW_ON ptfsrc = partitionTableFunctionSource partitioningSpec? (
-		(Identifier LPAREN expression RPAREN) => Identifier LPAREN expression RPAREN (
-			COMMA Identifier LPAREN expression RPAREN
-		)*
-	)? RPAREN alias = Identifier? -> (TOK_PTBLFUNCTION $name $alias? partitionTableFunctionSource
-		partitioningSpec? expression* );
-
-//----------------------- Rules for parsing whereClause ----------------------------- where a=b and
-// ...
-whereClause:
-	KW_WHERE searchCondition -> (TOK_WHERE searchCondition);
+whereClause: KW_WHERE searchCondition;
 
 searchCondition: expression;
-
-//-----------------------------------------------------------------------------------

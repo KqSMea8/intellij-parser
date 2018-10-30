@@ -6,63 +6,48 @@ groupByClause:
 		sets = KW_GROUPING KW_SETS LPAREN groupingSetExpression (
 			COMMA groupingSetExpression
 		)* RPAREN
-	)? -> {rollup != null}? (TOK_ROLLUP_GROUPBY groupByExpression+ ) -> {cube != null}? (
-		TOK_CUBE_GROUPBY groupByExpression+ ) -> {sets != null}? (TOK_GROUPING_SETS
-		groupByExpression+ groupingSetExpression+ ) -> (TOK_GROUPBY groupByExpression+ );
+	)?;
 
 groupingSetExpression:
-	groupByExpression -> (TOK_GROUPING_SETS_EXPRESSION groupByExpression)
-	| LPAREN groupByExpression (COMMA groupByExpression)* RPAREN -> (TOK_GROUPING_SETS_EXPRESSION
-		groupByExpression+ )
-	| LPAREN RPAREN -> (TOK_GROUPING_SETS_EXPRESSION);
+	groupByExpression
+	| LPAREN groupByExpression (COMMA groupByExpression)* RPAREN
+	| LPAREN RPAREN;
 
 groupByExpression: expression;
 
-havingClause:
-	KW_HAVING havingCondition -> (TOK_HAVING havingCondition);
+havingClause: KW_HAVING havingCondition;
 
 havingCondition: expression;
 
-// order by a,b
 orderByClause:
-	KW_ORDER KW_BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN -> (TOK_ORDERBY
-		columnRefOrder+ )
-	| KW_ORDER KW_BY columnRefOrder ( COMMA columnRefOrder)* -> (TOK_ORDERBY columnRefOrder+ );
+	KW_ORDER KW_BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
+	| KW_ORDER KW_BY columnRefOrder (COMMA columnRefOrder)*;
 
 clusterByClause:
-	KW_CLUSTER KW_BY LPAREN expression (COMMA expression)* RPAREN -> (TOK_CLUSTERBY expression+ )
-	| KW_CLUSTER KW_BY expression ( (COMMA) =>COMMA expression )* -> (TOK_CLUSTERBY expression+ );
+	KW_CLUSTER KW_BY LPAREN expression (COMMA expression)* RPAREN
+	| KW_CLUSTER KW_BY expression;
 
 partitionByClause:
-	KW_PARTITION KW_BY LPAREN expression (COMMA expression)* RPAREN -> (TOK_DISTRIBUTEBY expression+
-		)
-	| KW_PARTITION KW_BY expression ((COMMA) => COMMA expression)* -> (TOK_DISTRIBUTEBY expression+
-		);
+	KW_PARTITION KW_BY LPAREN expression (COMMA expression)* RPAREN
+	| KW_PARTITION KW_BY expression;
 
 distributeByClause:
-	KW_DISTRIBUTE KW_BY LPAREN expression (COMMA expression)* RPAREN -> (TOK_DISTRIBUTEBY expression
-		+ )
-	| KW_DISTRIBUTE KW_BY expression ((COMMA) => COMMA expression)* -> (TOK_DISTRIBUTEBY expression+
-		);
+	KW_DISTRIBUTE KW_BY LPAREN expression (COMMA expression)* RPAREN
+	| KW_DISTRIBUTE KW_BY expression;
 
 sortByClause:
-	KW_SORT KW_BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN -> (TOK_SORTBY columnRefOrder
-		+ )
-	| KW_SORT KW_BY columnRefOrder ( (COMMA) => COMMA columnRefOrder)* -> (TOK_SORTBY columnRefOrder
-		+ );
+	KW_SORT KW_BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
+	| KW_SORT KW_BY columnRefOrder;
 
-// fun(par1, par2, par3)
 function:
 	functionName LPAREN (
 		(star = STAR)
 		| (dist = KW_DISTINCT)? (
 			selectExpression (COMMA selectExpression)*
 		)?
-	) RPAREN (KW_OVER ws = window_specification)? -> {$star != null}? (TOK_FUNCTIONSTAR functionName
-		$ws? ) -> {$dist == null}? (TOK_FUNCTION functionName (selectExpression+ )? $ws? ) -> (
-		TOK_FUNCTIONDI functionName (selectExpression+ )? );
+	) RPAREN (KW_OVER ws = window_specification)?;
 
-functionName: // Keyword IF is also a function name
+functionName:
 	KW_IF
 	| KW_ARRAY
 	| KW_MAP
@@ -71,17 +56,17 @@ functionName: // Keyword IF is also a function name
 	| identifier;
 
 castExpression:
-	KW_CAST LPAREN expression KW_AS primitiveType RPAREN -> (TOK_FUNCTION primitiveType expression);
+	KW_CAST LPAREN expression KW_AS primitiveType RPAREN;
 
 caseExpression:
 	KW_CASE expression (KW_WHEN expression KW_THEN expression)+ (
 		KW_ELSE expression
-	)? KW_END -> (TOK_FUNCTION KW_CASE expression* );
+	)? KW_END;
 
 whenExpression:
 	KW_CASE (KW_WHEN expression KW_THEN expression)+ (
 		KW_ELSE expression
-	)? KW_END -> (TOK_FUNCTION KW_WHEN expression* );
+	)? KW_END;
 
 constant:
 	Number
@@ -95,23 +80,17 @@ constant:
 	| charSetStringLiteral
 	| booleanValue;
 
-stringLiteralSequence:
-	StringLiteral StringLiteral+ -> (TOK_STRINGLITERALSEQUENCE StringLiteral StringLiteral+ );
+stringLiteralSequence: StringLiteral StringLiteral+;
 
 charSetStringLiteral:
-	csName = CharSetName csLiteral = CharSetLiteral -> (TOK_CHARSETLITERAL $csName $csLiteral);
+	csName = CharSetName csLiteral = CharSetLiteral;
 
-dateLiteral:
-	KW_DATE StringLiteral -> {
-      // Create DateLiteral token, but with the text of the string value
-      // This makes the dateLiteral more consistent with the other type literals.
-      adaptor.create(TOK_DATELITERAL, $StringLiteral.text)
-    };
+dateLiteral: KW_DATE StringLiteral;
 
 expression: precedenceOrExpression;
 
 atomExpression:
-	KW_NULL -> TOK_NULL
+	KW_NULL
 	| dateLiteral
 	| constant
 	| function
@@ -129,16 +108,13 @@ precedenceFieldExpression:
 
 precedenceUnaryOperator: PLUS | MINUS | TILDE;
 
-nullCondition:
-	KW_NULL -> (TOK_ISNULL)
-	| KW_NOT KW_NULL -> (TOK_ISNOTNULL);
+nullCondition: KW_NULL | KW_NOT KW_NULL;
 
 precedenceUnaryPrefixExpression:
 	(precedenceUnaryOperator)* precedenceFieldExpression;
 
 precedenceUnarySuffixExpression:
-	precedenceUnaryPrefixExpression (a = KW_IS nullCondition)? -> {$a != null}? (TOK_FUNCTION
-		nullCondition precedenceUnaryPrefixExpression) -> precedenceUnaryPrefixExpression;
+	precedenceUnaryPrefixExpression (a = KW_IS nullCondition)?;
 
 precedenceBitwiseXorOperator: BITWISEXOR;
 
@@ -175,7 +151,6 @@ precedenceBitwiseOrExpression:
 		precedenceBitwiseOrOperator precedenceAmpersandExpression
 	)*;
 
-// Equal operators supporting NOT prefix
 precedenceEqualNegatableOperator:
 	KW_LIKE
 	| KW_RLIKE
@@ -192,316 +167,314 @@ precedenceEqualOperator:
 	| GREATERTHAN;
 
 precedenceEqualExpression:
-	(left = precedenceBitwiseOrExpression -> $left) ( (KW_NOT precedenceEqualNegatableOperator
-			notExpr = precedenceBitwiseOrExpression) -> (KW_NOT (precedenceEqualNegatableOperator $
-			precedenceEqualExpression $notExpr)) | (precedenceEqualOperator equalExpr =
-			precedenceBitwiseOrExpression) -> (precedenceEqualOperator $precedenceEqualExpression $
-			equalExpr) | (KW_NOT KW_IN expressions) -> (KW_NOT (TOK_FUNCTION KW_IN $
-			precedenceEqualExpression expressions)) | (KW_IN expressions) -> (TOK_FUNCTION KW_IN $
-			precedenceEqualExpression expressions) | ( KW_NOT KW_BETWEEN (min =
-			precedenceBitwiseOrExpression) KW_AND (max = precedenceBitwiseOrExpression) ) -> (
-			TOK_FUNCTION Identifier["between"] KW_TRUE $left $min $max) | ( KW_BETWEEN (min =
-			precedenceBitwiseOrExpression) KW_AND (max = precedenceBitwiseOrExpression) ) -> (
-			TOK_FUNCTION Identifier["between"] KW_FALSE $left $min $max) )*;
+	(left = precedenceBitwiseOrExpression) (
+		(
+			KW_NOT precedenceEqualNegatableOperator notExpr = precedenceBitwiseOrExpression
+		)
+		| (
+			precedenceEqualOperator equalExpr = precedenceBitwiseOrExpression
+		)
+		| (KW_NOT KW_IN expressions)
+		| (KW_IN expressions)
+		| (
+			KW_NOT KW_BETWEEN (
+				min = precedenceBitwiseOrExpression
+			) KW_AND (max = precedenceBitwiseOrExpression)
+		)
+		| (
+			KW_BETWEEN (min = precedenceBitwiseOrExpression) KW_AND (
+				max = precedenceBitwiseOrExpression
+			)
+		)
+	)*;
 
-	expressions:
-		LPAREN expression (COMMA expression)* RPAREN -> expression*;
+expressions: LPAREN expression (COMMA expression)* RPAREN;
 
-	precedenceNotOperator: KW_NOT;
+precedenceNotOperator: KW_NOT;
 
-	precedenceNotExpression:
-		(precedenceNotOperator)* precedenceEqualExpression;
+precedenceNotExpression:
+	(precedenceNotOperator)* precedenceEqualExpression;
 
-	precedenceAndOperator: KW_AND;
+precedenceAndOperator: KW_AND;
 
-	precedenceAndExpression:
-		precedenceNotExpression (
-			precedenceAndOperator precedenceNotExpression
-		)*;
+precedenceAndExpression:
+	precedenceNotExpression (
+		precedenceAndOperator precedenceNotExpression
+	)*;
 
-	precedenceOrOperator: KW_OR;
+precedenceOrOperator: KW_OR;
 
-	precedenceOrExpression:
-		precedenceAndExpression (
-			precedenceOrOperator precedenceAndExpression
-		)*;
+precedenceOrExpression:
+	precedenceAndExpression (
+		precedenceOrOperator precedenceAndExpression
+	)*;
 
-	booleanValue: KW_TRUE | KW_FALSE;
+booleanValue: KW_TRUE | KW_FALSE;
 
-	tableOrPartition:
-		tableName partitionSpec? -> (TOK_TAB tableName partitionSpec? );
+tableOrPartition: tableName partitionSpec?;
 
-	partitionSpec:
-		KW_PARTITION LPAREN partitionVal (COMMA partitionVal)* RPAREN -> (TOK_PARTSPEC partitionVal+
-			);
+partitionSpec:
+	KW_PARTITION LPAREN partitionVal (COMMA partitionVal)* RPAREN;
 
-	partitionVal:
-		identifier (EQUAL constant)? -> (TOK_PARTVAL identifier constant? );
+partitionVal: identifier (EQUAL constant)?;
 
-	dropPartitionSpec:
-		KW_PARTITION LPAREN dropPartitionVal (
-			COMMA dropPartitionVal
-		)* RPAREN -> (TOK_PARTSPEC dropPartitionVal+ );
+dropPartitionSpec:
+	KW_PARTITION LPAREN dropPartitionVal (COMMA dropPartitionVal)* RPAREN;
 
-	dropPartitionVal:
-		identifier dropPartitionOperator constant -> (TOK_PARTVAL identifier dropPartitionOperator
-			constant);
+dropPartitionVal: identifier dropPartitionOperator constant;
 
-	dropPartitionOperator:
-		EQUAL
-		| NOTEQUAL
-		| LESSTHANOREQUALTO
-		| LESSTHAN
-		| GREATERTHANOREQUALTO
-		| GREATERTHAN;
+dropPartitionOperator:
+	EQUAL
+	| NOTEQUAL
+	| LESSTHANOREQUALTO
+	| LESSTHAN
+	| GREATERTHANOREQUALTO
+	| GREATERTHAN;
 
-	sysFuncNames:
-		KW_AND
-		| KW_OR
-		| KW_NOT
-		| KW_LIKE
-		| KW_IF
-		| KW_CASE
-		| KW_WHEN
-		| KW_TINYINT
-		| KW_SMALLINT
-		| KW_INT
-		| KW_BIGINT
-		| KW_FLOAT
-		| KW_DOUBLE
-		| KW_BOOLEAN
-		| KW_STRING
-		| KW_BINARY
-		| KW_ARRAY
-		| KW_MAP
-		| KW_STRUCT
-		| KW_UNIONTYPE
-		| EQUAL
-		| EQUAL_NS
-		| NOTEQUAL
-		| LESSTHANOREQUALTO
-		| LESSTHAN
-		| GREATERTHANOREQUALTO
-		| GREATERTHAN
-		| DIVIDE
-		| PLUS
-		| MINUS
-		| STAR
-		| MOD
-		| DIV
-		| AMPERSAND
-		| TILDE
-		| BITWISEOR
-		| BITWISEXOR
-		| KW_RLIKE
-		| KW_REGEXP
-		| KW_IN
-		| KW_BETWEEN;
+sysFuncNames:
+	KW_AND
+	| KW_OR
+	| KW_NOT
+	| KW_LIKE
+	| KW_IF
+	| KW_CASE
+	| KW_WHEN
+	| KW_TINYINT
+	| KW_SMALLINT
+	| KW_INT
+	| KW_BIGINT
+	| KW_FLOAT
+	| KW_DOUBLE
+	| KW_BOOLEAN
+	| KW_STRING
+	| KW_BINARY
+	| KW_ARRAY
+	| KW_MAP
+	| KW_STRUCT
+	| KW_UNIONTYPE
+	| EQUAL
+	| EQUAL_NS
+	| NOTEQUAL
+	| LESSTHANOREQUALTO
+	| LESSTHAN
+	| GREATERTHANOREQUALTO
+	| GREATERTHAN
+	| DIVIDE
+	| PLUS
+	| MINUS
+	| STAR
+	| MOD
+	| DIV
+	| AMPERSAND
+	| TILDE
+	| BITWISEOR
+	| BITWISEXOR
+	| KW_RLIKE
+	| KW_REGEXP
+	| KW_IN
+	| KW_BETWEEN;
 
-	descFuncNames: sysFuncNames | StringLiteral | identifier;
+descFuncNames: sysFuncNames | StringLiteral | identifier;
 
-	identifier:
-		Identifier
-		| nonReserved -> Identifier[$nonReserved.text];
+identifier: Identifier | nonReserved;
 
-	nonReserved:
-		KW_TRUE
-		| KW_FALSE
-		| KW_LIKE
-		| KW_EXISTS
-		| KW_ASC
-		| KW_DESC
-		| KW_ORDER
-		| KW_GROUP
-		| KW_BY
-		| KW_AS
-		| KW_INSERT
-		| KW_OVERWRITE
-		| KW_OUTER
-		| KW_LEFT
-		| KW_RIGHT
-		| KW_FULL
-		| KW_PARTITION
-		| KW_PARTITIONS
-		| KW_TABLE
-		| KW_TABLES
-		| KW_COLUMNS
-		| KW_INDEX
-		| KW_INDEXES
-		| KW_REBUILD
-		| KW_FUNCTIONS
-		| KW_SHOW
-		| KW_MSCK
-		| KW_REPAIR
-		| KW_DIRECTORY
-		| KW_LOCAL
-		| KW_USING
-		| KW_CLUSTER
-		| KW_DISTRIBUTE
-		| KW_SORT
-		| KW_UNION
-		| KW_LOAD
-		| KW_EXPORT
-		| KW_IMPORT
-		| KW_DATA
-		| KW_INPATH
-		| KW_IS
-		| KW_NULL
-		| KW_CREATE
-		| KW_EXTERNAL
-		| KW_ALTER
-		| KW_CHANGE
-		| KW_FIRST
-		| KW_AFTER
-		| KW_DESCRIBE
-		| KW_DROP
-		| KW_RENAME
-		| KW_IGNORE
-		| KW_PROTECTION
-		| KW_TO
-		| KW_COMMENT
-		| KW_BOOLEAN
-		| KW_TINYINT
-		| KW_SMALLINT
-		| KW_INT
-		| KW_BIGINT
-		| KW_FLOAT
-		| KW_DOUBLE
-		| KW_DATE
-		| KW_DATETIME
-		| KW_TIMESTAMP
-		| KW_DECIMAL
-		| KW_STRING
-		| KW_ARRAY
-		| KW_STRUCT
-		| KW_UNIONTYPE
-		| KW_PARTITIONED
-		| KW_CLUSTERED
-		| KW_SORTED
-		| KW_INTO
-		| KW_BUCKETS
-		| KW_ROW
-		| KW_ROWS
-		| KW_FORMAT
-		| KW_DELIMITED
-		| KW_FIELDS
-		| KW_TERMINATED
-		| KW_ESCAPED
-		| KW_COLLECTION
-		| KW_ITEMS
-		| KW_KEYS
-		| KW_KEY_TYPE
-		| KW_LINES
-		| KW_STORED
-		| KW_FILEFORMAT
-		| KW_SEQUENCEFILE
-		| KW_TEXTFILE
-		| KW_RCFILE
-		| KW_ORCFILE
-		| KW_INPUTFORMAT
-		| KW_OUTPUTFORMAT
-		| KW_INPUTDRIVER
-		| KW_OUTPUTDRIVER
-		| KW_OFFLINE
-		| KW_ENABLE
-		| KW_DISABLE
-		| KW_READONLY
-		| KW_NO_DROP
-		| KW_LOCATION
-		| KW_BUCKET
-		| KW_OUT
-		| KW_OF
-		| KW_PERCENT
-		| KW_ADD
-		| KW_REPLACE
-		| KW_RLIKE
-		| KW_REGEXP
-		| KW_TEMPORARY
-		| KW_EXPLAIN
-		| KW_FORMATTED
-		| KW_PRETTY
-		| KW_DEPENDENCY
-		| KW_LOGICAL
-		| KW_SERDE
-		| KW_WITH
-		| KW_DEFERRED
-		| KW_SERDEPROPERTIES
-		| KW_DBPROPERTIES
-		| KW_LIMIT
-		| KW_SET
-		| KW_UNSET
-		| KW_TBLPROPERTIES
-		| KW_IDXPROPERTIES
-		| KW_VALUE_TYPE
-		| KW_ELEM_TYPE
-		| KW_MAPJOIN
-		| KW_STREAMTABLE
-		| KW_HOLD_DDLTIME
-		| KW_CLUSTERSTATUS
-		| KW_UTC
-		| KW_UTCTIMESTAMP
-		| KW_LONG
-		| KW_DELETE
-		| KW_PLUS
-		| KW_MINUS
-		| KW_FETCH
-		| KW_INTERSECT
-		| KW_VIEW
-		| KW_IN
-		| KW_DATABASES
-		| KW_MATERIALIZED
-		| KW_SCHEMA
-		| KW_SCHEMAS
-		| KW_GRANT
-		| KW_REVOKE
-		| KW_SSL
-		| KW_UNDO
-		| KW_LOCK
-		| KW_LOCKS
-		| KW_UNLOCK
-		| KW_SHARED
-		| KW_EXCLUSIVE
-		| KW_PROCEDURE
-		| KW_UNSIGNED
-		| KW_WHILE
-		| KW_READ
-		| KW_READS
-		| KW_PURGE
-		| KW_RANGE
-		| KW_ANALYZE
-		| KW_BEFORE
-		| KW_BETWEEN
-		| KW_BOTH
-		| KW_BINARY
-		| KW_CONTINUE
-		| KW_CURSOR
-		| KW_TRIGGER
-		| KW_RECORDREADER
-		| KW_RECORDWRITER
-		| KW_SEMI
-		| KW_LATERAL
-		| KW_TOUCH
-		| KW_ARCHIVE
-		| KW_UNARCHIVE
-		| KW_COMPUTE
-		| KW_STATISTICS
-		| KW_USE
-		| KW_OPTION
-		| KW_CONCATENATE
-		| KW_SHOW_DATABASE
-		| KW_UPDATE
-		| KW_RESTRICT
-		| KW_CASCADE
-		| KW_SKEWED
-		| KW_ROLLUP
-		| KW_CUBE
-		| KW_DIRECTORIES
-		| KW_FOR
-		| KW_GROUPING
-		| KW_SETS
-		| KW_TRUNCATE
-		| KW_NOSCAN
-		| KW_USER
-		| KW_ROLE
-		| KW_INNER;
-	
+nonReserved:
+	KW_TRUE
+	| KW_FALSE
+	| KW_LIKE
+	| KW_EXISTS
+	| KW_ASC
+	| KW_DESC
+	| KW_ORDER
+	| KW_GROUP
+	| KW_BY
+	| KW_AS
+	| KW_INSERT
+	| KW_OVERWRITE
+	| KW_OUTER
+	| KW_LEFT
+	| KW_RIGHT
+	| KW_FULL
+	| KW_PARTITION
+	| KW_PARTITIONS
+	| KW_TABLE
+	| KW_TABLES
+	| KW_COLUMNS
+	| KW_INDEX
+	| KW_INDEXES
+	| KW_REBUILD
+	| KW_FUNCTIONS
+	| KW_SHOW
+	| KW_MSCK
+	| KW_REPAIR
+	| KW_DIRECTORY
+	| KW_LOCAL
+	| KW_USING
+	| KW_CLUSTER
+	| KW_DISTRIBUTE
+	| KW_SORT
+	| KW_UNION
+	| KW_LOAD
+	| KW_EXPORT
+	| KW_IMPORT
+	| KW_DATA
+	| KW_INPATH
+	| KW_IS
+	| KW_NULL
+	| KW_CREATE
+	| KW_EXTERNAL
+	| KW_ALTER
+	| KW_CHANGE
+	| KW_FIRST
+	| KW_AFTER
+	| KW_DESCRIBE
+	| KW_DROP
+	| KW_RENAME
+	| KW_IGNORE
+	| KW_PROTECTION
+	| KW_TO
+	| KW_COMMENT
+	| KW_BOOLEAN
+	| KW_TINYINT
+	| KW_SMALLINT
+	| KW_INT
+	| KW_BIGINT
+	| KW_FLOAT
+	| KW_DOUBLE
+	| KW_DATE
+	| KW_DATETIME
+	| KW_TIMESTAMP
+	| KW_DECIMAL
+	| KW_STRING
+	| KW_ARRAY
+	| KW_STRUCT
+	| KW_UNIONTYPE
+	| KW_PARTITIONED
+	| KW_CLUSTERED
+	| KW_SORTED
+	| KW_INTO
+	| KW_BUCKETS
+	| KW_ROW
+	| KW_ROWS
+	| KW_FORMAT
+	| KW_DELIMITED
+	| KW_FIELDS
+	| KW_TERMINATED
+	| KW_ESCAPED
+	| KW_COLLECTION
+	| KW_ITEMS
+	| KW_KEYS
+	| KW_KEY_TYPE
+	| KW_LINES
+	| KW_STORED
+	| KW_FILEFORMAT
+	| KW_SEQUENCEFILE
+	| KW_TEXTFILE
+	| KW_RCFILE
+	| KW_ORCFILE
+	| KW_INPUTFORMAT
+	| KW_OUTPUTFORMAT
+	| KW_INPUTDRIVER
+	| KW_OUTPUTDRIVER
+	| KW_OFFLINE
+	| KW_ENABLE
+	| KW_DISABLE
+	| KW_READONLY
+	| KW_NO_DROP
+	| KW_LOCATION
+	| KW_BUCKET
+	| KW_OUT
+	| KW_OF
+	| KW_PERCENT
+	| KW_ADD
+	| KW_REPLACE
+	| KW_RLIKE
+	| KW_REGEXP
+	| KW_TEMPORARY
+	| KW_EXPLAIN
+	| KW_FORMATTED
+	| KW_PRETTY
+	| KW_DEPENDENCY
+	| KW_LOGICAL
+	| KW_SERDE
+	| KW_WITH
+	| KW_DEFERRED
+	| KW_SERDEPROPERTIES
+	| KW_DBPROPERTIES
+	| KW_LIMIT
+	| KW_SET
+	| KW_UNSET
+	| KW_TBLPROPERTIES
+	| KW_IDXPROPERTIES
+	| KW_VALUE_TYPE
+	| KW_ELEM_TYPE
+	| KW_MAPJOIN
+	| KW_STREAMTABLE
+	| KW_HOLD_DDLTIME
+	| KW_CLUSTERSTATUS
+	| KW_UTC
+	| KW_UTCTIMESTAMP
+	| KW_LONG
+	| KW_DELETE
+	| KW_PLUS
+	| KW_MINUS
+	| KW_FETCH
+	| KW_INTERSECT
+	| KW_VIEW
+	| KW_IN
+	| KW_DATABASES
+	| KW_MATERIALIZED
+	| KW_SCHEMA
+	| KW_SCHEMAS
+	| KW_GRANT
+	| KW_REVOKE
+	| KW_SSL
+	| KW_UNDO
+	| KW_LOCK
+	| KW_LOCKS
+	| KW_UNLOCK
+	| KW_SHARED
+	| KW_EXCLUSIVE
+	| KW_PROCEDURE
+	| KW_UNSIGNED
+	| KW_WHILE
+	| KW_READ
+	| KW_READS
+	| KW_PURGE
+	| KW_RANGE
+	| KW_ANALYZE
+	| KW_BEFORE
+	| KW_BETWEEN
+	| KW_BOTH
+	| KW_BINARY
+	| KW_CONTINUE
+	| KW_CURSOR
+	| KW_TRIGGER
+	| KW_RECORDREADER
+	| KW_RECORDWRITER
+	| KW_SEMI
+	| KW_LATERAL
+	| KW_TOUCH
+	| KW_ARCHIVE
+	| KW_UNARCHIVE
+	| KW_COMPUTE
+	| KW_STATISTICS
+	| KW_USE
+	| KW_OPTION
+	| KW_CONCATENATE
+	| KW_SHOW_DATABASE
+	| KW_UPDATE
+	| KW_RESTRICT
+	| KW_CASCADE
+	| KW_SKEWED
+	| KW_ROLLUP
+	| KW_CUBE
+	| KW_DIRECTORIES
+	| KW_FOR
+	| KW_GROUPING
+	| KW_SETS
+	| KW_TRUNCATE
+	| KW_NOSCAN
+	| KW_USER
+	| KW_ROLE
+	| KW_INNER;
