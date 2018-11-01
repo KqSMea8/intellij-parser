@@ -69,7 +69,7 @@ export function cstToAst(cst: CstNode): BaseNode {
     case SyntaxKind.atom: {
       const atomNode = new AtomNode();
 
-      atomNode.itemSuffs = cst.children.itemSuff.map(itemSuff => {
+      atomNode.itemSuffs = (cst.children.itemSuff || []).map(itemSuff => {
         return cstToAst(itemSuff) as ItemSuffNode;
       });
       return atomNode;

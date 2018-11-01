@@ -1,11 +1,11 @@
-statement: explainStatement | execStatement;
+root: explainStatement | execStatement;
 
 explainStatement:
-	KW_EXPLAIN (
-		explainOptions = KW_EXTENDED
-		| explainOptions = KW_FORMATTED
-		| explainOptions = KW_DEPENDENCY
-		| explainOptions = KW_LOGICAL
+	KWEXPLAIN (
+		explainOptions = KWEXTENDED
+		| explainOptions = KWFORMATTED
+		| explainOptions = KWDEPENDENCY
+		| explainOptions = KWLOGICAL
 	)? execStatement;
 
 execStatement:
@@ -16,25 +16,26 @@ execStatement:
 	| ddlStatement;
 
 loadStatement:
-	KW_LOAD KW_DATA (islocal = KW_LOCAL)? KW_INPATH (
+	KWLOAD KWDATA (islocal = KWLOCAL)? KWINPATH (
 		path = StringLiteral
-	) (isoverwrite = KW_OVERWRITE)? KW_INTO KW_TABLE (
+	) (isoverwrite = KWOVERWRITE)? KWINTO KWTABLE (
 		tab = tableOrPartition
 	);
 
 exportStatement:
-	KW_EXPORT KW_TABLE (tab = tableOrPartition) KW_TO (
+	KWEXPORT KWTABLE (tab = tableOrPartition) KWTO (
 		path = StringLiteral
 	);
 
 importStatement:
-	KW_IMPORT (
-		(ext = KW_EXTERNAL)? KW_TABLE (tab = tableOrPartition)
-	)? KW_FROM (path = StringLiteral) tableLocation?;
+	KWIMPORT (
+		(ext = KWEXTERNAL)? KWTABLE (tab = tableOrPartition)
+	)? KWFROM (path = StringLiteral) tableLocation?;
 
 ddlStatement:
 	createDatabaseStatement
 	| switchDatabaseStatement
+	| selectStatement
 	| dropDatabaseStatement
 	| createTableStatement
 	| dropTableStatement
@@ -63,80 +64,79 @@ ddlStatement:
 	| grantRole
 	| revokeRole;
 
-ifExists: KW_IF KW_EXISTS;
+ifExists: KWIF KWEXISTS;
 
-restrictOrCascade: KW_RESTRICT | KW_CASCADE;
+restrictOrCascade: KWRESTRICT | KWCASCADE;
 
-ifNotExists: KW_IF KW_NOT KW_EXISTS;
+ifNotExists: KWIF KWNOT KWEXISTS;
 
-storedAsDirs: KW_STORED KW_AS KW_DIRECTORIES;
+storedAsDirs: KWSTORED KWAS KWDIRECTORIES;
 
-orReplace: KW_OR KW_REPLACE;
+orReplace: KWOR KWREPLACE;
 
-ignoreProtection: KW_IGNORE KW_PROTECTION;
+ignoreProtection: KWIGNORE KWPROTECTION;
 
 createDatabaseStatement:
-	KW_CREATE (KW_DATABASE | KW_SCHEMA) ifNotExists? name = identifier databaseComment? dbLocation?
-		(
-		KW_WITH KW_DBPROPERTIES dbprops = dbProperties
+	KWCREATE (KWDATABASE | KWSCHEMA) ifNotExists? name = identifier databaseComment? dbLocation? (
+		KWWITH KWDBPROPERTIES dbprops = dbProperties
 	)?;
 
-dbLocation: KW_LOCATION locn = StringLiteral;
+dbLocation: KWLOCATION locn = StringLiteral;
 
 dbProperties: LPAREN dbPropertiesList RPAREN;
 
 dbPropertiesList: keyValueProperty (COMMA keyValueProperty)*;
 
-switchDatabaseStatement: KW_USE identifier;
+switchDatabaseStatement: KWUSE identifier;
 
 dropDatabaseStatement:
-	KW_DROP (KW_DATABASE | KW_SCHEMA) ifExists? identifier restrictOrCascade?;
+	KWDROP (KWDATABASE | KWSCHEMA) ifExists? identifier restrictOrCascade?;
 
-databaseComment: KW_COMMENT comment = StringLiteral;
+databaseComment: KWCOMMENT comment = StringLiteral;
 
 createTableStatement:
-	KW_CREATE (ext = KW_EXTERNAL)? KW_TABLE ifNotExists? name = tableName (
-		like = KW_LIKE likeName = tableName tableLocation? tablePropertiesPrefixed?
+	KWCREATE (ext = KWEXTERNAL)? KWTABLE ifNotExists? name = tableName (
+		like = KWLIKE likeName = tableName tableLocation? tablePropertiesPrefixed?
 		| (LPAREN columnNameTypeList RPAREN)? tableComment? tablePartition? tableBuckets?
 			tableSkewed? tableRowFormat? tableFileFormat? tableLocation? tablePropertiesPrefixed? (
-			KW_AS selectStatement
+			KWAS selectStatement
 		)?
 	);
 
 truncateTableStatement:
-	KW_TRUNCATE KW_TABLE tablePartitionPrefix (
-		KW_COLUMNS LPAREN columnNameList RPAREN
+	KWTRUNCATE KWTABLE tablePartitionPrefix (
+		KWCOLUMNS LPAREN columnNameList RPAREN
 	)?;
 
 createIndexStatement:
-	KW_CREATE KW_INDEX indexName = identifier KW_ON KW_TABLE tab = tableName LPAREN indexedCols =
-		columnNameList RPAREN KW_AS typeName = StringLiteral autoRebuild? indexPropertiesPrefixed?
+	KWCREATE KWINDEX indexName = identifier KWON KWTABLE tab = tableName LPAREN indexedCols =
+		columnNameList RPAREN KWAS typeName = StringLiteral autoRebuild? indexPropertiesPrefixed?
 		indexTblName? tableRowFormat? tableFileFormat? tableLocation? tablePropertiesPrefixed?
 		indexComment?;
 
-indexComment: KW_COMMENT comment = StringLiteral;
+indexComment: KWCOMMENT comment = StringLiteral;
 
-autoRebuild: KW_WITH KW_DEFERRED KW_REBUILD;
+autoRebuild: KWWITH KWDEFERRED KWREBUILD;
 
-indexTblName: KW_IN KW_TABLE indexTbl = tableName;
+indexTblName: KWIN KWTABLE indexTbl = tableName;
 
-indexPropertiesPrefixed: KW_IDXPROPERTIES indexProperties;
+indexPropertiesPrefixed: KWIDXPROPERTIES indexProperties;
 
 indexProperties: LPAREN indexPropertiesList RPAREN;
 
 indexPropertiesList: keyValueProperty (COMMA keyValueProperty)*;
 
 dropIndexStatement:
-	KW_DROP KW_INDEX ifExists? indexName = identifier KW_ON tab = tableName;
+	KWDROP KWINDEX ifExists? indexName = identifier KWON tab = tableName;
 
-dropTableStatement: KW_DROP KW_TABLE ifExists? tableName;
+dropTableStatement: KWDROP KWTABLE ifExists? tableName;
 
 alterStatement:
-	KW_ALTER (
-		KW_TABLE alterTableStatementSuffix
-		| KW_VIEW alterViewStatementSuffix
-		| KW_INDEX alterIndexStatementSuffix
-		| KW_DATABASE alterDatabaseStatementSuffix
+	KWALTER (
+		KWTABLE alterTableStatementSuffix
+		| KWVIEW alterViewStatementSuffix
+		| KWINDEX alterIndexStatementSuffix
+		| KWDATABASE alterDatabaseStatementSuffix
 	);
 
 alterTableStatementSuffix:
@@ -158,73 +158,73 @@ alterViewStatementSuffix:
 	| alterStatementSuffixRename
 	| alterStatementSuffixAddPartitions
 	| alterStatementSuffixDropPartitions
-	| name = tableName KW_AS selectStatement;
+	| name = tableName KWAS selectStatement;
 
 alterIndexStatementSuffix:
-	indexName = identifier (KW_ON tableNameId = identifier) partitionSpec? (
-		KW_REBUILD
-		| KW_SET KW_IDXPROPERTIES indexProperties
+	indexName = identifier (KWON tableNameId = identifier) partitionSpec? (
+		KWREBUILD
+		| KWSET KWIDXPROPERTIES indexProperties
 	);
 
 alterDatabaseStatementSuffix: alterDatabaseSuffixProperties;
 
 alterDatabaseSuffixProperties:
-	name = identifier KW_SET KW_DBPROPERTIES dbProperties;
+	name = identifier KWSET KWDBPROPERTIES dbProperties;
 
 alterStatementSuffixRename:
-	oldName = identifier KW_RENAME KW_TO newName = identifier;
+	oldName = identifier KWRENAME KWTO newName = identifier;
 
 alterStatementSuffixAddCol:
-	identifier (add = KW_ADD | replace = KW_REPLACE) KW_COLUMNS LPAREN columnNameTypeList RPAREN;
+	identifier (add = KWADD | replace = KWREPLACE) KWCOLUMNS LPAREN columnNameTypeList RPAREN;
 
 alterStatementSuffixRenameCol:
-	identifier KW_CHANGE KW_COLUMN? oldName = identifier newName = identifier colType (
-		KW_COMMENT comment = StringLiteral
+	identifier KWCHANGE KWCOLUMN? oldName = identifier newName = identifier colType (
+		KWCOMMENT comment = StringLiteral
 	)? alterStatementChangeColPosition?;
 
 alterStatementChangeColPosition:
-	first = KW_FIRST
-	| KW_AFTER afterCol = identifier;
+	first = KWFIRST
+	| KWAFTER afterCol = identifier;
 
 alterStatementSuffixAddPartitions:
-	identifier KW_ADD ifNotExists? partitionSpec partitionLocation? (
+	identifier KWADD ifNotExists? partitionSpec partitionLocation? (
 		partitionSpec partitionLocation?
 	)*;
 
-alterStatementSuffixTouch: identifier KW_TOUCH (partitionSpec)*;
+alterStatementSuffixTouch: identifier KWTOUCH (partitionSpec)*;
 
 alterStatementSuffixArchive:
-	identifier KW_ARCHIVE (partitionSpec)*;
+	identifier KWARCHIVE (partitionSpec)*;
 
 alterStatementSuffixUnArchive:
-	identifier KW_UNARCHIVE (partitionSpec)*;
+	identifier KWUNARCHIVE (partitionSpec)*;
 
-partitionLocation: KW_LOCATION locn = StringLiteral;
+partitionLocation: KWLOCATION locn = StringLiteral;
 
 alterStatementSuffixDropPartitions:
-	identifier KW_DROP ifExists? dropPartitionSpec (
+	identifier KWDROP ifExists? dropPartitionSpec (
 		COMMA dropPartitionSpec
 	)* ignoreProtection?;
 
 alterStatementSuffixProperties:
-	name = identifier KW_SET KW_TBLPROPERTIES tableProperties
-	| name = identifier KW_UNSET KW_TBLPROPERTIES ifExists? tableProperties;
+	name = identifier KWSET KWTBLPROPERTIES tableProperties
+	| name = identifier KWUNSET KWTBLPROPERTIES ifExists? tableProperties;
 
 alterViewSuffixProperties:
-	name = identifier KW_SET KW_TBLPROPERTIES tableProperties
-	| name = identifier KW_UNSET KW_TBLPROPERTIES ifExists? tableProperties;
+	name = identifier KWSET KWTBLPROPERTIES tableProperties
+	| name = identifier KWUNSET KWTBLPROPERTIES ifExists? tableProperties;
 
 alterStatementSuffixSerdeProperties:
-	KW_SET KW_SERDE serdeName = StringLiteral (
-		KW_WITH KW_SERDEPROPERTIES tableProperties
+	KWSET KWSERDE serdeName = StringLiteral (
+		KWWITH KWSERDEPROPERTIES tableProperties
 	)?
-	| KW_SET KW_SERDEPROPERTIES tableProperties;
+	| KWSET KWSERDEPROPERTIES tableProperties;
 
 tablePartitionPrefix: name = identifier partitionSpec?;
 
 alterTblPartitionStatement:
 	tablePartitionPrefix alterTblPartitionStatementSuffix
-	| Identifier KW_PARTITION KW_COLUMN LPAREN columnNameType RPAREN;
+	| Identifier KWPARTITION KWCOLUMN LPAREN columnNameType RPAREN;
 
 alterTblPartitionStatementSuffix:
 	alterStatementSuffixFileFormat
@@ -237,15 +237,15 @@ alterTblPartitionStatementSuffix:
 	| alterTblPartitionStatementSuffixSkewedLocation
 	| alterStatementSuffixClusterbySortby;
 
-alterStatementSuffixFileFormat: KW_SET KW_FILEFORMAT fileFormat;
+alterStatementSuffixFileFormat: KWSET KWFILEFORMAT fileFormat;
 
 alterStatementSuffixClusterbySortby:
-	KW_NOT KW_CLUSTERED
-	| KW_NOT KW_SORTED
+	KWNOT KWCLUSTERED
+	| KWNOT KWSORTED
 	| tableBuckets;
 
 alterTblPartitionStatementSuffixSkewedLocation:
-	KW_SET KW_SKEWED KW_LOCATION skewedLocations;
+	KWSET KWSKEWED KWLOCATION skewedLocations;
 
 skewedLocations: LPAREN skewedLocationsList RPAREN;
 
@@ -256,49 +256,49 @@ skewedLocationMap:
 	key = skewedValueLocationElement EQUAL value = StringLiteral;
 
 alterStatementSuffixLocation:
-	KW_SET KW_LOCATION newLoc = StringLiteral;
+	KWSET KWLOCATION newLoc = StringLiteral;
 
 alterStatementSuffixSkewedby:
 	name = identifier tableSkewed
-	| name = identifier KW_NOT KW_SKEWED
-	| name = identifier KW_NOT storedAsDirs;
+	| name = identifier KWNOT KWSKEWED
+	| name = identifier KWNOT storedAsDirs;
 
 alterStatementSuffixExchangePartition:
-	name = tableName KW_EXCHANGE partitionSpec KW_WITH KW_TABLE exchangename = tableName;
+	name = tableName KWEXCHANGE partitionSpec KWWITH KWTABLE exchangename = tableName;
 
 alterStatementSuffixProtectMode: alterProtectMode;
 
-alterStatementSuffixRenamePart: KW_RENAME KW_TO partitionSpec;
+alterStatementSuffixRenamePart: KWRENAME KWTO partitionSpec;
 
-alterStatementSuffixMergeFiles: KW_CONCATENATE;
+alterStatementSuffixMergeFiles: KWCONCATENATE;
 
 alterProtectMode:
-	KW_ENABLE alterProtectModeMode
-	| KW_DISABLE alterProtectModeMode;
+	KWENABLE alterProtectModeMode
+	| KWDISABLE alterProtectModeMode;
 
 alterProtectModeMode:
-	KW_OFFLINE
-	| KW_NO_DROP KW_CASCADE?
-	| KW_READONLY;
+	KWOFFLINE
+	| KWNO_DROP KWCASCADE?
+	| KWREADONLY;
 
-alterStatementSuffixBucketNum: KW_INTO num = Number KW_BUCKETS;
+alterStatementSuffixBucketNum: KWINTO num = Number KWBUCKETS;
 
 fileFormat:
-	KW_SEQUENCEFILE
-	| KW_TEXTFILE
-	| KW_RCFILE
-	| KW_ORCFILE
-	| KW_INPUTFORMAT inFmt = StringLiteral KW_OUTPUTFORMAT outFmt = StringLiteral (
-		KW_INPUTDRIVER inDriver = StringLiteral KW_OUTPUTDRIVER outDriver = StringLiteral
+	KWSEQUENCEFILE
+	| KWTEXTFILE
+	| KWRCFILE
+	| KWORCFILE
+	| KWINPUTFORMAT inFmt = StringLiteral KWOUTPUTFORMAT outFmt = StringLiteral (
+		KWINPUTDRIVER inDriver = StringLiteral KWOUTPUTDRIVER outDriver = StringLiteral
 	)?
 	| genericSpec = identifier;
 
 tabTypeExpr:
 	identifier (
 		DOT (
-			KW_ELEM_TYPE
-			| KW_KEY_TYPE
-			| KW_VALUE_TYPE
+			KWELEM_TYPE
+			| KWKEY_TYPE
+			| KWVALUE_TYPE
 			| identifier
 		)
 	)*;
@@ -306,9 +306,9 @@ tabTypeExpr:
 descTabTypeExpr:
 	identifier (
 		DOT (
-			KW_ELEM_TYPE
-			| KW_KEY_TYPE
-			| KW_VALUE_TYPE
+			KWELEM_TYPE
+			| KWKEY_TYPE
+			| KWVALUE_TYPE
 			| identifier
 		)
 	)* identifier?;
@@ -317,93 +317,86 @@ partTypeExpr: tabTypeExpr partitionSpec?;
 
 descPartTypeExpr: descTabTypeExpr partitionSpec?;
 
-descStatement: (KW_DESCRIBE | KW_DESC) (
-		descOptions = KW_FORMATTED
-		| descOptions = KW_EXTENDED
-		| descOptions = KW_PRETTY
+descStatement: (KWDESCRIBE | KWDESC) (
+		descOptions = KWFORMATTED
+		| descOptions = KWEXTENDED
+		| descOptions = KWPRETTY
 	)? (parttype = descPartTypeExpr)
-	| (KW_DESCRIBE | KW_DESC) KW_FUNCTION KW_EXTENDED? (
+	| (KWDESCRIBE | KWDESC) KWFUNCTION KWEXTENDED? (
 		name = descFuncNames
 	)
-	| (KW_DESCRIBE | KW_DESC) KW_DATABASE KW_EXTENDED? (
+	| (KWDESCRIBE | KWDESC) KWDATABASE KWEXTENDED? (
 		dbName = identifier
 	);
 
 analyzeStatement:
-	KW_ANALYZE KW_TABLE (parttype = tableOrPartition) KW_COMPUTE KW_STATISTICS (
-		(noscan = KW_NOSCAN)
-		| (partialscan = KW_PARTIALSCAN)
-		| (KW_FOR KW_COLUMNS statsColumnName = columnNameList)
+	KWANALYZE KWTABLE (parttype = tableOrPartition) KWCOMPUTE KWSTATISTICS (
+		(noscan = KWNOSCAN)
+		| (partialscan = KWPARTIALSCAN)
+		| (KWFOR KWCOLUMNS statsColumnName = columnNameList)
 	)?;
 
 showStatement:
-	KW_SHOW (KW_DATABASES | KW_SCHEMAS) (
-		KW_LIKE showStmtIdentifier
-	)?
-	| KW_SHOW KW_TABLES ((KW_FROM | KW_IN) db_name = identifier)? (
-		KW_LIKE showStmtIdentifier
+	KWSHOW (KWDATABASES | KWSCHEMAS) (KWLIKE showStmtIdentifier)?
+	| KWSHOW KWTABLES ((KWFROM | KWIN) db_name = identifier)? (
+		KWLIKE showStmtIdentifier
 		| showStmtIdentifier
 	)?
-	| KW_SHOW KW_COLUMNS (KW_FROM | KW_IN) tabname = tableName (
-		(KW_FROM | KW_IN) db_name = identifier
+	| KWSHOW KWCOLUMNS (KWFROM | KWIN) tabname = tableName (
+		(KWFROM | KWIN) db_name = identifier
 	)?
-	| KW_SHOW KW_FUNCTIONS showStmtIdentifier?
-	| KW_SHOW KW_PARTITIONS identifier partitionSpec?
-	| KW_SHOW KW_CREATE KW_TABLE tabName = tableName
-	| KW_SHOW KW_TABLE KW_EXTENDED (
-		(KW_FROM | KW_IN) db_name = identifier
-	)? KW_LIKE showStmtIdentifier partitionSpec?
-	| KW_SHOW KW_TBLPROPERTIES tblName = identifier (
+	| KWSHOW KWFUNCTIONS showStmtIdentifier?
+	| KWSHOW KWPARTITIONS identifier partitionSpec?
+	| KWSHOW KWCREATE KWTABLE tabName = tableName
+	| KWSHOW KWTABLE KWEXTENDED (
+		(KWFROM | KWIN) db_name = identifier
+	)? KWLIKE showStmtIdentifier partitionSpec?
+	| KWSHOW KWTBLPROPERTIES tblName = identifier (
 		LPAREN prptyName = StringLiteral RPAREN
 	)?
-	| KW_SHOW KW_LOCKS (parttype = partTypeExpr)? (
-		isExtended = KW_EXTENDED
+	| KWSHOW KWLOCKS (parttype = partTypeExpr)? (
+		isExtended = KWEXTENDED
 	)?
-	| KW_SHOW (showOptions = KW_FORMATTED)? (
-		KW_INDEX
-		| KW_INDEXES
-	) KW_ON showStmtIdentifier (
-		(KW_FROM | KW_IN) db_name = identifier
+	| KWSHOW (showOptions = KWFORMATTED)? (KWINDEX | KWINDEXES) KWON showStmtIdentifier (
+		(KWFROM | KWIN) db_name = identifier
 	)?;
 
-lockStatement:
-	KW_LOCK KW_TABLE tableName partitionSpec? lockMode;
+lockStatement: KWLOCK KWTABLE tableName partitionSpec? lockMode;
 
-lockMode: KW_SHARED | KW_EXCLUSIVE;
+lockMode: KWSHARED | KWEXCLUSIVE;
 
-unlockStatement: KW_UNLOCK KW_TABLE tableName partitionSpec?;
+unlockStatement: KWUNLOCK KWTABLE tableName partitionSpec?;
 
-createRoleStatement: KW_CREATE KW_ROLE roleName = identifier;
+createRoleStatement: KWCREATE KWROLE roleName = identifier;
 
-dropRoleStatement: KW_DROP KW_ROLE roleName = identifier;
+dropRoleStatement: KWDROP KWROLE roleName = identifier;
 
 grantPrivileges:
-	KW_GRANT privList = privilegeList privilegeObject? KW_TO principalSpecification (
-		KW_WITH withOption
+	KWGRANT privList = privilegeList privilegeObject? KWTO principalSpecification (
+		KWWITH withOption
 	)?;
 
-revokePrivileges
-	@afer {msgs.pop();}:
-	KW_REVOKE privilegeList privilegeObject? KW_FROM principalSpecification;
+revokePrivileges:
+	KWREVOKE privilegeList privilegeObject? KWFROM principalSpecification;
 
 grantRole:
-	KW_GRANT KW_ROLE identifier (COMMA identifier)* KW_TO principalSpecification;
+	KWGRANT KWROLE identifier (COMMA identifier)* KWTO principalSpecification;
 
 revokeRole:
-	KW_REVOKE KW_ROLE identifier (COMMA identifier)* KW_FROM principalSpecification;
+	KWREVOKE KWROLE identifier (COMMA identifier)* KWFROM principalSpecification;
 
-showRoleGrants: KW_SHOW KW_ROLE KW_GRANT principalName;
+showRoleGrants: KWSHOW KWROLE KWGRANT principalName;
 
 showGrants:
-	KW_SHOW KW_GRANT principalName privilegeIncludeColObject?;
+	KWSHOW KWGRANT principalName privilegeIncludeColObject?;
 
 privilegeIncludeColObject:
-	KW_ON (table = KW_TABLE | KW_DATABASE) identifier (
+	KWON (table = KWTABLE | KWDATABASE) identifier (
 		LPAREN cols = columnNameList RPAREN
 	)? partitionSpec?;
 
 privilegeObject:
-	KW_ON (table = KW_TABLE | KW_DATABASE) identifier partitionSpec?;
+	KWON (table = KWTABLE | KWDATABASE) identifier partitionSpec?;
 
 privilegeList: privlegeDef (COMMA privlegeDef)*;
 
@@ -411,89 +404,88 @@ privlegeDef:
 	privilegeType (LPAREN cols = columnNameList RPAREN)?;
 
 privilegeType:
-	KW_ALL
-	| KW_ALTER
-	| KW_UPDATE
-	| KW_CREATE
-	| KW_DROP
-	| KW_INDEX
-	| KW_LOCK
-	| KW_SELECT
-	| KW_SHOW_DATABASE;
+	KWALL
+	| KWALTER
+	| KWUPDATE
+	| KWCREATE
+	| KWDROP
+	| KWINDEX
+	| KWLOCK
+	| KWSELECT
+	| KWSHOW_DATABASE;
 
 principalSpecification: principalName (COMMA principalName)*;
 
 principalName:
-	KW_USER identifier
-	| KW_GROUP identifier
-	| KW_ROLE identifier;
+	KWUSER identifier
+	| KWGROUP identifier
+	| KWROLE identifier;
 
-withOption: KW_GRANT KW_OPTION;
+withOption: KWGRANT KWOPTION;
 
 metastoreCheck:
-	KW_MSCK (repair = KW_REPAIR)? (
-		KW_TABLE table = identifier partitionSpec? (
+	KWMSCK (repair = KWREPAIR)? (
+		KWTABLE table = identifier partitionSpec? (
 			COMMA partitionSpec
 		)*
 	)?;
 
 createFunctionStatement:
-	KW_CREATE KW_TEMPORARY KW_FUNCTION identifier KW_AS StringLiteral;
+	KWCREATE KWTEMPORARY KWFUNCTION identifier KWAS StringLiteral;
 
 dropFunctionStatement:
-	KW_DROP KW_TEMPORARY KW_FUNCTION ifExists? identifier;
+	KWDROP KWTEMPORARY KWFUNCTION ifExists? identifier;
 
 createMacroStatement:
-	KW_CREATE KW_TEMPORARY KW_MACRO Identifier LPAREN columnNameTypeList? RPAREN expression;
+	KWCREATE KWTEMPORARY KWMACRO Identifier LPAREN columnNameTypeList? RPAREN expression;
 
 dropMacroStatement:
-	KW_DROP KW_TEMPORARY KW_MACRO ifExists? Identifier;
+	KWDROP KWTEMPORARY KWMACRO ifExists? Identifier;
 
 createViewStatement:
-	KW_CREATE (orReplace)? KW_VIEW (ifNotExists)? name = tableName (
+	KWCREATE (orReplace)? KWVIEW (ifNotExists)? name = tableName (
 		LPAREN columnNameCommentList RPAREN
-	)? tableComment? viewPartition? tablePropertiesPrefixed? KW_AS selectStatement;
+	)? tableComment? viewPartition? tablePropertiesPrefixed? KWAS selectStatement;
 
-viewPartition:
-	KW_PARTITIONED KW_ON LPAREN columnNameList RPAREN;
+viewPartition: KWPARTITIONED KWON LPAREN columnNameList RPAREN;
 
-dropViewStatement: KW_DROP KW_VIEW ifExists? viewName;
+dropViewStatement: KWDROP KWVIEW ifExists? viewName;
 
 showStmtIdentifier: identifier | StringLiteral;
 
-tableComment: KW_COMMENT comment = StringLiteral;
+tableComment: KWCOMMENT comment = StringLiteral;
 
 tablePartition:
-	KW_PARTITIONED KW_BY LPAREN columnNameTypeList RPAREN;
+	KWPARTITIONED KWBY LPAREN columnNameTypeList RPAREN;
 
 tableBuckets:
-	KW_CLUSTERED KW_BY LPAREN bucketCols = columnNameList RPAREN (
-		KW_SORTED KW_BY LPAREN sortCols = columnNameOrderList RPAREN
-	)? KW_INTO num = Number KW_BUCKETS;
+	KWCLUSTERED KWBY LPAREN bucketCols = columnNameList RPAREN (
+		KWSORTED KWBY LPAREN sortCols = columnNameOrderList RPAREN
+	)? KWINTO num = Number KWBUCKETS;
 
 tableSkewed:
-	KW_SKEWED KW_BY LPAREN skewedCols = columnNameList RPAREN KW_ON LPAREN (
+	KWSKEWED KWBY LPAREN skewedCols = columnNameList RPAREN KWON LPAREN (
 		skewedValues = skewedValueElement
 	) RPAREN (storedAsDirs)?;
 
 rowFormat: rowFormatSerde | rowFormatDelimited;
 
-recordReader: KW_RECORDREADER StringLiteral;
+recordReader: KWRECORDREADER StringLiteral;
 
-recordWriter: KW_RECORDWRITER StringLiteral;
+recordWriter: KWRECORDWRITER StringLiteral;
 
 rowFormatSerde:
-	KW_ROW KW_FORMAT KW_SERDE name = StringLiteral (
-		KW_WITH KW_SERDEPROPERTIES serdeprops = tableProperties
+	KWROW KWFORMAT KWSERDE name = StringLiteral (
+		KWWITH KWSERDEPROPERTIES serdeprops = tableProperties
 	)?;
 
 rowFormatDelimited:
-	KW_ROW KW_FORMAT KW_DELIMITED tableRowFormatFieldIdentifier? tableRowFormatCollItemsIdentifier?
+	KWROW KWFORMAT KWDELIMITED tableRowFormatFieldIdentifier? tableRowFormatCollItemsIdentifier?
 		tableRowFormatMapKeysIdentifier? tableRowFormatLinesIdentifier?;
 
 tableRowFormat: rowFormatDelimited | rowFormatSerde;
 
-tablePropertiesPrefixed: KW_TBLPROPERTIES tableProperties;
+tablePropertiesPrefixed: KWTBLPROPERTIES tableProperties;
 
 tableProperties: LPAREN tablePropertiesList RPAREN;
 
@@ -507,33 +499,33 @@ keyValueProperty:
 keyProperty: key = StringLiteral;
 
 tableRowFormatFieldIdentifier:
-	KW_FIELDS KW_TERMINATED KW_BY fldIdnt = StringLiteral (
-		KW_ESCAPED KW_BY fldEscape = StringLiteral
+	KWFIELDS KWTERMINATED KWBY fldIdnt = StringLiteral (
+		KWESCAPED KWBY fldEscape = StringLiteral
 	)?;
 
 tableRowFormatCollItemsIdentifier:
-	KW_COLLECTION KW_ITEMS KW_TERMINATED KW_BY collIdnt = StringLiteral;
+	KWCOLLECTION KWITEMS KWTERMINATED KWBY collIdnt = StringLiteral;
 
 tableRowFormatMapKeysIdentifier:
-	KW_MAP KW_KEYS KW_TERMINATED KW_BY mapKeysIdnt = StringLiteral;
+	KWMAP KWKEYS KWTERMINATED KWBY mapKeysIdnt = StringLiteral;
 
 tableRowFormatLinesIdentifier:
-	KW_LINES KW_TERMINATED KW_BY linesIdnt = StringLiteral;
+	KWLINES KWTERMINATED KWBY linesIdnt = StringLiteral;
 
 tableFileFormat:
-	KW_STORED KW_AS KW_SEQUENCEFILE
-	| KW_STORED KW_AS KW_TEXTFILE
-	| KW_STORED KW_AS KW_RCFILE
-	| KW_STORED KW_AS KW_ORCFILE
-	| KW_STORED KW_AS KW_INPUTFORMAT inFmt = StringLiteral KW_OUTPUTFORMAT outFmt = StringLiteral (
-		KW_INPUTDRIVER inDriver = StringLiteral KW_OUTPUTDRIVER outDriver = StringLiteral
+	KWSTORED KWAS KWSEQUENCEFILE
+	| KWSTORED KWAS KWTEXTFILE
+	| KWSTORED KWAS KWRCFILE
+	| KWSTORED KWAS KWORCFILE
+	| KWSTORED KWAS KWINPUTFORMAT inFmt = StringLiteral KWOUTPUTFORMAT outFmt = StringLiteral (
+		KWINPUTDRIVER inDriver = StringLiteral KWOUTPUTDRIVER outDriver = StringLiteral
 	)?
-	| KW_STORED KW_BY storageHandler = StringLiteral (
-		KW_WITH KW_SERDEPROPERTIES serdeprops = tableProperties
+	| KWSTORED KWBY storageHandler = StringLiteral (
+		KWWITH KWSERDEPROPERTIES serdeprops = tableProperties
 	)?
-	| KW_STORED KW_AS genericSpec = identifier;
+	| KWSTORED KWAS genericSpec = identifier;
 
-tableLocation: KW_LOCATION locn = StringLiteral;
+tableLocation: KWLOCATION locn = StringLiteral;
 
 columnNameTypeList: columnNameType (COMMA columnNameType)*;
 
@@ -565,24 +557,24 @@ skewedValueLocationElement:
 	skewedColumnValue
 	| skewedColumnValuePair;
 
-columnNameOrder: identifier (asc = KW_ASC | desc = KW_DESC)?;
+columnNameOrder: identifier (asc = KWASC | desc = KWDESC)?;
 
 columnNameCommentList:
 	columnNameComment (COMMA columnNameComment)*;
 
 columnNameComment:
-	colName = identifier (KW_COMMENT comment = StringLiteral)?;
+	colName = identifier (KWCOMMENT comment = StringLiteral)?;
 
-columnRefOrder: expression (asc = KW_ASC | desc = KW_DESC)?;
+columnRefOrder: expression (asc = KWASC | desc = KWDESC)?;
 
 columnNameType:
 	colName = identifier colType (
-		KW_COMMENT comment = StringLiteral
+		KWCOMMENT comment = StringLiteral
 	)?;
 
 columnNameColonType:
 	colName = identifier COLON colType (
-		KW_COMMENT comment = StringLiteral
+		KWCOMMENT comment = StringLiteral
 	)?;
 
 colType: type;
@@ -597,33 +589,32 @@ type:
 	| unionType;
 
 primitiveType:
-	KW_TINYINT
-	| KW_SMALLINT
-	| KW_INT
-	| KW_BIGINT
-	| KW_BOOLEAN
-	| KW_FLOAT
-	| KW_DOUBLE
-	| KW_DATE
-	| KW_DATETIME
-	| KW_TIMESTAMP
-	| KW_STRING
-	| KW_BINARY
-	| KW_DECIMAL;
+	KWTINYINT
+	| KWSMALLINT
+	| KWINT
+	| KWBIGINT
+	| KWBOOLEAN
+	| KWFLOAT
+	| KWDOUBLE
+	| KWDATE
+	| KWDATETIME
+	| KWTIMESTAMP
+	| KWSTRING
+	| KWBINARY
+	| KWDECIMAL;
 
-listType: KW_ARRAY LESSTHAN type GREATERTHAN;
+listType: KWARRAY LESSTHAN type GREATERTHAN;
 
 structType:
-	KW_STRUCT LESSTHAN columnNameColonTypeList GREATERTHAN;
+	KWSTRUCT LESSTHAN columnNameColonTypeList GREATERTHAN;
 
 mapType:
-	KW_MAP LESSTHAN left = primitiveType COMMA right = type GREATERTHAN;
+	KWMAP LESSTHAN left = primitiveType COMMA right = type GREATERTHAN;
 
-unionType: KW_UNIONTYPE LESSTHAN colTypeList GREATERTHAN;
+unionType: KWUNIONTYPE LESSTHAN colTypeList GREATERTHAN;
 
-queryOperator: KW_UNION KW_ALL;
+queryOperator: KWUNION KWALL;
 
-// select statement select ... from ... where ... group by ... order by ...
 queryStatementExpression:
 	queryStatement (queryOperator queryStatement)*;
 
@@ -645,13 +636,658 @@ body:
 		clusterByClause? distributeByClause? sortByClause? window_clause? limitClause?;
 
 insertClause:
-	KW_INSERT KW_OVERWRITE destination ifNotExists?
-	| KW_INSERT KW_INTO KW_TABLE tableOrPartition;
+	KWINSERT KWOVERWRITE destination ifNotExists?
+	| KWINSERT KWINTO KWTABLE tableOrPartition;
 
 destination:
-	KW_LOCAL KW_DIRECTORY StringLiteral tableRowFormat? tableFileFormat?
-	| KW_DIRECTORY StringLiteral
-	| KW_TABLE tableOrPartition;
+	KWLOCAL KWDIRECTORY StringLiteral tableRowFormat? tableFileFormat?
+	| KWDIRECTORY StringLiteral
+	| KWTABLE tableOrPartition;
 
-limitClause: KW_LIMIT num = Number;
+limitClause: KWLIMIT num = Number;
 
+selectClause:
+	KWSELECT hintClause? (
+		((KWALL | dist = KWDISTINCT)? selectList)
+		| (transform = KWTRANSFORM selectTrfmClause)
+	)
+	| trfmClause;
+
+selectList: selectItem ( COMMA selectItem)*;
+
+selectTrfmClause:
+	LPAREN selectExpressionList RPAREN inSerde = rowFormat inRec = recordWriter KWUSING
+		StringLiteral (
+		KWAS (
+			(LPAREN (aliasList | columnNameTypeList) RPAREN)
+			| (aliasList | columnNameTypeList)
+		)
+	)? outSerde = rowFormat outRec = recordReader;
+
+hintClause: DIVIDE STAR PLUS hintList STAR DIVIDE;
+
+hintList: hintItem (COMMA hintItem)*;
+
+hintItem: hintName (LPAREN hintArgs RPAREN)?;
+
+hintName: KWMAPJOIN | KWSTREAMTABLE | KWHOLD_DDLTIME;
+
+hintArgs: hintArgName (COMMA hintArgName)*;
+
+hintArgName: identifier;
+
+selectItem:
+	(
+		selectExpression (
+			(KWAS? identifier)
+			| (KWAS LPAREN identifier (COMMA identifier)* RPAREN)
+		)?
+	);
+
+trfmClause:
+	(KWMAP selectExpressionList | KWREDUCE selectExpressionList) inSerde = rowFormat inRec =
+		recordWriter KWUSING StringLiteral (
+		KWAS (
+			(LPAREN (aliasList | columnNameTypeList) RPAREN)
+			| (aliasList | columnNameTypeList)
+		)
+	)? outSerde = rowFormat outRec = recordReader;
+
+selectExpression: expression | tableAllColumns;
+
+selectExpressionList:
+	selectExpression (COMMA selectExpression)*;
+
+//---------------------- Rules for windowing clauses -------------------------------
+window_clause: KWWINDOW window_defn (COMMA window_defn)*;
+
+window_defn: Identifier KWAS window_specification;
+
+window_specification:
+	(
+		Identifier
+		| (
+			LPAREN Identifier? partitioningSpec? window_frame? RPAREN
+		)
+	);
+
+window_frame: window_range_expression | window_value_expression;
+
+window_range_expression:
+	KWROWS sb = window_frame_start_boundary
+	| KWROWS KWBETWEEN s = window_frame_boundary KWAND end = window_frame_boundary;
+
+window_value_expression:
+	KWRANGE sb = window_frame_start_boundary
+	| KWRANGE KWBETWEEN s = window_frame_boundary KWAND end = window_frame_boundary;
+
+window_frame_start_boundary:
+	KWUNBOUNDED KWPRECEDING
+	| KWCURRENT KWROW
+	| Number KWPRECEDING;
+
+window_frame_boundary:
+	KWUNBOUNDED (r = KWPRECEDING | r = KWFOLLOWING)
+	| KWCURRENT KWROW
+	| Number (d = KWPRECEDING | d = KWFOLLOWING);
+
+tableAllColumns: STAR | tableName DOT STAR;
+
+tableOrColumn: identifier;
+
+expressionList: expression (COMMA expression)*;
+
+aliasList: identifier (COMMA identifier)*;
+
+fromClause: KWFROM joinSource;
+
+joinSource:
+	fromSource (joinToken fromSource (KWON expression)?)*
+	| uniqueJoinToken uniqueJoinSource (COMMA uniqueJoinSource)+;
+
+uniqueJoinSource: KWPRESERVE? fromSource uniqueJoinExpr;
+
+uniqueJoinExpr:
+	LPAREN e1 += expression (COMMA e1 += expression)* RPAREN;
+
+uniqueJoinToken: KWUNIQUEJOIN;
+
+joinToken:
+	KWJOIN
+	| KWINNER KWJOIN
+	| KWCROSS KWJOIN
+	| KWLEFT (KWOUTER)? KWJOIN
+	| KWRIGHT (KWOUTER)? KWJOIN
+	| KWFULL (KWOUTER)? KWJOIN
+	| KWLEFT KWSEMI KWJOIN;
+
+lateralView:
+	KWLATERAL KWVIEW KWOUTER function tableAlias (
+		KWAS identifier (COMMA identifier)*
+	)?
+	| KWLATERAL KWVIEW function tableAlias (
+		KWAS identifier (COMMA identifier)*
+	)?;
+
+tableAlias: identifier;
+
+fromSource: (tableSource | subQuerySource) ( lateralView)*;
+
+tableBucketSample:
+	KWTABLESAMPLE LPAREN KWBUCKET (numerator = Number) KWOUT KWOF (
+		denominator = Number
+	) (KWON expr += expression (COMMA expr += expression)*)? RPAREN;
+
+splitSample:
+	KWTABLESAMPLE LPAREN (numerator = Number) (
+		percent = KWPERCENT
+		| KWROWS
+	) RPAREN
+	| KWTABLESAMPLE LPAREN (numerator = ByteLengthLiteral) RPAREN;
+
+tableSample: tableBucketSample | splitSample;
+
+tableSource:
+	tabname = tableName (props = tableProperties)? (
+		ts = tableSample
+	)? (KWAS? alias = Identifier)?;
+
+tableName:
+	db = identifier DOT tab = identifier
+	| tab = identifier;
+
+viewName: (db = identifier DOT)? view = identifier;
+
+subQuerySource:
+	LPAREN queryStatementExpression RPAREN identifier;
+
+partitioningSpec:
+	partitionByClause orderByClause?
+	| orderByClause
+	| distributeByClause sortByClause?
+	| sortByClause
+	| clusterByClause;
+
+partitionTableFunctionSource: subQuerySource | tableSource;
+
+whereClause: KWWHERE searchCondition;
+
+searchCondition: expression;
+
+groupByClause:
+	KWGROUP KWBY groupByExpression (COMMA groupByExpression)* (
+		(rollup = KWWITH KWROLLUP)
+		| (cube = KWWITH KWCUBE)
+	)? (
+		sets = KWGROUPING KWSETS LPAREN groupingSetExpression (
+			COMMA groupingSetExpression
+		)* RPAREN
+	)?;
+
+groupingSetExpression:
+	groupByExpression
+	| LPAREN groupByExpression (COMMA groupByExpression)* RPAREN
+	| LPAREN RPAREN;
+
+groupByExpression: expression;
+
+havingClause: KWHAVING havingCondition;
+
+havingCondition: expression;
+
+orderByClause:
+	KWORDER KWBY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
+	| KWORDER KWBY columnRefOrder (COMMA columnRefOrder)*;
+
+clusterByClause:
+	KWCLUSTER KWBY LPAREN expression (COMMA expression)* RPAREN
+	| KWCLUSTER KWBY expression;
+
+partitionByClause:
+	KWPARTITION KWBY LPAREN expression (COMMA expression)* RPAREN
+	| KWPARTITION KWBY expression;
+
+distributeByClause:
+	KWDISTRIBUTE KWBY LPAREN expression (COMMA expression)* RPAREN
+	| KWDISTRIBUTE KWBY expression;
+
+sortByClause:
+	KWSORT KWBY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
+	| KWSORT KWBY columnRefOrder;
+
+function:
+	functionName LPAREN (
+		(star = STAR)
+		| (dist = KWDISTINCT)? (
+			selectExpression (COMMA selectExpression)*
+		)?
+	) RPAREN (KWOVER ws = window_specification)?;
+
+functionName:
+	KWIF
+	| KWARRAY
+	| KWMAP
+	| KWSTRUCT
+	| KWUNIONTYPE
+	| identifier;
+
+castExpression:
+	KWCAST LPAREN expression KWAS primitiveType RPAREN;
+
+caseExpression:
+	KWCASE expression (KWWHEN expression KWTHEN expression)+ (
+		KWELSE expression
+	)? KWEND;
+
+whenExpression:
+	KWCASE (KWWHEN expression KWTHEN expression)+ (
+		KWELSE expression
+	)? KWEND;
+
+constant:
+	Number
+	| dateLiteral
+	| StringLiteral
+	| stringLiteralSequence
+	| BigintLiteral
+	| SmallintLiteral
+	| TinyintLiteral
+	| DecimalLiteral
+	| charSetStringLiteral
+	| booleanValue;
+
+stringLiteralSequence: StringLiteral StringLiteral+;
+
+charSetStringLiteral:
+	csName = CharSetName csLiteral = CharSetLiteral;
+
+dateLiteral: KWDATE StringLiteral;
+
+expression: precedenceOrExpression;
+
+atomExpression:
+	KWNULL
+	| dateLiteral
+	| constant
+	| function
+	| castExpression
+	| caseExpression
+	| whenExpression
+	| tableOrColumn
+	| LPAREN expression RPAREN;
+
+precedenceFieldExpression:
+	atomExpression (
+		(LSQUARE expression RSQUARE)
+		| (DOT identifier)
+	)*;
+
+precedenceUnaryOperator: PLUS | MINUS | TILDE;
+
+nullCondition: KWNULL | KWNOT KWNULL;
+
+precedenceUnaryPrefixExpression:
+	(precedenceUnaryOperator)* precedenceFieldExpression;
+
+precedenceUnarySuffixExpression:
+	precedenceUnaryPrefixExpression (a = KWIS nullCondition)?;
+
+precedenceBitwiseXorOperator: BITWISEXOR;
+
+precedenceBitwiseXorExpression:
+	precedenceUnarySuffixExpression (
+		precedenceBitwiseXorOperator precedenceUnarySuffixExpression
+	)*;
+
+precedenceStarOperator: STAR | DIVIDE | MOD | DIV;
+
+precedenceStarExpression:
+	precedenceBitwiseXorExpression (
+		precedenceStarOperator precedenceBitwiseXorExpression
+	)*;
+
+precedencePlusOperator: PLUS | MINUS;
+
+precedencePlusExpression:
+	precedenceStarExpression (
+		precedencePlusOperator precedenceStarExpression
+	)*;
+
+precedenceAmpersandOperator: AMPERSAND;
+
+precedenceAmpersandExpression:
+	precedencePlusExpression (
+		precedenceAmpersandOperator precedencePlusExpression
+	)*;
+
+precedenceBitwiseOrOperator: BITWISEOR;
+
+precedenceBitwiseOrExpression:
+	precedenceAmpersandExpression (
+		precedenceBitwiseOrOperator precedenceAmpersandExpression
+	)*;
+
+precedenceEqualNegatableOperator: KWLIKE | KWRLIKE | KWREGEXP;
+
+precedenceEqualOperator:
+	precedenceEqualNegatableOperator
+	| EQUAL
+	| EQUAL_NS
+	| NOTEQUAL
+	| LESSTHANOREQUALTO
+	| LESSTHAN
+	| GREATERTHANOREQUALTO
+	| GREATERTHAN;
+
+precedenceEqualExpression:
+	(left = precedenceBitwiseOrExpression) (
+		(
+			KWNOT precedenceEqualNegatableOperator notExpr = precedenceBitwiseOrExpression
+		)
+		| (
+			precedenceEqualOperator equalExpr = precedenceBitwiseOrExpression
+		)
+		| (KWNOT KWIN expressions)
+		| (KWIN expressions)
+		| (
+			KWNOT KWBETWEEN (min = precedenceBitwiseOrExpression) KWAND (
+				max = precedenceBitwiseOrExpression
+			)
+		)
+		| (
+			KWBETWEEN (min = precedenceBitwiseOrExpression) KWAND (
+				max = precedenceBitwiseOrExpression
+			)
+		)
+	)*;
+
+expressions: LPAREN expression (COMMA expression)* RPAREN;
+
+precedenceNotOperator: KWNOT;
+
+precedenceNotExpression:
+	(precedenceNotOperator)* precedenceEqualExpression;
+
+precedenceAndOperator: KWAND;
+
+precedenceAndExpression:
+	precedenceNotExpression (
+		precedenceAndOperator precedenceNotExpression
+	)*;
+
+precedenceOrOperator: KWOR;
+
+precedenceOrExpression:
+	precedenceAndExpression (
+		precedenceOrOperator precedenceAndExpression
+	)*;
+
+booleanValue: KWTRUE | KWFALSE;
+
+tableOrPartition: tableName partitionSpec?;
+
+partitionSpec:
+	KWPARTITION LPAREN partitionVal (COMMA partitionVal)* RPAREN;
+
+partitionVal: identifier (EQUAL constant)?;
+
+dropPartitionSpec:
+	KWPARTITION LPAREN dropPartitionVal (COMMA dropPartitionVal)* RPAREN;
+
+dropPartitionVal: identifier dropPartitionOperator constant;
+
+dropPartitionOperator:
+	EQUAL
+	| NOTEQUAL
+	| LESSTHANOREQUALTO
+	| LESSTHAN
+	| GREATERTHANOREQUALTO
+	| GREATERTHAN;
+
+sysFuncNames:
+	KWAND
+	| KWOR
+	| KWNOT
+	| KWLIKE
+	| KWIF
+	| KWCASE
+	| KWWHEN
+	| KWTINYINT
+	| KWSMALLINT
+	| KWINT
+	| KWBIGINT
+	| KWFLOAT
+	| KWDOUBLE
+	| KWBOOLEAN
+	| KWSTRING
+	| KWBINARY
+	| KWARRAY
+	| KWMAP
+	| KWSTRUCT
+	| KWUNIONTYPE
+	| EQUAL
+	| EQUAL_NS
+	| NOTEQUAL
+	| LESSTHANOREQUALTO
+	| LESSTHAN
+	| GREATERTHANOREQUALTO
+	| GREATERTHAN
+	| DIVIDE
+	| PLUS
+	| MINUS
+	| STAR
+	| MOD
+	| DIV
+	| AMPERSAND
+	| TILDE
+	| BITWISEOR
+	| BITWISEXOR
+	| KWRLIKE
+	| KWREGEXP
+	| KWIN
+	| KWBETWEEN;
+
+descFuncNames: sysFuncNames | StringLiteral | identifier;
+
+identifier: Identifier | nonReserved;
+
+nonReserved:
+	KWTRUE
+	| KWFALSE
+	| KWLIKE
+	| KWEXISTS
+	| KWASC
+	| KWDESC
+	| KWORDER
+	| KWGROUP
+	| KWBY
+	| KWAS
+	| KWINSERT
+	| KWOVERWRITE
+	| KWOUTER
+	| KWLEFT
+	| KWRIGHT
+	| KWFULL
+	| KWPARTITION
+	| KWPARTITIONS
+	| KWTABLE
+	| KWTABLES
+	| KWCOLUMNS
+	| KWINDEX
+	| KWINDEXES
+	| KWREBUILD
+	| KWFUNCTIONS
+	| KWSHOW
+	| KWMSCK
+	| KWREPAIR
+	| KWDIRECTORY
+	| KWLOCAL
+	| KWUSING
+	| KWCLUSTER
+	| KWDISTRIBUTE
+	| KWSORT
+	| KWUNION
+	| KWLOAD
+	| KWEXPORT
+	| KWIMPORT
+	| KWDATA
+	| KWINPATH
+	| KWIS
+	| KWNULL
+	| KWCREATE
+	| KWEXTERNAL
+	| KWALTER
+	| KWCHANGE
+	| KWFIRST
+	| KWAFTER
+	| KWDESCRIBE
+	| KWDROP
+	| KWRENAME
+	| KWIGNORE
+	| KWPROTECTION
+	| KWTO
+	| KWCOMMENT
+	| KWBOOLEAN
+	| KWTINYINT
+	| KWSMALLINT
+	| KWINT
+	| KWBIGINT
+	| KWFLOAT
+	| KWDOUBLE
+	| KWDATE
+	| KWDATETIME
+	| KWTIMESTAMP
+	| KWDECIMAL
+	| KWSTRING
+	| KWARRAY
+	| KWSTRUCT
+	| KWUNIONTYPE
+	| KWPARTITIONED
+	| KWCLUSTERED
+	| KWSORTED
+	| KWINTO
+	| KWBUCKETS
+	| KWROW
+	| KWROWS
+	| KWFORMAT
+	| KWDELIMITED
+	| KWFIELDS
+	| KWTERMINATED
+	| KWESCAPED
+	| KWCOLLECTION
+	| KWITEMS
+	| KWKEYS
+	| KWKEY_TYPE
+	| KWLINES
+	| KWSTORED
+	| KWFILEFORMAT
+	| KWSEQUENCEFILE
+	| KWTEXTFILE
+	| KWRCFILE
+	| KWORCFILE
+	| KWINPUTFORMAT
+	| KWOUTPUTFORMAT
+	| KWINPUTDRIVER
+	| KWOUTPUTDRIVER
+	| KWOFFLINE
+	| KWENABLE
+	| KWDISABLE
+	| KWREADONLY
+	| KWNO_DROP
+	| KWLOCATION
+	| KWBUCKET
+	| KWOUT
+	| KWOF
+	| KWPERCENT
+	| KWADD
+	| KWREPLACE
+	| KWRLIKE
+	| KWREGEXP
+	| KWTEMPORARY
+	| KWEXPLAIN
+	| KWFORMATTED
+	| KWPRETTY
+	| KWDEPENDENCY
+	| KWLOGICAL
+	| KWSERDE
+	| KWWITH
+	| KWDEFERRED
+	| KWSERDEPROPERTIES
+	| KWDBPROPERTIES
+	| KWLIMIT
+	| KWSET
+	| KWUNSET
+	| KWTBLPROPERTIES
+	| KWIDXPROPERTIES
+	| KWVALUE_TYPE
+	| KWELEM_TYPE
+	| KWMAPJOIN
+	| KWSTREAMTABLE
+	| KWHOLD_DDLTIME
+	| KWCLUSTERSTATUS
+	| KWUTC
+	| KWUTCTIMESTAMP
+	| KWLONG
+	| KWDELETE
+	| KWPLUS
+	| KWMINUS
+	| KWFETCH
+	| KWINTERSECT
+	| KWVIEW
+	| KWIN
+	| KWDATABASES
+	| KWMATERIALIZED
+	| KWSCHEMA
+	| KWSCHEMAS
+	| KWGRANT
+	| KWREVOKE
+	| KWSSL
+	| KWUNDO
+	| KWLOCK
+	| KWLOCKS
+	| KWUNLOCK
+	| KWSHARED
+	| KWEXCLUSIVE
+	| KWPROCEDURE
+	| KWUNSIGNED
+	| KWWHILE
+	| KWREAD
+	| KWREADS
+	| KWPURGE
+	| KWRANGE
+	| KWANALYZE
+	| KWBEFORE
+	| KWBETWEEN
+	| KWBOTH
+	| KWBINARY
+	| KWCONTINUE
+	| KWCURSOR
+	| KWTRIGGER
+	| KWRECORDREADER
+	| KWRECORDWRITER
+	| KWSEMI
+	| KWLATERAL
+	| KWTOUCH
+	| KWARCHIVE
+	| KWUNARCHIVE
+	| KWCOMPUTE
+	| KWSTATISTICS
+	| KWUSE
+	| KWOPTION
+	| KWCONCATENATE
+	| KWSHOW_DATABASE
+	| KWUPDATE
+	| KWRESTRICT
+	| KWCASCADE
+	| KWSKEWED
+	| KWROLLUP
+	| KWCUBE
+	| KWDIRECTORIES
+	| KWFOR
+	| KWGROUPING
+	| KWSETS
+	| KWTRUNCATE
+	| KWNOSCAN
+	| KWUSER
+	| KWROLE
+	| KWINNER;
