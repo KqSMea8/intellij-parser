@@ -6,7 +6,7 @@ emptyStatement: SEMI;
 
 sqlStatement: ddlStatement | dmlStatement | dqlStatement;
 
-dqlStatement: selectStatement;
+dqlStatement: selectStatement | showTable;
 
 dmlStatement:
 	insertStatement
@@ -14,6 +14,8 @@ dmlStatement:
 	| deleteStatement;
 
 ddlStatement: createTable | dropTable | alterTable;
+
+showTable: SHOW tableName;
 
 createTable:
 	CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
@@ -26,7 +28,7 @@ dropTable:
 		| CASCADE
 	)?;
 
-partitionDefinitions: PARTITION BY '(' createDefinition ')';
+partitionDefinitions: (PARTITIONED | PARTITION) BY '(' createDefinition ')';
 
 engineName:
 	ARCHIVE
@@ -219,7 +221,10 @@ insertStatement:
 	);
 
 partitionInsertDefinitions:
-	PARTITION BY? (uidList | '(' fullColumnName '=' constant ')');
+	(PARTITIONED | PARTITION) BY? (
+		uidList
+		| '(' fullColumnName '=' constant ')'
+	);
 
 deleteStatement: singleDeleteStatement;
 
@@ -573,22 +578,22 @@ referenceControlType:
 	| NO ACTION;
 
 partitionDefinition:
-	PARTITION uid VALUES LESS THAN '(' partitionDefinerAtom (
+	(PARTITIONED | PARTITION) uid VALUES LESS THAN '(' partitionDefinerAtom (
 		',' partitionDefinerAtom
 	)* ')' partitionOption* (
 		subpartitionDefinition (',' subpartitionDefinition)*
 	)?
-	| PARTITION uid VALUES IN '(' partitionDefinerAtom (
+	| (PARTITIONED | PARTITION) uid VALUES IN '(' partitionDefinerAtom (
 		',' partitionDefinerAtom
 	)* ')' partitionOption* (
 		subpartitionDefinition (',' subpartitionDefinition)*
 	)?
-	| PARTITION uid VALUES IN '(' partitionDefinerVector (
+	| (PARTITIONED | PARTITION) uid VALUES IN '(' partitionDefinerVector (
 		',' partitionDefinerVector
 	)* ')' partitionOption* (
 		subpartitionDefinition (',' subpartitionDefinition)*
 	)?
-	| PARTITION uid partitionOption* (
+	| (PARTITIONED | PARTITION) uid partitionOption* (
 		subpartitionDefinition (',' subpartitionDefinition)*
 	)?;
 
