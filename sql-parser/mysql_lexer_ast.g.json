@@ -13635,30 +13635,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "ONE",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'ONE'"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "ONE"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "tokenName": "NODEGROUP",
       "atoms": [
         {
@@ -21315,6 +21291,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "SHOW",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'SHOW'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "SHOW"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "SEPARATOR",
       "atoms": [
         {
@@ -21887,6 +21887,54 @@
         }
       ],
       "pattern": "PRIMARY"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "PARTITIONED",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'PARTITIONED'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "PARTITIONED"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "ONE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'ONE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "ONE"
     },
     {
       "index": 0,

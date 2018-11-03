@@ -2589,11 +2589,6 @@ const NONE = chevrotain.createToken({
   pattern: /NONE/i,
   longer_alt: ID,
 });
-const ONE = chevrotain.createToken({
-  name: 'ONE',
-  pattern: /ONE/i,
-  longer_alt: ID,
-});
 const NODEGROUP = chevrotain.createToken({
   name: 'NODEGROUP',
   pattern: /NODEGROUP/i,
@@ -4174,6 +4169,16 @@ const PRIMARY = chevrotain.createToken({
   pattern: /PRIMARY/i,
   longer_alt: ID,
 });
+const PARTITIONED = chevrotain.createToken({
+  name: 'PARTITIONED',
+  pattern: /PARTITIONED/i,
+  longer_alt: ID,
+});
+const ONE = chevrotain.createToken({
+  name: 'ONE',
+  pattern: /ONE/i,
+  longer_alt: ID,
+});
 const PARTITION = chevrotain.createToken({
   name: 'PARTITION',
   pattern: /PARTITION/i,
@@ -5382,7 +5387,6 @@ export enum TokenEnum {
   OFFSET = 'OFFSET',
   OFFLINE = 'OFFLINE',
   NONE = 'NONE',
-  ONE = 'ONE',
   NODEGROUP = 'NODEGROUP',
   NEXT = 'NEXT',
   NEVER = 'NEVER',
@@ -5699,6 +5703,8 @@ export enum TokenEnum {
   PURGE = 'PURGE',
   PROCEDURE = 'PROCEDURE',
   PRIMARY = 'PRIMARY',
+  PARTITIONED = 'PARTITIONED',
+  ONE = 'ONE',
   PARTITION = 'PARTITION',
   OUTFILE = 'OUTFILE',
   OUTER = 'OUTER',
@@ -6357,7 +6363,6 @@ export const Tokens = {
   OFFSET,
   OFFLINE,
   NONE,
-  ONE,
   NODEGROUP,
   NEXT,
   NEVER,
@@ -6674,6 +6679,8 @@ export const Tokens = {
   PURGE,
   PROCEDURE,
   PRIMARY,
+  PARTITIONED,
+  ONE,
   PARTITION,
   OUTFILE,
   OUTER,
@@ -7333,7 +7340,6 @@ export const tokens = [
   OFFSET,
   OFFLINE,
   NONE,
-  ONE,
   NODEGROUP,
   NEXT,
   NEVER,
@@ -7650,6 +7656,8 @@ export const tokens = [
   PURGE,
   PROCEDURE,
   PRIMARY,
+  PARTITIONED,
+  ONE,
   PARTITION,
   OUTFILE,
   OUTER,

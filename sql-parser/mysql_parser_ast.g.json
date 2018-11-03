@@ -175,6 +175,22 @@
               }
             }
           ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "showTable"
+              }
+            }
+          ]
         }
       ]
     },
@@ -282,6 +298,39 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "alterTable"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "showTable",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "SHOW"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableName"
               }
             }
           ]
@@ -553,9 +602,42 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "PARTITION"
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "PARTITIONED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "PARTITION"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             },
             {
@@ -4933,9 +5015,42 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "PARTITION"
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "PARTITIONED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "PARTITION"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             },
             {
@@ -4954,7 +5069,7 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
+                "index": 2,
                 "kind": "bracketExp",
                 "atoms": [
                   {
@@ -14672,9 +14787,42 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "PARTITION"
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "PARTITIONED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "PARTITION"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             },
             {
@@ -14873,9 +15021,42 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
-                "kind": "UpperName",
-                "name": "PARTITION"
+                "index": 2,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "PARTITIONED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "PARTITION"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             },
             {
@@ -15064,9 +15245,42 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 2,
-                "kind": "UpperName",
-                "name": "PARTITION"
+                "index": 3,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 2,
+                          "kind": "UpperName",
+                          "name": "PARTITIONED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 2,
+                          "kind": "UpperName",
+                          "name": "PARTITION"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             },
             {
@@ -15255,9 +15469,42 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 3,
-                "kind": "UpperName",
-                "name": "PARTITION"
+                "index": 4,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 3,
+                          "kind": "UpperName",
+                          "name": "PARTITIONED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 3,
+                          "kind": "UpperName",
+                          "name": "PARTITION"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             },
             {

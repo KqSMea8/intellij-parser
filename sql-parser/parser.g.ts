@@ -9,6 +9,7 @@ export enum SyntaxKind {
   dqlStatement = 'dqlStatement',
   dmlStatement = 'dmlStatement',
   ddlStatement = 'ddlStatement',
+  showTable = 'showTable',
   createTable = 'createTable',
   dropTable = 'dropTable',
   partitionDefinitions = 'partitionDefinitions',
@@ -202,7 +203,18 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('dqlStatement', () => {
-      this.SUBRULE(this.selectStatement);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.selectStatement);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.showTable);
+          },
+        },
+      ]);
     });
 
     this.RULE('dmlStatement', () => {
@@ -243,6 +255,11 @@ export class Parser extends chevrotain.Parser {
           },
         },
       ]);
+    });
+
+    this.RULE('showTable', () => {
+      this.CONSUME(Tokens.SHOW);
+      this.SUBRULE(this.tableName);
     });
 
     this.RULE('createTable', () => {
@@ -306,7 +323,18 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('partitionDefinitions', () => {
-      this.CONSUME(Tokens.PARTITION);
+      this.OR2([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PARTITIONED);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PARTITION);
+          },
+        },
+      ]);
       this.CONSUME(Tokens.BY);
       this.CONSUME(Tokens.LR_BRACKET);
       this.SUBRULE(this.createDefinition);
@@ -1517,13 +1545,24 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('partitionInsertDefinitions', () => {
-      this.CONSUME(Tokens.PARTITION);
+      this.OR2([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PARTITIONED);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PARTITION);
+          },
+        },
+      ]);
 
       this.OPTION(() => {
         this.CONSUME(Tokens.BY);
       });
 
-      this.OR2([
+      this.OR3([
         {
           ALT: () => {
             this.SUBRULE(this.uidList);
@@ -3935,7 +3974,18 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.PARTITION);
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.PARTITIONED);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.PARTITION);
+                },
+              },
+            ]);
             this.SUBRULE(this.uid);
             this.CONSUME(Tokens.VALUES);
             this.CONSUME(Tokens.LESS);
@@ -3966,7 +4016,18 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME2(Tokens.PARTITION);
+            this.OR3([
+              {
+                ALT: () => {
+                  this.CONSUME2(Tokens.PARTITIONED);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME2(Tokens.PARTITION);
+                },
+              },
+            ]);
             this.SUBRULE2(this.uid);
             this.CONSUME2(Tokens.VALUES);
             this.CONSUME(Tokens.IN);
@@ -3996,7 +4057,18 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME3(Tokens.PARTITION);
+            this.OR4([
+              {
+                ALT: () => {
+                  this.CONSUME3(Tokens.PARTITIONED);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME3(Tokens.PARTITION);
+                },
+              },
+            ]);
             this.SUBRULE3(this.uid);
             this.CONSUME3(Tokens.VALUES);
             this.CONSUME2(Tokens.IN);
@@ -4026,7 +4098,18 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME4(Tokens.PARTITION);
+            this.OR5([
+              {
+                ALT: () => {
+                  this.CONSUME4(Tokens.PARTITIONED);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME4(Tokens.PARTITION);
+                },
+              },
+            ]);
             this.SUBRULE4(this.uid);
 
             this.MANY10(() => {
