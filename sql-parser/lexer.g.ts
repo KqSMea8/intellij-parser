@@ -4049,6 +4049,11 @@ const SHOW = chevrotain.createToken({
   pattern: /SHOW/i,
   longer_alt: ID,
 });
+const SHOW = chevrotain.createToken({
+  name: 'SHOW',
+  pattern: /SHOW/i,
+  longer_alt: ID,
+});
 const SEPARATOR = chevrotain.createToken({
   name: 'SEPARATOR',
   pattern: /SEPARATOR/i,
@@ -5679,6 +5684,7 @@ export enum TokenEnum {
   SQL = 'SQL',
   SPATIAL = 'SPATIAL',
   SHOW = 'SHOW',
+  SHOW = 'SHOW',
   SEPARATOR = 'SEPARATOR',
   SET = 'SET',
   SELECT = 'SELECT',
@@ -6654,6 +6660,7 @@ export const Tokens = {
   SQLEXCEPTION,
   SQL,
   SPATIAL,
+  SHOW,
   SHOW,
   SEPARATOR,
   SET,
@@ -7631,6 +7638,7 @@ export const tokens = [
   SQLEXCEPTION,
   SQL,
   SPATIAL,
+  SHOW,
   SHOW,
   SEPARATOR,
   SET,
