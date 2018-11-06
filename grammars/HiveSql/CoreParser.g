@@ -8,7 +8,8 @@ ddlStatement:
 	| dropDatabaseStatement
 	| createTableStatement
 	| dropTableStatement
-	| alterStatement;
+	| alterStatement
+	| selectStatement;
 
 createDatabaseStatement:
 	KWCREATE (KWDATABASE | KWSCHEMA) ifNotExists? name = identifier;
@@ -46,7 +47,133 @@ columnRefOrder: (asc = KWASC | desc = KWDESC)?;
 queryOperator: KWUNION KWALL;
 
 selectStatement:
-	selectClause fromClause orderByClause? sortByClause? limitClause?;
+	selectClause fromClause whereClause? orderByClause? sortByClause? limitClause?;
+
+whereClause: KWWHERE searchCondition;
+
+searchCondition: expression;
+
+expression: precedenceOrExpression;
+
+atomExpression:
+	constant
+	| tableOrColumn
+	| LPAREN expression RPAREN;
+
+tableOrColumn: identifier;
+
+dateLiteral: KWDATE? StringLiteral+;
+
+constant:
+	Number
+	| dateLiteral
+	| BigintLiteral
+	| SmallintLiteral
+	| TinyintLiteral
+	| DecimalLiteral
+	| charSetStringLiteral;
+
+charSetStringLiteral:
+	csName = CharSetName csLiteral = CharSetLiteral;
+
+booleanValue: KWTRUE | KWFALSE;
+
+precedenceFieldExpression:
+	atomExpression (
+		(LSQUARE expression RSQUARE)
+		| (DOT identifier)
+	)*;
+
+precedenceUnaryOperator: PLUS | MINUS | TILDE;
+
+nullCondition: KWNULL | KWNOT KWNULL;
+
+precedenceUnaryPrefixExpression:
+	(precedenceUnaryOperator)* precedenceFieldExpression;
+
+precedenceUnarySuffixExpression:
+	precedenceUnaryPrefixExpression (a = KWIS nullCondition)?;
+
+precedenceBitwiseXorOperator: BITWISEXOR;
+
+precedenceBitwiseXorExpression:
+	precedenceUnarySuffixExpression (
+		precedenceBitwiseXorOperator precedenceUnarySuffixExpression
+	)*;
+
+precedenceStarOperator: STAR | DIVIDE | MOD | DIV;
+
+precedenceStarExpression:
+	precedenceBitwiseXorExpression (
+		precedenceStarOperator precedenceBitwiseXorExpression
+	)*;
+
+precedencePlusOperator: PLUS | MINUS;
+
+precedencePlusExpression:
+	precedenceStarExpression (
+		precedencePlusOperator precedenceStarExpression
+	)*;
+
+precedenceAmpersandOperator: AMPERSAND;
+
+precedenceAmpersandExpression:
+	precedencePlusExpression (
+		precedenceAmpersandOperator precedencePlusExpression
+	)*;
+
+precedenceBitwiseOrOperator: BITWISEOR;
+
+precedenceBitwiseOrExpression:
+	precedenceAmpersandExpression (
+		precedenceBitwiseOrOperator precedenceAmpersandExpression
+	)*;
+
+precedenceEqualNegatableOperator: KWLIKE | KWRLIKE | KWREGEXP;
+
+precedenceEqualOperator:
+	precedenceEqualNegatableOperator
+	| EQUAL
+	| EQUAL_NS
+	| NOTEQUAL
+	| LESSTHANOREQUALTO
+	| LESSTHAN
+	| GREATERTHANOREQUALTO
+	| GREATERTHAN;
+
+precedenceEqualExpression:
+	precedenceBitwiseOrExpression (
+		(
+			KWNOT? precedenceEqualOperator notExpr = precedenceBitwiseOrExpression
+		)
+		| (KWNOT? KWIN expressions)
+		| (
+			KWNOT? KWBETWEEN (
+				min = precedenceBitwiseOrExpression
+			) KWAND (max = precedenceBitwiseOrExpression)
+		)
+	)*;
+
+expressions: LPAREN expression (COMMA expression)* RPAREN;
+
+precedenceNotOperator: KWNOT;
+
+precedenceNotExpression:
+	(precedenceNotOperator)* precedenceEqualExpression;
+
+precedenceAndOperator: KWAND;
+
+precedenceAndExpression:
+	precedenceNotExpression (
+		precedenceAndOperator precedenceNotExpression
+	)*;
+
+precedenceOrOperator: KWOR;
+
+precedenceOrExpression:
+	precedenceAndExpression (
+		precedenceOrOperator precedenceAndExpression
+	)*;
 
 limitClause: KWLIMIT num = Number;
 
@@ -117,7 +244,6 @@ nonReserved:
 	| KWINDEX
 	| KWINDEXES
 	| KWREBUILD
-	| KWFUNCTIONS
 	| KWSHOW
 	| KWMSCK
 	| KWREPAIR

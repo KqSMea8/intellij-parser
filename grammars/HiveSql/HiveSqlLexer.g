@@ -8,7 +8,6 @@ KWLIKE: 'LIKE';
 
 KWIF: 'IF';
 KWEXISTS: 'EXISTS';
-
 KWASC: 'ASC';
 KWDESC: 'DESC';
 KWORDER: 'ORDER';
@@ -278,19 +277,16 @@ QUESTION: '?';
 DOLLAR: '$';
 
 // LITERALS
-fragment Letter: 'a' ..'z' | 'A' ..'Z';
+fragment Letter: [A-Za-z];
 
-fragment HexDigit: 'a' ..'f' | 'A' ..'F';
+fragment HexDigit: [A-Fa-f];
 
-fragment Digit: '0' ..'9';
+fragment Digit: [0-9];
 
 fragment Exponent: ('e' | 'E') ( PLUS | MINUS)? (Digit)+;
 
 fragment RegexComponent:
-	'a' ..'z'
-	| 'A' ..'Z'
-	| '0' ..'9'
-	| '_'
+	[A-Za-z0-9_]
 	| PLUS
 	| STAR
 	| QUESTION
