@@ -14,6 +14,18 @@ export enum SyntaxKind {
   alterStatement = 'alterStatement',
   alterTableStatementSuffix = 'alterTableStatementSuffix',
   alterStatementSuffixRename = 'alterStatementSuffixRename',
+  alterStatementSuffixRenameCol = 'alterStatementSuffixRenameCol',
+  alterStatementChangeColPosition = 'alterStatementChangeColPosition',
+  alterStatementSuffixAddCol = 'alterStatementSuffixAddCol',
+  columnNameTypeList = 'columnNameTypeList',
+  columnNameType = 'columnNameType',
+  colType = 'colType',
+  colTypeList = 'colTypeList',
+  type = 'type',
+  primitiveType = 'primitiveType',
+  listType = 'listType',
+  mapType = 'mapType',
+  unionType = 'unionType',
   ifNotExists = 'ifNotExists',
   columnNameList = 'columnNameList',
   columnName = 'columnName',
@@ -21,6 +33,12 @@ export enum SyntaxKind {
   queryOperator = 'queryOperator',
   selectStatement = 'selectStatement',
   whereClause = 'whereClause',
+  groupByClause = 'groupByClause',
+  groupingSetExpression = 'groupingSetExpression',
+  groupByExpression = 'groupByExpression',
+  havingClause = 'havingClause',
+  distributeByClause = 'distributeByClause',
+  havingCondition = 'havingCondition',
   searchCondition = 'searchCondition',
   expression = 'expression',
   atomExpression = 'atomExpression',
@@ -112,7 +130,10 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('root', () => {
-      this.SUBRULE(this.execStatement);
+      this.MANY(() => {
+        this.SUBRULE(this.execStatement);
+        this.CONSUME(Tokens.SEMICOLON);
+      });
     });
 
     this.RULE('execStatement', () => {
@@ -263,7 +284,23 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('alterTableStatementSuffix', () => {
-      this.SUBRULE(this.alterStatementSuffixRename);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.alterStatementSuffixRename);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.alterStatementSuffixAddCol);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.alterStatementSuffixRenameCol);
+          },
+        },
+      ]);
     });
 
     this.RULE('alterStatementSuffixRename', () => {
@@ -271,6 +308,214 @@ export class Parser extends chevrotain.Parser {
       this.CONSUME(Tokens.KWRENAME);
       this.CONSUME(Tokens.KWTO);
       this.SUBRULE2(this.identifier);
+    });
+
+    this.RULE('alterStatementSuffixRenameCol', () => {
+      this.SUBRULE(this.identifier);
+      this.CONSUME(Tokens.KWCHANGE);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.KWCOLUMN);
+      });
+
+      this.SUBRULE2(this.identifier);
+      this.SUBRULE3(this.identifier);
+      this.SUBRULE(this.colType);
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.KWCOMMENT);
+        this.CONSUME(Tokens.StringLiteral);
+      });
+
+      this.OPTION3(() => {
+        this.SUBRULE(this.alterStatementChangeColPosition);
+      });
+    });
+
+    this.RULE('alterStatementChangeColPosition', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWFIRST);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWAFTER);
+            this.SUBRULE(this.identifier);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('alterStatementSuffixAddCol', () => {
+      this.SUBRULE(this.identifier);
+      this.OR2([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWADD);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWREPLACE);
+          },
+        },
+      ]);
+      this.CONSUME(Tokens.KWCOLUMNS);
+      this.CONSUME(Tokens.LPAREN);
+      this.SUBRULE(this.columnNameTypeList);
+      this.CONSUME(Tokens.RPAREN);
+    });
+
+    this.RULE('columnNameTypeList', () => {
+      this.SUBRULE(this.columnNameType);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.columnNameType);
+      });
+    });
+
+    this.RULE('columnNameType', () => {
+      this.SUBRULE(this.identifier);
+      this.SUBRULE(this.colType);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.KWCOMMENT);
+        this.CONSUME(Tokens.StringLiteral);
+      });
+    });
+
+    this.RULE('colType', () => {
+      this.SUBRULE(this.type);
+    });
+
+    this.RULE('colTypeList', () => {
+      this.SUBRULE(this.colType);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.colType);
+      });
+    });
+
+    this.RULE('type', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.primitiveType);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.listType);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.mapType);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.unionType);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('primitiveType', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWTINYINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWSMALLINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWBIGINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWBOOLEAN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWFLOAT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWDOUBLE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWDATE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWDATETIME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWTIMESTAMP);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWSTRING);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWBINARY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWDECIMAL);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('listType', () => {
+      this.CONSUME(Tokens.KWARRAY);
+      this.CONSUME(Tokens.LESSTHAN);
+      this.SUBRULE(this.type);
+      this.CONSUME(Tokens.GREATERTHAN);
+    });
+
+    this.RULE('mapType', () => {
+      this.CONSUME(Tokens.KWMAP);
+      this.CONSUME(Tokens.LESSTHAN);
+      this.SUBRULE(this.primitiveType);
+      this.CONSUME(Tokens.COMMA);
+      this.SUBRULE(this.type);
+      this.CONSUME(Tokens.GREATERTHAN);
+    });
+
+    this.RULE('unionType', () => {
+      this.CONSUME(Tokens.KWUNIONTYPE);
+      this.CONSUME(Tokens.LESSTHAN);
+      this.SUBRULE(this.colTypeList);
+      this.CONSUME(Tokens.GREATERTHAN);
     });
 
     this.RULE('ifNotExists', () => {
@@ -293,6 +538,8 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('columnRefOrder', () => {
+      this.SUBRULE(this.expression);
+
       this.OPTION(() => {
         this.OR2([
           {
@@ -323,14 +570,26 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.OPTION2(() => {
-        this.SUBRULE(this.orderByClause);
+        this.SUBRULE(this.groupByClause);
       });
 
       this.OPTION3(() => {
-        this.SUBRULE(this.sortByClause);
+        this.SUBRULE(this.havingClause);
       });
 
       this.OPTION4(() => {
+        this.SUBRULE(this.orderByClause);
+      });
+
+      this.OPTION5(() => {
+        this.SUBRULE(this.distributeByClause);
+      });
+
+      this.OPTION6(() => {
+        this.SUBRULE(this.sortByClause);
+      });
+
+      this.OPTION7(() => {
         this.SUBRULE(this.limitClause);
       });
     });
@@ -338,6 +597,117 @@ export class Parser extends chevrotain.Parser {
     this.RULE('whereClause', () => {
       this.CONSUME(Tokens.KWWHERE);
       this.SUBRULE(this.searchCondition);
+    });
+
+    this.RULE('groupByClause', () => {
+      this.CONSUME(Tokens.KWGROUP);
+      this.CONSUME(Tokens.KWBY);
+      this.SUBRULE(this.groupByExpression);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.groupByExpression);
+      });
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.KWWITH);
+              this.CONSUME(Tokens.KWROLLUP);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME2(Tokens.KWWITH);
+              this.CONSUME(Tokens.KWCUBE);
+            },
+          },
+        ]);
+      });
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.KWGROUPING);
+        this.CONSUME(Tokens.KWSETS);
+        this.CONSUME(Tokens.LPAREN);
+        this.SUBRULE(this.groupingSetExpression);
+
+        this.MANY2(() => {
+          this.CONSUME2(Tokens.COMMA);
+          this.SUBRULE2(this.groupingSetExpression);
+        });
+
+        this.CONSUME(Tokens.RPAREN);
+      });
+    });
+
+    this.RULE('groupingSetExpression', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.groupByExpression);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LPAREN);
+            this.SUBRULE2(this.groupByExpression);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.SUBRULE3(this.groupByExpression);
+            });
+
+            this.CONSUME(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.LPAREN);
+            this.CONSUME2(Tokens.RPAREN);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('groupByExpression', () => {
+      this.SUBRULE(this.expression);
+    });
+
+    this.RULE('havingClause', () => {
+      this.CONSUME(Tokens.KWHAVING);
+      this.SUBRULE(this.havingCondition);
+    });
+
+    this.RULE('distributeByClause', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWDISTRIBUTE);
+            this.CONSUME(Tokens.KWBY);
+            this.CONSUME(Tokens.LPAREN);
+            this.SUBRULE(this.expression);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.SUBRULE2(this.expression);
+            });
+
+            this.CONSUME(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.KWDISTRIBUTE);
+            this.CONSUME2(Tokens.KWBY);
+            this.SUBRULE3(this.expression);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('havingCondition', () => {
+      this.SUBRULE(this.expression);
     });
 
     this.RULE('searchCondition', () => {
@@ -358,13 +728,6 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.tableOrColumn);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LPAREN);
-            this.SUBRULE(this.expression);
-            this.CONSUME(Tokens.RPAREN);
           },
         },
       ]);

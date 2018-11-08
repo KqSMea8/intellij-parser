@@ -1,4 +1,4 @@
-root: execStatement;
+root: (execStatement SEMICOLON)*;
 
 execStatement: ddlStatement;
 
@@ -31,10 +31,60 @@ dropTableStatement: KWDROP KWTABLE ifExists? tableName;
 
 alterStatement: KWALTER ( KWTABLE alterTableStatementSuffix);
 
-alterTableStatementSuffix: alterStatementSuffixRename;
+alterTableStatementSuffix:
+	alterStatementSuffixRename
+	| alterStatementSuffixAddCol
+	| alterStatementSuffixRenameCol;
 
 alterStatementSuffixRename:
 	oldName = identifier KWRENAME KWTO newName = identifier;
+
+alterStatementSuffixRenameCol:
+	identifier KWCHANGE KWCOLUMN? oldName = identifier newName = identifier colType (
+		KWCOMMENT comment = StringLiteral
+	)? alterStatementChangeColPosition?;
+
+alterStatementChangeColPosition:
+	first = KWFIRST
+	| KWAFTER afterCol = identifier;
+
+alterStatementSuffixAddCol:
+	identifier (add = KWADD | replace = KWREPLACE) KWCOLUMNS LPAREN columnNameTypeList RPAREN;
+
+columnNameTypeList: columnNameType (COMMA columnNameType)*;
+
+columnNameType:
+	colName = identifier colType (
+		KWCOMMENT comment = StringLiteral
+	)?;
+
+colType: type;
+
+colTypeList: colType (COMMA colType)*;
+
+type: primitiveType | listType | mapType | unionType;
+
+primitiveType:
+	KWTINYINT
+	| KWSMALLINT
+	| KWINT
+	| KWBIGINT
+	| KWBOOLEAN
+	| KWFLOAT
+	| KWDOUBLE
+	| KWDATE
+	| KWDATETIME
+	| KWTIMESTAMP
+	| KWSTRING
+	| KWBINARY
+	| KWDECIMAL;
+
+listType: KWARRAY LESSTHAN type GREATERTHAN;
+
+mapType:
+	KWMAP LESSTHAN left = primitiveType COMMA right = type GREATERTHAN;
+
+unionType: KWUNIONTYPE LESSTHAN colTypeList GREATERTHAN;
 
 ifNotExists: KWIF KWNOT KWEXISTS;
 
@@ -42,23 +92,46 @@ columnNameList: columnName (COMMA columnName)*;
 
 columnName: identifier;
 
-columnRefOrder: (asc = KWASC | desc = KWDESC)?;
+columnRefOrder: expression (asc = KWASC | desc = KWDESC)?;
 
 queryOperator: KWUNION KWALL;
 
 selectStatement:
-	selectClause fromClause whereClause? orderByClause? sortByClause? limitClause?;
+	selectClause fromClause whereClause? groupByClause? havingClause? orderByClause?
+		distributeByClause? sortByClause? limitClause?;
 
 whereClause: KWWHERE searchCondition;
+
+groupByClause:
+	KWGROUP KWBY groupByExpression (COMMA groupByExpression)* (
+		(rollup = KWWITH KWROLLUP)
+		| (cube = KWWITH KWCUBE)
+	)? (
+		sets = KWGROUPING KWSETS LPAREN groupingSetExpression (
+			COMMA groupingSetExpression
+		)* RPAREN
+	)?;
+
+groupingSetExpression:
+	groupByExpression
+	| LPAREN groupByExpression (COMMA groupByExpression)* RPAREN
+	| LPAREN RPAREN;
+
+groupByExpression: expression;
+
+havingClause: KWHAVING havingCondition;
+
+distributeByClause:
+	KWDISTRIBUTE KWBY LPAREN expression (COMMA expression)* RPAREN
+	| KWDISTRIBUTE KWBY expression;
+
+havingCondition: expression;
 
 searchCondition: expression;
 
 expression: precedenceOrExpression;
 
-atomExpression:
-	constant
-	| tableOrColumn
-	| LPAREN expression RPAREN;
+atomExpression: constant | tableOrColumn;
 
 tableOrColumn: identifier;
 
