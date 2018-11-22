@@ -1,5 +1,5 @@
 namespace IntellijSqlEditor {
-  enum SyntaxKind {}
+  enum SyntaxKind { }
 
   export interface Node {
     kind: SyntaxKind;
@@ -13,11 +13,22 @@ namespace IntellijSqlEditor {
   }
 }
 
-import { parseMysql, getAvailableTokens } from './sql-parser/index';
-import * as utils  from './utils/index';
+import { parseMysql as ODPSParseMysql, getAvailableTokens as ODPSGetAvailableTokens } from './sql-parser/ODPS';
+import { parseMysql as HiveParseMysql, getAvailableTokens as HiveGetAvailableTokens} from './sql-parser/Hive';
+import * as utils from './utils/index';
+
+const ODPS = {
+  getAvailableTokens: ODPSGetAvailableTokens,
+  parseMysql: ODPSParseMysql
+}
+
+const Hive = {
+  getAvailableTokens: HiveGetAvailableTokens,
+  parseMysql: HiveParseMysql
+}
 
 export {
   utils,
-  parseMysql,
-  getAvailableTokens
+  ODPS,
+  Hive
 }
