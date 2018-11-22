@@ -4,12 +4,13 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "compile": "tsc && node lib/meta/index.js",
-    "hive-compile": "tsc && node lib/meta/hive.js",
-    "compile-parser": "tsc sql-parser/index.ts",
+    "odps-compile": "tsc && node lib/meta/ODPS/index.js",
+    "hive-compile": "tsc && node lib/meta/Hive/index.js",
+    "compile-opds-parser": "tsc sql-parser/ODPS/index.ts",
+    "compile-hive-parser": "tsc sql-parser/Hive/index.ts",
+    "parser": "tsc && node lib/sql-parser/index.js",
     "dev": "tsc -w",
     "start": "cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
-    "parser": "tsc && node lib/sql-parser/index.js",
     "test": "tsc && node lib/test.js"
   },
   "publishConfig": {

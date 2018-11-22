@@ -1,3 +1,4 @@
+/** 从产生式中抽取完整语法子句 */
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import * as _ from 'lodash';

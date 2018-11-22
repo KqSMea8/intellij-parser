@@ -3,8 +3,8 @@ import * as chevrotain from 'chevrotain';
 import * as fs from 'fs-extra';
 import * as path from 'path';
 import { parseGCode, cstToAst, traverse, SyntaxKind, LowerNameNode, UpperNameNode } from './HiveMetaGenerator';
-import { toUCamelCase } from '../common/utils';
-import { TokenEnum } from './MetaLexer';
+import { toUCamelCase } from '../../common/utils';
+import { TokenEnum } from '../MetaLexer';
 
 class MetaParserConfig {
   prettierConfig: prettier.Options = {
@@ -12,10 +12,8 @@ class MetaParserConfig {
     trailingComma: 'all',
     singleQuote: true
   };
-  parserCodePath = '../../grammars/HiveSql/CoreParser.g';
-  lexerCodePath = '../../grammars/HiveSql/HiveSqlLexer.g';
-  templatePath = '../parser/parserTemplate';
-  outDir = '../parser/test.json';
+  parserCodePath = '../../../grammars/HiveSql/CoreParser.g';
+  lexerCodePath = '../../../grammars/HiveSql/HiveSqlLexer.g';
 }
 
 function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
@@ -65,9 +63,9 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
   try {
     const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
 
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/hivesql/lexer_cst.g.json'), JSON.stringify(cst, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/hivesql/lexer_ast.g.json'), JSON.stringify(ast, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/hivesql/lexer.g.ts'), beautifiedCode);
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer.g.ts'), beautifiedCode);
   } catch (e) {
     console.error(e);
     debugger;
@@ -186,9 +184,9 @@ function metaParserGenerator(parserGCode: string, config: MetaParserConfig, toke
   try {
     const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
 
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/hivesql/parser_cst.g.json'), JSON.stringify(cst, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/hivesql/parser_ast.g.json'), JSON.stringify(ast, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../sql-parser/hivesql/parser.g.ts'), beautifiedCode);
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser.g.ts'), beautifiedCode);
   } catch (e) {
     console.error(e);
     debugger;
