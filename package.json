@@ -21,7 +21,12 @@
     "url": "git@github.com:nefe/intellij-sql-editor.git"
   },
   "bin": {},
-  "files": ["lib", "bin", "src", "*.md"],
+  "files": [
+    "lib",
+    "bin",
+    "src",
+    "*.md"
+  ],
   "author": "NEFE",
   "license": "MIT",
   "devDependencies": {

@@ -13,8 +13,8 @@ namespace IntellijSqlEditor {
   }
 }
 
-import { parseMysql as ODPSParseMysql, getAvailableTokens as ODPSGetAvailableTokens } from './sql-parser/ODPS';
-import { parseMysql as HiveParseMysql, getAvailableTokens as HiveGetAvailableTokens} from './sql-parser/Hive';
+import { parseMysql as ODPSParseMysql, getAvailableTokens as ODPSGetAvailableTokens } from './sql-parser/ODPS/index';
+import { parseMysql as HiveParseMysql, getAvailableTokens as HiveGetAvailableTokens} from './sql-parser/Hive/index';
 import * as utils from './utils/index';
 
 const ODPS = {
