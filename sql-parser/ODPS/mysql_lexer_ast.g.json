@@ -21291,30 +21291,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "SHOW",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'SHOW'"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "SHOW"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "tokenName": "SEPARATOR",
       "atoms": [
         {

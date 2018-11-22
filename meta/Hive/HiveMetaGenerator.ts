@@ -1,6 +1,6 @@
-import { tokens, Lexer, Tokens, TokenEnum } from './MetaLexer';
+import { tokens, Lexer, Tokens, TokenEnum } from '../MetaLexer';
 import * as _ from 'lodash';
-import { MetaParser } from './MetaParser';
+import { MetaParser } from '../MetaParser';
 
 /** 产生式节点类型 */
 export enum SyntaxKind {

@@ -19,7 +19,8 @@ import * as utils from './utils/index';
 
 const ODPS = {
   getAvailableTokens: ODPSGetAvailableTokens,
-  parseMysql: ODPSParseMysql
+  parseMysql: ODPSParseMysql,
+  utils,
 }
 
 const Hive = {
@@ -28,7 +29,6 @@ const Hive = {
 }
 
 export {
-  utils,
   ODPS,
   Hive
 }

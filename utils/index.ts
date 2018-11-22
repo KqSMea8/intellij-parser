@@ -1,5 +1,5 @@
 import { ErrorType, ErrorPrefix, ErrorToken, CommonStartToken, Snippets, Pos } from './definations';
-import { SyntaxKind, Tokens, TokenEnum } from '../sql-parser/parser.g';
+import { SyntaxKind, Tokens, TokenEnum } from '../sql-parser/ODPS/parser.g';
 import * as _ from 'lodash';
 
 
