@@ -25,7 +25,8 @@ const ODPS = {
 
 const Hive = {
   getAvailableTokens: HiveGetAvailableTokens,
-  parseMysql: HiveParseMysql
+  parseMysql: HiveParseMysql,
+  utils
 }
 
 export {
