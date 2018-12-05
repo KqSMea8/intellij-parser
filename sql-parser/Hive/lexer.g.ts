@@ -6,6 +6,14 @@ const WhiteSpace = chevrotain.createToken({
   group: chevrotain.Lexer.SKIPPED,
   line_breaks: true,
 });
+const DECIMAL_LITERAL = chevrotain.createToken({
+  name: 'DECIMAL_LITERAL',
+  pattern: /[0-9]+/,
+});
+const ID = chevrotain.createToken({
+  name: 'ID',
+  pattern: /[A-Za-z_$0-9*]+/i,
+});
 const COMMENT = chevrotain.createToken({
   name: 'COMMENT',
   pattern: /\-\-([^(\n|\r)])*/i,
@@ -161,6 +169,14 @@ const COLON = chevrotain.createToken({
 const DOT = chevrotain.createToken({
   name: 'DOT',
   pattern: /\./i,
+});
+const KWVALUES = chevrotain.createToken({
+  name: 'KWVALUES',
+  pattern: /VALUES/i,
+});
+const KWVALUE = chevrotain.createToken({
+  name: 'KWVALUE',
+  pattern: /VALUE/i,
 });
 const KWEXCHANGE = chevrotain.createToken({
   name: 'KWEXCHANGE',
@@ -1010,10 +1026,6 @@ const KWUNIQUEJOIN = chevrotain.createToken({
   name: 'KWUNIQUEJOIN',
   pattern: /UNIQUEJOIN/i,
 });
-const KWJOIN = chevrotain.createToken({
-  name: 'KWJOIN',
-  pattern: /JOIN/i,
-});
 const KWOUTER = chevrotain.createToken({
   name: 'KWOUTER',
   pattern: /OUTER/i,
@@ -1054,10 +1066,6 @@ const KWHAVING = chevrotain.createToken({
   name: 'KWHAVING',
   pattern: /HAVING/i,
 });
-const KWIN = chevrotain.createToken({
-  name: 'KWIN',
-  pattern: /IN/i,
-});
 const KWBY = chevrotain.createToken({
   name: 'KWBY',
   pattern: /BY/i,
@@ -1093,6 +1101,14 @@ const KWIS = chevrotain.createToken({
 const KWIF = chevrotain.createToken({
   name: 'KWIF',
   pattern: /IF/i,
+});
+const JOIN = chevrotain.createToken({
+  name: 'JOIN',
+  pattern: /JOIN/i,
+});
+const KWIN = chevrotain.createToken({
+  name: 'KWIN',
+  pattern: /IN/i,
 });
 const KWLIKE = chevrotain.createToken({
   name: 'KWLIKE',
@@ -1167,6 +1183,8 @@ export enum TokenEnum {
   COMMA = 'COMMA',
   COLON = 'COLON',
   DOT = 'DOT',
+  KWVALUES = 'KWVALUES',
+  KWVALUE = 'KWVALUE',
   KWEXCHANGE = 'KWEXCHANGE',
   KWINNER = 'KWINNER',
   KWROLE = 'KWROLE',
@@ -1379,7 +1397,6 @@ export enum TokenEnum {
   KWLEFT = 'KWLEFT',
   KWPRESERVE = 'KWPRESERVE',
   KWUNIQUEJOIN = 'KWUNIQUEJOIN',
-  KWJOIN = 'KWJOIN',
   KWOUTER = 'KWOUTER',
   KWOUT = 'KWOUT',
   KWOVERWRITE = 'KWOVERWRITE',
@@ -1390,7 +1407,6 @@ export enum TokenEnum {
   KWFROM = 'KWFROM',
   KWWHERE = 'KWWHERE',
   KWHAVING = 'KWHAVING',
-  KWIN = 'KWIN',
   KWBY = 'KWBY',
   KWGROUP = 'KWGROUP',
   KWORDER = 'KWORDER',
@@ -1400,6 +1416,8 @@ export enum TokenEnum {
   KWEXISTS = 'KWEXISTS',
   KWIS = 'KWIS',
   KWIF = 'KWIF',
+  JOIN = 'JOIN',
+  KWIN = 'KWIN',
   KWLIKE = 'KWLIKE',
   KWNOT = 'KWNOT',
   KWOR = 'KWOR',
@@ -1450,6 +1468,8 @@ export const Tokens = {
   COMMA,
   COLON,
   DOT,
+  KWVALUES,
+  KWVALUE,
   KWEXCHANGE,
   KWINNER,
   KWROLE,
@@ -1662,7 +1682,6 @@ export const Tokens = {
   KWLEFT,
   KWPRESERVE,
   KWUNIQUEJOIN,
-  KWJOIN,
   KWOUTER,
   KWOUT,
   KWOVERWRITE,
@@ -1673,7 +1692,6 @@ export const Tokens = {
   KWFROM,
   KWWHERE,
   KWHAVING,
-  KWIN,
   KWBY,
   KWGROUP,
   KWORDER,
@@ -1683,6 +1701,8 @@ export const Tokens = {
   KWEXISTS,
   KWIS,
   KWIF,
+  JOIN,
+  KWIN,
   KWLIKE,
   KWNOT,
   KWOR,
@@ -1734,6 +1754,8 @@ export const tokens = [
   COMMA,
   COLON,
   DOT,
+  KWVALUES,
+  KWVALUE,
   KWEXCHANGE,
   KWINNER,
   KWROLE,
@@ -1946,7 +1968,6 @@ export const tokens = [
   KWLEFT,
   KWPRESERVE,
   KWUNIQUEJOIN,
-  KWJOIN,
   KWOUTER,
   KWOUT,
   KWOVERWRITE,
@@ -1957,7 +1978,6 @@ export const tokens = [
   KWFROM,
   KWWHERE,
   KWHAVING,
-  KWIN,
   KWBY,
   KWGROUP,
   KWORDER,
@@ -1967,6 +1987,8 @@ export const tokens = [
   KWEXISTS,
   KWIS,
   KWIF,
+  JOIN,
+  KWIN,
   KWLIKE,
   KWNOT,
   KWOR,

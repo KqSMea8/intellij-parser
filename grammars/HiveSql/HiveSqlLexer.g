@@ -5,7 +5,7 @@ KWAND: 'AND';
 KWOR: 'OR';
 KWNOT: 'NOT' | '!';
 KWLIKE: 'LIKE';
-
+JOIN: 'JOIN';
 KWIF: 'IF';
 KWEXISTS: 'EXISTS';
 KWASC: 'ASC';
@@ -24,7 +24,6 @@ KWOVERWRITE: 'OVERWRITE';
 KWOUTER: 'OUTER';
 KWUNIQUEJOIN: 'UNIQUEJOIN';
 KWPRESERVE: 'PRESERVE';
-KWJOIN: 'JOIN';
 KWLEFT: 'LEFT';
 KWRIGHT: 'RIGHT';
 KWFULL: 'FULL';
@@ -238,6 +237,8 @@ KWUSER: 'USER';
 KWROLE: 'ROLE';
 KWINNER: 'INNER';
 KWEXCHANGE: 'EXCHANGE';
+KWVALUES: 'VALUES';
+KWVALUE: 'VALUE';
 
 // Operators NOTE: if you add a new function/operator, add it to sysFuncNames so that describe
 // function _FUNC_ will work.

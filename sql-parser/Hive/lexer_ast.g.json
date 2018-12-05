@@ -1961,6 +1961,54 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "KWVALUES",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'VALUES'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "VALUES"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "KWVALUE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'VALUE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "VALUE"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "KWEXCHANGE",
       "atoms": [
         {
@@ -7157,30 +7205,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWJOIN",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'JOIN'"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "JOIN"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "tokenName": "KWOUTER",
       "atoms": [
         {
@@ -7421,30 +7445,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWIN",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'IN'"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "IN"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "tokenName": "KWBY",
       "atoms": [
         {
@@ -7657,6 +7657,54 @@
         }
       ],
       "pattern": "IF"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "JOIN",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'JOIN'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "JOIN"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "KWIN",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'IN'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "IN"
     },
     {
       "index": 0,

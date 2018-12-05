@@ -1,15 +1,54 @@
-root: (execStatement SEMICOLON)*;
+root: sqlStatements?;
 
-execStatement: ddlStatement;
+sqlStatements: (sqlStatement KWSEMI)*;
+
+sqlStatement: ddlStatement | dmlStatement | dqlStatement;
+
+dqlStatement: selectStatement | showTable;
 
 ddlStatement:
-	createDatabaseStatement
+	createTable
+	| dropTable
+	| alterTable
+	| createDatabaseStatement
 	| switchDatabaseStatement
-	| dropDatabaseStatement
-	| createTableStatement
-	| dropTableStatement
-	| alterStatement
+	| dropDatabaseStatement;
+
+dmlStatement:
+	insertStatement
+	| updateStatement
+	| deleteStatement;
+
+showTable: KWSHOW tableName;
+
+insertStatement:
+	KWINSERT KWINTO? KWOVERWRITE? KWTABLE? tableName partitionInsertDefinitions? (
+		('(' uidList ')')? insertStatementValue
+	);
+
+partitionInsertDefinitions:
+	(KWPARTITIONED | KWPARTITION) KWBY? (
+		uidList
+		| '(' fullColumnName '=' constant ')'
+	);
+
+insertStatementValue:
+	insertFormat = (KWVALUES | KWVALUE) '(' expression ')' (
+		',' '(' expression ')'
+	)*
 	| selectStatement;
+
+updateStatement:
+	KWUPDATE tableName (KWAS? Identifier)? KWSET updatedElement (
+		',' updatedElement
+	)* (KWWHERE expression)?;
+
+updatedElement: fullColumnName '=' expression;
+
+fullColumnName: constant | Identifier;
+
+deleteStatement:
+	KWDELETE KWFROM tableName (KWWHERE expression)?;
 
 createDatabaseStatement:
 	KWCREATE (KWDATABASE | KWSCHEMA) ifNotExists? name = identifier;
@@ -21,15 +60,15 @@ switchDatabaseStatement: KWUSE identifier;
 dropDatabaseStatement:
 	KWDROP (KWDATABASE | KWSCHEMA) ifExists? identifier;
 
-createTableStatement:
+createTable:
 	KWCREATE (ext = KWEXTERNAL)? KWTABLE ifNotExists? name = tableName (
 		like = KWLIKE likeName = tableName
 		| ( KWAS selectStatement)?
 	);
 
-dropTableStatement: KWDROP KWTABLE ifExists? tableName;
+dropTable: KWDROP KWTABLE ifExists? tableName;
 
-alterStatement: KWALTER ( KWTABLE alterTableStatementSuffix);
+alterTable: KWALTER ( KWTABLE alterTableStatementSuffix);
 
 alterTableStatementSuffix:
 	alterStatementSuffixRename
@@ -263,20 +302,22 @@ tableAllColumns: STAR | tableName DOT STAR;
 
 fromClause: KWFROM joinSource;
 
-joinSource: fromSource (joinToken fromSource)*;
+joinSource: fromSource joinPart;
+
+joinPart: (joinToken fromSource)*;
 
 joinToken:
-	KWJOIN
-	| KWINNER KWJOIN
-	| KWCROSS KWJOIN
-	| KWLEFT (KWOUTER)? KWJOIN
-	| KWRIGHT (KWOUTER)? KWJOIN
-	| KWFULL (KWOUTER)? KWJOIN
-	| KWLEFT KWSEMI KWJOIN;
+	JOIN
+	| KWINNER JOIN
+	| KWCROSS JOIN
+	| KWLEFT (KWOUTER)? JOIN
+	| KWRIGHT (KWOUTER)? JOIN
+	| KWFULL (KWOUTER)? JOIN
+	| KWLEFT KWSEMI JOIN;
 
 fromSource: (tableSource);
 
-tableSource: tabname = tableName ( KWAS? alias = Identifier)?;
+tableSource: tabname = tableName (KWAS? alias = Identifier)?;
 
 tableName:
 	db = identifier DOT tab = identifier
@@ -291,6 +332,8 @@ sortByClause:
 	| KWSORT KWBY columnRefOrder;
 
 identifier: Identifier | nonReserved;
+
+uidList: Identifier (',' Identifier)*;
 
 nonReserved:
 	KWTRUE

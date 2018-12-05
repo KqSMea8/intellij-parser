@@ -2,8 +2,6 @@ root: sqlStatements?;
 
 sqlStatements: (sqlStatement SEMI)*;
 
-emptyStatement: SEMI;
-
 sqlStatement: ddlStatement | dmlStatement | dqlStatement;
 
 dqlStatement: selectStatement | showTable;

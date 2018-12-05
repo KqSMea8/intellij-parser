@@ -1,0 +1,942 @@
+{
+  "index": 0,
+  "kind": "rules",
+  "rules": [
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "EQUAL_SYMBOL",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\="
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "TIME_OPT",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'-p'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\-p"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "EXCLAMATION_SYMBOL",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'!'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\!"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "DOUBLE_SEMI",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "';;'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\;\\;"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "SEMI",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "';'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\;"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "LINE_FEED",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'\\n'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\n"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "RIGHT_BRACKET",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\)"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "RIGHT_BRACE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'}'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\}"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "LEFT_BRACKET",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\("
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "LEFT_BRACE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'{'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\{"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OR",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'||'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\|\\|"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "AND",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'&&'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\&\\&"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "BIT_AND_OP",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'&'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\&"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "BIT_OR_OP",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'|'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\|"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "UNDERLINE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'_'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "_"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "HYPHEN",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'-'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\-"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "DESCRIPTOR_TO_FILE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'&>'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\&\\>"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "RIGHT_REDIRECTION_WITH_MERGE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'>&'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\>\\&"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "LEFT_REDIRECTION_WITH_MERGE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'<&'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\<\\&"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "RIGHT_REDIRECTION_WITH_ADD",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'>>'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\>\\>"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "LEFT_REDIRECTION_WITH_ADD",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'<<'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\<\\<"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "RIGHT_REDIRECTION",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'>'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\>"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "LEFT_REDIRECTION",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'<'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\<"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "DIGIT",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "ReExp",
+                "content": "[0-9]"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "[0-9]"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "ELSE_END",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'ELIF'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "ELIF"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "ELSE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'ELSE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "ELSE"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "THEN",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'THEN'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "THEN"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "IF_END",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'FI'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "FI"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "IF",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'IF'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "IF"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "FUNCTION",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'FUNCTION'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "FUNCTION"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "CASE_END",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'ESAC'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "ESAC"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "CASE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'CASE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "CASE"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "SELECT",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'SELECT'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "SELECT"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "IN",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'IN'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "IN"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "FOR",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'FOR'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "FOR"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "DONE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'DONE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "DONE"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "DO",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'DO'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "DO"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "WHILE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'WHILE'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "WHILE"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "LETTER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "ReExp",
+                "content": "[A-Za-z]"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "[A-Za-z]"
+    }
+  ]
+}

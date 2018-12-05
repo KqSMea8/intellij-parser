@@ -1,3 +1,5 @@
+// 全量ODPS SQL BNF
+
 root: sqlStatements? MINUSMINUS;
 
 sqlStatements: (sqlStatement MINUSMINUS? SEMI | emptyStatement)* (

@@ -3,15 +3,26 @@ import { tokens, Lexer, Tokens, TokenEnum } from './lexer.g';
 
 export enum SyntaxKind {
   root = 'root',
-  execStatement = 'execStatement',
+  sqlStatements = 'sqlStatements',
+  sqlStatement = 'sqlStatement',
+  dqlStatement = 'dqlStatement',
   ddlStatement = 'ddlStatement',
+  dmlStatement = 'dmlStatement',
+  showTable = 'showTable',
+  insertStatement = 'insertStatement',
+  partitionInsertDefinitions = 'partitionInsertDefinitions',
+  insertStatementValue = 'insertStatementValue',
+  updateStatement = 'updateStatement',
+  updatedElement = 'updatedElement',
+  fullColumnName = 'fullColumnName',
+  deleteStatement = 'deleteStatement',
   createDatabaseStatement = 'createDatabaseStatement',
   ifExists = 'ifExists',
   switchDatabaseStatement = 'switchDatabaseStatement',
   dropDatabaseStatement = 'dropDatabaseStatement',
-  createTableStatement = 'createTableStatement',
-  dropTableStatement = 'dropTableStatement',
-  alterStatement = 'alterStatement',
+  createTable = 'createTable',
+  dropTable = 'dropTable',
+  alterTable = 'alterTable',
   alterTableStatementSuffix = 'alterTableStatementSuffix',
   alterStatementSuffixRename = 'alterStatementSuffixRename',
   alterStatementSuffixRenameCol = 'alterStatementSuffixRenameCol',
@@ -80,6 +91,7 @@ export enum SyntaxKind {
   tableAllColumns = 'tableAllColumns',
   fromClause = 'fromClause',
   joinSource = 'joinSource',
+  joinPart = 'joinPart',
   joinToken = 'joinToken',
   fromSource = 'fromSource',
   tableSource = 'tableSource',
@@ -87,6 +99,7 @@ export enum SyntaxKind {
   orderByClause = 'orderByClause',
   sortByClause = 'sortByClause',
   identifier = 'identifier',
+  uidList = 'uidList',
   nonReserved = 'nonReserved',
 }
 
@@ -130,18 +143,70 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('root', () => {
-      this.MANY(() => {
-        this.SUBRULE(this.execStatement);
-        this.CONSUME(Tokens.SEMICOLON);
+      this.OPTION(() => {
+        this.SUBRULE(this.sqlStatements);
       });
     });
 
-    this.RULE('execStatement', () => {
-      this.SUBRULE(this.ddlStatement);
+    this.RULE('sqlStatements', () => {
+      this.MANY(() => {
+        this.SUBRULE(this.sqlStatement);
+        this.CONSUME(Tokens.KWSEMI);
+      });
+    });
+
+    this.RULE('sqlStatement', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.ddlStatement);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.dmlStatement);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.dqlStatement);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('dqlStatement', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.selectStatement);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.showTable);
+          },
+        },
+      ]);
     });
 
     this.RULE('ddlStatement', () => {
       this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.createTable);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.dropTable);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.alterTable);
+          },
+        },
         {
           ALT: () => {
             this.SUBRULE(this.createDatabaseStatement);
@@ -157,19 +222,126 @@ export class Parser extends chevrotain.Parser {
             this.SUBRULE(this.dropDatabaseStatement);
           },
         },
+      ]);
+    });
+
+    this.RULE('dmlStatement', () => {
+      this.OR([
         {
           ALT: () => {
-            this.SUBRULE(this.createTableStatement);
+            this.SUBRULE(this.insertStatement);
           },
         },
         {
           ALT: () => {
-            this.SUBRULE(this.dropTableStatement);
+            this.SUBRULE(this.updateStatement);
           },
         },
         {
           ALT: () => {
-            this.SUBRULE(this.alterStatement);
+            this.SUBRULE(this.deleteStatement);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('showTable', () => {
+      this.CONSUME(Tokens.KWSHOW);
+      this.SUBRULE(this.tableName);
+    });
+
+    this.RULE('insertStatement', () => {
+      this.CONSUME(Tokens.KWINSERT);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.KWINTO);
+      });
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.KWOVERWRITE);
+      });
+
+      this.OPTION3(() => {
+        this.CONSUME(Tokens.KWTABLE);
+      });
+
+      this.SUBRULE(this.tableName);
+
+      this.OPTION4(() => {
+        this.SUBRULE(this.partitionInsertDefinitions);
+      });
+
+      this.OPTION5(() => {
+        this.CONSUME(Tokens.LPAREN);
+        this.SUBRULE(this.uidList);
+        this.CONSUME(Tokens.RPAREN);
+      });
+
+      this.SUBRULE(this.insertStatementValue);
+    });
+
+    this.RULE('partitionInsertDefinitions', () => {
+      this.OR2([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWPARTITIONED);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.KWPARTITION);
+          },
+        },
+      ]);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.KWBY);
+      });
+
+      this.OR3([
+        {
+          ALT: () => {
+            this.SUBRULE(this.uidList);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LPAREN);
+            this.SUBRULE(this.fullColumnName);
+            this.CONSUME(Tokens.EQUAL);
+            this.SUBRULE(this.constant);
+            this.CONSUME(Tokens.RPAREN);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('insertStatementValue', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.KWVALUES);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.KWVALUE);
+                },
+              },
+            ]);
+            this.CONSUME(Tokens.LPAREN);
+            this.SUBRULE(this.expression);
+            this.CONSUME(Tokens.RPAREN);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.CONSUME2(Tokens.LPAREN);
+              this.SUBRULE2(this.expression);
+              this.CONSUME2(Tokens.RPAREN);
+            });
           },
         },
         {
@@ -178,6 +350,64 @@ export class Parser extends chevrotain.Parser {
           },
         },
       ]);
+    });
+
+    this.RULE('updateStatement', () => {
+      this.CONSUME(Tokens.KWUPDATE);
+      this.SUBRULE(this.tableName);
+
+      this.OPTION(() => {
+        this.OPTION2(() => {
+          this.CONSUME(Tokens.KWAS);
+        });
+
+        this.CONSUME(Tokens.Identifier);
+      });
+
+      this.CONSUME(Tokens.KWSET);
+      this.SUBRULE(this.updatedElement);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.updatedElement);
+      });
+
+      this.OPTION3(() => {
+        this.CONSUME(Tokens.KWWHERE);
+        this.SUBRULE(this.expression);
+      });
+    });
+
+    this.RULE('updatedElement', () => {
+      this.SUBRULE(this.fullColumnName);
+      this.CONSUME(Tokens.EQUAL);
+      this.SUBRULE(this.expression);
+    });
+
+    this.RULE('fullColumnName', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.constant);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.Identifier);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('deleteStatement', () => {
+      this.CONSUME(Tokens.KWDELETE);
+      this.CONSUME(Tokens.KWFROM);
+      this.SUBRULE(this.tableName);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.KWWHERE);
+        this.SUBRULE(this.expression);
+      });
     });
 
     this.RULE('createDatabaseStatement', () => {
@@ -234,7 +464,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.identifier);
     });
 
-    this.RULE('createTableStatement', () => {
+    this.RULE('createTable', () => {
       this.CONSUME(Tokens.KWCREATE);
 
       this.OPTION(() => {
@@ -266,7 +496,7 @@ export class Parser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE('dropTableStatement', () => {
+    this.RULE('dropTable', () => {
       this.CONSUME(Tokens.KWDROP);
       this.CONSUME(Tokens.KWTABLE);
 
@@ -277,7 +507,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.tableName);
     });
 
-    this.RULE('alterStatement', () => {
+    this.RULE('alterTable', () => {
       this.CONSUME(Tokens.KWALTER);
       this.CONSUME(Tokens.KWTABLE);
       this.SUBRULE(this.alterTableStatementSuffix);
@@ -1210,10 +1440,13 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('joinSource', () => {
       this.SUBRULE(this.fromSource);
+      this.SUBRULE(this.joinPart);
+    });
 
+    this.RULE('joinPart', () => {
       this.MANY(() => {
         this.SUBRULE(this.joinToken);
-        this.SUBRULE2(this.fromSource);
+        this.SUBRULE(this.fromSource);
       });
     });
 
@@ -1221,19 +1454,19 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWJOIN);
+            this.CONSUME(Tokens.JOIN);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.KWINNER);
-            this.CONSUME2(Tokens.KWJOIN);
+            this.CONSUME2(Tokens.JOIN);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.KWCROSS);
-            this.CONSUME3(Tokens.KWJOIN);
+            this.CONSUME3(Tokens.JOIN);
           },
         },
         {
@@ -1244,7 +1477,7 @@ export class Parser extends chevrotain.Parser {
               this.CONSUME(Tokens.KWOUTER);
             });
 
-            this.CONSUME4(Tokens.KWJOIN);
+            this.CONSUME4(Tokens.JOIN);
           },
         },
         {
@@ -1255,7 +1488,7 @@ export class Parser extends chevrotain.Parser {
               this.CONSUME2(Tokens.KWOUTER);
             });
 
-            this.CONSUME5(Tokens.KWJOIN);
+            this.CONSUME5(Tokens.JOIN);
           },
         },
         {
@@ -1266,14 +1499,14 @@ export class Parser extends chevrotain.Parser {
               this.CONSUME3(Tokens.KWOUTER);
             });
 
-            this.CONSUME6(Tokens.KWJOIN);
+            this.CONSUME6(Tokens.JOIN);
           },
         },
         {
           ALT: () => {
             this.CONSUME2(Tokens.KWLEFT);
             this.CONSUME(Tokens.KWSEMI);
-            this.CONSUME7(Tokens.KWJOIN);
+            this.CONSUME7(Tokens.JOIN);
           },
         },
       ]);
@@ -1384,6 +1617,15 @@ export class Parser extends chevrotain.Parser {
           },
         },
       ]);
+    });
+
+    this.RULE('uidList', () => {
+      this.CONSUME(Tokens.Identifier);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.CONSUME2(Tokens.Identifier);
+      });
     });
 
     this.RULE('nonReserved', () => {

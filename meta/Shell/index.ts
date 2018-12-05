@@ -2,7 +2,7 @@ import * as prettier from 'prettier';
 import * as chevrotain from 'chevrotain';
 import * as fs from 'fs-extra';
 import * as path from 'path';
-import { parseGCode, cstToAst, traverse, SyntaxKind, LowerNameNode, UpperNameNode } from './HiveMetaGenerator';
+import { parseGCode, cstToAst, traverse, SyntaxKind, LowerNameNode, UpperNameNode } from './ShellMetaGenerator';
 import { toUCamelCase } from '../../common/utils';
 import { TokenEnum } from '../MetaLexer';
 
@@ -12,8 +12,8 @@ class MetaParserConfig {
     trailingComma: 'all',
     singleQuote: true
   };
-  parserCodePath = '../../../grammars/HiveSql/CoreParser.g';
-  lexerCodePath = '../../../grammars/HiveSql/HiveSqlLexer.g';
+  parserCodePath = '../../../grammars/Shell/CoreParser.g4';
+  lexerCodePath = '../../../grammars/Shell/ShellLexer.g4';
 }
 
 function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
@@ -40,14 +40,6 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
       group: chevrotain.Lexer.SKIPPED,
       line_breaks: true
     });
-    const DECIMAL_LITERAL = chevrotain.createToken({
-      name: 'DECIMAL_LITERAL',
-      pattern: /[0-9]+/,
-    });
-    const ID = chevrotain.createToken({
-      name: 'ID',
-      pattern: /[A-Za-z_\$0-9*]+/i,
-    });  
     ${ast.toLexerCode()}
 
     export enum TokenEnum {
@@ -71,9 +63,9 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
   try {
     const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
 
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer_cst.g.json'), JSON.stringify(cst, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer_ast.g.json'), JSON.stringify(ast, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer.g.ts'), beautifiedCode);
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Shell/shell_lexer_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Shell/shell_lexer_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Shell/lexer.g.ts'), beautifiedCode);
   } catch (e) {
     console.error(e);
     debugger;
@@ -192,9 +184,9 @@ function metaParserGenerator(parserGCode: string, config: MetaParserConfig, toke
   try {
     const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
 
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser_cst.g.json'), JSON.stringify(cst, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser_ast.g.json'), JSON.stringify(ast, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser.g.ts'), beautifiedCode);
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/shell/shell_parser_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/shell/shell_parser_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/shell/parser.g.ts'), beautifiedCode);
   } catch (e) {
     console.error(e);
     debugger;
@@ -219,6 +211,7 @@ function metaGenerator(config = new MetaParserConfig()) {
   const lexerCode = fs.readFileSync(path.join(__dirname, config.lexerCodePath)).toString('utf8');
   const parserCode = fs.readFileSync(path.join(__dirname, config.parserCodePath)).toString('utf8');
   const tokens = getTokens(lexerCode);
+
   // lexger不需要重新生成
   metaLexerGenerator(lexerCode, config);
   metaParserGenerator(parserCode, config, tokens);

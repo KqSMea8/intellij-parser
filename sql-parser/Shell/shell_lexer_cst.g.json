@@ -1,0 +1,4180 @@
+{
+  "name": "rules",
+  "children": {
+    "rule": [
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "WHILE",
+              "startOffset": 0,
+              "startLine": 1,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 5,
+              "startLine": 1,
+              "startColumn": 6,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'WHILE'",
+                                      "startOffset": 7,
+                                      "startLine": 1,
+                                      "startColumn": 8,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 14,
+              "startLine": 1,
+              "startColumn": 15,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "DO",
+              "startOffset": 16,
+              "startLine": 2,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 18,
+              "startLine": 2,
+              "startColumn": 3,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'DO'",
+                                      "startOffset": 20,
+                                      "startLine": 2,
+                                      "startColumn": 5,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 24,
+              "startLine": 2,
+              "startColumn": 9,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "DONE",
+              "startOffset": 26,
+              "startLine": 3,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 30,
+              "startLine": 3,
+              "startColumn": 5,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'DONE'",
+                                      "startOffset": 32,
+                                      "startLine": 3,
+                                      "startColumn": 7,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 38,
+              "startLine": 3,
+              "startColumn": 13,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "FOR",
+              "startOffset": 40,
+              "startLine": 4,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 43,
+              "startLine": 4,
+              "startColumn": 4,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'FOR'",
+                                      "startOffset": 45,
+                                      "startLine": 4,
+                                      "startColumn": 6,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 50,
+              "startLine": 4,
+              "startColumn": 11,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "IN",
+              "startOffset": 52,
+              "startLine": 5,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 54,
+              "startLine": 5,
+              "startColumn": 3,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'IN'",
+                                      "startOffset": 56,
+                                      "startLine": 5,
+                                      "startColumn": 5,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 60,
+              "startLine": 5,
+              "startColumn": 9,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "SELECT",
+              "startOffset": 62,
+              "startLine": 6,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 68,
+              "startLine": 6,
+              "startColumn": 7,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'SELECT'",
+                                      "startOffset": 70,
+                                      "startLine": 6,
+                                      "startColumn": 9,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 78,
+              "startLine": 6,
+              "startColumn": 17,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "CASE",
+              "startOffset": 80,
+              "startLine": 7,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 84,
+              "startLine": 7,
+              "startColumn": 5,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'CASE'",
+                                      "startOffset": 86,
+                                      "startLine": 7,
+                                      "startColumn": 7,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 92,
+              "startLine": 7,
+              "startColumn": 13,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "CASE_END",
+              "startOffset": 94,
+              "startLine": 8,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 102,
+              "startLine": 8,
+              "startColumn": 9,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'ESAC'",
+                                      "startOffset": 104,
+                                      "startLine": 8,
+                                      "startColumn": 11,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 110,
+              "startLine": 8,
+              "startColumn": 17,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "FUNCTION",
+              "startOffset": 112,
+              "startLine": 9,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 120,
+              "startLine": 9,
+              "startColumn": 9,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'FUNCTION'",
+                                      "startOffset": 122,
+                                      "startLine": 9,
+                                      "startColumn": 11,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 132,
+              "startLine": 9,
+              "startColumn": 21,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "IF",
+              "startOffset": 134,
+              "startLine": 10,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 136,
+              "startLine": 10,
+              "startColumn": 3,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'IF'",
+                                      "startOffset": 138,
+                                      "startLine": 10,
+                                      "startColumn": 5,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 142,
+              "startLine": 10,
+              "startColumn": 9,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "IF_END",
+              "startOffset": 144,
+              "startLine": 11,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 150,
+              "startLine": 11,
+              "startColumn": 7,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'FI'",
+                                      "startOffset": 152,
+                                      "startLine": 11,
+                                      "startColumn": 9,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 156,
+              "startLine": 11,
+              "startColumn": 13,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "THEN",
+              "startOffset": 158,
+              "startLine": 12,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 162,
+              "startLine": 12,
+              "startColumn": 5,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'THEN'",
+                                      "startOffset": 164,
+                                      "startLine": 12,
+                                      "startColumn": 7,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 170,
+              "startLine": 12,
+              "startColumn": 13,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "ELSE",
+              "startOffset": 172,
+              "startLine": 13,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 176,
+              "startLine": 13,
+              "startColumn": 5,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'ELSE'",
+                                      "startOffset": 178,
+                                      "startLine": 13,
+                                      "startColumn": 7,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 184,
+              "startLine": 13,
+              "startColumn": 13,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "ELSE_END",
+              "startOffset": 186,
+              "startLine": 14,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 194,
+              "startLine": 14,
+              "startColumn": 9,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'ELIF'",
+                                      "startOffset": 196,
+                                      "startLine": 14,
+                                      "startColumn": 11,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 202,
+              "startLine": 14,
+              "startColumn": 17,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "DIGIT",
+              "startOffset": 206,
+              "startLine": 17,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 211,
+              "startLine": 17,
+              "startColumn": 6,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "ReExp": [
+                                    {
+                                      "image": "[0-9]",
+                                      "startOffset": 213,
+                                      "startLine": 17,
+                                      "startColumn": 8,
+                                      "tokenTypeIdx": 18,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 18,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "ReExp",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 218,
+              "startLine": 17,
+              "startColumn": 13,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "LETTER",
+              "startOffset": 220,
+              "startLine": 18,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 226,
+              "startLine": 18,
+              "startColumn": 7,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "ReExp": [
+                                    {
+                                      "image": "[A-Za-z]",
+                                      "startOffset": 228,
+                                      "startLine": 18,
+                                      "startColumn": 9,
+                                      "tokenTypeIdx": 18,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 18,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "ReExp",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 236,
+              "startLine": 18,
+              "startColumn": 17,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "LEFT_REDIRECTION",
+              "startOffset": 239,
+              "startLine": 20,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 255,
+              "startLine": 20,
+              "startColumn": 17,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'<'",
+                                      "startOffset": 257,
+                                      "startLine": 20,
+                                      "startColumn": 19,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 260,
+              "startLine": 20,
+              "startColumn": 22,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "RIGHT_REDIRECTION",
+              "startOffset": 262,
+              "startLine": 21,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 279,
+              "startLine": 21,
+              "startColumn": 18,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'>'",
+                                      "startOffset": 281,
+                                      "startLine": 21,
+                                      "startColumn": 20,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 284,
+              "startLine": 21,
+              "startColumn": 23,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "LEFT_REDIRECTION_WITH_ADD",
+              "startOffset": 286,
+              "startLine": 22,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 311,
+              "startLine": 22,
+              "startColumn": 26,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'<<'",
+                                      "startOffset": 313,
+                                      "startLine": 22,
+                                      "startColumn": 28,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 317,
+              "startLine": 22,
+              "startColumn": 32,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "RIGHT_REDIRECTION_WITH_ADD",
+              "startOffset": 319,
+              "startLine": 23,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 345,
+              "startLine": 23,
+              "startColumn": 27,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'>>'",
+                                      "startOffset": 347,
+                                      "startLine": 23,
+                                      "startColumn": 29,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 351,
+              "startLine": 23,
+              "startColumn": 33,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "LEFT_REDIRECTION_WITH_MERGE",
+              "startOffset": 353,
+              "startLine": 24,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 380,
+              "startLine": 24,
+              "startColumn": 28,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'<&'",
+                                      "startOffset": 382,
+                                      "startLine": 24,
+                                      "startColumn": 30,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 386,
+              "startLine": 24,
+              "startColumn": 34,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "RIGHT_REDIRECTION_WITH_MERGE",
+              "startOffset": 388,
+              "startLine": 25,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 416,
+              "startLine": 25,
+              "startColumn": 29,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'>&'",
+                                      "startOffset": 418,
+                                      "startLine": 25,
+                                      "startColumn": 31,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 422,
+              "startLine": 25,
+              "startColumn": 35,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "DESCRIPTOR_TO_FILE",
+              "startOffset": 424,
+              "startLine": 26,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 442,
+              "startLine": 26,
+              "startColumn": 19,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'&>'",
+                                      "startOffset": 444,
+                                      "startLine": 26,
+                                      "startColumn": 21,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 448,
+              "startLine": 26,
+              "startColumn": 25,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "HYPHEN",
+              "startOffset": 450,
+              "startLine": 27,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 456,
+              "startLine": 27,
+              "startColumn": 7,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'-'",
+                                      "startOffset": 458,
+                                      "startLine": 27,
+                                      "startColumn": 9,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 461,
+              "startLine": 27,
+              "startColumn": 12,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "UNDERLINE",
+              "startOffset": 463,
+              "startLine": 28,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 472,
+              "startLine": 28,
+              "startColumn": 10,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'_'",
+                                      "startOffset": 474,
+                                      "startLine": 28,
+                                      "startColumn": 12,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 477,
+              "startLine": 28,
+              "startColumn": 15,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "BIT_OR_OP",
+              "startOffset": 479,
+              "startLine": 29,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 488,
+              "startLine": 29,
+              "startColumn": 10,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'|'",
+                                      "startOffset": 490,
+                                      "startLine": 29,
+                                      "startColumn": 12,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 493,
+              "startLine": 29,
+              "startColumn": 15,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "BIT_AND_OP",
+              "startOffset": 495,
+              "startLine": 30,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 505,
+              "startLine": 30,
+              "startColumn": 11,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'&'",
+                                      "startOffset": 507,
+                                      "startLine": 30,
+                                      "startColumn": 13,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 510,
+              "startLine": 30,
+              "startColumn": 16,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "AND",
+              "startOffset": 512,
+              "startLine": 31,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 515,
+              "startLine": 31,
+              "startColumn": 4,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'&&'",
+                                      "startOffset": 517,
+                                      "startLine": 31,
+                                      "startColumn": 6,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 521,
+              "startLine": 31,
+              "startColumn": 10,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "OR",
+              "startOffset": 523,
+              "startLine": 32,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 525,
+              "startLine": 32,
+              "startColumn": 3,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'||'",
+                                      "startOffset": 527,
+                                      "startLine": 32,
+                                      "startColumn": 5,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 531,
+              "startLine": 32,
+              "startColumn": 9,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "LEFT_BRACE",
+              "startOffset": 533,
+              "startLine": 33,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 543,
+              "startLine": 33,
+              "startColumn": 11,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'{'",
+                                      "startOffset": 545,
+                                      "startLine": 33,
+                                      "startColumn": 13,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 548,
+              "startLine": 33,
+              "startColumn": 16,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "LEFT_BRACKET",
+              "startOffset": 550,
+              "startLine": 34,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 562,
+              "startLine": 34,
+              "startColumn": 13,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'('",
+                                      "startOffset": 564,
+                                      "startLine": 34,
+                                      "startColumn": 15,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 567,
+              "startLine": 34,
+              "startColumn": 18,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "RIGHT_BRACE",
+              "startOffset": 569,
+              "startLine": 35,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 580,
+              "startLine": 35,
+              "startColumn": 12,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'}'",
+                                      "startOffset": 582,
+                                      "startLine": 35,
+                                      "startColumn": 14,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 585,
+              "startLine": 35,
+              "startColumn": 17,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "RIGHT_BRACKET",
+              "startOffset": 587,
+              "startLine": 36,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 600,
+              "startLine": 36,
+              "startColumn": 14,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "')'",
+                                      "startOffset": 602,
+                                      "startLine": 36,
+                                      "startColumn": 16,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 605,
+              "startLine": 36,
+              "startColumn": 19,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "LINE_FEED",
+              "startOffset": 607,
+              "startLine": 37,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 616,
+              "startLine": 37,
+              "startColumn": 10,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'\\n'",
+                                      "startOffset": 618,
+                                      "startLine": 37,
+                                      "startColumn": 12,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 622,
+              "startLine": 37,
+              "startColumn": 16,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "SEMI",
+              "startOffset": 624,
+              "startLine": 38,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 628,
+              "startLine": 38,
+              "startColumn": 5,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "';'",
+                                      "startOffset": 630,
+                                      "startLine": 38,
+                                      "startColumn": 7,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 633,
+              "startLine": 38,
+              "startColumn": 10,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "DOUBLE_SEMI",
+              "startOffset": 635,
+              "startLine": 39,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 646,
+              "startLine": 39,
+              "startColumn": 12,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "';;'",
+                                      "startOffset": 648,
+                                      "startLine": 39,
+                                      "startColumn": 14,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 652,
+              "startLine": 39,
+              "startColumn": 18,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "EXCLAMATION_SYMBOL",
+              "startOffset": 654,
+              "startLine": 40,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 672,
+              "startLine": 40,
+              "startColumn": 19,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'!'",
+                                      "startOffset": 674,
+                                      "startLine": 40,
+                                      "startColumn": 21,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 677,
+              "startLine": 40,
+              "startColumn": 24,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "TIME_OPT",
+              "startOffset": 679,
+              "startLine": 41,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 687,
+              "startLine": 41,
+              "startColumn": 9,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'-p'",
+                                      "startOffset": 689,
+                                      "startLine": 41,
+                                      "startColumn": 11,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 693,
+              "startLine": 41,
+              "startColumn": 15,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "EQUAL_SYMBOL",
+              "startOffset": 696,
+              "startLine": 43,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 708,
+              "startLine": 43,
+              "startColumn": 13,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'='",
+                                      "startOffset": 710,
+                                      "startLine": 43,
+                                      "startColumn": 15,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 713,
+              "startLine": 43,
+              "startColumn": 18,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
