@@ -21,6 +21,13 @@ dmlStatement:
 
 showTable: SHOW tableName;
 
+selectStatement:
+	selectClause fromClause whereClause? groupByClause? havingClause? orderByClause?
+		distributeByClause? sortByClause? limitClause?;
+
+selectClause:
+	SELECT (ALL | DISTINCT)? selectList;
+
 insertStatement:
 	INSERT INTO? OVERWRITE? TABLE? tableName partitionInsertDefinitions? (
 		('(' uidList ')')? insertStatementValue
@@ -134,13 +141,6 @@ columnName: identifier;
 columnRefOrder: expression (asc = ASC | desc = DESC)?;
 
 queryOperator: UNION ALL;
-
-selectStatement:
-	selectClause fromClause whereClause? groupByClause? havingClause? orderByClause?
-		distributeByClause? sortByClause? limitClause?;
-
-selectClause:
-	SELECT (ALL | DISTINCT)? selectList;
 
 whereClause: WHERE searchCondition;
 

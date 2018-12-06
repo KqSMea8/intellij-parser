@@ -9,6 +9,8 @@ export enum SyntaxKind {
   ddlStatement = 'ddlStatement',
   dmlStatement = 'dmlStatement',
   showTable = 'showTable',
+  selectStatement = 'selectStatement',
+  selectClause = 'selectClause',
   insertStatement = 'insertStatement',
   partitionInsertDefinitions = 'partitionInsertDefinitions',
   insertStatementValue = 'insertStatementValue',
@@ -42,8 +44,6 @@ export enum SyntaxKind {
   columnName = 'columnName',
   columnRefOrder = 'columnRefOrder',
   queryOperator = 'queryOperator',
-  selectStatement = 'selectStatement',
-  selectClause = 'selectClause',
   whereClause = 'whereClause',
   groupByClause = 'groupByClause',
   groupingSetExpression = 'groupingSetExpression',
@@ -248,6 +248,60 @@ export class Parser extends chevrotain.Parser {
     this.RULE('showTable', () => {
       this.CONSUME(Tokens.SHOW);
       this.SUBRULE(this.tableName);
+    });
+
+    this.RULE('selectStatement', () => {
+      this.SUBRULE(this.selectClause);
+      this.SUBRULE(this.fromClause);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.whereClause);
+      });
+
+      this.OPTION2(() => {
+        this.SUBRULE(this.groupByClause);
+      });
+
+      this.OPTION3(() => {
+        this.SUBRULE(this.havingClause);
+      });
+
+      this.OPTION4(() => {
+        this.SUBRULE(this.orderByClause);
+      });
+
+      this.OPTION5(() => {
+        this.SUBRULE(this.distributeByClause);
+      });
+
+      this.OPTION6(() => {
+        this.SUBRULE(this.sortByClause);
+      });
+
+      this.OPTION7(() => {
+        this.SUBRULE(this.limitClause);
+      });
+    });
+
+    this.RULE('selectClause', () => {
+      this.CONSUME(Tokens.SELECT);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ALL);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DISTINCT);
+            },
+          },
+        ]);
+      });
+
+      this.SUBRULE(this.selectList);
     });
 
     this.RULE('insertStatement', () => {
@@ -789,60 +843,6 @@ export class Parser extends chevrotain.Parser {
     this.RULE('queryOperator', () => {
       this.CONSUME(Tokens.UNION);
       this.CONSUME(Tokens.ALL);
-    });
-
-    this.RULE('selectStatement', () => {
-      this.SUBRULE(this.selectClause);
-      this.SUBRULE(this.fromClause);
-
-      this.OPTION(() => {
-        this.SUBRULE(this.whereClause);
-      });
-
-      this.OPTION2(() => {
-        this.SUBRULE(this.groupByClause);
-      });
-
-      this.OPTION3(() => {
-        this.SUBRULE(this.havingClause);
-      });
-
-      this.OPTION4(() => {
-        this.SUBRULE(this.orderByClause);
-      });
-
-      this.OPTION5(() => {
-        this.SUBRULE(this.distributeByClause);
-      });
-
-      this.OPTION6(() => {
-        this.SUBRULE(this.sortByClause);
-      });
-
-      this.OPTION7(() => {
-        this.SUBRULE(this.limitClause);
-      });
-    });
-
-    this.RULE('selectClause', () => {
-      this.CONSUME(Tokens.SELECT);
-
-      this.OPTION(() => {
-        this.OR2([
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.ALL);
-            },
-          },
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.DISTINCT);
-            },
-          },
-        ]);
-      });
-
-      this.SUBRULE(this.selectList);
     });
 
     this.RULE('whereClause', () => {

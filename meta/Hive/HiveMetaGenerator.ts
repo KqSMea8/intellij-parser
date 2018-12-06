@@ -160,7 +160,7 @@ function getPatternByUpName(ast: RulesNode, upName: string) {
 /** 基类 */
 class BaseNode {
   kind: SyntaxKind | TokenEnum;
-  index? = 0;
+  index?= 0;
   get children(): BaseNode[] {
     return [];
   }
@@ -262,8 +262,7 @@ export class RulesNode extends BaseNode {
   toLexerCode() {
     return this.rules
       .filter(rule => !rule.fragName)
-      .filter(rule => rule.tokenName !== 'DECIMAL_LITERAL')
-      .filter(rule => rule.tokenName !== 'ID')
+      .filter(rule => rule.tokenName !== 'Identifier')
       .map(rule => rule.toDebugLexerCode())
       .join('\n');
   }
@@ -305,9 +304,10 @@ export class RuleNode extends BaseNode {
 
   toLexerCode() {
     return `const ${this.tokenName} = chevrotain.createToken({
-        name: '${this.tokenName}',
-        pattern: /${this.pattern}/i,
-      });`;
+      name: '${this.tokenName}',
+      pattern: /${this.pattern}/i,
+      longer_alt: Identifier
+    });`;
   }
 
   toCode() {
