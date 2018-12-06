@@ -5,91 +5,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "COMMENT",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'--'"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "*",
-              "item": {
-                "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": true,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 0,
-                                    "kind": "Stringliteral",
-                                    "content": "'\\n'"
-                                  }
-                                }
-                              ]
-                            },
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 0,
-                                    "kind": "Stringliteral",
-                                    "content": "'\\r'"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "\\-\\-([^(\\n|\\r)])*"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "tokenName": "WS",
       "atoms": [
         {
@@ -1961,7 +1876,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWVALUES",
+      "tokenName": "VALUES",
       "atoms": [
         {
           "index": 0,
@@ -1985,7 +1900,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWVALUE",
+      "tokenName": "VALUE",
       "atoms": [
         {
           "index": 0,
@@ -2009,7 +1924,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEXCHANGE",
+      "tokenName": "EXCHANGE",
       "atoms": [
         {
           "index": 0,
@@ -2033,7 +1948,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINNER",
+      "tokenName": "INNER",
       "atoms": [
         {
           "index": 0,
@@ -2057,7 +1972,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWROLE",
+      "tokenName": "ROLE",
       "atoms": [
         {
           "index": 0,
@@ -2081,7 +1996,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUSER",
+      "tokenName": "USER",
       "atoms": [
         {
           "index": 0,
@@ -2105,7 +2020,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPARTIALSCAN",
+      "tokenName": "PARTIALSCAN",
       "atoms": [
         {
           "index": 0,
@@ -2129,7 +2044,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWNOSCAN",
+      "tokenName": "NOSCAN",
       "atoms": [
         {
           "index": 0,
@@ -2153,7 +2068,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTRUNCATE",
+      "tokenName": "TRUNCATE",
       "atoms": [
         {
           "index": 0,
@@ -2177,7 +2092,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSETS",
+      "tokenName": "SETS",
       "atoms": [
         {
           "index": 0,
@@ -2201,7 +2116,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWGROUPING",
+      "tokenName": "GROUPING",
       "atoms": [
         {
           "index": 0,
@@ -2225,7 +2140,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWMORE",
+      "tokenName": "MORE",
       "atoms": [
         {
           "index": 0,
@@ -2249,7 +2164,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLESS",
+      "tokenName": "LESS",
       "atoms": [
         {
           "index": 0,
@@ -2273,7 +2188,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCURRENT",
+      "tokenName": "CURRENT",
       "atoms": [
         {
           "index": 0,
@@ -2297,7 +2212,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFOLLOWING",
+      "tokenName": "FOLLOWING",
       "atoms": [
         {
           "index": 0,
@@ -2321,7 +2236,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPRECEDING",
+      "tokenName": "PRECEDING",
       "atoms": [
         {
           "index": 0,
@@ -2345,7 +2260,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNBOUNDED",
+      "tokenName": "UNBOUNDED",
       "atoms": [
         {
           "index": 0,
@@ -2369,7 +2284,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWWINDOW",
+      "tokenName": "WINDOW",
       "atoms": [
         {
           "index": 0,
@@ -2393,7 +2308,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDIRECTORIES",
+      "tokenName": "DIRECTORIES",
       "atoms": [
         {
           "index": 0,
@@ -2417,7 +2332,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCUBE",
+      "tokenName": "CUBE",
       "atoms": [
         {
           "index": 0,
@@ -2441,7 +2356,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWROLLUP",
+      "tokenName": "ROLLUP",
       "atoms": [
         {
           "index": 0,
@@ -2465,7 +2380,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSKEWED",
+      "tokenName": "SKEWED",
       "atoms": [
         {
           "index": 0,
@@ -2489,7 +2404,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCASCADE",
+      "tokenName": "CASCADE",
       "atoms": [
         {
           "index": 0,
@@ -2513,7 +2428,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRESTRICT",
+      "tokenName": "RESTRICT",
       "atoms": [
         {
           "index": 0,
@@ -2537,7 +2452,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUPDATE",
+      "tokenName": "UPDATE",
       "atoms": [
         {
           "index": 0,
@@ -2561,7 +2476,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSHOW_DATABASE",
+      "tokenName": "SHOW_DATABASE",
       "atoms": [
         {
           "index": 0,
@@ -2585,7 +2500,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCONCATENATE",
+      "tokenName": "CONCATENATE",
       "atoms": [
         {
           "index": 0,
@@ -2609,7 +2524,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOPTION",
+      "tokenName": "OPTION",
       "atoms": [
         {
           "index": 0,
@@ -2633,7 +2548,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUSE",
+      "tokenName": "USE",
       "atoms": [
         {
           "index": 0,
@@ -2657,7 +2572,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSTATISTICS",
+      "tokenName": "STATISTICS",
       "atoms": [
         {
           "index": 0,
@@ -2681,7 +2596,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCOMPUTE",
+      "tokenName": "COMPUTE",
       "atoms": [
         {
           "index": 0,
@@ -2705,7 +2620,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNARCHIVE",
+      "tokenName": "UNARCHIVE",
       "atoms": [
         {
           "index": 0,
@@ -2729,7 +2644,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWARCHIVE",
+      "tokenName": "ARCHIVE",
       "atoms": [
         {
           "index": 0,
@@ -2753,7 +2668,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTOUCH",
+      "tokenName": "TOUCH",
       "atoms": [
         {
           "index": 0,
@@ -2777,7 +2692,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLATERAL",
+      "tokenName": "LATERAL",
       "atoms": [
         {
           "index": 0,
@@ -2801,7 +2716,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSEMI",
+      "tokenName": "SEMI",
       "atoms": [
         {
           "index": 0,
@@ -2825,7 +2740,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRECORDWRITER",
+      "tokenName": "RECORDWRITER",
       "atoms": [
         {
           "index": 0,
@@ -2849,7 +2764,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRECORDREADER",
+      "tokenName": "RECORDREADER",
       "atoms": [
         {
           "index": 0,
@@ -2873,7 +2788,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTRIGGER",
+      "tokenName": "TRIGGER",
       "atoms": [
         {
           "index": 0,
@@ -2897,7 +2812,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCURSOR",
+      "tokenName": "CURSOR",
       "atoms": [
         {
           "index": 0,
@@ -2921,7 +2836,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCONTINUE",
+      "tokenName": "CONTINUE",
       "atoms": [
         {
           "index": 0,
@@ -2945,7 +2860,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCROSS",
+      "tokenName": "CROSS",
       "atoms": [
         {
           "index": 0,
@@ -2969,7 +2884,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBINARY",
+      "tokenName": "BINARY",
       "atoms": [
         {
           "index": 0,
@@ -2993,7 +2908,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBOTH",
+      "tokenName": "BOTH",
       "atoms": [
         {
           "index": 0,
@@ -3017,7 +2932,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBETWEEN",
+      "tokenName": "BETWEEN",
       "atoms": [
         {
           "index": 0,
@@ -3041,7 +2956,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBEFORE",
+      "tokenName": "BEFORE",
       "atoms": [
         {
           "index": 0,
@@ -3065,7 +2980,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWANALYZE",
+      "tokenName": "ANALYZE",
       "atoms": [
         {
           "index": 0,
@@ -3089,7 +3004,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRANGE",
+      "tokenName": "RANGE",
       "atoms": [
         {
           "index": 0,
@@ -3113,7 +3028,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPURGE",
+      "tokenName": "PURGE",
       "atoms": [
         {
           "index": 0,
@@ -3137,7 +3052,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREADS",
+      "tokenName": "READS",
       "atoms": [
         {
           "index": 0,
@@ -3161,7 +3076,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWWHILE",
+      "tokenName": "WHILE",
       "atoms": [
         {
           "index": 0,
@@ -3185,7 +3100,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNSIGNED",
+      "tokenName": "UNSIGNED",
       "atoms": [
         {
           "index": 0,
@@ -3209,7 +3124,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPROCEDURE",
+      "tokenName": "PROCEDURE",
       "atoms": [
         {
           "index": 0,
@@ -3233,7 +3148,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEXCLUSIVE",
+      "tokenName": "EXCLUSIVE",
       "atoms": [
         {
           "index": 0,
@@ -3257,7 +3172,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSHARED",
+      "tokenName": "SHARED",
       "atoms": [
         {
           "index": 0,
@@ -3281,7 +3196,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNLOCK",
+      "tokenName": "UNLOCK",
       "atoms": [
         {
           "index": 0,
@@ -3305,7 +3220,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLOCKS",
+      "tokenName": "LOCKS",
       "atoms": [
         {
           "index": 0,
@@ -3329,7 +3244,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLOCK",
+      "tokenName": "LOCK",
       "atoms": [
         {
           "index": 0,
@@ -3353,7 +3268,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNDO",
+      "tokenName": "UNDO",
       "atoms": [
         {
           "index": 0,
@@ -3377,7 +3292,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSSL",
+      "tokenName": "SSL",
       "atoms": [
         {
           "index": 0,
@@ -3401,7 +3316,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREVOKE",
+      "tokenName": "REVOKE",
       "atoms": [
         {
           "index": 0,
@@ -3425,7 +3340,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWGRANT",
+      "tokenName": "GRANT",
       "atoms": [
         {
           "index": 0,
@@ -3449,7 +3364,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSCHEMAS",
+      "tokenName": "SCHEMAS",
       "atoms": [
         {
           "index": 0,
@@ -3473,7 +3388,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSCHEMA",
+      "tokenName": "SCHEMA",
       "atoms": [
         {
           "index": 0,
@@ -3497,7 +3412,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWMATERIALIZED",
+      "tokenName": "MATERIALIZED",
       "atoms": [
         {
           "index": 0,
@@ -3521,7 +3436,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDATABASES",
+      "tokenName": "DATABASES",
       "atoms": [
         {
           "index": 0,
@@ -3545,7 +3460,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDATABASE",
+      "tokenName": "DATABASE",
       "atoms": [
         {
           "index": 0,
@@ -3569,7 +3484,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWVIEW",
+      "tokenName": "VIEW",
       "atoms": [
         {
           "index": 0,
@@ -3593,7 +3508,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINTERSECT",
+      "tokenName": "INTERSECT",
       "atoms": [
         {
           "index": 0,
@@ -3617,7 +3532,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFETCH",
+      "tokenName": "FETCH",
       "atoms": [
         {
           "index": 0,
@@ -3654,13 +3569,13 @@
               "item": {
                 "index": 0,
                 "kind": "Stringliteral",
-                "content": "'MINUS'"
+                "content": "'KWMINUS'"
               }
             }
           ]
         }
       ],
-      "pattern": "MINUS"
+      "pattern": "KWMINUS"
     },
     {
       "index": 0,
@@ -3678,18 +3593,18 @@
               "item": {
                 "index": 0,
                 "kind": "Stringliteral",
-                "content": "'PLUS'"
+                "content": "'KWPLUS'"
               }
             }
           ]
         }
       ],
-      "pattern": "PLUS"
+      "pattern": "KWPLUS"
     },
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDELETE",
+      "tokenName": "DELETE",
       "atoms": [
         {
           "index": 0,
@@ -3713,7 +3628,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLONG",
+      "tokenName": "LONG",
       "atoms": [
         {
           "index": 0,
@@ -3737,7 +3652,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUTCTIMESTAMP",
+      "tokenName": "UTCTIMESTAMP",
       "atoms": [
         {
           "index": 0,
@@ -3761,7 +3676,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUTC",
+      "tokenName": "UTC",
       "atoms": [
         {
           "index": 0,
@@ -3785,7 +3700,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCLUSTERSTATUS",
+      "tokenName": "CLUSTERSTATUS",
       "atoms": [
         {
           "index": 0,
@@ -3809,7 +3724,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWHOLD_DDLTIME",
+      "tokenName": "HOLD_DDLTIME",
       "atoms": [
         {
           "index": 0,
@@ -3833,7 +3748,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSTREAMTABLE",
+      "tokenName": "STREAMTABLE",
       "atoms": [
         {
           "index": 0,
@@ -3857,7 +3772,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWMAPJOIN",
+      "tokenName": "MAPJOIN",
       "atoms": [
         {
           "index": 0,
@@ -3881,7 +3796,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWELSE",
+      "tokenName": "ELSE",
       "atoms": [
         {
           "index": 0,
@@ -3905,7 +3820,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTHEN",
+      "tokenName": "THEN",
       "atoms": [
         {
           "index": 0,
@@ -3929,7 +3844,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWWHEN",
+      "tokenName": "WHEN",
       "atoms": [
         {
           "index": 0,
@@ -3953,7 +3868,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCASE",
+      "tokenName": "CASE",
       "atoms": [
         {
           "index": 0,
@@ -3977,7 +3892,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWELEM_TYPE",
+      "tokenName": "ELEM_TYPE",
       "atoms": [
         {
           "index": 0,
@@ -4001,7 +3916,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWVALUE_TYPE",
+      "tokenName": "VALUE_TYPE",
       "atoms": [
         {
           "index": 0,
@@ -4025,7 +3940,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWIDXPROPERTIES",
+      "tokenName": "IDXPROPERTIES",
       "atoms": [
         {
           "index": 0,
@@ -4049,7 +3964,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTBLPROPERTIES",
+      "tokenName": "TBLPROPERTIES",
       "atoms": [
         {
           "index": 0,
@@ -4073,7 +3988,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNSET",
+      "tokenName": "UNSET",
       "atoms": [
         {
           "index": 0,
@@ -4097,7 +4012,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSET",
+      "tokenName": "SET",
       "atoms": [
         {
           "index": 0,
@@ -4121,7 +4036,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDBPROPERTIES",
+      "tokenName": "DBPROPERTIES",
       "atoms": [
         {
           "index": 0,
@@ -4145,7 +4060,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSERDEPROPERTIES",
+      "tokenName": "SERDEPROPERTIES",
       "atoms": [
         {
           "index": 0,
@@ -4169,7 +4084,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDEFERRED",
+      "tokenName": "DEFERRED",
       "atoms": [
         {
           "index": 0,
@@ -4193,7 +4108,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWWITH",
+      "tokenName": "WITH",
       "atoms": [
         {
           "index": 0,
@@ -4217,7 +4132,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSERDE",
+      "tokenName": "SERDE",
       "atoms": [
         {
           "index": 0,
@@ -4241,7 +4156,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLOGICAL",
+      "tokenName": "LOGICAL",
       "atoms": [
         {
           "index": 0,
@@ -4265,7 +4180,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDEPENDENCY",
+      "tokenName": "DEPENDENCY",
       "atoms": [
         {
           "index": 0,
@@ -4289,7 +4204,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPRETTY",
+      "tokenName": "PRETTY",
       "atoms": [
         {
           "index": 0,
@@ -4313,7 +4228,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFORMATTED",
+      "tokenName": "FORMATTED",
       "atoms": [
         {
           "index": 0,
@@ -4337,7 +4252,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEXTENDED",
+      "tokenName": "EXTENDED",
       "atoms": [
         {
           "index": 0,
@@ -4361,7 +4276,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEND",
+      "tokenName": "END",
       "atoms": [
         {
           "index": 0,
@@ -4385,7 +4300,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEXPLAIN",
+      "tokenName": "EXPLAIN",
       "atoms": [
         {
           "index": 0,
@@ -4409,7 +4324,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWMACRO",
+      "tokenName": "MACRO",
       "atoms": [
         {
           "index": 0,
@@ -4433,7 +4348,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTEMPORARY",
+      "tokenName": "TEMPORARY",
       "atoms": [
         {
           "index": 0,
@@ -4457,7 +4372,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREGEXP",
+      "tokenName": "REGEXP",
       "atoms": [
         {
           "index": 0,
@@ -4481,7 +4396,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRLIKE",
+      "tokenName": "RLIKE",
       "atoms": [
         {
           "index": 0,
@@ -4505,7 +4420,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREPLACE",
+      "tokenName": "REPLACE",
       "atoms": [
         {
           "index": 0,
@@ -4529,7 +4444,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWADD",
+      "tokenName": "ADD",
       "atoms": [
         {
           "index": 0,
@@ -4553,7 +4468,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCAST",
+      "tokenName": "CAST",
       "atoms": [
         {
           "index": 0,
@@ -4577,7 +4492,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPERCENT",
+      "tokenName": "PERCENT",
       "atoms": [
         {
           "index": 0,
@@ -4601,7 +4516,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTABLESAMPLE",
+      "tokenName": "TABLESAMPLE",
       "atoms": [
         {
           "index": 0,
@@ -4625,7 +4540,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLOCATION",
+      "tokenName": "LOCATION",
       "atoms": [
         {
           "index": 0,
@@ -4649,7 +4564,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWNO_DROP",
+      "tokenName": "NO_DROP",
       "atoms": [
         {
           "index": 0,
@@ -4805,7 +4720,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREADONLY",
+      "tokenName": "READONLY",
       "atoms": [
         {
           "index": 0,
@@ -4829,7 +4744,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREAD",
+      "tokenName": "READ",
       "atoms": [
         {
           "index": 0,
@@ -4853,7 +4768,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDISABLE",
+      "tokenName": "DISABLE",
       "atoms": [
         {
           "index": 0,
@@ -4877,7 +4792,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWENABLE",
+      "tokenName": "ENABLE",
       "atoms": [
         {
           "index": 0,
@@ -4901,7 +4816,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOFFLINE",
+      "tokenName": "OFFLINE",
       "atoms": [
         {
           "index": 0,
@@ -4925,7 +4840,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOF",
+      "tokenName": "OF",
       "atoms": [
         {
           "index": 0,
@@ -4949,7 +4864,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOUTPUTDRIVER",
+      "tokenName": "OUTPUTDRIVER",
       "atoms": [
         {
           "index": 0,
@@ -4973,7 +4888,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINPUTDRIVER",
+      "tokenName": "INPUTDRIVER",
       "atoms": [
         {
           "index": 0,
@@ -4997,7 +4912,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOUTPUTFORMAT",
+      "tokenName": "OUTPUTFORMAT",
       "atoms": [
         {
           "index": 0,
@@ -5021,7 +4936,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINPUTFORMAT",
+      "tokenName": "INPUTFORMAT",
       "atoms": [
         {
           "index": 0,
@@ -5045,7 +4960,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWORCFILE",
+      "tokenName": "ORCFILE",
       "atoms": [
         {
           "index": 0,
@@ -5069,7 +4984,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRCFILE",
+      "tokenName": "RCFILE",
       "atoms": [
         {
           "index": 0,
@@ -5093,7 +5008,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTEXTFILE",
+      "tokenName": "TEXTFILE",
       "atoms": [
         {
           "index": 0,
@@ -5117,7 +5032,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSEQUENCEFILE",
+      "tokenName": "SEQUENCEFILE",
       "atoms": [
         {
           "index": 0,
@@ -5141,7 +5056,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFILEFORMAT",
+      "tokenName": "FILEFORMAT",
       "atoms": [
         {
           "index": 0,
@@ -5165,7 +5080,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSTORED",
+      "tokenName": "STORED",
       "atoms": [
         {
           "index": 0,
@@ -5189,7 +5104,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLINES",
+      "tokenName": "LINES",
       "atoms": [
         {
           "index": 0,
@@ -5213,7 +5128,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWKEY_TYPE",
+      "tokenName": "KEY_TYPE",
       "atoms": [
         {
           "index": 0,
@@ -5237,7 +5152,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWKEYS",
+      "tokenName": "KEYS",
       "atoms": [
         {
           "index": 0,
@@ -5261,7 +5176,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWITEMS",
+      "tokenName": "ITEMS",
       "atoms": [
         {
           "index": 0,
@@ -5285,7 +5200,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCOLLECTION",
+      "tokenName": "COLLECTION",
       "atoms": [
         {
           "index": 0,
@@ -5309,7 +5224,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWESCAPED",
+      "tokenName": "ESCAPED",
       "atoms": [
         {
           "index": 0,
@@ -5333,7 +5248,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTERMINATED",
+      "tokenName": "TERMINATED",
       "atoms": [
         {
           "index": 0,
@@ -5357,7 +5272,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFIELDS",
+      "tokenName": "FIELDS",
       "atoms": [
         {
           "index": 0,
@@ -5381,7 +5296,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDELIMITED",
+      "tokenName": "DELIMITED",
       "atoms": [
         {
           "index": 0,
@@ -5405,7 +5320,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLIMIT",
+      "tokenName": "LIMIT",
       "atoms": [
         {
           "index": 0,
@@ -5429,7 +5344,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFORMAT",
+      "tokenName": "FORMAT",
       "atoms": [
         {
           "index": 0,
@@ -5453,7 +5368,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWROWS",
+      "tokenName": "ROWS",
       "atoms": [
         {
           "index": 0,
@@ -5477,7 +5392,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWROW",
+      "tokenName": "ROW",
       "atoms": [
         {
           "index": 0,
@@ -5501,7 +5416,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBUCKETS",
+      "tokenName": "BUCKETS",
       "atoms": [
         {
           "index": 0,
@@ -5525,7 +5440,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBUCKET",
+      "tokenName": "BUCKET",
       "atoms": [
         {
           "index": 0,
@@ -5549,7 +5464,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINTO",
+      "tokenName": "INTO",
       "atoms": [
         {
           "index": 0,
@@ -5573,7 +5488,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSORTED",
+      "tokenName": "SORTED",
       "atoms": [
         {
           "index": 0,
@@ -5597,7 +5512,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCLUSTERED",
+      "tokenName": "CLUSTERED",
       "atoms": [
         {
           "index": 0,
@@ -5621,7 +5536,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPARTITIONED",
+      "tokenName": "PARTITIONED",
       "atoms": [
         {
           "index": 0,
@@ -5645,7 +5560,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREDUCE",
+      "tokenName": "REDUCE",
       "atoms": [
         {
           "index": 0,
@@ -5669,7 +5584,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNIONTYPE",
+      "tokenName": "UNIONTYPE",
       "atoms": [
         {
           "index": 0,
@@ -5693,7 +5608,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWMAP",
+      "tokenName": "MAP",
       "atoms": [
         {
           "index": 0,
@@ -5717,7 +5632,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSTRUCT",
+      "tokenName": "STRUCT",
       "atoms": [
         {
           "index": 0,
@@ -5741,7 +5656,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWARRAY",
+      "tokenName": "ARRAY",
       "atoms": [
         {
           "index": 0,
@@ -5765,7 +5680,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSTRING",
+      "tokenName": "STRING",
       "atoms": [
         {
           "index": 0,
@@ -5789,7 +5704,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDECIMAL",
+      "tokenName": "DECIMAL",
       "atoms": [
         {
           "index": 0,
@@ -5813,7 +5728,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTIMESTAMP",
+      "tokenName": "TIMESTAMP",
       "atoms": [
         {
           "index": 0,
@@ -5837,7 +5752,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDATETIME",
+      "tokenName": "DATETIME",
       "atoms": [
         {
           "index": 0,
@@ -5861,7 +5776,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDATE",
+      "tokenName": "DATE",
       "atoms": [
         {
           "index": 0,
@@ -5885,7 +5800,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDOUBLE",
+      "tokenName": "DOUBLE",
       "atoms": [
         {
           "index": 0,
@@ -5909,7 +5824,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFLOAT",
+      "tokenName": "FLOAT",
       "atoms": [
         {
           "index": 0,
@@ -5933,7 +5848,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBIGINT",
+      "tokenName": "BIGINT",
       "atoms": [
         {
           "index": 0,
@@ -5957,7 +5872,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSMALLINT",
+      "tokenName": "SMALLINT",
       "atoms": [
         {
           "index": 0,
@@ -5981,7 +5896,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTINYINT",
+      "tokenName": "TINYINT",
       "atoms": [
         {
           "index": 0,
@@ -6005,7 +5920,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINT",
+      "tokenName": "INT",
       "atoms": [
         {
           "index": 0,
@@ -6029,7 +5944,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBOOLEAN",
+      "tokenName": "BOOLEAN",
       "atoms": [
         {
           "index": 0,
@@ -6053,7 +5968,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCOMMENT",
+      "tokenName": "COMMENT",
       "atoms": [
         {
           "index": 0,
@@ -6066,18 +5981,18 @@
               "item": {
                 "index": 0,
                 "kind": "Stringliteral",
-                "content": "'COMMENT'"
+                "content": "'KWCOMMENT'"
               }
             }
           ]
         }
       ],
-      "pattern": "COMMENT"
+      "pattern": "KWCOMMENT"
     },
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPROTECTION",
+      "tokenName": "PROTECTION",
       "atoms": [
         {
           "index": 0,
@@ -6101,7 +6016,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWIGNORE",
+      "tokenName": "IGNORE",
       "atoms": [
         {
           "index": 0,
@@ -6125,7 +6040,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRENAME",
+      "tokenName": "RENAME",
       "atoms": [
         {
           "index": 0,
@@ -6149,7 +6064,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDROP",
+      "tokenName": "DROP",
       "atoms": [
         {
           "index": 0,
@@ -6173,7 +6088,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDESCRIBE",
+      "tokenName": "DESCRIBE",
       "atoms": [
         {
           "index": 0,
@@ -6197,7 +6112,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWAFTER",
+      "tokenName": "AFTER",
       "atoms": [
         {
           "index": 0,
@@ -6221,7 +6136,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFIRST",
+      "tokenName": "FIRST",
       "atoms": [
         {
           "index": 0,
@@ -6245,7 +6160,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCHANGE",
+      "tokenName": "CHANGE",
       "atoms": [
         {
           "index": 0,
@@ -6269,7 +6184,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWALTER",
+      "tokenName": "ALTER",
       "atoms": [
         {
           "index": 0,
@@ -6293,7 +6208,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEXTERNAL",
+      "tokenName": "EXTERNAL",
       "atoms": [
         {
           "index": 0,
@@ -6317,7 +6232,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCREATE",
+      "tokenName": "CREATE",
       "atoms": [
         {
           "index": 0,
@@ -6341,7 +6256,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWNULL",
+      "tokenName": "NULL",
       "atoms": [
         {
           "index": 0,
@@ -6365,7 +6280,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINPATH",
+      "tokenName": "INPATH",
       "atoms": [
         {
           "index": 0,
@@ -6389,7 +6304,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDATA",
+      "tokenName": "DATA",
       "atoms": [
         {
           "index": 0,
@@ -6413,7 +6328,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWIMPORT",
+      "tokenName": "IMPORT",
       "atoms": [
         {
           "index": 0,
@@ -6437,7 +6352,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEXPORT",
+      "tokenName": "EXPORT",
       "atoms": [
         {
           "index": 0,
@@ -6461,7 +6376,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLOAD",
+      "tokenName": "LOAD",
       "atoms": [
         {
           "index": 0,
@@ -6485,7 +6400,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNION",
+      "tokenName": "UNION",
       "atoms": [
         {
           "index": 0,
@@ -6509,7 +6424,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSORT",
+      "tokenName": "SORT",
       "atoms": [
         {
           "index": 0,
@@ -6533,7 +6448,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDISTRIBUTE",
+      "tokenName": "DISTRIBUTE",
       "atoms": [
         {
           "index": 0,
@@ -6557,7 +6472,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCLUSTER",
+      "tokenName": "CLUSTER",
       "atoms": [
         {
           "index": 0,
@@ -6581,7 +6496,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUSING",
+      "tokenName": "USING",
       "atoms": [
         {
           "index": 0,
@@ -6605,7 +6520,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTRANSFORM",
+      "tokenName": "TRANSFORM",
       "atoms": [
         {
           "index": 0,
@@ -6629,7 +6544,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFOR",
+      "tokenName": "FOR",
       "atoms": [
         {
           "index": 0,
@@ -6653,7 +6568,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLOCAL",
+      "tokenName": "LOCAL",
       "atoms": [
         {
           "index": 0,
@@ -6677,7 +6592,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDIRECTORY",
+      "tokenName": "DIRECTORY",
       "atoms": [
         {
           "index": 0,
@@ -6701,7 +6616,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTO",
+      "tokenName": "TO",
       "atoms": [
         {
           "index": 0,
@@ -6725,7 +6640,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREPAIR",
+      "tokenName": "REPAIR",
       "atoms": [
         {
           "index": 0,
@@ -6749,7 +6664,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWMSCK",
+      "tokenName": "MSCK",
       "atoms": [
         {
           "index": 0,
@@ -6773,7 +6688,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSHOW",
+      "tokenName": "SHOW",
       "atoms": [
         {
           "index": 0,
@@ -6797,7 +6712,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFUNCTIONS",
+      "tokenName": "FUNCTIONS",
       "atoms": [
         {
           "index": 0,
@@ -6821,7 +6736,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFUNCTION",
+      "tokenName": "FUNCTION",
       "atoms": [
         {
           "index": 0,
@@ -6845,7 +6760,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWREBUILD",
+      "tokenName": "REBUILD",
       "atoms": [
         {
           "index": 0,
@@ -6869,7 +6784,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINDEXES",
+      "tokenName": "INDEXES",
       "atoms": [
         {
           "index": 0,
@@ -6893,7 +6808,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINDEX",
+      "tokenName": "INDEX",
       "atoms": [
         {
           "index": 0,
@@ -6917,7 +6832,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCOLUMNS",
+      "tokenName": "COLUMNS",
       "atoms": [
         {
           "index": 0,
@@ -6941,7 +6856,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWCOLUMN",
+      "tokenName": "COLUMN",
       "atoms": [
         {
           "index": 0,
@@ -6965,7 +6880,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTABLES",
+      "tokenName": "TABLES",
       "atoms": [
         {
           "index": 0,
@@ -6989,7 +6904,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTABLE",
+      "tokenName": "TABLE",
       "atoms": [
         {
           "index": 0,
@@ -7013,7 +6928,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPARTITIONS",
+      "tokenName": "PARTITIONS",
       "atoms": [
         {
           "index": 0,
@@ -7037,7 +6952,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPARTITION",
+      "tokenName": "PARTITION",
       "atoms": [
         {
           "index": 0,
@@ -7061,7 +6976,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWON",
+      "tokenName": "ON",
       "atoms": [
         {
           "index": 0,
@@ -7085,7 +7000,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFULL",
+      "tokenName": "FULL",
       "atoms": [
         {
           "index": 0,
@@ -7109,7 +7024,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWRIGHT",
+      "tokenName": "RIGHT",
       "atoms": [
         {
           "index": 0,
@@ -7133,7 +7048,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLEFT",
+      "tokenName": "LEFT",
       "atoms": [
         {
           "index": 0,
@@ -7157,7 +7072,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWPRESERVE",
+      "tokenName": "PRESERVE",
       "atoms": [
         {
           "index": 0,
@@ -7181,7 +7096,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWUNIQUEJOIN",
+      "tokenName": "UNIQUEJOIN",
       "atoms": [
         {
           "index": 0,
@@ -7205,7 +7120,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOUTER",
+      "tokenName": "OUTER",
       "atoms": [
         {
           "index": 0,
@@ -7229,7 +7144,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOUT",
+      "tokenName": "OUT",
       "atoms": [
         {
           "index": 0,
@@ -7253,7 +7168,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOVERWRITE",
+      "tokenName": "OVERWRITE",
       "atoms": [
         {
           "index": 0,
@@ -7277,7 +7192,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOVER",
+      "tokenName": "OVER",
       "atoms": [
         {
           "index": 0,
@@ -7301,7 +7216,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWINSERT",
+      "tokenName": "INSERT",
       "atoms": [
         {
           "index": 0,
@@ -7325,7 +7240,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDISTINCT",
+      "tokenName": "DISTINCT",
       "atoms": [
         {
           "index": 0,
@@ -7349,7 +7264,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWSELECT",
+      "tokenName": "SELECT",
       "atoms": [
         {
           "index": 0,
@@ -7373,7 +7288,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFROM",
+      "tokenName": "FROM",
       "atoms": [
         {
           "index": 0,
@@ -7397,7 +7312,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWWHERE",
+      "tokenName": "WHERE",
       "atoms": [
         {
           "index": 0,
@@ -7421,7 +7336,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWHAVING",
+      "tokenName": "HAVING",
       "atoms": [
         {
           "index": 0,
@@ -7445,7 +7360,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWBY",
+      "tokenName": "BY",
       "atoms": [
         {
           "index": 0,
@@ -7469,7 +7384,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWGROUP",
+      "tokenName": "GROUP",
       "atoms": [
         {
           "index": 0,
@@ -7493,7 +7408,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWORDER",
+      "tokenName": "ORDER",
       "atoms": [
         {
           "index": 0,
@@ -7517,7 +7432,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWDESC",
+      "tokenName": "DESC",
       "atoms": [
         {
           "index": 0,
@@ -7541,7 +7456,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWASC",
+      "tokenName": "ASC",
       "atoms": [
         {
           "index": 0,
@@ -7565,7 +7480,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWAS",
+      "tokenName": "AS",
       "atoms": [
         {
           "index": 0,
@@ -7589,7 +7504,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWEXISTS",
+      "tokenName": "EXISTS",
       "atoms": [
         {
           "index": 0,
@@ -7613,7 +7528,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWIS",
+      "tokenName": "IS",
       "atoms": [
         {
           "index": 0,
@@ -7637,7 +7552,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWIF",
+      "tokenName": "IF",
       "atoms": [
         {
           "index": 0,
@@ -7685,7 +7600,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWIN",
+      "tokenName": "IN",
       "atoms": [
         {
           "index": 0,
@@ -7709,7 +7624,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWLIKE",
+      "tokenName": "LIKE",
       "atoms": [
         {
           "index": 0,
@@ -7733,7 +7648,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWNOT",
+      "tokenName": "NOT",
       "atoms": [
         {
           "index": 0,
@@ -7773,7 +7688,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWOR",
+      "tokenName": "OR",
       "atoms": [
         {
           "index": 0,
@@ -7797,7 +7712,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWAND",
+      "tokenName": "AND",
       "atoms": [
         {
           "index": 0,
@@ -7821,7 +7736,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWALL",
+      "tokenName": "ALL",
       "atoms": [
         {
           "index": 0,
@@ -7845,7 +7760,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWFALSE",
+      "tokenName": "FALSE",
       "atoms": [
         {
           "index": 0,
@@ -7869,7 +7784,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "KWTRUE",
+      "tokenName": "TRUE",
       "atoms": [
         {
           "index": 0,

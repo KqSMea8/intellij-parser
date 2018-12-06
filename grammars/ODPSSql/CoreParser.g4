@@ -4,7 +4,7 @@ sqlStatements: (sqlStatement SEMI)*;
 
 sqlStatement: ddlStatement | dmlStatement | dqlStatement;
 
-dqlStatement: selectStatement | showTable;
+dqlStatement: selectStatement | showTable | describeStatement;
 
 dmlStatement:
 	insertStatement
@@ -26,7 +26,24 @@ dropTable:
 		| CASCADE
 	)?;
 
-partitionDefinitions: (PARTITIONED | PARTITION) BY '(' createDefinition ')';
+describeStatement:
+	(EXPLAIN | DESCRIBE | DESC) (
+		tableName ( uid | STRING_LITERAL)?
+		| (EXTENDED | PARTITIONS | FORMAT) '=' (
+			TRADITIONAL
+			| JSON
+		)? describeObjectClause
+	);
+
+describeObjectClause: (
+		selectStatement
+		| deleteStatement
+		| insertStatement
+		| updateStatement
+	)
+	| FOR CONNECTION uid;
+
+partitionDefinitions: (PARTITIONED | PARTITION) BY '(' createDefinitions ')';
 
 engineName:
 	ARCHIVE

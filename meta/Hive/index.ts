@@ -71,8 +71,8 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
   try {
     const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
 
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer_cst.g.json'), JSON.stringify(cst, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/hive_lexer_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/hive_lexer_ast.g.json'), JSON.stringify(ast, null, 2));
     fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/lexer.g.ts'), beautifiedCode);
   } catch (e) {
     console.error(e);
@@ -192,8 +192,8 @@ function metaParserGenerator(parserGCode: string, config: MetaParserConfig, toke
   try {
     const beautifiedCode = prettier.format(parserCode, config.prettierConfig);
 
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser_cst.g.json'), JSON.stringify(cst, null, 2));
-    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser_ast.g.json'), JSON.stringify(ast, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/hive_parser_cst.g.json'), JSON.stringify(cst, null, 2));
+    fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/hive_parser_ast.g.json'), JSON.stringify(ast, null, 2));
     fs.writeFileSync(path.join(__dirname, '../../../sql-parser/Hive/parser.g.ts'), beautifiedCode);
   } catch (e) {
     console.error(e);

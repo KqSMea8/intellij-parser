@@ -35,7 +35,9 @@ export enum CommonStartToken {
   'DELETE' = 'DELETE',
   'SUM' = 'SUM',
   'ALTER' = 'ALTER',
-  'SHOW' = 'SHOW'
+  'SHOW' = 'SHOW',
+  'DESCRIBE' = 'DESCRIBE',
+  'DESC' = 'DESC'
 }
 
 export enum Snippets {

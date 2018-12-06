@@ -8,198 +8,167 @@ const WhiteSpace = chevrotain.createToken({
 });
 const EQUAL_SYMBOL = chevrotain.createToken({
   name: 'EQUAL_SYMBOL',
-  pattern: /\=/i,
-  longer_alt: ID,
+  pattern: /\=/,
 });
 const TIME_OPT = chevrotain.createToken({
   name: 'TIME_OPT',
-  pattern: /\-p/i,
-  longer_alt: ID,
+  pattern: /\-p/,
 });
 const EXCLAMATION_SYMBOL = chevrotain.createToken({
   name: 'EXCLAMATION_SYMBOL',
-  pattern: /\!/i,
-  longer_alt: ID,
+  pattern: /\!/,
 });
 const DOUBLE_SEMI = chevrotain.createToken({
   name: 'DOUBLE_SEMI',
-  pattern: /\;\;/i,
-  longer_alt: ID,
+  pattern: /\;\;/,
 });
 const SEMI = chevrotain.createToken({
   name: 'SEMI',
-  pattern: /\;/i,
-  longer_alt: ID,
+  pattern: /\;/,
 });
 const LINE_FEED = chevrotain.createToken({
   name: 'LINE_FEED',
-  pattern: /\n/i,
-  longer_alt: ID,
+  pattern: /\n/,
 });
 const RIGHT_BRACKET = chevrotain.createToken({
   name: 'RIGHT_BRACKET',
-  pattern: /\)/i,
-  longer_alt: ID,
+  pattern: /\)/,
 });
 const RIGHT_BRACE = chevrotain.createToken({
   name: 'RIGHT_BRACE',
-  pattern: /\}/i,
-  longer_alt: ID,
+  pattern: /\}/,
 });
 const LEFT_BRACKET = chevrotain.createToken({
   name: 'LEFT_BRACKET',
-  pattern: /\(/i,
-  longer_alt: ID,
+  pattern: /\(/,
 });
 const LEFT_BRACE = chevrotain.createToken({
   name: 'LEFT_BRACE',
-  pattern: /\{/i,
-  longer_alt: ID,
+  pattern: /\{/,
 });
 const OR = chevrotain.createToken({
   name: 'OR',
-  pattern: /\|\|/i,
-  longer_alt: ID,
+  pattern: /\|\|/,
 });
 const AND = chevrotain.createToken({
   name: 'AND',
-  pattern: /\&\&/i,
-  longer_alt: ID,
+  pattern: /\&\&/,
 });
 const BIT_AND_OP = chevrotain.createToken({
   name: 'BIT_AND_OP',
-  pattern: /\&/i,
-  longer_alt: ID,
+  pattern: /\&/,
 });
 const BIT_OR_OP = chevrotain.createToken({
   name: 'BIT_OR_OP',
-  pattern: /\|/i,
-  longer_alt: ID,
+  pattern: /\|/,
 });
 const UNDERLINE = chevrotain.createToken({
   name: 'UNDERLINE',
-  pattern: /_/i,
-  longer_alt: ID,
+  pattern: /_/,
 });
 const HYPHEN = chevrotain.createToken({
   name: 'HYPHEN',
-  pattern: /\-/i,
-  longer_alt: ID,
+  pattern: /\-/,
 });
 const DESCRIPTOR_TO_FILE = chevrotain.createToken({
   name: 'DESCRIPTOR_TO_FILE',
-  pattern: /\&\>/i,
-  longer_alt: ID,
+  pattern: /\&\>/,
 });
 const RIGHT_REDIRECTION_WITH_MERGE = chevrotain.createToken({
   name: 'RIGHT_REDIRECTION_WITH_MERGE',
-  pattern: /\>\&/i,
-  longer_alt: ID,
+  pattern: /\>\&/,
 });
 const LEFT_REDIRECTION_WITH_MERGE = chevrotain.createToken({
   name: 'LEFT_REDIRECTION_WITH_MERGE',
-  pattern: /\<\&/i,
-  longer_alt: ID,
+  pattern: /\<\&/,
 });
 const RIGHT_REDIRECTION_WITH_ADD = chevrotain.createToken({
   name: 'RIGHT_REDIRECTION_WITH_ADD',
-  pattern: /\>\>/i,
-  longer_alt: ID,
+  pattern: /\>\>/,
 });
 const LEFT_REDIRECTION_WITH_ADD = chevrotain.createToken({
   name: 'LEFT_REDIRECTION_WITH_ADD',
-  pattern: /\<\</i,
-  longer_alt: ID,
+  pattern: /\<\</,
 });
 const RIGHT_REDIRECTION = chevrotain.createToken({
   name: 'RIGHT_REDIRECTION',
-  pattern: /\>/i,
-  longer_alt: ID,
+  pattern: /\>/,
 });
 const LEFT_REDIRECTION = chevrotain.createToken({
   name: 'LEFT_REDIRECTION',
-  pattern: /\</i,
-  longer_alt: ID,
+  pattern: /\</,
 });
 const DIGIT = chevrotain.createToken({
   name: 'DIGIT',
-  pattern: /[0-9]/i,
-  longer_alt: ID,
+  pattern: /[0-9]+/,
+});
+const TIME = chevrotain.createToken({
+  name: 'TIME',
+  pattern: /TIME/,
 });
 const ELSE_END = chevrotain.createToken({
   name: 'ELSE_END',
-  pattern: /ELIF/i,
-  longer_alt: ID,
+  pattern: /ELIF/,
 });
 const ELSE = chevrotain.createToken({
   name: 'ELSE',
-  pattern: /ELSE/i,
-  longer_alt: ID,
+  pattern: /ELSE/,
 });
 const THEN = chevrotain.createToken({
   name: 'THEN',
-  pattern: /THEN/i,
-  longer_alt: ID,
+  pattern: /THEN/,
 });
 const IF_END = chevrotain.createToken({
   name: 'IF_END',
-  pattern: /FI/i,
-  longer_alt: ID,
+  pattern: /FI/,
 });
 const IF = chevrotain.createToken({
   name: 'IF',
-  pattern: /IF/i,
-  longer_alt: ID,
+  pattern: /IF/,
 });
 const FUNCTION = chevrotain.createToken({
   name: 'FUNCTION',
-  pattern: /FUNCTION/i,
-  longer_alt: ID,
+  pattern: /FUNCTION/,
 });
 const CASE_END = chevrotain.createToken({
   name: 'CASE_END',
-  pattern: /ESAC/i,
-  longer_alt: ID,
+  pattern: /ESAC/,
 });
 const CASE = chevrotain.createToken({
   name: 'CASE',
-  pattern: /CASE/i,
-  longer_alt: ID,
+  pattern: /CASE/,
 });
 const SELECT = chevrotain.createToken({
   name: 'SELECT',
-  pattern: /SELECT/i,
-  longer_alt: ID,
+  pattern: /SELECT/,
 });
 const IN = chevrotain.createToken({
   name: 'IN',
-  pattern: /IN/i,
-  longer_alt: ID,
+  pattern: /IN/,
 });
 const FOR = chevrotain.createToken({
   name: 'FOR',
-  pattern: /FOR/i,
-  longer_alt: ID,
+  pattern: /FOR/,
 });
 const DONE = chevrotain.createToken({
   name: 'DONE',
-  pattern: /DONE/i,
-  longer_alt: ID,
+  pattern: /DONE/,
 });
 const DO = chevrotain.createToken({
   name: 'DO',
-  pattern: /DO/i,
-  longer_alt: ID,
+  pattern: /DO/,
+});
+const UNTIL = chevrotain.createToken({
+  name: 'UNTIL',
+  pattern: /UNTIL/,
 });
 const WHILE = chevrotain.createToken({
   name: 'WHILE',
-  pattern: /WHILE/i,
-  longer_alt: ID,
+  pattern: /WHILE/,
 });
 const LETTER = chevrotain.createToken({
   name: 'LETTER',
-  pattern: /[A-Za-z]/i,
-  longer_alt: ID,
+  pattern: /[A-Za-z]+/,
 });
 
 export enum TokenEnum {
@@ -227,6 +196,7 @@ export enum TokenEnum {
   RIGHT_REDIRECTION = 'RIGHT_REDIRECTION',
   LEFT_REDIRECTION = 'LEFT_REDIRECTION',
   DIGIT = 'DIGIT',
+  TIME = 'TIME',
   ELSE_END = 'ELSE_END',
   ELSE = 'ELSE',
   THEN = 'THEN',
@@ -240,6 +210,7 @@ export enum TokenEnum {
   FOR = 'FOR',
   DONE = 'DONE',
   DO = 'DO',
+  UNTIL = 'UNTIL',
   WHILE = 'WHILE',
   LETTER = 'LETTER',
 }
@@ -269,6 +240,7 @@ export const Tokens = {
   RIGHT_REDIRECTION,
   LEFT_REDIRECTION,
   DIGIT,
+  TIME,
   ELSE_END,
   ELSE,
   THEN,
@@ -282,6 +254,7 @@ export const Tokens = {
   FOR,
   DONE,
   DO,
+  UNTIL,
   WHILE,
   LETTER,
 };
@@ -312,6 +285,7 @@ export const tokens = [
   RIGHT_REDIRECTION,
   LEFT_REDIRECTION,
   DIGIT,
+  TIME,
   ELSE_END,
   ELSE,
   THEN,
@@ -325,6 +299,7 @@ export const tokens = [
   FOR,
   DONE,
   DO,
+  UNTIL,
   WHILE,
   LETTER,
 ];

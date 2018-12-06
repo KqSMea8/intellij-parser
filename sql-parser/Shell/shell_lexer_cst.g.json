@@ -114,7 +114,7 @@
         "children": {
           "UpperName": [
             {
-              "image": "DO",
+              "image": "UNTIL",
               "startOffset": 16,
               "startLine": 2,
               "startColumn": 1,
@@ -133,8 +133,115 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 18,
+              "startOffset": 21,
               "startLine": 2,
+              "startColumn": 6,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'UNTIL'",
+                                      "startOffset": 23,
+                                      "startLine": 2,
+                                      "startColumn": 8,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 30,
+              "startLine": 2,
+              "startColumn": 15,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "DO",
+              "startOffset": 32,
+              "startLine": 3,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 34,
+              "startLine": 3,
               "startColumn": 3,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -168,8 +275,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'DO'",
-                                      "startOffset": 20,
-                                      "startLine": 2,
+                                      "startOffset": 36,
+                                      "startLine": 3,
                                       "startColumn": 5,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -198,8 +305,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 24,
-              "startLine": 2,
+              "startOffset": 40,
+              "startLine": 3,
               "startColumn": 9,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -222,8 +329,8 @@
           "UpperName": [
             {
               "image": "DONE",
-              "startOffset": 26,
-              "startLine": 3,
+              "startOffset": 42,
+              "startLine": 4,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -240,8 +347,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 30,
-              "startLine": 3,
+              "startOffset": 46,
+              "startLine": 4,
               "startColumn": 5,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -275,8 +382,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'DONE'",
-                                      "startOffset": 32,
-                                      "startLine": 3,
+                                      "startOffset": 48,
+                                      "startLine": 4,
                                       "startColumn": 7,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -305,8 +412,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 38,
-              "startLine": 3,
+              "startOffset": 54,
+              "startLine": 4,
               "startColumn": 13,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -329,8 +436,8 @@
           "UpperName": [
             {
               "image": "FOR",
-              "startOffset": 40,
-              "startLine": 4,
+              "startOffset": 56,
+              "startLine": 5,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -347,8 +454,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 43,
-              "startLine": 4,
+              "startOffset": 59,
+              "startLine": 5,
               "startColumn": 4,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -382,8 +489,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'FOR'",
-                                      "startOffset": 45,
-                                      "startLine": 4,
+                                      "startOffset": 61,
+                                      "startLine": 5,
                                       "startColumn": 6,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -412,8 +519,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 50,
-              "startLine": 4,
+              "startOffset": 66,
+              "startLine": 5,
               "startColumn": 11,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -436,8 +543,8 @@
           "UpperName": [
             {
               "image": "IN",
-              "startOffset": 52,
-              "startLine": 5,
+              "startOffset": 68,
+              "startLine": 6,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -454,8 +561,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 54,
-              "startLine": 5,
+              "startOffset": 70,
+              "startLine": 6,
               "startColumn": 3,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -489,8 +596,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'IN'",
-                                      "startOffset": 56,
-                                      "startLine": 5,
+                                      "startOffset": 72,
+                                      "startLine": 6,
                                       "startColumn": 5,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -519,8 +626,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 60,
-              "startLine": 5,
+              "startOffset": 76,
+              "startLine": 6,
               "startColumn": 9,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -543,8 +650,8 @@
           "UpperName": [
             {
               "image": "SELECT",
-              "startOffset": 62,
-              "startLine": 6,
+              "startOffset": 78,
+              "startLine": 7,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -561,8 +668,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 68,
-              "startLine": 6,
+              "startOffset": 84,
+              "startLine": 7,
               "startColumn": 7,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -596,8 +703,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'SELECT'",
-                                      "startOffset": 70,
-                                      "startLine": 6,
+                                      "startOffset": 86,
+                                      "startLine": 7,
                                       "startColumn": 9,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -626,8 +733,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 78,
-              "startLine": 6,
+              "startOffset": 94,
+              "startLine": 7,
               "startColumn": 17,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -650,8 +757,8 @@
           "UpperName": [
             {
               "image": "CASE",
-              "startOffset": 80,
-              "startLine": 7,
+              "startOffset": 96,
+              "startLine": 8,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -668,8 +775,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 84,
-              "startLine": 7,
+              "startOffset": 100,
+              "startLine": 8,
               "startColumn": 5,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -703,8 +810,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'CASE'",
-                                      "startOffset": 86,
-                                      "startLine": 7,
+                                      "startOffset": 102,
+                                      "startLine": 8,
                                       "startColumn": 7,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -733,8 +840,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 92,
-              "startLine": 7,
+              "startOffset": 108,
+              "startLine": 8,
               "startColumn": 13,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -757,8 +864,8 @@
           "UpperName": [
             {
               "image": "CASE_END",
-              "startOffset": 94,
-              "startLine": 8,
+              "startOffset": 110,
+              "startLine": 9,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -775,8 +882,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 102,
-              "startLine": 8,
+              "startOffset": 118,
+              "startLine": 9,
               "startColumn": 9,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -810,8 +917,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'ESAC'",
-                                      "startOffset": 104,
-                                      "startLine": 8,
+                                      "startOffset": 120,
+                                      "startLine": 9,
                                       "startColumn": 11,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -840,8 +947,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 110,
-              "startLine": 8,
+              "startOffset": 126,
+              "startLine": 9,
               "startColumn": 17,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -864,8 +971,8 @@
           "UpperName": [
             {
               "image": "FUNCTION",
-              "startOffset": 112,
-              "startLine": 9,
+              "startOffset": 128,
+              "startLine": 10,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -882,8 +989,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 120,
-              "startLine": 9,
+              "startOffset": 136,
+              "startLine": 10,
               "startColumn": 9,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -917,8 +1024,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'FUNCTION'",
-                                      "startOffset": 122,
-                                      "startLine": 9,
+                                      "startOffset": 138,
+                                      "startLine": 10,
                                       "startColumn": 11,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -947,8 +1054,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 132,
-              "startLine": 9,
+              "startOffset": 148,
+              "startLine": 10,
               "startColumn": 21,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -971,8 +1078,8 @@
           "UpperName": [
             {
               "image": "IF",
-              "startOffset": 134,
-              "startLine": 10,
+              "startOffset": 150,
+              "startLine": 11,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -989,8 +1096,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 136,
-              "startLine": 10,
+              "startOffset": 152,
+              "startLine": 11,
               "startColumn": 3,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1024,8 +1131,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'IF'",
-                                      "startOffset": 138,
-                                      "startLine": 10,
+                                      "startOffset": 154,
+                                      "startLine": 11,
                                       "startColumn": 5,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -1054,8 +1161,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 142,
-              "startLine": 10,
+              "startOffset": 158,
+              "startLine": 11,
               "startColumn": 9,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -1078,8 +1185,8 @@
           "UpperName": [
             {
               "image": "IF_END",
-              "startOffset": 144,
-              "startLine": 11,
+              "startOffset": 160,
+              "startLine": 12,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1096,8 +1203,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 150,
-              "startLine": 11,
+              "startOffset": 166,
+              "startLine": 12,
               "startColumn": 7,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1131,8 +1238,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'FI'",
-                                      "startOffset": 152,
-                                      "startLine": 11,
+                                      "startOffset": 168,
+                                      "startLine": 12,
                                       "startColumn": 9,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -1161,8 +1268,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 156,
-              "startLine": 11,
+              "startOffset": 172,
+              "startLine": 12,
               "startColumn": 13,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -1185,8 +1292,8 @@
           "UpperName": [
             {
               "image": "THEN",
-              "startOffset": 158,
-              "startLine": 12,
+              "startOffset": 174,
+              "startLine": 13,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1203,8 +1310,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 162,
-              "startLine": 12,
+              "startOffset": 178,
+              "startLine": 13,
               "startColumn": 5,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1238,8 +1345,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'THEN'",
-                                      "startOffset": 164,
-                                      "startLine": 12,
+                                      "startOffset": 180,
+                                      "startLine": 13,
                                       "startColumn": 7,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -1268,8 +1375,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 170,
-              "startLine": 12,
+              "startOffset": 186,
+              "startLine": 13,
               "startColumn": 13,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -1292,8 +1399,8 @@
           "UpperName": [
             {
               "image": "ELSE",
-              "startOffset": 172,
-              "startLine": 13,
+              "startOffset": 188,
+              "startLine": 14,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1310,8 +1417,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 176,
-              "startLine": 13,
+              "startOffset": 192,
+              "startLine": 14,
               "startColumn": 5,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1345,8 +1452,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'ELSE'",
-                                      "startOffset": 178,
-                                      "startLine": 13,
+                                      "startOffset": 194,
+                                      "startLine": 14,
                                       "startColumn": 7,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -1375,8 +1482,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 184,
-              "startLine": 13,
+              "startOffset": 200,
+              "startLine": 14,
               "startColumn": 13,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -1399,8 +1506,8 @@
           "UpperName": [
             {
               "image": "ELSE_END",
-              "startOffset": 186,
-              "startLine": 14,
+              "startOffset": 202,
+              "startLine": 15,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1417,8 +1524,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 194,
-              "startLine": 14,
+              "startOffset": 210,
+              "startLine": 15,
               "startColumn": 9,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1452,8 +1559,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'ELIF'",
-                                      "startOffset": 196,
-                                      "startLine": 14,
+                                      "startOffset": 212,
+                                      "startLine": 15,
                                       "startColumn": 11,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -1482,8 +1589,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 202,
-              "startLine": 14,
+              "startOffset": 218,
+              "startLine": 15,
               "startColumn": 17,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -1505,9 +1612,9 @@
         "children": {
           "UpperName": [
             {
-              "image": "DIGIT",
-              "startOffset": 206,
-              "startLine": 17,
+              "image": "TIME",
+              "startOffset": 220,
+              "startLine": 16,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1524,8 +1631,115 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 211,
-              "startLine": 17,
+              "startOffset": 224,
+              "startLine": 16,
+              "startColumn": 5,
+              "tokenTypeIdx": 4,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 4,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Colon",
+                "isParent": false,
+                "LABEL": ":"
+              }
+            }
+          ],
+          "atoms": [
+            {
+              "name": "atoms",
+              "children": {
+                "atom": [
+                  {
+                    "name": "atom",
+                    "children": {
+                      "itemSuff": [
+                        {
+                          "name": "itemSuff",
+                          "children": {
+                            "item": [
+                              {
+                                "name": "item",
+                                "children": {
+                                  "Stringliteral": [
+                                    {
+                                      "image": "'TIME'",
+                                      "startOffset": 226,
+                                      "startLine": 16,
+                                      "startColumn": 7,
+                                      "tokenTypeIdx": 9,
+                                      "tokenType": {
+                                        "PATTERN": {},
+                                        "tokenTypeIdx": 9,
+                                        "CATEGORIES": [],
+                                        "categoryMatches": [],
+                                        "categoryMatchesMap": {},
+                                        "tokenName": "Stringliteral",
+                                        "isParent": false
+                                      }
+                                    }
+                                  ]
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ],
+          "Semi": [
+            {
+              "image": ";",
+              "startOffset": 232,
+              "startLine": 16,
+              "startColumn": 13,
+              "tokenTypeIdx": 3,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 3,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "Semi",
+                "isParent": false,
+                "LABEL": ";"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "rule",
+        "children": {
+          "UpperName": [
+            {
+              "image": "DIGIT",
+              "startOffset": 236,
+              "startLine": 19,
+              "startColumn": 1,
+              "tokenTypeIdx": 10,
+              "tokenType": {
+                "PATTERN": {},
+                "tokenTypeIdx": 10,
+                "CATEGORIES": [],
+                "categoryMatches": [],
+                "categoryMatchesMap": {},
+                "tokenName": "UpperName",
+                "isParent": false
+              }
+            }
+          ],
+          "Colon": [
+            {
+              "image": ":",
+              "startOffset": 241,
+              "startLine": 19,
               "startColumn": 6,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1558,9 +1772,9 @@
                                 "children": {
                                   "ReExp": [
                                     {
-                                      "image": "[0-9]",
-                                      "startOffset": 213,
-                                      "startLine": 17,
+                                      "image": "[0-9]+",
+                                      "startOffset": 243,
+                                      "startLine": 19,
                                       "startColumn": 8,
                                       "tokenTypeIdx": 18,
                                       "tokenType": {
@@ -1589,9 +1803,9 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 218,
-              "startLine": 17,
-              "startColumn": 13,
+              "startOffset": 249,
+              "startLine": 19,
+              "startColumn": 14,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
@@ -1613,8 +1827,8 @@
           "UpperName": [
             {
               "image": "LETTER",
-              "startOffset": 220,
-              "startLine": 18,
+              "startOffset": 251,
+              "startLine": 20,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1631,8 +1845,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 226,
-              "startLine": 18,
+              "startOffset": 257,
+              "startLine": 20,
               "startColumn": 7,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1665,9 +1879,9 @@
                                 "children": {
                                   "ReExp": [
                                     {
-                                      "image": "[A-Za-z]",
-                                      "startOffset": 228,
-                                      "startLine": 18,
+                                      "image": "[A-Za-z]+",
+                                      "startOffset": 259,
+                                      "startLine": 20,
                                       "startColumn": 9,
                                       "tokenTypeIdx": 18,
                                       "tokenType": {
@@ -1696,9 +1910,9 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 236,
-              "startLine": 18,
-              "startColumn": 17,
+              "startOffset": 268,
+              "startLine": 20,
+              "startColumn": 18,
               "tokenTypeIdx": 3,
               "tokenType": {
                 "PATTERN": {},
@@ -1720,8 +1934,8 @@
           "UpperName": [
             {
               "image": "LEFT_REDIRECTION",
-              "startOffset": 239,
-              "startLine": 20,
+              "startOffset": 271,
+              "startLine": 22,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1738,8 +1952,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 255,
-              "startLine": 20,
+              "startOffset": 287,
+              "startLine": 22,
               "startColumn": 17,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1773,8 +1987,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'<'",
-                                      "startOffset": 257,
-                                      "startLine": 20,
+                                      "startOffset": 289,
+                                      "startLine": 22,
                                       "startColumn": 19,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -1803,8 +2017,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 260,
-              "startLine": 20,
+              "startOffset": 292,
+              "startLine": 22,
               "startColumn": 22,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -1827,8 +2041,8 @@
           "UpperName": [
             {
               "image": "RIGHT_REDIRECTION",
-              "startOffset": 262,
-              "startLine": 21,
+              "startOffset": 294,
+              "startLine": 23,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1845,8 +2059,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 279,
-              "startLine": 21,
+              "startOffset": 311,
+              "startLine": 23,
               "startColumn": 18,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1880,8 +2094,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'>'",
-                                      "startOffset": 281,
-                                      "startLine": 21,
+                                      "startOffset": 313,
+                                      "startLine": 23,
                                       "startColumn": 20,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -1910,8 +2124,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 284,
-              "startLine": 21,
+              "startOffset": 316,
+              "startLine": 23,
               "startColumn": 23,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -1934,8 +2148,8 @@
           "UpperName": [
             {
               "image": "LEFT_REDIRECTION_WITH_ADD",
-              "startOffset": 286,
-              "startLine": 22,
+              "startOffset": 318,
+              "startLine": 24,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -1952,8 +2166,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 311,
-              "startLine": 22,
+              "startOffset": 343,
+              "startLine": 24,
               "startColumn": 26,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -1987,8 +2201,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'<<'",
-                                      "startOffset": 313,
-                                      "startLine": 22,
+                                      "startOffset": 345,
+                                      "startLine": 24,
                                       "startColumn": 28,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2017,8 +2231,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 317,
-              "startLine": 22,
+              "startOffset": 349,
+              "startLine": 24,
               "startColumn": 32,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2041,8 +2255,8 @@
           "UpperName": [
             {
               "image": "RIGHT_REDIRECTION_WITH_ADD",
-              "startOffset": 319,
-              "startLine": 23,
+              "startOffset": 351,
+              "startLine": 25,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2059,8 +2273,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 345,
-              "startLine": 23,
+              "startOffset": 377,
+              "startLine": 25,
               "startColumn": 27,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2094,8 +2308,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'>>'",
-                                      "startOffset": 347,
-                                      "startLine": 23,
+                                      "startOffset": 379,
+                                      "startLine": 25,
                                       "startColumn": 29,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2124,8 +2338,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 351,
-              "startLine": 23,
+              "startOffset": 383,
+              "startLine": 25,
               "startColumn": 33,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2148,8 +2362,8 @@
           "UpperName": [
             {
               "image": "LEFT_REDIRECTION_WITH_MERGE",
-              "startOffset": 353,
-              "startLine": 24,
+              "startOffset": 385,
+              "startLine": 26,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2166,8 +2380,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 380,
-              "startLine": 24,
+              "startOffset": 412,
+              "startLine": 26,
               "startColumn": 28,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2201,8 +2415,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'<&'",
-                                      "startOffset": 382,
-                                      "startLine": 24,
+                                      "startOffset": 414,
+                                      "startLine": 26,
                                       "startColumn": 30,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2231,8 +2445,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 386,
-              "startLine": 24,
+              "startOffset": 418,
+              "startLine": 26,
               "startColumn": 34,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2255,8 +2469,8 @@
           "UpperName": [
             {
               "image": "RIGHT_REDIRECTION_WITH_MERGE",
-              "startOffset": 388,
-              "startLine": 25,
+              "startOffset": 420,
+              "startLine": 27,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2273,8 +2487,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 416,
-              "startLine": 25,
+              "startOffset": 448,
+              "startLine": 27,
               "startColumn": 29,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2308,8 +2522,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'>&'",
-                                      "startOffset": 418,
-                                      "startLine": 25,
+                                      "startOffset": 450,
+                                      "startLine": 27,
                                       "startColumn": 31,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2338,8 +2552,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 422,
-              "startLine": 25,
+              "startOffset": 454,
+              "startLine": 27,
               "startColumn": 35,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2362,8 +2576,8 @@
           "UpperName": [
             {
               "image": "DESCRIPTOR_TO_FILE",
-              "startOffset": 424,
-              "startLine": 26,
+              "startOffset": 456,
+              "startLine": 28,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2380,8 +2594,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 442,
-              "startLine": 26,
+              "startOffset": 474,
+              "startLine": 28,
               "startColumn": 19,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2415,8 +2629,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'&>'",
-                                      "startOffset": 444,
-                                      "startLine": 26,
+                                      "startOffset": 476,
+                                      "startLine": 28,
                                       "startColumn": 21,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2445,8 +2659,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 448,
-              "startLine": 26,
+              "startOffset": 480,
+              "startLine": 28,
               "startColumn": 25,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2469,8 +2683,8 @@
           "UpperName": [
             {
               "image": "HYPHEN",
-              "startOffset": 450,
-              "startLine": 27,
+              "startOffset": 482,
+              "startLine": 29,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2487,8 +2701,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 456,
-              "startLine": 27,
+              "startOffset": 488,
+              "startLine": 29,
               "startColumn": 7,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2522,8 +2736,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'-'",
-                                      "startOffset": 458,
-                                      "startLine": 27,
+                                      "startOffset": 490,
+                                      "startLine": 29,
                                       "startColumn": 9,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2552,8 +2766,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 461,
-              "startLine": 27,
+              "startOffset": 493,
+              "startLine": 29,
               "startColumn": 12,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2576,8 +2790,8 @@
           "UpperName": [
             {
               "image": "UNDERLINE",
-              "startOffset": 463,
-              "startLine": 28,
+              "startOffset": 495,
+              "startLine": 30,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2594,8 +2808,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 472,
-              "startLine": 28,
+              "startOffset": 504,
+              "startLine": 30,
               "startColumn": 10,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2629,8 +2843,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'_'",
-                                      "startOffset": 474,
-                                      "startLine": 28,
+                                      "startOffset": 506,
+                                      "startLine": 30,
                                       "startColumn": 12,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2659,8 +2873,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 477,
-              "startLine": 28,
+              "startOffset": 509,
+              "startLine": 30,
               "startColumn": 15,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2683,8 +2897,8 @@
           "UpperName": [
             {
               "image": "BIT_OR_OP",
-              "startOffset": 479,
-              "startLine": 29,
+              "startOffset": 511,
+              "startLine": 31,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2701,8 +2915,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 488,
-              "startLine": 29,
+              "startOffset": 520,
+              "startLine": 31,
               "startColumn": 10,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2736,8 +2950,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'|'",
-                                      "startOffset": 490,
-                                      "startLine": 29,
+                                      "startOffset": 522,
+                                      "startLine": 31,
                                       "startColumn": 12,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2766,8 +2980,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 493,
-              "startLine": 29,
+              "startOffset": 525,
+              "startLine": 31,
               "startColumn": 15,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2790,8 +3004,8 @@
           "UpperName": [
             {
               "image": "BIT_AND_OP",
-              "startOffset": 495,
-              "startLine": 30,
+              "startOffset": 527,
+              "startLine": 32,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2808,8 +3022,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 505,
-              "startLine": 30,
+              "startOffset": 537,
+              "startLine": 32,
               "startColumn": 11,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2843,8 +3057,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'&'",
-                                      "startOffset": 507,
-                                      "startLine": 30,
+                                      "startOffset": 539,
+                                      "startLine": 32,
                                       "startColumn": 13,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2873,8 +3087,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 510,
-              "startLine": 30,
+              "startOffset": 542,
+              "startLine": 32,
               "startColumn": 16,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -2897,8 +3111,8 @@
           "UpperName": [
             {
               "image": "AND",
-              "startOffset": 512,
-              "startLine": 31,
+              "startOffset": 544,
+              "startLine": 33,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -2915,8 +3129,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 515,
-              "startLine": 31,
+              "startOffset": 547,
+              "startLine": 33,
               "startColumn": 4,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -2950,8 +3164,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'&&'",
-                                      "startOffset": 517,
-                                      "startLine": 31,
+                                      "startOffset": 549,
+                                      "startLine": 33,
                                       "startColumn": 6,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -2980,8 +3194,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 521,
-              "startLine": 31,
+              "startOffset": 553,
+              "startLine": 33,
               "startColumn": 10,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3004,8 +3218,8 @@
           "UpperName": [
             {
               "image": "OR",
-              "startOffset": 523,
-              "startLine": 32,
+              "startOffset": 555,
+              "startLine": 34,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3022,8 +3236,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 525,
-              "startLine": 32,
+              "startOffset": 557,
+              "startLine": 34,
               "startColumn": 3,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3057,8 +3271,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'||'",
-                                      "startOffset": 527,
-                                      "startLine": 32,
+                                      "startOffset": 559,
+                                      "startLine": 34,
                                       "startColumn": 5,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3087,8 +3301,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 531,
-              "startLine": 32,
+              "startOffset": 563,
+              "startLine": 34,
               "startColumn": 9,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3111,8 +3325,8 @@
           "UpperName": [
             {
               "image": "LEFT_BRACE",
-              "startOffset": 533,
-              "startLine": 33,
+              "startOffset": 565,
+              "startLine": 35,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3129,8 +3343,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 543,
-              "startLine": 33,
+              "startOffset": 575,
+              "startLine": 35,
               "startColumn": 11,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3164,8 +3378,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'{'",
-                                      "startOffset": 545,
-                                      "startLine": 33,
+                                      "startOffset": 577,
+                                      "startLine": 35,
                                       "startColumn": 13,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3194,8 +3408,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 548,
-              "startLine": 33,
+              "startOffset": 580,
+              "startLine": 35,
               "startColumn": 16,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3218,8 +3432,8 @@
           "UpperName": [
             {
               "image": "LEFT_BRACKET",
-              "startOffset": 550,
-              "startLine": 34,
+              "startOffset": 582,
+              "startLine": 36,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3236,8 +3450,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 562,
-              "startLine": 34,
+              "startOffset": 594,
+              "startLine": 36,
               "startColumn": 13,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3271,8 +3485,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'('",
-                                      "startOffset": 564,
-                                      "startLine": 34,
+                                      "startOffset": 596,
+                                      "startLine": 36,
                                       "startColumn": 15,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3301,8 +3515,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 567,
-              "startLine": 34,
+              "startOffset": 599,
+              "startLine": 36,
               "startColumn": 18,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3325,8 +3539,8 @@
           "UpperName": [
             {
               "image": "RIGHT_BRACE",
-              "startOffset": 569,
-              "startLine": 35,
+              "startOffset": 601,
+              "startLine": 37,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3343,8 +3557,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 580,
-              "startLine": 35,
+              "startOffset": 612,
+              "startLine": 37,
               "startColumn": 12,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3378,8 +3592,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'}'",
-                                      "startOffset": 582,
-                                      "startLine": 35,
+                                      "startOffset": 614,
+                                      "startLine": 37,
                                       "startColumn": 14,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3408,8 +3622,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 585,
-              "startLine": 35,
+              "startOffset": 617,
+              "startLine": 37,
               "startColumn": 17,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3432,8 +3646,8 @@
           "UpperName": [
             {
               "image": "RIGHT_BRACKET",
-              "startOffset": 587,
-              "startLine": 36,
+              "startOffset": 619,
+              "startLine": 38,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3450,8 +3664,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 600,
-              "startLine": 36,
+              "startOffset": 632,
+              "startLine": 38,
               "startColumn": 14,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3485,8 +3699,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "')'",
-                                      "startOffset": 602,
-                                      "startLine": 36,
+                                      "startOffset": 634,
+                                      "startLine": 38,
                                       "startColumn": 16,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3515,8 +3729,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 605,
-              "startLine": 36,
+              "startOffset": 637,
+              "startLine": 38,
               "startColumn": 19,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3539,8 +3753,8 @@
           "UpperName": [
             {
               "image": "LINE_FEED",
-              "startOffset": 607,
-              "startLine": 37,
+              "startOffset": 639,
+              "startLine": 39,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3557,8 +3771,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 616,
-              "startLine": 37,
+              "startOffset": 648,
+              "startLine": 39,
               "startColumn": 10,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3592,8 +3806,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'\\n'",
-                                      "startOffset": 618,
-                                      "startLine": 37,
+                                      "startOffset": 650,
+                                      "startLine": 39,
                                       "startColumn": 12,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3622,8 +3836,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 622,
-              "startLine": 37,
+              "startOffset": 654,
+              "startLine": 39,
               "startColumn": 16,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3646,8 +3860,8 @@
           "UpperName": [
             {
               "image": "SEMI",
-              "startOffset": 624,
-              "startLine": 38,
+              "startOffset": 656,
+              "startLine": 40,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3664,8 +3878,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 628,
-              "startLine": 38,
+              "startOffset": 660,
+              "startLine": 40,
               "startColumn": 5,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3699,8 +3913,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "';'",
-                                      "startOffset": 630,
-                                      "startLine": 38,
+                                      "startOffset": 662,
+                                      "startLine": 40,
                                       "startColumn": 7,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3729,8 +3943,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 633,
-              "startLine": 38,
+              "startOffset": 665,
+              "startLine": 40,
               "startColumn": 10,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3753,8 +3967,8 @@
           "UpperName": [
             {
               "image": "DOUBLE_SEMI",
-              "startOffset": 635,
-              "startLine": 39,
+              "startOffset": 667,
+              "startLine": 41,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3771,8 +3985,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 646,
-              "startLine": 39,
+              "startOffset": 678,
+              "startLine": 41,
               "startColumn": 12,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3806,8 +4020,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "';;'",
-                                      "startOffset": 648,
-                                      "startLine": 39,
+                                      "startOffset": 680,
+                                      "startLine": 41,
                                       "startColumn": 14,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3836,8 +4050,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 652,
-              "startLine": 39,
+              "startOffset": 684,
+              "startLine": 41,
               "startColumn": 18,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3860,8 +4074,8 @@
           "UpperName": [
             {
               "image": "EXCLAMATION_SYMBOL",
-              "startOffset": 654,
-              "startLine": 40,
+              "startOffset": 686,
+              "startLine": 42,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3878,8 +4092,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 672,
-              "startLine": 40,
+              "startOffset": 704,
+              "startLine": 42,
               "startColumn": 19,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -3913,8 +4127,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'!'",
-                                      "startOffset": 674,
-                                      "startLine": 40,
+                                      "startOffset": 706,
+                                      "startLine": 42,
                                       "startColumn": 21,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -3943,8 +4157,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 677,
-              "startLine": 40,
+              "startOffset": 709,
+              "startLine": 42,
               "startColumn": 24,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -3967,8 +4181,8 @@
           "UpperName": [
             {
               "image": "TIME_OPT",
-              "startOffset": 679,
-              "startLine": 41,
+              "startOffset": 711,
+              "startLine": 43,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -3985,8 +4199,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 687,
-              "startLine": 41,
+              "startOffset": 719,
+              "startLine": 43,
               "startColumn": 9,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -4020,8 +4234,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'-p'",
-                                      "startOffset": 689,
-                                      "startLine": 41,
+                                      "startOffset": 721,
+                                      "startLine": 43,
                                       "startColumn": 11,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -4050,8 +4264,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 693,
-              "startLine": 41,
+              "startOffset": 725,
+              "startLine": 43,
               "startColumn": 15,
               "tokenTypeIdx": 3,
               "tokenType": {
@@ -4074,8 +4288,8 @@
           "UpperName": [
             {
               "image": "EQUAL_SYMBOL",
-              "startOffset": 696,
-              "startLine": 43,
+              "startOffset": 728,
+              "startLine": 45,
               "startColumn": 1,
               "tokenTypeIdx": 10,
               "tokenType": {
@@ -4092,8 +4306,8 @@
           "Colon": [
             {
               "image": ":",
-              "startOffset": 708,
-              "startLine": 43,
+              "startOffset": 740,
+              "startLine": 45,
               "startColumn": 13,
               "tokenTypeIdx": 4,
               "tokenType": {
@@ -4127,8 +4341,8 @@
                                   "Stringliteral": [
                                     {
                                       "image": "'='",
-                                      "startOffset": 710,
-                                      "startLine": 43,
+                                      "startOffset": 742,
+                                      "startLine": 45,
                                       "startColumn": 15,
                                       "tokenTypeIdx": 9,
                                       "tokenType": {
@@ -4157,8 +4371,8 @@
           "Semi": [
             {
               "image": ";",
-              "startOffset": 713,
-              "startLine": 43,
+              "startOffset": 745,
+              "startLine": 45,
               "startColumn": 18,
               "tokenTypeIdx": 3,
               "tokenType": {

@@ -4,7 +4,6 @@ import { tokens, Lexer, Tokens, TokenEnum } from './lexer.g';
 export enum SyntaxKind {
   root = 'root',
   sqlStatements = 'sqlStatements',
-  emptyStatement = 'emptyStatement',
   sqlStatement = 'sqlStatement',
   dqlStatement = 'dqlStatement',
   dmlStatement = 'dmlStatement',
@@ -12,6 +11,8 @@ export enum SyntaxKind {
   showTable = 'showTable',
   createTable = 'createTable',
   dropTable = 'dropTable',
+  describeStatement = 'describeStatement',
+  describeObjectClause = 'describeObjectClause',
   partitionDefinitions = 'partitionDefinitions',
   engineName = 'engineName',
   fileSizeLiteral = 'fileSizeLiteral',
@@ -178,10 +179,6 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
-    this.RULE('emptyStatement', () => {
-      this.CONSUME(Tokens.SEMI);
-    });
-
     this.RULE('sqlStatement', () => {
       this.OR([
         {
@@ -212,6 +209,11 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.showTable);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.describeStatement);
           },
         },
       ]);
@@ -322,6 +324,125 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
+    this.RULE('describeStatement', () => {
+      this.OR2([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EXPLAIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DESCRIBE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DESC);
+          },
+        },
+      ]);
+      this.OR3([
+        {
+          ALT: () => {
+            this.SUBRULE(this.tableName);
+
+            this.OPTION(() => {
+              this.OR4([
+                {
+                  ALT: () => {
+                    this.SUBRULE(this.uid);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.STRING_LITERAL);
+                  },
+                },
+              ]);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.OR5([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.EXTENDED);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.PARTITIONS);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.FORMAT);
+                },
+              },
+            ]);
+            this.CONSUME(Tokens.EQUAL_SYMBOL);
+
+            this.OPTION2(() => {
+              this.OR6([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.TRADITIONAL);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.JSON);
+                  },
+                },
+              ]);
+            });
+
+            this.SUBRULE(this.describeObjectClause);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('describeObjectClause', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.SUBRULE(this.selectStatement);
+                },
+              },
+              {
+                ALT: () => {
+                  this.SUBRULE(this.deleteStatement);
+                },
+              },
+              {
+                ALT: () => {
+                  this.SUBRULE(this.insertStatement);
+                },
+              },
+              {
+                ALT: () => {
+                  this.SUBRULE(this.updateStatement);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FOR);
+            this.CONSUME(Tokens.CONNECTION);
+            this.SUBRULE(this.uid);
+          },
+        },
+      ]);
+    });
+
     this.RULE('partitionDefinitions', () => {
       this.OR2([
         {
@@ -337,7 +458,7 @@ export class Parser extends chevrotain.Parser {
       ]);
       this.CONSUME(Tokens.BY);
       this.CONSUME(Tokens.LR_BRACKET);
-      this.SUBRULE(this.createDefinition);
+      this.SUBRULE(this.createDefinitions);
       this.CONSUME(Tokens.RR_BRACKET);
     });
 

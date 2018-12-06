@@ -43,6 +43,7 @@ export enum SyntaxKind {
   columnRefOrder = 'columnRefOrder',
   queryOperator = 'queryOperator',
   selectStatement = 'selectStatement',
+  selectClause = 'selectClause',
   whereClause = 'whereClause',
   groupByClause = 'groupByClause',
   groupingSetExpression = 'groupingSetExpression',
@@ -84,7 +85,6 @@ export enum SyntaxKind {
   precedenceOrOperator = 'precedenceOrOperator',
   precedenceOrExpression = 'precedenceOrExpression',
   limitClause = 'limitClause',
-  selectClause = 'selectClause',
   selectList = 'selectList',
   selectItem = 'selectItem',
   selectExpression = 'selectExpression',
@@ -151,7 +151,7 @@ export class Parser extends chevrotain.Parser {
     this.RULE('sqlStatements', () => {
       this.MANY(() => {
         this.SUBRULE(this.sqlStatement);
-        this.CONSUME(Tokens.KWSEMI);
+        this.CONSUME(Tokens.SEMI);
       });
     });
 
@@ -246,23 +246,23 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('showTable', () => {
-      this.CONSUME(Tokens.KWSHOW);
+      this.CONSUME(Tokens.SHOW);
       this.SUBRULE(this.tableName);
     });
 
     this.RULE('insertStatement', () => {
-      this.CONSUME(Tokens.KWINSERT);
+      this.CONSUME(Tokens.INSERT);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWINTO);
+        this.CONSUME(Tokens.INTO);
       });
 
       this.OPTION2(() => {
-        this.CONSUME(Tokens.KWOVERWRITE);
+        this.CONSUME(Tokens.OVERWRITE);
       });
 
       this.OPTION3(() => {
-        this.CONSUME(Tokens.KWTABLE);
+        this.CONSUME(Tokens.TABLE);
       });
 
       this.SUBRULE(this.tableName);
@@ -284,18 +284,18 @@ export class Parser extends chevrotain.Parser {
       this.OR2([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPARTITIONED);
+            this.CONSUME(Tokens.PARTITIONED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPARTITION);
+            this.CONSUME(Tokens.PARTITION);
           },
         },
       ]);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWBY);
+        this.CONSUME(Tokens.BY);
       });
 
       this.OR3([
@@ -323,12 +323,12 @@ export class Parser extends chevrotain.Parser {
             this.OR2([
               {
                 ALT: () => {
-                  this.CONSUME(Tokens.KWVALUES);
+                  this.CONSUME(Tokens.VALUES);
                 },
               },
               {
                 ALT: () => {
-                  this.CONSUME(Tokens.KWVALUE);
+                  this.CONSUME(Tokens.VALUE);
                 },
               },
             ]);
@@ -353,18 +353,18 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('updateStatement', () => {
-      this.CONSUME(Tokens.KWUPDATE);
+      this.CONSUME(Tokens.UPDATE);
       this.SUBRULE(this.tableName);
 
       this.OPTION(() => {
         this.OPTION2(() => {
-          this.CONSUME(Tokens.KWAS);
+          this.CONSUME(Tokens.AS);
         });
 
         this.CONSUME(Tokens.Identifier);
       });
 
-      this.CONSUME(Tokens.KWSET);
+      this.CONSUME(Tokens.SET);
       this.SUBRULE(this.updatedElement);
 
       this.MANY(() => {
@@ -373,7 +373,7 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.OPTION3(() => {
-        this.CONSUME(Tokens.KWWHERE);
+        this.CONSUME(Tokens.WHERE);
         this.SUBRULE(this.expression);
       });
     });
@@ -400,27 +400,27 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('deleteStatement', () => {
-      this.CONSUME(Tokens.KWDELETE);
-      this.CONSUME(Tokens.KWFROM);
+      this.CONSUME(Tokens.DELETE);
+      this.CONSUME(Tokens.FROM);
       this.SUBRULE(this.tableName);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWWHERE);
+        this.CONSUME(Tokens.WHERE);
         this.SUBRULE(this.expression);
       });
     });
 
     this.RULE('createDatabaseStatement', () => {
-      this.CONSUME(Tokens.KWCREATE);
+      this.CONSUME(Tokens.CREATE);
       this.OR2([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATABASE);
+            this.CONSUME(Tokens.DATABASE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSCHEMA);
+            this.CONSUME(Tokens.SCHEMA);
           },
         },
       ]);
@@ -433,26 +433,26 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('ifExists', () => {
-      this.CONSUME(Tokens.KWIF);
-      this.CONSUME(Tokens.KWEXISTS);
+      this.CONSUME(Tokens.IF);
+      this.CONSUME(Tokens.EXISTS);
     });
 
     this.RULE('switchDatabaseStatement', () => {
-      this.CONSUME(Tokens.KWUSE);
+      this.CONSUME(Tokens.USE);
       this.SUBRULE(this.identifier);
     });
 
     this.RULE('dropDatabaseStatement', () => {
-      this.CONSUME(Tokens.KWDROP);
+      this.CONSUME(Tokens.DROP);
       this.OR2([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATABASE);
+            this.CONSUME(Tokens.DATABASE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSCHEMA);
+            this.CONSUME(Tokens.SCHEMA);
           },
         },
       ]);
@@ -465,13 +465,13 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('createTable', () => {
-      this.CONSUME(Tokens.KWCREATE);
+      this.CONSUME(Tokens.CREATE);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWEXTERNAL);
+        this.CONSUME(Tokens.EXTERNAL);
       });
 
-      this.CONSUME(Tokens.KWTABLE);
+      this.CONSUME(Tokens.TABLE);
 
       this.OPTION2(() => {
         this.SUBRULE(this.ifNotExists);
@@ -481,14 +481,14 @@ export class Parser extends chevrotain.Parser {
       this.OR2([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLIKE);
+            this.CONSUME(Tokens.LIKE);
             this.SUBRULE2(this.tableName);
           },
         },
         {
           ALT: () => {
             this.OPTION3(() => {
-              this.CONSUME(Tokens.KWAS);
+              this.CONSUME(Tokens.AS);
               this.SUBRULE(this.selectStatement);
             });
           },
@@ -497,8 +497,8 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('dropTable', () => {
-      this.CONSUME(Tokens.KWDROP);
-      this.CONSUME(Tokens.KWTABLE);
+      this.CONSUME(Tokens.DROP);
+      this.CONSUME(Tokens.TABLE);
 
       this.OPTION(() => {
         this.SUBRULE(this.ifExists);
@@ -508,8 +508,8 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('alterTable', () => {
-      this.CONSUME(Tokens.KWALTER);
-      this.CONSUME(Tokens.KWTABLE);
+      this.CONSUME(Tokens.ALTER);
+      this.CONSUME(Tokens.TABLE);
       this.SUBRULE(this.alterTableStatementSuffix);
     });
 
@@ -535,17 +535,17 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('alterStatementSuffixRename', () => {
       this.SUBRULE(this.identifier);
-      this.CONSUME(Tokens.KWRENAME);
-      this.CONSUME(Tokens.KWTO);
+      this.CONSUME(Tokens.RENAME);
+      this.CONSUME(Tokens.TO);
       this.SUBRULE2(this.identifier);
     });
 
     this.RULE('alterStatementSuffixRenameCol', () => {
       this.SUBRULE(this.identifier);
-      this.CONSUME(Tokens.KWCHANGE);
+      this.CONSUME(Tokens.CHANGE);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWCOLUMN);
+        this.CONSUME(Tokens.COLUMN);
       });
 
       this.SUBRULE2(this.identifier);
@@ -553,7 +553,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.colType);
 
       this.OPTION2(() => {
-        this.CONSUME(Tokens.KWCOMMENT);
+        this.CONSUME(Tokens.COMMENT);
         this.CONSUME(Tokens.StringLiteral);
       });
 
@@ -566,12 +566,12 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFIRST);
+            this.CONSUME(Tokens.FIRST);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWAFTER);
+            this.CONSUME(Tokens.AFTER);
             this.SUBRULE(this.identifier);
           },
         },
@@ -583,16 +583,16 @@ export class Parser extends chevrotain.Parser {
       this.OR2([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWADD);
+            this.CONSUME(Tokens.ADD);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREPLACE);
+            this.CONSUME(Tokens.REPLACE);
           },
         },
       ]);
-      this.CONSUME(Tokens.KWCOLUMNS);
+      this.CONSUME(Tokens.COLUMNS);
       this.CONSUME(Tokens.LPAREN);
       this.SUBRULE(this.columnNameTypeList);
       this.CONSUME(Tokens.RPAREN);
@@ -612,7 +612,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.colType);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWCOMMENT);
+        this.CONSUME(Tokens.COMMENT);
         this.CONSUME(Tokens.StringLiteral);
       });
     });
@@ -659,81 +659,81 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTINYINT);
+            this.CONSUME(Tokens.TINYINT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSMALLINT);
+            this.CONSUME(Tokens.SMALLINT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINT);
+            this.CONSUME(Tokens.INT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBIGINT);
+            this.CONSUME(Tokens.BIGINT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBOOLEAN);
+            this.CONSUME(Tokens.BOOLEAN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFLOAT);
+            this.CONSUME(Tokens.FLOAT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDOUBLE);
+            this.CONSUME(Tokens.DOUBLE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATE);
+            this.CONSUME(Tokens.DATE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATETIME);
+            this.CONSUME(Tokens.DATETIME);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTIMESTAMP);
+            this.CONSUME(Tokens.TIMESTAMP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSTRING);
+            this.CONSUME(Tokens.STRING);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBINARY);
+            this.CONSUME(Tokens.BINARY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDECIMAL);
+            this.CONSUME(Tokens.DECIMAL);
           },
         },
       ]);
     });
 
     this.RULE('listType', () => {
-      this.CONSUME(Tokens.KWARRAY);
+      this.CONSUME(Tokens.ARRAY);
       this.CONSUME(Tokens.LESSTHAN);
       this.SUBRULE(this.type);
       this.CONSUME(Tokens.GREATERTHAN);
     });
 
     this.RULE('mapType', () => {
-      this.CONSUME(Tokens.KWMAP);
+      this.CONSUME(Tokens.MAP);
       this.CONSUME(Tokens.LESSTHAN);
       this.SUBRULE(this.primitiveType);
       this.CONSUME(Tokens.COMMA);
@@ -742,16 +742,16 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('unionType', () => {
-      this.CONSUME(Tokens.KWUNIONTYPE);
+      this.CONSUME(Tokens.UNIONTYPE);
       this.CONSUME(Tokens.LESSTHAN);
       this.SUBRULE(this.colTypeList);
       this.CONSUME(Tokens.GREATERTHAN);
     });
 
     this.RULE('ifNotExists', () => {
-      this.CONSUME(Tokens.KWIF);
-      this.CONSUME(Tokens.KWNOT);
-      this.CONSUME(Tokens.KWEXISTS);
+      this.CONSUME(Tokens.IF);
+      this.CONSUME(Tokens.NOT);
+      this.CONSUME(Tokens.EXISTS);
     });
 
     this.RULE('columnNameList', () => {
@@ -774,12 +774,12 @@ export class Parser extends chevrotain.Parser {
         this.OR2([
           {
             ALT: () => {
-              this.CONSUME(Tokens.KWASC);
+              this.CONSUME(Tokens.ASC);
             },
           },
           {
             ALT: () => {
-              this.CONSUME(Tokens.KWDESC);
+              this.CONSUME(Tokens.DESC);
             },
           },
         ]);
@@ -787,8 +787,8 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('queryOperator', () => {
-      this.CONSUME(Tokens.KWUNION);
-      this.CONSUME(Tokens.KWALL);
+      this.CONSUME(Tokens.UNION);
+      this.CONSUME(Tokens.ALL);
     });
 
     this.RULE('selectStatement', () => {
@@ -824,14 +824,35 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
+    this.RULE('selectClause', () => {
+      this.CONSUME(Tokens.SELECT);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ALL);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DISTINCT);
+            },
+          },
+        ]);
+      });
+
+      this.SUBRULE(this.selectList);
+    });
+
     this.RULE('whereClause', () => {
-      this.CONSUME(Tokens.KWWHERE);
+      this.CONSUME(Tokens.WHERE);
       this.SUBRULE(this.searchCondition);
     });
 
     this.RULE('groupByClause', () => {
-      this.CONSUME(Tokens.KWGROUP);
-      this.CONSUME(Tokens.KWBY);
+      this.CONSUME(Tokens.GROUP);
+      this.CONSUME(Tokens.BY);
       this.SUBRULE(this.groupByExpression);
 
       this.MANY(() => {
@@ -843,22 +864,22 @@ export class Parser extends chevrotain.Parser {
         this.OR2([
           {
             ALT: () => {
-              this.CONSUME(Tokens.KWWITH);
-              this.CONSUME(Tokens.KWROLLUP);
+              this.CONSUME(Tokens.WITH);
+              this.CONSUME(Tokens.ROLLUP);
             },
           },
           {
             ALT: () => {
-              this.CONSUME2(Tokens.KWWITH);
-              this.CONSUME(Tokens.KWCUBE);
+              this.CONSUME2(Tokens.WITH);
+              this.CONSUME(Tokens.CUBE);
             },
           },
         ]);
       });
 
       this.OPTION2(() => {
-        this.CONSUME(Tokens.KWGROUPING);
-        this.CONSUME(Tokens.KWSETS);
+        this.CONSUME(Tokens.GROUPING);
+        this.CONSUME(Tokens.SETS);
         this.CONSUME(Tokens.LPAREN);
         this.SUBRULE(this.groupingSetExpression);
 
@@ -905,7 +926,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('havingClause', () => {
-      this.CONSUME(Tokens.KWHAVING);
+      this.CONSUME(Tokens.HAVING);
       this.SUBRULE(this.havingCondition);
     });
 
@@ -913,8 +934,8 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDISTRIBUTE);
-            this.CONSUME(Tokens.KWBY);
+            this.CONSUME(Tokens.DISTRIBUTE);
+            this.CONSUME(Tokens.BY);
             this.CONSUME(Tokens.LPAREN);
             this.SUBRULE(this.expression);
 
@@ -928,8 +949,8 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME2(Tokens.KWDISTRIBUTE);
-            this.CONSUME2(Tokens.KWBY);
+            this.CONSUME2(Tokens.DISTRIBUTE);
+            this.CONSUME2(Tokens.BY);
             this.SUBRULE3(this.expression);
           },
         },
@@ -969,7 +990,7 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('dateLiteral', () => {
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWDATE);
+        this.CONSUME(Tokens.DATE);
       });
 
       this.AT_LEAST_ONE(() => {
@@ -1026,12 +1047,12 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTRUE);
+            this.CONSUME(Tokens.TRUE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFALSE);
+            this.CONSUME(Tokens.FALSE);
           },
         },
       ]);
@@ -1083,13 +1104,13 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWNULL);
+            this.CONSUME(Tokens.NULL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWNOT);
-            this.CONSUME2(Tokens.KWNULL);
+            this.CONSUME(Tokens.NOT);
+            this.CONSUME2(Tokens.NULL);
           },
         },
       ]);
@@ -1107,7 +1128,7 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.precedenceUnaryPrefixExpression);
 
       this.OPTION(() => {
-        this.CONSUME(Tokens.KWIS);
+        this.CONSUME(Tokens.IS);
         this.SUBRULE(this.nullCondition);
       });
     });
@@ -1213,17 +1234,17 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLIKE);
+            this.CONSUME(Tokens.LIKE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRLIKE);
+            this.CONSUME(Tokens.RLIKE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREGEXP);
+            this.CONSUME(Tokens.REGEXP);
           },
         },
       ]);
@@ -1282,7 +1303,7 @@ export class Parser extends chevrotain.Parser {
           {
             ALT: () => {
               this.OPTION(() => {
-                this.CONSUME(Tokens.KWNOT);
+                this.CONSUME(Tokens.NOT);
               });
 
               this.SUBRULE(this.precedenceEqualOperator);
@@ -1292,22 +1313,22 @@ export class Parser extends chevrotain.Parser {
           {
             ALT: () => {
               this.OPTION2(() => {
-                this.CONSUME2(Tokens.KWNOT);
+                this.CONSUME2(Tokens.NOT);
               });
 
-              this.CONSUME(Tokens.KWIN);
+              this.CONSUME(Tokens.IN);
               this.SUBRULE(this.expressions);
             },
           },
           {
             ALT: () => {
               this.OPTION3(() => {
-                this.CONSUME3(Tokens.KWNOT);
+                this.CONSUME3(Tokens.NOT);
               });
 
-              this.CONSUME(Tokens.KWBETWEEN);
+              this.CONSUME(Tokens.BETWEEN);
               this.SUBRULE3(this.precedenceBitwiseOrExpression);
-              this.CONSUME(Tokens.KWAND);
+              this.CONSUME(Tokens.AND);
               this.SUBRULE4(this.precedenceBitwiseOrExpression);
             },
           },
@@ -1328,7 +1349,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('precedenceNotOperator', () => {
-      this.CONSUME(Tokens.KWNOT);
+      this.CONSUME(Tokens.NOT);
     });
 
     this.RULE('precedenceNotExpression', () => {
@@ -1340,7 +1361,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('precedenceAndOperator', () => {
-      this.CONSUME(Tokens.KWAND);
+      this.CONSUME(Tokens.AND);
     });
 
     this.RULE('precedenceAndExpression', () => {
@@ -1353,7 +1374,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('precedenceOrOperator', () => {
-      this.CONSUME(Tokens.KWOR);
+      this.CONSUME(Tokens.OR);
     });
 
     this.RULE('precedenceOrExpression', () => {
@@ -1366,29 +1387,8 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('limitClause', () => {
-      this.CONSUME(Tokens.KWLIMIT);
+      this.CONSUME(Tokens.LIMIT);
       this.CONSUME(Tokens.Number);
-    });
-
-    this.RULE('selectClause', () => {
-      this.CONSUME(Tokens.KWSELECT);
-
-      this.OPTION(() => {
-        this.OR2([
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.KWALL);
-            },
-          },
-          {
-            ALT: () => {
-              this.CONSUME(Tokens.KWDISTINCT);
-            },
-          },
-        ]);
-      });
-
-      this.SUBRULE(this.selectList);
     });
 
     this.RULE('selectList', () => {
@@ -1405,7 +1405,7 @@ export class Parser extends chevrotain.Parser {
 
       this.OPTION(() => {
         this.OPTION2(() => {
-          this.CONSUME(Tokens.KWAS);
+          this.CONSUME(Tokens.AS);
         });
 
         this.SUBRULE(this.identifier);
@@ -1434,7 +1434,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('fromClause', () => {
-      this.CONSUME(Tokens.KWFROM);
+      this.CONSUME(Tokens.FROM);
       this.SUBRULE(this.joinSource);
     });
 
@@ -1459,22 +1459,22 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINNER);
+            this.CONSUME(Tokens.INNER);
             this.CONSUME2(Tokens.JOIN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCROSS);
+            this.CONSUME(Tokens.CROSS);
             this.CONSUME3(Tokens.JOIN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLEFT);
+            this.CONSUME(Tokens.LEFT);
 
             this.OPTION(() => {
-              this.CONSUME(Tokens.KWOUTER);
+              this.CONSUME(Tokens.OUTER);
             });
 
             this.CONSUME4(Tokens.JOIN);
@@ -1482,10 +1482,10 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRIGHT);
+            this.CONSUME(Tokens.RIGHT);
 
             this.OPTION2(() => {
-              this.CONSUME2(Tokens.KWOUTER);
+              this.CONSUME2(Tokens.OUTER);
             });
 
             this.CONSUME5(Tokens.JOIN);
@@ -1493,10 +1493,10 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFULL);
+            this.CONSUME(Tokens.FULL);
 
             this.OPTION3(() => {
-              this.CONSUME3(Tokens.KWOUTER);
+              this.CONSUME3(Tokens.OUTER);
             });
 
             this.CONSUME6(Tokens.JOIN);
@@ -1504,8 +1504,8 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME2(Tokens.KWLEFT);
-            this.CONSUME(Tokens.KWSEMI);
+            this.CONSUME2(Tokens.LEFT);
+            this.CONSUME(Tokens.SEMI);
             this.CONSUME7(Tokens.JOIN);
           },
         },
@@ -1521,7 +1521,7 @@ export class Parser extends chevrotain.Parser {
 
       this.OPTION(() => {
         this.OPTION2(() => {
-          this.CONSUME(Tokens.KWAS);
+          this.CONSUME(Tokens.AS);
         });
 
         this.CONSUME(Tokens.Identifier);
@@ -1549,8 +1549,8 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWORDER);
-            this.CONSUME(Tokens.KWBY);
+            this.CONSUME(Tokens.ORDER);
+            this.CONSUME(Tokens.BY);
             this.CONSUME(Tokens.LPAREN);
             this.SUBRULE(this.columnRefOrder);
 
@@ -1564,8 +1564,8 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME2(Tokens.KWORDER);
-            this.CONSUME2(Tokens.KWBY);
+            this.CONSUME2(Tokens.ORDER);
+            this.CONSUME2(Tokens.BY);
             this.SUBRULE3(this.columnRefOrder);
 
             this.MANY2(() => {
@@ -1581,8 +1581,8 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSORT);
-            this.CONSUME(Tokens.KWBY);
+            this.CONSUME(Tokens.SORT);
+            this.CONSUME(Tokens.BY);
             this.CONSUME(Tokens.LPAREN);
             this.SUBRULE(this.columnRefOrder);
 
@@ -1596,8 +1596,8 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME2(Tokens.KWSORT);
-            this.CONSUME2(Tokens.KWBY);
+            this.CONSUME2(Tokens.SORT);
+            this.CONSUME2(Tokens.BY);
             this.SUBRULE3(this.columnRefOrder);
           },
         },
@@ -1632,682 +1632,687 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTRUE);
+            this.CONSUME(Tokens.TRUE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFALSE);
+            this.CONSUME(Tokens.FALSE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLIKE);
+            this.CONSUME(Tokens.LIKE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWEXISTS);
+            this.CONSUME(Tokens.EXISTS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWASC);
+            this.CONSUME(Tokens.ASC);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDESC);
+            this.CONSUME(Tokens.DESC);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWORDER);
+            this.CONSUME(Tokens.ORDER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWGROUP);
+            this.CONSUME(Tokens.GROUP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBY);
+            this.CONSUME(Tokens.BY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWAS);
+            this.CONSUME(Tokens.AS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINSERT);
+            this.CONSUME(Tokens.INSERT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOVERWRITE);
+            this.CONSUME(Tokens.OVERWRITE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOUTER);
+            this.CONSUME(Tokens.OUTER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLEFT);
+            this.CONSUME(Tokens.LEFT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRIGHT);
+            this.CONSUME(Tokens.RIGHT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFULL);
+            this.CONSUME(Tokens.FULL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPARTITION);
+            this.CONSUME(Tokens.PARTITION);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPARTITIONS);
+            this.CONSUME(Tokens.PARTITIONS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTABLE);
+            this.CONSUME(Tokens.TABLE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTABLES);
+            this.CONSUME(Tokens.TABLES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCOLUMNS);
+            this.CONSUME(Tokens.COLUMNS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINDEX);
+            this.CONSUME(Tokens.INDEX);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINDEXES);
+            this.CONSUME(Tokens.INDEXES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREBUILD);
+            this.CONSUME(Tokens.REBUILD);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSHOW);
+            this.CONSUME(Tokens.SHOW);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWMSCK);
+            this.CONSUME(Tokens.MSCK);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREPAIR);
+            this.CONSUME(Tokens.REPAIR);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDIRECTORY);
+            this.CONSUME(Tokens.DIRECTORY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLOCAL);
+            this.CONSUME(Tokens.LOCAL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUSING);
+            this.CONSUME(Tokens.USING);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCLUSTER);
+            this.CONSUME(Tokens.CLUSTER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDISTRIBUTE);
+            this.CONSUME(Tokens.DISTRIBUTE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSORT);
+            this.CONSUME(Tokens.SORT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUNION);
+            this.CONSUME(Tokens.UNION);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLOAD);
+            this.CONSUME(Tokens.LOAD);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWEXPORT);
+            this.CONSUME(Tokens.EXPORT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWIMPORT);
+            this.CONSUME(Tokens.IMPORT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATA);
+            this.CONSUME(Tokens.DATA);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINPATH);
+            this.CONSUME(Tokens.INPATH);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWIS);
+            this.CONSUME(Tokens.IS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWNULL);
+            this.CONSUME(Tokens.NULL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCREATE);
+            this.CONSUME(Tokens.CREATE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWEXTERNAL);
+            this.CONSUME(Tokens.EXTERNAL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWALTER);
+            this.CONSUME(Tokens.ALTER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCHANGE);
+            this.CONSUME(Tokens.CHANGE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFIRST);
+            this.CONSUME(Tokens.FIRST);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWAFTER);
+            this.CONSUME(Tokens.AFTER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDESCRIBE);
+            this.CONSUME(Tokens.DESCRIBE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDROP);
+            this.CONSUME(Tokens.DROP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRENAME);
+            this.CONSUME(Tokens.RENAME);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWIGNORE);
+            this.CONSUME(Tokens.IGNORE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPROTECTION);
+            this.CONSUME(Tokens.PROTECTION);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTO);
+            this.CONSUME(Tokens.TO);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCOMMENT);
+            this.CONSUME(Tokens.COMMENT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBOOLEAN);
+            this.CONSUME(Tokens.BOOLEAN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTINYINT);
+            this.CONSUME(Tokens.TINYINT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSMALLINT);
+            this.CONSUME(Tokens.SMALLINT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINT);
+            this.CONSUME(Tokens.INT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBIGINT);
+            this.CONSUME(Tokens.BIGINT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFLOAT);
+            this.CONSUME(Tokens.FLOAT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDOUBLE);
+            this.CONSUME(Tokens.DOUBLE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATE);
+            this.CONSUME(Tokens.DATE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATETIME);
+            this.CONSUME(Tokens.DATETIME);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTIMESTAMP);
+            this.CONSUME(Tokens.TIMESTAMP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDECIMAL);
+            this.CONSUME(Tokens.DECIMAL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSTRING);
+            this.CONSUME(Tokens.STRING);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWARRAY);
+            this.CONSUME(Tokens.ARRAY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSTRUCT);
+            this.CONSUME(Tokens.STRUCT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUNIONTYPE);
+            this.CONSUME(Tokens.UNIONTYPE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPARTITIONED);
+            this.CONSUME(Tokens.PARTITIONED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCLUSTERED);
+            this.CONSUME(Tokens.CLUSTERED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSORTED);
+            this.CONSUME(Tokens.SORTED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINTO);
+            this.CONSUME(Tokens.INTO);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBUCKETS);
+            this.CONSUME(Tokens.BUCKETS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWROW);
+            this.CONSUME(Tokens.ROW);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWROWS);
+            this.CONSUME(Tokens.ROWS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFORMAT);
+            this.CONSUME(Tokens.FORMAT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDELIMITED);
+            this.CONSUME(Tokens.DELIMITED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFIELDS);
+            this.CONSUME(Tokens.FIELDS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTERMINATED);
+            this.CONSUME(Tokens.TERMINATED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWESCAPED);
+            this.CONSUME(Tokens.ESCAPED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCOLLECTION);
+            this.CONSUME(Tokens.COLLECTION);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWITEMS);
+            this.CONSUME(Tokens.ITEMS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWKEYS);
+            this.CONSUME(Tokens.KEYS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWKEY_TYPE);
+            this.CONSUME(Tokens.KEY_TYPE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLINES);
+            this.CONSUME(Tokens.LINES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSTORED);
+            this.CONSUME(Tokens.STORED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFILEFORMAT);
+            this.CONSUME(Tokens.FILEFORMAT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSEQUENCEFILE);
+            this.CONSUME(Tokens.SEQUENCEFILE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTEXTFILE);
+            this.CONSUME(Tokens.TEXTFILE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRCFILE);
+            this.CONSUME(Tokens.RCFILE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWORCFILE);
+            this.CONSUME(Tokens.ORCFILE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINPUTFORMAT);
+            this.CONSUME(Tokens.INPUTFORMAT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOUTPUTFORMAT);
+            this.CONSUME(Tokens.OUTPUTFORMAT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINPUTDRIVER);
+            this.CONSUME(Tokens.INPUTDRIVER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOUTPUTDRIVER);
+            this.CONSUME(Tokens.OUTPUTDRIVER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOFFLINE);
+            this.CONSUME(Tokens.OFFLINE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWENABLE);
+            this.CONSUME(Tokens.ENABLE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDISABLE);
+            this.CONSUME(Tokens.DISABLE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREADONLY);
+            this.CONSUME(Tokens.READONLY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWNO_DROP);
+            this.CONSUME(Tokens.NO_DROP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLOCATION);
+            this.CONSUME(Tokens.LOCATION);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBUCKET);
+            this.CONSUME(Tokens.BUCKET);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOUT);
+            this.CONSUME(Tokens.OUT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOF);
+            this.CONSUME(Tokens.OF);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPERCENT);
+            this.CONSUME(Tokens.PERCENT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWADD);
+            this.CONSUME(Tokens.ADD);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREPLACE);
+            this.CONSUME(Tokens.REPLACE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRLIKE);
+            this.CONSUME(Tokens.RLIKE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREGEXP);
+            this.CONSUME(Tokens.REGEXP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTEMPORARY);
+            this.CONSUME(Tokens.TEMPORARY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWEXPLAIN);
+            this.CONSUME(Tokens.EXPLAIN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFORMATTED);
+            this.CONSUME(Tokens.FORMATTED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPRETTY);
+            this.CONSUME(Tokens.PRETTY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDEPENDENCY);
+            this.CONSUME(Tokens.DEPENDENCY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLOGICAL);
+            this.CONSUME(Tokens.LOGICAL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSERDE);
+            this.CONSUME(Tokens.SERDE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWWITH);
+            this.CONSUME(Tokens.WITH);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDEFERRED);
+            this.CONSUME(Tokens.DEFERRED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSERDEPROPERTIES);
+            this.CONSUME(Tokens.SERDEPROPERTIES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDBPROPERTIES);
+            this.CONSUME(Tokens.DBPROPERTIES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLIMIT);
+            this.CONSUME(Tokens.LIMIT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSET);
+            this.CONSUME(Tokens.SET);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUNSET);
+            this.CONSUME(Tokens.UNSET);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTBLPROPERTIES);
+            this.CONSUME(Tokens.TBLPROPERTIES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWIDXPROPERTIES);
+            this.CONSUME(Tokens.IDXPROPERTIES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWVALUE_TYPE);
+            this.CONSUME(Tokens.VALUE_TYPE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWELEM_TYPE);
+            this.CONSUME(Tokens.ELEM_TYPE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWMAPJOIN);
+            this.CONSUME(Tokens.MAPJOIN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSTREAMTABLE);
+            this.CONSUME(Tokens.STREAMTABLE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWHOLD_DDLTIME);
+            this.CONSUME(Tokens.HOLD_DDLTIME);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCLUSTERSTATUS);
+            this.CONSUME(Tokens.CLUSTERSTATUS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUTC);
+            this.CONSUME(Tokens.UTC);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUTCTIMESTAMP);
+            this.CONSUME(Tokens.UTCTIMESTAMP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLONG);
+            this.CONSUME(Tokens.LONG);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDELETE);
+            this.CONSUME(Tokens.DELETE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PLUS);
           },
         },
         {
@@ -2317,307 +2322,312 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
+            this.CONSUME(Tokens.MINUS);
+          },
+        },
+        {
+          ALT: () => {
             this.CONSUME(Tokens.KWMINUS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFETCH);
+            this.CONSUME(Tokens.FETCH);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINTERSECT);
+            this.CONSUME(Tokens.INTERSECT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWVIEW);
+            this.CONSUME(Tokens.VIEW);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWIN);
+            this.CONSUME(Tokens.IN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDATABASES);
+            this.CONSUME(Tokens.DATABASES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWMATERIALIZED);
+            this.CONSUME(Tokens.MATERIALIZED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSCHEMA);
+            this.CONSUME(Tokens.SCHEMA);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSCHEMAS);
+            this.CONSUME(Tokens.SCHEMAS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWGRANT);
+            this.CONSUME(Tokens.GRANT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREVOKE);
+            this.CONSUME(Tokens.REVOKE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSSL);
+            this.CONSUME(Tokens.SSL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUNDO);
+            this.CONSUME(Tokens.UNDO);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLOCK);
+            this.CONSUME(Tokens.LOCK);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLOCKS);
+            this.CONSUME(Tokens.LOCKS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUNLOCK);
+            this.CONSUME(Tokens.UNLOCK);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSHARED);
+            this.CONSUME(Tokens.SHARED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWEXCLUSIVE);
+            this.CONSUME(Tokens.EXCLUSIVE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPROCEDURE);
+            this.CONSUME(Tokens.PROCEDURE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUNSIGNED);
+            this.CONSUME(Tokens.UNSIGNED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWWHILE);
+            this.CONSUME(Tokens.WHILE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREAD);
+            this.CONSUME(Tokens.READ);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWREADS);
+            this.CONSUME(Tokens.READS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWPURGE);
+            this.CONSUME(Tokens.PURGE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRANGE);
+            this.CONSUME(Tokens.RANGE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWANALYZE);
+            this.CONSUME(Tokens.ANALYZE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBEFORE);
+            this.CONSUME(Tokens.BEFORE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBETWEEN);
+            this.CONSUME(Tokens.BETWEEN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBOTH);
+            this.CONSUME(Tokens.BOTH);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWBINARY);
+            this.CONSUME(Tokens.BINARY);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCONTINUE);
+            this.CONSUME(Tokens.CONTINUE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCURSOR);
+            this.CONSUME(Tokens.CURSOR);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTRIGGER);
+            this.CONSUME(Tokens.TRIGGER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRECORDREADER);
+            this.CONSUME(Tokens.RECORDREADER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRECORDWRITER);
+            this.CONSUME(Tokens.RECORDWRITER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSEMI);
+            this.CONSUME(Tokens.SEMI);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWLATERAL);
+            this.CONSUME(Tokens.LATERAL);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTOUCH);
+            this.CONSUME(Tokens.TOUCH);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWARCHIVE);
+            this.CONSUME(Tokens.ARCHIVE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUNARCHIVE);
+            this.CONSUME(Tokens.UNARCHIVE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCOMPUTE);
+            this.CONSUME(Tokens.COMPUTE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSTATISTICS);
+            this.CONSUME(Tokens.STATISTICS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUSE);
+            this.CONSUME(Tokens.USE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWOPTION);
+            this.CONSUME(Tokens.OPTION);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCONCATENATE);
+            this.CONSUME(Tokens.CONCATENATE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSHOW_DATABASE);
+            this.CONSUME(Tokens.SHOW_DATABASE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUPDATE);
+            this.CONSUME(Tokens.UPDATE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWRESTRICT);
+            this.CONSUME(Tokens.RESTRICT);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCASCADE);
+            this.CONSUME(Tokens.CASCADE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSKEWED);
+            this.CONSUME(Tokens.SKEWED);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWROLLUP);
+            this.CONSUME(Tokens.ROLLUP);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWCUBE);
+            this.CONSUME(Tokens.CUBE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWDIRECTORIES);
+            this.CONSUME(Tokens.DIRECTORIES);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWFOR);
+            this.CONSUME(Tokens.FOR);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWGROUPING);
+            this.CONSUME(Tokens.GROUPING);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWSETS);
+            this.CONSUME(Tokens.SETS);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWTRUNCATE);
+            this.CONSUME(Tokens.TRUNCATE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWNOSCAN);
+            this.CONSUME(Tokens.NOSCAN);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWUSER);
+            this.CONSUME(Tokens.USER);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWROLE);
+            this.CONSUME(Tokens.ROLE);
           },
         },
         {
           ALT: () => {
-            this.CONSUME(Tokens.KWINNER);
+            this.CONSUME(Tokens.INNER);
           },
         },
       ]);

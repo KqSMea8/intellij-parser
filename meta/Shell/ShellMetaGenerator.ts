@@ -304,20 +304,10 @@ export class RuleNode extends BaseNode {
   }
 
   toLexerCode() {
-    const decimalTokens = ['ZERO_DECIMAL', 'ONE_DECIMAL', 'TWO_DECIMAL'];
-    if (decimalTokens.indexOf(this.tokenName) > -1) {
-      return `const ${this.tokenName} = chevrotain.createToken({
-        name: '${this.tokenName}',
-        pattern: /${this.pattern}/,
-        longer_alt: DECIMAL_LITERAL
-      });`;
-    } else {
-      return `const ${this.tokenName} = chevrotain.createToken({
-        name: '${this.tokenName}',
-        pattern: /${this.pattern}/i,
-        longer_alt: ID
-      });`;
-    }
+    return `const ${this.tokenName} = chevrotain.createToken({
+      name: '${this.tokenName}',
+      pattern: /${this.pattern}/,
+    });`;
   }
 
   toCode() {

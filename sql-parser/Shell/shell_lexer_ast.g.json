@@ -570,13 +570,37 @@
               "item": {
                 "index": 0,
                 "kind": "ReExp",
-                "content": "[0-9]"
+                "content": "[0-9]+"
               }
             }
           ]
         }
       ],
-      "pattern": "[0-9]"
+      "pattern": "[0-9]+"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "TIME",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'TIME'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "TIME"
     },
     {
       "index": 0,
@@ -893,6 +917,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "UNTIL",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'UNTIL'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "UNTIL"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "WHILE",
       "atoms": [
         {
@@ -930,13 +978,13 @@
               "item": {
                 "index": 0,
                 "kind": "ReExp",
-                "content": "[A-Za-z]"
+                "content": "[A-Za-z]+"
               }
             }
           ]
         }
       ],
-      "pattern": "[A-Za-z]"
+      "pattern": "[A-Za-z]+"
     }
   ]
 }

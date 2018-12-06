@@ -35,11 +35,11 @@ redirection:
 		| LEFT_REDIRECTION_WITH_MERGE
 	) (HYPHEN | number);
 
+simpleCommandElement: word | assignmentWord | redirection;
+
 redirectionList: redirection+;
 
 simpleCommand: simpleCommandElement+;
-
-simpleCommandElement: word | assignmentWord | redirection;
 
 command: simpleCommand | shellCommand redirectionList?;
 
@@ -107,25 +107,43 @@ patternList:
 
 caseClauseSequence: (patternList DOUBLE_SEMI)+;
 
-pattern: word (BIT_OR_OP word)?;
+pattern: word | pattern BIT_OR_OP word;
 
 list: newlineList list0;
 
-compoundList: newlineList (list1 | list0);
+compoundList: list | newlineList list1;
 
 list0: list1 (LINE_FEED | BIT_AND_OP | SEMI) newlineList;
 
 list1:
-	pipelineCommand ((AND | OR | BIT_AND_OP | SEMI) pipelineCommand)?;
+	list1 AND newlineList list1
+	| list1 OR newlineList list1
+	| list1 BIT_AND_OP newlineList list1
+	| list1 SEMI newlineList list1
+	| list1 LINE_FEED newlineList list1
+	| pipelineCommand;
 
 listTerminator: LINE_FEED | SEMI;
 
-newlineList: LINE_FEED;
+newlineList: | newlineList LINE_FEED;
 
-pipelineCommand: (
-		timespec EXCLAMATION_SYMBOL?
-		| EXCLAMATION_SYMBOL timespec?
-	)? command (BIT_OR_OP newlineList command)?;
+simpleList: simpleList1 (BIT_AND_OP | SEMI)?;
+
+simpleList1:
+	simpleList1 AND newlineList simpleList1
+	| simpleList1 OR newlineList simpleList1
+	| simpleList1 BIT_AND_OP simpleList1
+	| simpleList1 SEMI simpleList1
+	| pipelineCommand;
+
+pipelineCommand:
+	pipeline
+	| EXCLAMATION_SYMBOL pipeline
+	| timespec pipeline
+	| timespec EXCLAMATION_SYMBOL pipeline
+	| EXCLAMATION_SYMBOL timespec pipeline;
+
+pipeline: pipeline BIT_OR_OP newlineList pipeline | command;
 
 timeOpt: TIME_OPT;
 

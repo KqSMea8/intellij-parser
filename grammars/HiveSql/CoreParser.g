@@ -1,6 +1,6 @@
 root: sqlStatements?;
 
-sqlStatements: (sqlStatement KWSEMI)*;
+sqlStatements: (sqlStatement SEMI)*;
 
 sqlStatement: ddlStatement | dmlStatement | dqlStatement;
 
@@ -19,56 +19,56 @@ dmlStatement:
 	| updateStatement
 	| deleteStatement;
 
-showTable: KWSHOW tableName;
+showTable: SHOW tableName;
 
 insertStatement:
-	KWINSERT KWINTO? KWOVERWRITE? KWTABLE? tableName partitionInsertDefinitions? (
+	INSERT INTO? OVERWRITE? TABLE? tableName partitionInsertDefinitions? (
 		('(' uidList ')')? insertStatementValue
 	);
 
 partitionInsertDefinitions:
-	(KWPARTITIONED | KWPARTITION) KWBY? (
+	(PARTITIONED | PARTITION) BY? (
 		uidList
 		| '(' fullColumnName '=' constant ')'
 	);
 
 insertStatementValue:
-	insertFormat = (KWVALUES | KWVALUE) '(' expression ')' (
+	insertFormat = (VALUES | VALUE) '(' expression ')' (
 		',' '(' expression ')'
 	)*
 	| selectStatement;
 
 updateStatement:
-	KWUPDATE tableName (KWAS? Identifier)? KWSET updatedElement (
+	UPDATE tableName (AS? Identifier)? SET updatedElement (
 		',' updatedElement
-	)* (KWWHERE expression)?;
+	)* (WHERE expression)?;
 
 updatedElement: fullColumnName '=' expression;
 
 fullColumnName: constant | Identifier;
 
 deleteStatement:
-	KWDELETE KWFROM tableName (KWWHERE expression)?;
+	DELETE FROM tableName (WHERE expression)?;
 
 createDatabaseStatement:
-	KWCREATE (KWDATABASE | KWSCHEMA) ifNotExists? name = identifier;
+	CREATE (DATABASE | SCHEMA) ifNotExists? name = identifier;
 
-ifExists: KWIF KWEXISTS;
+ifExists: IF EXISTS;
 
-switchDatabaseStatement: KWUSE identifier;
+switchDatabaseStatement: USE identifier;
 
 dropDatabaseStatement:
-	KWDROP (KWDATABASE | KWSCHEMA) ifExists? identifier;
+	DROP (DATABASE | SCHEMA) ifExists? identifier;
 
 createTable:
-	KWCREATE (ext = KWEXTERNAL)? KWTABLE ifNotExists? name = tableName (
-		like = KWLIKE likeName = tableName
-		| ( KWAS selectStatement)?
+	CREATE (ext = EXTERNAL)? TABLE ifNotExists? name = tableName (
+		like = LIKE likeName = tableName
+		| ( AS selectStatement)?
 	);
 
-dropTable: KWDROP KWTABLE ifExists? tableName;
+dropTable: DROP TABLE ifExists? tableName;
 
-alterTable: KWALTER ( KWTABLE alterTableStatementSuffix);
+alterTable: ALTER ( TABLE alterTableStatementSuffix);
 
 alterTableStatementSuffix:
 	alterStatementSuffixRename
@@ -76,25 +76,25 @@ alterTableStatementSuffix:
 	| alterStatementSuffixRenameCol;
 
 alterStatementSuffixRename:
-	oldName = identifier KWRENAME KWTO newName = identifier;
+	oldName = identifier RENAME TO newName = identifier;
 
 alterStatementSuffixRenameCol:
-	identifier KWCHANGE KWCOLUMN? oldName = identifier newName = identifier colType (
-		KWCOMMENT comment = StringLiteral
+	identifier CHANGE COLUMN? oldName = identifier newName = identifier colType (
+		COMMENT comment = StringLiteral
 	)? alterStatementChangeColPosition?;
 
 alterStatementChangeColPosition:
-	first = KWFIRST
-	| KWAFTER afterCol = identifier;
+	first = FIRST
+	| AFTER afterCol = identifier;
 
 alterStatementSuffixAddCol:
-	identifier (add = KWADD | replace = KWREPLACE) KWCOLUMNS LPAREN columnNameTypeList RPAREN;
+	identifier (add = ADD | replace = REPLACE) COLUMNS LPAREN columnNameTypeList RPAREN;
 
 columnNameTypeList: columnNameType (COMMA columnNameType)*;
 
 columnNameType:
 	colName = identifier colType (
-		KWCOMMENT comment = StringLiteral
+		COMMENT comment = StringLiteral
 	)?;
 
 colType: type;
@@ -104,49 +104,52 @@ colTypeList: colType (COMMA colType)*;
 type: primitiveType | listType | mapType | unionType;
 
 primitiveType:
-	KWTINYINT
-	| KWSMALLINT
-	| KWINT
-	| KWBIGINT
-	| KWBOOLEAN
-	| KWFLOAT
-	| KWDOUBLE
-	| KWDATE
-	| KWDATETIME
-	| KWTIMESTAMP
-	| KWSTRING
-	| KWBINARY
-	| KWDECIMAL;
+	TINYINT
+	| SMALLINT
+	| INT
+	| BIGINT
+	| BOOLEAN
+	| FLOAT
+	| DOUBLE
+	| DATE
+	| DATETIME
+	| TIMESTAMP
+	| STRING
+	| BINARY
+	| DECIMAL;
 
-listType: KWARRAY LESSTHAN type GREATERTHAN;
+listType: ARRAY LESSTHAN type GREATERTHAN;
 
 mapType:
-	KWMAP LESSTHAN left = primitiveType COMMA right = type GREATERTHAN;
+	MAP LESSTHAN left = primitiveType COMMA right = type GREATERTHAN;
 
-unionType: KWUNIONTYPE LESSTHAN colTypeList GREATERTHAN;
+unionType: UNIONTYPE LESSTHAN colTypeList GREATERTHAN;
 
-ifNotExists: KWIF KWNOT KWEXISTS;
+ifNotExists: IF NOT EXISTS;
 
 columnNameList: columnName (COMMA columnName)*;
 
 columnName: identifier;
 
-columnRefOrder: expression (asc = KWASC | desc = KWDESC)?;
+columnRefOrder: expression (asc = ASC | desc = DESC)?;
 
-queryOperator: KWUNION KWALL;
+queryOperator: UNION ALL;
 
 selectStatement:
 	selectClause fromClause whereClause? groupByClause? havingClause? orderByClause?
 		distributeByClause? sortByClause? limitClause?;
 
-whereClause: KWWHERE searchCondition;
+selectClause:
+	SELECT (ALL | DISTINCT)? selectList;
+
+whereClause: WHERE searchCondition;
 
 groupByClause:
-	KWGROUP KWBY groupByExpression (COMMA groupByExpression)* (
-		(rollup = KWWITH KWROLLUP)
-		| (cube = KWWITH KWCUBE)
+	GROUP BY groupByExpression (COMMA groupByExpression)* (
+		(rollup = WITH ROLLUP)
+		| (cube = WITH CUBE)
 	)? (
-		sets = KWGROUPING KWSETS LPAREN groupingSetExpression (
+		sets = GROUPING SETS LPAREN groupingSetExpression (
 			COMMA groupingSetExpression
 		)* RPAREN
 	)?;
@@ -158,11 +161,11 @@ groupingSetExpression:
 
 groupByExpression: expression;
 
-havingClause: KWHAVING havingCondition;
+havingClause: HAVING havingCondition;
 
 distributeByClause:
-	KWDISTRIBUTE KWBY LPAREN expression (COMMA expression)* RPAREN
-	| KWDISTRIBUTE KWBY expression;
+	DISTRIBUTE BY LPAREN expression (COMMA expression)* RPAREN
+	| DISTRIBUTE BY expression;
 
 havingCondition: expression;
 
@@ -174,7 +177,7 @@ atomExpression: constant | tableOrColumn;
 
 tableOrColumn: identifier;
 
-dateLiteral: KWDATE? StringLiteral+;
+dateLiteral: DATE? StringLiteral+;
 
 constant:
 	Number
@@ -188,7 +191,7 @@ constant:
 charSetStringLiteral:
 	csName = CharSetName csLiteral = CharSetLiteral;
 
-booleanValue: KWTRUE | KWFALSE;
+booleanValue: TRUE | FALSE;
 
 precedenceFieldExpression:
 	atomExpression (
@@ -198,13 +201,13 @@ precedenceFieldExpression:
 
 precedenceUnaryOperator: PLUS | MINUS | TILDE;
 
-nullCondition: KWNULL | KWNOT KWNULL;
+nullCondition: NULL | NOT NULL;
 
 precedenceUnaryPrefixExpression:
 	(precedenceUnaryOperator)* precedenceFieldExpression;
 
 precedenceUnarySuffixExpression:
-	precedenceUnaryPrefixExpression (a = KWIS nullCondition)?;
+	precedenceUnaryPrefixExpression (a = IS nullCondition)?;
 
 precedenceBitwiseXorOperator: BITWISEXOR;
 
@@ -241,7 +244,7 @@ precedenceBitwiseOrExpression:
 		precedenceBitwiseOrOperator precedenceAmpersandExpression
 	)*;
 
-precedenceEqualNegatableOperator: KWLIKE | KWRLIKE | KWREGEXP;
+precedenceEqualNegatableOperator: LIKE | RLIKE | REGEXP;
 
 precedenceEqualOperator:
 	precedenceEqualNegatableOperator
@@ -256,51 +259,48 @@ precedenceEqualOperator:
 precedenceEqualExpression:
 	precedenceBitwiseOrExpression (
 		(
-			KWNOT? precedenceEqualOperator notExpr = precedenceBitwiseOrExpression
+			NOT? precedenceEqualOperator notExpr = precedenceBitwiseOrExpression
 		)
-		| (KWNOT? KWIN expressions)
+		| (NOT? IN expressions)
 		| (
-			KWNOT? KWBETWEEN (
+			NOT? BETWEEN (
 				min = precedenceBitwiseOrExpression
-			) KWAND (max = precedenceBitwiseOrExpression)
+			) AND (max = precedenceBitwiseOrExpression)
 		)
 	)*;
 
 expressions: LPAREN expression (COMMA expression)* RPAREN;
 
-precedenceNotOperator: KWNOT;
+precedenceNotOperator: NOT;
 
 precedenceNotExpression:
 	(precedenceNotOperator)* precedenceEqualExpression;
 
-precedenceAndOperator: KWAND;
+precedenceAndOperator: AND;
 
 precedenceAndExpression:
 	precedenceNotExpression (
 		precedenceAndOperator precedenceNotExpression
 	)*;
 
-precedenceOrOperator: KWOR;
+precedenceOrOperator: OR;
 
 precedenceOrExpression:
 	precedenceAndExpression (
 		precedenceOrOperator precedenceAndExpression
 	)*;
 
-limitClause: KWLIMIT num = Number;
-
-selectClause:
-	KWSELECT (((KWALL | dist = KWDISTINCT)? selectList));
+limitClause: LIMIT num = Number;
 
 selectList: selectItem ( COMMA selectItem)*;
 
-selectItem: selectExpression ( KWAS? identifier)?;
+selectItem: selectExpression ( AS? identifier)?;
 
 selectExpression: tableAllColumns;
 
 tableAllColumns: STAR | tableName DOT STAR;
 
-fromClause: KWFROM joinSource;
+fromClause: FROM joinSource;
 
 joinSource: fromSource joinPart;
 
@@ -308,229 +308,231 @@ joinPart: (joinToken fromSource)*;
 
 joinToken:
 	JOIN
-	| KWINNER JOIN
-	| KWCROSS JOIN
-	| KWLEFT (KWOUTER)? JOIN
-	| KWRIGHT (KWOUTER)? JOIN
-	| KWFULL (KWOUTER)? JOIN
-	| KWLEFT KWSEMI JOIN;
+	| INNER JOIN
+	| CROSS JOIN
+	| LEFT (OUTER)? JOIN
+	| RIGHT (OUTER)? JOIN
+	| FULL (OUTER)? JOIN
+	| LEFT SEMI JOIN;
 
 fromSource: (tableSource);
 
-tableSource: tabname = tableName (KWAS? alias = Identifier)?;
+tableSource: tabname = tableName (AS? alias = Identifier)?;
 
 tableName:
 	db = identifier DOT tab = identifier
 	| tab = identifier;
 
 orderByClause:
-	KWORDER KWBY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
-	| KWORDER KWBY columnRefOrder (COMMA columnRefOrder)*;
+	ORDER BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
+	| ORDER BY columnRefOrder (COMMA columnRefOrder)*;
 
 sortByClause:
-	KWSORT KWBY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
-	| KWSORT KWBY columnRefOrder;
+	SORT BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
+	| SORT BY columnRefOrder;
 
 identifier: Identifier | nonReserved;
 
 uidList: Identifier (',' Identifier)*;
 
 nonReserved:
-	KWTRUE
-	| KWFALSE
-	| KWLIKE
-	| KWEXISTS
-	| KWASC
-	| KWDESC
-	| KWORDER
-	| KWGROUP
-	| KWBY
-	| KWAS
-	| KWINSERT
-	| KWOVERWRITE
-	| KWOUTER
-	| KWLEFT
-	| KWRIGHT
-	| KWFULL
-	| KWPARTITION
-	| KWPARTITIONS
-	| KWTABLE
-	| KWTABLES
-	| KWCOLUMNS
-	| KWINDEX
-	| KWINDEXES
-	| KWREBUILD
-	| KWSHOW
-	| KWMSCK
-	| KWREPAIR
-	| KWDIRECTORY
-	| KWLOCAL
-	| KWUSING
-	| KWCLUSTER
-	| KWDISTRIBUTE
-	| KWSORT
-	| KWUNION
-	| KWLOAD
-	| KWEXPORT
-	| KWIMPORT
-	| KWDATA
-	| KWINPATH
-	| KWIS
-	| KWNULL
-	| KWCREATE
-	| KWEXTERNAL
-	| KWALTER
-	| KWCHANGE
-	| KWFIRST
-	| KWAFTER
-	| KWDESCRIBE
-	| KWDROP
-	| KWRENAME
-	| KWIGNORE
-	| KWPROTECTION
-	| KWTO
-	| KWCOMMENT
-	| KWBOOLEAN
-	| KWTINYINT
-	| KWSMALLINT
-	| KWINT
-	| KWBIGINT
-	| KWFLOAT
-	| KWDOUBLE
-	| KWDATE
-	| KWDATETIME
-	| KWTIMESTAMP
-	| KWDECIMAL
-	| KWSTRING
-	| KWARRAY
-	| KWSTRUCT
-	| KWUNIONTYPE
-	| KWPARTITIONED
-	| KWCLUSTERED
-	| KWSORTED
-	| KWINTO
-	| KWBUCKETS
-	| KWROW
-	| KWROWS
-	| KWFORMAT
-	| KWDELIMITED
-	| KWFIELDS
-	| KWTERMINATED
-	| KWESCAPED
-	| KWCOLLECTION
-	| KWITEMS
-	| KWKEYS
-	| KWKEY_TYPE
-	| KWLINES
-	| KWSTORED
-	| KWFILEFORMAT
-	| KWSEQUENCEFILE
-	| KWTEXTFILE
-	| KWRCFILE
-	| KWORCFILE
-	| KWINPUTFORMAT
-	| KWOUTPUTFORMAT
-	| KWINPUTDRIVER
-	| KWOUTPUTDRIVER
-	| KWOFFLINE
-	| KWENABLE
-	| KWDISABLE
-	| KWREADONLY
-	| KWNO_DROP
-	| KWLOCATION
-	| KWBUCKET
-	| KWOUT
-	| KWOF
-	| KWPERCENT
-	| KWADD
-	| KWREPLACE
-	| KWRLIKE
-	| KWREGEXP
-	| KWTEMPORARY
-	| KWEXPLAIN
-	| KWFORMATTED
-	| KWPRETTY
-	| KWDEPENDENCY
-	| KWLOGICAL
-	| KWSERDE
-	| KWWITH
-	| KWDEFERRED
-	| KWSERDEPROPERTIES
-	| KWDBPROPERTIES
-	| KWLIMIT
-	| KWSET
-	| KWUNSET
-	| KWTBLPROPERTIES
-	| KWIDXPROPERTIES
-	| KWVALUE_TYPE
-	| KWELEM_TYPE
-	| KWMAPJOIN
-	| KWSTREAMTABLE
-	| KWHOLD_DDLTIME
-	| KWCLUSTERSTATUS
-	| KWUTC
-	| KWUTCTIMESTAMP
-	| KWLONG
-	| KWDELETE
+	TRUE
+	| FALSE
+	| LIKE
+	| EXISTS
+	| ASC
+	| DESC
+	| ORDER
+	| GROUP
+	| BY
+	| AS
+	| INSERT
+	| OVERWRITE
+	| OUTER
+	| LEFT
+	| RIGHT
+	| FULL
+	| PARTITION
+	| PARTITIONS
+	| TABLE
+	| TABLES
+	| COLUMNS
+	| INDEX
+	| INDEXES
+	| REBUILD
+	| SHOW
+	| MSCK
+	| REPAIR
+	| DIRECTORY
+	| LOCAL
+	| USING
+	| CLUSTER
+	| DISTRIBUTE
+	| SORT
+	| UNION
+	| LOAD
+	| EXPORT
+	| IMPORT
+	| DATA
+	| INPATH
+	| IS
+	| NULL
+	| CREATE
+	| EXTERNAL
+	| ALTER
+	| CHANGE
+	| FIRST
+	| AFTER
+	| DESCRIBE
+	| DROP
+	| RENAME
+	| IGNORE
+	| PROTECTION
+	| TO
+	| COMMENT
+	| BOOLEAN
+	| TINYINT
+	| SMALLINT
+	| INT
+	| BIGINT
+	| FLOAT
+	| DOUBLE
+	| DATE
+	| DATETIME
+	| TIMESTAMP
+	| DECIMAL
+	| STRING
+	| ARRAY
+	| STRUCT
+	| UNIONTYPE
+	| PARTITIONED
+	| CLUSTERED
+	| SORTED
+	| INTO
+	| BUCKETS
+	| ROW
+	| ROWS
+	| FORMAT
+	| DELIMITED
+	| FIELDS
+	| TERMINATED
+	| ESCAPED
+	| COLLECTION
+	| ITEMS
+	| KEYS
+	| KEY_TYPE
+	| LINES
+	| STORED
+	| FILEFORMAT
+	| SEQUENCEFILE
+	| TEXTFILE
+	| RCFILE
+	| ORCFILE
+	| INPUTFORMAT
+	| OUTPUTFORMAT
+	| INPUTDRIVER
+	| OUTPUTDRIVER
+	| OFFLINE
+	| ENABLE
+	| DISABLE
+	| READONLY
+	| NO_DROP
+	| LOCATION
+	| BUCKET
+	| OUT
+	| OF
+	| PERCENT
+	| ADD
+	| REPLACE
+	| RLIKE
+	| REGEXP
+	| TEMPORARY
+	| EXPLAIN
+	| FORMATTED
+	| PRETTY
+	| DEPENDENCY
+	| LOGICAL
+	| SERDE
+	| WITH
+	| DEFERRED
+	| SERDEPROPERTIES
+	| DBPROPERTIES
+	| LIMIT
+	| SET
+	| UNSET
+	| TBLPROPERTIES
+	| IDXPROPERTIES
+	| VALUE_TYPE
+	| ELEM_TYPE
+	| MAPJOIN
+	| STREAMTABLE
+	| HOLD_DDLTIME
+	| CLUSTERSTATUS
+	| UTC
+	| UTCTIMESTAMP
+	| LONG
+	| DELETE
+	| PLUS
 	| KWPLUS
+	| MINUS
 	| KWMINUS
-	| KWFETCH
-	| KWINTERSECT
-	| KWVIEW
-	| KWIN
-	| KWDATABASES
-	| KWMATERIALIZED
-	| KWSCHEMA
-	| KWSCHEMAS
-	| KWGRANT
-	| KWREVOKE
-	| KWSSL
-	| KWUNDO
-	| KWLOCK
-	| KWLOCKS
-	| KWUNLOCK
-	| KWSHARED
-	| KWEXCLUSIVE
-	| KWPROCEDURE
-	| KWUNSIGNED
-	| KWWHILE
-	| KWREAD
-	| KWREADS
-	| KWPURGE
-	| KWRANGE
-	| KWANALYZE
-	| KWBEFORE
-	| KWBETWEEN
-	| KWBOTH
-	| KWBINARY
-	| KWCONTINUE
-	| KWCURSOR
-	| KWTRIGGER
-	| KWRECORDREADER
-	| KWRECORDWRITER
-	| KWSEMI
-	| KWLATERAL
-	| KWTOUCH
-	| KWARCHIVE
-	| KWUNARCHIVE
-	| KWCOMPUTE
-	| KWSTATISTICS
-	| KWUSE
-	| KWOPTION
-	| KWCONCATENATE
-	| KWSHOW_DATABASE
-	| KWUPDATE
-	| KWRESTRICT
-	| KWCASCADE
-	| KWSKEWED
-	| KWROLLUP
-	| KWCUBE
-	| KWDIRECTORIES
-	| KWFOR
-	| KWGROUPING
-	| KWSETS
-	| KWTRUNCATE
-	| KWNOSCAN
-	| KWUSER
-	| KWROLE
-	| KWINNER;
+	| FETCH
+	| INTERSECT
+	| VIEW
+	| IN
+	| DATABASES
+	| MATERIALIZED
+	| SCHEMA
+	| SCHEMAS
+	| GRANT
+	| REVOKE
+	| SSL
+	| UNDO
+	| LOCK
+	| LOCKS
+	| UNLOCK
+	| SHARED
+	| EXCLUSIVE
+	| PROCEDURE
+	| UNSIGNED
+	| WHILE
+	| READ
+	| READS
+	| PURGE
+	| RANGE
+	| ANALYZE
+	| BEFORE
+	| BETWEEN
+	| BOTH
+	| BINARY
+	| CONTINUE
+	| CURSOR
+	| TRIGGER
+	| RECORDREADER
+	| RECORDWRITER
+	| SEMI
+	| LATERAL
+	| TOUCH
+	| ARCHIVE
+	| UNARCHIVE
+	| COMPUTE
+	| STATISTICS
+	| USE
+	| OPTION
+	| CONCATENATE
+	| SHOW_DATABASE
+	| UPDATE
+	| RESTRICT
+	| CASCADE
+	| SKEWED
+	| ROLLUP
+	| CUBE
+	| DIRECTORIES
+	| FOR
+	| GROUPING
+	| SETS
+	| TRUNCATE
+	| NOSCAN
+	| USER
+	| ROLE
+	| INNER;

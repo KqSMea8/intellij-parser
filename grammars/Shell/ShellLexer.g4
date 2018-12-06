@@ -1,4 +1,5 @@
 WHILE: 'WHILE';
+UNTIL: 'UNTIL';
 DO: 'DO';
 DONE: 'DONE';
 FOR: 'FOR';
@@ -12,10 +13,11 @@ IF_END: 'FI';
 THEN: 'THEN';
 ELSE: 'ELSE';
 ELSE_END: 'ELIF';
+TIME: 'TIME';
 
 
-DIGIT: [0-9];
-LETTER: [A-Za-z];
+DIGIT: [0-9]+;
+LETTER: [A-Za-z]+;
 
 LEFT_REDIRECTION: '<';
 RIGHT_REDIRECTION: '>';

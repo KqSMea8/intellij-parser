@@ -37,12 +37,16 @@ const getPositiondNode = (cst, pos: Pos) => {
     nearestRecoveredNode = getFilteredNode(_.findLast(targetToken.ruleStack, { recoveredNode: true }), target => target.recoveredNode && _.isEmpty(target.children))[0];
   }
 
+  // if(targetToken.startLine === pos.line && targetToken.startOffset + targetToken.image.length === pos.offset) {
+  //   /** 精确匹配场景 */
+  //   return [targetToken];
+  // } else 
   if (nearestRecoveredNode) {
     /** 自动补全场景，直到叶子节点都包含recoveredNode */
     return [{
       ...nearestRecoveredNode,
       ruleStack: targetToken.ruleStack.concat(nearestRecoveredNode.ruleStack.slice(1))
-    }]
+    }];
   } else {
     /** 输入场景时，直接返回targetToken */
     return [targetToken]

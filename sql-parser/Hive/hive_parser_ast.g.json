@@ -65,7 +65,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWSEMI"
+                          "name": "SEMI"
                         }
                       }
                     ]
@@ -345,7 +345,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSHOW"
+                "name": "SHOW"
               }
             },
             {
@@ -378,7 +378,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINSERT"
+                "name": "INSERT"
               }
             },
             {
@@ -389,7 +389,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINTO"
+                "name": "INTO"
               }
             },
             {
@@ -400,7 +400,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOVERWRITE"
+                "name": "OVERWRITE"
               }
             },
             {
@@ -411,7 +411,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTABLE"
+                "name": "TABLE"
               }
             },
             {
@@ -542,7 +542,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWPARTITIONED"
+                          "name": "PARTITIONED"
                         }
                       }
                     ]
@@ -558,7 +558,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWPARTITION"
+                          "name": "PARTITION"
                         }
                       }
                     ]
@@ -574,7 +574,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -692,7 +692,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWVALUES"
+                          "name": "VALUES"
                         }
                       }
                     ]
@@ -708,7 +708,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWVALUE"
+                          "name": "VALUE"
                         }
                       }
                     ]
@@ -840,7 +840,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUPDATE"
+                "name": "UPDATE"
               }
             },
             {
@@ -874,7 +874,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWAS"
+                          "name": "AS"
                         }
                       },
                       {
@@ -899,7 +899,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSET"
+                "name": "SET"
               }
             },
             {
@@ -970,7 +970,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWWHERE"
+                          "name": "WHERE"
                         }
                       },
                       {
@@ -1090,7 +1090,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDELETE"
+                "name": "DELETE"
               }
             },
             {
@@ -1100,7 +1100,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFROM"
+                "name": "FROM"
               }
             },
             {
@@ -1133,7 +1133,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWWHERE"
+                          "name": "WHERE"
                         }
                       },
                       {
@@ -1171,7 +1171,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCREATE"
+                "name": "CREATE"
               }
             },
             {
@@ -1193,7 +1193,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWDATABASE"
+                          "name": "DATABASE"
                         }
                       }
                     ]
@@ -1209,7 +1209,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWSCHEMA"
+                          "name": "SCHEMA"
                         }
                       }
                     ]
@@ -1258,7 +1258,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWIF"
+                "name": "IF"
               }
             },
             {
@@ -1268,7 +1268,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWEXISTS"
+                "name": "EXISTS"
               }
             }
           ]
@@ -1291,7 +1291,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUSE"
+                "name": "USE"
               }
             },
             {
@@ -1324,7 +1324,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDROP"
+                "name": "DROP"
               }
             },
             {
@@ -1346,7 +1346,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWDATABASE"
+                          "name": "DATABASE"
                         }
                       }
                     ]
@@ -1362,7 +1362,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWSCHEMA"
+                          "name": "SCHEMA"
                         }
                       }
                     ]
@@ -1411,7 +1411,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCREATE"
+                "name": "CREATE"
               }
             },
             {
@@ -1434,7 +1434,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWEXTERNAL"
+                          "name": "EXTERNAL"
                         }
                       }
                     ]
@@ -1449,7 +1449,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTABLE"
+                "name": "TABLE"
               }
             },
             {
@@ -1492,7 +1492,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWLIKE"
+                          "name": "LIKE"
                         }
                       },
                       {
@@ -1531,7 +1531,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWAS"
+                                    "name": "AS"
                                   }
                                 },
                                 {
@@ -1574,7 +1574,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDROP"
+                "name": "DROP"
               }
             },
             {
@@ -1584,7 +1584,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTABLE"
+                "name": "TABLE"
               }
             },
             {
@@ -1628,7 +1628,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWALTER"
+                "name": "ALTER"
               }
             },
             {
@@ -1650,7 +1650,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWTABLE"
+                          "name": "TABLE"
                         }
                       },
                       {
@@ -1753,7 +1753,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRENAME"
+                "name": "RENAME"
               }
             },
             {
@@ -1763,7 +1763,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTO"
+                "name": "TO"
               }
             },
             {
@@ -1806,7 +1806,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCHANGE"
+                "name": "CHANGE"
               }
             },
             {
@@ -1817,7 +1817,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCOLUMN"
+                "name": "COLUMN"
               }
             },
             {
@@ -1870,7 +1870,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWCOMMENT"
+                          "name": "COMMENT"
                         }
                       },
                       {
@@ -1919,7 +1919,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFIRST"
+                "name": "FIRST"
               }
             }
           ]
@@ -1935,7 +1935,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWAFTER"
+                "name": "AFTER"
               }
             },
             {
@@ -1990,7 +1990,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWADD"
+                          "name": "ADD"
                         }
                       }
                     ]
@@ -2006,7 +2006,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWREPLACE"
+                          "name": "REPLACE"
                         }
                       }
                     ]
@@ -2021,7 +2021,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCOLUMNS"
+                "name": "COLUMNS"
               }
             },
             {
@@ -2168,7 +2168,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWCOMMENT"
+                          "name": "COMMENT"
                         }
                       },
                       {
@@ -2361,7 +2361,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTINYINT"
+                "name": "TINYINT"
               }
             }
           ]
@@ -2377,7 +2377,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSMALLINT"
+                "name": "SMALLINT"
               }
             }
           ]
@@ -2393,7 +2393,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINT"
+                "name": "INT"
               }
             }
           ]
@@ -2409,7 +2409,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBIGINT"
+                "name": "BIGINT"
               }
             }
           ]
@@ -2425,7 +2425,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBOOLEAN"
+                "name": "BOOLEAN"
               }
             }
           ]
@@ -2441,7 +2441,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFLOAT"
+                "name": "FLOAT"
               }
             }
           ]
@@ -2457,7 +2457,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDOUBLE"
+                "name": "DOUBLE"
               }
             }
           ]
@@ -2473,7 +2473,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDATE"
+                "name": "DATE"
               }
             }
           ]
@@ -2489,7 +2489,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDATETIME"
+                "name": "DATETIME"
               }
             }
           ]
@@ -2505,7 +2505,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTIMESTAMP"
+                "name": "TIMESTAMP"
               }
             }
           ]
@@ -2521,7 +2521,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSTRING"
+                "name": "STRING"
               }
             }
           ]
@@ -2537,7 +2537,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBINARY"
+                "name": "BINARY"
               }
             }
           ]
@@ -2553,7 +2553,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDECIMAL"
+                "name": "DECIMAL"
               }
             }
           ]
@@ -2576,7 +2576,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWARRAY"
+                "name": "ARRAY"
               }
             },
             {
@@ -2629,7 +2629,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWMAP"
+                "name": "MAP"
               }
             },
             {
@@ -2702,7 +2702,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNIONTYPE"
+                "name": "UNIONTYPE"
               }
             },
             {
@@ -2755,7 +2755,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWIF"
+                "name": "IF"
               }
             },
             {
@@ -2765,7 +2765,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWNOT"
+                "name": "NOT"
               }
             },
             {
@@ -2775,7 +2775,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWEXISTS"
+                "name": "EXISTS"
               }
             }
           ]
@@ -2905,7 +2905,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWASC"
+                          "name": "ASC"
                         }
                       }
                     ]
@@ -2921,7 +2921,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWDESC"
+                          "name": "DESC"
                         }
                       }
                     ]
@@ -2949,7 +2949,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNION"
+                "name": "UNION"
               }
             },
             {
@@ -2959,7 +2959,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWALL"
+                "name": "ALL"
               }
             }
           ]
@@ -3079,6 +3079,83 @@
     {
       "index": 0,
       "kind": "rule",
+      "ruleName": "selectClause",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "SELECT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ALL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DISTINCT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "selectList"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "ruleName": "whereClause",
       "atoms": [
         {
@@ -3092,7 +3169,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWWHERE"
+                "name": "WHERE"
               }
             },
             {
@@ -3125,7 +3202,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWGROUP"
+                "name": "GROUP"
               }
             },
             {
@@ -3135,7 +3212,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -3218,7 +3295,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWWITH"
+                                    "name": "WITH"
                                   }
                                 },
                                 {
@@ -3228,7 +3305,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWROLLUP"
+                                    "name": "ROLLUP"
                                   }
                                 }
                               ]
@@ -3261,7 +3338,7 @@
                                   "item": {
                                     "index": 1,
                                     "kind": "UpperName",
-                                    "name": "KWWITH"
+                                    "name": "WITH"
                                   }
                                 },
                                 {
@@ -3271,7 +3348,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWCUBE"
+                                    "name": "CUBE"
                                   }
                                 }
                               ]
@@ -3304,7 +3381,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWGROUPING"
+                          "name": "GROUPING"
                         }
                       },
                       {
@@ -3314,7 +3391,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWSETS"
+                          "name": "SETS"
                         }
                       },
                       {
@@ -3556,7 +3633,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWHAVING"
+                "name": "HAVING"
               }
             },
             {
@@ -3589,7 +3666,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDISTRIBUTE"
+                "name": "DISTRIBUTE"
               }
             },
             {
@@ -3599,7 +3676,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -3683,7 +3760,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWDISTRIBUTE"
+                "name": "DISTRIBUTE"
               }
             },
             {
@@ -3693,7 +3770,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -3858,7 +3935,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDATE"
+                "name": "DATE"
               }
             },
             {
@@ -4044,7 +4121,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTRUE"
+                "name": "TRUE"
               }
             }
           ]
@@ -4060,7 +4137,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFALSE"
+                "name": "FALSE"
               }
             }
           ]
@@ -4269,7 +4346,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWNULL"
+                "name": "NULL"
               }
             }
           ]
@@ -4285,7 +4362,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWNOT"
+                "name": "NOT"
               }
             },
             {
@@ -4295,7 +4372,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWNULL"
+                "name": "NULL"
               }
             }
           ]
@@ -4392,7 +4469,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWIS"
+                          "name": "IS"
                         }
                       },
                       {
@@ -4914,7 +4991,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLIKE"
+                "name": "LIKE"
               }
             }
           ]
@@ -4930,7 +5007,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRLIKE"
+                "name": "RLIKE"
               }
             }
           ]
@@ -4946,7 +5023,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREGEXP"
+                "name": "REGEXP"
               }
             }
           ]
@@ -5140,7 +5217,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWNOT"
+                                    "name": "NOT"
                                   }
                                 },
                                 {
@@ -5194,7 +5271,7 @@
                                   "item": {
                                     "index": 1,
                                     "kind": "UpperName",
-                                    "name": "KWNOT"
+                                    "name": "NOT"
                                   }
                                 },
                                 {
@@ -5204,7 +5281,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWIN"
+                                    "name": "IN"
                                   }
                                 },
                                 {
@@ -5248,7 +5325,7 @@
                                   "item": {
                                     "index": 2,
                                     "kind": "UpperName",
-                                    "name": "KWNOT"
+                                    "name": "NOT"
                                   }
                                 },
                                 {
@@ -5258,7 +5335,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWBETWEEN"
+                                    "name": "BETWEEN"
                                   }
                                 },
                                 {
@@ -5295,7 +5372,7 @@
                                   "item": {
                                     "index": 0,
                                     "kind": "UpperName",
-                                    "name": "KWAND"
+                                    "name": "AND"
                                   }
                                 },
                                 {
@@ -5436,7 +5513,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWNOT"
+                "name": "NOT"
               }
             }
           ]
@@ -5510,7 +5587,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWAND"
+                "name": "AND"
               }
             }
           ]
@@ -5594,7 +5671,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOR"
+                "name": "OR"
               }
             }
           ]
@@ -5678,7 +5755,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLIMIT"
+                "name": "LIMIT"
               }
             },
             {
@@ -5689,117 +5766,6 @@
                 "index": 0,
                 "kind": "UpperName",
                 "name": "Number"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "selectClause",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "KWSELECT"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "suff": "?",
-                                  "item": {
-                                    "index": 1,
-                                    "kind": "bracketExp",
-                                    "atoms": [
-                                      {
-                                        "index": 0,
-                                        "kind": "atom",
-                                        "itemSuffs": [
-                                          {
-                                            "index": 0,
-                                            "kind": "itemSuff",
-                                            "hasNot": false,
-                                            "item": {
-                                              "index": 0,
-                                              "kind": "UpperName",
-                                              "name": "KWALL"
-                                            }
-                                          }
-                                        ]
-                                      },
-                                      {
-                                        "index": 0,
-                                        "kind": "atom",
-                                        "itemSuffs": [
-                                          {
-                                            "index": 0,
-                                            "kind": "itemSuff",
-                                            "hasNot": false,
-                                            "item": {
-                                              "index": 0,
-                                              "kind": "UpperName",
-                                              "name": "KWDISTINCT"
-                                            }
-                                          }
-                                        ]
-                                      }
-                                    ]
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 0,
-                                    "kind": "LowerName",
-                                    "name": "selectList"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  }
-                ]
               }
             }
           ]
@@ -5907,7 +5873,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWAS"
+                          "name": "AS"
                         }
                       },
                       {
@@ -6027,7 +5993,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFROM"
+                "name": "FROM"
               }
             },
             {
@@ -6160,7 +6126,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINNER"
+                "name": "INNER"
               }
             },
             {
@@ -6186,7 +6152,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCROSS"
+                "name": "CROSS"
               }
             },
             {
@@ -6212,7 +6178,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLEFT"
+                "name": "LEFT"
               }
             },
             {
@@ -6235,7 +6201,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWOUTER"
+                          "name": "OUTER"
                         }
                       }
                     ]
@@ -6266,7 +6232,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRIGHT"
+                "name": "RIGHT"
               }
             },
             {
@@ -6289,7 +6255,7 @@
                         "item": {
                           "index": 1,
                           "kind": "UpperName",
-                          "name": "KWOUTER"
+                          "name": "OUTER"
                         }
                       }
                     ]
@@ -6320,7 +6286,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFULL"
+                "name": "FULL"
               }
             },
             {
@@ -6343,7 +6309,7 @@
                         "item": {
                           "index": 2,
                           "kind": "UpperName",
-                          "name": "KWOUTER"
+                          "name": "OUTER"
                         }
                       }
                     ]
@@ -6374,7 +6340,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWLEFT"
+                "name": "LEFT"
               }
             },
             {
@@ -6384,7 +6350,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSEMI"
+                "name": "SEMI"
               }
             },
             {
@@ -6481,7 +6447,7 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "KWAS"
+                          "name": "AS"
                         }
                       },
                       {
@@ -6578,7 +6544,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWORDER"
+                "name": "ORDER"
               }
             },
             {
@@ -6588,7 +6554,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -6672,7 +6638,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWORDER"
+                "name": "ORDER"
               }
             },
             {
@@ -6682,7 +6648,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -6753,7 +6719,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSORT"
+                "name": "SORT"
               }
             },
             {
@@ -6763,7 +6729,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -6847,7 +6813,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWSORT"
+                "name": "SORT"
               }
             },
             {
@@ -6857,7 +6823,7 @@
               "item": {
                 "index": 1,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             },
             {
@@ -6990,7 +6956,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTRUE"
+                "name": "TRUE"
               }
             }
           ]
@@ -7006,7 +6972,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFALSE"
+                "name": "FALSE"
               }
             }
           ]
@@ -7022,7 +6988,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLIKE"
+                "name": "LIKE"
               }
             }
           ]
@@ -7038,7 +7004,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWEXISTS"
+                "name": "EXISTS"
               }
             }
           ]
@@ -7054,7 +7020,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWASC"
+                "name": "ASC"
               }
             }
           ]
@@ -7070,7 +7036,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDESC"
+                "name": "DESC"
               }
             }
           ]
@@ -7086,7 +7052,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWORDER"
+                "name": "ORDER"
               }
             }
           ]
@@ -7102,7 +7068,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWGROUP"
+                "name": "GROUP"
               }
             }
           ]
@@ -7118,7 +7084,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBY"
+                "name": "BY"
               }
             }
           ]
@@ -7134,7 +7100,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWAS"
+                "name": "AS"
               }
             }
           ]
@@ -7150,7 +7116,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINSERT"
+                "name": "INSERT"
               }
             }
           ]
@@ -7166,7 +7132,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOVERWRITE"
+                "name": "OVERWRITE"
               }
             }
           ]
@@ -7182,7 +7148,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOUTER"
+                "name": "OUTER"
               }
             }
           ]
@@ -7198,7 +7164,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLEFT"
+                "name": "LEFT"
               }
             }
           ]
@@ -7214,7 +7180,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRIGHT"
+                "name": "RIGHT"
               }
             }
           ]
@@ -7230,7 +7196,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFULL"
+                "name": "FULL"
               }
             }
           ]
@@ -7246,7 +7212,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPARTITION"
+                "name": "PARTITION"
               }
             }
           ]
@@ -7262,7 +7228,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPARTITIONS"
+                "name": "PARTITIONS"
               }
             }
           ]
@@ -7278,7 +7244,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTABLE"
+                "name": "TABLE"
               }
             }
           ]
@@ -7294,7 +7260,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTABLES"
+                "name": "TABLES"
               }
             }
           ]
@@ -7310,7 +7276,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCOLUMNS"
+                "name": "COLUMNS"
               }
             }
           ]
@@ -7326,7 +7292,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINDEX"
+                "name": "INDEX"
               }
             }
           ]
@@ -7342,7 +7308,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINDEXES"
+                "name": "INDEXES"
               }
             }
           ]
@@ -7358,7 +7324,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREBUILD"
+                "name": "REBUILD"
               }
             }
           ]
@@ -7374,7 +7340,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSHOW"
+                "name": "SHOW"
               }
             }
           ]
@@ -7390,7 +7356,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWMSCK"
+                "name": "MSCK"
               }
             }
           ]
@@ -7406,7 +7372,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREPAIR"
+                "name": "REPAIR"
               }
             }
           ]
@@ -7422,7 +7388,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDIRECTORY"
+                "name": "DIRECTORY"
               }
             }
           ]
@@ -7438,7 +7404,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLOCAL"
+                "name": "LOCAL"
               }
             }
           ]
@@ -7454,7 +7420,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUSING"
+                "name": "USING"
               }
             }
           ]
@@ -7470,7 +7436,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCLUSTER"
+                "name": "CLUSTER"
               }
             }
           ]
@@ -7486,7 +7452,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDISTRIBUTE"
+                "name": "DISTRIBUTE"
               }
             }
           ]
@@ -7502,7 +7468,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSORT"
+                "name": "SORT"
               }
             }
           ]
@@ -7518,7 +7484,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNION"
+                "name": "UNION"
               }
             }
           ]
@@ -7534,7 +7500,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLOAD"
+                "name": "LOAD"
               }
             }
           ]
@@ -7550,7 +7516,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWEXPORT"
+                "name": "EXPORT"
               }
             }
           ]
@@ -7566,7 +7532,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWIMPORT"
+                "name": "IMPORT"
               }
             }
           ]
@@ -7582,7 +7548,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDATA"
+                "name": "DATA"
               }
             }
           ]
@@ -7598,7 +7564,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINPATH"
+                "name": "INPATH"
               }
             }
           ]
@@ -7614,7 +7580,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWIS"
+                "name": "IS"
               }
             }
           ]
@@ -7630,7 +7596,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWNULL"
+                "name": "NULL"
               }
             }
           ]
@@ -7646,7 +7612,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCREATE"
+                "name": "CREATE"
               }
             }
           ]
@@ -7662,7 +7628,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWEXTERNAL"
+                "name": "EXTERNAL"
               }
             }
           ]
@@ -7678,7 +7644,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWALTER"
+                "name": "ALTER"
               }
             }
           ]
@@ -7694,7 +7660,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCHANGE"
+                "name": "CHANGE"
               }
             }
           ]
@@ -7710,7 +7676,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFIRST"
+                "name": "FIRST"
               }
             }
           ]
@@ -7726,7 +7692,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWAFTER"
+                "name": "AFTER"
               }
             }
           ]
@@ -7742,7 +7708,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDESCRIBE"
+                "name": "DESCRIBE"
               }
             }
           ]
@@ -7758,7 +7724,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDROP"
+                "name": "DROP"
               }
             }
           ]
@@ -7774,7 +7740,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRENAME"
+                "name": "RENAME"
               }
             }
           ]
@@ -7790,7 +7756,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWIGNORE"
+                "name": "IGNORE"
               }
             }
           ]
@@ -7806,7 +7772,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPROTECTION"
+                "name": "PROTECTION"
               }
             }
           ]
@@ -7822,7 +7788,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTO"
+                "name": "TO"
               }
             }
           ]
@@ -7838,7 +7804,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCOMMENT"
+                "name": "COMMENT"
               }
             }
           ]
@@ -7854,7 +7820,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBOOLEAN"
+                "name": "BOOLEAN"
               }
             }
           ]
@@ -7870,7 +7836,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTINYINT"
+                "name": "TINYINT"
               }
             }
           ]
@@ -7886,7 +7852,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSMALLINT"
+                "name": "SMALLINT"
               }
             }
           ]
@@ -7902,7 +7868,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINT"
+                "name": "INT"
               }
             }
           ]
@@ -7918,7 +7884,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBIGINT"
+                "name": "BIGINT"
               }
             }
           ]
@@ -7934,7 +7900,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFLOAT"
+                "name": "FLOAT"
               }
             }
           ]
@@ -7950,7 +7916,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDOUBLE"
+                "name": "DOUBLE"
               }
             }
           ]
@@ -7966,7 +7932,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDATE"
+                "name": "DATE"
               }
             }
           ]
@@ -7982,7 +7948,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDATETIME"
+                "name": "DATETIME"
               }
             }
           ]
@@ -7998,7 +7964,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTIMESTAMP"
+                "name": "TIMESTAMP"
               }
             }
           ]
@@ -8014,7 +7980,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDECIMAL"
+                "name": "DECIMAL"
               }
             }
           ]
@@ -8030,7 +7996,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSTRING"
+                "name": "STRING"
               }
             }
           ]
@@ -8046,7 +8012,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWARRAY"
+                "name": "ARRAY"
               }
             }
           ]
@@ -8062,7 +8028,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSTRUCT"
+                "name": "STRUCT"
               }
             }
           ]
@@ -8078,7 +8044,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNIONTYPE"
+                "name": "UNIONTYPE"
               }
             }
           ]
@@ -8094,7 +8060,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPARTITIONED"
+                "name": "PARTITIONED"
               }
             }
           ]
@@ -8110,7 +8076,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCLUSTERED"
+                "name": "CLUSTERED"
               }
             }
           ]
@@ -8126,7 +8092,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSORTED"
+                "name": "SORTED"
               }
             }
           ]
@@ -8142,7 +8108,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINTO"
+                "name": "INTO"
               }
             }
           ]
@@ -8158,7 +8124,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBUCKETS"
+                "name": "BUCKETS"
               }
             }
           ]
@@ -8174,7 +8140,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWROW"
+                "name": "ROW"
               }
             }
           ]
@@ -8190,7 +8156,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWROWS"
+                "name": "ROWS"
               }
             }
           ]
@@ -8206,7 +8172,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFORMAT"
+                "name": "FORMAT"
               }
             }
           ]
@@ -8222,7 +8188,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDELIMITED"
+                "name": "DELIMITED"
               }
             }
           ]
@@ -8238,7 +8204,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFIELDS"
+                "name": "FIELDS"
               }
             }
           ]
@@ -8254,7 +8220,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTERMINATED"
+                "name": "TERMINATED"
               }
             }
           ]
@@ -8270,7 +8236,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWESCAPED"
+                "name": "ESCAPED"
               }
             }
           ]
@@ -8286,7 +8252,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCOLLECTION"
+                "name": "COLLECTION"
               }
             }
           ]
@@ -8302,7 +8268,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWITEMS"
+                "name": "ITEMS"
               }
             }
           ]
@@ -8318,7 +8284,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWKEYS"
+                "name": "KEYS"
               }
             }
           ]
@@ -8334,7 +8300,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWKEY_TYPE"
+                "name": "KEY_TYPE"
               }
             }
           ]
@@ -8350,7 +8316,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLINES"
+                "name": "LINES"
               }
             }
           ]
@@ -8366,7 +8332,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSTORED"
+                "name": "STORED"
               }
             }
           ]
@@ -8382,7 +8348,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFILEFORMAT"
+                "name": "FILEFORMAT"
               }
             }
           ]
@@ -8398,7 +8364,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSEQUENCEFILE"
+                "name": "SEQUENCEFILE"
               }
             }
           ]
@@ -8414,7 +8380,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTEXTFILE"
+                "name": "TEXTFILE"
               }
             }
           ]
@@ -8430,7 +8396,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRCFILE"
+                "name": "RCFILE"
               }
             }
           ]
@@ -8446,7 +8412,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWORCFILE"
+                "name": "ORCFILE"
               }
             }
           ]
@@ -8462,7 +8428,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINPUTFORMAT"
+                "name": "INPUTFORMAT"
               }
             }
           ]
@@ -8478,7 +8444,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOUTPUTFORMAT"
+                "name": "OUTPUTFORMAT"
               }
             }
           ]
@@ -8494,7 +8460,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINPUTDRIVER"
+                "name": "INPUTDRIVER"
               }
             }
           ]
@@ -8510,7 +8476,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOUTPUTDRIVER"
+                "name": "OUTPUTDRIVER"
               }
             }
           ]
@@ -8526,7 +8492,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOFFLINE"
+                "name": "OFFLINE"
               }
             }
           ]
@@ -8542,7 +8508,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWENABLE"
+                "name": "ENABLE"
               }
             }
           ]
@@ -8558,7 +8524,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDISABLE"
+                "name": "DISABLE"
               }
             }
           ]
@@ -8574,7 +8540,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREADONLY"
+                "name": "READONLY"
               }
             }
           ]
@@ -8590,7 +8556,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWNO_DROP"
+                "name": "NO_DROP"
               }
             }
           ]
@@ -8606,7 +8572,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLOCATION"
+                "name": "LOCATION"
               }
             }
           ]
@@ -8622,7 +8588,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBUCKET"
+                "name": "BUCKET"
               }
             }
           ]
@@ -8638,7 +8604,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOUT"
+                "name": "OUT"
               }
             }
           ]
@@ -8654,7 +8620,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOF"
+                "name": "OF"
               }
             }
           ]
@@ -8670,7 +8636,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPERCENT"
+                "name": "PERCENT"
               }
             }
           ]
@@ -8686,7 +8652,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWADD"
+                "name": "ADD"
               }
             }
           ]
@@ -8702,7 +8668,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREPLACE"
+                "name": "REPLACE"
               }
             }
           ]
@@ -8718,7 +8684,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRLIKE"
+                "name": "RLIKE"
               }
             }
           ]
@@ -8734,7 +8700,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREGEXP"
+                "name": "REGEXP"
               }
             }
           ]
@@ -8750,7 +8716,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTEMPORARY"
+                "name": "TEMPORARY"
               }
             }
           ]
@@ -8766,7 +8732,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWEXPLAIN"
+                "name": "EXPLAIN"
               }
             }
           ]
@@ -8782,7 +8748,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFORMATTED"
+                "name": "FORMATTED"
               }
             }
           ]
@@ -8798,7 +8764,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPRETTY"
+                "name": "PRETTY"
               }
             }
           ]
@@ -8814,7 +8780,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDEPENDENCY"
+                "name": "DEPENDENCY"
               }
             }
           ]
@@ -8830,7 +8796,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLOGICAL"
+                "name": "LOGICAL"
               }
             }
           ]
@@ -8846,7 +8812,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSERDE"
+                "name": "SERDE"
               }
             }
           ]
@@ -8862,7 +8828,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWWITH"
+                "name": "WITH"
               }
             }
           ]
@@ -8878,7 +8844,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDEFERRED"
+                "name": "DEFERRED"
               }
             }
           ]
@@ -8894,7 +8860,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSERDEPROPERTIES"
+                "name": "SERDEPROPERTIES"
               }
             }
           ]
@@ -8910,7 +8876,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDBPROPERTIES"
+                "name": "DBPROPERTIES"
               }
             }
           ]
@@ -8926,7 +8892,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLIMIT"
+                "name": "LIMIT"
               }
             }
           ]
@@ -8942,7 +8908,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSET"
+                "name": "SET"
               }
             }
           ]
@@ -8958,7 +8924,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNSET"
+                "name": "UNSET"
               }
             }
           ]
@@ -8974,7 +8940,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTBLPROPERTIES"
+                "name": "TBLPROPERTIES"
               }
             }
           ]
@@ -8990,7 +8956,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWIDXPROPERTIES"
+                "name": "IDXPROPERTIES"
               }
             }
           ]
@@ -9006,7 +8972,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWVALUE_TYPE"
+                "name": "VALUE_TYPE"
               }
             }
           ]
@@ -9022,7 +8988,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWELEM_TYPE"
+                "name": "ELEM_TYPE"
               }
             }
           ]
@@ -9038,7 +9004,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWMAPJOIN"
+                "name": "MAPJOIN"
               }
             }
           ]
@@ -9054,7 +9020,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSTREAMTABLE"
+                "name": "STREAMTABLE"
               }
             }
           ]
@@ -9070,7 +9036,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWHOLD_DDLTIME"
+                "name": "HOLD_DDLTIME"
               }
             }
           ]
@@ -9086,7 +9052,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCLUSTERSTATUS"
+                "name": "CLUSTERSTATUS"
               }
             }
           ]
@@ -9102,7 +9068,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUTC"
+                "name": "UTC"
               }
             }
           ]
@@ -9118,7 +9084,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUTCTIMESTAMP"
+                "name": "UTCTIMESTAMP"
               }
             }
           ]
@@ -9134,7 +9100,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLONG"
+                "name": "LONG"
               }
             }
           ]
@@ -9150,7 +9116,23 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDELETE"
+                "name": "DELETE"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "PLUS"
               }
             }
           ]
@@ -9182,6 +9164,22 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
+                "name": "MINUS"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
                 "name": "KWMINUS"
               }
             }
@@ -9198,7 +9196,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFETCH"
+                "name": "FETCH"
               }
             }
           ]
@@ -9214,7 +9212,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINTERSECT"
+                "name": "INTERSECT"
               }
             }
           ]
@@ -9230,7 +9228,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWVIEW"
+                "name": "VIEW"
               }
             }
           ]
@@ -9246,7 +9244,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWIN"
+                "name": "IN"
               }
             }
           ]
@@ -9262,7 +9260,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDATABASES"
+                "name": "DATABASES"
               }
             }
           ]
@@ -9278,7 +9276,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWMATERIALIZED"
+                "name": "MATERIALIZED"
               }
             }
           ]
@@ -9294,7 +9292,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSCHEMA"
+                "name": "SCHEMA"
               }
             }
           ]
@@ -9310,7 +9308,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSCHEMAS"
+                "name": "SCHEMAS"
               }
             }
           ]
@@ -9326,7 +9324,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWGRANT"
+                "name": "GRANT"
               }
             }
           ]
@@ -9342,7 +9340,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREVOKE"
+                "name": "REVOKE"
               }
             }
           ]
@@ -9358,7 +9356,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSSL"
+                "name": "SSL"
               }
             }
           ]
@@ -9374,7 +9372,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNDO"
+                "name": "UNDO"
               }
             }
           ]
@@ -9390,7 +9388,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLOCK"
+                "name": "LOCK"
               }
             }
           ]
@@ -9406,7 +9404,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLOCKS"
+                "name": "LOCKS"
               }
             }
           ]
@@ -9422,7 +9420,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNLOCK"
+                "name": "UNLOCK"
               }
             }
           ]
@@ -9438,7 +9436,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSHARED"
+                "name": "SHARED"
               }
             }
           ]
@@ -9454,7 +9452,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWEXCLUSIVE"
+                "name": "EXCLUSIVE"
               }
             }
           ]
@@ -9470,7 +9468,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPROCEDURE"
+                "name": "PROCEDURE"
               }
             }
           ]
@@ -9486,7 +9484,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNSIGNED"
+                "name": "UNSIGNED"
               }
             }
           ]
@@ -9502,7 +9500,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWWHILE"
+                "name": "WHILE"
               }
             }
           ]
@@ -9518,7 +9516,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREAD"
+                "name": "READ"
               }
             }
           ]
@@ -9534,7 +9532,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWREADS"
+                "name": "READS"
               }
             }
           ]
@@ -9550,7 +9548,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWPURGE"
+                "name": "PURGE"
               }
             }
           ]
@@ -9566,7 +9564,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRANGE"
+                "name": "RANGE"
               }
             }
           ]
@@ -9582,7 +9580,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWANALYZE"
+                "name": "ANALYZE"
               }
             }
           ]
@@ -9598,7 +9596,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBEFORE"
+                "name": "BEFORE"
               }
             }
           ]
@@ -9614,7 +9612,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBETWEEN"
+                "name": "BETWEEN"
               }
             }
           ]
@@ -9630,7 +9628,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBOTH"
+                "name": "BOTH"
               }
             }
           ]
@@ -9646,7 +9644,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWBINARY"
+                "name": "BINARY"
               }
             }
           ]
@@ -9662,7 +9660,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCONTINUE"
+                "name": "CONTINUE"
               }
             }
           ]
@@ -9678,7 +9676,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCURSOR"
+                "name": "CURSOR"
               }
             }
           ]
@@ -9694,7 +9692,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTRIGGER"
+                "name": "TRIGGER"
               }
             }
           ]
@@ -9710,7 +9708,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRECORDREADER"
+                "name": "RECORDREADER"
               }
             }
           ]
@@ -9726,7 +9724,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRECORDWRITER"
+                "name": "RECORDWRITER"
               }
             }
           ]
@@ -9742,7 +9740,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSEMI"
+                "name": "SEMI"
               }
             }
           ]
@@ -9758,7 +9756,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWLATERAL"
+                "name": "LATERAL"
               }
             }
           ]
@@ -9774,7 +9772,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTOUCH"
+                "name": "TOUCH"
               }
             }
           ]
@@ -9790,7 +9788,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWARCHIVE"
+                "name": "ARCHIVE"
               }
             }
           ]
@@ -9806,7 +9804,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUNARCHIVE"
+                "name": "UNARCHIVE"
               }
             }
           ]
@@ -9822,7 +9820,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCOMPUTE"
+                "name": "COMPUTE"
               }
             }
           ]
@@ -9838,7 +9836,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSTATISTICS"
+                "name": "STATISTICS"
               }
             }
           ]
@@ -9854,7 +9852,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUSE"
+                "name": "USE"
               }
             }
           ]
@@ -9870,7 +9868,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWOPTION"
+                "name": "OPTION"
               }
             }
           ]
@@ -9886,7 +9884,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCONCATENATE"
+                "name": "CONCATENATE"
               }
             }
           ]
@@ -9902,7 +9900,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSHOW_DATABASE"
+                "name": "SHOW_DATABASE"
               }
             }
           ]
@@ -9918,7 +9916,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUPDATE"
+                "name": "UPDATE"
               }
             }
           ]
@@ -9934,7 +9932,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWRESTRICT"
+                "name": "RESTRICT"
               }
             }
           ]
@@ -9950,7 +9948,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCASCADE"
+                "name": "CASCADE"
               }
             }
           ]
@@ -9966,7 +9964,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSKEWED"
+                "name": "SKEWED"
               }
             }
           ]
@@ -9982,7 +9980,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWROLLUP"
+                "name": "ROLLUP"
               }
             }
           ]
@@ -9998,7 +9996,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWCUBE"
+                "name": "CUBE"
               }
             }
           ]
@@ -10014,7 +10012,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWDIRECTORIES"
+                "name": "DIRECTORIES"
               }
             }
           ]
@@ -10030,7 +10028,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWFOR"
+                "name": "FOR"
               }
             }
           ]
@@ -10046,7 +10044,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWGROUPING"
+                "name": "GROUPING"
               }
             }
           ]
@@ -10062,7 +10060,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWSETS"
+                "name": "SETS"
               }
             }
           ]
@@ -10078,7 +10076,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWTRUNCATE"
+                "name": "TRUNCATE"
               }
             }
           ]
@@ -10094,7 +10092,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWNOSCAN"
+                "name": "NOSCAN"
               }
             }
           ]
@@ -10110,7 +10108,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWUSER"
+                "name": "USER"
               }
             }
           ]
@@ -10126,7 +10124,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWROLE"
+                "name": "ROLE"
               }
             }
           ]
@@ -10142,7 +10140,7 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "KWINNER"
+                "name": "INNER"
               }
             }
           ]

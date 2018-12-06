@@ -14,10 +14,6 @@ const ID = chevrotain.createToken({
   name: 'ID',
   pattern: /[A-Za-z_$0-9*]+/i,
 });
-const COMMENT = chevrotain.createToken({
-  name: 'COMMENT',
-  pattern: /\-\-([^(\n|\r)])*/i,
-});
 const WS = chevrotain.createToken({
   name: 'WS',
   pattern: /(\ |\r|\t|\n)/i,
@@ -170,972 +166,972 @@ const DOT = chevrotain.createToken({
   name: 'DOT',
   pattern: /\./i,
 });
-const KWVALUES = chevrotain.createToken({
-  name: 'KWVALUES',
+const VALUES = chevrotain.createToken({
+  name: 'VALUES',
   pattern: /VALUES/i,
 });
-const KWVALUE = chevrotain.createToken({
-  name: 'KWVALUE',
+const VALUE = chevrotain.createToken({
+  name: 'VALUE',
   pattern: /VALUE/i,
 });
-const KWEXCHANGE = chevrotain.createToken({
-  name: 'KWEXCHANGE',
+const EXCHANGE = chevrotain.createToken({
+  name: 'EXCHANGE',
   pattern: /EXCHANGE/i,
 });
-const KWINNER = chevrotain.createToken({
-  name: 'KWINNER',
+const INNER = chevrotain.createToken({
+  name: 'INNER',
   pattern: /INNER/i,
 });
-const KWROLE = chevrotain.createToken({
-  name: 'KWROLE',
+const ROLE = chevrotain.createToken({
+  name: 'ROLE',
   pattern: /ROLE/i,
 });
-const KWUSER = chevrotain.createToken({
-  name: 'KWUSER',
+const USER = chevrotain.createToken({
+  name: 'USER',
   pattern: /USER/i,
 });
-const KWPARTIALSCAN = chevrotain.createToken({
-  name: 'KWPARTIALSCAN',
+const PARTIALSCAN = chevrotain.createToken({
+  name: 'PARTIALSCAN',
   pattern: /PARTIALSCAN/i,
 });
-const KWNOSCAN = chevrotain.createToken({
-  name: 'KWNOSCAN',
+const NOSCAN = chevrotain.createToken({
+  name: 'NOSCAN',
   pattern: /NOSCAN/i,
 });
-const KWTRUNCATE = chevrotain.createToken({
-  name: 'KWTRUNCATE',
+const TRUNCATE = chevrotain.createToken({
+  name: 'TRUNCATE',
   pattern: /TRUNCATE/i,
 });
-const KWSETS = chevrotain.createToken({
-  name: 'KWSETS',
+const SETS = chevrotain.createToken({
+  name: 'SETS',
   pattern: /SETS/i,
 });
-const KWGROUPING = chevrotain.createToken({
-  name: 'KWGROUPING',
+const GROUPING = chevrotain.createToken({
+  name: 'GROUPING',
   pattern: /GROUPING/i,
 });
-const KWMORE = chevrotain.createToken({
-  name: 'KWMORE',
+const MORE = chevrotain.createToken({
+  name: 'MORE',
   pattern: /MORE/i,
 });
-const KWLESS = chevrotain.createToken({
-  name: 'KWLESS',
+const LESS = chevrotain.createToken({
+  name: 'LESS',
   pattern: /LESS/i,
 });
-const KWCURRENT = chevrotain.createToken({
-  name: 'KWCURRENT',
+const CURRENT = chevrotain.createToken({
+  name: 'CURRENT',
   pattern: /CURRENT/i,
 });
-const KWFOLLOWING = chevrotain.createToken({
-  name: 'KWFOLLOWING',
+const FOLLOWING = chevrotain.createToken({
+  name: 'FOLLOWING',
   pattern: /FOLLOWING/i,
 });
-const KWPRECEDING = chevrotain.createToken({
-  name: 'KWPRECEDING',
+const PRECEDING = chevrotain.createToken({
+  name: 'PRECEDING',
   pattern: /PRECEDING/i,
 });
-const KWUNBOUNDED = chevrotain.createToken({
-  name: 'KWUNBOUNDED',
+const UNBOUNDED = chevrotain.createToken({
+  name: 'UNBOUNDED',
   pattern: /UNBOUNDED/i,
 });
-const KWWINDOW = chevrotain.createToken({
-  name: 'KWWINDOW',
+const WINDOW = chevrotain.createToken({
+  name: 'WINDOW',
   pattern: /WINDOW/i,
 });
-const KWDIRECTORIES = chevrotain.createToken({
-  name: 'KWDIRECTORIES',
+const DIRECTORIES = chevrotain.createToken({
+  name: 'DIRECTORIES',
   pattern: /DIRECTORIES/i,
 });
-const KWCUBE = chevrotain.createToken({
-  name: 'KWCUBE',
+const CUBE = chevrotain.createToken({
+  name: 'CUBE',
   pattern: /CUBE/i,
 });
-const KWROLLUP = chevrotain.createToken({
-  name: 'KWROLLUP',
+const ROLLUP = chevrotain.createToken({
+  name: 'ROLLUP',
   pattern: /ROLLUP/i,
 });
-const KWSKEWED = chevrotain.createToken({
-  name: 'KWSKEWED',
+const SKEWED = chevrotain.createToken({
+  name: 'SKEWED',
   pattern: /SKEWED/i,
 });
-const KWCASCADE = chevrotain.createToken({
-  name: 'KWCASCADE',
+const CASCADE = chevrotain.createToken({
+  name: 'CASCADE',
   pattern: /CASCADE/i,
 });
-const KWRESTRICT = chevrotain.createToken({
-  name: 'KWRESTRICT',
+const RESTRICT = chevrotain.createToken({
+  name: 'RESTRICT',
   pattern: /RESTRICT/i,
 });
-const KWUPDATE = chevrotain.createToken({
-  name: 'KWUPDATE',
+const UPDATE = chevrotain.createToken({
+  name: 'UPDATE',
   pattern: /UPDATE/i,
 });
-const KWSHOW_DATABASE = chevrotain.createToken({
-  name: 'KWSHOW_DATABASE',
+const SHOW_DATABASE = chevrotain.createToken({
+  name: 'SHOW_DATABASE',
   pattern: /SHOW_DATABASE/i,
 });
-const KWCONCATENATE = chevrotain.createToken({
-  name: 'KWCONCATENATE',
+const CONCATENATE = chevrotain.createToken({
+  name: 'CONCATENATE',
   pattern: /CONCATENATE/i,
 });
-const KWOPTION = chevrotain.createToken({
-  name: 'KWOPTION',
+const OPTION = chevrotain.createToken({
+  name: 'OPTION',
   pattern: /OPTION/i,
 });
-const KWUSE = chevrotain.createToken({
-  name: 'KWUSE',
+const USE = chevrotain.createToken({
+  name: 'USE',
   pattern: /USE/i,
 });
-const KWSTATISTICS = chevrotain.createToken({
-  name: 'KWSTATISTICS',
+const STATISTICS = chevrotain.createToken({
+  name: 'STATISTICS',
   pattern: /STATISTICS/i,
 });
-const KWCOMPUTE = chevrotain.createToken({
-  name: 'KWCOMPUTE',
+const COMPUTE = chevrotain.createToken({
+  name: 'COMPUTE',
   pattern: /COMPUTE/i,
 });
-const KWUNARCHIVE = chevrotain.createToken({
-  name: 'KWUNARCHIVE',
+const UNARCHIVE = chevrotain.createToken({
+  name: 'UNARCHIVE',
   pattern: /UNARCHIVE/i,
 });
-const KWARCHIVE = chevrotain.createToken({
-  name: 'KWARCHIVE',
+const ARCHIVE = chevrotain.createToken({
+  name: 'ARCHIVE',
   pattern: /ARCHIVE/i,
 });
-const KWTOUCH = chevrotain.createToken({
-  name: 'KWTOUCH',
+const TOUCH = chevrotain.createToken({
+  name: 'TOUCH',
   pattern: /TOUCH/i,
 });
-const KWLATERAL = chevrotain.createToken({
-  name: 'KWLATERAL',
+const LATERAL = chevrotain.createToken({
+  name: 'LATERAL',
   pattern: /LATERAL/i,
 });
-const KWSEMI = chevrotain.createToken({
-  name: 'KWSEMI',
+const SEMI = chevrotain.createToken({
+  name: 'SEMI',
   pattern: /SEMI/i,
 });
-const KWRECORDWRITER = chevrotain.createToken({
-  name: 'KWRECORDWRITER',
+const RECORDWRITER = chevrotain.createToken({
+  name: 'RECORDWRITER',
   pattern: /RECORDWRITER/i,
 });
-const KWRECORDREADER = chevrotain.createToken({
-  name: 'KWRECORDREADER',
+const RECORDREADER = chevrotain.createToken({
+  name: 'RECORDREADER',
   pattern: /RECORDREADER/i,
 });
-const KWTRIGGER = chevrotain.createToken({
-  name: 'KWTRIGGER',
+const TRIGGER = chevrotain.createToken({
+  name: 'TRIGGER',
   pattern: /TRIGGER/i,
 });
-const KWCURSOR = chevrotain.createToken({
-  name: 'KWCURSOR',
+const CURSOR = chevrotain.createToken({
+  name: 'CURSOR',
   pattern: /CURSOR/i,
 });
-const KWCONTINUE = chevrotain.createToken({
-  name: 'KWCONTINUE',
+const CONTINUE = chevrotain.createToken({
+  name: 'CONTINUE',
   pattern: /CONTINUE/i,
 });
-const KWCROSS = chevrotain.createToken({
-  name: 'KWCROSS',
+const CROSS = chevrotain.createToken({
+  name: 'CROSS',
   pattern: /CROSS/i,
 });
-const KWBINARY = chevrotain.createToken({
-  name: 'KWBINARY',
+const BINARY = chevrotain.createToken({
+  name: 'BINARY',
   pattern: /BINARY/i,
 });
-const KWBOTH = chevrotain.createToken({
-  name: 'KWBOTH',
+const BOTH = chevrotain.createToken({
+  name: 'BOTH',
   pattern: /BOTH/i,
 });
-const KWBETWEEN = chevrotain.createToken({
-  name: 'KWBETWEEN',
+const BETWEEN = chevrotain.createToken({
+  name: 'BETWEEN',
   pattern: /BETWEEN/i,
 });
-const KWBEFORE = chevrotain.createToken({
-  name: 'KWBEFORE',
+const BEFORE = chevrotain.createToken({
+  name: 'BEFORE',
   pattern: /BEFORE/i,
 });
-const KWANALYZE = chevrotain.createToken({
-  name: 'KWANALYZE',
+const ANALYZE = chevrotain.createToken({
+  name: 'ANALYZE',
   pattern: /ANALYZE/i,
 });
-const KWRANGE = chevrotain.createToken({
-  name: 'KWRANGE',
+const RANGE = chevrotain.createToken({
+  name: 'RANGE',
   pattern: /RANGE/i,
 });
-const KWPURGE = chevrotain.createToken({
-  name: 'KWPURGE',
+const PURGE = chevrotain.createToken({
+  name: 'PURGE',
   pattern: /PURGE/i,
 });
-const KWREADS = chevrotain.createToken({
-  name: 'KWREADS',
+const READS = chevrotain.createToken({
+  name: 'READS',
   pattern: /READS/i,
 });
-const KWWHILE = chevrotain.createToken({
-  name: 'KWWHILE',
+const WHILE = chevrotain.createToken({
+  name: 'WHILE',
   pattern: /WHILE/i,
 });
-const KWUNSIGNED = chevrotain.createToken({
-  name: 'KWUNSIGNED',
+const UNSIGNED = chevrotain.createToken({
+  name: 'UNSIGNED',
   pattern: /UNSIGNED/i,
 });
-const KWPROCEDURE = chevrotain.createToken({
-  name: 'KWPROCEDURE',
+const PROCEDURE = chevrotain.createToken({
+  name: 'PROCEDURE',
   pattern: /PROCEDURE/i,
 });
-const KWEXCLUSIVE = chevrotain.createToken({
-  name: 'KWEXCLUSIVE',
+const EXCLUSIVE = chevrotain.createToken({
+  name: 'EXCLUSIVE',
   pattern: /EXCLUSIVE/i,
 });
-const KWSHARED = chevrotain.createToken({
-  name: 'KWSHARED',
+const SHARED = chevrotain.createToken({
+  name: 'SHARED',
   pattern: /SHARED/i,
 });
-const KWUNLOCK = chevrotain.createToken({
-  name: 'KWUNLOCK',
+const UNLOCK = chevrotain.createToken({
+  name: 'UNLOCK',
   pattern: /UNLOCK/i,
 });
-const KWLOCKS = chevrotain.createToken({
-  name: 'KWLOCKS',
+const LOCKS = chevrotain.createToken({
+  name: 'LOCKS',
   pattern: /LOCKS/i,
 });
-const KWLOCK = chevrotain.createToken({
-  name: 'KWLOCK',
+const LOCK = chevrotain.createToken({
+  name: 'LOCK',
   pattern: /LOCK/i,
 });
-const KWUNDO = chevrotain.createToken({
-  name: 'KWUNDO',
+const UNDO = chevrotain.createToken({
+  name: 'UNDO',
   pattern: /UNDO/i,
 });
-const KWSSL = chevrotain.createToken({
-  name: 'KWSSL',
+const SSL = chevrotain.createToken({
+  name: 'SSL',
   pattern: /SSL/i,
 });
-const KWREVOKE = chevrotain.createToken({
-  name: 'KWREVOKE',
+const REVOKE = chevrotain.createToken({
+  name: 'REVOKE',
   pattern: /REVOKE/i,
 });
-const KWGRANT = chevrotain.createToken({
-  name: 'KWGRANT',
+const GRANT = chevrotain.createToken({
+  name: 'GRANT',
   pattern: /GRANT/i,
 });
-const KWSCHEMAS = chevrotain.createToken({
-  name: 'KWSCHEMAS',
+const SCHEMAS = chevrotain.createToken({
+  name: 'SCHEMAS',
   pattern: /SCHEMAS/i,
 });
-const KWSCHEMA = chevrotain.createToken({
-  name: 'KWSCHEMA',
+const SCHEMA = chevrotain.createToken({
+  name: 'SCHEMA',
   pattern: /SCHEMA/i,
 });
-const KWMATERIALIZED = chevrotain.createToken({
-  name: 'KWMATERIALIZED',
+const MATERIALIZED = chevrotain.createToken({
+  name: 'MATERIALIZED',
   pattern: /MATERIALIZED/i,
 });
-const KWDATABASES = chevrotain.createToken({
-  name: 'KWDATABASES',
+const DATABASES = chevrotain.createToken({
+  name: 'DATABASES',
   pattern: /DATABASES/i,
 });
-const KWDATABASE = chevrotain.createToken({
-  name: 'KWDATABASE',
+const DATABASE = chevrotain.createToken({
+  name: 'DATABASE',
   pattern: /DATABASE/i,
 });
-const KWVIEW = chevrotain.createToken({
-  name: 'KWVIEW',
+const VIEW = chevrotain.createToken({
+  name: 'VIEW',
   pattern: /VIEW/i,
 });
-const KWINTERSECT = chevrotain.createToken({
-  name: 'KWINTERSECT',
+const INTERSECT = chevrotain.createToken({
+  name: 'INTERSECT',
   pattern: /INTERSECT/i,
 });
-const KWFETCH = chevrotain.createToken({
-  name: 'KWFETCH',
+const FETCH = chevrotain.createToken({
+  name: 'FETCH',
   pattern: /FETCH/i,
 });
 const KWMINUS = chevrotain.createToken({
   name: 'KWMINUS',
-  pattern: /MINUS/i,
+  pattern: /KWMINUS/i,
 });
 const KWPLUS = chevrotain.createToken({
   name: 'KWPLUS',
-  pattern: /PLUS/i,
+  pattern: /KWPLUS/i,
 });
-const KWDELETE = chevrotain.createToken({
-  name: 'KWDELETE',
+const DELETE = chevrotain.createToken({
+  name: 'DELETE',
   pattern: /DELETE/i,
 });
-const KWLONG = chevrotain.createToken({
-  name: 'KWLONG',
+const LONG = chevrotain.createToken({
+  name: 'LONG',
   pattern: /LONG/i,
 });
-const KWUTCTIMESTAMP = chevrotain.createToken({
-  name: 'KWUTCTIMESTAMP',
+const UTCTIMESTAMP = chevrotain.createToken({
+  name: 'UTCTIMESTAMP',
   pattern: /UTC_TMESTAMP/i,
 });
-const KWUTC = chevrotain.createToken({
-  name: 'KWUTC',
+const UTC = chevrotain.createToken({
+  name: 'UTC',
   pattern: /UTC/i,
 });
-const KWCLUSTERSTATUS = chevrotain.createToken({
-  name: 'KWCLUSTERSTATUS',
+const CLUSTERSTATUS = chevrotain.createToken({
+  name: 'CLUSTERSTATUS',
   pattern: /CLUSTERSTATUS/i,
 });
-const KWHOLD_DDLTIME = chevrotain.createToken({
-  name: 'KWHOLD_DDLTIME',
+const HOLD_DDLTIME = chevrotain.createToken({
+  name: 'HOLD_DDLTIME',
   pattern: /HOLD_DDLTIME/i,
 });
-const KWSTREAMTABLE = chevrotain.createToken({
-  name: 'KWSTREAMTABLE',
+const STREAMTABLE = chevrotain.createToken({
+  name: 'STREAMTABLE',
   pattern: /STREAMTABLE/i,
 });
-const KWMAPJOIN = chevrotain.createToken({
-  name: 'KWMAPJOIN',
+const MAPJOIN = chevrotain.createToken({
+  name: 'MAPJOIN',
   pattern: /MAPJOIN/i,
 });
-const KWELSE = chevrotain.createToken({
-  name: 'KWELSE',
+const ELSE = chevrotain.createToken({
+  name: 'ELSE',
   pattern: /ELSE/i,
 });
-const KWTHEN = chevrotain.createToken({
-  name: 'KWTHEN',
+const THEN = chevrotain.createToken({
+  name: 'THEN',
   pattern: /THEN/i,
 });
-const KWWHEN = chevrotain.createToken({
-  name: 'KWWHEN',
+const WHEN = chevrotain.createToken({
+  name: 'WHEN',
   pattern: /WHEN/i,
 });
-const KWCASE = chevrotain.createToken({
-  name: 'KWCASE',
+const CASE = chevrotain.createToken({
+  name: 'CASE',
   pattern: /CASE/i,
 });
-const KWELEM_TYPE = chevrotain.createToken({
-  name: 'KWELEM_TYPE',
+const ELEM_TYPE = chevrotain.createToken({
+  name: 'ELEM_TYPE',
   pattern: /\$ELEM\$/i,
 });
-const KWVALUE_TYPE = chevrotain.createToken({
-  name: 'KWVALUE_TYPE',
+const VALUE_TYPE = chevrotain.createToken({
+  name: 'VALUE_TYPE',
   pattern: /\$VALUE\$/i,
 });
-const KWIDXPROPERTIES = chevrotain.createToken({
-  name: 'KWIDXPROPERTIES',
+const IDXPROPERTIES = chevrotain.createToken({
+  name: 'IDXPROPERTIES',
   pattern: /IDXPROPERTIES/i,
 });
-const KWTBLPROPERTIES = chevrotain.createToken({
-  name: 'KWTBLPROPERTIES',
+const TBLPROPERTIES = chevrotain.createToken({
+  name: 'TBLPROPERTIES',
   pattern: /TBLPROPERTIES/i,
 });
-const KWUNSET = chevrotain.createToken({
-  name: 'KWUNSET',
+const UNSET = chevrotain.createToken({
+  name: 'UNSET',
   pattern: /UNSET/i,
 });
-const KWSET = chevrotain.createToken({
-  name: 'KWSET',
+const SET = chevrotain.createToken({
+  name: 'SET',
   pattern: /SET/i,
 });
-const KWDBPROPERTIES = chevrotain.createToken({
-  name: 'KWDBPROPERTIES',
+const DBPROPERTIES = chevrotain.createToken({
+  name: 'DBPROPERTIES',
   pattern: /DBPROPERTIES/i,
 });
-const KWSERDEPROPERTIES = chevrotain.createToken({
-  name: 'KWSERDEPROPERTIES',
+const SERDEPROPERTIES = chevrotain.createToken({
+  name: 'SERDEPROPERTIES',
   pattern: /SERDEPROPERTIES/i,
 });
-const KWDEFERRED = chevrotain.createToken({
-  name: 'KWDEFERRED',
+const DEFERRED = chevrotain.createToken({
+  name: 'DEFERRED',
   pattern: /DEFERRED/i,
 });
-const KWWITH = chevrotain.createToken({
-  name: 'KWWITH',
+const WITH = chevrotain.createToken({
+  name: 'WITH',
   pattern: /WITH/i,
 });
-const KWSERDE = chevrotain.createToken({
-  name: 'KWSERDE',
+const SERDE = chevrotain.createToken({
+  name: 'SERDE',
   pattern: /SERDE/i,
 });
-const KWLOGICAL = chevrotain.createToken({
-  name: 'KWLOGICAL',
+const LOGICAL = chevrotain.createToken({
+  name: 'LOGICAL',
   pattern: /LOGICAL/i,
 });
-const KWDEPENDENCY = chevrotain.createToken({
-  name: 'KWDEPENDENCY',
+const DEPENDENCY = chevrotain.createToken({
+  name: 'DEPENDENCY',
   pattern: /DEPENDENCY/i,
 });
-const KWPRETTY = chevrotain.createToken({
-  name: 'KWPRETTY',
+const PRETTY = chevrotain.createToken({
+  name: 'PRETTY',
   pattern: /PRETTY/i,
 });
-const KWFORMATTED = chevrotain.createToken({
-  name: 'KWFORMATTED',
+const FORMATTED = chevrotain.createToken({
+  name: 'FORMATTED',
   pattern: /FORMATTED/i,
 });
-const KWEXTENDED = chevrotain.createToken({
-  name: 'KWEXTENDED',
+const EXTENDED = chevrotain.createToken({
+  name: 'EXTENDED',
   pattern: /EXTENDED/i,
 });
-const KWEND = chevrotain.createToken({
-  name: 'KWEND',
+const END = chevrotain.createToken({
+  name: 'END',
   pattern: /END/i,
 });
-const KWEXPLAIN = chevrotain.createToken({
-  name: 'KWEXPLAIN',
+const EXPLAIN = chevrotain.createToken({
+  name: 'EXPLAIN',
   pattern: /EXPLAIN/i,
 });
-const KWMACRO = chevrotain.createToken({
-  name: 'KWMACRO',
+const MACRO = chevrotain.createToken({
+  name: 'MACRO',
   pattern: /MACRO/i,
 });
-const KWTEMPORARY = chevrotain.createToken({
-  name: 'KWTEMPORARY',
+const TEMPORARY = chevrotain.createToken({
+  name: 'TEMPORARY',
   pattern: /TEMPORARY/i,
 });
-const KWREGEXP = chevrotain.createToken({
-  name: 'KWREGEXP',
+const REGEXP = chevrotain.createToken({
+  name: 'REGEXP',
   pattern: /REGEXP/i,
 });
-const KWRLIKE = chevrotain.createToken({
-  name: 'KWRLIKE',
+const RLIKE = chevrotain.createToken({
+  name: 'RLIKE',
   pattern: /RLIKE/i,
 });
-const KWREPLACE = chevrotain.createToken({
-  name: 'KWREPLACE',
+const REPLACE = chevrotain.createToken({
+  name: 'REPLACE',
   pattern: /REPLACE/i,
 });
-const KWADD = chevrotain.createToken({
-  name: 'KWADD',
+const ADD = chevrotain.createToken({
+  name: 'ADD',
   pattern: /ADD/i,
 });
-const KWCAST = chevrotain.createToken({
-  name: 'KWCAST',
+const CAST = chevrotain.createToken({
+  name: 'CAST',
   pattern: /CAST/i,
 });
-const KWPERCENT = chevrotain.createToken({
-  name: 'KWPERCENT',
+const PERCENT = chevrotain.createToken({
+  name: 'PERCENT',
   pattern: /PERCENT/i,
 });
-const KWTABLESAMPLE = chevrotain.createToken({
-  name: 'KWTABLESAMPLE',
+const TABLESAMPLE = chevrotain.createToken({
+  name: 'TABLESAMPLE',
   pattern: /TABLESAMPLE/i,
 });
-const KWLOCATION = chevrotain.createToken({
-  name: 'KWLOCATION',
+const LOCATION = chevrotain.createToken({
+  name: 'LOCATION',
   pattern: /LOCATION/i,
 });
-const KWNO_DROP = chevrotain.createToken({
-  name: 'KWNO_DROP',
+const NO_DROP = chevrotain.createToken({
+  name: 'NO_DROP',
   pattern: /NO_DROP/i,
 });
 const CharSetName = chevrotain.createToken({
   name: 'CharSetName',
   pattern: /_([A-Za-z]|[0-9]|_|\-|\.|\:)+/i,
 });
-const KWREADONLY = chevrotain.createToken({
-  name: 'KWREADONLY',
+const READONLY = chevrotain.createToken({
+  name: 'READONLY',
   pattern: /READONLY/i,
 });
-const KWREAD = chevrotain.createToken({
-  name: 'KWREAD',
+const READ = chevrotain.createToken({
+  name: 'READ',
   pattern: /READ/i,
 });
-const KWDISABLE = chevrotain.createToken({
-  name: 'KWDISABLE',
+const DISABLE = chevrotain.createToken({
+  name: 'DISABLE',
   pattern: /DISABLE/i,
 });
-const KWENABLE = chevrotain.createToken({
-  name: 'KWENABLE',
+const ENABLE = chevrotain.createToken({
+  name: 'ENABLE',
   pattern: /ENABLE/i,
 });
-const KWOFFLINE = chevrotain.createToken({
-  name: 'KWOFFLINE',
+const OFFLINE = chevrotain.createToken({
+  name: 'OFFLINE',
   pattern: /OFFLINE/i,
 });
-const KWOF = chevrotain.createToken({
-  name: 'KWOF',
+const OF = chevrotain.createToken({
+  name: 'OF',
   pattern: /OF/i,
 });
-const KWOUTPUTDRIVER = chevrotain.createToken({
-  name: 'KWOUTPUTDRIVER',
+const OUTPUTDRIVER = chevrotain.createToken({
+  name: 'OUTPUTDRIVER',
   pattern: /OUTPUTDRIVER/i,
 });
-const KWINPUTDRIVER = chevrotain.createToken({
-  name: 'KWINPUTDRIVER',
+const INPUTDRIVER = chevrotain.createToken({
+  name: 'INPUTDRIVER',
   pattern: /INPUTDRIVER/i,
 });
-const KWOUTPUTFORMAT = chevrotain.createToken({
-  name: 'KWOUTPUTFORMAT',
+const OUTPUTFORMAT = chevrotain.createToken({
+  name: 'OUTPUTFORMAT',
   pattern: /OUTPUTFORMAT/i,
 });
-const KWINPUTFORMAT = chevrotain.createToken({
-  name: 'KWINPUTFORMAT',
+const INPUTFORMAT = chevrotain.createToken({
+  name: 'INPUTFORMAT',
   pattern: /INPUTFORMAT/i,
 });
-const KWORCFILE = chevrotain.createToken({
-  name: 'KWORCFILE',
+const ORCFILE = chevrotain.createToken({
+  name: 'ORCFILE',
   pattern: /ORC/i,
 });
-const KWRCFILE = chevrotain.createToken({
-  name: 'KWRCFILE',
+const RCFILE = chevrotain.createToken({
+  name: 'RCFILE',
   pattern: /RCFILE/i,
 });
-const KWTEXTFILE = chevrotain.createToken({
-  name: 'KWTEXTFILE',
+const TEXTFILE = chevrotain.createToken({
+  name: 'TEXTFILE',
   pattern: /TEXTFILE/i,
 });
-const KWSEQUENCEFILE = chevrotain.createToken({
-  name: 'KWSEQUENCEFILE',
+const SEQUENCEFILE = chevrotain.createToken({
+  name: 'SEQUENCEFILE',
   pattern: /SEQUENCEFILE/i,
 });
-const KWFILEFORMAT = chevrotain.createToken({
-  name: 'KWFILEFORMAT',
+const FILEFORMAT = chevrotain.createToken({
+  name: 'FILEFORMAT',
   pattern: /FILEFORMAT/i,
 });
-const KWSTORED = chevrotain.createToken({
-  name: 'KWSTORED',
+const STORED = chevrotain.createToken({
+  name: 'STORED',
   pattern: /STORED/i,
 });
-const KWLINES = chevrotain.createToken({
-  name: 'KWLINES',
+const LINES = chevrotain.createToken({
+  name: 'LINES',
   pattern: /LINES/i,
 });
-const KWKEY_TYPE = chevrotain.createToken({
-  name: 'KWKEY_TYPE',
+const KEY_TYPE = chevrotain.createToken({
+  name: 'KEY_TYPE',
   pattern: /\$KEY\$/i,
 });
-const KWKEYS = chevrotain.createToken({
-  name: 'KWKEYS',
+const KEYS = chevrotain.createToken({
+  name: 'KEYS',
   pattern: /KEYS/i,
 });
-const KWITEMS = chevrotain.createToken({
-  name: 'KWITEMS',
+const ITEMS = chevrotain.createToken({
+  name: 'ITEMS',
   pattern: /ITEMS/i,
 });
-const KWCOLLECTION = chevrotain.createToken({
-  name: 'KWCOLLECTION',
+const COLLECTION = chevrotain.createToken({
+  name: 'COLLECTION',
   pattern: /COLLECTION/i,
 });
-const KWESCAPED = chevrotain.createToken({
-  name: 'KWESCAPED',
+const ESCAPED = chevrotain.createToken({
+  name: 'ESCAPED',
   pattern: /ESCAPED/i,
 });
-const KWTERMINATED = chevrotain.createToken({
-  name: 'KWTERMINATED',
+const TERMINATED = chevrotain.createToken({
+  name: 'TERMINATED',
   pattern: /TERMINATED/i,
 });
-const KWFIELDS = chevrotain.createToken({
-  name: 'KWFIELDS',
+const FIELDS = chevrotain.createToken({
+  name: 'FIELDS',
   pattern: /FIELDS/i,
 });
-const KWDELIMITED = chevrotain.createToken({
-  name: 'KWDELIMITED',
+const DELIMITED = chevrotain.createToken({
+  name: 'DELIMITED',
   pattern: /DELIMITED/i,
 });
-const KWLIMIT = chevrotain.createToken({
-  name: 'KWLIMIT',
+const LIMIT = chevrotain.createToken({
+  name: 'LIMIT',
   pattern: /LIMIT/i,
 });
-const KWFORMAT = chevrotain.createToken({
-  name: 'KWFORMAT',
+const FORMAT = chevrotain.createToken({
+  name: 'FORMAT',
   pattern: /FORMAT/i,
 });
-const KWROWS = chevrotain.createToken({
-  name: 'KWROWS',
+const ROWS = chevrotain.createToken({
+  name: 'ROWS',
   pattern: /ROWS/i,
 });
-const KWROW = chevrotain.createToken({
-  name: 'KWROW',
+const ROW = chevrotain.createToken({
+  name: 'ROW',
   pattern: /ROW/i,
 });
-const KWBUCKETS = chevrotain.createToken({
-  name: 'KWBUCKETS',
+const BUCKETS = chevrotain.createToken({
+  name: 'BUCKETS',
   pattern: /BUCKETS/i,
 });
-const KWBUCKET = chevrotain.createToken({
-  name: 'KWBUCKET',
+const BUCKET = chevrotain.createToken({
+  name: 'BUCKET',
   pattern: /BUCKET/i,
 });
-const KWINTO = chevrotain.createToken({
-  name: 'KWINTO',
+const INTO = chevrotain.createToken({
+  name: 'INTO',
   pattern: /INTO/i,
 });
-const KWSORTED = chevrotain.createToken({
-  name: 'KWSORTED',
+const SORTED = chevrotain.createToken({
+  name: 'SORTED',
   pattern: /SORTED/i,
 });
-const KWCLUSTERED = chevrotain.createToken({
-  name: 'KWCLUSTERED',
+const CLUSTERED = chevrotain.createToken({
+  name: 'CLUSTERED',
   pattern: /CLUSTERED/i,
 });
-const KWPARTITIONED = chevrotain.createToken({
-  name: 'KWPARTITIONED',
+const PARTITIONED = chevrotain.createToken({
+  name: 'PARTITIONED',
   pattern: /PARTITIONED/i,
 });
-const KWREDUCE = chevrotain.createToken({
-  name: 'KWREDUCE',
+const REDUCE = chevrotain.createToken({
+  name: 'REDUCE',
   pattern: /REDUCE/i,
 });
-const KWUNIONTYPE = chevrotain.createToken({
-  name: 'KWUNIONTYPE',
+const UNIONTYPE = chevrotain.createToken({
+  name: 'UNIONTYPE',
   pattern: /UNIONTYPE/i,
 });
-const KWMAP = chevrotain.createToken({
-  name: 'KWMAP',
+const MAP = chevrotain.createToken({
+  name: 'MAP',
   pattern: /MAP/i,
 });
-const KWSTRUCT = chevrotain.createToken({
-  name: 'KWSTRUCT',
+const STRUCT = chevrotain.createToken({
+  name: 'STRUCT',
   pattern: /STRUCT/i,
 });
-const KWARRAY = chevrotain.createToken({
-  name: 'KWARRAY',
+const ARRAY = chevrotain.createToken({
+  name: 'ARRAY',
   pattern: /ARRAY/i,
 });
-const KWSTRING = chevrotain.createToken({
-  name: 'KWSTRING',
+const STRING = chevrotain.createToken({
+  name: 'STRING',
   pattern: /STRING/i,
 });
-const KWDECIMAL = chevrotain.createToken({
-  name: 'KWDECIMAL',
+const DECIMAL = chevrotain.createToken({
+  name: 'DECIMAL',
   pattern: /DECIMAL/i,
 });
-const KWTIMESTAMP = chevrotain.createToken({
-  name: 'KWTIMESTAMP',
+const TIMESTAMP = chevrotain.createToken({
+  name: 'TIMESTAMP',
   pattern: /TIMESTAMP/i,
 });
-const KWDATETIME = chevrotain.createToken({
-  name: 'KWDATETIME',
+const DATETIME = chevrotain.createToken({
+  name: 'DATETIME',
   pattern: /DATETIME/i,
 });
-const KWDATE = chevrotain.createToken({
-  name: 'KWDATE',
+const DATE = chevrotain.createToken({
+  name: 'DATE',
   pattern: /DATE/i,
 });
-const KWDOUBLE = chevrotain.createToken({
-  name: 'KWDOUBLE',
+const DOUBLE = chevrotain.createToken({
+  name: 'DOUBLE',
   pattern: /DOUBLE/i,
 });
-const KWFLOAT = chevrotain.createToken({
-  name: 'KWFLOAT',
+const FLOAT = chevrotain.createToken({
+  name: 'FLOAT',
   pattern: /FLOAT/i,
 });
-const KWBIGINT = chevrotain.createToken({
-  name: 'KWBIGINT',
+const BIGINT = chevrotain.createToken({
+  name: 'BIGINT',
   pattern: /BIGINT/i,
 });
-const KWSMALLINT = chevrotain.createToken({
-  name: 'KWSMALLINT',
+const SMALLINT = chevrotain.createToken({
+  name: 'SMALLINT',
   pattern: /SMALLINT/i,
 });
-const KWTINYINT = chevrotain.createToken({
-  name: 'KWTINYINT',
+const TINYINT = chevrotain.createToken({
+  name: 'TINYINT',
   pattern: /TINYINT/i,
 });
-const KWINT = chevrotain.createToken({
-  name: 'KWINT',
+const INT = chevrotain.createToken({
+  name: 'INT',
   pattern: /INT/i,
 });
-const KWBOOLEAN = chevrotain.createToken({
-  name: 'KWBOOLEAN',
+const BOOLEAN = chevrotain.createToken({
+  name: 'BOOLEAN',
   pattern: /BOOLEAN/i,
 });
-const KWCOMMENT = chevrotain.createToken({
-  name: 'KWCOMMENT',
-  pattern: /COMMENT/i,
+const COMMENT = chevrotain.createToken({
+  name: 'COMMENT',
+  pattern: /KWCOMMENT/i,
 });
-const KWPROTECTION = chevrotain.createToken({
-  name: 'KWPROTECTION',
+const PROTECTION = chevrotain.createToken({
+  name: 'PROTECTION',
   pattern: /PROTECTION/i,
 });
-const KWIGNORE = chevrotain.createToken({
-  name: 'KWIGNORE',
+const IGNORE = chevrotain.createToken({
+  name: 'IGNORE',
   pattern: /IGNORE/i,
 });
-const KWRENAME = chevrotain.createToken({
-  name: 'KWRENAME',
+const RENAME = chevrotain.createToken({
+  name: 'RENAME',
   pattern: /RENAME/i,
 });
-const KWDROP = chevrotain.createToken({
-  name: 'KWDROP',
+const DROP = chevrotain.createToken({
+  name: 'DROP',
   pattern: /DROP/i,
 });
-const KWDESCRIBE = chevrotain.createToken({
-  name: 'KWDESCRIBE',
+const DESCRIBE = chevrotain.createToken({
+  name: 'DESCRIBE',
   pattern: /DESCRIBE/i,
 });
-const KWAFTER = chevrotain.createToken({
-  name: 'KWAFTER',
+const AFTER = chevrotain.createToken({
+  name: 'AFTER',
   pattern: /AFTER/i,
 });
-const KWFIRST = chevrotain.createToken({
-  name: 'KWFIRST',
+const FIRST = chevrotain.createToken({
+  name: 'FIRST',
   pattern: /FIRST/i,
 });
-const KWCHANGE = chevrotain.createToken({
-  name: 'KWCHANGE',
+const CHANGE = chevrotain.createToken({
+  name: 'CHANGE',
   pattern: /CHANGE/i,
 });
-const KWALTER = chevrotain.createToken({
-  name: 'KWALTER',
+const ALTER = chevrotain.createToken({
+  name: 'ALTER',
   pattern: /ALTER/i,
 });
-const KWEXTERNAL = chevrotain.createToken({
-  name: 'KWEXTERNAL',
+const EXTERNAL = chevrotain.createToken({
+  name: 'EXTERNAL',
   pattern: /EXTERNAL/i,
 });
-const KWCREATE = chevrotain.createToken({
-  name: 'KWCREATE',
+const CREATE = chevrotain.createToken({
+  name: 'CREATE',
   pattern: /CREATE/i,
 });
-const KWNULL = chevrotain.createToken({
-  name: 'KWNULL',
+const NULL = chevrotain.createToken({
+  name: 'NULL',
   pattern: /NULL/i,
 });
-const KWINPATH = chevrotain.createToken({
-  name: 'KWINPATH',
+const INPATH = chevrotain.createToken({
+  name: 'INPATH',
   pattern: /INPATH/i,
 });
-const KWDATA = chevrotain.createToken({
-  name: 'KWDATA',
+const DATA = chevrotain.createToken({
+  name: 'DATA',
   pattern: /DATA/i,
 });
-const KWIMPORT = chevrotain.createToken({
-  name: 'KWIMPORT',
+const IMPORT = chevrotain.createToken({
+  name: 'IMPORT',
   pattern: /IMPORT/i,
 });
-const KWEXPORT = chevrotain.createToken({
-  name: 'KWEXPORT',
+const EXPORT = chevrotain.createToken({
+  name: 'EXPORT',
   pattern: /EXPORT/i,
 });
-const KWLOAD = chevrotain.createToken({
-  name: 'KWLOAD',
+const LOAD = chevrotain.createToken({
+  name: 'LOAD',
   pattern: /LOAD/i,
 });
-const KWUNION = chevrotain.createToken({
-  name: 'KWUNION',
+const UNION = chevrotain.createToken({
+  name: 'UNION',
   pattern: /UNION/i,
 });
-const KWSORT = chevrotain.createToken({
-  name: 'KWSORT',
+const SORT = chevrotain.createToken({
+  name: 'SORT',
   pattern: /SORT/i,
 });
-const KWDISTRIBUTE = chevrotain.createToken({
-  name: 'KWDISTRIBUTE',
+const DISTRIBUTE = chevrotain.createToken({
+  name: 'DISTRIBUTE',
   pattern: /DISTRIBUTE/i,
 });
-const KWCLUSTER = chevrotain.createToken({
-  name: 'KWCLUSTER',
+const CLUSTER = chevrotain.createToken({
+  name: 'CLUSTER',
   pattern: /CLUSTER/i,
 });
-const KWUSING = chevrotain.createToken({
-  name: 'KWUSING',
+const USING = chevrotain.createToken({
+  name: 'USING',
   pattern: /USING/i,
 });
-const KWTRANSFORM = chevrotain.createToken({
-  name: 'KWTRANSFORM',
+const TRANSFORM = chevrotain.createToken({
+  name: 'TRANSFORM',
   pattern: /TRANSFORM/i,
 });
-const KWFOR = chevrotain.createToken({
-  name: 'KWFOR',
+const FOR = chevrotain.createToken({
+  name: 'FOR',
   pattern: /FOR/i,
 });
-const KWLOCAL = chevrotain.createToken({
-  name: 'KWLOCAL',
+const LOCAL = chevrotain.createToken({
+  name: 'LOCAL',
   pattern: /LOCAL/i,
 });
-const KWDIRECTORY = chevrotain.createToken({
-  name: 'KWDIRECTORY',
+const DIRECTORY = chevrotain.createToken({
+  name: 'DIRECTORY',
   pattern: /DIRECTORY/i,
 });
-const KWTO = chevrotain.createToken({
-  name: 'KWTO',
+const TO = chevrotain.createToken({
+  name: 'TO',
   pattern: /TO/i,
 });
-const KWREPAIR = chevrotain.createToken({
-  name: 'KWREPAIR',
+const REPAIR = chevrotain.createToken({
+  name: 'REPAIR',
   pattern: /REPAIR/i,
 });
-const KWMSCK = chevrotain.createToken({
-  name: 'KWMSCK',
+const MSCK = chevrotain.createToken({
+  name: 'MSCK',
   pattern: /MSCK/i,
 });
-const KWSHOW = chevrotain.createToken({
-  name: 'KWSHOW',
+const SHOW = chevrotain.createToken({
+  name: 'SHOW',
   pattern: /SHOW/i,
 });
-const KWFUNCTIONS = chevrotain.createToken({
-  name: 'KWFUNCTIONS',
+const FUNCTIONS = chevrotain.createToken({
+  name: 'FUNCTIONS',
   pattern: /FUNCTIONS/i,
 });
-const KWFUNCTION = chevrotain.createToken({
-  name: 'KWFUNCTION',
+const FUNCTION = chevrotain.createToken({
+  name: 'FUNCTION',
   pattern: /FUNCTION/i,
 });
-const KWREBUILD = chevrotain.createToken({
-  name: 'KWREBUILD',
+const REBUILD = chevrotain.createToken({
+  name: 'REBUILD',
   pattern: /REBUILD/i,
 });
-const KWINDEXES = chevrotain.createToken({
-  name: 'KWINDEXES',
+const INDEXES = chevrotain.createToken({
+  name: 'INDEXES',
   pattern: /INDEXES/i,
 });
-const KWINDEX = chevrotain.createToken({
-  name: 'KWINDEX',
+const INDEX = chevrotain.createToken({
+  name: 'INDEX',
   pattern: /INDEX/i,
 });
-const KWCOLUMNS = chevrotain.createToken({
-  name: 'KWCOLUMNS',
+const COLUMNS = chevrotain.createToken({
+  name: 'COLUMNS',
   pattern: /COLUMNS/i,
 });
-const KWCOLUMN = chevrotain.createToken({
-  name: 'KWCOLUMN',
+const COLUMN = chevrotain.createToken({
+  name: 'COLUMN',
   pattern: /COLUMN/i,
 });
-const KWTABLES = chevrotain.createToken({
-  name: 'KWTABLES',
+const TABLES = chevrotain.createToken({
+  name: 'TABLES',
   pattern: /TABLES/i,
 });
-const KWTABLE = chevrotain.createToken({
-  name: 'KWTABLE',
+const TABLE = chevrotain.createToken({
+  name: 'TABLE',
   pattern: /TABLE/i,
 });
-const KWPARTITIONS = chevrotain.createToken({
-  name: 'KWPARTITIONS',
+const PARTITIONS = chevrotain.createToken({
+  name: 'PARTITIONS',
   pattern: /PARTITIONS/i,
 });
-const KWPARTITION = chevrotain.createToken({
-  name: 'KWPARTITION',
+const PARTITION = chevrotain.createToken({
+  name: 'PARTITION',
   pattern: /PARTITION/i,
 });
-const KWON = chevrotain.createToken({
-  name: 'KWON',
+const ON = chevrotain.createToken({
+  name: 'ON',
   pattern: /ON/i,
 });
-const KWFULL = chevrotain.createToken({
-  name: 'KWFULL',
+const FULL = chevrotain.createToken({
+  name: 'FULL',
   pattern: /FULL/i,
 });
-const KWRIGHT = chevrotain.createToken({
-  name: 'KWRIGHT',
+const RIGHT = chevrotain.createToken({
+  name: 'RIGHT',
   pattern: /RIGHT/i,
 });
-const KWLEFT = chevrotain.createToken({
-  name: 'KWLEFT',
+const LEFT = chevrotain.createToken({
+  name: 'LEFT',
   pattern: /LEFT/i,
 });
-const KWPRESERVE = chevrotain.createToken({
-  name: 'KWPRESERVE',
+const PRESERVE = chevrotain.createToken({
+  name: 'PRESERVE',
   pattern: /PRESERVE/i,
 });
-const KWUNIQUEJOIN = chevrotain.createToken({
-  name: 'KWUNIQUEJOIN',
+const UNIQUEJOIN = chevrotain.createToken({
+  name: 'UNIQUEJOIN',
   pattern: /UNIQUEJOIN/i,
 });
-const KWOUTER = chevrotain.createToken({
-  name: 'KWOUTER',
+const OUTER = chevrotain.createToken({
+  name: 'OUTER',
   pattern: /OUTER/i,
 });
-const KWOUT = chevrotain.createToken({
-  name: 'KWOUT',
+const OUT = chevrotain.createToken({
+  name: 'OUT',
   pattern: /OUT/i,
 });
-const KWOVERWRITE = chevrotain.createToken({
-  name: 'KWOVERWRITE',
+const OVERWRITE = chevrotain.createToken({
+  name: 'OVERWRITE',
   pattern: /OVERWRITE/i,
 });
-const KWOVER = chevrotain.createToken({
-  name: 'KWOVER',
+const OVER = chevrotain.createToken({
+  name: 'OVER',
   pattern: /OVER/i,
 });
-const KWINSERT = chevrotain.createToken({
-  name: 'KWINSERT',
+const INSERT = chevrotain.createToken({
+  name: 'INSERT',
   pattern: /INSERT/i,
 });
-const KWDISTINCT = chevrotain.createToken({
-  name: 'KWDISTINCT',
+const DISTINCT = chevrotain.createToken({
+  name: 'DISTINCT',
   pattern: /DISTINCT/i,
 });
-const KWSELECT = chevrotain.createToken({
-  name: 'KWSELECT',
+const SELECT = chevrotain.createToken({
+  name: 'SELECT',
   pattern: /SELECT/i,
 });
-const KWFROM = chevrotain.createToken({
-  name: 'KWFROM',
+const FROM = chevrotain.createToken({
+  name: 'FROM',
   pattern: /FROM/i,
 });
-const KWWHERE = chevrotain.createToken({
-  name: 'KWWHERE',
+const WHERE = chevrotain.createToken({
+  name: 'WHERE',
   pattern: /WHERE/i,
 });
-const KWHAVING = chevrotain.createToken({
-  name: 'KWHAVING',
+const HAVING = chevrotain.createToken({
+  name: 'HAVING',
   pattern: /HAVING/i,
 });
-const KWBY = chevrotain.createToken({
-  name: 'KWBY',
+const BY = chevrotain.createToken({
+  name: 'BY',
   pattern: /BY/i,
 });
-const KWGROUP = chevrotain.createToken({
-  name: 'KWGROUP',
+const GROUP = chevrotain.createToken({
+  name: 'GROUP',
   pattern: /GROUP/i,
 });
-const KWORDER = chevrotain.createToken({
-  name: 'KWORDER',
+const ORDER = chevrotain.createToken({
+  name: 'ORDER',
   pattern: /ORDER/i,
 });
-const KWDESC = chevrotain.createToken({
-  name: 'KWDESC',
+const DESC = chevrotain.createToken({
+  name: 'DESC',
   pattern: /DESC/i,
 });
-const KWASC = chevrotain.createToken({
-  name: 'KWASC',
+const ASC = chevrotain.createToken({
+  name: 'ASC',
   pattern: /ASC/i,
 });
-const KWAS = chevrotain.createToken({
-  name: 'KWAS',
+const AS = chevrotain.createToken({
+  name: 'AS',
   pattern: /AS/i,
 });
-const KWEXISTS = chevrotain.createToken({
-  name: 'KWEXISTS',
+const EXISTS = chevrotain.createToken({
+  name: 'EXISTS',
   pattern: /EXISTS/i,
 });
-const KWIS = chevrotain.createToken({
-  name: 'KWIS',
+const IS = chevrotain.createToken({
+  name: 'IS',
   pattern: /IS/i,
 });
-const KWIF = chevrotain.createToken({
-  name: 'KWIF',
+const IF = chevrotain.createToken({
+  name: 'IF',
   pattern: /IF/i,
 });
 const JOIN = chevrotain.createToken({
   name: 'JOIN',
   pattern: /JOIN/i,
 });
-const KWIN = chevrotain.createToken({
-  name: 'KWIN',
+const IN = chevrotain.createToken({
+  name: 'IN',
   pattern: /IN/i,
 });
-const KWLIKE = chevrotain.createToken({
-  name: 'KWLIKE',
+const LIKE = chevrotain.createToken({
+  name: 'LIKE',
   pattern: /LIKE/i,
 });
-const KWNOT = chevrotain.createToken({
-  name: 'KWNOT',
+const NOT = chevrotain.createToken({
+  name: 'NOT',
   pattern: /(NOT|\!)/i,
 });
-const KWOR = chevrotain.createToken({
-  name: 'KWOR',
+const OR = chevrotain.createToken({
+  name: 'OR',
   pattern: /OR/i,
 });
-const KWAND = chevrotain.createToken({
-  name: 'KWAND',
+const AND = chevrotain.createToken({
+  name: 'AND',
   pattern: /AND/i,
 });
-const KWALL = chevrotain.createToken({
-  name: 'KWALL',
+const ALL = chevrotain.createToken({
+  name: 'ALL',
   pattern: /ALL/i,
 });
-const KWFALSE = chevrotain.createToken({
-  name: 'KWFALSE',
+const FALSE = chevrotain.createToken({
+  name: 'FALSE',
   pattern: /FALSE/i,
 });
-const KWTRUE = chevrotain.createToken({
-  name: 'KWTRUE',
+const TRUE = chevrotain.createToken({
+  name: 'TRUE',
   pattern: /TRUE/i,
 });
 const Identifier = chevrotain.createToken({
@@ -1144,7 +1140,6 @@ const Identifier = chevrotain.createToken({
 });
 
 export enum TokenEnum {
-  COMMENT = 'COMMENT',
   WS = 'WS',
   Number = 'Number',
   ByteLengthLiteral = 'ByteLengthLiteral',
@@ -1183,253 +1178,252 @@ export enum TokenEnum {
   COMMA = 'COMMA',
   COLON = 'COLON',
   DOT = 'DOT',
-  KWVALUES = 'KWVALUES',
-  KWVALUE = 'KWVALUE',
-  KWEXCHANGE = 'KWEXCHANGE',
-  KWINNER = 'KWINNER',
-  KWROLE = 'KWROLE',
-  KWUSER = 'KWUSER',
-  KWPARTIALSCAN = 'KWPARTIALSCAN',
-  KWNOSCAN = 'KWNOSCAN',
-  KWTRUNCATE = 'KWTRUNCATE',
-  KWSETS = 'KWSETS',
-  KWGROUPING = 'KWGROUPING',
-  KWMORE = 'KWMORE',
-  KWLESS = 'KWLESS',
-  KWCURRENT = 'KWCURRENT',
-  KWFOLLOWING = 'KWFOLLOWING',
-  KWPRECEDING = 'KWPRECEDING',
-  KWUNBOUNDED = 'KWUNBOUNDED',
-  KWWINDOW = 'KWWINDOW',
-  KWDIRECTORIES = 'KWDIRECTORIES',
-  KWCUBE = 'KWCUBE',
-  KWROLLUP = 'KWROLLUP',
-  KWSKEWED = 'KWSKEWED',
-  KWCASCADE = 'KWCASCADE',
-  KWRESTRICT = 'KWRESTRICT',
-  KWUPDATE = 'KWUPDATE',
-  KWSHOW_DATABASE = 'KWSHOW_DATABASE',
-  KWCONCATENATE = 'KWCONCATENATE',
-  KWOPTION = 'KWOPTION',
-  KWUSE = 'KWUSE',
-  KWSTATISTICS = 'KWSTATISTICS',
-  KWCOMPUTE = 'KWCOMPUTE',
-  KWUNARCHIVE = 'KWUNARCHIVE',
-  KWARCHIVE = 'KWARCHIVE',
-  KWTOUCH = 'KWTOUCH',
-  KWLATERAL = 'KWLATERAL',
-  KWSEMI = 'KWSEMI',
-  KWRECORDWRITER = 'KWRECORDWRITER',
-  KWRECORDREADER = 'KWRECORDREADER',
-  KWTRIGGER = 'KWTRIGGER',
-  KWCURSOR = 'KWCURSOR',
-  KWCONTINUE = 'KWCONTINUE',
-  KWCROSS = 'KWCROSS',
-  KWBINARY = 'KWBINARY',
-  KWBOTH = 'KWBOTH',
-  KWBETWEEN = 'KWBETWEEN',
-  KWBEFORE = 'KWBEFORE',
-  KWANALYZE = 'KWANALYZE',
-  KWRANGE = 'KWRANGE',
-  KWPURGE = 'KWPURGE',
-  KWREADS = 'KWREADS',
-  KWWHILE = 'KWWHILE',
-  KWUNSIGNED = 'KWUNSIGNED',
-  KWPROCEDURE = 'KWPROCEDURE',
-  KWEXCLUSIVE = 'KWEXCLUSIVE',
-  KWSHARED = 'KWSHARED',
-  KWUNLOCK = 'KWUNLOCK',
-  KWLOCKS = 'KWLOCKS',
-  KWLOCK = 'KWLOCK',
-  KWUNDO = 'KWUNDO',
-  KWSSL = 'KWSSL',
-  KWREVOKE = 'KWREVOKE',
-  KWGRANT = 'KWGRANT',
-  KWSCHEMAS = 'KWSCHEMAS',
-  KWSCHEMA = 'KWSCHEMA',
-  KWMATERIALIZED = 'KWMATERIALIZED',
-  KWDATABASES = 'KWDATABASES',
-  KWDATABASE = 'KWDATABASE',
-  KWVIEW = 'KWVIEW',
-  KWINTERSECT = 'KWINTERSECT',
-  KWFETCH = 'KWFETCH',
+  VALUES = 'VALUES',
+  VALUE = 'VALUE',
+  EXCHANGE = 'EXCHANGE',
+  INNER = 'INNER',
+  ROLE = 'ROLE',
+  USER = 'USER',
+  PARTIALSCAN = 'PARTIALSCAN',
+  NOSCAN = 'NOSCAN',
+  TRUNCATE = 'TRUNCATE',
+  SETS = 'SETS',
+  GROUPING = 'GROUPING',
+  MORE = 'MORE',
+  LESS = 'LESS',
+  CURRENT = 'CURRENT',
+  FOLLOWING = 'FOLLOWING',
+  PRECEDING = 'PRECEDING',
+  UNBOUNDED = 'UNBOUNDED',
+  WINDOW = 'WINDOW',
+  DIRECTORIES = 'DIRECTORIES',
+  CUBE = 'CUBE',
+  ROLLUP = 'ROLLUP',
+  SKEWED = 'SKEWED',
+  CASCADE = 'CASCADE',
+  RESTRICT = 'RESTRICT',
+  UPDATE = 'UPDATE',
+  SHOW_DATABASE = 'SHOW_DATABASE',
+  CONCATENATE = 'CONCATENATE',
+  OPTION = 'OPTION',
+  USE = 'USE',
+  STATISTICS = 'STATISTICS',
+  COMPUTE = 'COMPUTE',
+  UNARCHIVE = 'UNARCHIVE',
+  ARCHIVE = 'ARCHIVE',
+  TOUCH = 'TOUCH',
+  LATERAL = 'LATERAL',
+  SEMI = 'SEMI',
+  RECORDWRITER = 'RECORDWRITER',
+  RECORDREADER = 'RECORDREADER',
+  TRIGGER = 'TRIGGER',
+  CURSOR = 'CURSOR',
+  CONTINUE = 'CONTINUE',
+  CROSS = 'CROSS',
+  BINARY = 'BINARY',
+  BOTH = 'BOTH',
+  BETWEEN = 'BETWEEN',
+  BEFORE = 'BEFORE',
+  ANALYZE = 'ANALYZE',
+  RANGE = 'RANGE',
+  PURGE = 'PURGE',
+  READS = 'READS',
+  WHILE = 'WHILE',
+  UNSIGNED = 'UNSIGNED',
+  PROCEDURE = 'PROCEDURE',
+  EXCLUSIVE = 'EXCLUSIVE',
+  SHARED = 'SHARED',
+  UNLOCK = 'UNLOCK',
+  LOCKS = 'LOCKS',
+  LOCK = 'LOCK',
+  UNDO = 'UNDO',
+  SSL = 'SSL',
+  REVOKE = 'REVOKE',
+  GRANT = 'GRANT',
+  SCHEMAS = 'SCHEMAS',
+  SCHEMA = 'SCHEMA',
+  MATERIALIZED = 'MATERIALIZED',
+  DATABASES = 'DATABASES',
+  DATABASE = 'DATABASE',
+  VIEW = 'VIEW',
+  INTERSECT = 'INTERSECT',
+  FETCH = 'FETCH',
   KWMINUS = 'KWMINUS',
   KWPLUS = 'KWPLUS',
-  KWDELETE = 'KWDELETE',
-  KWLONG = 'KWLONG',
-  KWUTCTIMESTAMP = 'KWUTCTIMESTAMP',
-  KWUTC = 'KWUTC',
-  KWCLUSTERSTATUS = 'KWCLUSTERSTATUS',
-  KWHOLD_DDLTIME = 'KWHOLD_DDLTIME',
-  KWSTREAMTABLE = 'KWSTREAMTABLE',
-  KWMAPJOIN = 'KWMAPJOIN',
-  KWELSE = 'KWELSE',
-  KWTHEN = 'KWTHEN',
-  KWWHEN = 'KWWHEN',
-  KWCASE = 'KWCASE',
-  KWELEM_TYPE = 'KWELEM_TYPE',
-  KWVALUE_TYPE = 'KWVALUE_TYPE',
-  KWIDXPROPERTIES = 'KWIDXPROPERTIES',
-  KWTBLPROPERTIES = 'KWTBLPROPERTIES',
-  KWUNSET = 'KWUNSET',
-  KWSET = 'KWSET',
-  KWDBPROPERTIES = 'KWDBPROPERTIES',
-  KWSERDEPROPERTIES = 'KWSERDEPROPERTIES',
-  KWDEFERRED = 'KWDEFERRED',
-  KWWITH = 'KWWITH',
-  KWSERDE = 'KWSERDE',
-  KWLOGICAL = 'KWLOGICAL',
-  KWDEPENDENCY = 'KWDEPENDENCY',
-  KWPRETTY = 'KWPRETTY',
-  KWFORMATTED = 'KWFORMATTED',
-  KWEXTENDED = 'KWEXTENDED',
-  KWEND = 'KWEND',
-  KWEXPLAIN = 'KWEXPLAIN',
-  KWMACRO = 'KWMACRO',
-  KWTEMPORARY = 'KWTEMPORARY',
-  KWREGEXP = 'KWREGEXP',
-  KWRLIKE = 'KWRLIKE',
-  KWREPLACE = 'KWREPLACE',
-  KWADD = 'KWADD',
-  KWCAST = 'KWCAST',
-  KWPERCENT = 'KWPERCENT',
-  KWTABLESAMPLE = 'KWTABLESAMPLE',
-  KWLOCATION = 'KWLOCATION',
-  KWNO_DROP = 'KWNO_DROP',
+  DELETE = 'DELETE',
+  LONG = 'LONG',
+  UTCTIMESTAMP = 'UTCTIMESTAMP',
+  UTC = 'UTC',
+  CLUSTERSTATUS = 'CLUSTERSTATUS',
+  HOLD_DDLTIME = 'HOLD_DDLTIME',
+  STREAMTABLE = 'STREAMTABLE',
+  MAPJOIN = 'MAPJOIN',
+  ELSE = 'ELSE',
+  THEN = 'THEN',
+  WHEN = 'WHEN',
+  CASE = 'CASE',
+  ELEM_TYPE = 'ELEM_TYPE',
+  VALUE_TYPE = 'VALUE_TYPE',
+  IDXPROPERTIES = 'IDXPROPERTIES',
+  TBLPROPERTIES = 'TBLPROPERTIES',
+  UNSET = 'UNSET',
+  SET = 'SET',
+  DBPROPERTIES = 'DBPROPERTIES',
+  SERDEPROPERTIES = 'SERDEPROPERTIES',
+  DEFERRED = 'DEFERRED',
+  WITH = 'WITH',
+  SERDE = 'SERDE',
+  LOGICAL = 'LOGICAL',
+  DEPENDENCY = 'DEPENDENCY',
+  PRETTY = 'PRETTY',
+  FORMATTED = 'FORMATTED',
+  EXTENDED = 'EXTENDED',
+  END = 'END',
+  EXPLAIN = 'EXPLAIN',
+  MACRO = 'MACRO',
+  TEMPORARY = 'TEMPORARY',
+  REGEXP = 'REGEXP',
+  RLIKE = 'RLIKE',
+  REPLACE = 'REPLACE',
+  ADD = 'ADD',
+  CAST = 'CAST',
+  PERCENT = 'PERCENT',
+  TABLESAMPLE = 'TABLESAMPLE',
+  LOCATION = 'LOCATION',
+  NO_DROP = 'NO_DROP',
   CharSetName = 'CharSetName',
-  KWREADONLY = 'KWREADONLY',
-  KWREAD = 'KWREAD',
-  KWDISABLE = 'KWDISABLE',
-  KWENABLE = 'KWENABLE',
-  KWOFFLINE = 'KWOFFLINE',
-  KWOF = 'KWOF',
-  KWOUTPUTDRIVER = 'KWOUTPUTDRIVER',
-  KWINPUTDRIVER = 'KWINPUTDRIVER',
-  KWOUTPUTFORMAT = 'KWOUTPUTFORMAT',
-  KWINPUTFORMAT = 'KWINPUTFORMAT',
-  KWORCFILE = 'KWORCFILE',
-  KWRCFILE = 'KWRCFILE',
-  KWTEXTFILE = 'KWTEXTFILE',
-  KWSEQUENCEFILE = 'KWSEQUENCEFILE',
-  KWFILEFORMAT = 'KWFILEFORMAT',
-  KWSTORED = 'KWSTORED',
-  KWLINES = 'KWLINES',
-  KWKEY_TYPE = 'KWKEY_TYPE',
-  KWKEYS = 'KWKEYS',
-  KWITEMS = 'KWITEMS',
-  KWCOLLECTION = 'KWCOLLECTION',
-  KWESCAPED = 'KWESCAPED',
-  KWTERMINATED = 'KWTERMINATED',
-  KWFIELDS = 'KWFIELDS',
-  KWDELIMITED = 'KWDELIMITED',
-  KWLIMIT = 'KWLIMIT',
-  KWFORMAT = 'KWFORMAT',
-  KWROWS = 'KWROWS',
-  KWROW = 'KWROW',
-  KWBUCKETS = 'KWBUCKETS',
-  KWBUCKET = 'KWBUCKET',
-  KWINTO = 'KWINTO',
-  KWSORTED = 'KWSORTED',
-  KWCLUSTERED = 'KWCLUSTERED',
-  KWPARTITIONED = 'KWPARTITIONED',
-  KWREDUCE = 'KWREDUCE',
-  KWUNIONTYPE = 'KWUNIONTYPE',
-  KWMAP = 'KWMAP',
-  KWSTRUCT = 'KWSTRUCT',
-  KWARRAY = 'KWARRAY',
-  KWSTRING = 'KWSTRING',
-  KWDECIMAL = 'KWDECIMAL',
-  KWTIMESTAMP = 'KWTIMESTAMP',
-  KWDATETIME = 'KWDATETIME',
-  KWDATE = 'KWDATE',
-  KWDOUBLE = 'KWDOUBLE',
-  KWFLOAT = 'KWFLOAT',
-  KWBIGINT = 'KWBIGINT',
-  KWSMALLINT = 'KWSMALLINT',
-  KWTINYINT = 'KWTINYINT',
-  KWINT = 'KWINT',
-  KWBOOLEAN = 'KWBOOLEAN',
-  KWCOMMENT = 'KWCOMMENT',
-  KWPROTECTION = 'KWPROTECTION',
-  KWIGNORE = 'KWIGNORE',
-  KWRENAME = 'KWRENAME',
-  KWDROP = 'KWDROP',
-  KWDESCRIBE = 'KWDESCRIBE',
-  KWAFTER = 'KWAFTER',
-  KWFIRST = 'KWFIRST',
-  KWCHANGE = 'KWCHANGE',
-  KWALTER = 'KWALTER',
-  KWEXTERNAL = 'KWEXTERNAL',
-  KWCREATE = 'KWCREATE',
-  KWNULL = 'KWNULL',
-  KWINPATH = 'KWINPATH',
-  KWDATA = 'KWDATA',
-  KWIMPORT = 'KWIMPORT',
-  KWEXPORT = 'KWEXPORT',
-  KWLOAD = 'KWLOAD',
-  KWUNION = 'KWUNION',
-  KWSORT = 'KWSORT',
-  KWDISTRIBUTE = 'KWDISTRIBUTE',
-  KWCLUSTER = 'KWCLUSTER',
-  KWUSING = 'KWUSING',
-  KWTRANSFORM = 'KWTRANSFORM',
-  KWFOR = 'KWFOR',
-  KWLOCAL = 'KWLOCAL',
-  KWDIRECTORY = 'KWDIRECTORY',
-  KWTO = 'KWTO',
-  KWREPAIR = 'KWREPAIR',
-  KWMSCK = 'KWMSCK',
-  KWSHOW = 'KWSHOW',
-  KWFUNCTIONS = 'KWFUNCTIONS',
-  KWFUNCTION = 'KWFUNCTION',
-  KWREBUILD = 'KWREBUILD',
-  KWINDEXES = 'KWINDEXES',
-  KWINDEX = 'KWINDEX',
-  KWCOLUMNS = 'KWCOLUMNS',
-  KWCOLUMN = 'KWCOLUMN',
-  KWTABLES = 'KWTABLES',
-  KWTABLE = 'KWTABLE',
-  KWPARTITIONS = 'KWPARTITIONS',
-  KWPARTITION = 'KWPARTITION',
-  KWON = 'KWON',
-  KWFULL = 'KWFULL',
-  KWRIGHT = 'KWRIGHT',
-  KWLEFT = 'KWLEFT',
-  KWPRESERVE = 'KWPRESERVE',
-  KWUNIQUEJOIN = 'KWUNIQUEJOIN',
-  KWOUTER = 'KWOUTER',
-  KWOUT = 'KWOUT',
-  KWOVERWRITE = 'KWOVERWRITE',
-  KWOVER = 'KWOVER',
-  KWINSERT = 'KWINSERT',
-  KWDISTINCT = 'KWDISTINCT',
-  KWSELECT = 'KWSELECT',
-  KWFROM = 'KWFROM',
-  KWWHERE = 'KWWHERE',
-  KWHAVING = 'KWHAVING',
-  KWBY = 'KWBY',
-  KWGROUP = 'KWGROUP',
-  KWORDER = 'KWORDER',
-  KWDESC = 'KWDESC',
-  KWASC = 'KWASC',
-  KWAS = 'KWAS',
-  KWEXISTS = 'KWEXISTS',
-  KWIS = 'KWIS',
-  KWIF = 'KWIF',
+  READONLY = 'READONLY',
+  READ = 'READ',
+  DISABLE = 'DISABLE',
+  ENABLE = 'ENABLE',
+  OFFLINE = 'OFFLINE',
+  OF = 'OF',
+  OUTPUTDRIVER = 'OUTPUTDRIVER',
+  INPUTDRIVER = 'INPUTDRIVER',
+  OUTPUTFORMAT = 'OUTPUTFORMAT',
+  INPUTFORMAT = 'INPUTFORMAT',
+  ORCFILE = 'ORCFILE',
+  RCFILE = 'RCFILE',
+  TEXTFILE = 'TEXTFILE',
+  SEQUENCEFILE = 'SEQUENCEFILE',
+  FILEFORMAT = 'FILEFORMAT',
+  STORED = 'STORED',
+  LINES = 'LINES',
+  KEY_TYPE = 'KEY_TYPE',
+  KEYS = 'KEYS',
+  ITEMS = 'ITEMS',
+  COLLECTION = 'COLLECTION',
+  ESCAPED = 'ESCAPED',
+  TERMINATED = 'TERMINATED',
+  FIELDS = 'FIELDS',
+  DELIMITED = 'DELIMITED',
+  LIMIT = 'LIMIT',
+  FORMAT = 'FORMAT',
+  ROWS = 'ROWS',
+  ROW = 'ROW',
+  BUCKETS = 'BUCKETS',
+  BUCKET = 'BUCKET',
+  INTO = 'INTO',
+  SORTED = 'SORTED',
+  CLUSTERED = 'CLUSTERED',
+  PARTITIONED = 'PARTITIONED',
+  REDUCE = 'REDUCE',
+  UNIONTYPE = 'UNIONTYPE',
+  MAP = 'MAP',
+  STRUCT = 'STRUCT',
+  ARRAY = 'ARRAY',
+  STRING = 'STRING',
+  DECIMAL = 'DECIMAL',
+  TIMESTAMP = 'TIMESTAMP',
+  DATETIME = 'DATETIME',
+  DATE = 'DATE',
+  DOUBLE = 'DOUBLE',
+  FLOAT = 'FLOAT',
+  BIGINT = 'BIGINT',
+  SMALLINT = 'SMALLINT',
+  TINYINT = 'TINYINT',
+  INT = 'INT',
+  BOOLEAN = 'BOOLEAN',
+  COMMENT = 'COMMENT',
+  PROTECTION = 'PROTECTION',
+  IGNORE = 'IGNORE',
+  RENAME = 'RENAME',
+  DROP = 'DROP',
+  DESCRIBE = 'DESCRIBE',
+  AFTER = 'AFTER',
+  FIRST = 'FIRST',
+  CHANGE = 'CHANGE',
+  ALTER = 'ALTER',
+  EXTERNAL = 'EXTERNAL',
+  CREATE = 'CREATE',
+  NULL = 'NULL',
+  INPATH = 'INPATH',
+  DATA = 'DATA',
+  IMPORT = 'IMPORT',
+  EXPORT = 'EXPORT',
+  LOAD = 'LOAD',
+  UNION = 'UNION',
+  SORT = 'SORT',
+  DISTRIBUTE = 'DISTRIBUTE',
+  CLUSTER = 'CLUSTER',
+  USING = 'USING',
+  TRANSFORM = 'TRANSFORM',
+  FOR = 'FOR',
+  LOCAL = 'LOCAL',
+  DIRECTORY = 'DIRECTORY',
+  TO = 'TO',
+  REPAIR = 'REPAIR',
+  MSCK = 'MSCK',
+  SHOW = 'SHOW',
+  FUNCTIONS = 'FUNCTIONS',
+  FUNCTION = 'FUNCTION',
+  REBUILD = 'REBUILD',
+  INDEXES = 'INDEXES',
+  INDEX = 'INDEX',
+  COLUMNS = 'COLUMNS',
+  COLUMN = 'COLUMN',
+  TABLES = 'TABLES',
+  TABLE = 'TABLE',
+  PARTITIONS = 'PARTITIONS',
+  PARTITION = 'PARTITION',
+  ON = 'ON',
+  FULL = 'FULL',
+  RIGHT = 'RIGHT',
+  LEFT = 'LEFT',
+  PRESERVE = 'PRESERVE',
+  UNIQUEJOIN = 'UNIQUEJOIN',
+  OUTER = 'OUTER',
+  OUT = 'OUT',
+  OVERWRITE = 'OVERWRITE',
+  OVER = 'OVER',
+  INSERT = 'INSERT',
+  DISTINCT = 'DISTINCT',
+  SELECT = 'SELECT',
+  FROM = 'FROM',
+  WHERE = 'WHERE',
+  HAVING = 'HAVING',
+  BY = 'BY',
+  GROUP = 'GROUP',
+  ORDER = 'ORDER',
+  DESC = 'DESC',
+  ASC = 'ASC',
+  AS = 'AS',
+  EXISTS = 'EXISTS',
+  IS = 'IS',
+  IF = 'IF',
   JOIN = 'JOIN',
-  KWIN = 'KWIN',
-  KWLIKE = 'KWLIKE',
-  KWNOT = 'KWNOT',
-  KWOR = 'KWOR',
-  KWAND = 'KWAND',
-  KWALL = 'KWALL',
-  KWFALSE = 'KWFALSE',
-  KWTRUE = 'KWTRUE',
+  IN = 'IN',
+  LIKE = 'LIKE',
+  NOT = 'NOT',
+  OR = 'OR',
+  AND = 'AND',
+  ALL = 'ALL',
+  FALSE = 'FALSE',
+  TRUE = 'TRUE',
   Identifier = 'Identifier',
 }
 
 export const Tokens = {
-  COMMENT,
   WS,
   Number,
   ByteLengthLiteral,
@@ -1468,254 +1462,253 @@ export const Tokens = {
   COMMA,
   COLON,
   DOT,
-  KWVALUES,
-  KWVALUE,
-  KWEXCHANGE,
-  KWINNER,
-  KWROLE,
-  KWUSER,
-  KWPARTIALSCAN,
-  KWNOSCAN,
-  KWTRUNCATE,
-  KWSETS,
-  KWGROUPING,
-  KWMORE,
-  KWLESS,
-  KWCURRENT,
-  KWFOLLOWING,
-  KWPRECEDING,
-  KWUNBOUNDED,
-  KWWINDOW,
-  KWDIRECTORIES,
-  KWCUBE,
-  KWROLLUP,
-  KWSKEWED,
-  KWCASCADE,
-  KWRESTRICT,
-  KWUPDATE,
-  KWSHOW_DATABASE,
-  KWCONCATENATE,
-  KWOPTION,
-  KWUSE,
-  KWSTATISTICS,
-  KWCOMPUTE,
-  KWUNARCHIVE,
-  KWARCHIVE,
-  KWTOUCH,
-  KWLATERAL,
-  KWSEMI,
-  KWRECORDWRITER,
-  KWRECORDREADER,
-  KWTRIGGER,
-  KWCURSOR,
-  KWCONTINUE,
-  KWCROSS,
-  KWBINARY,
-  KWBOTH,
-  KWBETWEEN,
-  KWBEFORE,
-  KWANALYZE,
-  KWRANGE,
-  KWPURGE,
-  KWREADS,
-  KWWHILE,
-  KWUNSIGNED,
-  KWPROCEDURE,
-  KWEXCLUSIVE,
-  KWSHARED,
-  KWUNLOCK,
-  KWLOCKS,
-  KWLOCK,
-  KWUNDO,
-  KWSSL,
-  KWREVOKE,
-  KWGRANT,
-  KWSCHEMAS,
-  KWSCHEMA,
-  KWMATERIALIZED,
-  KWDATABASES,
-  KWDATABASE,
-  KWVIEW,
-  KWINTERSECT,
-  KWFETCH,
+  VALUES,
+  VALUE,
+  EXCHANGE,
+  INNER,
+  ROLE,
+  USER,
+  PARTIALSCAN,
+  NOSCAN,
+  TRUNCATE,
+  SETS,
+  GROUPING,
+  MORE,
+  LESS,
+  CURRENT,
+  FOLLOWING,
+  PRECEDING,
+  UNBOUNDED,
+  WINDOW,
+  DIRECTORIES,
+  CUBE,
+  ROLLUP,
+  SKEWED,
+  CASCADE,
+  RESTRICT,
+  UPDATE,
+  SHOW_DATABASE,
+  CONCATENATE,
+  OPTION,
+  USE,
+  STATISTICS,
+  COMPUTE,
+  UNARCHIVE,
+  ARCHIVE,
+  TOUCH,
+  LATERAL,
+  SEMI,
+  RECORDWRITER,
+  RECORDREADER,
+  TRIGGER,
+  CURSOR,
+  CONTINUE,
+  CROSS,
+  BINARY,
+  BOTH,
+  BETWEEN,
+  BEFORE,
+  ANALYZE,
+  RANGE,
+  PURGE,
+  READS,
+  WHILE,
+  UNSIGNED,
+  PROCEDURE,
+  EXCLUSIVE,
+  SHARED,
+  UNLOCK,
+  LOCKS,
+  LOCK,
+  UNDO,
+  SSL,
+  REVOKE,
+  GRANT,
+  SCHEMAS,
+  SCHEMA,
+  MATERIALIZED,
+  DATABASES,
+  DATABASE,
+  VIEW,
+  INTERSECT,
+  FETCH,
   KWMINUS,
   KWPLUS,
-  KWDELETE,
-  KWLONG,
-  KWUTCTIMESTAMP,
-  KWUTC,
-  KWCLUSTERSTATUS,
-  KWHOLD_DDLTIME,
-  KWSTREAMTABLE,
-  KWMAPJOIN,
-  KWELSE,
-  KWTHEN,
-  KWWHEN,
-  KWCASE,
-  KWELEM_TYPE,
-  KWVALUE_TYPE,
-  KWIDXPROPERTIES,
-  KWTBLPROPERTIES,
-  KWUNSET,
-  KWSET,
-  KWDBPROPERTIES,
-  KWSERDEPROPERTIES,
-  KWDEFERRED,
-  KWWITH,
-  KWSERDE,
-  KWLOGICAL,
-  KWDEPENDENCY,
-  KWPRETTY,
-  KWFORMATTED,
-  KWEXTENDED,
-  KWEND,
-  KWEXPLAIN,
-  KWMACRO,
-  KWTEMPORARY,
-  KWREGEXP,
-  KWRLIKE,
-  KWREPLACE,
-  KWADD,
-  KWCAST,
-  KWPERCENT,
-  KWTABLESAMPLE,
-  KWLOCATION,
-  KWNO_DROP,
+  DELETE,
+  LONG,
+  UTCTIMESTAMP,
+  UTC,
+  CLUSTERSTATUS,
+  HOLD_DDLTIME,
+  STREAMTABLE,
+  MAPJOIN,
+  ELSE,
+  THEN,
+  WHEN,
+  CASE,
+  ELEM_TYPE,
+  VALUE_TYPE,
+  IDXPROPERTIES,
+  TBLPROPERTIES,
+  UNSET,
+  SET,
+  DBPROPERTIES,
+  SERDEPROPERTIES,
+  DEFERRED,
+  WITH,
+  SERDE,
+  LOGICAL,
+  DEPENDENCY,
+  PRETTY,
+  FORMATTED,
+  EXTENDED,
+  END,
+  EXPLAIN,
+  MACRO,
+  TEMPORARY,
+  REGEXP,
+  RLIKE,
+  REPLACE,
+  ADD,
+  CAST,
+  PERCENT,
+  TABLESAMPLE,
+  LOCATION,
+  NO_DROP,
   CharSetName,
-  KWREADONLY,
-  KWREAD,
-  KWDISABLE,
-  KWENABLE,
-  KWOFFLINE,
-  KWOF,
-  KWOUTPUTDRIVER,
-  KWINPUTDRIVER,
-  KWOUTPUTFORMAT,
-  KWINPUTFORMAT,
-  KWORCFILE,
-  KWRCFILE,
-  KWTEXTFILE,
-  KWSEQUENCEFILE,
-  KWFILEFORMAT,
-  KWSTORED,
-  KWLINES,
-  KWKEY_TYPE,
-  KWKEYS,
-  KWITEMS,
-  KWCOLLECTION,
-  KWESCAPED,
-  KWTERMINATED,
-  KWFIELDS,
-  KWDELIMITED,
-  KWLIMIT,
-  KWFORMAT,
-  KWROWS,
-  KWROW,
-  KWBUCKETS,
-  KWBUCKET,
-  KWINTO,
-  KWSORTED,
-  KWCLUSTERED,
-  KWPARTITIONED,
-  KWREDUCE,
-  KWUNIONTYPE,
-  KWMAP,
-  KWSTRUCT,
-  KWARRAY,
-  KWSTRING,
-  KWDECIMAL,
-  KWTIMESTAMP,
-  KWDATETIME,
-  KWDATE,
-  KWDOUBLE,
-  KWFLOAT,
-  KWBIGINT,
-  KWSMALLINT,
-  KWTINYINT,
-  KWINT,
-  KWBOOLEAN,
-  KWCOMMENT,
-  KWPROTECTION,
-  KWIGNORE,
-  KWRENAME,
-  KWDROP,
-  KWDESCRIBE,
-  KWAFTER,
-  KWFIRST,
-  KWCHANGE,
-  KWALTER,
-  KWEXTERNAL,
-  KWCREATE,
-  KWNULL,
-  KWINPATH,
-  KWDATA,
-  KWIMPORT,
-  KWEXPORT,
-  KWLOAD,
-  KWUNION,
-  KWSORT,
-  KWDISTRIBUTE,
-  KWCLUSTER,
-  KWUSING,
-  KWTRANSFORM,
-  KWFOR,
-  KWLOCAL,
-  KWDIRECTORY,
-  KWTO,
-  KWREPAIR,
-  KWMSCK,
-  KWSHOW,
-  KWFUNCTIONS,
-  KWFUNCTION,
-  KWREBUILD,
-  KWINDEXES,
-  KWINDEX,
-  KWCOLUMNS,
-  KWCOLUMN,
-  KWTABLES,
-  KWTABLE,
-  KWPARTITIONS,
-  KWPARTITION,
-  KWON,
-  KWFULL,
-  KWRIGHT,
-  KWLEFT,
-  KWPRESERVE,
-  KWUNIQUEJOIN,
-  KWOUTER,
-  KWOUT,
-  KWOVERWRITE,
-  KWOVER,
-  KWINSERT,
-  KWDISTINCT,
-  KWSELECT,
-  KWFROM,
-  KWWHERE,
-  KWHAVING,
-  KWBY,
-  KWGROUP,
-  KWORDER,
-  KWDESC,
-  KWASC,
-  KWAS,
-  KWEXISTS,
-  KWIS,
-  KWIF,
+  READONLY,
+  READ,
+  DISABLE,
+  ENABLE,
+  OFFLINE,
+  OF,
+  OUTPUTDRIVER,
+  INPUTDRIVER,
+  OUTPUTFORMAT,
+  INPUTFORMAT,
+  ORCFILE,
+  RCFILE,
+  TEXTFILE,
+  SEQUENCEFILE,
+  FILEFORMAT,
+  STORED,
+  LINES,
+  KEY_TYPE,
+  KEYS,
+  ITEMS,
+  COLLECTION,
+  ESCAPED,
+  TERMINATED,
+  FIELDS,
+  DELIMITED,
+  LIMIT,
+  FORMAT,
+  ROWS,
+  ROW,
+  BUCKETS,
+  BUCKET,
+  INTO,
+  SORTED,
+  CLUSTERED,
+  PARTITIONED,
+  REDUCE,
+  UNIONTYPE,
+  MAP,
+  STRUCT,
+  ARRAY,
+  STRING,
+  DECIMAL,
+  TIMESTAMP,
+  DATETIME,
+  DATE,
+  DOUBLE,
+  FLOAT,
+  BIGINT,
+  SMALLINT,
+  TINYINT,
+  INT,
+  BOOLEAN,
+  COMMENT,
+  PROTECTION,
+  IGNORE,
+  RENAME,
+  DROP,
+  DESCRIBE,
+  AFTER,
+  FIRST,
+  CHANGE,
+  ALTER,
+  EXTERNAL,
+  CREATE,
+  NULL,
+  INPATH,
+  DATA,
+  IMPORT,
+  EXPORT,
+  LOAD,
+  UNION,
+  SORT,
+  DISTRIBUTE,
+  CLUSTER,
+  USING,
+  TRANSFORM,
+  FOR,
+  LOCAL,
+  DIRECTORY,
+  TO,
+  REPAIR,
+  MSCK,
+  SHOW,
+  FUNCTIONS,
+  FUNCTION,
+  REBUILD,
+  INDEXES,
+  INDEX,
+  COLUMNS,
+  COLUMN,
+  TABLES,
+  TABLE,
+  PARTITIONS,
+  PARTITION,
+  ON,
+  FULL,
+  RIGHT,
+  LEFT,
+  PRESERVE,
+  UNIQUEJOIN,
+  OUTER,
+  OUT,
+  OVERWRITE,
+  OVER,
+  INSERT,
+  DISTINCT,
+  SELECT,
+  FROM,
+  WHERE,
+  HAVING,
+  BY,
+  GROUP,
+  ORDER,
+  DESC,
+  ASC,
+  AS,
+  EXISTS,
+  IS,
+  IF,
   JOIN,
-  KWIN,
-  KWLIKE,
-  KWNOT,
-  KWOR,
-  KWAND,
-  KWALL,
-  KWFALSE,
-  KWTRUE,
+  IN,
+  LIKE,
+  NOT,
+  OR,
+  AND,
+  ALL,
+  FALSE,
+  TRUE,
   Identifier,
 };
 
 export const tokens = [
   WhiteSpace,
-  COMMENT,
   WS,
   Number,
   ByteLengthLiteral,
@@ -1754,248 +1747,248 @@ export const tokens = [
   COMMA,
   COLON,
   DOT,
-  KWVALUES,
-  KWVALUE,
-  KWEXCHANGE,
-  KWINNER,
-  KWROLE,
-  KWUSER,
-  KWPARTIALSCAN,
-  KWNOSCAN,
-  KWTRUNCATE,
-  KWSETS,
-  KWGROUPING,
-  KWMORE,
-  KWLESS,
-  KWCURRENT,
-  KWFOLLOWING,
-  KWPRECEDING,
-  KWUNBOUNDED,
-  KWWINDOW,
-  KWDIRECTORIES,
-  KWCUBE,
-  KWROLLUP,
-  KWSKEWED,
-  KWCASCADE,
-  KWRESTRICT,
-  KWUPDATE,
-  KWSHOW_DATABASE,
-  KWCONCATENATE,
-  KWOPTION,
-  KWUSE,
-  KWSTATISTICS,
-  KWCOMPUTE,
-  KWUNARCHIVE,
-  KWARCHIVE,
-  KWTOUCH,
-  KWLATERAL,
-  KWSEMI,
-  KWRECORDWRITER,
-  KWRECORDREADER,
-  KWTRIGGER,
-  KWCURSOR,
-  KWCONTINUE,
-  KWCROSS,
-  KWBINARY,
-  KWBOTH,
-  KWBETWEEN,
-  KWBEFORE,
-  KWANALYZE,
-  KWRANGE,
-  KWPURGE,
-  KWREADS,
-  KWWHILE,
-  KWUNSIGNED,
-  KWPROCEDURE,
-  KWEXCLUSIVE,
-  KWSHARED,
-  KWUNLOCK,
-  KWLOCKS,
-  KWLOCK,
-  KWUNDO,
-  KWSSL,
-  KWREVOKE,
-  KWGRANT,
-  KWSCHEMAS,
-  KWSCHEMA,
-  KWMATERIALIZED,
-  KWDATABASES,
-  KWDATABASE,
-  KWVIEW,
-  KWINTERSECT,
-  KWFETCH,
+  VALUES,
+  VALUE,
+  EXCHANGE,
+  INNER,
+  ROLE,
+  USER,
+  PARTIALSCAN,
+  NOSCAN,
+  TRUNCATE,
+  SETS,
+  GROUPING,
+  MORE,
+  LESS,
+  CURRENT,
+  FOLLOWING,
+  PRECEDING,
+  UNBOUNDED,
+  WINDOW,
+  DIRECTORIES,
+  CUBE,
+  ROLLUP,
+  SKEWED,
+  CASCADE,
+  RESTRICT,
+  UPDATE,
+  SHOW_DATABASE,
+  CONCATENATE,
+  OPTION,
+  USE,
+  STATISTICS,
+  COMPUTE,
+  UNARCHIVE,
+  ARCHIVE,
+  TOUCH,
+  LATERAL,
+  SEMI,
+  RECORDWRITER,
+  RECORDREADER,
+  TRIGGER,
+  CURSOR,
+  CONTINUE,
+  CROSS,
+  BINARY,
+  BOTH,
+  BETWEEN,
+  BEFORE,
+  ANALYZE,
+  RANGE,
+  PURGE,
+  READS,
+  WHILE,
+  UNSIGNED,
+  PROCEDURE,
+  EXCLUSIVE,
+  SHARED,
+  UNLOCK,
+  LOCKS,
+  LOCK,
+  UNDO,
+  SSL,
+  REVOKE,
+  GRANT,
+  SCHEMAS,
+  SCHEMA,
+  MATERIALIZED,
+  DATABASES,
+  DATABASE,
+  VIEW,
+  INTERSECT,
+  FETCH,
   KWMINUS,
   KWPLUS,
-  KWDELETE,
-  KWLONG,
-  KWUTCTIMESTAMP,
-  KWUTC,
-  KWCLUSTERSTATUS,
-  KWHOLD_DDLTIME,
-  KWSTREAMTABLE,
-  KWMAPJOIN,
-  KWELSE,
-  KWTHEN,
-  KWWHEN,
-  KWCASE,
-  KWELEM_TYPE,
-  KWVALUE_TYPE,
-  KWIDXPROPERTIES,
-  KWTBLPROPERTIES,
-  KWUNSET,
-  KWSET,
-  KWDBPROPERTIES,
-  KWSERDEPROPERTIES,
-  KWDEFERRED,
-  KWWITH,
-  KWSERDE,
-  KWLOGICAL,
-  KWDEPENDENCY,
-  KWPRETTY,
-  KWFORMATTED,
-  KWEXTENDED,
-  KWEND,
-  KWEXPLAIN,
-  KWMACRO,
-  KWTEMPORARY,
-  KWREGEXP,
-  KWRLIKE,
-  KWREPLACE,
-  KWADD,
-  KWCAST,
-  KWPERCENT,
-  KWTABLESAMPLE,
-  KWLOCATION,
-  KWNO_DROP,
+  DELETE,
+  LONG,
+  UTCTIMESTAMP,
+  UTC,
+  CLUSTERSTATUS,
+  HOLD_DDLTIME,
+  STREAMTABLE,
+  MAPJOIN,
+  ELSE,
+  THEN,
+  WHEN,
+  CASE,
+  ELEM_TYPE,
+  VALUE_TYPE,
+  IDXPROPERTIES,
+  TBLPROPERTIES,
+  UNSET,
+  SET,
+  DBPROPERTIES,
+  SERDEPROPERTIES,
+  DEFERRED,
+  WITH,
+  SERDE,
+  LOGICAL,
+  DEPENDENCY,
+  PRETTY,
+  FORMATTED,
+  EXTENDED,
+  END,
+  EXPLAIN,
+  MACRO,
+  TEMPORARY,
+  REGEXP,
+  RLIKE,
+  REPLACE,
+  ADD,
+  CAST,
+  PERCENT,
+  TABLESAMPLE,
+  LOCATION,
+  NO_DROP,
   CharSetName,
-  KWREADONLY,
-  KWREAD,
-  KWDISABLE,
-  KWENABLE,
-  KWOFFLINE,
-  KWOF,
-  KWOUTPUTDRIVER,
-  KWINPUTDRIVER,
-  KWOUTPUTFORMAT,
-  KWINPUTFORMAT,
-  KWORCFILE,
-  KWRCFILE,
-  KWTEXTFILE,
-  KWSEQUENCEFILE,
-  KWFILEFORMAT,
-  KWSTORED,
-  KWLINES,
-  KWKEY_TYPE,
-  KWKEYS,
-  KWITEMS,
-  KWCOLLECTION,
-  KWESCAPED,
-  KWTERMINATED,
-  KWFIELDS,
-  KWDELIMITED,
-  KWLIMIT,
-  KWFORMAT,
-  KWROWS,
-  KWROW,
-  KWBUCKETS,
-  KWBUCKET,
-  KWINTO,
-  KWSORTED,
-  KWCLUSTERED,
-  KWPARTITIONED,
-  KWREDUCE,
-  KWUNIONTYPE,
-  KWMAP,
-  KWSTRUCT,
-  KWARRAY,
-  KWSTRING,
-  KWDECIMAL,
-  KWTIMESTAMP,
-  KWDATETIME,
-  KWDATE,
-  KWDOUBLE,
-  KWFLOAT,
-  KWBIGINT,
-  KWSMALLINT,
-  KWTINYINT,
-  KWINT,
-  KWBOOLEAN,
-  KWCOMMENT,
-  KWPROTECTION,
-  KWIGNORE,
-  KWRENAME,
-  KWDROP,
-  KWDESCRIBE,
-  KWAFTER,
-  KWFIRST,
-  KWCHANGE,
-  KWALTER,
-  KWEXTERNAL,
-  KWCREATE,
-  KWNULL,
-  KWINPATH,
-  KWDATA,
-  KWIMPORT,
-  KWEXPORT,
-  KWLOAD,
-  KWUNION,
-  KWSORT,
-  KWDISTRIBUTE,
-  KWCLUSTER,
-  KWUSING,
-  KWTRANSFORM,
-  KWFOR,
-  KWLOCAL,
-  KWDIRECTORY,
-  KWTO,
-  KWREPAIR,
-  KWMSCK,
-  KWSHOW,
-  KWFUNCTIONS,
-  KWFUNCTION,
-  KWREBUILD,
-  KWINDEXES,
-  KWINDEX,
-  KWCOLUMNS,
-  KWCOLUMN,
-  KWTABLES,
-  KWTABLE,
-  KWPARTITIONS,
-  KWPARTITION,
-  KWON,
-  KWFULL,
-  KWRIGHT,
-  KWLEFT,
-  KWPRESERVE,
-  KWUNIQUEJOIN,
-  KWOUTER,
-  KWOUT,
-  KWOVERWRITE,
-  KWOVER,
-  KWINSERT,
-  KWDISTINCT,
-  KWSELECT,
-  KWFROM,
-  KWWHERE,
-  KWHAVING,
-  KWBY,
-  KWGROUP,
-  KWORDER,
-  KWDESC,
-  KWASC,
-  KWAS,
-  KWEXISTS,
-  KWIS,
-  KWIF,
+  READONLY,
+  READ,
+  DISABLE,
+  ENABLE,
+  OFFLINE,
+  OF,
+  OUTPUTDRIVER,
+  INPUTDRIVER,
+  OUTPUTFORMAT,
+  INPUTFORMAT,
+  ORCFILE,
+  RCFILE,
+  TEXTFILE,
+  SEQUENCEFILE,
+  FILEFORMAT,
+  STORED,
+  LINES,
+  KEY_TYPE,
+  KEYS,
+  ITEMS,
+  COLLECTION,
+  ESCAPED,
+  TERMINATED,
+  FIELDS,
+  DELIMITED,
+  LIMIT,
+  FORMAT,
+  ROWS,
+  ROW,
+  BUCKETS,
+  BUCKET,
+  INTO,
+  SORTED,
+  CLUSTERED,
+  PARTITIONED,
+  REDUCE,
+  UNIONTYPE,
+  MAP,
+  STRUCT,
+  ARRAY,
+  STRING,
+  DECIMAL,
+  TIMESTAMP,
+  DATETIME,
+  DATE,
+  DOUBLE,
+  FLOAT,
+  BIGINT,
+  SMALLINT,
+  TINYINT,
+  INT,
+  BOOLEAN,
+  COMMENT,
+  PROTECTION,
+  IGNORE,
+  RENAME,
+  DROP,
+  DESCRIBE,
+  AFTER,
+  FIRST,
+  CHANGE,
+  ALTER,
+  EXTERNAL,
+  CREATE,
+  NULL,
+  INPATH,
+  DATA,
+  IMPORT,
+  EXPORT,
+  LOAD,
+  UNION,
+  SORT,
+  DISTRIBUTE,
+  CLUSTER,
+  USING,
+  TRANSFORM,
+  FOR,
+  LOCAL,
+  DIRECTORY,
+  TO,
+  REPAIR,
+  MSCK,
+  SHOW,
+  FUNCTIONS,
+  FUNCTION,
+  REBUILD,
+  INDEXES,
+  INDEX,
+  COLUMNS,
+  COLUMN,
+  TABLES,
+  TABLE,
+  PARTITIONS,
+  PARTITION,
+  ON,
+  FULL,
+  RIGHT,
+  LEFT,
+  PRESERVE,
+  UNIQUEJOIN,
+  OUTER,
+  OUT,
+  OVERWRITE,
+  OVER,
+  INSERT,
+  DISTINCT,
+  SELECT,
+  FROM,
+  WHERE,
+  HAVING,
+  BY,
+  GROUP,
+  ORDER,
+  DESC,
+  ASC,
+  AS,
+  EXISTS,
+  IS,
+  IF,
   JOIN,
-  KWIN,
-  KWLIKE,
-  KWNOT,
-  KWOR,
-  KWAND,
-  KWALL,
-  KWFALSE,
-  KWTRUE,
+  IN,
+  LIKE,
+  NOT,
+  OR,
+  AND,
+  ALL,
+  FALSE,
+  TRUE,
   Identifier,
 ];
 
