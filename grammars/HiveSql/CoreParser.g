@@ -22,11 +22,173 @@ dmlStatement:
 showTable: SHOW tableName;
 
 selectStatement:
-	selectClause fromClause whereClause? groupByClause? havingClause? orderByClause?
-		distributeByClause? sortByClause? limitClause?;
+	queryExpression
+	| querySpecification ( unionStatement*)?;
 
-selectClause:
-	SELECT (ALL | DISTINCT)? selectList;
+unionStatement:
+	UNION unionType = (ALL | DISTINCT)? (
+		querySpecification
+		| queryExpression
+	);
+
+queryExpression:
+	'(' querySpecification ')'
+	| '(' queryExpression ')';
+
+querySpecification:
+	SELECT (ALL | DISTINCT)? selectElements selectIntoExpression? fromClause whereClause?
+		groupByClause? havingClause? orderByClause? distributeByClause? sortByClause? limitClause?;
+
+selectElements: ('*' | selectElement) (',' selectElement)*;
+
+selectIntoExpression:
+	INTO uid (',' uid)*
+	| INTO DUMPFILE STRING_LITERAL
+	| (
+		INTO OUTFILE filename = STRING_LITERAL (
+			CHARACTER SET charset = CharSetName
+		)? (fieldsFormat = (FIELDS | COLUMNS) selectFieldsInto+)? (
+			LINES selectLinesInto+
+		)?
+	);
+
+selectFieldsInto:
+	TERMINATED BY terminationField = STRING_LITERAL
+	| OPTIONALLY? ENCLOSED BY enclosion = STRING_LITERAL
+	| ESCAPED BY escaping = STRING_LITERAL;
+
+selectLinesInto:
+	STARTING BY starting = STRING_LITERAL
+	| TERMINATED BY terminationLine = STRING_LITERAL;
+
+selectElement:
+	fullId '*'
+	| functionCall (AS? uid)?
+	| fullColumnName (AS? uid)?;
+
+fullColumnName: constant | uid (dottedId dottedId?)?;
+
+dottedId: '.' uid;
+
+functionCall:
+	specificFunction
+	| (scalarFunctionName | fullId) '(' functionArgs? ')';
+
+functionArgs: functionArg (',' functionArg)*;
+
+functionArg: functionCall | expression;
+
+scalarFunctionName: COUNT | SUBSTR;
+
+specificFunction: (
+		CURRENT_DATE
+		| CURRENT_TIME
+		| CURRENT_TIMESTAMP
+		| CURRENT_USER
+		| LOCALTIME
+	)
+	| (
+		CONVERT '(' expression (
+			',' convertedDataType
+			| USING CharSetLiteral
+		) ')'
+	)
+	| CAST '(' expression AS convertedDataType ')'
+	| VALUES '(' fullColumnName ')'
+	| CASE expression caseFuncAlternative+ (
+		ELSE elseArg = functionArg
+	)? END
+	| CASE caseFuncAlternative+ (ELSE elseArg = functionArg)? END (
+		AS expressionAtom
+	)?
+	| CHAR '(' functionArgs (USING CharSetLiteral)? ')'
+	| POSITION '(' expression IN expression ')'
+	| TRIM '(' positioinForm = (BOTH | LEADING | TRAILING) expression? FROM expression ')'
+	| TRIM '(' expression FROM expression ')'
+	| WEIGHT_STRING '(' expression (
+		AS stringFormat = (CHAR | BINARY) '(' DecimalLiteral ')'
+	)? levelsInWeightString? ')'
+	| EXTRACT '(' intervalType FROM expression ')'
+	| GET_FORMAT '(' datetimeFormat = (DATE | TIME | DATETIME) ',' STRING_LITERAL ')';
+
+expressionAtom: fullColumnName;
+
+intervalTypeBase:
+	QUARTER
+	| MONTH
+	| DAY
+	| HOUR
+	| MINUTE
+	| WEEK
+	| SECOND
+	| MICROSECOND;
+
+intervalType:
+	intervalTypeBase
+	| YEAR
+	| YEAR_MONTH
+	| DAY_HOUR
+	| DAY_MINUTE
+	| DAY_SECOND
+	| HOUR_MINUTE
+	| HOUR_SECOND
+	| MINUTE_SECOND
+	| SECOND_MICROSECOND
+	| MINUTE_MICROSECOND
+	| HOUR_MICROSECOND
+	| DAY_MICROSECOND;
+
+levelsInWeightString:
+	LEVEL DecimalLiteral (
+		orderType = (ASC | DESC | REVERSE)? (
+			',' levelInWeightListElement
+		)*
+	)
+	| '-' DecimalLiteral;
+
+levelInWeightListElement:
+	DecimalLiteral orderType = (ASC | DESC | REVERSE)?;
+
+convertedDataType:
+	typeName = (BINARY | NCHAR) lengthOneDimension?
+	| typeName = CHAR lengthOneDimension? (
+		CHARACTER SET CharSetLiteral
+	)?
+	| typeName = (DATE | DATETIME | TIME)
+	| typeName = DECIMAL lengthTwoDimension?
+	| (SIGNED | UNSIGNED) INTEGER?;
+
+caseFuncAlternative:
+	WHEN condition = functionArg THEN consequent = functionArg;
+
+lengthOneDimension: '(' DecimalLiteral+ ')';
+
+lengthTwoDimension: '(' DecimalLiteral ',' DecimalLiteral ')';
+
+fromClause: FROM tableSources;
+
+tableSources: tableSource (',' tableSource)*;
+
+tableSource: tableSourceItem joinPart*;
+
+joinPart: (INNER | CROSS)? JOIN tableSourceItem (
+		ON expression
+		| USING '(' uidList ')'
+	)?
+	| (LEFT | RIGHT | FULL) OUTER? JOIN tableSourceItem (
+		ON expression
+		| USING '(' uidList ')'
+	);
+
+tableSourceItem:
+	tableName (AS? alias = uid)?
+	| '('? selectStatement ')'? AS? alias = uid?;
+
+uid: ID;
+
+fullId: uid (DOT uid)*;
+
+tableName: fullId;
 
 insertStatement:
 	INSERT INTO? OVERWRITE? TABLE? tableName partitionInsertDefinitions? (
@@ -46,16 +208,13 @@ insertStatementValue:
 	| selectStatement;
 
 updateStatement:
-	UPDATE tableName (AS? Identifier)? SET updatedElement (
+	UPDATE tableName (AS? uid)? SET updatedElement (
 		',' updatedElement
 	)* (WHERE expression)?;
 
 updatedElement: fullColumnName '=' expression;
 
-fullColumnName: constant | Identifier;
-
-deleteStatement:
-	DELETE FROM tableName (WHERE expression)?;
+deleteStatement: DELETE FROM tableName (WHERE expression)?;
 
 createDatabaseStatement:
 	CREATE (DATABASE | SCHEMA) ifNotExists? name = identifier;
@@ -87,7 +246,7 @@ alterStatementSuffixRename:
 
 alterStatementSuffixRenameCol:
 	identifier CHANGE COLUMN? oldName = identifier newName = identifier colType (
-		COMMENT comment = StringLiteral
+		COMMENT comment = STRING_LITERAL
 	)? alterStatementChangeColPosition?;
 
 alterStatementChangeColPosition:
@@ -101,7 +260,7 @@ columnNameTypeList: columnNameType (COMMA columnNameType)*;
 
 columnNameType:
 	colName = identifier colType (
-		COMMENT comment = StringLiteral
+		COMMENT comment = STRING_LITERAL
 	)?;
 
 colType: type;
@@ -177,7 +336,7 @@ atomExpression: constant | tableOrColumn;
 
 tableOrColumn: identifier;
 
-dateLiteral: DATE? StringLiteral+;
+dateLiteral: DATE? STRING_LITERAL+;
 
 constant:
 	Number
@@ -204,7 +363,7 @@ precedenceUnaryOperator: PLUS | MINUS | TILDE;
 nullCondition: NULL | NOT NULL;
 
 precedenceUnaryPrefixExpression:
-	(precedenceUnaryOperator)* precedenceFieldExpression;
+	(precedenceUnaryOperator)? precedenceFieldExpression;
 
 precedenceUnarySuffixExpression:
 	precedenceUnaryPrefixExpression (a = IS nullCondition)?;
@@ -263,9 +422,9 @@ precedenceEqualExpression:
 		)
 		| (NOT? IN expressions)
 		| (
-			NOT? BETWEEN (
-				min = precedenceBitwiseOrExpression
-			) AND (max = precedenceBitwiseOrExpression)
+			NOT? BETWEEN (min = precedenceBitwiseOrExpression) AND (
+				max = precedenceBitwiseOrExpression
+			)
 		)
 	)*;
 
@@ -274,7 +433,7 @@ expressions: LPAREN expression (COMMA expression)* RPAREN;
 precedenceNotOperator: NOT;
 
 precedenceNotExpression:
-	(precedenceNotOperator)* precedenceEqualExpression;
+	(precedenceNotOperator)? precedenceEqualExpression;
 
 precedenceAndOperator: AND;
 
@@ -292,37 +451,6 @@ precedenceOrExpression:
 
 limitClause: LIMIT num = Number;
 
-selectList: selectItem ( COMMA selectItem)*;
-
-selectItem: selectExpression ( AS? identifier)?;
-
-selectExpression: tableAllColumns;
-
-tableAllColumns: STAR | tableName DOT STAR;
-
-fromClause: FROM joinSource;
-
-joinSource: fromSource joinPart;
-
-joinPart: (joinToken fromSource)*;
-
-joinToken:
-	JOIN
-	| INNER JOIN
-	| CROSS JOIN
-	| LEFT (OUTER)? JOIN
-	| RIGHT (OUTER)? JOIN
-	| FULL (OUTER)? JOIN
-	| LEFT SEMI JOIN;
-
-fromSource: (tableSource);
-
-tableSource: tabname = tableName (AS? alias = Identifier)?;
-
-tableName:
-	db = identifier DOT tab = identifier
-	| tab = identifier;
-
 orderByClause:
 	ORDER BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
 	| ORDER BY columnRefOrder (COMMA columnRefOrder)*;
@@ -331,208 +459,6 @@ sortByClause:
 	SORT BY LPAREN columnRefOrder (COMMA columnRefOrder)* RPAREN
 	| SORT BY columnRefOrder;
 
-identifier: Identifier | nonReserved;
+identifier: uid;
 
-uidList: Identifier (',' Identifier)*;
-
-nonReserved:
-	TRUE
-	| FALSE
-	| LIKE
-	| EXISTS
-	| ASC
-	| DESC
-	| ORDER
-	| GROUP
-	| BY
-	| AS
-	| INSERT
-	| OVERWRITE
-	| OUTER
-	| LEFT
-	| RIGHT
-	| FULL
-	| PARTITION
-	| PARTITIONS
-	| TABLE
-	| TABLES
-	| COLUMNS
-	| INDEX
-	| INDEXES
-	| REBUILD
-	| SHOW
-	| MSCK
-	| REPAIR
-	| DIRECTORY
-	| LOCAL
-	| USING
-	| CLUSTER
-	| DISTRIBUTE
-	| SORT
-	| UNION
-	| LOAD
-	| EXPORT
-	| IMPORT
-	| DATA
-	| INPATH
-	| IS
-	| NULL
-	| CREATE
-	| EXTERNAL
-	| ALTER
-	| CHANGE
-	| FIRST
-	| AFTER
-	| DESCRIBE
-	| DROP
-	| RENAME
-	| IGNORE
-	| PROTECTION
-	| TO
-	| COMMENT
-	| BOOLEAN
-	| TINYINT
-	| SMALLINT
-	| INT
-	| BIGINT
-	| FLOAT
-	| DOUBLE
-	| DATE
-	| DATETIME
-	| TIMESTAMP
-	| DECIMAL
-	| STRING
-	| ARRAY
-	| STRUCT
-	| UNIONTYPE
-	| PARTITIONED
-	| CLUSTERED
-	| SORTED
-	| INTO
-	| BUCKETS
-	| ROW
-	| ROWS
-	| FORMAT
-	| DELIMITED
-	| FIELDS
-	| TERMINATED
-	| ESCAPED
-	| COLLECTION
-	| ITEMS
-	| KEYS
-	| KEY_TYPE
-	| LINES
-	| STORED
-	| FILEFORMAT
-	| SEQUENCEFILE
-	| TEXTFILE
-	| RCFILE
-	| ORCFILE
-	| INPUTFORMAT
-	| OUTPUTFORMAT
-	| INPUTDRIVER
-	| OUTPUTDRIVER
-	| OFFLINE
-	| ENABLE
-	| DISABLE
-	| READONLY
-	| NO_DROP
-	| LOCATION
-	| BUCKET
-	| OUT
-	| OF
-	| PERCENT
-	| ADD
-	| REPLACE
-	| RLIKE
-	| REGEXP
-	| TEMPORARY
-	| EXPLAIN
-	| FORMATTED
-	| PRETTY
-	| DEPENDENCY
-	| LOGICAL
-	| SERDE
-	| WITH
-	| DEFERRED
-	| SERDEPROPERTIES
-	| DBPROPERTIES
-	| LIMIT
-	| SET
-	| UNSET
-	| TBLPROPERTIES
-	| IDXPROPERTIES
-	| VALUE_TYPE
-	| ELEM_TYPE
-	| MAPJOIN
-	| STREAMTABLE
-	| HOLD_DDLTIME
-	| CLUSTERSTATUS
-	| UTC
-	| UTCTIMESTAMP
-	| LONG
-	| DELETE
-	| PLUS
-	| KWPLUS
-	| MINUS
-	| KWMINUS
-	| FETCH
-	| INTERSECT
-	| VIEW
-	| IN
-	| DATABASES
-	| MATERIALIZED
-	| SCHEMA
-	| SCHEMAS
-	| GRANT
-	| REVOKE
-	| SSL
-	| UNDO
-	| LOCK
-	| LOCKS
-	| UNLOCK
-	| SHARED
-	| EXCLUSIVE
-	| PROCEDURE
-	| UNSIGNED
-	| WHILE
-	| READ
-	| READS
-	| PURGE
-	| RANGE
-	| ANALYZE
-	| BEFORE
-	| BETWEEN
-	| BOTH
-	| BINARY
-	| CONTINUE
-	| CURSOR
-	| TRIGGER
-	| RECORDREADER
-	| RECORDWRITER
-	| SEMI
-	| LATERAL
-	| TOUCH
-	| ARCHIVE
-	| UNARCHIVE
-	| COMPUTE
-	| STATISTICS
-	| USE
-	| OPTION
-	| CONCATENATE
-	| SHOW_DATABASE
-	| UPDATE
-	| RESTRICT
-	| CASCADE
-	| SKEWED
-	| ROLLUP
-	| CUBE
-	| DIRECTORIES
-	| FOR
-	| GROUPING
-	| SETS
-	| TRUNCATE
-	| NOSCAN
-	| USER
-	| ROLE
-	| INNER;
+uidList: uid (',' uid)*;

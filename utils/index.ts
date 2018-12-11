@@ -318,7 +318,7 @@ const getNextTableSource = (ast, token, more) => {
 const getTotalPath = (cst, token) => {
   const columnRoot = getFilteredNode(cst, target => target.name === SyntaxKind.fullColumnName || target.name === SyntaxKind.tableName, true);
   const targetColumn = _.find(columnRoot, o => getFilteredNode(o, target => target.image && target.image.indexOf(token.image) === 0 && target.startColumn === token.startColumn && target.startLine === token.startLine)[0]);
-  const leafNodes = _.flatten(_.flatten(Object.values(targetColumn.children)).map(node => getLeafNode(node, true)));
+  const leafNodes = targetColumn ? _.flatten(_.flatten(Object.values(targetColumn.children)).map(node => getLeafNode(node, true))) : [];
   return _.orderBy(leafNodes, ['startOffset'], ['asc']).map(item => item.image).join('');
 }
 

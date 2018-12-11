@@ -10,13 +10,43 @@ export enum SyntaxKind {
   dmlStatement = 'dmlStatement',
   showTable = 'showTable',
   selectStatement = 'selectStatement',
-  selectClause = 'selectClause',
+  unionStatement = 'unionStatement',
+  queryExpression = 'queryExpression',
+  querySpecification = 'querySpecification',
+  selectElements = 'selectElements',
+  selectIntoExpression = 'selectIntoExpression',
+  selectFieldsInto = 'selectFieldsInto',
+  selectLinesInto = 'selectLinesInto',
+  selectElement = 'selectElement',
+  fullColumnName = 'fullColumnName',
+  dottedId = 'dottedId',
+  functionCall = 'functionCall',
+  functionArgs = 'functionArgs',
+  functionArg = 'functionArg',
+  scalarFunctionName = 'scalarFunctionName',
+  specificFunction = 'specificFunction',
+  expressionAtom = 'expressionAtom',
+  intervalTypeBase = 'intervalTypeBase',
+  intervalType = 'intervalType',
+  levelsInWeightString = 'levelsInWeightString',
+  levelInWeightListElement = 'levelInWeightListElement',
+  convertedDataType = 'convertedDataType',
+  caseFuncAlternative = 'caseFuncAlternative',
+  lengthOneDimension = 'lengthOneDimension',
+  lengthTwoDimension = 'lengthTwoDimension',
+  fromClause = 'fromClause',
+  tableSources = 'tableSources',
+  tableSource = 'tableSource',
+  joinPart = 'joinPart',
+  tableSourceItem = 'tableSourceItem',
+  uid = 'uid',
+  fullId = 'fullId',
+  tableName = 'tableName',
   insertStatement = 'insertStatement',
   partitionInsertDefinitions = 'partitionInsertDefinitions',
   insertStatementValue = 'insertStatementValue',
   updateStatement = 'updateStatement',
   updatedElement = 'updatedElement',
-  fullColumnName = 'fullColumnName',
   deleteStatement = 'deleteStatement',
   createDatabaseStatement = 'createDatabaseStatement',
   ifExists = 'ifExists',
@@ -85,22 +115,10 @@ export enum SyntaxKind {
   precedenceOrOperator = 'precedenceOrOperator',
   precedenceOrExpression = 'precedenceOrExpression',
   limitClause = 'limitClause',
-  selectList = 'selectList',
-  selectItem = 'selectItem',
-  selectExpression = 'selectExpression',
-  tableAllColumns = 'tableAllColumns',
-  fromClause = 'fromClause',
-  joinSource = 'joinSource',
-  joinPart = 'joinPart',
-  joinToken = 'joinToken',
-  fromSource = 'fromSource',
-  tableSource = 'tableSource',
-  tableName = 'tableName',
   orderByClause = 'orderByClause',
   sortByClause = 'sortByClause',
   identifier = 'identifier',
   uidList = 'uidList',
-  nonReserved = 'nonReserved',
 }
 
 export { tokens, Lexer, Tokens, TokenEnum };
@@ -251,39 +269,78 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('selectStatement', () => {
-      this.SUBRULE(this.selectClause);
-      this.SUBRULE(this.fromClause);
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.queryExpression);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.querySpecification);
 
-      this.OPTION(() => {
-        this.SUBRULE(this.whereClause);
-      });
-
-      this.OPTION2(() => {
-        this.SUBRULE(this.groupByClause);
-      });
-
-      this.OPTION3(() => {
-        this.SUBRULE(this.havingClause);
-      });
-
-      this.OPTION4(() => {
-        this.SUBRULE(this.orderByClause);
-      });
-
-      this.OPTION5(() => {
-        this.SUBRULE(this.distributeByClause);
-      });
-
-      this.OPTION6(() => {
-        this.SUBRULE(this.sortByClause);
-      });
-
-      this.OPTION7(() => {
-        this.SUBRULE(this.limitClause);
-      });
+            this.OPTION(() => {
+              this.MANY(() => {
+                this.SUBRULE(this.unionStatement);
+              });
+            });
+          },
+        },
+      ]);
     });
 
-    this.RULE('selectClause', () => {
+    this.RULE('unionStatement', () => {
+      this.CONSUME(Tokens.UNION);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ALL);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DISTINCT);
+            },
+          },
+        ]);
+      });
+
+      this.OR3([
+        {
+          ALT: () => {
+            this.SUBRULE(this.querySpecification);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.queryExpression);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('queryExpression', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LPAREN);
+            this.SUBRULE(this.querySpecification);
+            this.CONSUME(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.LPAREN);
+            this.SUBRULE(this.queryExpression);
+            this.CONSUME2(Tokens.RPAREN);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('querySpecification', () => {
       this.CONSUME(Tokens.SELECT);
 
       this.OPTION(() => {
@@ -301,7 +358,1024 @@ export class Parser extends chevrotain.Parser {
         ]);
       });
 
-      this.SUBRULE(this.selectList);
+      this.SUBRULE(this.selectElements);
+
+      this.OPTION2(() => {
+        this.SUBRULE(this.selectIntoExpression);
+      });
+
+      this.SUBRULE(this.fromClause);
+
+      this.OPTION3(() => {
+        this.SUBRULE(this.whereClause);
+      });
+
+      this.OPTION4(() => {
+        this.SUBRULE(this.groupByClause);
+      });
+
+      this.OPTION5(() => {
+        this.SUBRULE(this.havingClause);
+      });
+
+      this.OPTION6(() => {
+        this.SUBRULE(this.orderByClause);
+      });
+
+      this.OPTION7(() => {
+        this.SUBRULE(this.distributeByClause);
+      });
+
+      this.OPTION8(() => {
+        this.SUBRULE(this.sortByClause);
+      });
+
+      this.OPTION9(() => {
+        this.SUBRULE(this.limitClause);
+      });
+    });
+
+    this.RULE('selectElements', () => {
+      this.OR2([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STAR);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.selectElement);
+          },
+        },
+      ]);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.selectElement);
+      });
+    });
+
+    this.RULE('selectIntoExpression', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INTO);
+            this.SUBRULE(this.uid);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.SUBRULE2(this.uid);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.INTO);
+            this.CONSUME(Tokens.DUMPFILE);
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME3(Tokens.INTO);
+            this.CONSUME(Tokens.OUTFILE);
+            this.CONSUME2(Tokens.STRING_LITERAL);
+
+            this.OPTION(() => {
+              this.CONSUME(Tokens.CHARACTER);
+              this.CONSUME(Tokens.SET);
+              this.CONSUME(Tokens.CharSetName);
+            });
+
+            this.OPTION2(() => {
+              this.OR2([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.FIELDS);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.COLUMNS);
+                  },
+                },
+              ]);
+
+              this.AT_LEAST_ONE(() => {
+                this.SUBRULE(this.selectFieldsInto);
+              });
+            });
+
+            this.OPTION3(() => {
+              this.CONSUME(Tokens.LINES);
+
+              this.AT_LEAST_ONE2(() => {
+                this.SUBRULE(this.selectLinesInto);
+              });
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('selectFieldsInto', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TERMINATED);
+            this.CONSUME(Tokens.BY);
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.CONSUME(Tokens.OPTIONALLY);
+            });
+
+            this.CONSUME(Tokens.ENCLOSED);
+            this.CONSUME2(Tokens.BY);
+            this.CONSUME2(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ESCAPED);
+            this.CONSUME3(Tokens.BY);
+            this.CONSUME3(Tokens.STRING_LITERAL);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('selectLinesInto', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STARTING);
+            this.CONSUME(Tokens.BY);
+            this.CONSUME(Tokens.STRING_LITERAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TERMINATED);
+            this.CONSUME2(Tokens.BY);
+            this.CONSUME2(Tokens.STRING_LITERAL);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('selectElement', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullId);
+            this.CONSUME(Tokens.STAR);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.functionCall);
+
+            this.OPTION(() => {
+              this.OPTION2(() => {
+                this.CONSUME(Tokens.AS);
+              });
+
+              this.SUBRULE(this.uid);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.fullColumnName);
+
+            this.OPTION3(() => {
+              this.OPTION4(() => {
+                this.CONSUME2(Tokens.AS);
+              });
+
+              this.SUBRULE2(this.uid);
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('fullColumnName', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.constant);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.uid);
+
+            this.OPTION(() => {
+              this.SUBRULE(this.dottedId);
+
+              this.OPTION2(() => {
+                this.SUBRULE2(this.dottedId);
+              });
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('dottedId', () => {
+      this.CONSUME(Tokens.DOT);
+      this.SUBRULE(this.uid);
+    });
+
+    this.RULE('functionCall', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.specificFunction);
+          },
+        },
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.SUBRULE(this.scalarFunctionName);
+                },
+              },
+              {
+                ALT: () => {
+                  this.SUBRULE(this.fullId);
+                },
+              },
+            ]);
+            this.CONSUME(Tokens.LPAREN);
+
+            this.OPTION(() => {
+              this.SUBRULE(this.functionArgs);
+            });
+
+            this.CONSUME(Tokens.RPAREN);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('functionArgs', () => {
+      this.SUBRULE(this.functionArg);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.functionArg);
+      });
+    });
+
+    this.RULE('functionArg', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.functionCall);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.expression);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('scalarFunctionName', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COUNT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SUBSTR);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('specificFunction', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.CURRENT_DATE);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.CURRENT_TIME);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.CURRENT_TIMESTAMP);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.CURRENT_USER);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.LOCALTIME);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CONVERT);
+            this.CONSUME(Tokens.LPAREN);
+            this.SUBRULE(this.expression);
+            this.OR3([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.COMMA);
+                  this.SUBRULE(this.convertedDataType);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.USING);
+                  this.CONSUME(Tokens.CharSetLiteral);
+                },
+              },
+            ]);
+            this.CONSUME(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CAST);
+            this.CONSUME2(Tokens.LPAREN);
+            this.SUBRULE2(this.expression);
+            this.CONSUME(Tokens.AS);
+            this.SUBRULE2(this.convertedDataType);
+            this.CONSUME2(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.VALUES);
+            this.CONSUME3(Tokens.LPAREN);
+            this.SUBRULE(this.fullColumnName);
+            this.CONSUME3(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CASE);
+            this.SUBRULE3(this.expression);
+
+            this.AT_LEAST_ONE(() => {
+              this.SUBRULE(this.caseFuncAlternative);
+            });
+
+            this.OPTION(() => {
+              this.CONSUME(Tokens.ELSE);
+              this.SUBRULE(this.functionArg);
+            });
+
+            this.CONSUME(Tokens.END);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.CASE);
+
+            this.AT_LEAST_ONE2(() => {
+              this.SUBRULE2(this.caseFuncAlternative);
+            });
+
+            this.OPTION2(() => {
+              this.CONSUME2(Tokens.ELSE);
+              this.SUBRULE2(this.functionArg);
+            });
+
+            this.CONSUME2(Tokens.END);
+
+            this.OPTION3(() => {
+              this.CONSUME2(Tokens.AS);
+              this.SUBRULE(this.expressionAtom);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHAR);
+            this.CONSUME4(Tokens.LPAREN);
+            this.SUBRULE(this.functionArgs);
+
+            this.OPTION4(() => {
+              this.CONSUME2(Tokens.USING);
+              this.CONSUME2(Tokens.CharSetLiteral);
+            });
+
+            this.CONSUME4(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POSITION);
+            this.CONSUME5(Tokens.LPAREN);
+            this.SUBRULE4(this.expression);
+            this.CONSUME(Tokens.IN);
+            this.SUBRULE5(this.expression);
+            this.CONSUME5(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TRIM);
+            this.CONSUME6(Tokens.LPAREN);
+            this.OR4([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.BOTH);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.LEADING);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.TRAILING);
+                },
+              },
+            ]);
+
+            this.OPTION5(() => {
+              this.SUBRULE6(this.expression);
+            });
+
+            this.CONSUME(Tokens.FROM);
+            this.SUBRULE7(this.expression);
+            this.CONSUME6(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME2(Tokens.TRIM);
+            this.CONSUME7(Tokens.LPAREN);
+            this.SUBRULE8(this.expression);
+            this.CONSUME2(Tokens.FROM);
+            this.SUBRULE9(this.expression);
+            this.CONSUME7(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.WEIGHT_STRING);
+            this.CONSUME8(Tokens.LPAREN);
+            this.SUBRULE10(this.expression);
+
+            this.OPTION6(() => {
+              this.CONSUME3(Tokens.AS);
+              this.OR5([
+                {
+                  ALT: () => {
+                    this.CONSUME2(Tokens.CHAR);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.BINARY);
+                  },
+                },
+              ]);
+              this.CONSUME9(Tokens.LPAREN);
+              this.CONSUME(Tokens.DecimalLiteral);
+              this.CONSUME8(Tokens.RPAREN);
+            });
+
+            this.OPTION7(() => {
+              this.SUBRULE(this.levelsInWeightString);
+            });
+
+            this.CONSUME9(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EXTRACT);
+            this.CONSUME10(Tokens.LPAREN);
+            this.SUBRULE(this.intervalType);
+            this.CONSUME3(Tokens.FROM);
+            this.SUBRULE11(this.expression);
+            this.CONSUME10(Tokens.RPAREN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GET_FORMAT);
+            this.CONSUME11(Tokens.LPAREN);
+            this.OR6([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DATE);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.TIME);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DATETIME);
+                },
+              },
+            ]);
+            this.CONSUME2(Tokens.COMMA);
+            this.CONSUME(Tokens.STRING_LITERAL);
+            this.CONSUME11(Tokens.RPAREN);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('expressionAtom', () => {
+      this.SUBRULE(this.fullColumnName);
+    });
+
+    this.RULE('intervalTypeBase', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.QUARTER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MONTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HOUR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MINUTE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.WEEK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SECOND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MICROSECOND);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('intervalType', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.intervalTypeBase);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.YEAR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.YEAR_MONTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAY_HOUR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAY_MINUTE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAY_SECOND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HOUR_MINUTE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HOUR_SECOND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MINUTE_SECOND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SECOND_MICROSECOND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MINUTE_MICROSECOND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HOUR_MICROSECOND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAY_MICROSECOND);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('levelsInWeightString', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LEVEL);
+            this.CONSUME(Tokens.DecimalLiteral);
+
+            this.OPTION(() => {
+              this.OR2([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.ASC);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.DESC);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.REVERSE);
+                  },
+                },
+              ]);
+            });
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.COMMA);
+              this.SUBRULE(this.levelInWeightListElement);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MINUS);
+            this.CONSUME2(Tokens.DecimalLiteral);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('levelInWeightListElement', () => {
+      this.CONSUME(Tokens.DecimalLiteral);
+
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.ASC);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.DESC);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.REVERSE);
+            },
+          },
+        ]);
+      });
+    });
+
+    this.RULE('convertedDataType', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.BINARY);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.NCHAR);
+                },
+              },
+            ]);
+
+            this.OPTION(() => {
+              this.SUBRULE(this.lengthOneDimension);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHAR);
+
+            this.OPTION2(() => {
+              this.SUBRULE2(this.lengthOneDimension);
+            });
+
+            this.OPTION3(() => {
+              this.CONSUME(Tokens.CHARACTER);
+              this.CONSUME(Tokens.SET);
+              this.CONSUME(Tokens.CharSetLiteral);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.OR3([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DATE);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.DATETIME);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.TIME);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DECIMAL);
+
+            this.OPTION4(() => {
+              this.SUBRULE(this.lengthTwoDimension);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.OR4([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.SIGNED);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.UNSIGNED);
+                },
+              },
+            ]);
+
+            this.OPTION5(() => {
+              this.CONSUME(Tokens.INTEGER);
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('caseFuncAlternative', () => {
+      this.CONSUME(Tokens.WHEN);
+      this.SUBRULE(this.functionArg);
+      this.CONSUME(Tokens.THEN);
+      this.SUBRULE2(this.functionArg);
+    });
+
+    this.RULE('lengthOneDimension', () => {
+      this.CONSUME(Tokens.LPAREN);
+
+      this.AT_LEAST_ONE(() => {
+        this.CONSUME(Tokens.DecimalLiteral);
+      });
+
+      this.CONSUME(Tokens.RPAREN);
+    });
+
+    this.RULE('lengthTwoDimension', () => {
+      this.CONSUME(Tokens.LPAREN);
+      this.CONSUME(Tokens.DecimalLiteral);
+      this.CONSUME(Tokens.COMMA);
+      this.CONSUME2(Tokens.DecimalLiteral);
+      this.CONSUME(Tokens.RPAREN);
+    });
+
+    this.RULE('fromClause', () => {
+      this.CONSUME(Tokens.FROM);
+      this.SUBRULE(this.tableSources);
+    });
+
+    this.RULE('tableSources', () => {
+      this.SUBRULE(this.tableSource);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.COMMA);
+        this.SUBRULE2(this.tableSource);
+      });
+    });
+
+    this.RULE('tableSource', () => {
+      this.SUBRULE(this.tableSourceItem);
+
+      this.MANY(() => {
+        this.SUBRULE(this.joinPart);
+      });
+    });
+
+    this.RULE('joinPart', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.OR2([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.INNER);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.CROSS);
+                  },
+                },
+              ]);
+            });
+
+            this.CONSUME(Tokens.JOIN);
+            this.SUBRULE(this.tableSourceItem);
+
+            this.OPTION2(() => {
+              this.OR3([
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.ON);
+                    this.SUBRULE(this.expression);
+                  },
+                },
+                {
+                  ALT: () => {
+                    this.CONSUME(Tokens.USING);
+                    this.CONSUME(Tokens.LPAREN);
+                    this.SUBRULE(this.uidList);
+                    this.CONSUME(Tokens.RPAREN);
+                  },
+                },
+              ]);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.OR4([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.LEFT);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.RIGHT);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.FULL);
+                },
+              },
+            ]);
+
+            this.OPTION3(() => {
+              this.CONSUME(Tokens.OUTER);
+            });
+
+            this.CONSUME2(Tokens.JOIN);
+            this.SUBRULE2(this.tableSourceItem);
+            this.OR5([
+              {
+                ALT: () => {
+                  this.CONSUME2(Tokens.ON);
+                  this.SUBRULE2(this.expression);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME2(Tokens.USING);
+                  this.CONSUME2(Tokens.LPAREN);
+                  this.SUBRULE2(this.uidList);
+                  this.CONSUME2(Tokens.RPAREN);
+                },
+              },
+            ]);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('tableSourceItem', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.tableName);
+
+            this.OPTION(() => {
+              this.OPTION2(() => {
+                this.CONSUME(Tokens.AS);
+              });
+
+              this.SUBRULE(this.uid);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION3(() => {
+              this.CONSUME(Tokens.LPAREN);
+            });
+
+            this.SUBRULE(this.selectStatement);
+
+            this.OPTION4(() => {
+              this.CONSUME(Tokens.RPAREN);
+            });
+
+            this.OPTION5(() => {
+              this.CONSUME2(Tokens.AS);
+            });
+
+            this.OPTION6(() => {
+              this.SUBRULE2(this.uid);
+            });
+          },
+        },
+      ]);
+    });
+
+    this.RULE('uid', () => {
+      this.CONSUME(Tokens.ID);
+    });
+
+    this.RULE('fullId', () => {
+      this.SUBRULE(this.uid);
+
+      this.MANY(() => {
+        this.CONSUME(Tokens.DOT);
+        this.SUBRULE2(this.uid);
+      });
+    });
+
+    this.RULE('tableName', () => {
+      this.SUBRULE(this.fullId);
     });
 
     this.RULE('insertStatement', () => {
@@ -415,7 +1489,7 @@ export class Parser extends chevrotain.Parser {
           this.CONSUME(Tokens.AS);
         });
 
-        this.CONSUME(Tokens.Identifier);
+        this.SUBRULE(this.uid);
       });
 
       this.CONSUME(Tokens.SET);
@@ -436,21 +1510,6 @@ export class Parser extends chevrotain.Parser {
       this.SUBRULE(this.fullColumnName);
       this.CONSUME(Tokens.EQUAL);
       this.SUBRULE(this.expression);
-    });
-
-    this.RULE('fullColumnName', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.constant);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.Identifier);
-          },
-        },
-      ]);
     });
 
     this.RULE('deleteStatement', () => {
@@ -608,7 +1667,7 @@ export class Parser extends chevrotain.Parser {
 
       this.OPTION2(() => {
         this.CONSUME(Tokens.COMMENT);
-        this.CONSUME(Tokens.StringLiteral);
+        this.CONSUME(Tokens.STRING_LITERAL);
       });
 
       this.OPTION3(() => {
@@ -667,7 +1726,7 @@ export class Parser extends chevrotain.Parser {
 
       this.OPTION(() => {
         this.CONSUME(Tokens.COMMENT);
-        this.CONSUME(Tokens.StringLiteral);
+        this.CONSUME(Tokens.STRING_LITERAL);
       });
     });
 
@@ -994,7 +2053,7 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.AT_LEAST_ONE(() => {
-        this.CONSUME(Tokens.StringLiteral);
+        this.CONSUME(Tokens.STRING_LITERAL);
       });
     });
 
@@ -1117,7 +2176,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('precedenceUnaryPrefixExpression', () => {
-      this.MANY(() => {
+      this.OPTION(() => {
         this.SUBRULE(this.precedenceUnaryOperator);
       });
 
@@ -1353,7 +2412,7 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('precedenceNotExpression', () => {
-      this.MANY(() => {
+      this.OPTION(() => {
         this.SUBRULE(this.precedenceNotOperator);
       });
 
@@ -1389,160 +2448,6 @@ export class Parser extends chevrotain.Parser {
     this.RULE('limitClause', () => {
       this.CONSUME(Tokens.LIMIT);
       this.CONSUME(Tokens.Number);
-    });
-
-    this.RULE('selectList', () => {
-      this.SUBRULE(this.selectItem);
-
-      this.MANY(() => {
-        this.CONSUME(Tokens.COMMA);
-        this.SUBRULE2(this.selectItem);
-      });
-    });
-
-    this.RULE('selectItem', () => {
-      this.SUBRULE(this.selectExpression);
-
-      this.OPTION(() => {
-        this.OPTION2(() => {
-          this.CONSUME(Tokens.AS);
-        });
-
-        this.SUBRULE(this.identifier);
-      });
-    });
-
-    this.RULE('selectExpression', () => {
-      this.SUBRULE(this.tableAllColumns);
-    });
-
-    this.RULE('tableAllColumns', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.STAR);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.tableName);
-            this.CONSUME(Tokens.DOT);
-            this.CONSUME2(Tokens.STAR);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('fromClause', () => {
-      this.CONSUME(Tokens.FROM);
-      this.SUBRULE(this.joinSource);
-    });
-
-    this.RULE('joinSource', () => {
-      this.SUBRULE(this.fromSource);
-      this.SUBRULE(this.joinPart);
-    });
-
-    this.RULE('joinPart', () => {
-      this.MANY(() => {
-        this.SUBRULE(this.joinToken);
-        this.SUBRULE(this.fromSource);
-      });
-    });
-
-    this.RULE('joinToken', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.JOIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INNER);
-            this.CONSUME2(Tokens.JOIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CROSS);
-            this.CONSUME3(Tokens.JOIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LEFT);
-
-            this.OPTION(() => {
-              this.CONSUME(Tokens.OUTER);
-            });
-
-            this.CONSUME4(Tokens.JOIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RIGHT);
-
-            this.OPTION2(() => {
-              this.CONSUME2(Tokens.OUTER);
-            });
-
-            this.CONSUME5(Tokens.JOIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FULL);
-
-            this.OPTION3(() => {
-              this.CONSUME3(Tokens.OUTER);
-            });
-
-            this.CONSUME6(Tokens.JOIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME2(Tokens.LEFT);
-            this.CONSUME(Tokens.SEMI);
-            this.CONSUME7(Tokens.JOIN);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('fromSource', () => {
-      this.SUBRULE(this.tableSource);
-    });
-
-    this.RULE('tableSource', () => {
-      this.SUBRULE(this.tableName);
-
-      this.OPTION(() => {
-        this.OPTION2(() => {
-          this.CONSUME(Tokens.AS);
-        });
-
-        this.CONSUME(Tokens.Identifier);
-      });
-    });
-
-    this.RULE('tableName', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.identifier);
-            this.CONSUME(Tokens.DOT);
-            this.SUBRULE2(this.identifier);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE3(this.identifier);
-          },
-        },
-      ]);
     });
 
     this.RULE('orderByClause', () => {
@@ -1605,1032 +2510,16 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('identifier', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.Identifier);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.nonReserved);
-          },
-        },
-      ]);
+      this.SUBRULE(this.uid);
     });
 
     this.RULE('uidList', () => {
-      this.CONSUME(Tokens.Identifier);
+      this.SUBRULE(this.uid);
 
       this.MANY(() => {
         this.CONSUME(Tokens.COMMA);
-        this.CONSUME2(Tokens.Identifier);
+        this.SUBRULE2(this.uid);
       });
-    });
-
-    this.RULE('nonReserved', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TRUE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FALSE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LIKE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.EXISTS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ASC);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DESC);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ORDER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.GROUP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.AS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INSERT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OVERWRITE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OUTER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LEFT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RIGHT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FULL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PARTITION);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PARTITIONS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TABLE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TABLES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.COLUMNS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INDEX);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INDEXES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.REBUILD);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SHOW);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.MSCK);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.REPAIR);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DIRECTORY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LOCAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.USING);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CLUSTER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DISTRIBUTE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SORT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UNION);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LOAD);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.EXPORT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.IMPORT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DATA);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INPATH);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.IS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.NULL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CREATE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.EXTERNAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ALTER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CHANGE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FIRST);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.AFTER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DESCRIBE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DROP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RENAME);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.IGNORE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PROTECTION);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TO);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.COMMENT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BOOLEAN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TINYINT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SMALLINT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BIGINT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FLOAT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DOUBLE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DATE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DATETIME);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TIMESTAMP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DECIMAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.STRING);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ARRAY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.STRUCT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UNIONTYPE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PARTITIONED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CLUSTERED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SORTED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INTO);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BUCKETS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ROW);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ROWS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FORMAT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DELIMITED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FIELDS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TERMINATED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ESCAPED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.COLLECTION);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ITEMS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.KEYS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.KEY_TYPE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LINES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.STORED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FILEFORMAT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SEQUENCEFILE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TEXTFILE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RCFILE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ORCFILE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INPUTFORMAT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OUTPUTFORMAT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INPUTDRIVER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OUTPUTDRIVER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OFFLINE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ENABLE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DISABLE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.READONLY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.NO_DROP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LOCATION);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BUCKET);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OUT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OF);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PERCENT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ADD);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.REPLACE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RLIKE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.REGEXP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TEMPORARY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.EXPLAIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FORMATTED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PRETTY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DEPENDENCY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LOGICAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SERDE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.WITH);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DEFERRED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SERDEPROPERTIES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DBPROPERTIES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LIMIT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SET);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UNSET);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TBLPROPERTIES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.IDXPROPERTIES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.VALUE_TYPE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ELEM_TYPE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.MAPJOIN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.STREAMTABLE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.HOLD_DDLTIME);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CLUSTERSTATUS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTC);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UTCTIMESTAMP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LONG);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DELETE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PLUS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.KWPLUS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.MINUS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.KWMINUS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FETCH);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INTERSECT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.VIEW);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.IN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DATABASES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.MATERIALIZED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SCHEMA);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SCHEMAS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.GRANT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.REVOKE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SSL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UNDO);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LOCK);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LOCKS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UNLOCK);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SHARED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.EXCLUSIVE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PROCEDURE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UNSIGNED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.WHILE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.READ);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.READS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.PURGE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RANGE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ANALYZE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BEFORE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BETWEEN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BOTH);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BINARY);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CONTINUE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CURSOR);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TRIGGER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RECORDREADER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RECORDWRITER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SEMI);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LATERAL);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TOUCH);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ARCHIVE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UNARCHIVE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.COMPUTE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.STATISTICS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.USE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.OPTION);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CONCATENATE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SHOW_DATABASE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.UPDATE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.RESTRICT);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CASCADE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SKEWED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ROLLUP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.CUBE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.DIRECTORIES);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.FOR);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.GROUPING);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SETS);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.TRUNCATE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.NOSCAN);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.USER);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ROLE);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.INNER);
-          },
-        },
-      ]);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);

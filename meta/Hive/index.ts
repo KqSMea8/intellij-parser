@@ -40,8 +40,8 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
       group: chevrotain.Lexer.SKIPPED,
       line_breaks: true
     });
-    const Identifier = chevrotain.createToken({
-      name: 'Identifier',
+    const ID = chevrotain.createToken({
+      name: 'ID',
       pattern: /[A-Za-z_\$0-9*]+/i,
     });  
     ${ast.toLexerCode()}

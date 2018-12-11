@@ -628,4 +628,3 @@ subpartitionDefinition: SUBPARTITION uid partitionOption*;
 
 partitionDefinerVector:
 	'(' partitionDefinerAtom (',' partitionDefinerAtom)+ ')';
-

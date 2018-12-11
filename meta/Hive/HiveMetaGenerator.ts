@@ -1,6 +1,7 @@
 import { tokens, Lexer, Tokens, TokenEnum } from '../MetaLexer';
 import * as _ from 'lodash';
 import { MetaParser } from '../MetaParser';
+import * as fs from 'fs';
 
 /** 产生式节点类型 */
 export enum SyntaxKind {
@@ -53,7 +54,6 @@ export function cstToAst(cst: CstNode): BaseNode {
       const ruleNode = new RuleNode();
       const { LowerName, UpperName, Fragment } = cst.children;
       const atomsCst = cst.children.atoms[0];
-
       if (LowerName) {
         ruleNode.ruleName = LowerName[0].image;
       } else if (UpperName && Fragment) {
@@ -262,7 +262,7 @@ export class RulesNode extends BaseNode {
   toLexerCode() {
     return this.rules
       .filter(rule => !rule.fragName)
-      .filter(rule => rule.tokenName !== 'Identifier')
+      .filter(rule => rule.tokenName !== 'ID')
       .map(rule => rule.toDebugLexerCode())
       .join('\n');
   }
@@ -306,7 +306,7 @@ export class RuleNode extends BaseNode {
     return `const ${this.tokenName} = chevrotain.createToken({
       name: '${this.tokenName}',
       pattern: /${this.pattern}/i,
-      longer_alt: Identifier
+      longer_alt: ID
     });`;
   }
 
