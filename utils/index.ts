@@ -246,7 +246,7 @@ const peel = (cst) => {
   if (query) {
     exportsFields = _.uniqBy(exportsFields.concat(_.flatten((query.children[SyntaxKind.selectElements][0].children[SyntaxKind.selectElement] || []).map(fields => {
       let name = '';
-      let alias = fields.children[SyntaxKind.uid] ? getLeafNode(fields.children[SyntaxKind.uid][0])[0].image : '';
+      let alias = fields.children[SyntaxKind.uid] ? _.get(getLeafNode(fields.children[SyntaxKind.uid][0]), '[0].image') : '';
 
       if (fields.children[SyntaxKind.functionCall]) {
         /** 函数场景 */
