@@ -23,6 +23,7 @@ export enum SyntaxKind {
   functionCall = 'functionCall',
   functionArgs = 'functionArgs',
   functionArg = 'functionArg',
+  customFunction = 'customFunction',
   scalarFunctionName = 'scalarFunctionName',
   specificFunction = 'specificFunction',
   expressionAtom = 'expressionAtom',
@@ -601,25 +602,12 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.OR2([
-              {
-                ALT: () => {
-                  this.SUBRULE(this.scalarFunctionName);
-                },
-              },
-              {
-                ALT: () => {
-                  this.SUBRULE(this.fullId);
-                },
-              },
-            ]);
-            this.CONSUME(Tokens.LPAREN);
-
-            this.OPTION(() => {
-              this.SUBRULE(this.functionArgs);
-            });
-
-            this.CONSUME(Tokens.RPAREN);
+            this.SUBRULE(this.scalarFunctionName);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.customFunction);
           },
         },
       ]);
@@ -649,16 +637,41 @@ export class Parser extends chevrotain.Parser {
       ]);
     });
 
+    this.RULE('customFunction', () => {
+      this.SUBRULE(this.fullId);
+      this.CONSUME(Tokens.LPAREN);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.functionArgs);
+      });
+
+      this.CONSUME(Tokens.RPAREN);
+    });
+
     this.RULE('scalarFunctionName', () => {
       this.OR([
         {
           ALT: () => {
             this.CONSUME(Tokens.COUNT);
+            this.CONSUME(Tokens.LPAREN);
+
+            this.OPTION(() => {
+              this.SUBRULE(this.functionArgs);
+            });
+
+            this.CONSUME(Tokens.RPAREN);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.SUBSTR);
+            this.CONSUME2(Tokens.LPAREN);
+
+            this.OPTION2(() => {
+              this.SUBRULE2(this.functionArgs);
+            });
+
+            this.CONSUME2(Tokens.RPAREN);
           },
         },
       ]);

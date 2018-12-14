@@ -427,11 +427,16 @@ selectElement:
 
 functionCall:
 	specificFunction
-	| (scalarFunctionName | fullId) '(' functionArgs? ')';
+	| scalarFunctionName
+	| customFunction;
+
+customFunction: fullId '(' functionArgs? ')';
 
 functionArgs: functionArg (',' functionArg)*;
 
-scalarFunctionName: COUNT | SUBSTR;
+scalarFunctionName:
+	COUNT '(' functionArgs? ')'
+	| SUBSTR '(' functionArgs? ')';
 
 specificFunction: (
 		CURRENT_DATE

@@ -72,13 +72,18 @@ dottedId: '.' uid;
 
 functionCall:
 	specificFunction
-	| (scalarFunctionName | fullId) '(' functionArgs? ')';
+	| scalarFunctionName
+	| customFunction;
 
 functionArgs: functionArg (',' functionArg)*;
 
 functionArg: functionCall | expression;
 
-scalarFunctionName: COUNT | SUBSTR;
+customFunction: fullId '(' functionArgs? ')';
+
+scalarFunctionName:
+	COUNT '(' functionArgs? ')'
+	| SUBSTR '(' functionArgs? ')';
 
 specificFunction: (
 		CURRENT_DATE

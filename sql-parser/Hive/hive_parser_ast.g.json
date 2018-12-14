@@ -1696,73 +1696,25 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "scalarFunctionName"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "fullId"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
                 "index": 0,
-                "kind": "Stringliteral",
-                "content": "'('"
+                "kind": "LowerName",
+                "name": "scalarFunctionName"
               }
-            },
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
             {
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "functionArgs"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "')'"
+                "name": "customFunction"
               }
             }
           ]
@@ -1872,6 +1824,60 @@
     {
       "index": 0,
       "kind": "rule",
+      "ruleName": "customFunction",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "fullId"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "functionArgs"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "ruleName": "scalarFunctionName",
       "atoms": [
         {
@@ -1886,6 +1892,37 @@
                 "index": 0,
                 "kind": "UpperName",
                 "name": "COUNT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "functionArgs"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
               }
             }
           ]
@@ -1902,6 +1939,37 @@
                 "index": 0,
                 "kind": "UpperName",
                 "name": "SUBSTR"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "LowerName",
+                "name": "functionArgs"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "')'"
               }
             }
           ]

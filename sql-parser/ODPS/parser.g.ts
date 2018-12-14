@@ -96,6 +96,7 @@ export enum SyntaxKind {
   tableName = 'tableName',
   selectElement = 'selectElement',
   functionCall = 'functionCall',
+  customFunction = 'customFunction',
   functionArgs = 'functionArgs',
   scalarFunctionName = 'scalarFunctionName',
   specificFunction = 'specificFunction',
@@ -2835,28 +2836,26 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.OR2([
-              {
-                ALT: () => {
-                  this.SUBRULE(this.scalarFunctionName);
-                },
-              },
-              {
-                ALT: () => {
-                  this.SUBRULE(this.fullId);
-                },
-              },
-            ]);
-            this.CONSUME(Tokens.LR_BRACKET);
-
-            this.OPTION(() => {
-              this.SUBRULE(this.functionArgs);
-            });
-
-            this.CONSUME(Tokens.RR_BRACKET);
+            this.SUBRULE(this.scalarFunctionName);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.customFunction);
           },
         },
       ]);
+    });
+
+    this.RULE('customFunction', () => {
+      this.SUBRULE(this.fullId);
+      this.CONSUME(Tokens.LR_BRACKET);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.functionArgs);
+      });
+
+      this.CONSUME(Tokens.RR_BRACKET);
     });
 
     this.RULE('functionArgs', () => {
@@ -2873,11 +2872,25 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.COUNT);
+            this.CONSUME(Tokens.LR_BRACKET);
+
+            this.OPTION(() => {
+              this.SUBRULE(this.functionArgs);
+            });
+
+            this.CONSUME(Tokens.RR_BRACKET);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.SUBSTR);
+            this.CONSUME2(Tokens.LR_BRACKET);
+
+            this.OPTION2(() => {
+              this.SUBRULE2(this.functionArgs);
+            });
+
+            this.CONSUME2(Tokens.RR_BRACKET);
           },
         },
       ]);
