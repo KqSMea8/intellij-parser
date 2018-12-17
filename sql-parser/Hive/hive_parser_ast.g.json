@@ -4284,6 +4284,87 @@
     {
       "index": 0,
       "kind": "rule",
+      "ruleName": "lengthTwoOptionalDimension",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DecimalLiteral"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "DecimalLiteral"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "ruleName": "fromClause",
       "atoms": [
         {
@@ -5998,25 +6079,8 @@
               "suff": "?",
               "item": {
                 "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "EXTERNAL"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "kind": "UpperName",
+                "name": "TEMPORARY"
               }
             },
             {
@@ -6055,6 +6119,392 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "createDefinitions"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "tableOption"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "*",
+                        "item": {
+                          "index": 0,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 3,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "suff": "?",
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "','"
+                                  }
+                                },
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 1,
+                                    "kind": "LowerName",
+                                    "name": "tableOption"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "createDefinitions",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "createDefinition"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "createDefinition"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "createDefinition",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "uid"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "columnDefinition"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "columnDefinition",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "columnConstraint"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "columnConstraint",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "nullCondition"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DEFAULT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "constant"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "AUTO_INCREMENT"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "PRIMARY"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "KEY"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "UNIQUE"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "KEY"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "COMMENT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "COLUMN_FORMAT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
                 "index": 1,
                 "kind": "bracketExp",
                 "atoms": [
@@ -6069,7 +6519,3145 @@
                         "item": {
                           "index": 0,
                           "kind": "UpperName",
-                          "name": "LIKE"
+                          "name": "FIXED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DYNAMIC"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "DEFAULT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STORAGE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 2,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DISK"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MEMORY"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 2,
+                          "kind": "UpperName",
+                          "name": "DEFAULT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType1"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType2"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType3"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType4"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType5"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType6"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "dataType7"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType1",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "CHAR"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "VARCHAR"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "TINYTEXT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "TEXT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MEDIUMTEXT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "LONGTEXT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "lengthOneDimension"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "BINARY"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "CHARACTER"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "SET"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "CharSetName"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "COLLATE"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "collationName"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "collationName",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "uid"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType2",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "TINYINT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "SMALLINT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MEDIUMINT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "INT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "INTEGER"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "BIGINT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "lengthOneDimension"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "UNSIGNED"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ZEROFILL"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType3",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "REAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DOUBLE"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "FLOAT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "lengthTwoDimension"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "UNSIGNED"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ZEROFILL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 2,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DECIMAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "NUMERIC"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 3,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "lengthTwoOptionalDimension"
+              }
+            },
+            {
+              "index": 4,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "UNSIGNED"
+              }
+            },
+            {
+              "index": 5,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "ZEROFILL"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType4",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DATE"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "TINYBLOB"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "BLOB"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MEDIUMBLOB"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "LONGBLOB"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "BOOL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "BOOLEAN"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType5",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "BIT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "TIME"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "TIMESTAMP"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DATETIME"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "BINARY"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "VARBINARY"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "YEAR"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "lengthOneDimension"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType6",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ENUM"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "SET"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "STRING_LITERAL"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "BINARY"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "CHARACTER"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "SET"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "CharSetName"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "COLLATE"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "collationName"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "dataType7",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "GEOMETRYCOLLECTION"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "LINESTRING"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "STRING"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MULTILINESTRING"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MULTIPOINT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MULTIPOLYGON"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "POINT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "POLYGON"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption1"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption2"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption3"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption4"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableOption5"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption1",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ENGINE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "engineName"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "AUTO_INCREMENT"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DecimalLiteral"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "AVG_ROW_LENGTH"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 2,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "DecimalLiteral"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 3,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DEFAULT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "CHARACTER"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "SET"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "CHARSET"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 4,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 3,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "CharSetName"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "CHECKSUM"
+              }
+            },
+            {
+              "index": 5,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 4,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 2,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ZERO_DECIMAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ONE_DECIMAL"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 6,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "DEFAULT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "COLLATE"
+              }
+            },
+            {
+              "index": 7,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 5,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "collationName"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption2",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "COMMENT"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "COMPRESSION"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "CONNECTION"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 2,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 2,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DATA"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DIRECTORY"
+              }
+            },
+            {
+              "index": 3,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 3,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 3,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DELAY_KEY_WRITE"
+              }
+            },
+            {
+              "index": 4,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 4,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ZERO_DECIMAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ONE_DECIMAL"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ENCRYPTION"
+              }
+            },
+            {
+              "index": 5,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 5,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 4,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "INDEX"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "DIRECTORY"
+              }
+            },
+            {
+              "index": 6,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 6,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 5,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "partitionDefinitions"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption3",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "INSERT_METHOD"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "NO"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "FIRST"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "LAST"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "KEY_BLOCK_SIZE"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "fileSizeLiteral"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "MAX_ROWS"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 2,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DecimalLiteral"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "MIN_ROWS"
+              }
+            },
+            {
+              "index": 3,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 3,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "DecimalLiteral"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "PACK_KEYS"
+              }
+            },
+            {
+              "index": 4,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 4,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 2,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ZERO_DECIMAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ONE_DECIMAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DEFAULT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption4",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "PASSWORD"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STRING_LITERAL"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ROW_FORMAT"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DEFAULT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DYNAMIC"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "FIXED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "COMPRESSED"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "REDUNDANT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "COMPACT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tableOption5",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STATS_AUTO_RECALC"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DEFAULT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ZERO_DECIMAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "ONE_DECIMAL"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STATS_PERSISTENT"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 1,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 2,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "DEFAULT"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "ZERO_DECIMAL"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "ONE_DECIMAL"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "TABLESPACE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "uid"
+              }
+            },
+            {
+              "index": 2,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tablespaceStorage"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "LIFECYCLE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DecimalLiteral"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "UNION"
+              }
+            },
+            {
+              "index": 3,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 2,
+                "kind": "Stringliteral",
+                "content": "'='"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tables"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tablespaceStorage",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "STORAGE"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DISK"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "MEMORY"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DEFAULT"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "tables",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "tableName"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "','"
                         }
                       },
                       {
@@ -6083,52 +9671,326 @@
                         }
                       }
                     ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "fileSizeLiteral",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ByteLengthLiteral"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DecimalLiteral"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "engineName",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ARCHIVE"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "BLACKHOLE"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "CSV"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "FEDERATED"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "INNODB"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "MEMORY"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "MRG_MYISAM"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "MYISAM"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "NDB"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "NDBCLUSTER"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "PERFOMANCE_SCHEMA"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "partitionDefinitions",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "PARTITIONED"
+                        }
+                      }
+                    ]
                   },
                   {
                     "index": 0,
                     "kind": "atom",
                     "itemSuffs": [
                       {
-                        "index": 2,
+                        "index": 0,
                         "kind": "itemSuff",
                         "hasNot": false,
-                        "suff": "?",
                         "item": {
                           "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 0,
-                                    "kind": "UpperName",
-                                    "name": "AS"
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 0,
-                                    "kind": "LowerName",
-                                    "name": "selectStatement"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
+                          "kind": "UpperName",
+                          "name": "PARTITION"
                         }
                       }
                     ]
                   }
                 ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "BY"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'('"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "createDefinitions"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "')'"
               }
             }
           ]

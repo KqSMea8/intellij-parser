@@ -170,6 +170,9 @@ lengthOneDimension: '(' DecimalLiteral+ ')';
 
 lengthTwoDimension: '(' DecimalLiteral ',' DecimalLiteral ')';
 
+lengthTwoOptionalDimension:
+	'(' DecimalLiteral (',' DecimalLiteral)? ')';
+
 fromClause: FROM tableSources;
 
 tableSources: tableSource (',' tableSource)*;
@@ -232,10 +235,175 @@ dropDatabaseStatement:
 	DROP (DATABASE | SCHEMA) ifExists? identifier;
 
 createTable:
-	CREATE (ext = EXTERNAL)? TABLE ifNotExists? name = tableName (
-		like = LIKE likeName = tableName
-		| ( AS selectStatement)?
+	CREATE TEMPORARY? TABLE ifNotExists? tableName createDefinitions (
+		tableOption (','? tableOption)*
+	)?;
+
+createDefinitions:
+	'(' createDefinition (',' createDefinition)* ')';
+
+createDefinition: uid columnDefinition;
+
+columnDefinition: dataType columnConstraint*;
+
+columnConstraint:
+	nullCondition
+	| DEFAULT constant
+	| AUTO_INCREMENT
+	| PRIMARY? KEY
+	| UNIQUE KEY?
+	| COMMENT STRING_LITERAL
+	| COLUMN_FORMAT colformat = (FIXED | DYNAMIC | DEFAULT)
+	| STORAGE storageval = (DISK | MEMORY | DEFAULT);
+
+dataType:
+	dataType1
+	| dataType2
+	| dataType3
+	| dataType4
+	| dataType5
+	| dataType6
+	| dataType7;
+
+dataType1:
+	typeName = (
+		CHAR
+		| VARCHAR
+		| TINYTEXT
+		| TEXT
+		| MEDIUMTEXT
+		| LONGTEXT
+	) lengthOneDimension? BINARY? (CHARACTER SET CharSetName)? (
+		COLLATE collationName
+	)?;
+
+collationName: uid | STRING_LITERAL;
+
+dataType2:
+	typeName = (
+		TINYINT
+		| SMALLINT
+		| MEDIUMINT
+		| INT
+		| INTEGER
+		| BIGINT
+	) lengthOneDimension? UNSIGNED? ZEROFILL?;
+
+dataType3:
+	typeName = (REAL | DOUBLE | FLOAT) lengthTwoDimension? UNSIGNED? ZEROFILL?
+	| typeName = (DECIMAL | NUMERIC) lengthTwoOptionalDimension? UNSIGNED? ZEROFILL?;
+
+dataType4:
+	typeName = (
+		DATE
+		| TINYBLOB
+		| BLOB
+		| MEDIUMBLOB
+		| LONGBLOB
+		| BOOL
+		| BOOLEAN
 	);
+
+dataType5:
+	typeName = (
+		BIT
+		| TIME
+		| TIMESTAMP
+		| DATETIME
+		| BINARY
+		| VARBINARY
+		| YEAR
+	) lengthOneDimension?;
+
+dataType6:
+	typeName = (ENUM | SET) '(' STRING_LITERAL (
+		',' STRING_LITERAL
+	)* ')' BINARY? (CHARACTER SET CharSetName)? (
+		COLLATE collationName
+	)?;
+
+dataType7:
+	typeName = (
+		GEOMETRYCOLLECTION
+		| LINESTRING
+		| STRING
+		| MULTILINESTRING
+		| MULTIPOINT
+		| MULTIPOLYGON
+		| POINT
+		| POLYGON
+	);
+
+tableOption:
+	tableOption1
+	| tableOption2
+	| tableOption3
+	| tableOption4
+	| tableOption5;
+
+tableOption1:
+	ENGINE '='? engineName
+	| AUTO_INCREMENT '='? DecimalLiteral
+	| AVG_ROW_LENGTH '='? DecimalLiteral
+	| DEFAULT? (CHARACTER SET | CHARSET) '='? CharSetName
+	| CHECKSUM '='? boolValue = (ZERO_DECIMAL | ONE_DECIMAL)
+	| DEFAULT? COLLATE '='? collationName;
+
+tableOption2:
+	COMMENT '='? STRING_LITERAL
+	| COMPRESSION '='? STRING_LITERAL
+	| CONNECTION '='? STRING_LITERAL
+	| DATA DIRECTORY '='? STRING_LITERAL
+	| DELAY_KEY_WRITE '='? boolValue = (ZERO_DECIMAL | ONE_DECIMAL)
+	| ENCRYPTION '='? STRING_LITERAL
+	| INDEX DIRECTORY '='? STRING_LITERAL
+	| partitionDefinitions;
+
+tableOption3:
+	INSERT_METHOD '='? insertMethod = (NO | FIRST | LAST)
+	| KEY_BLOCK_SIZE '='? fileSizeLiteral
+	| MAX_ROWS '='? DecimalLiteral
+	| MIN_ROWS '='? DecimalLiteral
+	| PACK_KEYS '='? extBoolValue = (ZERO_DECIMAL | ONE_DECIMAL | DEFAULT);
+
+tableOption4:
+	PASSWORD '='? STRING_LITERAL
+	| ROW_FORMAT '='? rowFormat = (
+		DEFAULT
+		| DYNAMIC
+		| FIXED
+		| COMPRESSED
+		| REDUNDANT
+		| COMPACT
+	);
+
+tableOption5:
+	STATS_AUTO_RECALC '='? extBoolValue = (DEFAULT | ZERO_DECIMAL | ONE_DECIMAL)
+	| STATS_PERSISTENT '='? extBoolValue = (DEFAULT | ZERO_DECIMAL | ONE_DECIMAL)
+	| TABLESPACE uid tablespaceStorage?
+	| LIFECYCLE DecimalLiteral
+	| UNION '='? '(' tables ')';
+
+tablespaceStorage: STORAGE (DISK | MEMORY | DEFAULT);
+
+tables: tableName (',' tableName)*;
+
+fileSizeLiteral: ByteLengthLiteral | DecimalLiteral;
+
+engineName:
+	ARCHIVE
+	| BLACKHOLE
+	| CSV
+	| FEDERATED
+	| INNODB
+	| MEMORY
+	| MRG_MYISAM
+	| MYISAM
+	| NDB
+	| NDBCLUSTER
+	| PERFOMANCE_SCHEMA;
+
+partitionDefinitions: (PARTITIONED | PARTITION) BY '(' createDefinitions ')';
 
 dropTable: DROP TABLE ifExists? tableName;
 

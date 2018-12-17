@@ -15,11 +15,6 @@ const WS = chevrotain.createToken({
   pattern: /(\ |\r|\t|\n)/i,
   longer_alt: ID,
 });
-const Number = chevrotain.createToken({
-  name: 'Number',
-  pattern: /([0-9])+(\.([0-9])*((e|E)(\+|\-)?([0-9])+)?|(e|E)(\+|\-)?([0-9])+)?/i,
-  longer_alt: ID,
-});
 const ByteLengthLiteral = chevrotain.createToken({
   name: 'ByteLengthLiteral',
   pattern: /([0-9])+(b|B|k|K|m|M|g|G)/i,
@@ -198,6 +193,336 @@ const COLON = chevrotain.createToken({
 const DOT = chevrotain.createToken({
   name: 'DOT',
   pattern: /\./i,
+  longer_alt: ID,
+});
+const ONE_DECIMAL = chevrotain.createToken({
+  name: 'ONE_DECIMAL',
+  pattern: /1/i,
+  longer_alt: ID,
+});
+const ZERO_DECIMAL = chevrotain.createToken({
+  name: 'ZERO_DECIMAL',
+  pattern: /0/i,
+  longer_alt: ID,
+});
+const Number = chevrotain.createToken({
+  name: 'Number',
+  pattern: /([0-9])+(\.([0-9])*((e|E)(\+|\-)?([0-9])+)?|(e|E)(\+|\-)?([0-9])+)?/i,
+  longer_alt: ID,
+});
+const LIFECYCLE = chevrotain.createToken({
+  name: 'LIFECYCLE',
+  pattern: /LIFECYCLE/i,
+  longer_alt: ID,
+});
+const TABLESPACE = chevrotain.createToken({
+  name: 'TABLESPACE',
+  pattern: /TABLESPACE/i,
+  longer_alt: ID,
+});
+const STATS_PERSISTENT = chevrotain.createToken({
+  name: 'STATS_PERSISTENT',
+  pattern: /STATS_PERSISTENT/i,
+  longer_alt: ID,
+});
+const STATS_AUTO_RECALC = chevrotain.createToken({
+  name: 'STATS_AUTO_RECALC',
+  pattern: /STATS_AUTO_RECALC/i,
+  longer_alt: ID,
+});
+const COMPACT = chevrotain.createToken({
+  name: 'COMPACT',
+  pattern: /COMPACT/i,
+  longer_alt: ID,
+});
+const REDUNDANT = chevrotain.createToken({
+  name: 'REDUNDANT',
+  pattern: /REDUNDANT/i,
+  longer_alt: ID,
+});
+const COMPRESSED = chevrotain.createToken({
+  name: 'COMPRESSED',
+  pattern: /COMPRESSED/i,
+  longer_alt: ID,
+});
+const ROW_FORMAT = chevrotain.createToken({
+  name: 'ROW_FORMAT',
+  pattern: /ROW_FORMAT/i,
+  longer_alt: ID,
+});
+const PASSWORD = chevrotain.createToken({
+  name: 'PASSWORD',
+  pattern: /PASSWORD/i,
+  longer_alt: ID,
+});
+const PACK_KEYS = chevrotain.createToken({
+  name: 'PACK_KEYS',
+  pattern: /PACK_KEYS/i,
+  longer_alt: ID,
+});
+const MIN_ROWS = chevrotain.createToken({
+  name: 'MIN_ROWS',
+  pattern: /MIN_ROWS/i,
+  longer_alt: ID,
+});
+const MAX_ROWS = chevrotain.createToken({
+  name: 'MAX_ROWS',
+  pattern: /MAX_ROWS/i,
+  longer_alt: ID,
+});
+const KEY_BLOCK_SIZE = chevrotain.createToken({
+  name: 'KEY_BLOCK_SIZE',
+  pattern: /KEY_BLOCK_SIZE/i,
+  longer_alt: ID,
+});
+const LAST = chevrotain.createToken({
+  name: 'LAST',
+  pattern: /LAST/i,
+  longer_alt: ID,
+});
+const INSERT_METHOD = chevrotain.createToken({
+  name: 'INSERT_METHOD',
+  pattern: /INSERT_METHOD/i,
+  longer_alt: ID,
+});
+const ENCRYPTION = chevrotain.createToken({
+  name: 'ENCRYPTION',
+  pattern: /ENCRYPTION/i,
+  longer_alt: ID,
+});
+const DELAY_KEY_WRITE = chevrotain.createToken({
+  name: 'DELAY_KEY_WRITE',
+  pattern: /DELAY_KEY_WRITE/i,
+  longer_alt: ID,
+});
+const CONNECTION = chevrotain.createToken({
+  name: 'CONNECTION',
+  pattern: /CONNECTION/i,
+  longer_alt: ID,
+});
+const COMPRESSION = chevrotain.createToken({
+  name: 'COMPRESSION',
+  pattern: /COMPRESSION/i,
+  longer_alt: ID,
+});
+const AVG_ROW_LENGTH = chevrotain.createToken({
+  name: 'AVG_ROW_LENGTH',
+  pattern: /AVG_ROW_LENGTH/i,
+  longer_alt: ID,
+});
+const ENGINE = chevrotain.createToken({
+  name: 'ENGINE',
+  pattern: /ENGINE/i,
+  longer_alt: ID,
+});
+const CHECKSUM = chevrotain.createToken({
+  name: 'CHECKSUM',
+  pattern: /CHECKSUM/i,
+  longer_alt: ID,
+});
+const CHARSET = chevrotain.createToken({
+  name: 'CHARSET',
+  pattern: /CHARSET/i,
+  longer_alt: ID,
+});
+const PERFOMANCE_SCHEMA = chevrotain.createToken({
+  name: 'PERFOMANCE_SCHEMA',
+  pattern: /PERFOMANCE_SCHEMA/i,
+  longer_alt: ID,
+});
+const NDBCLUSTER = chevrotain.createToken({
+  name: 'NDBCLUSTER',
+  pattern: /NDBCLUSTER/i,
+  longer_alt: ID,
+});
+const NDB = chevrotain.createToken({
+  name: 'NDB',
+  pattern: /NDB/i,
+  longer_alt: ID,
+});
+const MRG_MYISAM = chevrotain.createToken({
+  name: 'MRG_MYISAM',
+  pattern: /MRG_MYISAM/i,
+  longer_alt: ID,
+});
+const MYISAM = chevrotain.createToken({
+  name: 'MYISAM',
+  pattern: /MYISAM/i,
+  longer_alt: ID,
+});
+const INNODB = chevrotain.createToken({
+  name: 'INNODB',
+  pattern: /INNODB/i,
+  longer_alt: ID,
+});
+const FEDERATED = chevrotain.createToken({
+  name: 'FEDERATED',
+  pattern: /FEDERATED/i,
+  longer_alt: ID,
+});
+const CSV = chevrotain.createToken({
+  name: 'CSV',
+  pattern: /CSV/i,
+  longer_alt: ID,
+});
+const BLACKHOLE = chevrotain.createToken({
+  name: 'BLACKHOLE',
+  pattern: /BLACKHOLE/i,
+  longer_alt: ID,
+});
+const MULTIPOLYGON = chevrotain.createToken({
+  name: 'MULTIPOLYGON',
+  pattern: /MULTIPOLYGON/i,
+  longer_alt: ID,
+});
+const POLYGON = chevrotain.createToken({
+  name: 'POLYGON',
+  pattern: /POLYGON/i,
+  longer_alt: ID,
+});
+const MULTIPOINT = chevrotain.createToken({
+  name: 'MULTIPOINT',
+  pattern: /MULTIPOINT/i,
+  longer_alt: ID,
+});
+const POINT = chevrotain.createToken({
+  name: 'POINT',
+  pattern: /POINT/i,
+  longer_alt: ID,
+});
+const MULTILINESTRING = chevrotain.createToken({
+  name: 'MULTILINESTRING',
+  pattern: /MULTILINESTRING/i,
+  longer_alt: ID,
+});
+const LINESTRING = chevrotain.createToken({
+  name: 'LINESTRING',
+  pattern: /LINESTRING/i,
+  longer_alt: ID,
+});
+const GEOMETRYCOLLECTION = chevrotain.createToken({
+  name: 'GEOMETRYCOLLECTION',
+  pattern: /GEOMETRYCOLLECTION/i,
+  longer_alt: ID,
+});
+const ENUM = chevrotain.createToken({
+  name: 'ENUM',
+  pattern: /ENUM/i,
+  longer_alt: ID,
+});
+const VARBINARY = chevrotain.createToken({
+  name: 'VARBINARY',
+  pattern: /VARBINARY/i,
+  longer_alt: ID,
+});
+const LONGBLOB = chevrotain.createToken({
+  name: 'LONGBLOB',
+  pattern: /LONGBLOB/i,
+  longer_alt: ID,
+});
+const MEDIUMBLOB = chevrotain.createToken({
+  name: 'MEDIUMBLOB',
+  pattern: /MEDIUMBLOB/i,
+  longer_alt: ID,
+});
+const TINYBLOB = chevrotain.createToken({
+  name: 'TINYBLOB',
+  pattern: /TINYBLOB/i,
+  longer_alt: ID,
+});
+const BLOB = chevrotain.createToken({
+  name: 'BLOB',
+  pattern: /BLOB/i,
+  longer_alt: ID,
+});
+const NUMERIC = chevrotain.createToken({
+  name: 'NUMERIC',
+  pattern: /NUMERIC/i,
+  longer_alt: ID,
+});
+const REAL = chevrotain.createToken({
+  name: 'REAL',
+  pattern: /REAL/i,
+  longer_alt: ID,
+});
+const ZEROFILL = chevrotain.createToken({
+  name: 'ZEROFILL',
+  pattern: /ZEROFILL/i,
+  longer_alt: ID,
+});
+const MEDIUMINT = chevrotain.createToken({
+  name: 'MEDIUMINT',
+  pattern: /MEDIUMINT/i,
+  longer_alt: ID,
+});
+const COLLATE = chevrotain.createToken({
+  name: 'COLLATE',
+  pattern: /COLLATE/i,
+  longer_alt: ID,
+});
+const LONGTEXT = chevrotain.createToken({
+  name: 'LONGTEXT',
+  pattern: /LONGTEXT/i,
+  longer_alt: ID,
+});
+const MEDIUMTEXT = chevrotain.createToken({
+  name: 'MEDIUMTEXT',
+  pattern: /MEDIUMTEXT/i,
+  longer_alt: ID,
+});
+const TINYTEXT = chevrotain.createToken({
+  name: 'TINYTEXT',
+  pattern: /TINYTEXT/i,
+  longer_alt: ID,
+});
+const VARCHAR = chevrotain.createToken({
+  name: 'VARCHAR',
+  pattern: /VARCHAR/i,
+  longer_alt: ID,
+});
+const MEMORY = chevrotain.createToken({
+  name: 'MEMORY',
+  pattern: /MEMORY/i,
+  longer_alt: ID,
+});
+const DISK = chevrotain.createToken({
+  name: 'DISK',
+  pattern: /DISK/i,
+  longer_alt: ID,
+});
+const STORAGE = chevrotain.createToken({
+  name: 'STORAGE',
+  pattern: /STORAGE/i,
+  longer_alt: ID,
+});
+const DYNAMIC = chevrotain.createToken({
+  name: 'DYNAMIC',
+  pattern: /DYNAMIC/i,
+  longer_alt: ID,
+});
+const FIXED = chevrotain.createToken({
+  name: 'FIXED',
+  pattern: /FIXED/i,
+  longer_alt: ID,
+});
+const COLUMN_FORMAT = chevrotain.createToken({
+  name: 'COLUMN_FORMAT',
+  pattern: /COLUMN_FORMAT/i,
+  longer_alt: ID,
+});
+const PRIMARY = chevrotain.createToken({
+  name: 'PRIMARY',
+  pattern: /PRIMARY/i,
+  longer_alt: ID,
+});
+const AUTO_INCREMENT = chevrotain.createToken({
+  name: 'AUTO_INCREMENT',
+  pattern: /AUTO_INCREMENT/i,
+  longer_alt: ID,
+});
+const DEFAULT = chevrotain.createToken({
+  name: 'DEFAULT',
+  pattern: /DEFAULT/i,
   longer_alt: ID,
 });
 const STRAIGHT_JOIN = chevrotain.createToken({
@@ -403,6 +728,11 @@ const BIT_OR = chevrotain.createToken({
 const BIT_AND = chevrotain.createToken({
   name: 'BIT_AND',
   pattern: /BIT_AND/i,
+  longer_alt: ID,
+});
+const BIT = chevrotain.createToken({
+  name: 'BIT',
+  pattern: /BIT/i,
   longer_alt: ID,
 });
 const AVG = chevrotain.createToken({
@@ -1200,6 +1530,11 @@ const TEXTFILE = chevrotain.createToken({
   pattern: /TEXTFILE/i,
   longer_alt: ID,
 });
+const TEXT = chevrotain.createToken({
+  name: 'TEXT',
+  pattern: /TEXT/i,
+  longer_alt: ID,
+});
 const SEQUENCEFILE = chevrotain.createToken({
   name: 'SEQUENCEFILE',
   pattern: /SEQUENCEFILE/i,
@@ -1228,6 +1563,11 @@ const KEY_TYPE = chevrotain.createToken({
 const KEYS = chevrotain.createToken({
   name: 'KEYS',
   pattern: /KEYS/i,
+  longer_alt: ID,
+});
+const KEY = chevrotain.createToken({
+  name: 'KEY',
+  pattern: /KEY/i,
   longer_alt: ID,
 });
 const ITEMS = chevrotain.createToken({
@@ -1405,6 +1745,11 @@ const BOOLEAN = chevrotain.createToken({
   pattern: /BOOLEAN/i,
   longer_alt: ID,
 });
+const BOOL = chevrotain.createToken({
+  name: 'BOOL',
+  pattern: /BOOL/i,
+  longer_alt: ID,
+});
 const COMMENT = chevrotain.createToken({
   name: 'COMMENT',
   pattern: /KWCOMMENT/i,
@@ -1418,6 +1763,11 @@ const PROTECTION = chevrotain.createToken({
 const IGNORE = chevrotain.createToken({
   name: 'IGNORE',
   pattern: /IGNORE/i,
+  longer_alt: ID,
+});
+const NO = chevrotain.createToken({
+  name: 'NO',
+  pattern: /NO/i,
   longer_alt: ID,
 });
 const RENAME = chevrotain.createToken({
@@ -1645,6 +1995,11 @@ const UNIQUEJOIN = chevrotain.createToken({
   pattern: /UNIQUEJOIN/i,
   longer_alt: ID,
 });
+const UNIQUE = chevrotain.createToken({
+  name: 'UNIQUE',
+  pattern: /UNIQUE/i,
+  longer_alt: ID,
+});
 const OUTER = chevrotain.createToken({
   name: 'OUTER',
   pattern: /OUTER/i,
@@ -1788,7 +2143,6 @@ const TRUE = chevrotain.createToken({
 
 export enum TokenEnum {
   WS = 'WS',
-  Number = 'Number',
   ByteLengthLiteral = 'ByteLengthLiteral',
   DecimalLiteral = 'DecimalLiteral',
   TinyintLiteral = 'TinyintLiteral',
@@ -1825,6 +2179,72 @@ export enum TokenEnum {
   COMMA = 'COMMA',
   COLON = 'COLON',
   DOT = 'DOT',
+  ONE_DECIMAL = 'ONE_DECIMAL',
+  ZERO_DECIMAL = 'ZERO_DECIMAL',
+  Number = 'Number',
+  LIFECYCLE = 'LIFECYCLE',
+  TABLESPACE = 'TABLESPACE',
+  STATS_PERSISTENT = 'STATS_PERSISTENT',
+  STATS_AUTO_RECALC = 'STATS_AUTO_RECALC',
+  COMPACT = 'COMPACT',
+  REDUNDANT = 'REDUNDANT',
+  COMPRESSED = 'COMPRESSED',
+  ROW_FORMAT = 'ROW_FORMAT',
+  PASSWORD = 'PASSWORD',
+  PACK_KEYS = 'PACK_KEYS',
+  MIN_ROWS = 'MIN_ROWS',
+  MAX_ROWS = 'MAX_ROWS',
+  KEY_BLOCK_SIZE = 'KEY_BLOCK_SIZE',
+  LAST = 'LAST',
+  INSERT_METHOD = 'INSERT_METHOD',
+  ENCRYPTION = 'ENCRYPTION',
+  DELAY_KEY_WRITE = 'DELAY_KEY_WRITE',
+  CONNECTION = 'CONNECTION',
+  COMPRESSION = 'COMPRESSION',
+  AVG_ROW_LENGTH = 'AVG_ROW_LENGTH',
+  ENGINE = 'ENGINE',
+  CHECKSUM = 'CHECKSUM',
+  CHARSET = 'CHARSET',
+  PERFOMANCE_SCHEMA = 'PERFOMANCE_SCHEMA',
+  NDBCLUSTER = 'NDBCLUSTER',
+  NDB = 'NDB',
+  MRG_MYISAM = 'MRG_MYISAM',
+  MYISAM = 'MYISAM',
+  INNODB = 'INNODB',
+  FEDERATED = 'FEDERATED',
+  CSV = 'CSV',
+  BLACKHOLE = 'BLACKHOLE',
+  MULTIPOLYGON = 'MULTIPOLYGON',
+  POLYGON = 'POLYGON',
+  MULTIPOINT = 'MULTIPOINT',
+  POINT = 'POINT',
+  MULTILINESTRING = 'MULTILINESTRING',
+  LINESTRING = 'LINESTRING',
+  GEOMETRYCOLLECTION = 'GEOMETRYCOLLECTION',
+  ENUM = 'ENUM',
+  VARBINARY = 'VARBINARY',
+  LONGBLOB = 'LONGBLOB',
+  MEDIUMBLOB = 'MEDIUMBLOB',
+  TINYBLOB = 'TINYBLOB',
+  BLOB = 'BLOB',
+  NUMERIC = 'NUMERIC',
+  REAL = 'REAL',
+  ZEROFILL = 'ZEROFILL',
+  MEDIUMINT = 'MEDIUMINT',
+  COLLATE = 'COLLATE',
+  LONGTEXT = 'LONGTEXT',
+  MEDIUMTEXT = 'MEDIUMTEXT',
+  TINYTEXT = 'TINYTEXT',
+  VARCHAR = 'VARCHAR',
+  MEMORY = 'MEMORY',
+  DISK = 'DISK',
+  STORAGE = 'STORAGE',
+  DYNAMIC = 'DYNAMIC',
+  FIXED = 'FIXED',
+  COLUMN_FORMAT = 'COLUMN_FORMAT',
+  PRIMARY = 'PRIMARY',
+  AUTO_INCREMENT = 'AUTO_INCREMENT',
+  DEFAULT = 'DEFAULT',
   STRAIGHT_JOIN = 'STRAIGHT_JOIN',
   STARTING = 'STARTING',
   ENCLOSED = 'ENCLOSED',
@@ -1866,6 +2286,7 @@ export enum TokenEnum {
   BIT_XOR = 'BIT_XOR',
   BIT_OR = 'BIT_OR',
   BIT_AND = 'BIT_AND',
+  BIT = 'BIT',
   AVG = 'AVG',
   UTC_TIMESTAMP = 'UTC_TIMESTAMP',
   UTC_TIME = 'UTC_TIME',
@@ -2025,12 +2446,14 @@ export enum TokenEnum {
   ORCFILE = 'ORCFILE',
   RCFILE = 'RCFILE',
   TEXTFILE = 'TEXTFILE',
+  TEXT = 'TEXT',
   SEQUENCEFILE = 'SEQUENCEFILE',
   FILEFORMAT = 'FILEFORMAT',
   STORED = 'STORED',
   LINES = 'LINES',
   KEY_TYPE = 'KEY_TYPE',
   KEYS = 'KEYS',
+  KEY = 'KEY',
   ITEMS = 'ITEMS',
   COLLECTION = 'COLLECTION',
   ESCAPED = 'ESCAPED',
@@ -2066,9 +2489,11 @@ export enum TokenEnum {
   TINYINT = 'TINYINT',
   INT = 'INT',
   BOOLEAN = 'BOOLEAN',
+  BOOL = 'BOOL',
   COMMENT = 'COMMENT',
   PROTECTION = 'PROTECTION',
   IGNORE = 'IGNORE',
+  NO = 'NO',
   RENAME = 'RENAME',
   DROP = 'DROP',
   DESCRIBE = 'DESCRIBE',
@@ -2114,6 +2539,7 @@ export enum TokenEnum {
   LEFT = 'LEFT',
   PRESERVE = 'PRESERVE',
   UNIQUEJOIN = 'UNIQUEJOIN',
+  UNIQUE = 'UNIQUE',
   OUTER = 'OUTER',
   OUT = 'OUT',
   OVERWRITE = 'OVERWRITE',
@@ -2147,7 +2573,6 @@ export enum TokenEnum {
 
 export const Tokens = {
   WS,
-  Number,
   ByteLengthLiteral,
   DecimalLiteral,
   TinyintLiteral,
@@ -2184,6 +2609,72 @@ export const Tokens = {
   COMMA,
   COLON,
   DOT,
+  ONE_DECIMAL,
+  ZERO_DECIMAL,
+  Number,
+  LIFECYCLE,
+  TABLESPACE,
+  STATS_PERSISTENT,
+  STATS_AUTO_RECALC,
+  COMPACT,
+  REDUNDANT,
+  COMPRESSED,
+  ROW_FORMAT,
+  PASSWORD,
+  PACK_KEYS,
+  MIN_ROWS,
+  MAX_ROWS,
+  KEY_BLOCK_SIZE,
+  LAST,
+  INSERT_METHOD,
+  ENCRYPTION,
+  DELAY_KEY_WRITE,
+  CONNECTION,
+  COMPRESSION,
+  AVG_ROW_LENGTH,
+  ENGINE,
+  CHECKSUM,
+  CHARSET,
+  PERFOMANCE_SCHEMA,
+  NDBCLUSTER,
+  NDB,
+  MRG_MYISAM,
+  MYISAM,
+  INNODB,
+  FEDERATED,
+  CSV,
+  BLACKHOLE,
+  MULTIPOLYGON,
+  POLYGON,
+  MULTIPOINT,
+  POINT,
+  MULTILINESTRING,
+  LINESTRING,
+  GEOMETRYCOLLECTION,
+  ENUM,
+  VARBINARY,
+  LONGBLOB,
+  MEDIUMBLOB,
+  TINYBLOB,
+  BLOB,
+  NUMERIC,
+  REAL,
+  ZEROFILL,
+  MEDIUMINT,
+  COLLATE,
+  LONGTEXT,
+  MEDIUMTEXT,
+  TINYTEXT,
+  VARCHAR,
+  MEMORY,
+  DISK,
+  STORAGE,
+  DYNAMIC,
+  FIXED,
+  COLUMN_FORMAT,
+  PRIMARY,
+  AUTO_INCREMENT,
+  DEFAULT,
   STRAIGHT_JOIN,
   STARTING,
   ENCLOSED,
@@ -2225,6 +2716,7 @@ export const Tokens = {
   BIT_XOR,
   BIT_OR,
   BIT_AND,
+  BIT,
   AVG,
   UTC_TIMESTAMP,
   UTC_TIME,
@@ -2384,12 +2876,14 @@ export const Tokens = {
   ORCFILE,
   RCFILE,
   TEXTFILE,
+  TEXT,
   SEQUENCEFILE,
   FILEFORMAT,
   STORED,
   LINES,
   KEY_TYPE,
   KEYS,
+  KEY,
   ITEMS,
   COLLECTION,
   ESCAPED,
@@ -2425,9 +2919,11 @@ export const Tokens = {
   TINYINT,
   INT,
   BOOLEAN,
+  BOOL,
   COMMENT,
   PROTECTION,
   IGNORE,
+  NO,
   RENAME,
   DROP,
   DESCRIBE,
@@ -2473,6 +2969,7 @@ export const Tokens = {
   LEFT,
   PRESERVE,
   UNIQUEJOIN,
+  UNIQUE,
   OUTER,
   OUT,
   OVERWRITE,
@@ -2507,7 +3004,6 @@ export const Tokens = {
 export const tokens = [
   WhiteSpace,
   WS,
-  Number,
   ByteLengthLiteral,
   DecimalLiteral,
   TinyintLiteral,
@@ -2544,6 +3040,72 @@ export const tokens = [
   COMMA,
   COLON,
   DOT,
+  ONE_DECIMAL,
+  ZERO_DECIMAL,
+  Number,
+  LIFECYCLE,
+  TABLESPACE,
+  STATS_PERSISTENT,
+  STATS_AUTO_RECALC,
+  COMPACT,
+  REDUNDANT,
+  COMPRESSED,
+  ROW_FORMAT,
+  PASSWORD,
+  PACK_KEYS,
+  MIN_ROWS,
+  MAX_ROWS,
+  KEY_BLOCK_SIZE,
+  LAST,
+  INSERT_METHOD,
+  ENCRYPTION,
+  DELAY_KEY_WRITE,
+  CONNECTION,
+  COMPRESSION,
+  AVG_ROW_LENGTH,
+  ENGINE,
+  CHECKSUM,
+  CHARSET,
+  PERFOMANCE_SCHEMA,
+  NDBCLUSTER,
+  NDB,
+  MRG_MYISAM,
+  MYISAM,
+  INNODB,
+  FEDERATED,
+  CSV,
+  BLACKHOLE,
+  MULTIPOLYGON,
+  POLYGON,
+  MULTIPOINT,
+  POINT,
+  MULTILINESTRING,
+  LINESTRING,
+  GEOMETRYCOLLECTION,
+  ENUM,
+  VARBINARY,
+  LONGBLOB,
+  MEDIUMBLOB,
+  TINYBLOB,
+  BLOB,
+  NUMERIC,
+  REAL,
+  ZEROFILL,
+  MEDIUMINT,
+  COLLATE,
+  LONGTEXT,
+  MEDIUMTEXT,
+  TINYTEXT,
+  VARCHAR,
+  MEMORY,
+  DISK,
+  STORAGE,
+  DYNAMIC,
+  FIXED,
+  COLUMN_FORMAT,
+  PRIMARY,
+  AUTO_INCREMENT,
+  DEFAULT,
   STRAIGHT_JOIN,
   STARTING,
   ENCLOSED,
@@ -2585,6 +3147,7 @@ export const tokens = [
   BIT_XOR,
   BIT_OR,
   BIT_AND,
+  BIT,
   AVG,
   UTC_TIMESTAMP,
   UTC_TIME,
@@ -2744,12 +3307,14 @@ export const tokens = [
   ORCFILE,
   RCFILE,
   TEXTFILE,
+  TEXT,
   SEQUENCEFILE,
   FILEFORMAT,
   STORED,
   LINES,
   KEY_TYPE,
   KEYS,
+  KEY,
   ITEMS,
   COLLECTION,
   ESCAPED,
@@ -2785,9 +3350,11 @@ export const tokens = [
   TINYINT,
   INT,
   BOOLEAN,
+  BOOL,
   COMMENT,
   PROTECTION,
   IGNORE,
+  NO,
   RENAME,
   DROP,
   DESCRIBE,
@@ -2833,6 +3400,7 @@ export const tokens = [
   LEFT,
   PRESERVE,
   UNIQUEJOIN,
+  UNIQUE,
   OUTER,
   OUT,
   OVERWRITE,
