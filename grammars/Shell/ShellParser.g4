@@ -125,7 +125,7 @@ list1:
 
 listTerminator: LINE_FEED | SEMI;
 
-newlineList: | newlineList LINE_FEED;
+newlineList: newlineList? LINE_FEED;
 
 simpleList: simpleList1 (BIT_AND_OP | SEMI)?;
 
