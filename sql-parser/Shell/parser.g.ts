@@ -3,10 +3,10 @@ import { tokens, Lexer, Tokens, TokenEnum } from './lexer.g';
 
 export enum SyntaxKind {
   root = 'root',
+  pipelineCommands = 'pipelineCommands',
   number = 'number',
   word = 'word',
   wordList = 'wordList',
-  variableUsed = 'variableUsed',
   redirection = 'redirection',
   comments = 'comments',
   command = 'command',
@@ -81,6 +81,12 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('root', () => {
       this.OPTION(() => {
+        this.SUBRULE(this.pipelineCommands);
+      });
+    });
+
+    this.RULE('pipelineCommands', () => {
+      this.MANY(() => {
         this.SUBRULE(this.pipelineCommand);
       });
     });
@@ -90,28 +96,13 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('word', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.ID);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.variableUsed);
-          },
-        },
-      ]);
+      this.CONSUME(Tokens.ID);
     });
 
     this.RULE('wordList', () => {
       this.AT_LEAST_ONE(() => {
         this.SUBRULE(this.word);
       });
-    });
-
-    this.RULE('variableUsed', () => {
-      this.CONSUME(Tokens.VARIABLE);
     });
 
     this.RULE('redirection', () => {
@@ -260,15 +251,13 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('command', () => {
-      this.MANY(() => {
+      this.OPTION(() => {
         this.SUBRULE(this.comments);
       });
 
-      this.MANY2(() => {
-        this.SUBRULE(this.shellCommand);
-      });
+      this.SUBRULE(this.shellCommand);
 
-      this.MANY3(() => {
+      this.OPTION2(() => {
         this.SUBRULE(this.redirection);
       });
     });
@@ -338,6 +327,16 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.SUBRULE(this.functionDef);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.word);
+
+            this.OPTION(() => {
+              this.CONSUME(Tokens.EQUAL_SYMBOL);
+              this.SUBRULE2(this.word);
+            });
           },
         },
       ]);
@@ -438,10 +437,6 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.OPTION(() => {
-              this.CONSUME(Tokens.FUNCTION);
-            });
-
             this.SUBRULE(this.word);
             this.CONSUME(Tokens.LEFT_BRACKET);
             this.CONSUME(Tokens.RIGHT_BRACKET);
@@ -450,19 +445,15 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
-            this.CONSUME2(Tokens.FUNCTION);
+            this.CONSUME(Tokens.FUNCTION);
             this.SUBRULE2(this.word);
-            this.SUBRULE2(this.groupCommand);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE3(this.word);
 
-            this.OPTION2(() => {
-              this.CONSUME(Tokens.EQUAL_SYMBOL);
-              this.SUBRULE4(this.word);
+            this.OPTION(() => {
+              this.CONSUME2(Tokens.LEFT_BRACKET);
+              this.CONSUME2(Tokens.RIGHT_BRACKET);
             });
+
+            this.SUBRULE2(this.groupCommand);
           },
         },
       ]);
@@ -713,7 +704,7 @@ export class Parser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.DOUBLE_HYPHEN);
             this.CONSUME(Tokens.NO_CREATE);
-            this.CONSUME(Tokens.FILEPATH);
+            this.CONSUME(Tokens.ID);
           },
         },
       ]);
@@ -752,7 +743,7 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.SUBRULE(this.chmodMode);
-      this.CONSUME(Tokens.FILEPATH);
+      this.CONSUME(Tokens.ID);
     });
 
     this.RULE('chmodMode', () => {

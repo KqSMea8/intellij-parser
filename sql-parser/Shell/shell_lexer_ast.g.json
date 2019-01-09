@@ -5,40 +5,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "fragName": "VARIABLEUSED",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'$'"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "ReExp",
-                "content": "[A-Za-z_0-9*]+"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "\\$[A-Za-z_0-9*]+"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "fragName": "SQUOTA_STRING",
       "atoms": [
         {
@@ -307,30 +273,6 @@
         }
       ],
       "pattern": "\\\"(\\\\.|\\\"\\\"|[^(\\\"|\\\\)])*\\\""
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "tokenName": "VARIABLE",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "VARIABLEUSED"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "\\$[A-Za-z_0-9*]+"
     },
     {
       "index": 0,
@@ -1945,132 +1887,27 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "?",
               "item": {
                 "index": 0,
-                "kind": "ReExp",
-                "content": "[A-Za-z_$0-9*]+"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "[A-Za-z_\\$0-9*]+"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "tokenName": "FILEPATH",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "Stringliteral",
-                          "content": "'./'"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "Stringliteral",
-                          "content": "'../'"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "Stringliteral",
-                          "content": "'/'"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "ReExp",
-                          "content": "[A-Za-z0-9$_-]"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "kind": "Stringliteral",
+                "content": "'$'"
               }
             },
             {
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "*",
               "item": {
                 "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "All"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "kind": "ReExp",
+                "content": "[A-Za-z_0-9]+"
               }
             }
           ]
         }
       ],
-      "pattern": "(\\.\\/|\\.\\.\\/|\\/|[A-Za-z0-9\\$_-])(.)*"
+      "pattern": "\\$?[A-Za-z_0-9]+"
     },
     {
       "index": 0,
@@ -2094,7 +1931,7 @@
           ]
         }
       ],
-      "pattern": "[A-Za-z_\\$0-9*]+"
+      "pattern": "\\$?[A-Za-z_0-9]+"
     }
   ]
 }

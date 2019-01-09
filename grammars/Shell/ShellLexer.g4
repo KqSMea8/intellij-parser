@@ -15,9 +15,9 @@ ELSE: 'ELSE';
 ELSE_END: 'ELIF';
 TIME: 'TIME';
 
+ID: ID_LITERAL;
 DIGIT: [0-9]+;
 DIGIT_TO_SEVEN: [0-7][0-7][0-7];
-ID: ID_LITERAL;
 
 LEFT_REDIRECTION: '<';
 RIGHT_REDIRECTION: '>';
@@ -46,7 +46,6 @@ EQUAL_SYMBOL: '=';
 // linux
 DOUBLE_HYPHEN: '--';
 TOUCH: 'TOUCH';
-FILEPATH: ('./' | '../' | '/' | [A-Za-z0-9$_-])(.)*;
 CHMOD: 'CHMOD';
 ADD: '+';
 ECHO: 'ECHO';
@@ -73,12 +72,8 @@ OPTION_X: 'X';
 
 STRING_LITERAL: DQUOTA_STRING | SQUOTA_STRING;
 
-VARIABLE: VARIABLEUSED;
-
 fragment DQUOTA_STRING:
 	'"' ('\\' . | '""' | ~('"' | '\\'))* '"';
 fragment SQUOTA_STRING:
 	'\'' ('\\' . | '\'\'' | ~('\'' | '\\'))* '\'';
-fragment ID_LITERAL: [A-Za-z_$0-9*]+;
-
-fragment VARIABLEUSED: '$'[A-Za-z_0-9*]+;
+fragment ID_LITERAL: '$'?[A-Za-z_0-9]+;

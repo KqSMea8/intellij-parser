@@ -6,89 +6,80 @@ const WhiteSpace = chevrotain.createToken({
   group: chevrotain.Lexer.SKIPPED,
   line_breaks: true,
 });
+const STRING_LITERAL = chevrotain.createToken({
+  name: 'STRING_LITERAL',
+  pattern: /("(\.|""|[^("|\)])*"|'(\.|''|[^('|\)])*')/i,
+});
+const DIGIT = chevrotain.createToken({
+  name: 'DIGIT',
+  pattern: /[0-9]+/i,
+  longer_alt: STRING_LITERAL,
+});
+const DIGIT_TO_SEVEN = chevrotain.createToken({
+  name: 'DIGIT_TO_SEVEN',
+  pattern: /[0-7][0-7][0-7]/i,
+  longer_alt: DIGIT,
+});
 const ID = chevrotain.createToken({
   name: 'ID',
   pattern: /[A-Za-z_$0-9*]+/i,
-});
-const VARIABLE = chevrotain.createToken({
-  name: 'VARIABLE',
-  pattern: /\$[A-Za-z_0-9*]+/i,
-  longer_alt: ID,
-});
-const STRING_LITERAL = chevrotain.createToken({
-  name: 'STRING_LITERAL',
-  pattern: /(\"(\\.|\"\"|[^(\"|\\)])*\"|\'(\\.|\'\'|[^(\'|\\)])*\')/i,
-  longer_alt: ID,
+  longer_alt: DIGIT_TO_SEVEN,
 });
 const OPTION_X = chevrotain.createToken({
   name: 'OPTION_X',
   pattern: /X/,
-  longer_alt: ID,
 });
 const OPTION_X_LOWER = chevrotain.createToken({
   name: 'OPTION_X_LOWER',
   pattern: /x/,
-  longer_alt: ID,
 });
 const OPTION_W_LOWER = chevrotain.createToken({
   name: 'OPTION_W_LOWER',
   pattern: /w/,
-  longer_alt: ID,
 });
 const OPTION_V_LOWER = chevrotain.createToken({
   name: 'OPTION_V_LOWER',
   pattern: /v/,
-  longer_alt: ID,
 });
 const OPTION_U_LOWER = chevrotain.createToken({
   name: 'OPTION_U_LOWER',
   pattern: /u/,
-  longer_alt: ID,
 });
 const OPTION_T_LOWER = chevrotain.createToken({
   name: 'OPTION_T_LOWER',
   pattern: /t/,
-  longer_alt: ID,
 });
 const OPTION_R_LOWER = chevrotain.createToken({
   name: 'OPTION_R_LOWER',
   pattern: /r/,
-  longer_alt: ID,
 });
 const OPTION_O_LOWER = chevrotain.createToken({
   name: 'OPTION_O_LOWER',
   pattern: /o/,
-  longer_alt: ID,
 });
 const OPTION_M_LOWER = chevrotain.createToken({
   name: 'OPTION_M_LOWER',
   pattern: /m/,
-  longer_alt: ID,
 });
 const OPTION_G_LOWER = chevrotain.createToken({
   name: 'OPTION_G_LOWER',
   pattern: /g/,
-  longer_alt: ID,
 });
 const OPTION_F_LOWER = chevrotain.createToken({
   name: 'OPTION_F_LOWER',
   pattern: /f/,
-  longer_alt: ID,
 });
 const OPTION_D_LOWER = chevrotain.createToken({
   name: 'OPTION_D_LOWER',
   pattern: /d/,
-  longer_alt: ID,
 });
 const OPTION_C_LOWER = chevrotain.createToken({
   name: 'OPTION_C_LOWER',
   pattern: /c/,
-  longer_alt: ID,
 });
 const OPTION_A_LOWER = chevrotain.createToken({
   name: 'OPTION_A_LOWER',
   pattern: /a/,
-  longer_alt: ID,
 });
 const NO_CREATE = chevrotain.createToken({
   name: 'NO_CREATE',
@@ -240,16 +231,6 @@ const LEFT_REDIRECTION = chevrotain.createToken({
   pattern: /\</i,
   longer_alt: ID,
 });
-const DIGIT_TO_SEVEN = chevrotain.createToken({
-  name: 'DIGIT_TO_SEVEN',
-  pattern: /[0-7][0-7][0-7]/i,
-  longer_alt: ID,
-});
-const DIGIT = chevrotain.createToken({
-  name: 'DIGIT',
-  pattern: /[0-9]+/i,
-  longer_alt: ID,
-});
 const TIME = chevrotain.createToken({
   name: 'TIME',
   pattern: /TIME/i,
@@ -313,7 +294,6 @@ const FOR = chevrotain.createToken({
 const OPTION_R = chevrotain.createToken({
   name: 'OPTION_R',
   pattern: /R/,
-  longer_alt: ID,
 });
 const DONE = chevrotain.createToken({
   name: 'DONE',
@@ -335,14 +315,8 @@ const WHILE = chevrotain.createToken({
   pattern: /WHILE/i,
   longer_alt: ID,
 });
-const FILEPATH = chevrotain.createToken({
-  name: 'FILEPATH',
-  pattern: /(\.\/|\.\.\/|\/|[A-Za-z0-9\$_-])(.)*/i,
-  longer_alt: ID,
-});
 
 export enum TokenEnum {
-  VARIABLE = 'VARIABLE',
   STRING_LITERAL = 'STRING_LITERAL',
   OPTION_X = 'OPTION_X',
   OPTION_X_LOWER = 'OPTION_X_LOWER',
@@ -407,12 +381,10 @@ export enum TokenEnum {
   DO = 'DO',
   UNTIL = 'UNTIL',
   WHILE = 'WHILE',
-  FILEPATH = 'FILEPATH',
   ID = 'ID',
 }
 
 export const Tokens = {
-  VARIABLE,
   STRING_LITERAL,
   OPTION_X,
   OPTION_X_LOWER,
@@ -477,13 +449,11 @@ export const Tokens = {
   DO,
   UNTIL,
   WHILE,
-  FILEPATH,
   ID,
 };
 
 export const tokens = [
   WhiteSpace,
-  VARIABLE,
   STRING_LITERAL,
   OPTION_X,
   OPTION_X_LOWER,
@@ -548,7 +518,6 @@ export const tokens = [
   DO,
   UNTIL,
   WHILE,
-  FILEPATH,
   ID,
 ];
 

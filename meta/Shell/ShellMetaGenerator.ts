@@ -261,9 +261,7 @@ export class RulesNode extends BaseNode {
 
   toLexerCode() {
     return this.rules
-      .filter(rule => !rule.fragName)
-      .filter(rule => rule.tokenName !== 'DECIMAL_LITERAL')
-      .filter(rule => rule.tokenName !== 'ID')
+      .filter(rule => !rule.fragName && rule.tokenName !== 'STRING_LITERAL' && rule.tokenName !== 'ID' && rule.tokenName !== 'DIGIT' && rule.tokenName !== 'DIGIT_TO_SEVEN')
       .map(rule => rule.toLexerCode())
       .join('\n');
   }
@@ -308,7 +306,6 @@ export class RuleNode extends BaseNode {
       return `const ${this.tokenName} = chevrotain.createToken({
         name: '${this.tokenName}',
         pattern: /${this.pattern}/,
-        longer_alt: ID
       });`;
     } else {
       return `const ${this.tokenName} = chevrotain.createToken({

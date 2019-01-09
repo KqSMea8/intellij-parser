@@ -1,11 +1,11 @@
-root: pipelineCommand?;
+root: pipelineCommands?;
+
+pipelineCommands: pipelineCommand*;
 
 number: DIGIT;
-word: ID | variableUsed;
+word: ID;
 
 wordList: word+;
-
-variableUsed: VARIABLE;
 
 redirection:
 	(
@@ -32,7 +32,7 @@ redirection:
 
 comments: COMMENT;
 
-command: comments* shellCommand* redirection*;
+command: comments? shellCommand redirection?;
 
 shellCommand:
 	forCommand
@@ -44,7 +44,8 @@ shellCommand:
 	| groupCommand
 	| customCommand
 	| echoCommand
-	| functionDef;
+	| functionDef
+	| word (EQUAL_SYMBOL word)?;
 
 bracketList: LEFT_SQUARE_BRACKET? list RIGHT_SQUARE_BRACKET?;
 
@@ -63,9 +64,8 @@ selectCommandBody: DO list DONE | groupCommand;
 caseCommand: CASE word IN caseClause CASE_END;
 
 functionDef:
-	FUNCTION? word LEFT_BRACKET RIGHT_BRACKET groupCommand
-	| FUNCTION word groupCommand
-	| word (EQUAL_SYMBOL word)?;
+	word LEFT_BRACKET RIGHT_BRACKET groupCommand
+	| FUNCTION word (LEFT_BRACKET RIGHT_BRACKET)? groupCommand;
 
 subshell: LEFT_BRACKET list RIGHT_BRACKET;
 
@@ -117,7 +117,7 @@ touchCmd:
 			| OPTION_T_LOWER
 		)+
 	)*
-	| (DOUBLE_HYPHEN NO_CREATE) FILEPATH;
+	| (DOUBLE_HYPHEN NO_CREATE) ID;
 
 chmodCmd:
 	CHMOD (
@@ -127,7 +127,7 @@ chmodCmd:
 			| OPTION_V_LOWER
 			| OPTION_R
 		)+
-	)? chmodMode FILEPATH;
+	)? chmodMode ID;
 
 chmodMode: (
 		(
