@@ -5,6 +5,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "ruleName": "root",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "pipelineCommand"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "ruleName": "number",
       "atoms": [
         {
@@ -41,35 +65,23 @@
               "item": {
                 "index": 0,
                 "kind": "UpperName",
-                "name": "LETTER"
+                "name": "ID"
               }
-            },
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
             {
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
               "item": {
                 "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "UNDERLINE"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "kind": "LowerName",
+                "name": "variableUsed"
               }
             }
           ]
@@ -103,7 +115,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "ruleName": "assignmentWord",
+      "ruleName": "variableUsed",
       "atoms": [
         {
           "index": 0,
@@ -115,28 +127,8 @@
               "hasNot": false,
               "item": {
                 "index": 0,
-                "kind": "LowerName",
-                "name": "word"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
                 "kind": "UpperName",
-                "name": "EQUAL_SYMBOL"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 1,
-                "kind": "LowerName",
-                "name": "word"
+                "name": "VARIABLE"
               }
             }
           ]
@@ -173,6 +165,17 @@
                           "kind": "UpperName",
                           "name": "RIGHT_REDIRECTION"
                         }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "BIT_OR_OP"
+                        }
                       }
                     ]
                   },
@@ -188,6 +191,17 @@
                           "index": 0,
                           "kind": "UpperName",
                           "name": "LEFT_REDIRECTION"
+                        }
+                      },
+                      {
+                        "index": 1,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "RIGHT_REDIRECTION"
                         }
                       }
                     ]
@@ -253,6 +267,17 @@
                           "kind": "UpperName",
                           "name": "LEFT_REDIRECTION_WITH_ADD"
                         }
+                      },
+                      {
+                        "index": 2,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "HYPHEN"
+                        }
                       }
                     ]
                   },
@@ -268,135 +293,6 @@
                           "index": 0,
                           "kind": "UpperName",
                           "name": "DESCRIPTOR_TO_FILE"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 1,
-                                    "kind": "UpperName",
-                                    "name": "LEFT_REDIRECTION_WITH_ADD"
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 0,
-                                    "kind": "UpperName",
-                                    "name": "HYPHEN"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 1,
-                                    "kind": "UpperName",
-                                    "name": "LEFT_REDIRECTION"
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 1,
-                                    "kind": "UpperName",
-                                    "name": "RIGHT_REDIRECTION"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 2,
-                                    "kind": "UpperName",
-                                    "name": "RIGHT_REDIRECTION"
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 0,
-                                    "kind": "UpperName",
-                                    "name": "BIT_OR_OP"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
                         }
                       }
                     ]
@@ -447,9 +343,20 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 3,
+                          "index": 2,
                           "kind": "UpperName",
                           "name": "RIGHT_REDIRECTION"
+                        }
+                      },
+                      {
+                        "index": 3,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "BIT_OR_OP"
                         }
                       }
                     ]
@@ -463,9 +370,20 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 2,
+                          "index": 1,
                           "kind": "UpperName",
                           "name": "LEFT_REDIRECTION"
+                        }
+                      },
+                      {
+                        "index": 4,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 3,
+                          "kind": "UpperName",
+                          "name": "RIGHT_REDIRECTION"
                         }
                       }
                     ]
@@ -495,9 +413,20 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 2,
+                          "index": 1,
                           "kind": "UpperName",
                           "name": "LEFT_REDIRECTION_WITH_ADD"
+                        }
+                      },
+                      {
+                        "index": 5,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "?",
+                        "item": {
+                          "index": 1,
+                          "kind": "UpperName",
+                          "name": "HYPHEN"
                         }
                       }
                     ]
@@ -533,135 +462,6 @@
                         }
                       }
                     ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 3,
-                                    "kind": "UpperName",
-                                    "name": "LEFT_REDIRECTION"
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 4,
-                                    "kind": "UpperName",
-                                    "name": "RIGHT_REDIRECTION"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 5,
-                                    "kind": "UpperName",
-                                    "name": "RIGHT_REDIRECTION"
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 1,
-                                    "kind": "UpperName",
-                                    "name": "BIT_OR_OP"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "bracketExp",
-                          "atoms": [
-                            {
-                              "index": 0,
-                              "kind": "atom",
-                              "itemSuffs": [
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 3,
-                                    "kind": "UpperName",
-                                    "name": "LEFT_REDIRECTION_WITH_ADD"
-                                  }
-                                },
-                                {
-                                  "index": 0,
-                                  "kind": "itemSuff",
-                                  "hasNot": false,
-                                  "item": {
-                                    "index": 1,
-                                    "kind": "UpperName",
-                                    "name": "HYPHEN"
-                                  }
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      }
-                    ]
                   }
                 ]
               }
@@ -683,7 +483,7 @@
           "kind": "atom",
           "itemSuffs": [
             {
-              "index": 0,
+              "index": 6,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -786,55 +586,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "ruleName": "redirectionList",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "+",
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "redirection"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "simpleCommand",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "+",
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "simpleCommandElement"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "simpleCommandElement",
+      "ruleName": "comments",
       "atoms": [
         {
           "index": 0,
@@ -846,40 +598,8 @@
               "hasNot": false,
               "item": {
                 "index": 0,
-                "kind": "LowerName",
-                "name": "word"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "assignmentWord"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "redirection"
+                "kind": "UpperName",
+                "name": "COMMENT"
               }
             }
           ]
@@ -899,22 +619,18 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "*",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "simpleCommand"
+                "name": "comments"
               }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
+            },
             {
-              "index": 0,
+              "index": 1,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "*",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
@@ -922,14 +638,14 @@
               }
             },
             {
-              "index": 0,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
+              "suff": "*",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "redirectionList"
+                "name": "redirection"
               }
             }
           ]
@@ -1027,7 +743,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "doubleBracketList"
               }
             },
             {
@@ -1045,9 +761,9 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
+                "index": 0,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
               }
             },
             {
@@ -1137,7 +853,162 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
+                "name": "customCommand"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "echoCommand"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
                 "name": "functionDef"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "bracketList",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "LEFT_SQUARE_BRACKET"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "list"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "RIGHT_SQUARE_BRACKET"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "doubleBracketList",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "LEFT_SQUARE_BRACKET"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "bracketList"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "RIGHT_SQUARE_BRACKET"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "echoCommand",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ECHO"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "word"
               }
             }
           ]
@@ -1178,93 +1049,29 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "suff": "?",
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "SEMI"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "IN"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "wordList"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "listTerminator"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 2,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "index": 0,
+                "kind": "UpperName",
+                "name": "IN"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "wordList"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "SEMI"
               }
             },
             {
@@ -1307,7 +1114,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
               }
             },
             {
@@ -1343,7 +1150,7 @@
               "item": {
                 "index": 1,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
               }
             },
             {
@@ -1394,93 +1201,29 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "suff": "?",
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "SEMI"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "IN"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "wordList"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "listTerminator"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 2,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "index": 0,
+                "kind": "UpperName",
+                "name": "IN"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "wordList"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "SEMI"
               }
             },
             {
@@ -1591,16 +1334,6 @@
               "hasNot": false,
               "item": {
                 "index": 0,
-                "kind": "LowerName",
-                "name": "newlineList"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
                 "kind": "UpperName",
                 "name": "IN"
               }
@@ -1610,68 +1343,9 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "caseClauseSequence"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 2,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "caseClause"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "index": 0,
+                "kind": "LowerName",
+                "name": "caseClause"
               }
             },
             {
@@ -1701,84 +1375,11 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "?",
               "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "suff": "?",
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "FUNCTION"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "word"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "LEFT_BRACKET"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "RIGHT_BRACKET"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "UpperName",
-                          "name": "FUNCTION"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "word"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "index": 0,
+                "kind": "UpperName",
+                "name": "FUNCTION"
               }
             },
             {
@@ -1788,7 +1389,27 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "newlineList"
+                "name": "word"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "LEFT_BRACKET"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "RIGHT_BRACKET"
               }
             },
             {
@@ -1799,6 +1420,96 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "groupCommand"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "UpperName",
+                "name": "FUNCTION"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "LowerName",
+                "name": "word"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 1,
+                "kind": "LowerName",
+                "name": "groupCommand"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 2,
+                "kind": "LowerName",
+                "name": "word"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "EQUAL_SYMBOL"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 3,
+                          "kind": "LowerName",
+                          "name": "word"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             }
           ]
@@ -1831,7 +1542,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
               }
             },
             {
@@ -1871,10 +1582,32 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "LEFT_SQUARE_BRACKET"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
+              }
+            },
+            {
+              "index": 1,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "RIGHT_SQUARE_BRACKET"
               }
             },
             {
@@ -1894,11 +1627,11 @@
               "item": {
                 "index": 1,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
               }
             },
             {
-              "index": 0,
+              "index": 2,
               "kind": "itemSuff",
               "hasNot": false,
               "suff": "?",
@@ -1927,7 +1660,7 @@
                         "item": {
                           "index": 2,
                           "kind": "LowerName",
-                          "name": "compoundList"
+                          "name": "list"
                         }
                       }
                     ]
@@ -2034,7 +1767,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
               }
             },
             {
@@ -2054,7 +1787,7 @@
               "item": {
                 "index": 1,
                 "kind": "LowerName",
-                "name": "compoundList"
+                "name": "list"
               }
             },
             {
@@ -2087,7 +1820,7 @@
                         "item": {
                           "index": 2,
                           "kind": "LowerName",
-                          "name": "compoundList"
+                          "name": "list"
                         }
                       }
                     ]
@@ -2128,13 +1861,63 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "caseClauseSequence"
+                "name": "patternList"
               }
             },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DOUBLE_SEMI"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "patternList"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "customCommand",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
             {
               "index": 0,
               "kind": "itemSuff",
@@ -2142,7 +1925,7 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "patternList"
+                "name": "linuxCommand"
               }
             }
           ]
@@ -2158,16 +1941,6 @@
           "index": 0,
           "kind": "atom",
           "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "newlineList"
-              }
-            },
             {
               "index": 0,
               "kind": "itemSuff",
@@ -2204,93 +1977,9 @@
               "kind": "itemSuff",
               "hasNot": false,
               "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "compoundList"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "caseClauseSequence",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "+",
-              "item": {
                 "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "patternList"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "DOUBLE_SEMI"
-                        }
-                      }
-                    ]
-                  }
-                ]
+                "kind": "LowerName",
+                "name": "list"
               }
             }
           ]
@@ -2320,7 +2009,7 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
+              "suff": "*",
               "item": {
                 "index": 0,
                 "kind": "bracketExp",
@@ -2374,197 +2063,6 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "newlineList"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "list0"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "compoundList",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "newlineList"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "list1"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "list0"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "list0",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "list1"
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 1,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "LINE_FEED"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "BIT_AND_OP"
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "SEMI"
-                        }
-                      }
-                    ]
-                  }
-                ]
-              }
-            },
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "newlineList"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "list1",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
                 "name": "pipelineCommand"
               }
             },
@@ -2572,7 +2070,7 @@
               "index": 0,
               "kind": "itemSuff",
               "hasNot": false,
-              "suff": "?",
+              "suff": "*",
               "item": {
                 "index": 0,
                 "kind": "bracketExp",
@@ -2678,68 +2176,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "ruleName": "listTerminator",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "LINE_FEED"
-              }
-            }
-          ]
-        },
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "SEMI"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "newlineList",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "UpperName",
-                "name": "LINE_FEED"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "ruleName": "pipelineCommand",
       "atoms": [
         {
@@ -2765,19 +2201,36 @@
                         "hasNot": false,
                         "item": {
                           "index": 0,
-                          "kind": "LowerName",
-                          "name": "timespec"
-                        }
-                      },
-                      {
-                        "index": 1,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "suff": "?",
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "EXCLAMATION_SYMBOL"
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "EXCLAMATION_SYMBOL"
+                                  }
+                                },
+                                {
+                                  "index": 1,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "suff": "?",
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "LowerName",
+                                    "name": "timespec"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
                         }
                       }
                     ]
@@ -2791,20 +2244,37 @@
                         "kind": "itemSuff",
                         "hasNot": false,
                         "item": {
-                          "index": 1,
-                          "kind": "UpperName",
-                          "name": "EXCLAMATION_SYMBOL"
-                        }
-                      },
-                      {
-                        "index": 2,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "suff": "?",
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "timespec"
+                          "index": 0,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 1,
+                                    "kind": "LowerName",
+                                    "name": "timespec"
+                                  }
+                                },
+                                {
+                                  "index": 2,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "suff": "?",
+                                  "item": {
+                                    "index": 1,
+                                    "kind": "UpperName",
+                                    "name": "EXCLAMATION_SYMBOL"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
                         }
                       }
                     ]
@@ -2820,54 +2290,6 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "command"
-              }
-            },
-            {
-              "index": 3,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "suff": "?",
-              "item": {
-                "index": 0,
-                "kind": "bracketExp",
-                "atoms": [
-                  {
-                    "index": 0,
-                    "kind": "atom",
-                    "itemSuffs": [
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "UpperName",
-                          "name": "BIT_OR_OP"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 0,
-                          "kind": "LowerName",
-                          "name": "newlineList"
-                        }
-                      },
-                      {
-                        "index": 0,
-                        "kind": "itemSuff",
-                        "hasNot": false,
-                        "item": {
-                          "index": 1,
-                          "kind": "LowerName",
-                          "name": "command"
-                        }
-                      }
-                    ]
-                  }
-                ]
               }
             }
           ]
@@ -2925,6 +2347,721 @@
                 "index": 0,
                 "kind": "LowerName",
                 "name": "timeOpt"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "linuxCommand",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "fileManagementCmd"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "fileManagementCmd",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "touchCmd"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "chmodCmd"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "touchCmd",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "TOUCH"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "HYPHEN"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "+",
+                        "item": {
+                          "index": 1,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_A_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_M_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_C_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_F_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_R_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_D_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_T_LOWER"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "DOUBLE_HYPHEN"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "NO_CREATE"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "FILEPATH"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "chmodCmd",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "CHMOD"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "?",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "UpperName",
+                          "name": "HYPHEN"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "suff": "+",
+                        "item": {
+                          "index": 1,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_C_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_F_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_V_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_R"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "chmodMode"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "FILEPATH"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "chmodMode",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_U_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_G_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_O_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_A_LOWER"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 2,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "LowerName",
+                                    "name": "minus"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "ADD"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "EQUAL_SYMBOL"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 3,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_R_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_W_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_X_LOWER"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "UpperName",
+                                    "name": "OPTION_X"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DIGIT_TO_SEVEN"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "minus",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "HYPHEN"
               }
             }
           ]

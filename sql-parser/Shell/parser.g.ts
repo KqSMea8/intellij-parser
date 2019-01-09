@@ -2,16 +2,18 @@ import * as chevrotain from 'chevrotain';
 import { tokens, Lexer, Tokens, TokenEnum } from './lexer.g';
 
 export enum SyntaxKind {
+  root = 'root',
   number = 'number',
   word = 'word',
   wordList = 'wordList',
-  assignmentWord = 'assignmentWord',
+  variableUsed = 'variableUsed',
   redirection = 'redirection',
-  redirectionList = 'redirectionList',
-  simpleCommand = 'simpleCommand',
-  simpleCommandElement = 'simpleCommandElement',
+  comments = 'comments',
   command = 'command',
   shellCommand = 'shellCommand',
+  bracketList = 'bracketList',
+  doubleBracketList = 'doubleBracketList',
+  echoCommand = 'echoCommand',
   forCommand = 'forCommand',
   forCommandBody = 'forCommandBody',
   selectCommand = 'selectCommand',
@@ -23,18 +25,19 @@ export enum SyntaxKind {
   groupCommand = 'groupCommand',
   elifClause = 'elifClause',
   caseClause = 'caseClause',
+  customCommand = 'customCommand',
   patternList = 'patternList',
-  caseClauseSequence = 'caseClauseSequence',
   pattern = 'pattern',
   list = 'list',
-  compoundList = 'compoundList',
-  list0 = 'list0',
-  list1 = 'list1',
-  listTerminator = 'listTerminator',
-  newlineList = 'newlineList',
   pipelineCommand = 'pipelineCommand',
   timeOpt = 'timeOpt',
   timespec = 'timespec',
+  linuxCommand = 'linuxCommand',
+  fileManagementCmd = 'fileManagementCmd',
+  touchCmd = 'touchCmd',
+  chmodCmd = 'chmodCmd',
+  chmodMode = 'chmodMode',
+  minus = 'minus',
 }
 
 export { tokens, Lexer, Tokens, TokenEnum };
@@ -76,16 +79,29 @@ export class Parser extends chevrotain.Parser {
       maxLookahead: 6,
     });
 
+    this.RULE('root', () => {
+      this.OPTION(() => {
+        this.SUBRULE(this.pipelineCommand);
+      });
+    });
+
     this.RULE('number', () => {
       this.CONSUME(Tokens.DIGIT);
     });
 
     this.RULE('word', () => {
-      this.CONSUME(Tokens.LETTER);
-
-      this.OPTION(() => {
-        this.CONSUME(Tokens.UNDERLINE);
-      });
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ID);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.variableUsed);
+          },
+        },
+      ]);
     });
 
     this.RULE('wordList', () => {
@@ -94,10 +110,8 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
-    this.RULE('assignmentWord', () => {
-      this.SUBRULE(this.word);
-      this.CONSUME(Tokens.EQUAL_SYMBOL);
-      this.SUBRULE2(this.word);
+    this.RULE('variableUsed', () => {
+      this.CONSUME(Tokens.VARIABLE);
     });
 
     this.RULE('redirection', () => {
@@ -108,11 +122,19 @@ export class Parser extends chevrotain.Parser {
               {
                 ALT: () => {
                   this.CONSUME(Tokens.RIGHT_REDIRECTION);
+
+                  this.OPTION(() => {
+                    this.CONSUME(Tokens.BIT_OR_OP);
+                  });
                 },
               },
               {
                 ALT: () => {
                   this.CONSUME(Tokens.LEFT_REDIRECTION);
+
+                  this.OPTION2(() => {
+                    this.CONSUME2(Tokens.RIGHT_REDIRECTION);
+                  });
                 },
               },
               {
@@ -133,29 +155,15 @@ export class Parser extends chevrotain.Parser {
               {
                 ALT: () => {
                   this.CONSUME(Tokens.LEFT_REDIRECTION_WITH_ADD);
+
+                  this.OPTION3(() => {
+                    this.CONSUME(Tokens.HYPHEN);
+                  });
                 },
               },
               {
                 ALT: () => {
                   this.CONSUME(Tokens.DESCRIPTOR_TO_FILE);
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME2(Tokens.LEFT_REDIRECTION_WITH_ADD);
-                  this.CONSUME(Tokens.HYPHEN);
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME2(Tokens.LEFT_REDIRECTION);
-                  this.CONSUME2(Tokens.RIGHT_REDIRECTION);
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME3(Tokens.RIGHT_REDIRECTION);
-                  this.CONSUME(Tokens.BIT_OR_OP);
                 },
               },
             ]);
@@ -168,12 +176,20 @@ export class Parser extends chevrotain.Parser {
             this.OR3([
               {
                 ALT: () => {
-                  this.CONSUME4(Tokens.RIGHT_REDIRECTION);
+                  this.CONSUME3(Tokens.RIGHT_REDIRECTION);
+
+                  this.OPTION4(() => {
+                    this.CONSUME2(Tokens.BIT_OR_OP);
+                  });
                 },
               },
               {
                 ALT: () => {
-                  this.CONSUME3(Tokens.LEFT_REDIRECTION);
+                  this.CONSUME2(Tokens.LEFT_REDIRECTION);
+
+                  this.OPTION5(() => {
+                    this.CONSUME4(Tokens.RIGHT_REDIRECTION);
+                  });
                 },
               },
               {
@@ -183,7 +199,11 @@ export class Parser extends chevrotain.Parser {
               },
               {
                 ALT: () => {
-                  this.CONSUME3(Tokens.LEFT_REDIRECTION_WITH_ADD);
+                  this.CONSUME2(Tokens.LEFT_REDIRECTION_WITH_ADD);
+
+                  this.OPTION6(() => {
+                    this.CONSUME2(Tokens.HYPHEN);
+                  });
                 },
               },
               {
@@ -196,31 +216,13 @@ export class Parser extends chevrotain.Parser {
                   this.CONSUME2(Tokens.RIGHT_REDIRECTION_WITH_MERGE);
                 },
               },
-              {
-                ALT: () => {
-                  this.CONSUME4(Tokens.LEFT_REDIRECTION);
-                  this.CONSUME5(Tokens.RIGHT_REDIRECTION);
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME6(Tokens.RIGHT_REDIRECTION);
-                  this.CONSUME2(Tokens.BIT_OR_OP);
-                },
-              },
-              {
-                ALT: () => {
-                  this.CONSUME4(Tokens.LEFT_REDIRECTION_WITH_ADD);
-                  this.CONSUME2(Tokens.HYPHEN);
-                },
-              },
             ]);
             this.SUBRULE2(this.word);
           },
         },
         {
           ALT: () => {
-            this.OPTION(() => {
+            this.OPTION7(() => {
               this.SUBRULE2(this.number);
             });
 
@@ -253,55 +255,22 @@ export class Parser extends chevrotain.Parser {
       ]);
     });
 
-    this.RULE('redirectionList', () => {
-      this.AT_LEAST_ONE(() => {
-        this.SUBRULE(this.redirection);
-      });
-    });
-
-    this.RULE('simpleCommand', () => {
-      this.AT_LEAST_ONE(() => {
-        this.SUBRULE(this.simpleCommandElement);
-      });
-    });
-
-    this.RULE('simpleCommandElement', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.word);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.assignmentWord);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.redirection);
-          },
-        },
-      ]);
+    this.RULE('comments', () => {
+      this.CONSUME(Tokens.COMMENT);
     });
 
     this.RULE('command', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.SUBRULE(this.simpleCommand);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.shellCommand);
+      this.MANY(() => {
+        this.SUBRULE(this.comments);
+      });
 
-            this.OPTION(() => {
-              this.SUBRULE(this.redirectionList);
-            });
-          },
-        },
-      ]);
+      this.MANY2(() => {
+        this.SUBRULE(this.shellCommand);
+      });
+
+      this.MANY3(() => {
+        this.SUBRULE(this.redirection);
+      });
     });
 
     this.RULE('shellCommand', () => {
@@ -330,9 +299,9 @@ export class Parser extends chevrotain.Parser {
                 },
               },
             ]);
-            this.SUBRULE(this.compoundList);
+            this.SUBRULE(this.doubleBracketList);
             this.CONSUME(Tokens.DO);
-            this.SUBRULE2(this.compoundList);
+            this.SUBRULE(this.list);
             this.CONSUME(Tokens.DONE);
           },
         },
@@ -358,35 +327,57 @@ export class Parser extends chevrotain.Parser {
         },
         {
           ALT: () => {
+            this.SUBRULE(this.customCommand);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.echoCommand);
+          },
+        },
+        {
+          ALT: () => {
             this.SUBRULE(this.functionDef);
           },
         },
       ]);
     });
 
+    this.RULE('bracketList', () => {
+      this.OPTION(() => {
+        this.CONSUME(Tokens.LEFT_SQUARE_BRACKET);
+      });
+
+      this.SUBRULE(this.list);
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.RIGHT_SQUARE_BRACKET);
+      });
+    });
+
+    this.RULE('doubleBracketList', () => {
+      this.OPTION(() => {
+        this.CONSUME(Tokens.LEFT_SQUARE_BRACKET);
+      });
+
+      this.SUBRULE(this.bracketList);
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.RIGHT_SQUARE_BRACKET);
+      });
+    });
+
+    this.RULE('echoCommand', () => {
+      this.CONSUME(Tokens.ECHO);
+      this.SUBRULE(this.word);
+    });
+
     this.RULE('forCommand', () => {
       this.CONSUME(Tokens.FOR);
       this.SUBRULE(this.word);
-      this.OR2([
-        {
-          ALT: () => {
-            this.OPTION(() => {
-              this.CONSUME(Tokens.SEMI);
-            });
-
-            this.SUBRULE(this.newlineList);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE2(this.newlineList);
-            this.CONSUME(Tokens.IN);
-            this.SUBRULE(this.wordList);
-            this.SUBRULE(this.listTerminator);
-            this.SUBRULE3(this.newlineList);
-          },
-        },
-      ]);
+      this.CONSUME(Tokens.IN);
+      this.SUBRULE(this.wordList);
+      this.CONSUME(Tokens.SEMI);
       this.SUBRULE(this.forCommandBody);
     });
 
@@ -395,14 +386,14 @@ export class Parser extends chevrotain.Parser {
         {
           ALT: () => {
             this.CONSUME(Tokens.DO);
-            this.SUBRULE(this.compoundList);
+            this.SUBRULE(this.list);
             this.CONSUME(Tokens.DONE);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.LEFT_BRACE);
-            this.SUBRULE2(this.compoundList);
+            this.SUBRULE2(this.list);
             this.CONSUME(Tokens.RIGHT_BRACE);
           },
         },
@@ -412,26 +403,9 @@ export class Parser extends chevrotain.Parser {
     this.RULE('selectCommand', () => {
       this.CONSUME(Tokens.SELECT);
       this.SUBRULE(this.word);
-      this.OR2([
-        {
-          ALT: () => {
-            this.OPTION(() => {
-              this.CONSUME(Tokens.SEMI);
-            });
-
-            this.SUBRULE(this.newlineList);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE2(this.newlineList);
-            this.CONSUME(Tokens.IN);
-            this.SUBRULE(this.wordList);
-            this.SUBRULE(this.listTerminator);
-            this.SUBRULE3(this.newlineList);
-          },
-        },
-      ]);
+      this.CONSUME(Tokens.IN);
+      this.SUBRULE(this.wordList);
+      this.CONSUME(Tokens.SEMI);
       this.SUBRULE(this.selectCommandBody);
     });
 
@@ -455,31 +429,13 @@ export class Parser extends chevrotain.Parser {
     this.RULE('caseCommand', () => {
       this.CONSUME(Tokens.CASE);
       this.SUBRULE(this.word);
-      this.SUBRULE(this.newlineList);
       this.CONSUME(Tokens.IN);
-      this.OR2([
-        {
-          ALT: () => {
-            this.SUBRULE2(this.newlineList);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.caseClauseSequence);
-            this.SUBRULE3(this.newlineList);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.caseClause);
-          },
-        },
-      ]);
+      this.SUBRULE(this.caseClause);
       this.CONSUME(Tokens.CASE_END);
     });
 
     this.RULE('functionDef', () => {
-      this.OR2([
+      this.OR([
         {
           ALT: () => {
             this.OPTION(() => {
@@ -489,37 +445,57 @@ export class Parser extends chevrotain.Parser {
             this.SUBRULE(this.word);
             this.CONSUME(Tokens.LEFT_BRACKET);
             this.CONSUME(Tokens.RIGHT_BRACKET);
+            this.SUBRULE(this.groupCommand);
           },
         },
         {
           ALT: () => {
             this.CONSUME2(Tokens.FUNCTION);
             this.SUBRULE2(this.word);
+            this.SUBRULE2(this.groupCommand);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE3(this.word);
+
+            this.OPTION2(() => {
+              this.CONSUME(Tokens.EQUAL_SYMBOL);
+              this.SUBRULE4(this.word);
+            });
           },
         },
       ]);
-      this.SUBRULE(this.newlineList);
-      this.SUBRULE(this.groupCommand);
     });
 
     this.RULE('subshell', () => {
       this.CONSUME(Tokens.LEFT_BRACKET);
-      this.SUBRULE(this.compoundList);
+      this.SUBRULE(this.list);
       this.CONSUME(Tokens.RIGHT_BRACKET);
     });
 
     this.RULE('ifCommand', () => {
       this.CONSUME(Tokens.IF);
-      this.SUBRULE(this.compoundList);
-      this.CONSUME(Tokens.THEN);
-      this.SUBRULE2(this.compoundList);
 
       this.OPTION(() => {
+        this.CONSUME(Tokens.LEFT_SQUARE_BRACKET);
+      });
+
+      this.SUBRULE(this.list);
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.RIGHT_SQUARE_BRACKET);
+      });
+
+      this.CONSUME(Tokens.THEN);
+      this.SUBRULE2(this.list);
+
+      this.OPTION3(() => {
         this.OR2([
           {
             ALT: () => {
               this.CONSUME(Tokens.ELSE);
-              this.SUBRULE3(this.compoundList);
+              this.SUBRULE3(this.list);
             },
           },
           {
@@ -541,16 +517,16 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('elifClause', () => {
       this.CONSUME(Tokens.ELSE_END);
-      this.SUBRULE(this.compoundList);
+      this.SUBRULE(this.list);
       this.CONSUME(Tokens.THEN);
-      this.SUBRULE2(this.compoundList);
+      this.SUBRULE2(this.list);
 
       this.OPTION(() => {
         this.OR2([
           {
             ALT: () => {
               this.CONSUME(Tokens.ELSE);
-              this.SUBRULE3(this.compoundList);
+              this.SUBRULE3(this.list);
             },
           },
           {
@@ -563,99 +539,41 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('caseClause', () => {
-      this.OPTION(() => {
-        this.SUBRULE(this.caseClauseSequence);
-      });
-
       this.SUBRULE(this.patternList);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.DOUBLE_SEMI);
+        this.SUBRULE2(this.patternList);
+      });
+    });
+
+    this.RULE('customCommand', () => {
+      this.SUBRULE(this.linuxCommand);
     });
 
     this.RULE('patternList', () => {
-      this.SUBRULE(this.newlineList);
-
       this.OPTION(() => {
         this.CONSUME(Tokens.LEFT_BRACKET);
       });
 
       this.SUBRULE(this.pattern);
       this.CONSUME(Tokens.RIGHT_BRACKET);
-      this.OR2([
-        {
-          ALT: () => {
-            this.SUBRULE(this.compoundList);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE2(this.newlineList);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('caseClauseSequence', () => {
-      this.AT_LEAST_ONE(() => {
-        this.SUBRULE(this.patternList);
-        this.CONSUME(Tokens.DOUBLE_SEMI);
-      });
+      this.SUBRULE(this.list);
     });
 
     this.RULE('pattern', () => {
       this.SUBRULE(this.word);
 
-      this.OPTION(() => {
+      this.MANY(() => {
         this.CONSUME(Tokens.BIT_OR_OP);
         this.SUBRULE2(this.word);
       });
     });
 
     this.RULE('list', () => {
-      this.SUBRULE(this.newlineList);
-      this.SUBRULE(this.list0);
-    });
-
-    this.RULE('compoundList', () => {
-      this.SUBRULE(this.newlineList);
-      this.OR2([
-        {
-          ALT: () => {
-            this.SUBRULE(this.list1);
-          },
-        },
-        {
-          ALT: () => {
-            this.SUBRULE(this.list0);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('list0', () => {
-      this.SUBRULE(this.list1);
-      this.OR2([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LINE_FEED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.BIT_AND_OP);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SEMI);
-          },
-        },
-      ]);
-      this.SUBRULE(this.newlineList);
-    });
-
-    this.RULE('list1', () => {
       this.SUBRULE(this.pipelineCommand);
 
-      this.OPTION(() => {
+      this.MANY(() => {
         this.OR2([
           {
             ALT: () => {
@@ -682,43 +600,24 @@ export class Parser extends chevrotain.Parser {
       });
     });
 
-    this.RULE('listTerminator', () => {
-      this.OR([
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.LINE_FEED);
-          },
-        },
-        {
-          ALT: () => {
-            this.CONSUME(Tokens.SEMI);
-          },
-        },
-      ]);
-    });
-
-    this.RULE('newlineList', () => {
-      this.CONSUME(Tokens.LINE_FEED);
-    });
-
     this.RULE('pipelineCommand', () => {
       this.OPTION(() => {
         this.OR2([
           {
             ALT: () => {
-              this.SUBRULE(this.timespec);
+              this.CONSUME(Tokens.EXCLAMATION_SYMBOL);
 
               this.OPTION2(() => {
-                this.CONSUME(Tokens.EXCLAMATION_SYMBOL);
+                this.SUBRULE(this.timespec);
               });
             },
           },
           {
             ALT: () => {
-              this.CONSUME2(Tokens.EXCLAMATION_SYMBOL);
+              this.SUBRULE2(this.timespec);
 
               this.OPTION3(() => {
-                this.SUBRULE2(this.timespec);
+                this.CONSUME2(Tokens.EXCLAMATION_SYMBOL);
               });
             },
           },
@@ -726,12 +625,6 @@ export class Parser extends chevrotain.Parser {
       });
 
       this.SUBRULE(this.command);
-
-      this.OPTION4(() => {
-        this.CONSUME(Tokens.BIT_OR_OP);
-        this.SUBRULE(this.newlineList);
-        this.SUBRULE2(this.command);
-      });
     });
 
     this.RULE('timeOpt', () => {
@@ -744,6 +637,201 @@ export class Parser extends chevrotain.Parser {
       this.OPTION(() => {
         this.SUBRULE(this.timeOpt);
       });
+    });
+
+    this.RULE('linuxCommand', () => {
+      this.SUBRULE(this.fileManagementCmd);
+    });
+
+    this.RULE('fileManagementCmd', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.SUBRULE(this.touchCmd);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.chmodCmd);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('touchCmd', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TOUCH);
+
+            this.MANY(() => {
+              this.CONSUME(Tokens.HYPHEN);
+
+              this.AT_LEAST_ONE(() => {
+                this.OR2([
+                  {
+                    ALT: () => {
+                      this.CONSUME(Tokens.OPTION_A_LOWER);
+                    },
+                  },
+                  {
+                    ALT: () => {
+                      this.CONSUME(Tokens.OPTION_M_LOWER);
+                    },
+                  },
+                  {
+                    ALT: () => {
+                      this.CONSUME(Tokens.OPTION_C_LOWER);
+                    },
+                  },
+                  {
+                    ALT: () => {
+                      this.CONSUME(Tokens.OPTION_F_LOWER);
+                    },
+                  },
+                  {
+                    ALT: () => {
+                      this.CONSUME(Tokens.OPTION_R_LOWER);
+                    },
+                  },
+                  {
+                    ALT: () => {
+                      this.CONSUME(Tokens.OPTION_D_LOWER);
+                    },
+                  },
+                  {
+                    ALT: () => {
+                      this.CONSUME(Tokens.OPTION_T_LOWER);
+                    },
+                  },
+                ]);
+              });
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DOUBLE_HYPHEN);
+            this.CONSUME(Tokens.NO_CREATE);
+            this.CONSUME(Tokens.FILEPATH);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('chmodCmd', () => {
+      this.CONSUME(Tokens.CHMOD);
+
+      this.OPTION(() => {
+        this.CONSUME(Tokens.HYPHEN);
+
+        this.AT_LEAST_ONE(() => {
+          this.OR2([
+            {
+              ALT: () => {
+                this.CONSUME(Tokens.OPTION_C_LOWER);
+              },
+            },
+            {
+              ALT: () => {
+                this.CONSUME(Tokens.OPTION_F_LOWER);
+              },
+            },
+            {
+              ALT: () => {
+                this.CONSUME(Tokens.OPTION_V_LOWER);
+              },
+            },
+            {
+              ALT: () => {
+                this.CONSUME(Tokens.OPTION_R);
+              },
+            },
+          ]);
+        });
+      });
+
+      this.SUBRULE(this.chmodMode);
+      this.CONSUME(Tokens.FILEPATH);
+    });
+
+    this.RULE('chmodMode', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.OR2([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_U_LOWER);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_G_LOWER);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_O_LOWER);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_A_LOWER);
+                },
+              },
+            ]);
+            this.OR3([
+              {
+                ALT: () => {
+                  this.SUBRULE(this.minus);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.ADD);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.EQUAL_SYMBOL);
+                },
+              },
+            ]);
+            this.OR4([
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_R_LOWER);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_W_LOWER);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_X_LOWER);
+                },
+              },
+              {
+                ALT: () => {
+                  this.CONSUME(Tokens.OPTION_X);
+                },
+              },
+            ]);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DIGIT_TO_SEVEN);
+          },
+        },
+      ]);
+    });
+
+    this.RULE('minus', () => {
+      this.CONSUME(Tokens.HYPHEN);
     });
 
     chevrotain.Parser.performSelfAnalysis(this);

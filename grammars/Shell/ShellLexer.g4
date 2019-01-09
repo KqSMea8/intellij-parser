@@ -15,9 +15,9 @@ ELSE: 'ELSE';
 ELSE_END: 'ELIF';
 TIME: 'TIME';
 
-
 DIGIT: [0-9]+;
-LETTER: [A-Za-z]+;
+DIGIT_TO_SEVEN: [0-7][0-7][0-7];
+ID: ID_LITERAL;
 
 LEFT_REDIRECTION: '<';
 RIGHT_REDIRECTION: '>';
@@ -27,7 +27,6 @@ LEFT_REDIRECTION_WITH_MERGE: '<&';
 RIGHT_REDIRECTION_WITH_MERGE: '>&';
 DESCRIPTOR_TO_FILE: '&>';
 HYPHEN: '-';
-UNDERLINE: '_';
 BIT_OR_OP: '|';
 BIT_AND_OP: '&';
 AND: '&&';
@@ -36,10 +35,50 @@ LEFT_BRACE: '{';
 LEFT_BRACKET: '(';
 RIGHT_BRACE: '}';
 RIGHT_BRACKET: ')';
-LINE_FEED: '\n';
+RIGHT_SQUARE_BRACKET: ']';
+LEFT_SQUARE_BRACKET: '[';
 SEMI: ';';
 DOUBLE_SEMI: ';;';
 EXCLAMATION_SYMBOL: '!';
 TIME_OPT: '-p';
-
 EQUAL_SYMBOL: '=';
+
+// linux
+DOUBLE_HYPHEN: '--';
+TOUCH: 'TOUCH';
+FILEPATH: ('./' | '../' | '/' | [A-Za-z0-9$_-])(.)*;
+CHMOD: 'CHMOD';
+ADD: '+';
+ECHO: 'ECHO';
+COMMENT: '#'+(.)*;
+
+// linux命令中的option
+NO_CREATE: 'no-create';
+OPTION_A_LOWER: 'a';
+OPTION_C_LOWER: 'c';
+OPTION_D_LOWER: 'd';
+OPTION_F_LOWER: 'f';
+OPTION_G_LOWER: 'g';
+OPTION_M_LOWER: 'm';
+OPTION_O_LOWER: 'o';
+OPTION_R_LOWER: 'r';
+OPTION_T_LOWER: 't';
+OPTION_U_LOWER: 'u';
+OPTION_V_LOWER: 'v';
+OPTION_W_LOWER: 'w';
+OPTION_X_LOWER: 'x';
+
+OPTION_R: 'R';
+OPTION_X: 'X';
+
+STRING_LITERAL: DQUOTA_STRING | SQUOTA_STRING;
+
+VARIABLE: VARIABLEUSED;
+
+fragment DQUOTA_STRING:
+	'"' ('\\' . | '""' | ~('"' | '\\'))* '"';
+fragment SQUOTA_STRING:
+	'\'' ('\\' . | '\'\'' | ~('\'' | '\\'))* '\'';
+fragment ID_LITERAL: [A-Za-z_$0-9*]+;
+
+fragment VARIABLEUSED: '$'[A-Za-z_0-9*]+;

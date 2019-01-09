@@ -16,28 +16,51 @@ export const ErrorPrefix = [
     type: 'initMissingToken',
     key: 'Redundant input, expecting EOF but found:',
     pattern: /Redundant input, expecting EOF but found: (.*)/
+  }, {
+    type: 'earlyExitException',
+    key: 'Expecting: expecting at least one iteration which starts with one of these possible Token sequences::',
+    pattern: /\[.*?\]/g
   }
 ]
 
 export enum ErrorToken {
   'singleMissingToken' = 'singleMissingToken',
   'multiMissingToken' = 'multiMissingToken',
-  'initMissingToken' = 'initMissingToken'
+  'initMissingToken' = 'initMissingToken',
+  'earlyExitException' = 'earlyExitException'
 }
 
-export enum CommonStartToken {
-  'SELECT' = 'SELECT',
-  'UPDATE' = 'UPDATE',
-  'CREATE' = 'CREATE',
-  'COUNT' = 'COUNT',
-  'DROP' = 'DROP',
-  'INSERT' = 'INSERT',
-  'DELETE' = 'DELETE',
-  'SUM' = 'SUM',
-  'ALTER' = 'ALTER',
-  'SHOW' = 'SHOW',
-  'DESCRIBE' = 'DESCRIBE',
-  'DESC' = 'DESC'
+const SQL = [
+  'SELECT',
+  'UPDATE',
+  'CREATE',
+  'COUNT',
+  'DROP',
+  'INSERT',
+  'DELETE',
+  'SUM',
+  'ALTER',
+  'SHOW',
+  'DESCRIBE',
+  'DESC'
+];
+
+const Shell = [
+  'FOR',
+  'CASE',
+  'SELECT',
+  'WHILE',
+  'UNTIL',
+  'IF',
+  'FUNCTION',
+  'TOUCH',
+  'CHMOD'
+];
+
+export const CommonStartToken = {
+  ODPSSQL: SQL,
+  HiveSQL: SQL,
+  Shell
 }
 
 export enum Snippets {

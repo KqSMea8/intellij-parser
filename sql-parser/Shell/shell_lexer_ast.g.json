@@ -5,6 +5,908 @@
     {
       "index": 0,
       "kind": "rule",
+      "fragName": "VARIABLEUSED",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'$'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "ReExp",
+                "content": "[A-Za-z_0-9*]+"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\$[A-Za-z_0-9*]+"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "fragName": "SQUOTA_STRING",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'\\''"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'\\\\'"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "All"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'\\'\\''"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": true,
+                        "item": {
+                          "index": 0,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "'\\''"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "'\\\\'"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'\\''"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\'(\\\\.|\\'\\'|[^(\\'|\\\\)])*\\'"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "fragName": "DQUOTA_STRING",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'\"'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'\\\\'"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "All"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'\"\"'"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": true,
+                        "item": {
+                          "index": 0,
+                          "kind": "bracketExp",
+                          "atoms": [
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "'\"'"
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "index": 0,
+                              "kind": "atom",
+                              "itemSuffs": [
+                                {
+                                  "index": 0,
+                                  "kind": "itemSuff",
+                                  "hasNot": false,
+                                  "item": {
+                                    "index": 0,
+                                    "kind": "Stringliteral",
+                                    "content": "'\\\\'"
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'\"'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\\"(\\\\.|\\\"\\\"|[^(\\\"|\\\\)])*\\\""
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "VARIABLE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "VARIABLEUSED"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\$[A-Za-z_0-9*]+"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "STRING_LITERAL",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "DQUOTA_STRING"
+              }
+            }
+          ]
+        },
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "SQUOTA_STRING"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "(\\\"(\\\\.|\\\"\\\"|[^(\\\"|\\\\)])*\\\"|\\'(\\\\.|\\'\\'|[^(\\'|\\\\)])*\\')"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_X",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'X'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "X"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_X_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'x'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "x"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_W_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'w'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "w"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_V_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'v'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "v"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_U_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'u'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "u"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_T_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'t'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "t"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_R_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'r'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "r"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_O_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'o'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "o"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_M_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'m'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "m"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_G_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'g'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "g"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_F_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'f'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "f"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_D_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'d'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "d"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_C_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'c'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "c"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "OPTION_A_LOWER",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'a'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "a"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "NO_CREATE",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'no-create'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "no\\-create"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "COMMENT",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "+",
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'#'"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "All"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\#+(.)*"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "ECHO",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'ECHO'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "ECHO"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "ADD",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'+'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\+"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "CHMOD",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'CHMOD'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "CHMOD"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "TOUCH",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'TOUCH'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "TOUCH"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "DOUBLE_HYPHEN",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'--'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\-\\-"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "EQUAL_SYMBOL",
       "atoms": [
         {
@@ -125,7 +1027,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "LINE_FEED",
+      "tokenName": "LEFT_SQUARE_BRACKET",
       "atoms": [
         {
           "index": 0,
@@ -138,13 +1040,37 @@
               "item": {
                 "index": 0,
                 "kind": "Stringliteral",
-                "content": "'\\n'"
+                "content": "'['"
               }
             }
           ]
         }
       ],
-      "pattern": "\\n"
+      "pattern": "\\["
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "RIGHT_SQUARE_BRACKET",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "']'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "\\]"
     },
     {
       "index": 0,
@@ -341,30 +1267,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "UNDERLINE",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'_'"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "_"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "tokenName": "HYPHEN",
       "atoms": [
         {
@@ -553,6 +1455,50 @@
         }
       ],
       "pattern": "\\<"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "DIGIT_TO_SEVEN",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "ReExp",
+                "content": "[0-7]"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "ReExp",
+                "content": "[0-7]"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "ReExp",
+                "content": "[0-7]"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "[0-7][0-7][0-7]"
     },
     {
       "index": 0,
@@ -869,6 +1815,30 @@
     {
       "index": 0,
       "kind": "rule",
+      "tokenName": "OPTION_R",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "Stringliteral",
+                "content": "'R'"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "R"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
       "tokenName": "DONE",
       "atoms": [
         {
@@ -965,7 +1935,7 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "LETTER",
+      "fragName": "ID_LITERAL",
       "atoms": [
         {
           "index": 0,
@@ -978,13 +1948,153 @@
               "item": {
                 "index": 0,
                 "kind": "ReExp",
-                "content": "[A-Za-z]+"
+                "content": "[A-Za-z_$0-9*]+"
               }
             }
           ]
         }
       ],
-      "pattern": "[A-Za-z]+"
+      "pattern": "[A-Za-z_\\$0-9*]+"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "FILEPATH",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'./'"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'../'"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "Stringliteral",
+                          "content": "'/'"
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "ReExp",
+                          "content": "[A-Za-z0-9$_-]"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "All"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "(\\.\\/|\\.\\.\\/|\\/|[A-Za-z0-9\\$_-])(.)*"
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "tokenName": "ID",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "UpperName",
+                "name": "ID_LITERAL"
+              }
+            }
+          ]
+        }
+      ],
+      "pattern": "[A-Za-z_\\$0-9*]+"
     }
   ]
 }

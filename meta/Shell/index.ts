@@ -18,6 +18,7 @@ class MetaParserConfig {
 
 function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
   const { ast, cst, lexErrors, parseErrors } = parseGCode(lexerGCode, false);
+  fs.writeFileSync('./test.js', JSON.stringify(cst));
 
   if (lexErrors && lexErrors.length) {
     console.log(...lexErrors);
@@ -40,6 +41,10 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
       group: chevrotain.Lexer.SKIPPED,
       line_breaks: true
     });
+    const ID = chevrotain.createToken({
+      name: 'ID',
+      pattern: /[A-Za-z_\$0-9*]+/i,
+    });  
     ${ast.toLexerCode()}
 
     export enum TokenEnum {

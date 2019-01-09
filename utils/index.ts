@@ -91,7 +91,7 @@ const getClassification = (ast, pos) => {
     target.startColumn && target.startLine - 1 === pos.line && target.startColumn - 1 <= pos.character && target.image.length + target.startColumn - 1 >= pos.character)
 }
 /** 获取补全信息 */
-const getCompleteInfo = (ast, pos) => {
+const getCompleteInfo = (ast, pos, languageId) => {
   const errorMsg = [];
   ast.parseErrors.forEach(err => {
     const singleError = {
@@ -106,7 +106,7 @@ const getCompleteInfo = (ast, pos) => {
         errType: err.message.match(errorType.pattern)[1],
         ...err
       });
-    } else if (errorType.type === ErrorToken.multiMissingToken) {
+    } else if (errorType.type === ErrorToken.multiMissingToken || errorType.type === ErrorToken.earlyExitException) {
       (err.message.match(errorType.pattern) || []).forEach(item => {
         const content = item.slice(1, -1);
         if (Tokens[content]) {
@@ -119,7 +119,7 @@ const getCompleteInfo = (ast, pos) => {
       })
     } else if (errorType.type === ErrorToken.initMissingToken) {
       /** 大小写模糊匹配 */
-      Object.keys(CommonStartToken).filter(item => item.toLowerCase().indexOf(err.message.match(errorType.pattern)[1].toLowerCase()) === 0).forEach(errType => {
+      CommonStartToken[languageId].filter(item => item.toLowerCase().indexOf(err.message.match(errorType.pattern)[1].toLowerCase()) === 0).forEach(errType => {
         singleError.completeType.push({
           errType,
           ...err

@@ -1,6 +1,7 @@
 import { tokens, Lexer, Tokens, TokenEnum } from '../MetaLexer';
 import * as _ from 'lodash';
 import { MetaParser } from '../MetaParser';
+import * as fs from 'fs';
 
 /** 产生式节点类型 */
 export enum SyntaxKind {
@@ -149,7 +150,6 @@ export function cstToAst(cst: CstNode): BaseNode {
 
 function getPatternByUpName(ast: RulesNode, upName: string) {
   const rule = ast.rules.find(rule => rule.tokenName === upName || rule.fragName === upName);
-
   if (!rule.pattern) {
     rule.setPattern();
   }
@@ -160,7 +160,7 @@ function getPatternByUpName(ast: RulesNode, upName: string) {
 /** 基类 */
 class BaseNode {
   kind: SyntaxKind | TokenEnum;
-  index? = 0;
+  index?= 0;
   get children(): BaseNode[] {
     return [];
   }
@@ -264,7 +264,7 @@ export class RulesNode extends BaseNode {
       .filter(rule => !rule.fragName)
       .filter(rule => rule.tokenName !== 'DECIMAL_LITERAL')
       .filter(rule => rule.tokenName !== 'ID')
-      .map(rule => rule.toDebugLexerCode())
+      .map(rule => rule.toLexerCode())
       .join('\n');
   }
 
@@ -296,18 +296,27 @@ export class RuleNode extends BaseNode {
 
   setPattern() {
     if (this.atoms.length > 1) {
-      this.pattern = '(' + this.atoms.map(atom => atom.toDebugLexerCode()).join('|') + ')';
+      this.pattern = '(' + this.atoms.map(atom => atom.toLexerCode()).join('|') + ')';
     } else {
-      this.pattern = this.atoms[0].toDebugLexerCode();
+      this.pattern = this.atoms[0].toLexerCode();
     }
     return this.pattern;
   }
 
   toLexerCode() {
-    return `const ${this.tokenName} = chevrotain.createToken({
-      name: '${this.tokenName}',
-      pattern: /${this.pattern}/,
-    });`;
+    if(this.tokenName.indexOf('OPTION') === 0) {
+      return `const ${this.tokenName} = chevrotain.createToken({
+        name: '${this.tokenName}',
+        pattern: /${this.pattern}/,
+        longer_alt: ID
+      });`;
+    } else {
+      return `const ${this.tokenName} = chevrotain.createToken({
+        name: '${this.tokenName}',
+        pattern: /${this.pattern}/i,
+        longer_alt: ID
+      });`;
+    }
   }
 
   toCode() {
@@ -348,7 +357,7 @@ export class AtomNode extends BaseNode {
   }
 
   toLexerCode(): string {
-    return this.itemSuffs.map(itemSuff => itemSuff.toDebugLexerCode()).join('');
+    return this.itemSuffs.map(itemSuff => itemSuff.toLexerCode()).join('');
   }
 
   toCode() {
@@ -368,7 +377,7 @@ export class ItemSuffNode extends BaseNode {
   }
 
   toLexerCode() {
-    const itemLexer = this.item.toDebugLexerCode();
+    const itemLexer = this.item.toLexerCode();
 
     if (this.hasNot) {
       return `[^${itemLexer}]${this.suff || ''}`;
@@ -413,10 +422,10 @@ export class BracketExpNode extends BaseNode {
 
   toLexerCode() {
     if (this.atoms.length) {
-      return `(${this.atoms.map(atom => atom.toDebugLexerCode()).join('|')})`;
+      return `(${this.atoms.map(atom => atom.toLexerCode()).join('|')})`;
     }
 
-    return this.atoms[0].toDebugLexerCode();
+    return this.atoms[0].toLexerCode();
   }
 
   toCode() {
@@ -527,11 +536,14 @@ export class AllNode extends BaseNode {
   toCode() {
     return '.';
   }
+
+  toLexerCode() {
+    return '.';
+  }
 }
 
 export function parseGCode(gCode: string, isParser = true, tokens = []) {
   const lexResult = Lexer.tokenize(gCode);
-
   const metaParser = new MetaParser([]);
   metaParser.input = lexResult.tokens;
 
