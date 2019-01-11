@@ -32,12 +32,21 @@ redirection:
 
 comments: COMMENT;
 
-command: comments? shellCommand redirection?;
+command: comments* shellCommand redirection?;
+
+expression:
+	word (
+		(EQUAL_SYMBOL | ADD | HYPHEN | MULTI | DEVIDE) (
+			word
+			| STRING_LITERAL
+			| DOLLAR_WITH_LEFT_BRACKET list RIGHT_BRACKET
+		)
+	)?;
 
 shellCommand:
 	forCommand
 	| caseCommand
-	| (WHILE | UNTIL) doubleBracketList DO list DONE
+	| (WHILE | UNTIL) bracketList DO list DONE
 	| selectCommand
 	| ifCommand
 	| subshell
@@ -45,13 +54,33 @@ shellCommand:
 	| customCommand
 	| echoCommand
 	| functionDef
-	| word (EQUAL_SYMBOL word)?;
+	| expression;
 
-bracketList: LEFT_SQUARE_BRACKET? list RIGHT_SQUARE_BRACKET?;
+condition:
+	EXCLAMATION_SYMBOL? word (
+		(
+			EQUAL_TO
+			| NOT_EQUAL_TO
+			| LEFT_REDIRECTION
+			| RIGHT_REDIRECTION
+			| NOT_SMALLER
+			| NOT_GREATER
+			| EQUAL_TO_SYMBOL
+			| NOT_EQUAL_TO_SYMBOL
+			| SMALLER_SYMBOL
+			| GREATER_SYMBOL
+			| NOT_SMALLER_SYMBOL
+			| NOT_GREATER_SYMBOL
+		) (word | STRING_LITERAL)
+	)? ((AND | OR) condition)*;
 
-doubleBracketList: LEFT_SQUARE_BRACKET? bracketList RIGHT_SQUARE_BRACKET?;
+bracketList:
+	(LEFT_SQUARE_BRACKET | DOUBLE_LEFT_SQUARE_BRACKET)? condition (
+		RIGHT_SQUARE_BRACKET
+		| DOUBLE_RIGHT_SQUARE_BRACKET
+	)?;
 
-echoCommand: ECHO word;
+echoCommand: ECHO (word | STRING_LITERAL)?;
 
 forCommand: FOR word IN wordList SEMI forCommandBody;
 
@@ -70,18 +99,19 @@ functionDef:
 subshell: LEFT_BRACKET list RIGHT_BRACKET;
 
 ifCommand:
-	IF LEFT_SQUARE_BRACKET? list RIGHT_SQUARE_BRACKET? THEN list (
+	IF LEFT_SQUARE_BRACKET? condition RIGHT_SQUARE_BRACKET? THEN list (
 		ELSE list
 		| elifClause
 	)? IF_END;
 
 groupCommand: LEFT_BRACE list RIGHT_BRACE;
 
-elifClause: ELSE_END list THEN list ( ELSE list | elifClause)?;
+elifClause:
+	ELSE_IF condition THEN list (ELSE list | elifClause)?;
 
 caseClause: patternList (DOUBLE_SEMI patternList)?;
 
-customCommand: linuxCommand;
+customCommand: linuxCommand | pythonCommand;
 
 patternList: LEFT_BRACKET? pattern RIGHT_BRACKET list;
 
@@ -89,7 +119,7 @@ pattern: word ( BIT_OR_OP word)*;
 
 list:
 	pipelineCommand (
-		(AND | OR | BIT_AND_OP | SEMI) pipelineCommand
+		(AND | OR | BIT_AND_OP | SEMI | BIT_OR_OP)? pipelineCommand
 	)*;
 
 pipelineCommand: (
@@ -101,48 +131,34 @@ timeOpt: TIME_OPT;
 
 timespec: TIME timeOpt?;
 
+pythonCommand: (PYTHON | PIP) word*;
+
 linuxCommand: fileManagementCmd;
 
-fileManagementCmd: touchCmd | chmodCmd;
+fileManagementCmd:
+	touchCmd
+	| chmodCmd
+	| exitCmd
+	| sleepCmd
+	| catCmd
+	| chownCmd;
 
-touchCmd:
-	TOUCH (
-		HYPHEN (
-			OPTION_A_LOWER
-			| OPTION_M_LOWER
-			| OPTION_C_LOWER
-			| OPTION_F_LOWER
-			| OPTION_R_LOWER
-			| OPTION_D_LOWER
-			| OPTION_T_LOWER
-		)+
-	)*
-	| (DOUBLE_HYPHEN NO_CREATE) ID;
+sleepCmd: SLEEP DIGIT;
 
-chmodCmd:
-	CHMOD (
-		HYPHEN (
-			OPTION_C_LOWER
-			| OPTION_F_LOWER
-			| OPTION_V_LOWER
-			| OPTION_R
-		)+
-	)? chmodMode ID;
+exitCmd: EXIT ID;
 
-chmodMode: (
-		(
-			OPTION_U_LOWER
-			| OPTION_G_LOWER
-			| OPTION_O_LOWER
-			| OPTION_A_LOWER
-		) (minus | ADD | EQUAL_SYMBOL) (
-			OPTION_R_LOWER
-			| OPTION_W_LOWER
-			| OPTION_X_LOWER
-			| OPTION_X
-		)
-	)
+touchCmd: TOUCH (cliOpt | NO_CREATE)? ID;
+
+chmodCmd: CHMOD cliOpt? cliModeChmod ID;
+
+cliOpt: ID;
+
+cliModeChmod:
+	CLI_CHMOD_MOD (COMMA CLI_CHMOD_MOD)*
 	| DIGIT_TO_SEVEN;
 
+catCmd: CAT cliOpt? ID;
+
+chownCmd: CHOWN cliOpt? ID (COLON ID)? ID;
 // 通过额外的subRule提醒service和HYPHEN区别
 minus: HYPHEN;

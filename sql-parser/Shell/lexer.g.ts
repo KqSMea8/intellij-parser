@@ -6,84 +6,50 @@ const WhiteSpace = chevrotain.createToken({
   group: chevrotain.Lexer.SKIPPED,
   line_breaks: true,
 });
+const ID = chevrotain.createToken({
+  name: 'ID',
+  pattern: /\$?[A-Za-z_\-\.\/0-9]+/i,
+});
 const STRING_LITERAL = chevrotain.createToken({
   name: 'STRING_LITERAL',
   pattern: /("(\.|""|[^("|\)])*"|'(\.|''|[^('|\)])*')/i,
+  categories: [ID],
 });
 const DIGIT = chevrotain.createToken({
   name: 'DIGIT',
   pattern: /[0-9]+/i,
-  longer_alt: STRING_LITERAL,
+  categories: [ID],
 });
 const DIGIT_TO_SEVEN = chevrotain.createToken({
   name: 'DIGIT_TO_SEVEN',
   pattern: /[0-7][0-7][0-7]/i,
   longer_alt: DIGIT,
+  categories: [ID],
 });
-const ID = chevrotain.createToken({
-  name: 'ID',
-  pattern: /[A-Za-z_$0-9*]+/i,
-  longer_alt: DIGIT_TO_SEVEN,
-});
-const OPTION_X = chevrotain.createToken({
-  name: 'OPTION_X',
-  pattern: /X/,
-});
-const OPTION_X_LOWER = chevrotain.createToken({
-  name: 'OPTION_X_LOWER',
-  pattern: /x/,
-});
-const OPTION_W_LOWER = chevrotain.createToken({
-  name: 'OPTION_W_LOWER',
-  pattern: /w/,
-});
-const OPTION_V_LOWER = chevrotain.createToken({
-  name: 'OPTION_V_LOWER',
-  pattern: /v/,
-});
-const OPTION_U_LOWER = chevrotain.createToken({
-  name: 'OPTION_U_LOWER',
-  pattern: /u/,
-});
-const OPTION_T_LOWER = chevrotain.createToken({
-  name: 'OPTION_T_LOWER',
-  pattern: /t/,
-});
-const OPTION_R_LOWER = chevrotain.createToken({
-  name: 'OPTION_R_LOWER',
-  pattern: /r/,
-});
-const OPTION_O_LOWER = chevrotain.createToken({
-  name: 'OPTION_O_LOWER',
-  pattern: /o/,
-});
-const OPTION_M_LOWER = chevrotain.createToken({
-  name: 'OPTION_M_LOWER',
-  pattern: /m/,
-});
-const OPTION_G_LOWER = chevrotain.createToken({
-  name: 'OPTION_G_LOWER',
-  pattern: /g/,
-});
-const OPTION_F_LOWER = chevrotain.createToken({
-  name: 'OPTION_F_LOWER',
-  pattern: /f/,
-});
-const OPTION_D_LOWER = chevrotain.createToken({
-  name: 'OPTION_D_LOWER',
-  pattern: /d/,
-});
-const OPTION_C_LOWER = chevrotain.createToken({
-  name: 'OPTION_C_LOWER',
-  pattern: /c/,
-});
-const OPTION_A_LOWER = chevrotain.createToken({
-  name: 'OPTION_A_LOWER',
-  pattern: /a/,
+
+const CLI_CHMOD_MOD = chevrotain.createToken({
+  name: 'CLI_CHMOD_MOD',
+  pattern: /[ugoa]*[+\-=][rwxX]+/,
+  longer_alt: ID,
 });
 const NO_CREATE = chevrotain.createToken({
   name: 'NO_CREATE',
-  pattern: /no\-create/i,
+  pattern: /\-\-no\-create/i,
+  longer_alt: ID,
+});
+const PIP = chevrotain.createToken({
+  name: 'PIP',
+  pattern: /PIP/i,
+  longer_alt: ID,
+});
+const PYTHON = chevrotain.createToken({
+  name: 'PYTHON',
+  pattern: /PYTHON/i,
+  longer_alt: ID,
+});
+const DOLLAR_WITH_LEFT_BRACKET = chevrotain.createToken({
+  name: 'DOLLAR_WITH_LEFT_BRACKET',
+  pattern: /\$\(/i,
   longer_alt: ID,
 });
 const COMMENT = chevrotain.createToken({
@@ -96,9 +62,39 @@ const ECHO = chevrotain.createToken({
   pattern: /ECHO/i,
   longer_alt: ID,
 });
+const DEVIDE = chevrotain.createToken({
+  name: 'DEVIDE',
+  pattern: /\//i,
+  longer_alt: ID,
+});
+const MULTI = chevrotain.createToken({
+  name: 'MULTI',
+  pattern: /\*/i,
+  longer_alt: ID,
+});
 const ADD = chevrotain.createToken({
   name: 'ADD',
   pattern: /\+/i,
+  longer_alt: ID,
+});
+const SLEEP = chevrotain.createToken({
+  name: 'SLEEP',
+  pattern: /SLEEP/i,
+  longer_alt: ID,
+});
+const EXIT = chevrotain.createToken({
+  name: 'EXIT',
+  pattern: /EXIT/i,
+  longer_alt: ID,
+});
+const CAT = chevrotain.createToken({
+  name: 'CAT',
+  pattern: /CAT/i,
+  longer_alt: ID,
+});
+const CHOWN = chevrotain.createToken({
+  name: 'CHOWN',
+  pattern: /CHOWN/i,
   longer_alt: ID,
 });
 const CHMOD = chevrotain.createToken({
@@ -111,9 +107,64 @@ const TOUCH = chevrotain.createToken({
   pattern: /TOUCH/i,
   longer_alt: ID,
 });
-const DOUBLE_HYPHEN = chevrotain.createToken({
-  name: 'DOUBLE_HYPHEN',
-  pattern: /\-\-/i,
+const COLON = chevrotain.createToken({
+  name: 'COLON',
+  pattern: /\:/i,
+  longer_alt: ID,
+});
+const COMMA = chevrotain.createToken({
+  name: 'COMMA',
+  pattern: /\,/i,
+  longer_alt: ID,
+});
+const NOT_GREATER_SYMBOL = chevrotain.createToken({
+  name: 'NOT_GREATER_SYMBOL',
+  pattern: /\-?le/i,
+  longer_alt: ID,
+});
+const NOT_GREATER = chevrotain.createToken({
+  name: 'NOT_GREATER',
+  pattern: /\<\=/i,
+  longer_alt: ID,
+});
+const NOT_SMALLER_SYMBOL = chevrotain.createToken({
+  name: 'NOT_SMALLER_SYMBOL',
+  pattern: /\-?ge/i,
+  longer_alt: ID,
+});
+const NOT_SMALLER = chevrotain.createToken({
+  name: 'NOT_SMALLER',
+  pattern: /\>\=/i,
+  longer_alt: ID,
+});
+const SMALLER_SYMBOL = chevrotain.createToken({
+  name: 'SMALLER_SYMBOL',
+  pattern: /\-?lt/i,
+  longer_alt: ID,
+});
+const GREATER_SYMBOL = chevrotain.createToken({
+  name: 'GREATER_SYMBOL',
+  pattern: /\-?gt/i,
+  longer_alt: ID,
+});
+const NOT_EQUAL_TO_SYMBOL = chevrotain.createToken({
+  name: 'NOT_EQUAL_TO_SYMBOL',
+  pattern: /\-?ne/i,
+  longer_alt: ID,
+});
+const NOT_EQUAL_TO = chevrotain.createToken({
+  name: 'NOT_EQUAL_TO',
+  pattern: /\!\=/i,
+  longer_alt: ID,
+});
+const EQUAL_TO_SYMBOL = chevrotain.createToken({
+  name: 'EQUAL_TO_SYMBOL',
+  pattern: /\-?eq/i,
+  longer_alt: ID,
+});
+const EQUAL_TO = chevrotain.createToken({
+  name: 'EQUAL_TO',
+  pattern: /\=\=/i,
   longer_alt: ID,
 });
 const EQUAL_SYMBOL = chevrotain.createToken({
@@ -139,6 +190,16 @@ const DOUBLE_SEMI = chevrotain.createToken({
 const SEMI = chevrotain.createToken({
   name: 'SEMI',
   pattern: /\;/i,
+  longer_alt: ID,
+});
+const DOUBLE_LEFT_SQUARE_BRACKET = chevrotain.createToken({
+  name: 'DOUBLE_LEFT_SQUARE_BRACKET',
+  pattern: /\[\[/i,
+  longer_alt: ID,
+});
+const DOUBLE_RIGHT_SQUARE_BRACKET = chevrotain.createToken({
+  name: 'DOUBLE_RIGHT_SQUARE_BRACKET',
+  pattern: /\]\]/i,
   longer_alt: ID,
 });
 const LEFT_SQUARE_BRACKET = chevrotain.createToken({
@@ -236,8 +297,8 @@ const TIME = chevrotain.createToken({
   pattern: /TIME/i,
   longer_alt: ID,
 });
-const ELSE_END = chevrotain.createToken({
-  name: 'ELSE_END',
+const ELSE_IF = chevrotain.createToken({
+  name: 'ELSE_IF',
   pattern: /ELIF/i,
   longer_alt: ID,
 });
@@ -291,10 +352,6 @@ const FOR = chevrotain.createToken({
   pattern: /FOR/i,
   longer_alt: ID,
 });
-const OPTION_R = chevrotain.createToken({
-  name: 'OPTION_R',
-  pattern: /R/,
-});
 const DONE = chevrotain.createToken({
   name: 'DONE',
   pattern: /DONE/i,
@@ -318,32 +375,43 @@ const WHILE = chevrotain.createToken({
 
 export enum TokenEnum {
   STRING_LITERAL = 'STRING_LITERAL',
-  OPTION_X = 'OPTION_X',
-  OPTION_X_LOWER = 'OPTION_X_LOWER',
-  OPTION_W_LOWER = 'OPTION_W_LOWER',
-  OPTION_V_LOWER = 'OPTION_V_LOWER',
-  OPTION_U_LOWER = 'OPTION_U_LOWER',
-  OPTION_T_LOWER = 'OPTION_T_LOWER',
-  OPTION_R_LOWER = 'OPTION_R_LOWER',
-  OPTION_O_LOWER = 'OPTION_O_LOWER',
-  OPTION_M_LOWER = 'OPTION_M_LOWER',
-  OPTION_G_LOWER = 'OPTION_G_LOWER',
-  OPTION_F_LOWER = 'OPTION_F_LOWER',
-  OPTION_D_LOWER = 'OPTION_D_LOWER',
-  OPTION_C_LOWER = 'OPTION_C_LOWER',
-  OPTION_A_LOWER = 'OPTION_A_LOWER',
+  CLI_CHMOD_MOD = 'CLI_CHMOD_MOD',
   NO_CREATE = 'NO_CREATE',
+  DIGIT_TO_SEVEN = 'DIGIT_TO_SEVEN',
+  DIGIT = 'DIGIT',
+  PIP = 'PIP',
+  PYTHON = 'PYTHON',
+  DOLLAR_WITH_LEFT_BRACKET = 'DOLLAR_WITH_LEFT_BRACKET',
   COMMENT = 'COMMENT',
   ECHO = 'ECHO',
+  DEVIDE = 'DEVIDE',
+  MULTI = 'MULTI',
   ADD = 'ADD',
+  SLEEP = 'SLEEP',
+  EXIT = 'EXIT',
+  CAT = 'CAT',
+  CHOWN = 'CHOWN',
   CHMOD = 'CHMOD',
   TOUCH = 'TOUCH',
-  DOUBLE_HYPHEN = 'DOUBLE_HYPHEN',
+  COLON = 'COLON',
+  COMMA = 'COMMA',
+  NOT_GREATER_SYMBOL = 'NOT_GREATER_SYMBOL',
+  NOT_GREATER = 'NOT_GREATER',
+  NOT_SMALLER_SYMBOL = 'NOT_SMALLER_SYMBOL',
+  NOT_SMALLER = 'NOT_SMALLER',
+  SMALLER_SYMBOL = 'SMALLER_SYMBOL',
+  GREATER_SYMBOL = 'GREATER_SYMBOL',
+  NOT_EQUAL_TO_SYMBOL = 'NOT_EQUAL_TO_SYMBOL',
+  NOT_EQUAL_TO = 'NOT_EQUAL_TO',
+  EQUAL_TO_SYMBOL = 'EQUAL_TO_SYMBOL',
+  EQUAL_TO = 'EQUAL_TO',
   EQUAL_SYMBOL = 'EQUAL_SYMBOL',
   TIME_OPT = 'TIME_OPT',
   EXCLAMATION_SYMBOL = 'EXCLAMATION_SYMBOL',
   DOUBLE_SEMI = 'DOUBLE_SEMI',
   SEMI = 'SEMI',
+  DOUBLE_LEFT_SQUARE_BRACKET = 'DOUBLE_LEFT_SQUARE_BRACKET',
+  DOUBLE_RIGHT_SQUARE_BRACKET = 'DOUBLE_RIGHT_SQUARE_BRACKET',
   LEFT_SQUARE_BRACKET = 'LEFT_SQUARE_BRACKET',
   RIGHT_SQUARE_BRACKET = 'RIGHT_SQUARE_BRACKET',
   RIGHT_BRACKET = 'RIGHT_BRACKET',
@@ -362,10 +430,8 @@ export enum TokenEnum {
   LEFT_REDIRECTION_WITH_ADD = 'LEFT_REDIRECTION_WITH_ADD',
   RIGHT_REDIRECTION = 'RIGHT_REDIRECTION',
   LEFT_REDIRECTION = 'LEFT_REDIRECTION',
-  DIGIT_TO_SEVEN = 'DIGIT_TO_SEVEN',
-  DIGIT = 'DIGIT',
   TIME = 'TIME',
-  ELSE_END = 'ELSE_END',
+  ELSE_IF = 'ELSE_IF',
   ELSE = 'ELSE',
   THEN = 'THEN',
   IF_END = 'IF_END',
@@ -376,7 +442,6 @@ export enum TokenEnum {
   SELECT = 'SELECT',
   IN = 'IN',
   FOR = 'FOR',
-  OPTION_R = 'OPTION_R',
   DONE = 'DONE',
   DO = 'DO',
   UNTIL = 'UNTIL',
@@ -386,32 +451,43 @@ export enum TokenEnum {
 
 export const Tokens = {
   STRING_LITERAL,
-  OPTION_X,
-  OPTION_X_LOWER,
-  OPTION_W_LOWER,
-  OPTION_V_LOWER,
-  OPTION_U_LOWER,
-  OPTION_T_LOWER,
-  OPTION_R_LOWER,
-  OPTION_O_LOWER,
-  OPTION_M_LOWER,
-  OPTION_G_LOWER,
-  OPTION_F_LOWER,
-  OPTION_D_LOWER,
-  OPTION_C_LOWER,
-  OPTION_A_LOWER,
+  CLI_CHMOD_MOD,
   NO_CREATE,
+  DIGIT_TO_SEVEN,
+  DIGIT,
+  PIP,
+  PYTHON,
+  DOLLAR_WITH_LEFT_BRACKET,
   COMMENT,
   ECHO,
+  DEVIDE,
+  MULTI,
   ADD,
+  SLEEP,
+  EXIT,
+  CAT,
+  CHOWN,
   CHMOD,
   TOUCH,
-  DOUBLE_HYPHEN,
+  COLON,
+  COMMA,
+  NOT_GREATER_SYMBOL,
+  NOT_GREATER,
+  NOT_SMALLER_SYMBOL,
+  NOT_SMALLER,
+  SMALLER_SYMBOL,
+  GREATER_SYMBOL,
+  NOT_EQUAL_TO_SYMBOL,
+  NOT_EQUAL_TO,
+  EQUAL_TO_SYMBOL,
+  EQUAL_TO,
   EQUAL_SYMBOL,
   TIME_OPT,
   EXCLAMATION_SYMBOL,
   DOUBLE_SEMI,
   SEMI,
+  DOUBLE_LEFT_SQUARE_BRACKET,
+  DOUBLE_RIGHT_SQUARE_BRACKET,
   LEFT_SQUARE_BRACKET,
   RIGHT_SQUARE_BRACKET,
   RIGHT_BRACKET,
@@ -430,10 +506,8 @@ export const Tokens = {
   LEFT_REDIRECTION_WITH_ADD,
   RIGHT_REDIRECTION,
   LEFT_REDIRECTION,
-  DIGIT_TO_SEVEN,
-  DIGIT,
   TIME,
-  ELSE_END,
+  ELSE_IF,
   ELSE,
   THEN,
   IF_END,
@@ -444,7 +518,6 @@ export const Tokens = {
   SELECT,
   IN,
   FOR,
-  OPTION_R,
   DONE,
   DO,
   UNTIL,
@@ -455,32 +528,43 @@ export const Tokens = {
 export const tokens = [
   WhiteSpace,
   STRING_LITERAL,
-  OPTION_X,
-  OPTION_X_LOWER,
-  OPTION_W_LOWER,
-  OPTION_V_LOWER,
-  OPTION_U_LOWER,
-  OPTION_T_LOWER,
-  OPTION_R_LOWER,
-  OPTION_O_LOWER,
-  OPTION_M_LOWER,
-  OPTION_G_LOWER,
-  OPTION_F_LOWER,
-  OPTION_D_LOWER,
-  OPTION_C_LOWER,
-  OPTION_A_LOWER,
+  CLI_CHMOD_MOD,
   NO_CREATE,
+  DIGIT_TO_SEVEN,
+  DIGIT,
+  PIP,
+  PYTHON,
+  DOLLAR_WITH_LEFT_BRACKET,
   COMMENT,
   ECHO,
+  DEVIDE,
+  MULTI,
   ADD,
+  SLEEP,
+  EXIT,
+  CAT,
+  CHOWN,
   CHMOD,
   TOUCH,
-  DOUBLE_HYPHEN,
+  COLON,
+  COMMA,
+  NOT_GREATER_SYMBOL,
+  NOT_GREATER,
+  NOT_SMALLER_SYMBOL,
+  NOT_SMALLER,
+  SMALLER_SYMBOL,
+  GREATER_SYMBOL,
+  NOT_EQUAL_TO_SYMBOL,
+  NOT_EQUAL_TO,
+  EQUAL_TO_SYMBOL,
+  EQUAL_TO,
   EQUAL_SYMBOL,
   TIME_OPT,
   EXCLAMATION_SYMBOL,
   DOUBLE_SEMI,
   SEMI,
+  DOUBLE_LEFT_SQUARE_BRACKET,
+  DOUBLE_RIGHT_SQUARE_BRACKET,
   LEFT_SQUARE_BRACKET,
   RIGHT_SQUARE_BRACKET,
   RIGHT_BRACKET,
@@ -499,10 +583,8 @@ export const tokens = [
   LEFT_REDIRECTION_WITH_ADD,
   RIGHT_REDIRECTION,
   LEFT_REDIRECTION,
-  DIGIT_TO_SEVEN,
-  DIGIT,
   TIME,
-  ELSE_END,
+  ELSE_IF,
   ELSE,
   THEN,
   IF_END,
@@ -513,7 +595,6 @@ export const tokens = [
   SELECT,
   IN,
   FOR,
-  OPTION_R,
   DONE,
   DO,
   UNTIL,

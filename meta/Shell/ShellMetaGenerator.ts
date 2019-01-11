@@ -253,6 +253,10 @@ export class RulesNode extends BaseNode {
 
       return false;
     });
+
+    /** 调整ID的位置和OPTION的位置 */
+    const IDPos = _.findIndex(this.rules, {tokenName: 'ID'});
+    this.rules = [...this.rules.slice(0, IDPos), ...this.rules.slice(IDPos+1), this.rules[IDPos]];
   }
 
   get children() {
@@ -302,10 +306,11 @@ export class RuleNode extends BaseNode {
   }
 
   toLexerCode() {
-    if(this.tokenName.indexOf('OPTION') === 0) {
+    if(this.tokenName.indexOf('CLI_') === 0) {
       return `const ${this.tokenName} = chevrotain.createToken({
         name: '${this.tokenName}',
         pattern: /${this.pattern}/,
+        longer_alt: ID
       });`;
     } else {
       return `const ${this.tokenName} = chevrotain.createToken({

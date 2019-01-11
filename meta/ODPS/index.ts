@@ -31,7 +31,6 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
 
   ast.sortRules();
   const tokenNames = ast.rules.filter(rule => !rule.fragName).map(rule => rule.tokenName);
-
   const parserCode = `
     import * as chevrotain from 'chevrotain';
 

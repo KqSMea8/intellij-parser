@@ -41,25 +41,27 @@ function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
       group: chevrotain.Lexer.SKIPPED,
       line_breaks: true
     });
+    const ID = chevrotain.createToken({
+      name: 'ID',
+      pattern: /\\$?[A-Za-z_\\-\\.\\/0-9]+/i,
+    }); 
     const STRING_LITERAL = chevrotain.createToken({
       name: 'STRING_LITERAL',
       pattern: /(\"(\\.|\"\"|[^(\"|\\)])*\"|\'(\\.|\'\'|[^(\'|\\)])*\')/i,
+      categories: [ID]
     });
     const DIGIT = chevrotain.createToken({
       name: 'DIGIT',
       pattern: /[0-9]+/i,
-      longer_alt: STRING_LITERAL
+      categories: [ID]
     });
     const DIGIT_TO_SEVEN = chevrotain.createToken({
       name: 'DIGIT_TO_SEVEN',
       pattern: /[0-7][0-7][0-7]/i,
-      longer_alt: DIGIT
+      longer_alt: DIGIT,
+      categories: [ID]
     });
-    const ID = chevrotain.createToken({
-      name: 'ID',
-      pattern: /[A-Za-z_\$0-9*]+/i,
-      longer_alt: DIGIT_TO_SEVEN
-    }); 
+
     ${ast.toLexerCode()}
  
 
