@@ -335,13 +335,21 @@ orderByExpression: expression order = (ASC | DESC)?;
 
 limitClause: LIMIT decimalLiteral+ OFFSET decimalLiteral+;
 
-expression: predicate logicalExpression*;
+expression: expressionRecursionPart (logicalOperator expression)*;
 
-logicalExpression: logicalOperator expression;
+expressionRecursionPart: (NOT | '!')? predicate (
+		IS NOT? testValue = (TRUE | FALSE | UNKNOWN)
+	)?;
 
 predicate: expressionAtom predicateReplace?;
 
-predicateReplace: comparisonOperator predicate | IS nullNotnull;
+predicateReplace:
+	comparisonOperator predicate
+	| IS nullNotnull
+	| NOT? IN '(' (selectStatement | expressions) ')'
+	| NOT? BETWEEN predicate AND predicate
+	| NOT? LIKE predicate (ESCAPE STRING_LITERAL)?
+	| SOUNDS LIKE predicate;
 
 expressionAtom: fullColumnName;
 
@@ -394,7 +402,8 @@ tableSources: tableSource (',' tableSource)*;
 fromClause:
 	FROM tableSources whereClause? groupClause? havingClause?;
 
-whereClause: WHERE whereExpr = expression;
+whereClause: WHERE expression;
+
 groupClause:
 	GROUP BY groupByItem (',' groupByItem)* (WITH ROLLUP)?;
 havingClause: HAVING havingExpr = expression;

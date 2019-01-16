@@ -71,7 +71,7 @@ export enum SyntaxKind {
   orderByExpression = 'orderByExpression',
   limitClause = 'limitClause',
   expression = 'expression',
-  logicalExpression = 'logicalExpression',
+  expressionRecursionPart = 'expressionRecursionPart',
   predicate = 'predicate',
   predicateReplace = 'predicateReplace',
   expressionAtom = 'expressionAtom',
@@ -2253,16 +2253,57 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('expression', () => {
-      this.SUBRULE(this.predicate);
+      this.SUBRULE(this.expressionRecursionPart);
 
       this.MANY(() => {
-        this.SUBRULE(this.logicalExpression);
+        this.SUBRULE(this.logicalOperator);
+        this.SUBRULE(this.expression);
       });
     });
 
-    this.RULE('logicalExpression', () => {
-      this.SUBRULE(this.logicalOperator);
-      this.SUBRULE(this.expression);
+    this.RULE('expressionRecursionPart', () => {
+      this.OPTION(() => {
+        this.OR2([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.NOT);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.EXCLAMATION_SYMBOL);
+            },
+          },
+        ]);
+      });
+
+      this.SUBRULE(this.predicate);
+
+      this.OPTION2(() => {
+        this.CONSUME(Tokens.IS);
+
+        this.OPTION3(() => {
+          this.CONSUME2(Tokens.NOT);
+        });
+
+        this.OR3([
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.TRUE);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.FALSE);
+            },
+          },
+          {
+            ALT: () => {
+              this.CONSUME(Tokens.UNKNOWN);
+            },
+          },
+        ]);
+      });
     });
 
     this.RULE('predicate', () => {
@@ -2285,6 +2326,63 @@ export class Parser extends chevrotain.Parser {
           ALT: () => {
             this.CONSUME(Tokens.IS);
             this.SUBRULE(this.nullNotnull);
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION(() => {
+              this.CONSUME(Tokens.NOT);
+            });
+
+            this.CONSUME(Tokens.IN);
+            this.CONSUME(Tokens.LR_BRACKET);
+            this.OR2([
+              {
+                ALT: () => {
+                  this.SUBRULE(this.selectStatement);
+                },
+              },
+              {
+                ALT: () => {
+                  this.SUBRULE(this.expressions);
+                },
+              },
+            ]);
+            this.CONSUME(Tokens.RR_BRACKET);
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION2(() => {
+              this.CONSUME2(Tokens.NOT);
+            });
+
+            this.CONSUME(Tokens.BETWEEN);
+            this.SUBRULE2(this.predicate);
+            this.CONSUME(Tokens.AND);
+            this.SUBRULE3(this.predicate);
+          },
+        },
+        {
+          ALT: () => {
+            this.OPTION3(() => {
+              this.CONSUME3(Tokens.NOT);
+            });
+
+            this.CONSUME(Tokens.LIKE);
+            this.SUBRULE4(this.predicate);
+
+            this.OPTION4(() => {
+              this.CONSUME(Tokens.ESCAPE);
+              this.CONSUME(Tokens.STRING_LITERAL);
+            });
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SOUNDS);
+            this.CONSUME2(Tokens.LIKE);
+            this.SUBRULE5(this.predicate);
           },
         },
       ]);

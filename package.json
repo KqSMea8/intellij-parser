@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "odps": "tsc && node lib/meta/ODPS/index.js",
+    "odps": "tsc && node lib/meta/ODPS/index.js && cd sql-parser && tsc && cd ..",
     "hive": "tsc && node lib/meta/Hive/index.js",
     "shell": "tsc && node lib/meta/Shell/index.js && cd sql-parser && tsc && cd ..",
     "opds-parser": "tsc sql-parser/ODPS/index.ts",

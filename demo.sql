@@ -156,3 +156,16 @@ on
     (a.prd_proj_id = b.prd_proj_id)
 ;
 
+
+SELECT
+  *
+FROM
+  pub_dataphin_voldemort_task
+  JOIN (
+    SELECT
+      *
+    FROM
+      pub_dataphin_physical_table
+      JOIN LD_retail.dws_all ON LD_retail.dws_all.com_cw = pub_dataphin_physical_table.last_access_time
+  ) T1 ON pub_dataphin_voldemort_task.content_version = T1.crt_trd_cnt_1d_trd_by_cash
+  JOIN api_test_odps_01 ON pub_dataphin_voldemort_task.biz_date = T1.crt_trd_cnt_30d_trd_by_cash

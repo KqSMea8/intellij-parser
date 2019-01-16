@@ -474,7 +474,9 @@ columnRefOrder: expression (asc = ASC | desc = DESC)?;
 
 queryOperator: UNION ALL;
 
-whereClause: WHERE searchCondition;
+whereClause: WHERE whereClauseCondtionGroups;
+
+whereClauseCondtionGroups: predicate (logicalOperator predicate)*;
 
 groupByClause:
 	GROUP BY groupByExpression (COMMA groupByExpression)* (
@@ -500,8 +502,6 @@ distributeByClause:
 	| DISTRIBUTE BY expression;
 
 havingCondition: expression;
-
-searchCondition: expression;
 
 expression: precedenceOrExpression;
 
