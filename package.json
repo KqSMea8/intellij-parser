@@ -1,16 +1,12 @@
 {
   "name": "@ali/intellij-sql-editor",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "",
   "main": "lib/index.js",
   "scripts": {
     "odps": "tsc && node lib/meta/ODPS/index.js && cd sql-parser && tsc && cd ..",
-    "hive": "tsc && node lib/meta/Hive/index.js",
+    "hive": "tsc && node lib/meta/Hive/index.js && cd sql-parser && tsc && cd ..",
     "shell": "tsc && node lib/meta/Shell/index.js && cd sql-parser && tsc && cd ..",
-    "opds-parser": "tsc sql-parser/ODPS/index.ts",
-    "hive-parser": "tsc sql-parser/Hive/index.ts",
-    "shell-parser": "tsc sql-parser/Shell/index.ts",
-    "parser": "tsc && node lib/sql-parser/index.js",
     "dev": "tsc -w",
     "start": "cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
     "test": "tsc && node lib/test.js"
