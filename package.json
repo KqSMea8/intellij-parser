@@ -16,7 +16,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:nefe/intellij-sql-editor.git"
+    "url": "git@gitlab.alibaba-inc.com:nel/intellij-parser.git"
   },
   "bin": {},
   "files": [
