@@ -18,7 +18,6 @@ class MetaParserConfig {
 
 function metaLexerGenerator(lexerGCode: string, config: MetaParserConfig) {
   const { ast, cst, lexErrors, parseErrors } = parseGCode(lexerGCode, false);
-  fs.writeFileSync('./test.js', JSON.stringify(cst));
 
   if (lexErrors && lexErrors.length) {
     console.log(...lexErrors);
