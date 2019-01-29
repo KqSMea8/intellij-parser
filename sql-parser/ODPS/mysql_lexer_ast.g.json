@@ -23643,30 +23643,6 @@
     {
       "index": 0,
       "kind": "rule",
-      "tokenName": "X_FUNCTION",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'X'"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "X"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
       "tokenName": "ESCAPED",
       "atoms": [
         {
@@ -25103,30 +25079,6 @@
         }
       ],
       "pattern": "ANALYZE"
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "tokenName": "Y_FUNCTION",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "Stringliteral",
-                "content": "'Y'"
-              }
-            }
-          ]
-        }
-      ],
-      "pattern": "Y"
     },
     {
       "index": 0,

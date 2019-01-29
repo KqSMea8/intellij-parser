@@ -99,6 +99,8 @@ export enum SyntaxKind {
   customFunction = 'customFunction',
   functionArgs = 'functionArgs',
   scalarFunctionName = 'scalarFunctionName',
+  commonFunctionNamePart1 = 'commonFunctionNamePart1',
+  commonFunctionNamePart2 = 'commonFunctionNamePart2',
   specificFunction = 'specificFunction',
   levelsInWeightString = 'levelsInWeightString',
   levelInWeightListElement = 'levelInWeightListElement',
@@ -2892,12 +2894,6 @@ export class Parser extends chevrotain.Parser {
       this.OR([
         {
           ALT: () => {
-            this.SUBRULE(this.fullId);
-            this.CONSUME(Tokens.STAR);
-          },
-        },
-        {
-          ALT: () => {
             this.SUBRULE(this.functionCall);
 
             this.OPTION(() => {
@@ -2966,29 +2962,1482 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('scalarFunctionName', () => {
+      this.OR2([
+        {
+          ALT: () => {
+            this.SUBRULE(this.commonFunctionNamePart1);
+          },
+        },
+        {
+          ALT: () => {
+            this.SUBRULE(this.commonFunctionNamePart2);
+          },
+        },
+      ]);
+      this.CONSUME(Tokens.LR_BRACKET);
+
+      this.OPTION(() => {
+        this.SUBRULE(this.functionArgs);
+      });
+
+      this.CONSUME(Tokens.RR_BRACKET);
+    });
+
+    this.RULE('commonFunctionNamePart1', () => {
       this.OR([
         {
           ALT: () => {
             this.CONSUME(Tokens.COUNT);
-            this.CONSUME(Tokens.LR_BRACKET);
-
-            this.OPTION(() => {
-              this.SUBRULE(this.functionArgs);
-            });
-
-            this.CONSUME(Tokens.RR_BRACKET);
           },
         },
         {
           ALT: () => {
             this.CONSUME(Tokens.SUBSTR);
-            this.CONSUME2(Tokens.LR_BRACKET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ABS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ACOS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ADDDATE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ADDTIME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.AES_DECRYPT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.AES_ENCRYPT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.AREA);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASBINARY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASWKT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASYMMETRIC_DECRYPT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASYMMETRIC_DERIVE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASYMMETRIC_ENCRYPT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASYMMETRIC_SIGN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ASYMMETRIC_VERIFY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ATAN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ATAN2);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BENCHMARK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIT_COUNT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BIT_LENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.BUFFER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CEIL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CEILING);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CENTROID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHARACTER_LENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHARSET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CHAR_LENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COERCIBILITY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COLLATION);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COMPRESS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CONCAT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CONCAT_WS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CONNECTION_ID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CONV);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CONVERT_TZ);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COALESCE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.COT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CRC32);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CREATE_ASYMMETRIC_PRIV_KEY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CREATE_ASYMMETRIC_PUB_KEY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CREATE_DH_PARAMETERS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CREATE_DIGEST);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.CROSSES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DATEDIFF);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DATE_FORMAT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAYNAME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAYOFMONTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAYOFWEEK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DAYOFYEAR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DECODE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DEGREES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DES_DECRYPT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DES_ENCRYPT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DIMENSION);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.DISJOINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ELT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ENCODE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ENCRYPT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ENDPOINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ENVELOPE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EQUALS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EXP);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EXPORT_SET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EXTERIORRING);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.EXTRACTVALUE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FIELD);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FIND_IN_SET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FLOOR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FORMAT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FOUND_ROWS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FROM_BASE64);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FROM_DAYS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.FROM_UNIXTIME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMCOLLFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMCOLLFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMETRYCOLLECTIONFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMETRYCOLLECTIONFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMETRYFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMETRYFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMETRYN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMETRYTYPE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GEOMFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GET_FORMAT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GET_LOCK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GLENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GREATEST);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GTID_SUBSET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.GTID_SUBTRACT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.HEX);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IFNULL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INET6_ATON);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INET6_NTOA);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INET_ATON);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INET_NTOA);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INSTR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INTERIORRINGN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.INTERSECTS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ISCLOSED);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ISEMPTY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ISNULL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ISSIMPLE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IS_FREE_LOCK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IS_IPV4);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IS_IPV4_COMPAT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IS_IPV4_MAPPED);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IS_IPV6);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.IS_USED_LOCK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LAST_INSERT_ID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LCASE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LEAST);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LINEFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LINEFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LINESTRINGFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LINESTRINGFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOAD_FILE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOCATE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOG);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOG10);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOG2);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LOWER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LPAD);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.LTRIM);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MAKEDATE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MAKETIME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MAKE_SET);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MASTER_POS_WAIT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MBRCONTAINS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MBRDISJOINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MBREQUAL);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MBRINTERSECTS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MBROVERLAPS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MBRTOUCHES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MBRWITHIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MD5);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MLINEFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MLINEFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MONTHNAME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MPOINTFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MPOINTFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MPOLYFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MPOLYFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MULTILINESTRINGFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MULTILINESTRINGFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MULTIPOINTFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MULTIPOINTFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MULTIPOLYGONFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.MULTIPOLYGONFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NAME_CONST);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NULLIF);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NUMGEOMETRIES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NUMINTERIORRINGS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.NUMPOINTS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.OCT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.OCTET_LENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ORD);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.OVERLAPS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PERIOD_ADD);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PERIOD_DIFF);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.PI);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POINTFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POINTFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POINTN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POLYFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POLYFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POLYGONFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POLYGONFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POW);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.POWER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.QUOTE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RADIANS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RAND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RANDOM_BYTES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RELEASE_LOCK);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.REVERSE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ROUND);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ROW_COUNT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RPAD);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.RTRIM);
+          },
+        },
+      ]);
+    });
 
-            this.OPTION2(() => {
-              this.SUBRULE2(this.functionArgs);
-            });
-
-            this.CONSUME2(Tokens.RR_BRACKET);
+    this.RULE('commonFunctionNamePart2', () => {
+      this.OR([
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SEC_TO_TIME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SESSION_USER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SHA);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SHA1);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SHA2);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SIGN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SLEEP);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SOUNDEX);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SQL_THREAD_WAIT_AFTER_GTIDS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SQRT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SRID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STARTPOINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STRCMP);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.STR_TO_DATE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_AREA);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ASBINARY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ASTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ASWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ASWKT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_BUFFER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_CENTROID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_CONTAINS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_CROSSES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_DIFFERENCE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_DIMENSION);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_DISJOINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_DISTANCE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ENDPOINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ENVELOPE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_EQUALS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_EXTERIORRING);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMCOLLFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMCOLLFROMTXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMCOLLFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMETRYCOLLECTIONFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMETRYCOLLECTIONFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMETRYFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMETRYFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMETRYN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMETRYTYPE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_GEOMFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_INTERIORRINGN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_INTERSECTION);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_INTERSECTS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ISCLOSED);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ISEMPTY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_ISSIMPLE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_LINEFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_LINEFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_LINESTRINGFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_LINESTRINGFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_NUMGEOMETRIES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_NUMINTERIORRING);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_NUMINTERIORRINGS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_NUMPOINTS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_OVERLAPS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_POINTFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_POINTFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_POINTN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_POLYFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_POLYFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_POLYGONFROMTEXT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_POLYGONFROMWKB);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_SRID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_STARTPOINT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_SYMDIFFERENCE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_TOUCHES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_UNION);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_WITHIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_X);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.ST_Y);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SUBDATE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SUBSTRING_INDEX);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SUBTIME);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.SYSTEM_USER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TAN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TIMEDIFF);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TIMESTAMPADD);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TIMESTAMPDIFF);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TIME_FORMAT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TIME_TO_SEC);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TOUCHES);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TO_BASE64);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TO_DAYS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.TO_SECONDS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UCASE);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UNCOMPRESS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UNCOMPRESSED_LENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UNHEX);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UNIX_TIMESTAMP);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UPDATEXML);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UPPER);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UUID);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.UUID_SHORT);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.VALIDATE_PASSWORD_STRENGTH);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.VERSION);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.WAIT_UNTIL_SQL_THREAD_AFTER_GTIDS);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.WEEKDAY);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.WEEKOFYEAR);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.WITHIN);
+          },
+        },
+        {
+          ALT: () => {
+            this.CONSUME(Tokens.YEARWEEK);
           },
         },
       ]);

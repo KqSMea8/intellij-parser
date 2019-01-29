@@ -4539,11 +4539,6 @@ const EXISTS = chevrotain.createToken({
   pattern: /EXISTS/i,
   longer_alt: ID,
 });
-const X_FUNCTION = chevrotain.createToken({
-  name: 'X_FUNCTION',
-  pattern: /X/i,
-  longer_alt: ID,
-});
 const ESCAPED = chevrotain.createToken({
   name: 'ESCAPED',
   pattern: /ESCAPED/i,
@@ -4842,11 +4837,6 @@ const AND = chevrotain.createToken({
 const ANALYZE = chevrotain.createToken({
   name: 'ANALYZE',
   pattern: /ANALYZE/i,
-  longer_alt: ID,
-});
-const Y_FUNCTION = chevrotain.createToken({
-  name: 'Y_FUNCTION',
-  pattern: /Y/i,
   longer_alt: ID,
 });
 const ALTER = chevrotain.createToken({
@@ -5777,7 +5767,6 @@ export enum TokenEnum {
   EXP = 'EXP',
   EXIT = 'EXIT',
   EXISTS = 'EXISTS',
-  X_FUNCTION = 'X_FUNCTION',
   ESCAPED = 'ESCAPED',
   ESCAPE = 'ESCAPE',
   ENCLOSED = 'ENCLOSED',
@@ -5838,7 +5827,6 @@ export enum TokenEnum {
   AS = 'AS',
   AND = 'AND',
   ANALYZE = 'ANALYZE',
-  Y_FUNCTION = 'Y_FUNCTION',
   ALTER = 'ALTER',
   ALL = 'ALL',
   ADD = 'ADD',
@@ -6753,7 +6741,6 @@ export const Tokens = {
   EXP,
   EXIT,
   EXISTS,
-  X_FUNCTION,
   ESCAPED,
   ESCAPE,
   ENCLOSED,
@@ -6814,7 +6801,6 @@ export const Tokens = {
   AS,
   AND,
   ANALYZE,
-  Y_FUNCTION,
   ALTER,
   ALL,
   ADD,
@@ -7730,7 +7716,6 @@ export const tokens = [
   EXP,
   EXIT,
   EXISTS,
-  X_FUNCTION,
   ESCAPED,
   ESCAPE,
   ENCLOSED,
@@ -7791,7 +7776,6 @@ export const tokens = [
   AS,
   AND,
   ANALYZE,
-  Y_FUNCTION,
   ALTER,
   ALL,
   ADD,
