@@ -4,9 +4,10 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "odps": "tsc && node lib/meta/ODPS/index.js && cd sql-parser && tsc && cd ..",
-    "hive": "tsc && node lib/meta/Hive/index.js && cd sql-parser && tsc && cd ..",
-    "shell": "tsc && node lib/meta/Shell/index.js && cd sql-parser && tsc && cd ..",
+    "odps": "tsc && node lib/meta/ODPS/index.js && cd sql-parser && tsc && cd .. && npm run uglify",
+    "hive": "tsc && node lib/meta/Hive/index.js && cd sql-parser && tsc && cd .. && npm run uglify",
+    "shell": "tsc && node lib/meta/Shell/index.js && cd sql-parser && tsc && cd .. && npm run uglify",
+    "uglify": "find lib -name '*.js' -exec uglifyjs {} -o {} \\;",
     "dev": "tsc -w",
     "start": "cross-env UV_THREADPOOL_SIZE=100 NODE_ENV=development webpack-dev-server --config webpack.config.dev.js",
     "test": "tsc && node lib/test.js"
@@ -22,7 +23,6 @@
   "files": [
     "lib",
     "bin",
-    "src",
     "*.md"
   ],
   "author": "NEFE",

@@ -11431,7 +11431,68 @@
               "item": {
                 "index": 0,
                 "kind": "LowerName",
-                "name": "searchCondition"
+                "name": "whereClauseCondtionGroups"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "index": 0,
+      "kind": "rule",
+      "ruleName": "whereClauseCondtionGroups",
+      "atoms": [
+        {
+          "index": 0,
+          "kind": "atom",
+          "itemSuffs": [
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "item": {
+                "index": 0,
+                "kind": "LowerName",
+                "name": "predicate"
+              }
+            },
+            {
+              "index": 0,
+              "kind": "itemSuff",
+              "hasNot": false,
+              "suff": "*",
+              "item": {
+                "index": 0,
+                "kind": "bracketExp",
+                "atoms": [
+                  {
+                    "index": 0,
+                    "kind": "atom",
+                    "itemSuffs": [
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 0,
+                          "kind": "LowerName",
+                          "name": "logicalOperator"
+                        }
+                      },
+                      {
+                        "index": 0,
+                        "kind": "itemSuff",
+                        "hasNot": false,
+                        "item": {
+                          "index": 1,
+                          "kind": "LowerName",
+                          "name": "predicate"
+                        }
+                      }
+                    ]
+                  }
+                ]
               }
             }
           ]
@@ -12043,29 +12104,6 @@
       "index": 0,
       "kind": "rule",
       "ruleName": "havingCondition",
-      "atoms": [
-        {
-          "index": 0,
-          "kind": "atom",
-          "itemSuffs": [
-            {
-              "index": 0,
-              "kind": "itemSuff",
-              "hasNot": false,
-              "item": {
-                "index": 0,
-                "kind": "LowerName",
-                "name": "expression"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "index": 0,
-      "kind": "rule",
-      "ruleName": "searchCondition",
       "atoms": [
         {
           "index": 0,

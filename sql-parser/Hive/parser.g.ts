@@ -101,13 +101,13 @@ export enum SyntaxKind {
   columnRefOrder = 'columnRefOrder',
   queryOperator = 'queryOperator',
   whereClause = 'whereClause',
+  whereClauseCondtionGroups = 'whereClauseCondtionGroups',
   groupByClause = 'groupByClause',
   groupingSetExpression = 'groupingSetExpression',
   groupByExpression = 'groupByExpression',
   havingClause = 'havingClause',
   distributeByClause = 'distributeByClause',
   havingCondition = 'havingCondition',
-  searchCondition = 'searchCondition',
   expression = 'expression',
   atomExpression = 'atomExpression',
   tableOrColumn = 'tableOrColumn',
@@ -3051,7 +3051,16 @@ export class Parser extends chevrotain.Parser {
 
     this.RULE('whereClause', () => {
       this.CONSUME(Tokens.WHERE);
-      this.SUBRULE(this.searchCondition);
+      this.SUBRULE(this.whereClauseCondtionGroups);
+    });
+
+    this.RULE('whereClauseCondtionGroups', () => {
+      this.SUBRULE(this.predicate);
+
+      this.MANY(() => {
+        this.SUBRULE(this.logicalOperator);
+        this.SUBRULE2(this.predicate);
+      });
     });
 
     this.RULE('groupByClause', () => {
@@ -3162,10 +3171,6 @@ export class Parser extends chevrotain.Parser {
     });
 
     this.RULE('havingCondition', () => {
-      this.SUBRULE(this.expression);
-    });
-
-    this.RULE('searchCondition', () => {
       this.SUBRULE(this.expression);
     });
 
